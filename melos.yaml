@@ -1,0 +1,21 @@
+name: bego_client
+repository: https://github.com/Business-Ocean/bego_client
+
+packages:
+  - apps/**
+  - packages/**
+  - features/**
+  - services/**
+  - showcase/**
+
+scripts:
+  analyze:
+    exec: dart analyze .  
+ide:
+  intellij:
+    enabled: false    
+command:
+  version:
+    branch: main    
+
+    

@@ -1,0 +1,12 @@
+# buf.gen.yaml
+version: v1
+managed:
+  enabled: false
+plugins:
+  - plugin: buf.build/protocolbuffers/dart:v21.1.2
+    out: ./packages/bego_service/lib/src/gen
+    # opt:
+    #   # Enable the "grpc" option if you need gRPC stubs.
+    #   - grpc
+    # opt:
+    #   - grpc

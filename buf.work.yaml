@@ -1,0 +1,3 @@
+version: v1
+directories:
+  - packages/bego_service/protos  

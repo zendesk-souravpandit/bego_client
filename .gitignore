@@ -1,0 +1,13 @@
+*/**/pubspec.lock
+pubspec.lock
+
+.idea
+.vscode
+.dart_tool
+packages/bego_ui/.flutter-plugins-dependencies
+
+*/**/*_environment.sh
+*/**/*_Generated.xcconfig
+packages/bego_ui/macos/Flutter/ephemeral/Flutter-Generated.xcconfig
+
+application/ui_test_play/
