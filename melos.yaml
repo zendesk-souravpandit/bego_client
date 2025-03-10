@@ -9,8 +9,30 @@ packages:
   - showcase/**
 
 scripts:
+  lint:
+    run: melos exec -- flutter analyze
+    description: Run the linter across all packages.    
+  sync-lint-rules:
+    run: melos exec -- cp ../../analysis_options.yaml ./analysis_options.yaml
+    description: Sync linting rules across all packages.
+  bootstrap:
+    run: melos exec -- flutter pub get
+    description: Bootstrap all packages by running `flutter pub get`.
+
   analyze:
-    exec: dart analyze .  
+    run: melos exec -- flutter analyze
+    description: Run the linter across all packages.
+
+  test:
+    run: melos exec -- flutter test
+    description: Run tests across all packages.
+  add_dependency:
+    run: melos exec -- flutter pub add --dev flint
+    description: Add a specific version of a dependency to all packages.
+  remove_dependency:
+    run: melos exec -- flutter pub remove --dev flint
+    description: Add a specific version of a dependency to all packages.
+
 ide:
   intellij:
     enabled: false    

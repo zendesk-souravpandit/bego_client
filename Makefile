@@ -1,3 +1,10 @@
+# melos commands
+
+mlint-sync:
+	melos run sync-lint-rules
+mlint:
+	melos run lint	
+
 build-bego:
 	cd apps/bego  && flutter build web -t lib/bego.main.dart --release
 
