@@ -7,6 +7,8 @@ environment:
   sdk: ^3.7.0
 
 dependencies:
+  beui:
+   path: ../../packages/ui
   flutter:
     sdk: flutter
   path: ^1.9.1

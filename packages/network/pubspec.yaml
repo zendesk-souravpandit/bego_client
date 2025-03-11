@@ -24,31 +24,7 @@ dev_dependencies:
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter packages.
-flutter:
-  fonts:
-    - family: Roboto
-      fonts:
-        - asset: assets/fonts/Roboto-Regular.ttf
-        - asset: assets/fonts/Roboto-Bold.ttf
-          weight: 700
-        - asset: assets/fonts/Roboto-Light.ttf
-          weight: 300
-        - asset: assets/fonts/Roboto-Medium.ttf
-          weight: 500
-        - asset: assets/fonts/Roboto-SemiBold.ttf
-          weight: 600
-        - asset: assets/fonts/Roboto-ExtraBold.ttf
-          weight: 800
-        - asset: assets/fonts/Roboto-Black.ttf
-          weight: 900
-    - family: Roboto_Condensed
-      fonts:
-        - asset: assets/fonts/Roboto_Condensed-Regular.ttf
-        - asset: assets/fonts/Roboto_Condensed-Bold.ttf
-          weight: 700
-    - family: BeIcons
-      fonts:
-        - asset: assets/icons/Bego-Icons.ttf
+# flutter:
   # To add assets to your package, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
