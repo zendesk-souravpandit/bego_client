@@ -19,6 +19,10 @@ scripts:
     run: melos exec -- flutter pub get
     description: Bootstrap all packages by running `flutter pub get`.
 
+  gen_icons:
+    run: melos exec --scope="uibook" -- "dart utils/gen_icons.dart $MELOS_ROOT_PATH/packages/bego_ui/config lib/widgets/icons && dart format lib/widgets/icons/icons_list.dart"
+    description: Generate icons for the uibook package.
+
   analyze:
     run: melos exec -- flutter analyze
     description: Run the linter across all packages.
