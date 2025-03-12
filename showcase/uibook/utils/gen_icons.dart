@@ -6,51 +6,42 @@ import 'package:path/path.dart';
 void main(List<String> arguments) {
   final inputDir = Directory(arguments.first);
   final outputDir = Directory(arguments[1]);
-  final List<FileSystemEntity> directoryEntities =
-      inputDir.listSync(followLinks: false).toList();
+  final List<FileSystemEntity> directoryEntities = inputDir.listSync(followLinks: false).toList();
 
   for (final entity in directoryEntities) {
     if (entity is File && entity.path.endsWith('_icons.json')) {
-      final Map<String, dynamic> fontConfig =
-          json.decode(entity.readAsStringSync()) as Map<String, dynamic>;
-      final fontFamilyName = fontConfig["preferences"]["fontPref"]['metadata']
-              ["fontFamily"]
-          .toString();
+      final Map<String, dynamic> fontConfig = json.decode(entity.readAsStringSync()) as Map<String, dynamic>;
+      // ignore: avoid_dynamic_calls
+      final fontFamilyName = fontConfig['preferences']['fontPref']['metadata']['fontFamily'].toString();
 
       final List<dynamic> icons = fontConfig['icons'] as List<dynamic>;
-      final buffer = StringBuffer()
-        ..writeAll(
-          [
-            '',
-            "import 'package:flutter/widgets.dart';",
-            "import 'package:bego_ui/bego_icon.dart';",
-            '',
-            '// NB: DO NOT EDIT! This file is auto-generated. See utils/gen_icons.dart',
-            '',
-            'class IconDetails {',
-            'const IconDetails(this.data, this.name);',
-            'final IconData data;',
-            'final String name;',
-            '}',
-          ],
-          '\n',
-        )
-        ..writeln('const begoIcons = <IconDetails>[');
+      final buffer =
+          StringBuffer()
+            ..writeAll([
+              '',
+              "import 'package:flutter/widgets.dart';",
+              "import 'package:bego_ui/bego_icon.dart';",
+              '',
+              '// NB: DO NOT EDIT! This file is auto-generated. See utils/gen_icons.dart',
+              '',
+              'class IconDetails {',
+              'const IconDetails(this.data, this.name);',
+              'final IconData data;',
+              'final String name;',
+              '}',
+            ], '\n')
+            ..writeln('const begoIcons = <IconDetails>[');
 
       for (int i = 0; i < icons.length; i++) {
         final Map<String, dynamic> icon = icons[i] as Map<String, dynamic>;
 
-        final glyphName =
-            convertGlyphName(icon['properties']["name"].toString());
-        buffer.writeln(
-          "    IconDetails($fontFamilyName.$glyphName, '$glyphName'),",
-        );
+        final glyphName = convertGlyphName(icon['properties']['name'].toString());
+        buffer.writeln("    IconDetails($fontFamilyName.$glyphName, '$glyphName'),");
       }
 
       buffer.writeln('];');
 
-      File(join(outputDir.path, dartFileName))
-          .writeAsStringSync(buffer.toString());
+      File(join(outputDir.path, dartFileName)).writeAsStringSync(buffer.toString());
     }
   }
 }
@@ -67,7 +58,7 @@ String convertGlyphName(String name) {
   return out;
 }
 
-final _glyphNameRegex = RegExp(r'[^A-Za-z0-9_]');
+final _glyphNameRegex = RegExp('[^A-Za-z0-9_]');
 const dartReserved = [
   'abstract',
   'deferred',
@@ -123,6 +114,6 @@ const dartReserved = [
   'default',
   'get',
   'static',
-  'yield'
+  'yield',
 ];
 const dartFileName = 'icons_list.dart';

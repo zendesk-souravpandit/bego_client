@@ -1,9 +1,48 @@
+import 'package:becomponent/app/app_wrapper.dart';
+import 'package:becomponent/app/events.dart';
+import 'package:becomponent/app/state_inherited.dart';
 import 'package:becore/utils.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const AppStateWrapper(child: BegoApp()));
+}
+
+class BegoApp extends StatelessWidget {
+  const BegoApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final appState = AppStateInherited.of(context).state;
+    final appEvent = AppStateInherited.of(context).appEventBus;
+    final updateEvent = AppStateInherited.of(context).updateEvent;
+
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: const Text('BegoApp')),
+        body: Center(
+          child: Column(
+            children: [
+              Text('Screen Width: ${appState.locale}'),
+              ElevatedButton(
+                onPressed: () {
+                  appEvent.fire(UpdateLocaleEvent(const Locale('fr', 'FR')));
+                },
+                child: const Text('Press Me'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  updateEvent(UpdateLocaleEvent(const Locale('abaac', 'US')));
+                },
+                child: const Text('Reset Me'),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 }
 
 class MyApp extends StatelessWidget {
