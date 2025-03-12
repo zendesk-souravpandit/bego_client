@@ -1,3 +1,4 @@
+import 'package:beui/screen.dart' show BeBreakpoint, BeResponsivePoints;
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -13,6 +14,9 @@ abstract class AppState with _$AppState {
     required ThemeMode themeMode,
     required Locale locale,
     required double screenWidth,
+    required BeBreakpoint breakpoint,
+    required BeResponsivePoints responsivePoints,
+
     // Add other state properties here
   }) = _AppState;
 
@@ -24,6 +28,8 @@ abstract class AppState with _$AppState {
     version: '1.0.0',
     screenWidth: 800,
     deviceId: null,
+    breakpoint: BeBreakpoint.md,
+    responsivePoints: BeResponsivePoints(),
     // Initialize other state properties here
   );
 }

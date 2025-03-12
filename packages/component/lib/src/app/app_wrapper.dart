@@ -6,6 +6,7 @@ import 'package:becomponent/src/app/events.dart';
 import 'package:becomponent/src/app/state.dart';
 import 'package:becomponent/src/app/state_inherited.dart';
 import 'package:becore/event.dart' show BeEventBus, EventAction;
+import 'package:beui/screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -54,10 +55,11 @@ class _AppStateWrapperState extends State<AppStateWrapper> {
 
   void _updateScreenWidth() {
     final mediaQuery = MediaQuery.of(context);
+    final screenWidth = mediaQuery.size.width;
+    final breakpoint = calculateBreakpoint(screenWidth, _state.responsivePoints);
     setState(() {
-      _state = _state.copyWith(screenWidth: mediaQuery.size.width);
+      _state = _state.copyWith(screenWidth: mediaQuery.size.width, breakpoint: breakpoint);
     });
-    // BeEventBus.instance.fire(UpdateScreenWidthEvent(mediaQuery.size.width));
   }
 
   @override

@@ -11,6 +11,8 @@ environment:
 dependencies:
   becore:
     path: ../core
+  beui:
+    path: ../ui
   device_info_plus: ^11.3.3
   flutter:
     sdk: flutter

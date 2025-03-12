@@ -1,0 +1,6 @@
+# melos_managed_dependency_overrides: becore,beui
+dependency_overrides:
+  becore:
+    path: ../core
+  beui:
+    path: ../ui

@@ -26,6 +26,7 @@ class BegoApp extends StatelessWidget {
             children: [
               Text('Screen Locale: ${appState.locale}'),
               Text('Screen Width: ${appState.screenWidth}'),
+              Text('Screen breakpoint: ${appState.breakpoint}'),
               ElevatedButton(
                 onPressed: () {
                   appEvent.fire(UpdateLocaleEvent(const Locale('fr', 'FR')));
