@@ -2,9 +2,9 @@
 
 import 'dart:async';
 
-import 'package:becomponent/app/events.dart';
-import 'package:becomponent/app/state.dart';
-import 'package:becomponent/app/state_inherited.dart';
+import 'package:becomponent/src/app/events.dart';
+import 'package:becomponent/src/app/state.dart';
+import 'package:becomponent/src/app/state_inherited.dart';
 import 'package:becore/event.dart' show BeEventBus, EventAction;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -52,9 +52,26 @@ class _AppStateWrapperState extends State<AppStateWrapper> {
     });
   }
 
+  void _updateScreenWidth() {
+    final mediaQuery = MediaQuery.of(context);
+    setState(() {
+      _state = _state.copyWith(screenWidth: mediaQuery.size.width);
+    });
+    // BeEventBus.instance.fire(UpdateScreenWidthEvent(mediaQuery.size.width));
+  }
+
   @override
-  Widget build(BuildContext context) =>
-      AppStateInherited(appEventBus: appEventBus, state: _state, updateEvent: _handleEvent, child: widget.child);
+  Widget build(BuildContext context) => LayoutBuilder(
+    builder: (context, constraints) {
+      // Update screen width whenever the layout changes
+      if (_state.screenWidth != constraints.maxWidth) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          _updateScreenWidth();
+        });
+      }
+      return AppStateInherited(appEventBus: appEventBus, state: _state, updateEvent: _handleEvent, child: widget.child);
+    },
+  );
 
   @override
   void dispose() {

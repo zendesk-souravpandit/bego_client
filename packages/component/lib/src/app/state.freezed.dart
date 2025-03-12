@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$AppState {
 
- String get appName; String get packageName; String get version; String? get deviceId; ThemeMode get themeMode; Locale get locale;
+ String get appName; String get packageName; String get version; String? get deviceId; ThemeMode get themeMode; Locale get locale; double get screenWidth;
 /// Create a copy of AppState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -26,16 +26,16 @@ $AppStateCopyWith<AppState> get copyWith => _$AppStateCopyWithImpl<AppState>(thi
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AppState&&(identical(other.appName, appName) || other.appName == appName)&&(identical(other.packageName, packageName) || other.packageName == packageName)&&(identical(other.version, version) || other.version == version)&&(identical(other.deviceId, deviceId) || other.deviceId == deviceId)&&(identical(other.themeMode, themeMode) || other.themeMode == themeMode)&&(identical(other.locale, locale) || other.locale == locale));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AppState&&(identical(other.appName, appName) || other.appName == appName)&&(identical(other.packageName, packageName) || other.packageName == packageName)&&(identical(other.version, version) || other.version == version)&&(identical(other.deviceId, deviceId) || other.deviceId == deviceId)&&(identical(other.themeMode, themeMode) || other.themeMode == themeMode)&&(identical(other.locale, locale) || other.locale == locale)&&(identical(other.screenWidth, screenWidth) || other.screenWidth == screenWidth));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,appName,packageName,version,deviceId,themeMode,locale);
+int get hashCode => Object.hash(runtimeType,appName,packageName,version,deviceId,themeMode,locale,screenWidth);
 
 @override
 String toString() {
-  return 'AppState(appName: $appName, packageName: $packageName, version: $version, deviceId: $deviceId, themeMode: $themeMode, locale: $locale)';
+  return 'AppState(appName: $appName, packageName: $packageName, version: $version, deviceId: $deviceId, themeMode: $themeMode, locale: $locale, screenWidth: $screenWidth)';
 }
 
 
@@ -46,7 +46,7 @@ abstract mixin class $AppStateCopyWith<$Res>  {
   factory $AppStateCopyWith(AppState value, $Res Function(AppState) _then) = _$AppStateCopyWithImpl;
 @useResult
 $Res call({
- String appName, String packageName, String version, String? deviceId, ThemeMode themeMode, Locale locale
+ String appName, String packageName, String version, String? deviceId, ThemeMode themeMode, Locale locale, double screenWidth
 });
 
 
@@ -63,7 +63,7 @@ class _$AppStateCopyWithImpl<$Res>
 
 /// Create a copy of AppState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? appName = null,Object? packageName = null,Object? version = null,Object? deviceId = freezed,Object? themeMode = null,Object? locale = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? appName = null,Object? packageName = null,Object? version = null,Object? deviceId = freezed,Object? themeMode = null,Object? locale = null,Object? screenWidth = null,}) {
   return _then(_self.copyWith(
 appName: null == appName ? _self.appName : appName // ignore: cast_nullable_to_non_nullable
 as String,packageName: null == packageName ? _self.packageName : packageName // ignore: cast_nullable_to_non_nullable
@@ -71,7 +71,8 @@ as String,version: null == version ? _self.version : version // ignore: cast_nul
 as String,deviceId: freezed == deviceId ? _self.deviceId : deviceId // ignore: cast_nullable_to_non_nullable
 as String?,themeMode: null == themeMode ? _self.themeMode : themeMode // ignore: cast_nullable_to_non_nullable
 as ThemeMode,locale: null == locale ? _self.locale : locale // ignore: cast_nullable_to_non_nullable
-as Locale,
+as Locale,screenWidth: null == screenWidth ? _self.screenWidth : screenWidth // ignore: cast_nullable_to_non_nullable
+as double,
   ));
 }
 
@@ -82,7 +83,7 @@ as Locale,
 
 
 class _AppState implements AppState {
-  const _AppState({required this.appName, required this.packageName, required this.version, required this.deviceId, required this.themeMode, required this.locale});
+  const _AppState({required this.appName, required this.packageName, required this.version, required this.deviceId, required this.themeMode, required this.locale, required this.screenWidth});
   
 
 @override final  String appName;
@@ -91,6 +92,7 @@ class _AppState implements AppState {
 @override final  String? deviceId;
 @override final  ThemeMode themeMode;
 @override final  Locale locale;
+@override final  double screenWidth;
 
 /// Create a copy of AppState
 /// with the given fields replaced by the non-null parameter values.
@@ -102,16 +104,16 @@ _$AppStateCopyWith<_AppState> get copyWith => __$AppStateCopyWithImpl<_AppState>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AppState&&(identical(other.appName, appName) || other.appName == appName)&&(identical(other.packageName, packageName) || other.packageName == packageName)&&(identical(other.version, version) || other.version == version)&&(identical(other.deviceId, deviceId) || other.deviceId == deviceId)&&(identical(other.themeMode, themeMode) || other.themeMode == themeMode)&&(identical(other.locale, locale) || other.locale == locale));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AppState&&(identical(other.appName, appName) || other.appName == appName)&&(identical(other.packageName, packageName) || other.packageName == packageName)&&(identical(other.version, version) || other.version == version)&&(identical(other.deviceId, deviceId) || other.deviceId == deviceId)&&(identical(other.themeMode, themeMode) || other.themeMode == themeMode)&&(identical(other.locale, locale) || other.locale == locale)&&(identical(other.screenWidth, screenWidth) || other.screenWidth == screenWidth));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,appName,packageName,version,deviceId,themeMode,locale);
+int get hashCode => Object.hash(runtimeType,appName,packageName,version,deviceId,themeMode,locale,screenWidth);
 
 @override
 String toString() {
-  return 'AppState(appName: $appName, packageName: $packageName, version: $version, deviceId: $deviceId, themeMode: $themeMode, locale: $locale)';
+  return 'AppState(appName: $appName, packageName: $packageName, version: $version, deviceId: $deviceId, themeMode: $themeMode, locale: $locale, screenWidth: $screenWidth)';
 }
 
 
@@ -122,7 +124,7 @@ abstract mixin class _$AppStateCopyWith<$Res> implements $AppStateCopyWith<$Res>
   factory _$AppStateCopyWith(_AppState value, $Res Function(_AppState) _then) = __$AppStateCopyWithImpl;
 @override @useResult
 $Res call({
- String appName, String packageName, String version, String? deviceId, ThemeMode themeMode, Locale locale
+ String appName, String packageName, String version, String? deviceId, ThemeMode themeMode, Locale locale, double screenWidth
 });
 
 
@@ -139,7 +141,7 @@ class __$AppStateCopyWithImpl<$Res>
 
 /// Create a copy of AppState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? appName = null,Object? packageName = null,Object? version = null,Object? deviceId = freezed,Object? themeMode = null,Object? locale = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? appName = null,Object? packageName = null,Object? version = null,Object? deviceId = freezed,Object? themeMode = null,Object? locale = null,Object? screenWidth = null,}) {
   return _then(_AppState(
 appName: null == appName ? _self.appName : appName // ignore: cast_nullable_to_non_nullable
 as String,packageName: null == packageName ? _self.packageName : packageName // ignore: cast_nullable_to_non_nullable
@@ -147,7 +149,8 @@ as String,version: null == version ? _self.version : version // ignore: cast_nul
 as String,deviceId: freezed == deviceId ? _self.deviceId : deviceId // ignore: cast_nullable_to_non_nullable
 as String?,themeMode: null == themeMode ? _self.themeMode : themeMode // ignore: cast_nullable_to_non_nullable
 as ThemeMode,locale: null == locale ? _self.locale : locale // ignore: cast_nullable_to_non_nullable
-as Locale,
+as Locale,screenWidth: null == screenWidth ? _self.screenWidth : screenWidth // ignore: cast_nullable_to_non_nullable
+as double,
   ));
 }
 

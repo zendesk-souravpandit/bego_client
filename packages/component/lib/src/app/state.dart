@@ -12,6 +12,7 @@ abstract class AppState with _$AppState {
     required String? deviceId,
     required ThemeMode themeMode,
     required Locale locale,
+    required double screenWidth,
     // Add other state properties here
   }) = _AppState;
 
@@ -21,6 +22,7 @@ abstract class AppState with _$AppState {
     appName: 'Bego App reload',
     packageName: 'com.example.bego',
     version: '1.0.0',
+    screenWidth: 800,
     deviceId: null,
     // Initialize other state properties here
   );
