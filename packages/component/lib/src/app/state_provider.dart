@@ -1,9 +1,10 @@
+import 'package:becomponent/app.dart' show AppEventAction;
 import 'package:becomponent/src/app/state.dart';
 import 'package:becore/event.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-typedef EventActionHandler = void Function(EventAction action);
+typedef EventActionHandler = void Function(AppEventAction action);
 
 class AppStateProvider extends InheritedWidget {
   const AppStateProvider({

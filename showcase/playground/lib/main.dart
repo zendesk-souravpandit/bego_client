@@ -1,5 +1,7 @@
 import 'package:becomponent/app.dart';
 import 'package:becore/utils.dart';
+import 'package:beui/screen.dart';
+import 'package:beui/theme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -12,6 +14,7 @@ class BegoApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final betheme = context.betheme;
     final appState = AppStateProvider.of(context).state;
     final appEvent = AppStateProvider.of(context).appEventBus;
     final updateEvent = AppStateProvider.of(context).updateEvent;
@@ -19,20 +22,43 @@ class BegoApp extends StatelessWidget {
       updateEvent(UpdateLocaleEvent(const Locale('fr', 'FR')));
     });
     return MaterialApp(
+      themeMode: appState.themeMode,
+      theme: ThemeData(
+        brightness: appState.themeMode == ThemeMode.light ? Brightness.light : Brightness.dark,
+        extensions: [betheme],
+      ),
       home: Scaffold(
         appBar: AppBar(title: const Text('BegoApp')),
         body: Center(
           child: Column(
             children: [
+              Text('App Theme: $betheme + ${appState.themeMode}'),
               Text('Screen Locale: ${appState.locale}'),
               Text('Screen Width: ${appState.screenWidth}'),
               Text('Screen breakpoint: ${appState.breakpoint}'),
+              switch (context.breakpoint) {
+                BeBreakpoint.xs => const Text('Extra Small Layout'),
+                BeBreakpoint.sm => const Text('Small Layout'),
+                BeBreakpoint.md => const Text('Medium Layout'),
+                BeBreakpoint.lg => const Text('Large Layout'),
+                BeBreakpoint.xl => const Text('Extra Large Layout'),
+                BeBreakpoint.xl2 => const Text('Extra Extra Large Layout'),
+              },
               ElevatedButton(
                 onPressed: () {
                   appEvent.fire(UpdateLocaleEvent(const Locale('fr', 'FR')));
                 },
                 child: const Text('Press Me'),
               ),
+              ElevatedButton(
+                onPressed: () {
+                  appEvent.fire(
+                    UpdateThemeModeEvent(appState.themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light),
+                  );
+                },
+                child: const Text('Change Theme'),
+              ),
+
               ElevatedButton(
                 onPressed: () {
                   updateEvent(UpdateLocaleEvent(const Locale('abaac', 'US')));
@@ -83,7 +109,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[const Text('You have pushed the button this many times:'), Text(numberRound.toString())],
+          children: [const Text('You have pushed the button this many times:'), Text(numberRound.toString())],
         ),
       ),
     );

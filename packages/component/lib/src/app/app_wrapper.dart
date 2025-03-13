@@ -7,6 +7,7 @@ import 'package:becomponent/src/app/state.dart';
 import 'package:becomponent/src/app/state_provider.dart';
 import 'package:becore/event.dart' show BeEventBus, EventAction;
 import 'package:beui/screen.dart';
+import 'package:beui/theme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -23,7 +24,7 @@ class _AppStateWrapperState extends State<AppStateWrapper> {
   late final BeEventBus appEventBus = BeEventBus();
   late StreamSubscription<EventAction> _eventSubscription;
 
-  void _handleEvent(EventAction event) {
+  void _handleEvent(AppEventAction event) {
     setState(() {
       switch (event) {
         case UpdateThemeModeEvent(themeMode: final themeMode):
@@ -39,6 +40,7 @@ class _AppStateWrapperState extends State<AppStateWrapper> {
   @override
   void initState() {
     super.initState();
+    _eventSubscription = appEventBus.on<AppEventAction>().listen(_handleEvent);
   }
 
   void _updateThemeMode(ThemeMode themeMode) {
@@ -67,11 +69,17 @@ class _AppStateWrapperState extends State<AppStateWrapper> {
     builder: (context, constraints) {
       // Update screen width whenever the layout changes
       if (_state.screenWidth != constraints.maxWidth) {
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          _updateScreenWidth();
-        });
+        WidgetsBinding.instance.addPostFrameCallback((_) => _updateScreenWidth());
       }
-      return AppStateProvider(appEventBus: appEventBus, state: _state, updateEvent: _handleEvent, child: widget.child);
+      return BeTheme(
+        themeMode: _state.themeMode,
+        child: AppStateProvider(
+          appEventBus: appEventBus,
+          state: _state,
+          updateEvent: _handleEvent,
+          child: widget.child,
+        ),
+      );
     },
   );
 
