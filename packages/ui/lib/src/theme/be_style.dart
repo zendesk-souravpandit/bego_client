@@ -20,22 +20,4 @@ abstract class BeStyle {
   // TextStyle get labelLarge;
   // TextStyle get labelMedium;
   // TextStyle get labelSmall;
-
-  // BorderRadius get borderRadius;
-
-  // BorderRadius get radius40;
-
-  // BorderRadius get cardRadius;
-
-  // BorderRadius get tileRadius;
-
-  // /// used for checkbox component
-  // BorderRadius get xsRadius;
-
-  // BorderRadiusGeometry get bottomSheetRadius;
-
-  // TextStyle textStyle(BeTextType? textType, BeBreakpoint breakpoint);
-
-  //  Responsive radius
-  // BorderRadius sizeRadius(BuildContext context);
 }

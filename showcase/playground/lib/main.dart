@@ -18,9 +18,9 @@ class BegoApp extends StatelessWidget {
     final appState = AppStateProvider.of(context).state;
     final appEvent = AppStateProvider.of(context).appEventBus;
     final updateEvent = AppStateProvider.of(context).updateEvent;
-    appEvent.on<UpdateLocaleEvent>().listen((event) {
-      updateEvent(UpdateLocaleEvent(const Locale('fr', 'FR')));
-    });
+    // appEvent.on<UpdateLocaleEvent>().listen((event) {
+    //   updateEvent(UpdateLocaleEvent(const Locale('fr', 'FR')));
+    // });
     return MaterialApp(
       themeMode: appState.themeMode,
       theme: ThemeData(
@@ -35,7 +35,13 @@ class BegoApp extends StatelessWidget {
               Text('App Theme: $betheme + ${appState.themeMode}'),
               Text('Screen Locale: ${appState.locale}'),
               Text('Screen Width: ${appState.screenWidth}'),
-              Text('Screen breakpoint: ${appState.breakpoint}'),
+              Text('Screen Width: ${betheme.inset.runtimeType}'),
+              Container(
+                padding: betheme.inset.textInset,
+                color: betheme.colors.primary,
+                child: Text('Screen breakpoint: ${appState.breakpoint}'),
+              ),
+
               switch (context.breakpoint) {
                 BeBreakpoint.xs => const Text('Extra Small Layout'),
                 BeBreakpoint.sm => const Text('Small Layout'),

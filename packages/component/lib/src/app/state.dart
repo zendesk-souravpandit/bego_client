@@ -1,4 +1,5 @@
 import 'package:beui/screen.dart' show BeBreakpoint, BeResponsivePoints;
+import 'package:beui/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -11,25 +12,23 @@ abstract class AppState with _$AppState {
     required String packageName,
     required String version,
     required String? deviceId,
-    required ThemeMode themeMode,
-    required Locale locale,
     required double screenWidth,
-    required BeBreakpoint breakpoint,
-    required BeResponsivePoints responsivePoints,
-
+    @Default(ThemeMode.system) ThemeMode themeMode,
+    @Default(Locale('en', 'US')) Locale locale,
+    @Default(BeBreakpoint.md) BeBreakpoint breakpoint,
+    @Default(BeResponsivePoints()) BeResponsivePoints responsivePoints,
+    @Default(BeColorsLight()) BeColor color,
+    @Default(BeStyleLight()) BeStyle style,
+    @Default(BeMobileInset()) BeInset inset,
     // Add other state properties here
   }) = _AppState;
 
   factory AppState.initial() => const AppState(
-    themeMode: ThemeMode.system,
-    locale: Locale('en', 'US'),
     appName: 'Bego App reload',
     packageName: 'com.example.bego',
     version: '1.0.0',
-    screenWidth: 800,
+    screenWidth: 768,
     deviceId: null,
-    breakpoint: BeBreakpoint.md,
-    responsivePoints: BeResponsivePoints(),
     // Initialize other state properties here
   );
 }

@@ -59,8 +59,9 @@ class _AppStateWrapperState extends State<AppStateWrapper> {
     final mediaQuery = MediaQuery.of(context);
     final screenWidth = mediaQuery.size.width;
     final breakpoint = calculateBreakpoint(screenWidth, _state.responsivePoints);
+    final insets = getInsetForBreakpoint(breakpoint);
     setState(() {
-      _state = _state.copyWith(screenWidth: mediaQuery.size.width, breakpoint: breakpoint);
+      _state = _state.copyWith(screenWidth: mediaQuery.size.width, breakpoint: breakpoint, inset: insets);
     });
   }
 
@@ -71,8 +72,9 @@ class _AppStateWrapperState extends State<AppStateWrapper> {
       if (_state.screenWidth != constraints.maxWidth) {
         WidgetsBinding.instance.addPostFrameCallback((_) => _updateScreenWidth());
       }
+      final BeThemeData betheme = BeThemeData(inset: _state.inset, colors: _state.color, style: _state.style);
       return BeTheme(
-        themeMode: _state.themeMode,
+        betheme: betheme,
         child: AppStateProvider(
           appEventBus: appEventBus,
           state: _state,

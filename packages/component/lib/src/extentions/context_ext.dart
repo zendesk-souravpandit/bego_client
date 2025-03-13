@@ -22,7 +22,9 @@ extension ContextExt on BuildContext {
   // /// if the device width is less than 300  return [watch] value.
   // /// in other cases return [mobile] value.
   // T responsiveValue<T>({T? watch, T? mobile, T? tablet, T? desktop}) {
-  //   assert(watch != null || mobile != null || tablet != null || desktop != null, 'You must provide at least one value');
+  //   assert(watch != null || mobile != null
+  //|| tablet != null || desktop != null,
+  //'You must provide at least one value');
 
   //   final deviceWidth = mediaQuerySize.width;
   //   //big screen width can display smaller sizes

@@ -1,29 +1,28 @@
+// ignore_for_file: prefer_expression_function_bodies
+
 import 'package:beui/src/theme/be_theme_data.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class BeTheme extends StatelessWidget {
-  const BeTheme({required this.child, super.key, this.themeMode = ThemeMode.system});
+  const BeTheme({required this.child, required this.betheme, super.key});
 
   final Widget child;
-  final ThemeMode themeMode;
+  final BeThemeData betheme;
 
   static BeThemeData of(BuildContext context) => Theme.of(context).extension<BeThemeData>()!;
 
   @override
   Widget build(BuildContext context) {
     final brightness = MediaQuery.platformBrightnessOf(context);
-    final isDark = themeMode == ThemeMode.dark || (themeMode == ThemeMode.system && brightness == Brightness.dark);
-
-    return Theme(
-      data: ThemeData(extensions: <ThemeExtension<BeThemeData>>[if (isDark) BeThemeData.dark else BeThemeData.light]),
-      child: child,
-    );
+    final materialTheme = brightness == Brightness.dark ? ThemeData.dark() : ThemeData.light();
+    final themeData = materialTheme.copyWith(extensions: <ThemeExtension<BeThemeData>>[betheme]);
+    return Theme(data: themeData, child: child);
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(EnumProperty<ThemeMode>('themeMode', themeMode));
+    properties.add(DiagnosticsProperty<BeThemeData>('betheme', betheme));
   }
 }
