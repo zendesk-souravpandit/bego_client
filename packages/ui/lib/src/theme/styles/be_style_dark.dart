@@ -1,11 +1,17 @@
-import 'package:beui/src/theme/be_color.dart';
-import 'package:beui/src/theme/be_style.dart';
-import 'package:beui/src/theme/styles/be_colors_dark.dart';
+import 'package:beui/theme.dart';
+import 'package:flutter/material.dart';
 
 class BeStyleDark implements BeStyle {
-  const BeStyleDark({this.becolor = const BeColorsDark()});
-  final BeColor becolor;
+  const BeStyleDark({this.color = const BeColorsDark(), this.inset = const BeMobileInset()});
+  final BeColor color;
+  final BeInset inset;
 
+  @override
+  BoxDecoration get cardDecoration => BoxDecoration(
+    color: color.background,
+    borderRadius: BorderRadius.circular(12),
+    boxShadow: [BoxShadow(color: color.background, offset: const Offset(0, 2), blurRadius: inset.blurRadius)],
+  );
   // @override
   // TextStyle get bodyLarge => BegoTextStyle.bodyLarge;
 

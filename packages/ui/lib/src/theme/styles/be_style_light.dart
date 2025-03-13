@@ -1,10 +1,17 @@
-import 'package:beui/src/theme/be_color.dart';
-import 'package:beui/src/theme/be_style.dart';
-import 'package:beui/src/theme/styles/be_colors_light.dart';
+import 'package:beui/theme.dart';
+import 'package:flutter/material.dart';
 
 class BeStyleLight implements BeStyle {
-  const BeStyleLight({this.becolor = const BeColorsLight()});
-  final BeColor becolor;
+  const BeStyleLight({this.color = const BeColorsLight(), this.inset = const BeMobileInset()});
+  final BeColor color;
+  final BeInset inset;
+
+  @override
+  BoxDecoration get cardDecoration => BoxDecoration(
+    color: inset.cardColor,
+    borderRadius: BorderRadius.circular(12),
+    boxShadow: [BoxShadow(color: color.background, offset: const Offset(0, 2), blurRadius: inset.blurRadius)],
+  );
 
   // @override
   // TextStyle get bodyLarge => BegoTextStyle.bodyLarge;

@@ -1,5 +1,12 @@
 import 'package:flutter/foundation.dart';
 
+///
+///| **Breakpoint**  | **Device Category** | **Button Size** | **Input Size** | **Text Size** |
+///|---------------|----------------|-------------|------------|------------|
+///| xs, sm       | Mobile         | Small       | Compact    | Small      |
+///| md          | Tablet         | Medium      | Regular    | Medium     |
+///| lg, xl, xl2 | Desktop        | Large       | Big        | Large      |
+
 enum BeBreakpoint {
   xs, // Extra small
   sm, // Small

@@ -38,7 +38,8 @@ class BegoApp extends StatelessWidget {
               Text('Screen Width: ${betheme.inset.runtimeType}'),
               Container(
                 padding: betheme.inset.textInset,
-                color: betheme.colors.primary,
+                // color: betheme.colors.primary,
+                decoration: betheme.style.cardDecoration,
                 child: Text('Screen breakpoint: ${appState.breakpoint}'),
               ),
 

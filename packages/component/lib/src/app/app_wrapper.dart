@@ -44,26 +44,33 @@ class _AppStateWrapperState extends State<AppStateWrapper> {
   }
 
   void _updateThemeMode(ThemeMode themeMode) {
-    setState(() {
-      _state = _state.copyWith(themeMode: themeMode);
-    });
+    final newThemeData = _createThemeData(themeMode: themeMode, breakpoint: _state.breakpoint);
+    _updateState(_state.copyWith(themeMode: themeMode, bethemeData: newThemeData));
   }
 
-  void _updateLocale(Locale locale) {
-    setState(() {
-      _state = _state.copyWith(locale: locale);
-    });
-  }
+  void _updateLocale(Locale locale) => _updateState(_state.copyWith(locale: locale));
 
   void _updateScreenWidth() {
-    final mediaQuery = MediaQuery.of(context);
-    final screenWidth = mediaQuery.size.width;
-    final breakpoint = calculateBreakpoint(screenWidth, _state.responsivePoints);
-    final insets = getInsetForBreakpoint(breakpoint);
-    setState(() {
-      _state = _state.copyWith(screenWidth: mediaQuery.size.width, breakpoint: breakpoint, inset: insets);
-    });
+    final screenWidth = MediaQuery.of(context).size.width;
+    final newBreakpoint = calculateBreakpoint(screenWidth, _state.responsivePoints);
+
+    final newThemeData = _createThemeData(themeMode: _state.themeMode, breakpoint: newBreakpoint);
+
+    _updateState(_state.copyWith(screenWidth: screenWidth, breakpoint: newBreakpoint, bethemeData: newThemeData));
   }
+
+  BeThemeData _createThemeData({required ThemeMode themeMode, required BeBreakpoint breakpoint}) {
+    final insets = getInsetForBreakpoint(breakpoint);
+    final colors = themeMode == ThemeMode.light ? const BeColorsLight() : const BeColorsDark();
+    final style =
+        themeMode == ThemeMode.light
+            ? BeStyleLight(color: colors, inset: insets)
+            : BeStyleDark(color: colors, inset: insets);
+
+    return BeThemeData(inset: insets, colors: colors, style: style);
+  }
+
+  void _updateState(AppState newState) => setState(() => _state = newState);
 
   @override
   Widget build(BuildContext context) => LayoutBuilder(
@@ -72,9 +79,10 @@ class _AppStateWrapperState extends State<AppStateWrapper> {
       if (_state.screenWidth != constraints.maxWidth) {
         WidgetsBinding.instance.addPostFrameCallback((_) => _updateScreenWidth());
       }
-      final BeThemeData betheme = BeThemeData(inset: _state.inset, colors: _state.color, style: _state.style);
+
+      // final brightness = MediaQuery.platformBrightnessOf(context);
       return BeTheme(
-        betheme: betheme,
+        betheme: _state.bethemeData,
         child: AppStateProvider(
           appEventBus: appEventBus,
           state: _state,

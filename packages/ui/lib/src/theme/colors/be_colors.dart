@@ -1,5 +1,21 @@
 import 'package:flutter/material.dart';
 
+/// | **Color Type**    | **Color Name**  | **Hex Code**  |
+/// |-------------------|----------------|--------------|
+/// | **Primary**       | Primary         | `0xFFBE3455` |
+/// |                  | Primary Dark    | `0xFF9C2A46` |
+/// |                  | Primary Light   | `0xFFD15F7A` |
+/// | **Secondary**     | Teal            | `0xFF2E8B57` |
+/// |                  | Soft Blue       | `0xFF4A7B9D` |
+/// | **Accent**        | Gold            | `0xFFFFD700` |
+/// |                  | Coral           | `0xFFFF6B6B` |
+/// | **Neutral**       | Light Gray      | `0xFFF5F5F5` |
+/// |                  | Medium Gray     | `0xFFE0E0E0` |
+/// |                  | Dark Gray       | `0xFF333333` |
+/// |                  | White           | `0xFFFFFFFF` |
+/// | **Status Colors** | Error           | `0xFFE57373` |
+/// |                  | Success         | `0xFF81C784` |
+
 class BeColors {
   const BeColors._();
 

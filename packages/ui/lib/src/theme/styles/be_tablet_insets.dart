@@ -7,4 +7,10 @@ class BeTabletInset implements BeInset {
   EdgeInsets get gutter => const EdgeInsets.all(16);
   @override
   EdgeInsets get textInset => const EdgeInsets.all(80);
+
+  @override
+  double get blurRadius => 20;
+
+  @override
+  Color get cardColor => const Color.fromARGB(255, 151, 85, 116);
 }

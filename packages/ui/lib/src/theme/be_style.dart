@@ -1,3 +1,5 @@
+import 'package:flutter/widgets.dart';
+
 /// Style of ui component like heading text , body text,
 /// button style appbar style, decoration shadow etc
 abstract class BeStyle {
@@ -20,4 +22,6 @@ abstract class BeStyle {
   // TextStyle get labelLarge;
   // TextStyle get labelMedium;
   // TextStyle get labelSmall;
+
+  BoxDecoration get cardDecoration;
 }

@@ -13,13 +13,14 @@ abstract class AppState with _$AppState {
     required String version,
     required String? deviceId,
     required double screenWidth,
-    @Default(ThemeMode.system) ThemeMode themeMode,
+    @Default(ThemeMode.light) ThemeMode themeMode,
     @Default(Locale('en', 'US')) Locale locale,
     @Default(BeBreakpoint.md) BeBreakpoint breakpoint,
+    @Default(BeThemeData(inset: BeMobileInset())) BeThemeData bethemeData,
     @Default(BeResponsivePoints()) BeResponsivePoints responsivePoints,
-    @Default(BeColorsLight()) BeColor color,
-    @Default(BeStyleLight()) BeStyle style,
-    @Default(BeMobileInset()) BeInset inset,
+    // @Default(BeColorsLight()) BeColor color,
+    // @Default(BeStyleLight()) BeStyle style,
+    // @Default(BeMobileInset()) BeInset inset,
     // Add other state properties here
   }) = _AppState;
 

@@ -7,4 +7,10 @@ class BeDesktopInset implements BeInset {
   EdgeInsets get gutter => const EdgeInsets.all(16);
   @override
   EdgeInsets get textInset => const EdgeInsets.all(120);
+
+  @override
+  double get blurRadius => 0;
+
+  @override
+  Color get cardColor => const Color.fromARGB(255, 147, 151, 85);
 }

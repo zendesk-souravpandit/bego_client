@@ -7,6 +7,12 @@ class BeMobileInset implements BeInset {
   EdgeInsets get gutter => const EdgeInsets.all(16);
   @override
   EdgeInsets get textInset => const EdgeInsets.all(40);
+
+  @override
+  double get blurRadius => 10;
+
+  @override
+  Color get cardColor => const Color.fromARGB(255, 85, 106, 151);
 }
 
 // @immutable
