@@ -4,7 +4,7 @@ import 'dart:async';
 
 import 'package:becomponent/src/app/events.dart';
 import 'package:becomponent/src/app/state.dart';
-import 'package:becomponent/src/app/state_inherited.dart';
+import 'package:becomponent/src/app/state_provider.dart';
 import 'package:becore/event.dart' show BeEventBus, EventAction;
 import 'package:beui/screen.dart';
 import 'package:flutter/foundation.dart';
@@ -71,7 +71,7 @@ class _AppStateWrapperState extends State<AppStateWrapper> {
           _updateScreenWidth();
         });
       }
-      return AppStateInherited(appEventBus: appEventBus, state: _state, updateEvent: _handleEvent, child: widget.child);
+      return AppStateProvider(appEventBus: appEventBus, state: _state, updateEvent: _handleEvent, child: widget.child);
     },
   );
 

@@ -12,9 +12,9 @@ class BegoApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final appState = AppStateInherited.of(context).state;
-    final appEvent = AppStateInherited.of(context).appEventBus;
-    final updateEvent = AppStateInherited.of(context).updateEvent;
+    final appState = AppStateProvider.of(context).state;
+    final appEvent = AppStateProvider.of(context).appEventBus;
+    final updateEvent = AppStateProvider.of(context).updateEvent;
     appEvent.on<UpdateLocaleEvent>().listen((event) {
       updateEvent(UpdateLocaleEvent(const Locale('fr', 'FR')));
     });

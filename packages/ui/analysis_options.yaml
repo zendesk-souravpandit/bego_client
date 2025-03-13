@@ -3,6 +3,27 @@ include: package:flint/analysis_options.flutter.yaml
 analyzer:
   errors:
     public_member_api_docs: ignore
+    invalid_annotation_target: ignore
+  language:
+    strict-casts: true
+    strict-inference: true
+    strict-raw-types: true
+
+  plugins:
+    - dart_code_metrics
+
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - "**/generated_plugin_registrant.dart"
+    - "**/build/**"
+    - "**/i18n.dart"
+    - "**/generated_*.dart"
+    - "**/*.freezed.dart"
+    - "**/*.gr.dart"
+    - "**/l10n*.dart"
+    - "**/*.gen.dart"
+
 
 linter:
   rules:

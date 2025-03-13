@@ -15,8 +15,8 @@ final class UpdateLocaleEvent extends EventAction {
   final Locale locale;
 }
 
-/// Event to update the screen width (e.g., on resize or rotation).
-final class UpdateScreenWidthEvent extends EventAction {
-  UpdateScreenWidthEvent(this.name);
-  final double name;
-}
+// /// Event to update the screen width (e.g., on resize or rotation).
+// final class UpdateScreenWidthEvent extends EventAction {
+//   UpdateScreenWidthEvent(this.name);
+//   final double name;
+// }

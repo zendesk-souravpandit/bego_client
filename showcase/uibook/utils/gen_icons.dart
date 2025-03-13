@@ -29,12 +29,13 @@ void main(List<String> arguments) {
               'final IconData data;',
               'final String name;',
               '}',
-            ], '\n')
+            ], '\n',)
             ..writeln('const begoIcons = <IconDetails>[');
 
       for (int i = 0; i < icons.length; i++) {
         final Map<String, dynamic> icon = icons[i] as Map<String, dynamic>;
 
+        // ignore: avoid_dynamic_calls
         final glyphName = convertGlyphName(icon['properties']['name'].toString());
         buffer.writeln("    IconDetails($fontFamilyName.$glyphName, '$glyphName'),");
       }

@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 
 typedef EventActionHandler = void Function(EventAction action);
 
-class AppStateInherited extends InheritedWidget {
-  const AppStateInherited({
+class AppStateProvider extends InheritedWidget {
+  const AppStateProvider({
     required this.state,
     required this.appEventBus,
     required this.updateEvent,
@@ -17,10 +17,10 @@ class AppStateInherited extends InheritedWidget {
   final AppState state;
   final EventActionHandler updateEvent;
 
-  static AppStateInherited of(BuildContext context) => context.dependOnInheritedWidgetOfExactType<AppStateInherited>()!;
+  static AppStateProvider of(BuildContext context) => context.dependOnInheritedWidgetOfExactType<AppStateProvider>()!;
 
   @override
-  bool updateShouldNotify(AppStateInherited oldWidget) => oldWidget.state != state;
+  bool updateShouldNotify(AppStateProvider oldWidget) => oldWidget.state != state;
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {

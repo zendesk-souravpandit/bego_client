@@ -591,7 +591,9 @@ class BeCheckValue {
     final capitalizedWordsFirstLetter =
         stringWordsList
             .map((word) {
-              if (word.trim().isEmpty) return '';
+              if (word.trim().isEmpty) {
+                return '';
+              }
               return word.trim();
             })
             .where((word) => word != '')
@@ -606,7 +608,7 @@ class BeCheckValue {
     return finalResult;
   }
 
-  static bool hasMatch(String? value, String pattern) => (value == null) ? false : RegExp(pattern).hasMatch(value);
+  static bool hasMatch(String? value, String pattern) => value != null && RegExp(pattern).hasMatch(value);
 
   static String createPath(String path, [Iterable<dynamic>? segments]) {
     if (segments == null || segments.isEmpty) {
