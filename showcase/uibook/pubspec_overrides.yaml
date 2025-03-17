@@ -1,5 +1,8 @@
-# melos_managed_dependency_overrides: becore,beui
+# melos_managed_dependency_overrides: becore,beui,becomponent
 dependency_overrides:
+  freezed_annotation: ^2.0.3
+  becomponent:
+    path: ../../packages/component
   becore:
     path: ../../packages/core
   beui:

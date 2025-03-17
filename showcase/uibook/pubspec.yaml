@@ -1,14 +1,16 @@
 name: uibook
 description: "A new Flutter project."
-publish_to: 'none'
+publish_to: "none"
 version: 0.1.0
 
 environment:
   sdk: ^3.7.0
 
 dependencies:
+  becomponent:
+    path: ../../packages/component
   beui:
-   path: ../../packages/ui
+    path: ../../packages/ui
   flutter:
     sdk: flutter
   path: ^1.9.1

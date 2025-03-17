@@ -1,5 +1,8 @@
+import 'package:beui/screen.dart';
+import 'package:beui/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:uibook/main.directories.g.dart';
+import 'package:uibook/widgetbook/theme_wrapper.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
@@ -13,8 +16,41 @@ class WidgetbookApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Widgetbook.material(
-    // Use the generated directories variable
     directories: directories,
-    addons: const [],
+    addons: <WidgetbookAddon>[
+      DeviceFrameAddon(
+        devices: [
+          Devices.ios.iPhone13,
+          Devices.ios.iPadAir4,
+          Devices.ios.iPad12InchesGen4,
+          Devices.windows.laptop,
+          Devices.android.mediumPhone,
+        ],
+      ),
+      InspectorAddon(),
+      ThemeAddon<BeThemeData>(
+        themes: [
+          const WidgetbookTheme(
+            name: 'Light',
+            data: BeThemeData(breakpoint: BeBreakpoint.md, themeMode: ThemeMode.light, inset: BeMobileInset()),
+          ),
+          const WidgetbookTheme(
+            name: 'Dark',
+            data: BeThemeData(breakpoint: BeBreakpoint.md, themeMode: ThemeMode.dark, inset: BeMobileInset()),
+          ),
+        ],
+        themeBuilder:
+            (context, theme, child) => LayoutBuilder(
+              builder: (context, constraints) {
+                final bebreakpoint = calculateBreakpoint(constraints.maxWidth, const BeResponsivePoints());
+                final betheme = BeThemeManager.createThemeData(themeMode: theme.themeMode, breakpoint: bebreakpoint);
+
+                return BeTheme(betheme: betheme, child: ColoredBox(color: betheme.colors.background, child: child));
+              },
+            ),
+      ),
+
+      AlignmentAddon(),
+    ],
   );
 }

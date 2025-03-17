@@ -22,10 +22,7 @@ class BegoApp extends StatelessWidget {
     return MaterialApp(
       themeMode: appState.themeMode,
       theme: ThemeData(
-        brightness:
-            appState.themeMode == ThemeMode.light
-                ? Brightness.light
-                : Brightness.dark,
+        brightness: appState.themeMode == ThemeMode.light ? Brightness.light : Brightness.dark,
         extensions: [betheme],
       ),
       home: Scaffold(
@@ -94,21 +91,14 @@ class TypograpyDemo extends StatelessWidget {
       children: [
         ElevatedButton(
           onPressed: () {
-            updateEvent(
-              UpdateThemeModeEvent(
-                state.themeMode == ThemeMode.light
-                    ? ThemeMode.dark
-                    : ThemeMode.light,
-              ),
-            );
+            updateEvent(UpdateThemeModeEvent(state.themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light));
           },
           child: const Text('Change Theme'),
         ),
         Expanded(
           child: ListView.builder(
             itemCount: items.length,
-            itemBuilder:
-                (context, index) => BeText('Item $index', type: items[index]),
+            itemBuilder: (context, index) => BeText('Item $index', type: items[index]),
           ),
         ),
       ],
