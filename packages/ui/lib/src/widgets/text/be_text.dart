@@ -275,18 +275,25 @@ class BeText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bethem = BeTheme.of(context);
-    final textStyle = type.getStyle(bethem.style);
+    if (text == null || text!.isEmpty) {
+      return emptyWidget;
+    }
 
-    return text == null || text!.isEmpty
-        ? emptyWidget
-        : Text(
-          text!,
-          style: textStyle.copyWith(color: color),
-          maxLines: maxLine,
-          overflow: overflow ?? TextOverflow.ellipsis,
-          textAlign: align ?? TextAlign.start,
-        );
+    final theme = BeTheme.of(context);
+    final textStyle = (style ?? type.getStyle(theme.style)).copyWith(
+      color: color,
+    );
+
+    return Padding(
+      padding: padding ?? EdgeInsets.zero,
+      child: Text(
+        text!,
+        style: textStyle,
+        maxLines: maxLine,
+        overflow: overflow,
+        textAlign: align ?? TextAlign.start,
+      ),
+    );
   }
 
   @override

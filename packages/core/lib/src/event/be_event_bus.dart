@@ -4,8 +4,8 @@ import 'dart:async';
 /// enables decoupled applications. It allows objects to interact without
 /// requiring to explicitly define listeners and keeping track of them.
 ///
-/// Not all events should be broadcasted through the [BeEventBus] but only those of
-/// general interest.
+/// Not all events should be broadcasted through the [BeEventBus]
+/// but only those of general interest.
 ///
 /// Events are normal Dart objects. By specifying a class, listeners can
 /// filter events.
@@ -18,18 +18,20 @@ class BeEventBus {
   /// during a [fire] call. If false (the default), the event will be passed to
   /// the listeners at a later time, after the code creating the event has
   /// completed.
-  BeEventBus({bool sync = false}) : _streamController = StreamController.broadcast(sync: sync);
+  BeEventBus({bool sync = false})
+    : _streamController = StreamController.broadcast(sync: sync);
 
   factory BeEventBus._() {
     _instance ??= BeEventBus();
     return _instance!;
   }
 
-  /// Instead of using the default [StreamController] you can use this constructor
-  /// to pass your own controller.
+  /// Instead of using the default [StreamController]
+  /// you can use this constructor to pass your own controller.
   ///
   /// An example would be to use an RxDart Subject as the controller.
-  BeEventBus.customController(StreamController<dynamic> controller) : _streamController = controller;
+  BeEventBus.customController(StreamController<dynamic> controller)
+    : _streamController = controller;
 
   static BeEventBus? _instance;
 
@@ -45,14 +47,15 @@ class BeEventBus {
   ///
   /// The method is called like this: myAppEventBus.on<$dynamic$>();
   ///
-  /// If the method is called without a type parameter, the [Stream] contains every
-  /// event of this [BeEventBus].
+  /// If the method is called without a type parameter, the [Stream]
+  /// contains every event of this [BeEventBus].
   ///
   /// The returned [Stream] is a broadcast stream so multiple subscriptions are
   /// allowed.
   ///
-  /// Each listener is handled independently, and if they pause, only the pausing
-  /// listener is affected. A paused listener will buffer events internally until
+  /// Each listener is handled independently,
+  /// and if they pause, only the pausing listener is affected.
+  ///  A paused listener will buffer events internally until
   /// resumed or cancelled. So it's usually better to just cancel and later
   /// subscribe again (avoids memory leak).
   ///

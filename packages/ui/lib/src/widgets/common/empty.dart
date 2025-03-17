@@ -9,4 +9,5 @@ const ignoreSplash = NoSplashFactory();
 const buttonAnimationDuration = Duration(milliseconds: 100);
 const buttonAnimationCurve = Curves.fastOutSlowIn;
 
-typedef ContentWrapperBuilder = Widget Function(BuildContext context, Widget child);
+typedef ContentWrapperBuilder =
+    Widget Function(BuildContext context, Widget child);

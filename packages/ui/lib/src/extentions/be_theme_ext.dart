@@ -1,4 +1,3 @@
-import 'package:beui/text.dart';
 import 'package:beui/theme.dart';
 import 'package:flutter/material.dart';
 
@@ -6,9 +5,9 @@ import 'package:flutter/material.dart';
 extension BeThemeContextExtension on BuildContext {
   // BeThemeData get betheme => Theme.of(this).extension<BeThemeData>()!;
   BeThemeData get betheme => BeTheme.of(this);
-
-  TextStyle beTextStyle(BeTextType type) {
-    final beTheme = BeTheme.of(this);
-    return type.getStyle(beTheme.style);
-  }
+  // Don't do like this, it's not recommended due to performance issue
+  // TextStyle beTextStyle(BeTextType type) {
+  //   final beTheme = BeTheme.of(this);
+  //   return type.getStyle(beTheme.style);
+  // }
 }

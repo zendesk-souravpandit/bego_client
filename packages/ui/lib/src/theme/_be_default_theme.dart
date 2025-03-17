@@ -5,7 +5,10 @@ import 'package:flutter/services.dart';
 
 const package = 'beui';
 
-ColorScheme buildColorScheme({required Brightness brightness, Color primary = const Color(0xFFBE3455)}) {
+ColorScheme buildColorScheme({
+  required Brightness brightness,
+  Color primary = const Color(0xFFBE3455),
+}) {
   final bool isDark = brightness == Brightness.dark;
 
   // Primary tonal palette
@@ -52,8 +55,10 @@ ColorScheme buildColorScheme({required Brightness brightness, Color primary = co
     // Surface colors
     surface: isDark ? const Color(0xFF121212) : const Color(0xFFFFFFFF),
     onSurface: isDark ? const Color(0xFFFFFFFF) : const Color(0xFF000000),
-    surfaceContainerHighest: isDark ? const Color(0xFF2D2D2D) : const Color(0xFFEEEEEE),
-    onSurfaceVariant: isDark ? const Color(0xFFBDBDBD) : const Color(0xFF616161),
+    surfaceContainerHighest:
+        isDark ? const Color(0xFF2D2D2D) : const Color(0xFFEEEEEE),
+    onSurfaceVariant:
+        isDark ? const Color(0xFFBDBDBD) : const Color(0xFF616161),
 
     // Outline colors
     outline: isDark ? const Color(0xFF757575) : const Color(0xFFE0E0E0),
@@ -65,7 +70,8 @@ ColorScheme buildColorScheme({required Brightness brightness, Color primary = co
 
     // Inverse colors
     inverseSurface: isDark ? const Color(0xFFFFFFFF) : const Color(0xFF121212),
-    onInverseSurface: isDark ? const Color(0xFF000000) : const Color(0xFFFFFFFF),
+    onInverseSurface:
+        isDark ? const Color(0xFF000000) : const Color(0xFFFFFFFF),
     inversePrimary: primaryTonal[80]!,
   );
 }
@@ -100,9 +106,15 @@ Color _shiftHue(Color color, double degrees) {
 }
 
 // Usage in theme:
-ThemeData lightTheme = ThemeData(colorScheme: buildColorScheme(brightness: Brightness.light), useMaterial3: true);
+ThemeData lightTheme = ThemeData(
+  colorScheme: buildColorScheme(brightness: Brightness.light),
+  useMaterial3: true,
+);
 
-ThemeData darkTheme = ThemeData(colorScheme: buildColorScheme(brightness: Brightness.dark), useMaterial3: true);
+ThemeData darkTheme = ThemeData(
+  colorScheme: buildColorScheme(brightness: Brightness.dark),
+  useMaterial3: true,
+);
 
 AppBarTheme appBarTheme(BeThemeData betheme) => AppBarTheme(
   surfaceTintColor: BeColors.transparent,
@@ -131,7 +143,11 @@ AppBarTheme appBarTheme(BeThemeData betheme) => AppBarTheme(
   // foregroundColor: betheme.becolors.scaffoldBackground,
 );
 
-ThemeData createTheme(BeThemeData betheme, {bool useMaterial3 = true, Brightness brightness = Brightness.light}) {
+ThemeData createTheme(
+  BeThemeData betheme, {
+  bool useMaterial3 = true,
+  Brightness brightness = Brightness.light,
+}) {
   debugPrint('Creating ThemeData from Bego Theme Data ${betheme.runtimeType}');
   return ThemeData(
     useMaterial3: useMaterial3,
@@ -139,7 +155,10 @@ ThemeData createTheme(BeThemeData betheme, {bool useMaterial3 = true, Brightness
     appBarTheme: appBarTheme(betheme),
     // primarySwatch: primarySwatch, // don't work with Material3
     // colorScheme: buildColorScheme(brightness: brightness),
-    colorScheme: ColorScheme.fromSeed(seedColor: betheme.colors.primary, brightness: brightness),
+    colorScheme: ColorScheme.fromSeed(
+      seedColor: betheme.colors.primary,
+      brightness: brightness,
+    ),
 
     // fontFamily: BegoTextStyle.fontFamily,
     // brightness: betheme.isDark ? Brightness.dark : Brightness.light,

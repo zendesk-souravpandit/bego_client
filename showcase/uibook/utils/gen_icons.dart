@@ -6,13 +6,17 @@ import 'package:path/path.dart';
 void main(List<String> arguments) {
   final inputDir = Directory(arguments.first);
   final outputDir = Directory(arguments[1]);
-  final List<FileSystemEntity> directoryEntities = inputDir.listSync(followLinks: false).toList();
+  final List<FileSystemEntity> directoryEntities =
+      inputDir.listSync(followLinks: false).toList();
 
   for (final entity in directoryEntities) {
     if (entity is File && entity.path.endsWith('_icons.json')) {
-      final Map<String, dynamic> fontConfig = json.decode(entity.readAsStringSync()) as Map<String, dynamic>;
+      final Map<String, dynamic> fontConfig =
+          json.decode(entity.readAsStringSync()) as Map<String, dynamic>;
       // ignore: avoid_dynamic_calls
-      final fontFamilyName = fontConfig['preferences']['fontPref']['metadata']['fontFamily'].toString();
+      final fontFamilyName =
+          fontConfig['preferences']['fontPref']['metadata']['fontFamily']
+              .toString();
 
       final List<dynamic> icons = fontConfig['icons'] as List<dynamic>;
       final buffer =
@@ -29,20 +33,26 @@ void main(List<String> arguments) {
               'final IconData data;',
               'final String name;',
               '}',
-            ], '\n',)
+            ], '\n')
             ..writeln('const begoIcons = <IconDetails>[');
 
       for (int i = 0; i < icons.length; i++) {
         final Map<String, dynamic> icon = icons[i] as Map<String, dynamic>;
 
         // ignore: avoid_dynamic_calls
-        final glyphName = convertGlyphName(icon['properties']['name'].toString());
-        buffer.writeln("    IconDetails($fontFamilyName.$glyphName, '$glyphName'),");
+        final glyphName = convertGlyphName(
+          icon['properties']['name'].toString(),
+        );
+        buffer.writeln(
+          "    IconDetails($fontFamilyName.$glyphName, '$glyphName'),",
+        );
       }
 
       buffer.writeln('];');
 
-      File(join(outputDir.path, dartFileName)).writeAsStringSync(buffer.toString());
+      File(
+        join(outputDir.path, dartFileName),
+      ).writeAsStringSync(buffer.toString());
     }
   }
 }

@@ -15,7 +15,8 @@ GestureBinding useGestureBinding() => GestureBinding.instance;
 PaintingBinding usePaintingBinding() => PaintingBinding.instance;
 
 /// Returns the [ImageCache] of a [PaintingBinding].
-ImageCache usePaintingBindingImageCache() => PaintingBinding.instance.imageCache;
+ImageCache usePaintingBindingImageCache() =>
+    PaintingBinding.instance.imageCache;
 
 /// Returns a [RendererBinding].
 RendererBinding useRendererBinding() => RendererBinding.instance;
