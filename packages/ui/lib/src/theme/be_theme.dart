@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_expression_function_bodies
 
+import 'package:beui/src/theme/_be_default_theme.dart';
 import 'package:beui/src/theme/be_theme_data.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +11,14 @@ class BeTheme extends StatelessWidget {
   final Widget child;
   final BeThemeData betheme;
 
+  // @useResult
   static BeThemeData of(BuildContext context) => Theme.of(context).extension<BeThemeData>()!;
+
+  static ThemeData buildThemeof(BuildContext context) {
+    final betheme = of(context);
+    final brightness = betheme.themeMode == ThemeMode.dark ? Brightness.dark : Brightness.light;
+    return createTheme(betheme, brightness: brightness);
+  }
 
   @override
   Widget build(BuildContext context) {

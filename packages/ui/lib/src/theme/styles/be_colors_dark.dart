@@ -6,99 +6,53 @@ class BeColorsDark implements BeColor {
   const BeColorsDark();
 
   @override
-  Color get primary => const Color.fromARGB(255, 29, 161, 68);
+  Color get primary => BeColors.primary;
   @override
-  Color get accent => const Color.fromARGB(255, 160, 25, 92);
+  Color get primaryDark => BeColors.primaryDark;
   @override
-  Color get background => BeColors.red;
+  Color get primaryLight => BeColors.primaryLight;
 
-  // @override
-  // bool get isDark => false;
+  @override
+  Color get neutral50 => const Color(0xFF181A1B);
+  @override
+  Color get neutral100 => const Color(0xFF1F2223);
+  @override
+  Color get neutral200 => const Color(0xFF25292B);
+  @override
+  Color get neutral300 => const Color(0xFF2D3235);
+  @override
+  Color get neutral400 => const Color(0xFF3C4448);
+  @override
+  Color get neutral500 => const Color(0xFF505A5E);
+  @override
+  Color get neutral600 => const Color(0xFF6B767C);
+  @override
+  Color get neutral700 => const Color(0xFF889198);
+  @override
+  Color get neutral800 => const Color(0xFFA3ACB3);
+  @override
+  Color get neutral900 => const Color(0xFFCDD5DA);
 
-  // @override
-  // ColorScheme get colorScheme => ColorScheme.fromSeed(seedColor: primary);
-  // @override
-  // Color get primary => BeColors.slate900;
+  @override
+  Color get success => const Color(0xFF16A34A);
+  @override
+  Color get error => const Color(0xFFDC2626);
+  @override
+  Color get warning => const Color(0xFFEAB308);
+  @override
+  Color get info => const Color(0xFF2563EB);
 
-  // @override
-  // Color get text => BeColors.white;
+  @override
+  Color get background => const Color(0xFF121212);
+  @override
+  Color get surface => const Color(0xFF1E1E1E);
+  @override
+  Color get surfaceVariant => const Color(0xFF2A2A2A);
 
-  // @override
-  // Color get intraction => BeColors.black;
-
-  // @override
-  // Color get accent => BeColors.spaceCadet;
-
-  // @override
-  // Color get secandory => BeColors.darkSpringGreen;
-
-  // @override
-  // Color get darkInverse => BeColors.slate900;
-  // @override
-  // Color get lightInverse => BeColors.blue100;
-  // @override
-  // Color get transparent => BeColors.transparent;
-
-  // @override
-  // Color get overlayOutline => BeColors.gray200;
-
-  // @override
-  // Color get formInputBackground => BeColors.slate500;
-
-  // @override
-  // Color get icon => BeColors.white;
-
-  // @override
-  // Color get error => BeColors.red700;
-  // // -----------------------------------------------------
-  // @override
-  // Color get card => BeColors.slate800;
-
-  // @override
-  // Color get dialogBackground => BeColors.black200;
-
-  // @override
-  // Color get disabled => BeColors.gray200;
-
-  // @override
-  // Color get divider => BeColors.gray300;
-
-  // @override
-  // Color get focus => BeColors.slate600;
-
-  // @override
-  // Color get highlight => BeColors.slate100;
-
-  // @override
-  // Color get hint => BeColors.slate600;
-
-  // @override
-  // Color get hover => BeColors.slate600;
-
-  // @override
-  // Color get indicator => BeColors.slate600;
-
-  // @override
-  // Color get primaryColorDark => BeColors.slate600;
-
-  // @override
-  // Color get primaryColorLight => BeColors.slate600;
-
-  // @override
-  // Color get scaffoldBackground => BeColors.slate800;
-
-  // @override
-  // Color get secondaryHeader => BeColors.slate600;
-
-  // @override
-  // Color get shadow => BeColors.slate600;
-
-  // @override
-  // Color get splash => BeColors.slate600;
-
-  // @override
-  // Color get unselectedWidget => BeColors.slate600;
-
-  // @override
-  // WidgetStateProperty<Color?>? get formState => throw UnimplementedError();
+  @override
+  Color get textPrimary => BeColors.darkTextPrimary;
+  @override
+  Color get textSecondary => const Color(0xFFB0B7C3);
+  @override
+  Color get icon => const Color(0xFFD1D5DB);
 }

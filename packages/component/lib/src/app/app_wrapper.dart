@@ -67,7 +67,7 @@ class _AppStateWrapperState extends State<AppStateWrapper> {
             ? BeStyleLight(color: colors, inset: insets)
             : BeStyleDark(color: colors, inset: insets);
 
-    return BeThemeData(inset: insets, colors: colors, style: style);
+    return BeThemeData(breakpoint: breakpoint, inset: insets, colors: colors, style: style, themeMode: themeMode);
   }
 
   void _updateState(AppState newState) => setState(() => _state = newState);

@@ -1,9 +1,10 @@
 import 'package:beui/screen.dart';
+import 'package:beui/src/theme/be_theme_value.dart';
 import 'package:beui/src/theme/styles/be_desktop_insets.dart';
+import 'package:beui/src/theme/styles/be_mobile_insets.dart';
 import 'package:beui/src/theme/styles/be_tablet_insets.dart';
-import 'package:beui/theme.dart' show BeInset, BeMobileInset;
 
-BeInset getInsetForBreakpoint(BeBreakpoint? breakpoint) {
+BeThemeValue getInsetForBreakpoint(BeBreakpoint? breakpoint) {
   switch (breakpoint) {
     case BeBreakpoint.xs:
     case BeBreakpoint.sm:

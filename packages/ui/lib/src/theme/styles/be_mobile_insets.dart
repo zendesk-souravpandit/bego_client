@@ -1,18 +1,72 @@
-import 'package:beui/src/theme/be_insets.dart';
-import 'package:flutter/material.dart';
+import 'package:beui/src/theme/be_theme_value.dart';
 
-class BeMobileInset implements BeInset {
+class BeMobileInset implements BeThemeValue {
   const BeMobileInset();
-  @override
-  EdgeInsets get gutter => const EdgeInsets.all(16);
-  @override
-  EdgeInsets get textInset => const EdgeInsets.all(40);
 
   @override
-  double get blurRadius => 10;
+  double get displayLargeTextSize => 48;
+  @override
+  double get displayLargeLineHeight => 60;
+  @override
+  double get displayMediumTextSize => 36;
+  @override
+  double get displayMediumLineHeight => 44;
+  @override
+  double get displaySmallTextSize => 30;
+  @override
+  double get displaySmallLineHeight => 38;
 
   @override
-  Color get cardColor => const Color.fromARGB(255, 85, 106, 151);
+  double get headlineLargeTextSize => 24;
+  @override
+  double get headlineLargeLineHeight => 32;
+  @override
+  double get headlineMediumTextSize => 20;
+  @override
+  double get headlineMediumLineHeight => 28;
+  @override
+  double get headlineSmallTextSize => 18;
+  @override
+  double get headlineSmallLineHeight => 24;
+
+  @override
+  double get titleLargeTextSize => 20;
+  @override
+  double get titleLargeLineHeight => 28;
+  @override
+  double get titleMediumTextSize => 16;
+  @override
+  double get titleMediumLineHeight => 24;
+  @override
+  double get titleSmallTextSize => 14;
+  @override
+  double get titleSmallLineHeight => 20;
+
+  @override
+  double get bodyLargeTextSize => 16;
+  @override
+  double get bodyLargeLineHeight => 24;
+  @override
+  double get bodyMediumTextSize => 14;
+  @override
+  double get bodyMediumLineHeight => 20;
+  @override
+  double get bodySmallTextSize => 12;
+  @override
+  double get bodySmallLineHeight => 16;
+
+  @override
+  double get labelLargeTextSize => 14;
+  @override
+  double get labelLargeLineHeight => 20;
+  @override
+  double get labelMediumTextSize => 12;
+  @override
+  double get labelMediumLineHeight => 16;
+  @override
+  double get labelSmallTextSize => 10;
+  @override
+  double get labelSmallLineHeight => 12;
 }
 
 // @immutable

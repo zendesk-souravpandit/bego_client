@@ -3,11 +3,13 @@
 library beui.theme;
 
 export 'src/extentions/be_theme_ext.dart';
+export 'src/theme/_be_default_theme.dart';
 export 'src/theme/be_color.dart';
-export 'src/theme/be_insets.dart';
 export 'src/theme/be_style.dart';
 export 'src/theme/be_theme.dart';
 export 'src/theme/be_theme_data.dart';
+export 'src/theme/be_theme_value.dart';
+export 'src/theme/colors/be_colors.dart';
 export 'src/theme/styles/be_colors_dark.dart';
 export 'src/theme/styles/be_colors_light.dart';
 export 'src/theme/styles/be_desktop_insets.dart';
