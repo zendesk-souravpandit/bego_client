@@ -11,7 +11,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:uibook/widgets/icons/use_case_icons.dart' as _i2;
-import 'package:uibook/widgets/text/use_typography.dart' as _i3;
+import 'package:uibook/widgets/text/use_case_typography.dart' as _i3;
 import 'package:widgetbook/widgetbook.dart' as _i1;
 
 final directories = <_i1.WidgetbookNode>[
