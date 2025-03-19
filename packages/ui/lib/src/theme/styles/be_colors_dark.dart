@@ -6,6 +6,9 @@ class BeColorsDark implements BeColor {
   const BeColorsDark();
 
   @override
+  bool get isDark => true;
+
+  @override
   Color get primary => BeColors.primary;
   @override
   Color get primaryDark => BeColors.primaryDark;

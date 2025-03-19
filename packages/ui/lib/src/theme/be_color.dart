@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 abstract class BeColor {
   // Primary palette
+
+  bool get isDark;
   Color get primary;
   Color get primaryDark; // 0xFF9C2A46
   Color get primaryLight; // 0xFFD15F7A

@@ -15,10 +15,13 @@ class BegoApp extends StatelessWidget {
     final betheme = context.betheme;
     final appState = AppStateProvider.of(context).state;
     // final appEvent = AppStateProvider.of(context).appEventBus;
-    // final updateEvent = AppStateProvider.of(context).updateEvent;
+    final updateEvent = AppStateProvider.of(context).updateEvent;
     // appEvent.on<UpdateLocaleEvent>().listen((event) {
     //   updateEvent(UpdateLocaleEvent(const Locale('fr', 'FR')));
     // });
+    const BeTextVariant variant = BeTextVariant.primary;
+    final (color, background) = variant.variantColor(betheme.colors);
+
     return MaterialApp(
       themeMode: appState.themeMode,
       theme: ThemeData(
@@ -27,144 +30,20 @@ class BegoApp extends StatelessWidget {
       ),
       home: Scaffold(
         appBar: AppBar(title: const Text('BegoApp')),
-        //   theme change
-        //   body: Center(
-        //     child: Column(
-        //       children: [
-        //         Text('App Theme: $betheme + ${appState.themeMode}'),
-        //         Text('Screen Locale: ${appState.locale}'),
-        //         Text('Screen Width: ${appState.screenWidth}'),
-        //         Text('Screen Width: ${betheme.inset.runtimeType}'),
-        //         Container(
-        //           // color: betheme.colors.primary,
-        //           child: Text('Screen breakpoint: ${appState.breakpoint}'),
-        //         ),
-
-        //         switch (context.breakpoint) {
-        //           BeBreakpoint.xs => const Text('Extra Small Layout'),
-        //           BeBreakpoint.sm => const Text('Small Layout'),
-        //           BeBreakpoint.md => const Text('Medium Layout'),
-        //           BeBreakpoint.lg => const Text('Large Layout'),
-        //           BeBreakpoint.xl => const Text('Extra Large Layout'),
-        //           BeBreakpoint.xl2 => const Text('Extra Extra Large Layout'),
-        //         },
-        //         ElevatedButton(
-        //           onPressed: () {
-        //             appEvent.fire(UpdateLocaleEvent(const Locale('fr', 'FR')));
-        //           },
-        //           child: const Text('Press Me'),
-        //         ),
-        //         ElevatedButton(
-        //           onPressed: () {
-        //             appEvent.fire(
-        //               UpdateThemeModeEvent(appState.themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light),
-        //             );
-        //           },
-        //           child: const Text('Change Theme'),
-        //         ),
-
-        //         ElevatedButton(
-        //           onPressed: () {
-        //             updateEvent(UpdateLocaleEvent(const Locale('abaac', 'US')));
-        //           },
-        //           child: const Text('Reset Me'),
-        //         ),
-        //       ],
-        //     ),
-        //   ),
-        // ),
-        body: const TypograpyDemo(),
+        body: Column(
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                updateEvent(
+                  UpdateThemeModeEvent(appState.themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light),
+                );
+              },
+              child: const Text('Change Theme'),
+            ),
+            Card(color: background, child: const BeText.headlineLarge('Hello', padding: EdgeInsets.all(10))),
+          ],
+        ),
       ),
     );
   }
 }
-
-class TypograpyDemo extends StatelessWidget {
-  const TypograpyDemo({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    const items = BeTextType.values;
-    final updateEvent = AppStateProvider.of(context).updateEvent;
-    final state = AppStateProvider.of(context).state;
-    return Column(
-      children: [
-        ElevatedButton(
-          onPressed: () {
-            updateEvent(UpdateThemeModeEvent(state.themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light));
-          },
-          child: const Text('Change Theme'),
-        ),
-        Expanded(
-          child: ListView.builder(
-            itemCount: items.length,
-            itemBuilder: (context, index) => BeText('Item $index', type: items[index]),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-// class MyApp extends StatelessWidget {
-//   const MyApp({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     final themeData = BeTheme.buildThemeof(context);
-//     debugPrint('ThemeData: ${themeData.brightness}');
-//     return MaterialApp(
-//       title: 'Flutter Demo',
-//       theme: themeData,
-//       home: const MyHomePage(title: 'Flutter Demo Home Page'),
-//     );
-//   }
-// }
-
-// class MyHomePage extends StatefulWidget {
-//   const MyHomePage({required this.title, super.key});
-
-//   final String title;
-
-//   @override
-//   State<MyHomePage> createState() => _MyHomePageState();
-
-//   @override
-//   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-//     super.debugFillProperties(properties);
-//     properties.add(StringProperty('title', title));
-//   }
-// }
-
-// class _MyHomePageState extends State<MyHomePage> {
-//   @override
-//   Widget build(BuildContext context) {
-//     final numberRound = BeMathUtils.roundToDecimalPlaces(1.2345, 2);
-
-//     final state = AppStateProvider.of(context).state;
-//     final updateEvent = AppStateProvider.of(context).updateEvent;
-
-//     return Scaffold(
-//       appBar: AppBar(backgroundColor: Theme.of(context).colorScheme.inversePrimary, title: Text(widget.title)),
-//       body: Center(
-//         child: Column(
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: [
-//             Container(height: 30, color: state.bethemeData.colors.primary),
-//             Text('You have pushed the button this many times: + ${state.themeMode}'),
-//             Text(numberRound.toString()),
-//             ElevatedButton(
-//               onPressed: () {
-//                 updateEvent(
-//                   UpdateThemeModeEvent(state.themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light),
-//                 );
-//               },
-//               child: const Text('Increment'),
-//             ),
-//             Radio(value: false, groupValue: 'abc', onChanged: (v) {}),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }

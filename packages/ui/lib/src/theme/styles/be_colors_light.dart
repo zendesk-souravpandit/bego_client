@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
 
 class BeColorsLight implements BeColor {
   const BeColorsLight();
+
+  @override
+  bool get isDark => false;
+
   @override
   Color get primary => BeColors.primary;
   @override
