@@ -102,4 +102,59 @@ class ColorUtils {
 
   static double _getLightnessForLevel(ColorSwatchLevel level, bool isDarkMode) =>
       isDarkMode ? darkModeValues[level] ?? lightModeValues[level]! : lightModeValues[level]!;
+
+  /// Returns true if the color's brightness is [Brightness.light], else false.
+  bool isLight(Color color) => ThemeData.estimateBrightnessForColor(color) == Brightness.light;
+
+  /// Returns true if the color's brightness is [Brightness.dark], else false.
+  bool isDark(Color color) => ThemeData.estimateBrightnessForColor(color) == Brightness.dark;
+}
+
+extension ColorExtension on Color {
+  /// Blend in the given input Color with a percentage of alpha.
+  ///
+  /// You typically apply this on a background color, light or dark
+  /// to create a background color with a hint of a color used in a theme.
+  ///
+  /// This is a use case of the alphaBlend static function that exists in
+  /// dart:ui Color. It is used to create the branded surface colors in
+  /// FlexColorScheme and to calculate dark scheme colors from light ones,
+  /// by blending in white color with light scheme color.
+  ///
+  /// Defaults to 10% alpha blend of the passed in Color value.
+  Color blend(Color input, [int amount = 10]) {
+    // Skip blending for impossible value and return the instance color value.
+    if (amount <= 0) {
+      return this;
+    }
+    // Blend amounts >= 100 results in the input Color.
+    if (amount >= 100) {
+      return input;
+    }
+    return Color.alphaBlend(input.withAlpha(255 * amount ~/ 100), this);
+  }
+
+  /// Blend in the given input Color with an alpha value.
+  ///
+  /// You typically apply this on a background color, light or dark
+  /// to create a background color with a hint of a color used in a theme.
+  ///
+  /// This is a use case of the alphaBlend static function that exists in
+  /// dart:ui Color. It is used to create the branded surface colors in
+  /// FlexColorScheme and to calculate dark scheme colors from light ones,
+  /// by blending in white color with light scheme color.
+  ///
+  /// Defaults to alpha 0x0A alpha blend of the passed in Color value,
+  /// which is 10% alpha blend.
+  Color blendAlpha(Color input, [int alpha = 0x0A]) {
+    // Skip blending for impossible value and return the instance color value.
+    if (alpha <= 0) {
+      return this;
+    }
+    // Blend amounts >= 255 results in the input Color.
+    if (alpha >= 255) {
+      return input;
+    }
+    return Color.alphaBlend(input.withAlpha(alpha), this);
+  }
 }

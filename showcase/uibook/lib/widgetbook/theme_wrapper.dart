@@ -13,4 +13,14 @@ class BeThemeManager {
 
     return BeThemeData(breakpoint: breakpoint, inset: insets, colors: colors, style: style, themeMode: themeMode);
   }
+
+  static ThemeData createTheme({required ThemeMode themeMode}) {
+    final colors = themeMode == ThemeMode.light ? const BeColorsLight() : const BeColorsDark();
+
+    return ThemeData(
+      scaffoldBackgroundColor: colors.background,
+      appBarTheme: AppBarTheme(backgroundColor: colors.background),
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(backgroundColor: colors.background),
+    );
+  }
 }
