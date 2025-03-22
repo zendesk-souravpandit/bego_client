@@ -21,8 +21,6 @@ class _ThemeDemoPageState extends State<ThemeDemoPage> with SingleTickerProvider
   double _sliderValue = 0.5;
   final List<bool> _toggleButtonsSelection = [true, false, false];
   int _currentIndex = 0;
-  DateTime? _selectedDate;
-  TimeOfDay? _selectedTime;
   late TabController _tabController;
 
   @override
@@ -182,7 +180,7 @@ class _ThemeDemoPageState extends State<ThemeDemoPage> with SingleTickerProvider
     children: [
       ElevatedButton(
         onPressed:
-            () => showDialog(
+            () => showDialog<void>(
               context: context,
               builder:
                   (context) => AlertDialog(
@@ -200,22 +198,22 @@ class _ThemeDemoPageState extends State<ThemeDemoPage> with SingleTickerProvider
     ],
   );
 
-  Widget _buildNavigationSection() => SizedBox(
-    width: double.infinity,
-    height: 500,
-    child: Column(
-      children: [
-        NavigationRail(
-          selectedIndex: _currentIndex,
-          onDestinationSelected: (i) => setState(() => _currentIndex = i),
-          destinations: const [
-            NavigationRailDestination(icon: Icon(Icons.home), label: Text('Home')),
-            NavigationRailDestination(icon: Icon(Icons.settings), label: Text('Settings')),
-          ],
-        ),
-      ],
-    ),
-  );
+  // Widget _buildNavigationSection() => SizedBox(
+  //   width: double.infinity,
+  //   height: 500,
+  //   child: Column(
+  //     children: [
+  //       NavigationRail(
+  //         selectedIndex: _currentIndex,
+  //         onDestinationSelected: (i) => setState(() => _currentIndex = i),
+  //         destinations: const [
+  //           NavigationRailDestination(icon: Icon(Icons.home), label: Text('Home')),
+  //           NavigationRailDestination(icon: Icon(Icons.settings), label: Text('Settings')),
+  //         ],
+  //       ),
+  //     ],
+  //   ),
+  // );
 
   Widget _buildMenusSection() => Column(
     children: [
@@ -250,21 +248,21 @@ class _ThemeDemoPageState extends State<ThemeDemoPage> with SingleTickerProvider
         children: [
           ElevatedButton(
             onPressed: () async {
-              final date = await showDatePicker(
+              await showDatePicker(
                 context: context,
                 initialDate: DateTime.now(),
                 firstDate: DateTime(2000),
                 lastDate: DateTime(2100),
               );
-              setState(() => _selectedDate = date);
+              setState(() => {});
             },
             child: const Text('Pick Date'),
           ),
           const SizedBox(width: 16),
           ElevatedButton(
             onPressed: () async {
-              final time = await showTimePicker(context: context, initialTime: TimeOfDay.now());
-              setState(() => _selectedTime = time);
+              await showTimePicker(context: context, initialTime: TimeOfDay.now());
+              setState(() => {});
             },
             child: const Text('Pick Time'),
           ),
