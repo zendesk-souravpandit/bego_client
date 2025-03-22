@@ -197,7 +197,7 @@ class _BeTapableState<T extends BeTapable> extends State<T> {
             final count = ++_monotonic;
             _onPointerDown();
 
-            await Future.delayed(widget.touchHoverEnterDuration);
+            await Future<void>.delayed(widget.touchHoverEnterDuration);
             if (mounted && count == _monotonic && !_touched) {
               setState(() => _touched = true);
             }
@@ -206,7 +206,7 @@ class _BeTapableState<T extends BeTapable> extends State<T> {
             final count = ++_monotonic;
             _onPointerUp();
 
-            await Future.delayed(widget.touchHoverExitDuration);
+            await Future<void>.delayed(widget.touchHoverExitDuration);
             if (mounted && count == _monotonic && _touched) {
               setState(() => _touched = false);
             }

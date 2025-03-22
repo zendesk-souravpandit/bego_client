@@ -59,7 +59,7 @@ class WidgetbookApp extends StatelessWidget {
               },
             ),
       ),
-      // AlignmentAddon(),
+      AlignmentAddon(),
     ],
   );
 }
