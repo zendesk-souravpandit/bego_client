@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
-@widgetbook.UseCase(name: 'Buttons', path: '', type: ElevatedButton)
+@widgetbook.UseCase(name: 'Buttons', path: 'Widget', type: ElevatedButton)
 Widget useCaseButtons(BuildContext context) => Padding(
   padding: const EdgeInsets.all(16.0),
   child: SingleChildScrollView(
@@ -50,6 +50,11 @@ Widget useCaseButtons(BuildContext context) => Padding(
               style: _buttonStyle(context),
               onPressed: _getOnPressed(context),
               child: const Text('Regular Filled'),
+            ),
+            FilledButton(
+              style: _buttonStyle(context, size: ButtonSize.large),
+              onPressed: _getOnPressed(context),
+              child: const Text('Large Elevated'),
             ),
           ],
         ),
@@ -107,8 +112,6 @@ Widget useCaseButtons(BuildContext context) => Padding(
   ),
 );
 
-// widgetbook/buttons/button_list.use_case.dart
-
 Widget _buildButtonSection({required BuildContext context, required String title, required List<Widget> buttons}) =>
     Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -135,17 +138,9 @@ ButtonStyle _buttonStyle(BuildContext context, {ButtonSize size = ButtonSize.med
     ButtonSize.large => Theme.of(context).textTheme.labelLarge,
   };
 
-  // final padding = context.knobs.
-
-  return const ButtonStyle(
-    // padding: context.paddingOrNull(
-    //   label: 'Padding',
-    //   initial: padding,
-    // ),
-    // textStyle: WidgetbookKnobs.of(context).textStyleOrNull(
-    //   label: 'Text Style',
-    //   initial: textStyle,
-    // ),
+  return ButtonStyle(
+    padding: WidgetStateProperty.all<EdgeInsetsGeometry>(padding),
+    textStyle: WidgetStatePropertyAll(textStyle),
   );
 }
 

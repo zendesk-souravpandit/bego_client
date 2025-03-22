@@ -31,21 +31,22 @@ class WidgetbookApp extends StatelessWidget {
       ThemeAddon<BeThemeData>(
         themes: [
           const WidgetbookTheme(
-            name: 'Light',
-            data: BeThemeData(breakpoint: BeBreakpoint.md, themeMode: ThemeMode.light, inset: BeMobileInset()),
-          ),
-          const WidgetbookTheme(
             name: 'Dark',
             data: BeThemeData(breakpoint: BeBreakpoint.md, themeMode: ThemeMode.dark, inset: BeMobileInset()),
           ),
+          const WidgetbookTheme(
+            name: 'Light',
+            data: BeThemeData(breakpoint: BeBreakpoint.md, themeMode: ThemeMode.light, inset: BeMobileInset()),
+          ),
         ],
+
         themeBuilder:
             (context, theme, child) => LayoutBuilder(
               builder: (context, constraints) {
                 final bebreakpoint = calculateBreakpoint(constraints.maxWidth, const BeResponsivePoints());
                 final betheme = BeThemeManager.createThemeData(themeMode: theme.themeMode, breakpoint: bebreakpoint);
 
-                return BeTheme(betheme: betheme, child: ColoredBox(color: betheme.colors.background, child: child));
+                return BeTheme(betheme: betheme, child: child);
               },
             ),
       ),

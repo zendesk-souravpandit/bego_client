@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
-@widgetbook.UseCase(name: 'Typography', type: BeText)
+@widgetbook.UseCase(name: 'Typography', path: 'Widget/Text', type: BeText)
 Widget displayTypographyUseCase(BuildContext context) {
   // Knobs configuration
   final text = context.knobs.string(

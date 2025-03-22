@@ -1,9 +1,10 @@
 // import 'package:flutter/material.dart';
 
+import 'package:beui/common.dart';
 import 'package:flutter/material.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
-@widgetbook.UseCase(name: '/App Theme', type: ThemeDemoPage)
+@widgetbook.UseCase(name: 'Material Theme', path: '[Theme]', type: MaterialApp)
 Widget redContainerUseCase(BuildContext context) => const ThemeDemoPage();
 
 class ThemeDemoPage extends StatefulWidget {
@@ -31,78 +32,82 @@ class _ThemeDemoPageState extends State<ThemeDemoPage> with SingleTickerProvider
   }
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(
-      title: const Text('Bego UI Components Demo'),
-      actions: [
-        IconButton(icon: const Icon(Icons.search), onPressed: () {}),
-        PopupMenuButton<String>(
-          itemBuilder:
-              (context) => [
-                const PopupMenuItem(value: 'settings', child: Text('Settings')),
-                const PopupMenuItem(value: 'about', child: Text('About')),
-              ],
+  Widget build(BuildContext context) => BeDisableWrapper(
+    disabled: false,
+
+    child: Scaffold(
+      appBar: AppBar(
+        title: const Text('Bego UI Components Demo'),
+        actions: [
+          IconButton(icon: const Icon(Icons.search), onPressed: () {}),
+          PopupMenuButton<String>(
+            itemBuilder:
+                (context) => [
+                  const PopupMenuItem(value: 'settings', child: Text('Settings')),
+                  const PopupMenuItem(value: 'about', child: Text('About')),
+                ],
+          ),
+        ],
+        bottom: TabBar(controller: _tabController, tabs: const [Tab(text: 'Tab 1'), Tab(text: 'Tab 2')]),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            const DrawerHeader(child: Text('Drawer Header')),
+            ListTile(title: const Text('Item 1'), onTap: () {}),
+            ListTile(title: const Text('Item 2'), onTap: () {}),
+          ],
         ),
-      ],
-      bottom: TabBar(controller: _tabController, tabs: const [Tab(text: 'Tab 1'), Tab(text: 'Tab 2')]),
-    ),
-    drawer: Drawer(
-      child: ListView(
-        children: [
-          const DrawerHeader(child: Text('Drawer Header')),
-          ListTile(title: const Text('Item 1'), onTap: () {}),
-          ListTile(title: const Text('Item 2'), onTap: () {}),
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _buildSectionTitle('Buttons'),
+            _buildButtonsSection(),
+
+            _buildSectionTitle('Selection Controls'),
+            _buildSelectionControls(),
+
+            _buildSectionTitle('Progress Indicators'),
+            _buildProgressIndicators(),
+
+            _buildSectionTitle('Chips'),
+            _buildChipsSection(),
+
+            _buildSectionTitle('Cards'),
+            _buildCardsSection(),
+
+            _buildSectionTitle('Dialogs & Alerts'),
+            _buildDialogSection(),
+
+            // _buildSectionTitle('Navigation'),
+            // _buildNavigationSection(),
+            _buildSectionTitle('Menus & Dropdowns'),
+            _buildMenusSection(),
+
+            _buildSectionTitle('Inputs'),
+            _buildInputsSection(),
+
+            _buildSectionTitle('Data Display'),
+            _buildDataDisplaySection(),
+
+            _buildSectionTitle('Other Components'),
+            _buildOtherComponents(),
+          ],
+        ),
+      ),
+      bottomNavigationBar: NavigationBar(
+        selectedIndex: _currentIndex,
+        onDestinationSelected: (index) => setState(() => _currentIndex = index),
+        destinations: const [
+          NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
+          NavigationDestination(icon: Icon(Icons.settings), label: 'Settings'),
         ],
       ),
+      floatingActionButton: FloatingActionButton(onPressed: () {}, child: const Icon(Icons.add)),
     ),
-    body: SingleChildScrollView(
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _buildSectionTitle('Buttons'),
-          _buildButtonsSection(),
-
-          _buildSectionTitle('Selection Controls'),
-          _buildSelectionControls(),
-
-          _buildSectionTitle('Progress Indicators'),
-          _buildProgressIndicators(),
-
-          _buildSectionTitle('Chips'),
-          _buildChipsSection(),
-
-          _buildSectionTitle('Cards'),
-          _buildCardsSection(),
-
-          _buildSectionTitle('Dialogs & Alerts'),
-          _buildDialogSection(),
-
-          // _buildSectionTitle('Navigation'),
-          // _buildNavigationSection(),
-          _buildSectionTitle('Menus & Dropdowns'),
-          _buildMenusSection(),
-
-          _buildSectionTitle('Inputs'),
-          _buildInputsSection(),
-
-          _buildSectionTitle('Data Display'),
-          _buildDataDisplaySection(),
-
-          _buildSectionTitle('Other Components'),
-          _buildOtherComponents(),
-        ],
-      ),
-    ),
-    bottomNavigationBar: NavigationBar(
-      selectedIndex: _currentIndex,
-      onDestinationSelected: (index) => setState(() => _currentIndex = index),
-      destinations: const [
-        NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
-        NavigationDestination(icon: Icon(Icons.settings), label: 'Settings'),
-      ],
-    ),
-    floatingActionButton: FloatingActionButton(onPressed: () {}, child: const Icon(Icons.add)),
   );
 
   Widget _buildSectionTitle(String title) => Padding(
@@ -195,17 +200,21 @@ class _ThemeDemoPageState extends State<ThemeDemoPage> with SingleTickerProvider
     ],
   );
 
-  Widget _buildNavigationSection() => Column(
-    children: [
-      NavigationRail(
-        selectedIndex: _currentIndex,
-        onDestinationSelected: (i) => setState(() => _currentIndex = i),
-        destinations: const [
-          NavigationRailDestination(icon: Icon(Icons.home), label: Text('Home')),
-          NavigationRailDestination(icon: Icon(Icons.settings), label: Text('Settings')),
-        ],
-      ),
-    ],
+  Widget _buildNavigationSection() => SizedBox(
+    width: double.infinity,
+    height: 500,
+    child: Column(
+      children: [
+        NavigationRail(
+          selectedIndex: _currentIndex,
+          onDestinationSelected: (i) => setState(() => _currentIndex = i),
+          destinations: const [
+            NavigationRailDestination(icon: Icon(Icons.home), label: Text('Home')),
+            NavigationRailDestination(icon: Icon(Icons.settings), label: Text('Settings')),
+          ],
+        ),
+      ],
+    ),
   );
 
   Widget _buildMenusSection() => Column(
