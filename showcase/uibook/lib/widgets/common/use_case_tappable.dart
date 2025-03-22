@@ -1,0 +1,28 @@
+import 'package:beui/foundation.dart';
+import 'package:beui/theme.dart';
+import 'package:beui/ui.dart';
+import 'package:flutter/material.dart';
+import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
+
+@widgetbook.UseCase(name: 'BeTapable', path: 'Widget/Common', type: BeTappable)
+Widget useCaseTappableAnimation(BuildContext context) => BeTappable.animated(
+  builder:
+      (context, data, child) => Container(
+        decoration: BoxDecoration(
+          color:
+              data.hovered
+                  ? context.betheme.colors.primary
+                  : ColorUtils.createColorSwatchLevel(
+                    context.betheme.colors.primary,
+                    isDarkMode: context.betheme.colors.isDark,
+                    level: ColorSwatchLevel.shade200,
+                  ),
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(color: context.betheme.colors.warning),
+        ),
+        padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12),
+        child: child!,
+      ),
+  child: const Text('Tappable'),
+  onPress: () {},
+);

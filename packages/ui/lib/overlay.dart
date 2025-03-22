@@ -1,6 +1,6 @@
 /// A Library widget for text.
 
-library beui.foundation;
+library beui.overlay;
 
 // ignore: invalid_export_of_internal_element
-export 'src/widgets/foundation/be_tappable.dart';
+export 'src/widgets/overlay/popover.dart';

@@ -5,20 +5,27 @@ import 'package:flutter/widgets.dart';
 import 'package:meta/meta.dart';
 
 @internal
-extension Touch on Never {
+extension BeTouch on Never {
   /// The platforms that use touch as the primary input. It isn't 100% accurate as there are hybrid devices that use
   /// both touch and keyboard/mouse input, i.e., Windows Surface laptops.
-  static const platforms = {TargetPlatform.android, TargetPlatform.iOS, TargetPlatform.fuchsia};
+  static const platforms = {
+    TargetPlatform.android,
+    TargetPlatform.iOS,
+    TargetPlatform.fuchsia,
+  };
 
   static bool? _primary;
 
   /// True if the current platform uses touch as the primary input.
-  static bool get primary => _primary ?? platforms.contains(defaultTargetPlatform);
+  static bool get primary =>
+      _primary ?? platforms.contains(defaultTargetPlatform);
 
   @visibleForTesting
   static set primary(bool? value) {
     if (!kDebugMode) {
-      throw UnsupportedError('Setting Touch.primary is only available in debug mode.');
+      throw UnsupportedError(
+        'Setting Touch.primary is only available in debug mode.',
+      );
     }
 
     _primary = value;
@@ -26,18 +33,18 @@ extension Touch on Never {
 }
 
 /// The tappable's current data.
-typedef BeTapableData = ({bool focused, bool hovered});
+typedef BeTappableData = ({bool focused, bool hovered});
 
 /// An area that responds to touch.
 ///
-/// It is typically used to create other high-level widgets, i.e., [BeTapable]. Unless you are creating a custom widget,
+/// It is typically used to create other high-level widgets, i.e., [BeTappable]. Unless you are creating a custom widget,
 /// you should use those high-level widgets instead.
-class BeTapable extends StatefulWidget {
-  /// Creates a [BeTapable].
+class BeTappable extends StatefulWidget {
+  /// Creates a [BeTappable].
   ///
   /// ## Contract
   /// Throws [AssertionError] if [builder] and [child] are both null.
-  const BeTapable({
+  const BeTappable({
     this.focusedOutlineStyle,
     this.semanticLabel,
     this.semanticSelected = false,
@@ -51,16 +58,19 @@ class BeTapable extends StatefulWidget {
     this.onPress,
     this.onLongPress,
     this.child,
-    ValueWidgetBuilder<BeTapableData>? builder,
+    ValueWidgetBuilder<BeTappableData>? builder,
     super.key,
-  }) : assert(builder != null || child != null, 'Either builder or child must be provided.'),
+  }) : assert(
+         builder != null || child != null,
+         'Either builder or child must be provided.',
+       ),
        builder = builder ?? _builder;
 
-  /// Creates an animated [BeTapable].
+  /// Creates an animated [BeTappable].
   ///
   /// ## Contract
   /// Throws [AssertionError] if [builder] and [child] are both null.
-  const factory BeTapable.animated({
+  const factory BeTappable.animated({
     BeFocusedOutlineStyle? focusedOutlineStyle,
     String? semanticLabel,
     bool semanticSelected,
@@ -74,11 +84,12 @@ class BeTapable extends StatefulWidget {
     Duration touchHoverExitDuration,
     VoidCallback? onPress,
     VoidCallback? onLongPress,
-    ValueWidgetBuilder<BeTapableData>? builder,
+    ValueWidgetBuilder<BeTappableData>? builder,
     Widget? child,
     Key? key,
   }) = AnimatedBeTapable;
-  static Widget _builder(BuildContext _, BeTapableData _, Widget? child) => child!;
+  static Widget _builder(BuildContext _, BeTappableData _, Widget? child) =>
+      child!;
 
   /// The style used when the tappable is focused. This tappable will not be outlined if null.
   final BeFocusedOutlineStyle? focusedOutlineStyle;
@@ -134,7 +145,7 @@ class BeTapable extends StatefulWidget {
   final Widget? child;
 
   @override
-  State<BeTapable> createState() => _BeTapableState<BeTapable>();
+  State<BeTappable> createState() => _BeTappableState<BeTappable>();
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
@@ -142,13 +153,29 @@ class BeTapable extends StatefulWidget {
     properties
       ..add(DiagnosticsProperty('focusedOutlineStyle', focusedOutlineStyle))
       ..add(StringProperty('semanticLabel', semanticLabel))
-      ..add(FlagProperty('semanticsSelected', value: semanticSelected, ifTrue: 'selected'))
-      ..add(FlagProperty('excludeSemantics', value: excludeSemantics, ifTrue: 'excludeSemantics'))
+      ..add(
+        FlagProperty(
+          'semanticsSelected',
+          value: semanticSelected,
+          ifTrue: 'selected',
+        ),
+      )
+      ..add(
+        FlagProperty(
+          'excludeSemantics',
+          value: excludeSemantics,
+          ifTrue: 'excludeSemantics',
+        ),
+      )
       ..add(FlagProperty('autofocus', value: autofocus, ifTrue: 'autofocus'))
       ..add(DiagnosticsProperty('focusNode', focusNode))
       ..add(ObjectFlagProperty.has('onFocusChange', onFocusChange))
-      ..add(DiagnosticsProperty('touchHoverEnterDuration', touchHoverEnterDuration))
-      ..add(DiagnosticsProperty('touchHoverExitDuration', touchHoverExitDuration))
+      ..add(
+        DiagnosticsProperty('touchHoverEnterDuration', touchHoverEnterDuration),
+      )
+      ..add(
+        DiagnosticsProperty('touchHoverExitDuration', touchHoverExitDuration),
+      )
       ..add(EnumProperty('behavior', behavior))
       ..add(ObjectFlagProperty.has('onPress', onPress))
       ..add(ObjectFlagProperty.has('onLongPress', onLongPress))
@@ -158,7 +185,7 @@ class BeTapable extends StatefulWidget {
   bool get _enabled => onPress != null || onLongPress != null;
 }
 
-class _BeTapableState<T extends BeTapable> extends State<T> {
+class _BeTappableState<T extends BeTappable> extends State<T> {
   int _monotonic = 0;
   bool _focused = false;
   bool _hovered = false;
@@ -181,7 +208,10 @@ class _BeTapableState<T extends BeTapable> extends State<T> {
 
   @override
   Widget build(BuildContext context) {
-    var tappable = widget.builder(context, (focused: _focused, hovered: _hovered || _touched), widget.child);
+    var tappable = widget.builder(context, (
+      focused: _focused,
+      hovered: _hovered || _touched,
+    ), widget.child);
     tappable = _decorate(context, tappable);
 
     if (widget._enabled) {
@@ -240,14 +270,24 @@ class _BeTapableState<T extends BeTapable> extends State<T> {
     );
 
     if (widget.focusedOutlineStyle case final style?) {
-      tappable = BeFocusedOutline(focused: _focused, style: style, child: tappable);
+      tappable = BeFocusedOutline(
+        focused: _focused,
+        style: style,
+        child: tappable,
+      );
     }
 
     if (widget.onPress case final onPress?) {
       tappable = Shortcuts(
-        shortcuts: const {SingleActivator(LogicalKeyboardKey.enter): ActivateIntent()},
+        shortcuts: const {
+          SingleActivator(LogicalKeyboardKey.enter): ActivateIntent(),
+        },
         child: Actions(
-          actions: {ActivateIntent: CallbackAction<ActivateIntent>(onInvoke: (_) => onPress())},
+          actions: {
+            ActivateIntent: CallbackAction<ActivateIntent>(
+              onInvoke: (_) => onPress(),
+            ),
+          },
           child: tappable,
         ),
       );
@@ -264,7 +304,7 @@ class _BeTapableState<T extends BeTapable> extends State<T> {
 }
 
 @internal
-class AnimatedBeTapable extends BeTapable {
+class AnimatedBeTapable extends BeTappable {
   const AnimatedBeTapable({
     this.animationTween,
     super.focusedOutlineStyle,
@@ -286,7 +326,7 @@ class AnimatedBeTapable extends BeTapable {
   final Tween<double>? animationTween;
 
   @override
-  State<BeTapable> createState() => AnimatedBeTapableState();
+  State<BeTappable> createState() => AnimatedBeTapableState();
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
@@ -296,22 +336,29 @@ class AnimatedBeTapable extends BeTapable {
 }
 
 @internal
-class AnimatedBeTapableState extends _BeTapableState<AnimatedBeTapable> with SingleTickerProviderStateMixin {
+class AnimatedBeTapableState extends _BeTappableState<AnimatedBeTapable>
+    with SingleTickerProviderStateMixin {
   late final AnimationController controller;
   late Animation<double> animation;
 
   @override
   void initState() {
     super.initState();
-    controller = AnimationController(vsync: this, duration: const Duration(milliseconds: 100));
-    animation = (widget.animationTween ?? Tween(begin: 1.0, end: 0.97)).animate(controller);
+    controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 100),
+    );
+    animation = (widget.animationTween ?? Tween(begin: 1.0, end: 0.97)).animate(
+      controller,
+    );
   }
 
   @override
   void didUpdateWidget(covariant AnimatedBeTapable old) {
     super.didUpdateWidget(old);
     if (widget.animationTween != old.animationTween) {
-      animation = (widget.animationTween ?? Tween(begin: 1.0, end: 0.97)).animate(controller);
+      animation = (widget.animationTween ?? Tween(begin: 1.0, end: 0.97))
+          .animate(controller);
     }
   }
 
@@ -322,7 +369,8 @@ class AnimatedBeTapableState extends _BeTapableState<AnimatedBeTapable> with Sin
   void _onPointerUp() => controller.reverse();
 
   @override
-  Widget _decorate(BuildContext _, Widget child) => ScaleTransition(scale: animation, child: child);
+  Widget _decorate(BuildContext _, Widget child) =>
+      ScaleTransition(scale: animation, child: child);
 
   @override
   void dispose() {

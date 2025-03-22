@@ -1,5 +1,4 @@
 # analysis_options.yaml
-include: package:flint/analysis_options.flutter.yaml
 analyzer:
   errors:
     public_member_api_docs: ignore

@@ -34,27 +34,47 @@ class WidgetbookApp extends StatelessWidget {
         themes: [
           const WidgetbookTheme(
             name: 'Dark',
-            data: BeThemeData(breakpoint: BeBreakpoint.md, themeMode: ThemeMode.dark, inset: BeMobileInset()),
+            data: BeThemeData(
+              breakpoint: BeBreakpoint.md,
+              themeMode: ThemeMode.dark,
+              inset: BeMobileInset(),
+            ),
           ),
           const WidgetbookTheme(
             name: 'Light',
-            data: BeThemeData(breakpoint: BeBreakpoint.md, themeMode: ThemeMode.light, inset: BeMobileInset()),
+            data: BeThemeData(
+              breakpoint: BeBreakpoint.md,
+              themeMode: ThemeMode.light,
+              inset: BeMobileInset(),
+            ),
           ),
         ],
 
         themeBuilder:
             (context, theme, child) => LayoutBuilder(
               builder: (context, constraints) {
-                final bebreakpoint = calculateBreakpoint(constraints.maxWidth, const BeResponsivePoints());
-                final betheme = BeThemeManager.createThemeData(themeMode: theme.themeMode, breakpoint: bebreakpoint);
+                final bebreakpoint = calculateBreakpoint(
+                  constraints.maxWidth,
+                  const BeResponsivePoints(),
+                );
+                final betheme = BeThemeManager.createThemeData(
+                  themeMode: theme.themeMode,
+                  breakpoint: bebreakpoint,
+                );
 
                 return MaterialApp(
                   themeMode: betheme.themeMode,
                   theme: ThemeData(
-                    brightness: betheme.themeMode == ThemeMode.light ? Brightness.light : Brightness.dark,
+                    brightness:
+                        betheme.themeMode == ThemeMode.light
+                            ? Brightness.light
+                            : Brightness.dark,
                     extensions: [betheme],
                   ),
-                  home: Scaffold(backgroundColor: betheme.colors.background, body: child),
+                  home: Scaffold(
+                    backgroundColor: betheme.colors.background,
+                    body: child,
+                  ),
                 );
               },
             ),

@@ -11,7 +11,7 @@ packages:
 scripts:
   lint:
     run: melos exec -- flutter analyze
-    description: Run the linter across all packages.    
+    description: Run the linter across all packages.
   sync-lint-rules:
     run: melos exec -- cp ../../analysis_options.yaml ./analysis_options.yaml
     description: Sync linting rules across all packages.
@@ -31,17 +31,15 @@ scripts:
     run: melos exec -- flutter test
     description: Run tests across all packages.
   add_dependency:
-    run: melos exec -- flutter pub add --dev flint
+    run: melos exec -- flutter pub add --dev *
     description: Add a specific version of a dependency to all packages.
   remove_dependency:
-    run: melos exec -- flutter pub remove --dev flint
+    run: melos exec -- flutter pub remove --dev *
     description: Add a specific version of a dependency to all packages.
 
 ide:
   intellij:
-    enabled: false    
+    enabled: false
 command:
   version:
-    branch: main    
-
-    
+    branch: main

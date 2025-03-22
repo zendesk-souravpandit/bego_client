@@ -4,7 +4,7 @@ import 'package:beui/common.dart';
 import 'package:flutter/material.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
-@widgetbook.UseCase(name: 'Material Theme', path: '[Theme]', type: MaterialApp)
+@widgetbook.UseCase(name: 'Theme', path: '[Theme]', type: MaterialApp)
 Widget redContainerUseCase(BuildContext context) => const ThemeDemoPage();
 
 class ThemeDemoPage extends StatefulWidget {

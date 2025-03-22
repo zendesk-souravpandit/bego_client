@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
-@widgetbook.UseCase(name: 'Buttons', path: 'Widget', type: ElevatedButton)
+@widgetbook.UseCase(
+  name: 'Buttons',
+  path: 'Widget/Button',
+  type: ElevatedButton,
+)
 Widget useCaseButtons(BuildContext context) => Padding(
   padding: const EdgeInsets.all(16.0),
   child: SingleChildScrollView(
@@ -103,8 +107,16 @@ Widget useCaseButtons(BuildContext context) => Padding(
           context: context,
           title: 'Icon Buttons',
           buttons: [
-            IconButton(iconSize: 24, onPressed: _getOnPressed(context), icon: const Icon(Icons.favorite_border)),
-            IconButton.filled(iconSize: 32, onPressed: _getOnPressed(context), icon: const Icon(Icons.star)),
+            IconButton(
+              iconSize: 24,
+              onPressed: _getOnPressed(context),
+              icon: const Icon(Icons.favorite_border),
+            ),
+            IconButton.filled(
+              iconSize: 32,
+              onPressed: _getOnPressed(context),
+              icon: const Icon(Icons.star),
+            ),
           ],
         ),
       ],
@@ -112,24 +124,36 @@ Widget useCaseButtons(BuildContext context) => Padding(
   ),
 );
 
-Widget _buildButtonSection({required BuildContext context, required String title, required List<Widget> buttons}) =>
-    Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 16),
-          child: Text(title, style: Theme.of(context).textTheme.titleLarge),
-        ),
-        Wrap(spacing: 16, runSpacing: 16, children: buttons),
-        const SizedBox(height: 32),
-      ],
-    );
+Widget _buildButtonSection({
+  required BuildContext context,
+  required String title,
+  required List<Widget> buttons,
+}) => Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    Padding(
+      padding: const EdgeInsets.symmetric(vertical: 16),
+      child: Text(title, style: Theme.of(context).textTheme.titleLarge),
+    ),
+    Wrap(spacing: 16, runSpacing: 16, children: buttons),
+    const SizedBox(height: 32),
+  ],
+);
 
-ButtonStyle _buttonStyle(BuildContext context, {ButtonSize size = ButtonSize.medium}) {
+ButtonStyle _buttonStyle(
+  BuildContext context, {
+  ButtonSize size = ButtonSize.medium,
+}) {
   final padding = switch (size) {
     ButtonSize.small => const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-    ButtonSize.medium => const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-    ButtonSize.large => const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+    ButtonSize.medium => const EdgeInsets.symmetric(
+      horizontal: 24,
+      vertical: 12,
+    ),
+    ButtonSize.large => const EdgeInsets.symmetric(
+      horizontal: 32,
+      vertical: 16,
+    ),
   };
 
   final textStyle = switch (size) {
@@ -144,6 +168,7 @@ ButtonStyle _buttonStyle(BuildContext context, {ButtonSize size = ButtonSize.med
   );
 }
 
-VoidCallback? _getOnPressed(BuildContext context) => context.knobs.boolean(label: 'Disabled') ? null : () {};
+VoidCallback? _getOnPressed(BuildContext context) =>
+    context.knobs.boolean(label: 'Disabled') ? null : () {};
 
 enum ButtonSize { small, medium, large }
