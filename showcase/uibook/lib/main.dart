@@ -16,6 +16,7 @@ class WidgetbookApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Widgetbook.material(
+    // themeMode: ThemeMode.system,
     directories: directories,
     addons: <WidgetbookAddon>[
       DeviceFrameAddon(
@@ -28,6 +29,7 @@ class WidgetbookApp extends StatelessWidget {
         ],
       ),
       InspectorAddon(),
+
       ThemeAddon<BeThemeData>(
         themes: [
           const WidgetbookTheme(
@@ -46,12 +48,18 @@ class WidgetbookApp extends StatelessWidget {
                 final bebreakpoint = calculateBreakpoint(constraints.maxWidth, const BeResponsivePoints());
                 final betheme = BeThemeManager.createThemeData(themeMode: theme.themeMode, breakpoint: bebreakpoint);
 
-                return BeTheme(betheme: betheme, child: child);
+                return MaterialApp(
+                  themeMode: betheme.themeMode,
+                  theme: ThemeData(
+                    brightness: betheme.themeMode == ThemeMode.light ? Brightness.light : Brightness.dark,
+                    extensions: [betheme],
+                  ),
+                  home: Scaffold(backgroundColor: betheme.colors.background, body: child),
+                );
               },
             ),
       ),
-
-      AlignmentAddon(),
+      // AlignmentAddon(),
     ],
   );
 }
