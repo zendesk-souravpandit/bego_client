@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:uibook/widgets/buttons/use_case_icon_text_button.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
-@widgetbook.UseCase(name: 'BePopover', path: 'Widget/Overlay', type: BePopover)
+@widgetbook.UseCase(name: 'BePopover', path: 'widget/overlay', type: BePopover)
 Widget useCasePopover(BuildContext context) => const PopoverDemo();
 
 class PopoverDemo extends StatefulWidget {

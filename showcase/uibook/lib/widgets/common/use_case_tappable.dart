@@ -4,7 +4,7 @@ import 'package:beui/ui.dart';
 import 'package:flutter/material.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
-@widgetbook.UseCase(name: 'BeTapable', path: 'Widget/Common', type: BeTappable)
+@widgetbook.UseCase(name: 'BeTapable', path: 'utils', type: BeTappable)
 Widget useCaseTappableAnimation(BuildContext context) => BeTappable.animated(
   builder:
       (context, data, child) => Container(

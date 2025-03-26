@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
-@widgetbook.UseCase(name: 'Multi Child', path: '[Multi Child]', type: BeBadge)
+@widgetbook.UseCase(name: 'Multi Child', path: 'multi-child', type: BeBadge)
 Widget renderBeBadgeWidget(BuildContext context) {
   final BeBadgePosition position = context.knobs.list(
     label: 'Position',

@@ -2,11 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
-@widgetbook.UseCase(
-  name: 'Buttons',
-  path: 'Widget/Button',
-  type: ElevatedButton,
-)
+@widgetbook.UseCase(name: 'Buttons', path: 'widget', type: ElevatedButton)
 Widget useCaseButtons(BuildContext context) => Padding(
   padding: const EdgeInsets.all(16.0),
   child: SingleChildScrollView(

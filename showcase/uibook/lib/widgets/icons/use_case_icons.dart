@@ -7,7 +7,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 // @widgetbook.UseCase(name: 'Icons', path: 'Widget', type: BeIcons)
 // Widget redContainerUseCase(BuildContext context) => const Icon(BeIcons.icon_youtube, color: Colors.red, size: 100);
 
-@widgetbook.UseCase(name: 'Icons', path: 'Widget/Icons', type: BeIcons)
+@widgetbook.UseCase(name: 'Icons', path: 'widget', type: BeIcons)
 Widget useCaseBeIconsList(BuildContext context) {
   final color = context.knobs.colorOrNull(label: "Color");
   return GridView.builder(

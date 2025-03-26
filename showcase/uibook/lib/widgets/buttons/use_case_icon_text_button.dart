@@ -4,11 +4,7 @@ import 'package:uibook/widgetbook/knob_extentions.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
-@widgetbook.UseCase(
-  name: 'Icon button',
-  path: 'Widget/Button',
-  type: BeIconTextButton,
-)
+@widgetbook.UseCase(name: 'Icon button', path: 'widget', type: BeIconTextButton)
 Widget createDefaultStyle(BuildContext context) {
   final k = context.knobs;
 
