@@ -70,7 +70,6 @@ Widget useCaseBeBoxDecoration(BuildContext context) {
 
         decoration: BeBoxDecoration(
           color: color.value,
-          background: background.value,
           borderRadius: BorderRadius.all(Radius.circular(borderRadius ?? 0)),
           boxShadow: [
             BeBoxShadow(
