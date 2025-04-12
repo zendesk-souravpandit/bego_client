@@ -123,8 +123,8 @@ class BeIconShapeBorder extends OutlinedBorder {
 
     // Prepare icon text style
     final effectiveStyle = (iconStyle ?? const TextStyle()).copyWith(
-      color: color,
-      fontSize: size,
+      color: iconStyle?.color ?? color,
+      fontSize: iconStyle?.fontSize ?? size,
       fontFamily: icon.fontFamily,
       package: icon.fontPackage, // Support for custom icon packages
     );
