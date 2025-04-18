@@ -1,5 +1,5 @@
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+library beui.utils;
+
+export './src/utils/color_utils.dart';
+export './src/utils/responsive_utils.dart';
+export './src/utils/text_utils.dart';

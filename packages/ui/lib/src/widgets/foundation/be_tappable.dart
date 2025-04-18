@@ -211,7 +211,7 @@ class _BeTappableState<T extends BeTappable> extends State<T> {
     var tappable = widget.builder(context, (
       focused: _focused,
       hovered: _hovered || _touched,
-    ), widget.child);
+    ), widget.child,);
     tappable = _decorate(context, tappable);
 
     if (widget._enabled) {

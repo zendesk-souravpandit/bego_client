@@ -1,7 +1,7 @@
 import 'package:beui/src/screen/be_breakpoint.dart';
 import 'package:beui/src/theme/be_color.dart';
 import 'package:beui/src/theme/be_style.dart';
-import 'package:beui/src/theme/be_theme_value.dart';
+import 'package:beui/src/theme/be_style_values.dart';
 import 'package:beui/src/theme/styles/be_colors_light.dart';
 import 'package:beui/src/theme/styles/be_style_light.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 class BeThemeData extends ThemeExtension<BeThemeData> {
   const BeThemeData({
     required this.breakpoint,
-    required this.inset,
+    required this.styleValue,
     this.themeMode = ThemeMode.system,
     this.colors = const BeColorsLight(),
     this.style = const BeStyleLight(),
@@ -18,15 +18,20 @@ class BeThemeData extends ThemeExtension<BeThemeData> {
   final ThemeMode themeMode;
   final BeStyle style;
   final BeColor colors;
-  final BeThemeValue inset;
+  final BeStyleValues styleValue;
   final BeBreakpoint breakpoint;
 
   @override
-  BeThemeData copyWith({BeBreakpoint? breakpoint, BeStyle? style, BeColor? colors, BeThemeValue? inset}) => BeThemeData(
+  BeThemeData copyWith({
+    BeBreakpoint? breakpoint,
+    BeStyle? style,
+    BeColor? colors,
+    BeStyleValues? inset,
+  }) => BeThemeData(
     breakpoint: breakpoint ?? this.breakpoint,
     style: style ?? this.style,
     colors: colors ?? this.colors,
-    inset: inset ?? this.inset,
+    styleValue: inset ?? styleValue,
   );
 
   @override
@@ -35,10 +40,11 @@ class BeThemeData extends ThemeExtension<BeThemeData> {
       return this;
     }
     return BeThemeData(
-      breakpoint: other.breakpoint, // Implement breakpoint interpolation if needed
+      breakpoint:
+          other.breakpoint, // Implement breakpoint interpolation if needed
       style: other.style, // You can implement lerping for style if needed
       colors: other.colors,
-      inset: other.inset, // Implement color interpolation if needed
+      styleValue: other.styleValue, // Implement color interpolation if needed
     );
   }
 }

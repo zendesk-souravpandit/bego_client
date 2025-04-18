@@ -1,4 +1,5 @@
 import 'package:becomponent/app.dart';
+import 'package:beui/decoration.dart';
 import 'package:beui/theme.dart';
 import 'package:flutter/material.dart';
 
@@ -53,29 +54,20 @@ class BegoApp extends StatelessWidget {
               child: const Text('Change Theme'),
             ),
             // Card(color: background, child: const BeText.headlineLarge('Hello', padding: EdgeInsets.all(10))),
-            // Center(
-            //   child: Container(
-            //     width: 100,
-            //     height: 100,
-            //     decoration: const ShapeDecoration(
-            //       shape: BeIconShapeBorder(
-            //         iconData: Icons.import_contacts_sharp,
-            //         iconSize: 32,
-            //         roundRadius: 8,
-            //         borderColor: Colors.red,
-            //         borderWidth: 2,
-            //         iconAlignment: BeIconAlignment.bottomLeft,
-            //         iconOffset: Offset(
-            //           -100,
-            //           10,
-            //         ), // Adjust icon position slightly inward
-            //       ),
-            //     ),
-            //     child: const Center(
-            //       child: Text("Hello", style: TextStyle(color: Colors.green)),
-            //     ),
-            //   ),
-            // ),
+            Center(
+              child: Container(
+                width: 500,
+                height: 500,
+                padding: pt12 + px12,
+                decoration: const ShapeDecoration(
+                  shape: BeveledRectangleBorder(
+                    side: BorderSide(color: Colors.red, width: 2),
+                    borderRadius: BorderRadius.all(Radius.circular(8)),
+                  ),
+                ),
+                child: const TextField(),
+              ),
+            ),
           ],
         ),
       ),

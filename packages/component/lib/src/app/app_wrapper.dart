@@ -81,7 +81,7 @@ class _AppStateWrapperState extends State<AppStateWrapper> {
     required ThemeMode themeMode,
     required BeBreakpoint breakpoint,
   }) {
-    final insets = getInsetForBreakpoint(breakpoint);
+    final insets = getStyleValue(breakpoint);
     final colors =
         themeMode == ThemeMode.light
             ? const BeColorsLight()
@@ -93,7 +93,7 @@ class _AppStateWrapperState extends State<AppStateWrapper> {
 
     return BeThemeData(
       breakpoint: breakpoint,
-      inset: insets,
+      styleValue: insets,
       colors: colors,
       style: style,
       themeMode: themeMode,

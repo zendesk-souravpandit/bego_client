@@ -1,7 +1,7 @@
-import 'package:beui/src/theme/be_theme_value.dart';
+import 'package:beui/src/theme/be_style_values.dart';
 
-class BeTabletInset implements BeThemeValue {
-  const BeTabletInset();
+class BeTabletValues implements BeStyleValues {
+  const BeTabletValues();
 
   // Display
   @override

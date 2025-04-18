@@ -3,9 +3,12 @@ import 'package:beui/theme.dart';
 import 'package:flutter/material.dart';
 
 class BeStyleDark implements BeStyle {
-  const BeStyleDark({this.color = const BeColorsDark(), this.inset = const BeMobileInset()});
+  const BeStyleDark({
+    this.color = const BeColorsDark(),
+    this.inset = const BeMobileValues(),
+  });
   final BeColor color;
-  final BeThemeValue inset;
+  final BeStyleValues inset;
 
   @override
   TextStyle get displayLarge => _baseStyle.copyWith(

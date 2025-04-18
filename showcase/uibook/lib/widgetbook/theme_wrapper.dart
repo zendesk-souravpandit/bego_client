@@ -3,24 +3,41 @@ import 'package:beui/theme.dart';
 import 'package:flutter/material.dart';
 
 class BeThemeManager {
-  static BeThemeData createThemeData({required ThemeMode themeMode, required BeBreakpoint breakpoint}) {
-    final insets = getInsetForBreakpoint(breakpoint);
-    final colors = themeMode == ThemeMode.light ? const BeColorsLight() : const BeColorsDark();
+  static BeThemeData createThemeData({
+    required ThemeMode themeMode,
+    required BeBreakpoint breakpoint,
+  }) {
+    final insets = getStyleValue(breakpoint);
+    final colors =
+        themeMode == ThemeMode.light
+            ? const BeColorsLight()
+            : const BeColorsDark();
     final style =
         themeMode == ThemeMode.light
             ? BeStyleLight(color: colors, inset: insets)
             : BeStyleDark(color: colors, inset: insets);
 
-    return BeThemeData(breakpoint: breakpoint, inset: insets, colors: colors, style: style, themeMode: themeMode);
+    return BeThemeData(
+      breakpoint: breakpoint,
+      styleValue: insets,
+      colors: colors,
+      style: style,
+      themeMode: themeMode,
+    );
   }
 
   static ThemeData createTheme({required ThemeMode themeMode}) {
-    final colors = themeMode == ThemeMode.light ? const BeColorsLight() : const BeColorsDark();
+    final colors =
+        themeMode == ThemeMode.light
+            ? const BeColorsLight()
+            : const BeColorsDark();
 
     return ThemeData(
       scaffoldBackgroundColor: colors.background,
       appBarTheme: AppBarTheme(backgroundColor: colors.background),
-      bottomNavigationBarTheme: BottomNavigationBarThemeData(backgroundColor: colors.background),
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        backgroundColor: colors.background,
+      ),
     );
   }
 }

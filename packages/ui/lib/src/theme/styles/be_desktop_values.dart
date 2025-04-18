@@ -1,7 +1,7 @@
-import 'package:beui/src/theme/be_theme_value.dart';
+import 'package:beui/src/theme/be_style_values.dart';
 
-class BeDesktopInset implements BeThemeValue {
-  const BeDesktopInset();
+class BeDesktopValues implements BeStyleValues {
+  const BeDesktopValues();
 
   // Display
   @override

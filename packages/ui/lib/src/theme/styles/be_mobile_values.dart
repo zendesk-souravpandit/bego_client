@@ -1,7 +1,7 @@
-import 'package:beui/src/theme/be_theme_value.dart';
+import 'package:beui/src/theme/be_style_values.dart';
 
-class BeMobileInset implements BeThemeValue {
-  const BeMobileInset();
+class BeMobileValues implements BeStyleValues {
+  const BeMobileValues();
 
   @override
   double get displayLargeTextSize => 48;

@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 class BeStyleLight implements BeStyle {
   const BeStyleLight({
     this.color = const BeColorsLight(),
-    this.inset = const BeMobileInset(),
+    this.inset = const BeMobileValues(),
   });
   final BeColor color;
-  final BeThemeValue inset;
+  final BeStyleValues inset;
 
   @override
   TextStyle get displayLarge => _baseStyle.copyWith(
