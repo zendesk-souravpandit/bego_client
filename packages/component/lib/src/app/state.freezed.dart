@@ -86,7 +86,7 @@ as BeResponsivePoints,
 
 
 class _AppState implements AppState {
-  const _AppState({required this.appName, required this.packageName, required this.version, required this.deviceId, required this.screenWidth, this.themeMode = ThemeMode.light, this.locale = const Locale('en', 'US'), this.breakpoint = BeBreakpoint.md, this.bethemeData = const BeThemeData(inset: BeMobileInset(), breakpoint: BeBreakpoint.md), this.responsivePoints = const BeResponsivePoints()});
+  const _AppState({required this.appName, required this.packageName, required this.version, required this.deviceId, required this.screenWidth, this.themeMode = ThemeMode.light, this.locale = const Locale('en', 'US'), this.breakpoint = BeBreakpoint.md, this.bethemeData = const BeThemeData(styleValues: BeMobileValues(), breakpoint: BeBreakpoint.md), this.responsivePoints = const BeResponsivePoints()});
   
 
 @override final  String appName;

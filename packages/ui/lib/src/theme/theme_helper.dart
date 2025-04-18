@@ -6,7 +6,7 @@ extension ThemeStateGetter on State<dynamic> {
   BeThemeData get betheme => BeTheme.of(context);
   BeStyle get bestyles => BeTheme.of(context).style;
   BeColor get becolors => BeTheme.of(context).colors;
-  BeStyleValues get beinset => BeTheme.of(context).styleValue;
+  BeStyleValues get beinset => BeTheme.of(context).styleValues;
 }
 
 extension ThemeGetter on StatelessWidget {
@@ -20,7 +20,7 @@ extension ThemeGetter on StatelessWidget {
   BeStyle bestyles(BuildContext context) => BeTheme.of(context).style;
   BeColor becolors(BuildContext context) => BeTheme.of(context).colors;
   BeStyleValues beinsets(BuildContext context) =>
-      BeTheme.of(context).styleValue;
+      BeTheme.of(context).styleValues;
 }
 
 BeStyleValues getStyleValue(BeBreakpoint? breakpoint) {

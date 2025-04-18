@@ -1,9 +1,5 @@
 # analysis_options.yaml
 analyzer:
-  errors:
-    public_member_api_docs: ignore
-    invalid_annotation_target: ignore
-    # lines_longer_than_80_chars: warning
   language:
     strict-casts: true
     strict-inference: true
@@ -23,7 +19,23 @@ analyzer:
     - "**/*.gr.dart"
     - "**/l10n*.dart"
     - "**/*.gen.dart"
-
+  errors:
+    public_member_api_docs: ignore
+    invalid_annotation_target: ignore
+    annotate_overrides: error
+    #    avoid_dynamic_calls: error
+    avoid_shadowing_type_parameters: warning
+    body_might_complete_normally_nullable: ignore
+    deprecated_member_use_from_same_package: ignore
+    exhaustive_cases: warning
+    literal_only_boolean_expressions: warning
+    no_duplicate_case_values: error
+    only_throw_errors: error
+    override_on_non_overriding_member: error
+    parameter_assignments: error
+    unawaited_futures: error
+    unnecessary_overrides: error
+    unused_element: warning
 linter:
   rules:
     - always_declare_return_types

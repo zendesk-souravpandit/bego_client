@@ -18,7 +18,7 @@ class BegoApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final betheme = context.betheme;
+    // final betheme = context.betheme;
     final appState = AppStateProvider.of(context).state;
     // final appEvent = AppStateProvider.of(context).appEventBus;
     final updateEvent = AppStateProvider.of(context).updateEvent;
@@ -30,13 +30,7 @@ class BegoApp extends StatelessWidget {
 
     return MaterialApp(
       themeMode: appState.themeMode,
-      theme: ThemeData(
-        brightness:
-            appState.themeMode == ThemeMode.light
-                ? Brightness.light
-                : Brightness.dark,
-        extensions: [betheme],
-      ),
+      theme: BeTheme.buildThemeof(context),
       home: Scaffold(
         appBar: AppBar(title: const Text('BegoApp')),
         body: Column(
@@ -65,7 +59,22 @@ class BegoApp extends StatelessWidget {
                     borderRadius: BorderRadius.all(Radius.circular(8)),
                   ),
                 ),
-                child: const TextField(),
+                child: const Column(
+                  children: [
+                    // Padding(
+                    //   padding: EdgeInsets.all(8.0),
+                    //   child: ExpansionTile(
+                    //     title: Text("Notifications"),
+
+                    //     children: [
+                    //       ListTile(title: Text("Email Notifications")),
+                    //       ListTile(title: Text("Push Notifications")),
+                    //     ],
+                    //   ),
+                    // ),
+                    TextField(),
+                  ],
+                ),
               ),
             ),
           ],
@@ -74,74 +83,17 @@ class BegoApp extends StatelessWidget {
     );
   }
 }
-// ---  be_icon_outline_border.dart ---
-// import 'package:bego_ui/src/ui_const/bego_colors.dart';
-// import 'package:flutter/material.dart';
-// import 'package:widgetbook/widgetbook.dart';
-// import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
-// @widgetbook.UseCase(
-//   name: 'Icon Outlined Border',
-//   path: 'Outlined Border',
-//   type: BeIconOutlinedBorder,
-// )
-// Widget useCaseBeIconOutlinedBorder(BuildContext context) {
-  // final iconData = context.knobs.list(
-  //   label: 'Icon',
-  //   options: [
-  //     const KnobOption(label: 'Home', value: Icons.home),
-  //     const KnobOption(label: 'Settings', value: Icons.settings),
-  //     const KnobOption(label: 'Favorite', value: Icons.favorite),
-  //     const KnobOption(label: 'Search', value: Icons.search),
-  //   ],
-  //   labelBuilder: (value) => value.label,
-  // );
-
-  // final iconSize = context.knobs.doubleOrNull.slider(
-  //   label: 'Icon Size',
-  //   min: 16,
-  //   max: 48,
-  //   initialValue: 24,
-  // ) ?? 24.0;
-
-  // final roundRadius = context.knobs.doubleOrNull.slider(
-  //   label: 'Border Radius',
-  //   min: 0,
-  //   max: 24,
-  //   initialValue: 4,
-  // ) ?? 4.0;
-
-  // final borderColor = context.knobs.list(
-  //   label: 'Border Color',
-  //   options: [
-  //     const KnobOption(label: 'Primary', value: BegoColors.primary),
-  //     const KnobOption(label: 'Red', value: Colors.red),
-  //     const KnobOption(label: 'Green', value: Colors.green),
-  //     const KnobOption(label: 'Blue', value: Colors.blue),
-  //   ],
-  //   labelBuilder: (value) => value.label,
-  // );
-
-//   return Center(
-//     child: Container(
-//       width: 42,
-//       height: 42,
-//       decoration: const ShapeDecoration(
-//         shape: BeIconOutlinedBorder(
-//           iconData: Icons.import_contacts_sharp,
-//           iconSize: 32,
-//           roundRadius: 8,
-//           borderColor: Colors.red,
-//         ),
-//       ),
-//       child: Container(
-//         color: Colors.blue,
-//         child: const Center(child: BeText("Hello", color: Colors.green)),
-//       ),
-
-//       // child: const Center(child: Text('Content inside the border')),
-//     ),
+// ExpansionTile buildCustomExpansionTile({
+//   required String title,
+//   required List<Widget> children,
+//   bool initiallyExpanded = false,
+//   EdgeInsetsGeometry? childrenPadding,
+// }) {
+//   return ExpansionTile(
+//     title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
+//     initiallyExpanded: initiallyExpanded,
+//     childrenPadding: childrenPadding ?? const EdgeInsets.all(16),
+//     children: children,
 //   );
 // }
-
-// -- be_icon_outline_border.dart --

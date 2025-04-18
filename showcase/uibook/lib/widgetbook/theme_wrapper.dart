@@ -19,7 +19,7 @@ class BeThemeManager {
 
     return BeThemeData(
       breakpoint: breakpoint,
-      styleValue: insets,
+      styleValues: insets,
       colors: colors,
       style: style,
       themeMode: themeMode,

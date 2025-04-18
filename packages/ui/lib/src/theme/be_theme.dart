@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_expression_function_bodies
 
-import 'package:beui/src/theme/_be_default_theme.dart';
 import 'package:beui/src/theme/be_theme_data.dart';
+import 'package:beui/src/theme/theme_builder.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -21,7 +21,7 @@ class BeTheme extends StatelessWidget {
         betheme.themeMode == ThemeMode.dark
             ? Brightness.dark
             : Brightness.light;
-    return createTheme(betheme, brightness: brightness);
+    return buildTheme(betheme: betheme, brightness: brightness);
   }
 
   @override

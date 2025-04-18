@@ -46,7 +46,7 @@ class BeColors {
   // static const Color textPrimary = neutral500;
   // static const Color textSecondary = neutral200;
 
-  static const transparent = Color(0x00000000);
+  static const transparent = Colors.transparent;
   // Light Theme Text Colors
   static const Color lightTextPrimary = Color(0xFF111827);
   static const Color lightTextSecondary = Color(0xFF374151);

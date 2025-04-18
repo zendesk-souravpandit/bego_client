@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 class BeThemeData extends ThemeExtension<BeThemeData> {
   const BeThemeData({
     required this.breakpoint,
-    required this.styleValue,
+    required this.styleValues,
     this.themeMode = ThemeMode.system,
     this.colors = const BeColorsLight(),
     this.style = const BeStyleLight(),
@@ -18,7 +18,7 @@ class BeThemeData extends ThemeExtension<BeThemeData> {
   final ThemeMode themeMode;
   final BeStyle style;
   final BeColor colors;
-  final BeStyleValues styleValue;
+  final BeStyleValues styleValues;
   final BeBreakpoint breakpoint;
 
   @override
@@ -31,7 +31,7 @@ class BeThemeData extends ThemeExtension<BeThemeData> {
     breakpoint: breakpoint ?? this.breakpoint,
     style: style ?? this.style,
     colors: colors ?? this.colors,
-    styleValue: inset ?? styleValue,
+    styleValues: inset ?? styleValues,
   );
 
   @override
@@ -44,7 +44,7 @@ class BeThemeData extends ThemeExtension<BeThemeData> {
           other.breakpoint, // Implement breakpoint interpolation if needed
       style: other.style, // You can implement lerping for style if needed
       colors: other.colors,
-      styleValue: other.styleValue, // Implement color interpolation if needed
+      styleValues: other.styleValues, // Implement color interpolation if needed
     );
   }
 }
