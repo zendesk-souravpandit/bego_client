@@ -44,5 +44,5 @@ abstract class BeStyleValue {
 
   // Notification
   double get notificationMaxWidth;
-  double get notificationMaxCount;
+  int get notificationMaxCount;
 }

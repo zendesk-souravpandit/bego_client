@@ -1,3 +1,4 @@
+import 'package:beui/overlay.dart';
 import 'package:beui/screen.dart';
 import 'package:beui/theme.dart';
 import 'package:flutter/material.dart';
@@ -62,12 +63,22 @@ class WidgetbookApp extends StatelessWidget {
                   breakpoint: bebreakpoint,
                 );
 
-                return MaterialApp(
-                  themeMode: betheme.themeMode,
-                  theme: BeTheme.buildThemeof(context),
-                  home: Scaffold(
-                    backgroundColor: betheme.colors.background,
-                    body: child,
+                return BeTheme(
+                  betheme: betheme,
+                  child: BeNotificationsProvider(
+                    maxVisible: betheme.styleValue.notificationMaxCount,
+                    child: Builder(
+                      builder: (context) {
+                        return MaterialApp(
+                          themeMode: betheme.themeMode,
+                          theme: BeTheme.buildThemeof(context),
+                          home: Scaffold(
+                            backgroundColor: betheme.colors.background,
+                            body: child,
+                          ),
+                        );
+                      },
+                    ),
                   ),
                 );
               },

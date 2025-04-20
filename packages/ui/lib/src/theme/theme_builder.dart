@@ -86,9 +86,9 @@ ThemeData buildTheme({
     useMaterial3: useMaterial3,
     colorScheme: colorScheme,
     brightness: brightness,
-    package: BeThemeConst.packageName,
+    package: BeUIConst.packageName,
     extensions: [betheme],
-    fontFamily: BeThemeConst.fontFamily,
+    fontFamily: BeUIConst.fontFamily,
     splashFactory: InkRipple.splashFactory,
 
     // Component themes

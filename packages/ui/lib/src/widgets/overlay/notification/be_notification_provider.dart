@@ -1,5 +1,8 @@
 import 'dart:math' as math;
 
+import 'package:beui/decoration.dart';
+import 'package:beui/screen.dart';
+import 'package:beui/theme.dart';
 import 'package:flutter/material.dart';
 
 class BeNotificationsProvider extends StatefulWidget {
@@ -11,6 +14,7 @@ class BeNotificationsProvider extends StatefulWidget {
     this.animationDuration = const Duration(milliseconds: 500),
     this.leavingAnimationDuration = const Duration(milliseconds: 300),
     this.autoDismissDuration = const Duration(seconds: 5),
+    this.constraints,
   });
 
   final Widget child;
@@ -19,7 +23,7 @@ class BeNotificationsProvider extends StatefulWidget {
   final Duration animationDuration;
   final Duration leavingAnimationDuration;
   final Duration autoDismissDuration;
-
+  final BoxConstraints? constraints;
   @override
   State<StatefulWidget> createState() => _BeNotificationsProviderState();
 }
@@ -31,9 +35,9 @@ class _BeNotificationsProviderState extends State<BeNotificationsProvider>
   final GlobalKey<AnimatedListState> _listKey = GlobalKey();
 
   @override
-  void show(Widget notification, {Key? key}) {
+  void show(Widget notification, {Key? key, Duration? dissmissDuration}) {
     final notificationKey = key ?? UniqueKey();
-    final shouldAutoDismiss = key == null;
+    final duration = dissmissDuration ?? widget.autoDismissDuration;
 
     final wrappedNotification = KeyedSubtree(
       key: notificationKey,
@@ -41,13 +45,25 @@ class _BeNotificationsProviderState extends State<BeNotificationsProvider>
         key: notificationKey,
         notification: notification,
         manager: this,
-        autoDismiss: shouldAutoDismiss,
-        dismissDuration: widget.autoDismissDuration,
+        dismissDuration: duration,
       ),
     );
 
+    if (_notifications.contains(notificationKey)) {
+      // If the notification is already in the list, remove it first
+      _removeNotification(wrappedNotification);
+      debugPrint(
+        'Notification with key $notificationKey already exists. Removing it first.',
+      );
+    }
+
     if (_notifications.length < widget.maxVisible) {
-      _addNotification(wrappedNotification, key: key);
+      _addNotification(
+        wrappedNotification,
+        index: 0,
+        key: key,
+        dissmissDuration: duration,
+      );
     } else {
       _queue.add(wrappedNotification);
     }
@@ -62,6 +78,7 @@ class _BeNotificationsProviderState extends State<BeNotificationsProvider>
       _removeNotification(notification);
     } catch (e) {
       // Notification not found
+      debugPrint('Notification with key $key not found');
     }
   }
 
@@ -91,14 +108,20 @@ class _BeNotificationsProviderState extends State<BeNotificationsProvider>
     notificationsToRemove.forEach(_removeNotification);
   }
 
-  void _addNotification(Widget notification, {int index = 0, Key? key}) {
+  void _addNotification(
+    Widget notification, {
+    int index = 0,
+    Key? key,
+    Duration? dissmissDuration,
+  }) {
     _notifications.insert(index, notification);
     _listKey.currentState?.insertItem(
       index,
       duration: widget.animationDuration,
     );
+    // Set the key to null if it is not provided set to autoDismiss
     if (key == null) {
-      Future<void>.delayed(widget.autoDismissDuration, () {
+      Future<void>.delayed(dissmissDuration ?? widget.autoDismissDuration, () {
         if (_notifications.contains(notification)) {
           _removeNotification(notification);
         }
@@ -140,31 +163,36 @@ class _BeNotificationsProviderState extends State<BeNotificationsProvider>
 
   @override
   Widget build(BuildContext context) {
+    final isCompact =
+        betheme.breakpoint == BeBreakpoint.xs ||
+        betheme.breakpoint == BeBreakpoint.sm;
+
+    final notificationConstraints =
+        widget.constraints ?? const BoxConstraints(maxWidth: 400);
     return _BeNotificationData(
       this,
       child: Stack(
         children: [
           widget.child,
           Positioned(
-            left: widget.position.left(false),
-            top: widget.position.top(false),
-            right: widget.position.right(false),
-            bottom: widget.position.bottom(false),
+            left: widget.position.left(isCompact),
+            top: widget.position.top(isCompact),
+            right: widget.position.right(isCompact),
+            bottom: widget.position.bottom(isCompact),
             child: Material(
-              child: SafeArea(
-                child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 400),
-                  child: AnimatedList(
-                    key: _listKey,
-                    shrinkWrap: true,
-                    reverse: widget.position.reverse,
-                    itemBuilder:
-                        (context, index, animation) => _AnimatedNotification(
-                          animation: animation,
-                          notification: _notifications[index],
-                          slideTween: widget.position.slideTween,
-                        ),
-                  ),
+              color: Colors.transparent,
+              child: Container(
+                constraints: notificationConstraints,
+                child: AnimatedList(
+                  key: _listKey,
+                  shrinkWrap: true,
+                  reverse: widget.position.reverse,
+                  itemBuilder:
+                      (context, index, animation) => _AnimatedNotification(
+                        animation: animation,
+                        notification: _notifications[index],
+                        slideTween: widget.position.slideTween,
+                      ),
                 ),
               ),
             ),
@@ -180,13 +208,11 @@ class _NotificationWrapper extends StatefulWidget {
     super.key,
     required this.notification,
     required this.manager,
-    required this.autoDismiss,
     required this.dismissDuration,
   });
 
   final Widget notification;
   final BeNotificationManager manager;
-  final bool autoDismiss;
   final Duration dismissDuration;
 
   @override
@@ -194,18 +220,6 @@ class _NotificationWrapper extends StatefulWidget {
 }
 
 class _NotificationWrapperState extends State<_NotificationWrapper> {
-  @override
-  void initState() {
-    super.initState();
-    if (widget.autoDismiss) {
-      Future.delayed(widget.dismissDuration, () {
-        if (mounted) {
-          widget.manager.dismissByKey(widget.key!);
-        }
-      });
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return widget.notification;
@@ -220,7 +234,7 @@ abstract class BeNotificationManager {
 
   BeNotificationsProvider get widget;
 
-  void show(Widget notification, {Key? key});
+  void show(Widget notification, {Key? key, Duration? dissmissDuration});
   void dismissByKey(Key key);
   void dismissAll();
   void dismissAllOfType(Type type);
@@ -249,25 +263,44 @@ class _AnimatedNotification extends StatelessWidget {
   final bool isOutgoing;
 
   @override
-  Widget build(BuildContext context) => IgnorePointer(
-    ignoring: isOutgoing,
-    child: FadeTransition(
-      opacity: animation,
-      child: _NoClipSizeTransition(
-        sizeFactor: CurvedAnimation(
-          parent: animation,
-          curve: Curves.easeOutQuart,
-        ),
-        child: SlideTransition(
-          position: CurvedAnimation(
-            parent: animation,
-            curve: Curves.easeInOutCubic,
-          ).drive(slideTween),
-          child: notification,
+  Widget build(BuildContext context) {
+    final theme = betheme(context);
+    return Container(
+      margin: pb8,
+      padding: p8,
+      decoration: BeBoxDecoration(
+        color: theme.colors.background,
+        borderRadius: const BorderRadius.all(Radius.circular(8)),
+        boxShadow: [
+          const BeBoxShadow(
+            color: Color.fromRGBO(0, 0, 0, 0.1),
+            offset: Offset(-5, 5),
+            blurRadius: 10,
+            spreadRadius: 1,
+          ),
+        ],
+      ),
+      child: IgnorePointer(
+        ignoring: isOutgoing,
+        child: FadeTransition(
+          opacity: animation,
+          child: _NoClipSizeTransition(
+            sizeFactor: CurvedAnimation(
+              parent: animation,
+              curve: Curves.easeOutQuart,
+            ),
+            child: SlideTransition(
+              position: CurvedAnimation(
+                parent: animation,
+                curve: Curves.easeInOutCubic,
+              ).drive(slideTween),
+              child: notification,
+            ),
+          ),
         ),
       ),
-    ),
-  );
+    );
+  }
 }
 
 class _NoClipSizeTransition extends AnimatedWidget {
@@ -295,7 +328,7 @@ extension on BeNotificationPosition {
     switch (this) {
       case BeNotificationPosition.bottomLeft:
       case BeNotificationPosition.topLeft:
-        return isCompact ? 0 : 4;
+        return isCompact ? 0 : 8;
       case BeNotificationPosition.topRight:
       case BeNotificationPosition.bottomRight:
         return isCompact ? 0 : null;
@@ -306,7 +339,7 @@ extension on BeNotificationPosition {
     switch (this) {
       case BeNotificationPosition.topLeft:
       case BeNotificationPosition.topRight:
-        return isCompact ? 0 : 4;
+        return isCompact ? 0 : 8;
       case BeNotificationPosition.bottomRight:
       case BeNotificationPosition.bottomLeft:
         return null;
@@ -317,7 +350,7 @@ extension on BeNotificationPosition {
     switch (this) {
       case BeNotificationPosition.bottomRight:
       case BeNotificationPosition.topRight:
-        return isCompact ? 0 : 4;
+        return isCompact ? 0 : 8;
       case BeNotificationPosition.topLeft:
       case BeNotificationPosition.bottomLeft:
         return isCompact ? 0 : null;
@@ -331,7 +364,7 @@ extension on BeNotificationPosition {
         return null;
       case BeNotificationPosition.bottomRight:
       case BeNotificationPosition.bottomLeft:
-        return isCompact ? 0 : 4;
+        return isCompact ? 0 : 8;
     }
   }
 

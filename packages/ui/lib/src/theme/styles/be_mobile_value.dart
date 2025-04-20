@@ -72,7 +72,7 @@ class BeMobileValue implements BeStyleValue {
   double get notificationMaxWidth => 420;
 
   @override
-  double get notificationMaxCount => 3;
+  int get notificationMaxCount => 3;
 }
 
 // @immutable

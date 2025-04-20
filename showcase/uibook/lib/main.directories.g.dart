@@ -18,9 +18,10 @@ import 'package:uibook/widgets/buttons/use_case_icon_text_button.dart' as _i7;
 import 'package:uibook/widgets/common/use_case_tappable.dart' as _i6;
 import 'package:uibook/widgets/icons/use_case_icons.dart' as _i8;
 import 'package:uibook/widgets/multichild/use_case_be_badge.dart' as _i4;
-import 'package:uibook/widgets/overlay/use_case_popover.dart' as _i11;
+import 'package:uibook/widgets/overlay/use_case_notification.dart' as _i11;
+import 'package:uibook/widgets/overlay/use_case_popover.dart' as _i12;
 import 'package:uibook/widgets/text/use_case_text_input.dart' as _i10;
-import 'package:uibook/widgets/text/use_case_typography.dart' as _i12;
+import 'package:uibook/widgets/text/use_case_typography.dart' as _i13;
 import 'package:uibook/widgets/use_case_theme.dart' as _i5;
 import 'package:widgetbook/widgetbook.dart' as _i1;
 
@@ -115,10 +116,17 @@ final directories = <_i1.WidgetbookNode>[
         name: 'overlay',
         children: [
           _i1.WidgetbookLeafComponent(
+            name: 'BeNotificationsProvider',
+            useCase: _i1.WidgetbookUseCase(
+              name: 'BeNotificationProvider',
+              builder: _i11.useCaseBeNotificationProvider,
+            ),
+          ),
+          _i1.WidgetbookLeafComponent(
             name: 'BePopover',
             useCase: _i1.WidgetbookUseCase(
               name: 'BePopover',
-              builder: _i11.useCasePopover,
+              builder: _i12.useCasePopover,
             ),
           ),
         ],
@@ -130,7 +138,7 @@ final directories = <_i1.WidgetbookNode>[
             name: 'BeText',
             useCase: _i1.WidgetbookUseCase(
               name: 'Typography',
-              builder: _i12.displayTypographyUseCase,
+              builder: _i13.displayTypographyUseCase,
             ),
           ),
         ],

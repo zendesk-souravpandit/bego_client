@@ -115,10 +115,10 @@ class BeStyleLight implements BeStyle {
   );
 
   TextStyle get _baseStyle => TextStyle(
-    package: BeThemeConst.packageName,
-    fontFamily: BeThemeConst.fontFamily,
+    package: BeUIConst.packageName,
+    fontFamily: BeUIConst.fontFamily,
     fontWeight: FontWeight.w400,
     color: color.textPrimary,
-    shadows: BeThemeConst.textShadow,
+    shadows: BeUIConst.textShadow,
   );
 }

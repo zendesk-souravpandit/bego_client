@@ -30,7 +30,8 @@ class BegoApp extends StatelessWidget {
         child: Builder(
           builder: (context) {
             return Scaffold(
-              appBar: AppBar(title: const Text('BegoApp')),
+              backgroundColor: Colors.green.shade100,
+              // appBar: AppBar(title: const Text('BegoApp')),
               body: Column(
                 children: [
                   ElevatedButton(
@@ -49,9 +50,13 @@ class BegoApp extends StatelessWidget {
                     child: Center(
                       child: ElevatedButton(
                         onPressed: () {
-                          BeNotificationManager.of(
-                            context,
-                          ).show(const BeText.headlineLarge("Hello World"));
+                          BeNotificationManager.of(context).show(
+                            const Row(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [BeText.headlineLarge("Hello World")],
+                            ),
+                          );
                         },
                         child: const Text('Regular Notifications'),
                       ),
@@ -77,7 +82,7 @@ class BegoApp extends StatelessWidget {
                     child: Center(
                       child: ElevatedButton(
                         onPressed: () {
-                          final persistentKey = GlobalKey();
+                          final persistentKey = UniqueKey();
                           final container = MyNotificationContent2(
                             persistentKey,
                           );
@@ -127,24 +132,17 @@ class MyNotificationContent extends StatelessWidget {
   final GlobalKey<State<StatefulWidget>> persistentKey;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: BeTheme.of(context).colors.primary,
-        borderRadius: BorderRadius.circular(8),
-      ),
-      padding: const EdgeInsets.all(16),
-      child: Row(
-        children: [
-          const Text('This is my notification'),
-          const Spacer(),
-          IconButton(
-            icon: const Icon(Icons.close),
-            onPressed: () {
-              BeNotificationManager.of(context).dismissByKey(persistentKey);
-            },
-          ),
-        ],
-      ),
+    return Row(
+      children: [
+        const Text('This is my notification'),
+        const Spacer(),
+        IconButton(
+          icon: const Icon(Icons.close),
+          onPressed: () {
+            BeNotificationManager.of(context).dismissByKey(persistentKey);
+          },
+        ),
+      ],
     );
   }
 }
@@ -152,27 +150,20 @@ class MyNotificationContent extends StatelessWidget {
 class MyNotificationContent2 extends StatelessWidget {
   MyNotificationContent2(this.persistentKey);
 
-  final GlobalKey<State<StatefulWidget>> persistentKey;
+  final Key persistentKey;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: BeTheme.of(context).colors.primary,
-        borderRadius: BorderRadius.circular(8),
-      ),
-      padding: const EdgeInsets.all(16),
-      child: Row(
-        children: [
-          const Text('This is my notification 2'),
-          const Spacer(),
-          IconButton(
-            icon: const Icon(Icons.close),
-            onPressed: () {
-              BeNotificationManager.of(context).dismissByKey(persistentKey);
-            },
-          ),
-        ],
-      ),
+    return Row(
+      children: [
+        const Text('This is my notification 2'),
+        const Spacer(),
+        IconButton(
+          icon: const Icon(Icons.close),
+          onPressed: () {
+            BeNotificationManager.of(context).dismissByKey(persistentKey);
+          },
+        ),
+      ],
     );
   }
 }
