@@ -1,13 +1,8 @@
 import 'package:becomponent/app.dart';
-import 'package:beui/decoration.dart';
+import 'package:beui/overlay.dart';
+import 'package:beui/text.dart';
 import 'package:beui/theme.dart';
 import 'package:flutter/material.dart';
-
-class KnobOption<T> {
-  const KnobOption({required this.label, required this.value});
-  final String label;
-  final T value;
-}
 
 void main() {
   runApp(const AppStateWrapper(child: BegoApp()));
@@ -31,69 +26,153 @@ class BegoApp extends StatelessWidget {
     return MaterialApp(
       themeMode: appState.themeMode,
       theme: BeTheme.buildThemeof(context),
-      home: Scaffold(
-        appBar: AppBar(title: const Text('BegoApp')),
-        body: Column(
-          children: [
-            ElevatedButton(
-              onPressed: () {
-                updateEvent(
-                  UpdateThemeModeEvent(
-                    appState.themeMode == ThemeMode.light
-                        ? ThemeMode.dark
-                        : ThemeMode.light,
+      home: BeNotificationsProvider(
+        child: Builder(
+          builder: (context) {
+            return Scaffold(
+              appBar: AppBar(title: const Text('BegoApp')),
+              body: Column(
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      updateEvent(
+                        UpdateThemeModeEvent(
+                          appState.themeMode == ThemeMode.light
+                              ? ThemeMode.dark
+                              : ThemeMode.light,
+                        ),
+                      );
+                    },
+                    child: const Text('Change Theme'),
                   ),
-                );
-              },
-              child: const Text('Change Theme'),
-            ),
-            // Card(color: background, child: const BeText.headlineLarge('Hello', padding: EdgeInsets.all(10))),
-            Center(
-              child: Container(
-                width: 500,
-                height: 500,
-                padding: pt12 + px12,
-                decoration: const ShapeDecoration(
-                  shape: BeveledRectangleBorder(
-                    side: BorderSide(color: Colors.red, width: 2),
-                    borderRadius: BorderRadius.all(Radius.circular(8)),
+                  Expanded(
+                    child: Center(
+                      child: ElevatedButton(
+                        onPressed: () {
+                          BeNotificationManager.of(
+                            context,
+                          ).show(const BeText.headlineLarge("Hello World"));
+                        },
+                        child: const Text('Regular Notifications'),
+                      ),
+                    ),
                   ),
-                ),
-                child: const Column(
-                  children: [
-                    // Padding(
-                    //   padding: EdgeInsets.all(8.0),
-                    //   child: ExpansionTile(
-                    //     title: Text("Notifications"),
-
-                    //     children: [
-                    //       ListTile(title: Text("Email Notifications")),
-                    //       ListTile(title: Text("Push Notifications")),
-                    //     ],
-                    //   ),
-                    // ),
-                    TextField(),
-                  ],
-                ),
+                  Expanded(
+                    child: Center(
+                      child: ElevatedButton(
+                        onPressed: () {
+                          final persistentKey = GlobalKey();
+                          final container = MyNotificationContent(
+                            persistentKey,
+                          );
+                          BeNotificationManager.of(
+                            context,
+                          ).show(container, key: persistentKey);
+                        },
+                        child: const Text('Notification'),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Center(
+                      child: ElevatedButton(
+                        onPressed: () {
+                          final persistentKey = GlobalKey();
+                          final container = MyNotificationContent2(
+                            persistentKey,
+                          );
+                          BeNotificationManager.of(
+                            context,
+                          ).show(container, key: persistentKey);
+                        },
+                        child: const Text('Notification 2'),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Center(
+                      child: ElevatedButton(
+                        onPressed: () {
+                          BeNotificationManager.of(context).dismissAll();
+                        },
+                        child: const Text('Clear All Notifications'),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Center(
+                      child: ElevatedButton(
+                        onPressed: () {
+                          BeNotificationManager.of(
+                            context,
+                          ).dismissAllOfType(MyNotificationContent2);
+                        },
+                        child: const Text('Clear Type2 Notifications'),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ),
-          ],
+            );
+          },
         ),
       ),
     );
   }
 }
 
-// ExpansionTile buildCustomExpansionTile({
-//   required String title,
-//   required List<Widget> children,
-//   bool initiallyExpanded = false,
-//   EdgeInsetsGeometry? childrenPadding,
-// }) {
-//   return ExpansionTile(
-//     title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
-//     initiallyExpanded: initiallyExpanded,
-//     childrenPadding: childrenPadding ?? const EdgeInsets.all(16),
-//     children: children,
-//   );
-// }
+class MyNotificationContent extends StatelessWidget {
+  MyNotificationContent(this.persistentKey);
+
+  final GlobalKey<State<StatefulWidget>> persistentKey;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: BeTheme.of(context).colors.primary,
+        borderRadius: BorderRadius.circular(8),
+      ),
+      padding: const EdgeInsets.all(16),
+      child: Row(
+        children: [
+          const Text('This is my notification'),
+          const Spacer(),
+          IconButton(
+            icon: const Icon(Icons.close),
+            onPressed: () {
+              BeNotificationManager.of(context).dismissByKey(persistentKey);
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class MyNotificationContent2 extends StatelessWidget {
+  MyNotificationContent2(this.persistentKey);
+
+  final GlobalKey<State<StatefulWidget>> persistentKey;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: BeTheme.of(context).colors.primary,
+        borderRadius: BorderRadius.circular(8),
+      ),
+      padding: const EdgeInsets.all(16),
+      child: Row(
+        children: [
+          const Text('This is my notification 2'),
+          const Spacer(),
+          IconButton(
+            icon: const Icon(Icons.close),
+            onPressed: () {
+              BeNotificationManager.of(context).dismissByKey(persistentKey);
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}

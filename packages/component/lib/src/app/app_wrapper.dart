@@ -93,7 +93,7 @@ class _AppStateWrapperState extends State<AppStateWrapper> {
 
     return BeThemeData(
       breakpoint: breakpoint,
-      styleValues: insets,
+      styleValue: insets,
       colors: colors,
       style: style,
       themeMode: themeMode,

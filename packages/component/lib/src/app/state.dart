@@ -17,7 +17,7 @@ abstract class AppState with _$AppState {
     @Default(Locale('en', 'US')) Locale locale,
     @Default(BeBreakpoint.md) BeBreakpoint breakpoint,
     @Default(
-      BeThemeData(styleValues: BeMobileValues(), breakpoint: BeBreakpoint.md),
+      BeThemeData(styleValue: BeMobileValue(), breakpoint: BeBreakpoint.md),
     )
     BeThemeData bethemeData,
     @Default(BeResponsivePoints()) BeResponsivePoints responsivePoints,

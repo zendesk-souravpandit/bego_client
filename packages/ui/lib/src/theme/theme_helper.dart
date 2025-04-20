@@ -6,7 +6,7 @@ extension ThemeStateGetter on State<dynamic> {
   BeThemeData get betheme => BeTheme.of(context);
   BeStyle get bestyles => BeTheme.of(context).style;
   BeColor get becolors => BeTheme.of(context).colors;
-  BeStyleValues get beinset => BeTheme.of(context).styleValues;
+  BeStyleValue get beinset => BeTheme.of(context).styleValue;
 }
 
 extension ThemeGetter on StatelessWidget {
@@ -19,40 +19,39 @@ extension ThemeGetter on StatelessWidget {
   /// Elevation anount etc
   BeStyle bestyles(BuildContext context) => BeTheme.of(context).style;
   BeColor becolors(BuildContext context) => BeTheme.of(context).colors;
-  BeStyleValues beinsets(BuildContext context) =>
-      BeTheme.of(context).styleValues;
+  BeStyleValue beinsets(BuildContext context) => BeTheme.of(context).styleValue;
 }
 
-BeStyleValues getStyleValue(BeBreakpoint? breakpoint) {
+BeStyleValue getStyleValue(BeBreakpoint? breakpoint) {
   switch (breakpoint) {
     case BeBreakpoint.xs:
     case BeBreakpoint.sm:
-      return const BeMobileValues();
+      return const BeMobileValue();
     case BeBreakpoint.md:
-      return const BeTabletValues();
+      return const BeTabletValue();
     case BeBreakpoint.lg:
     case BeBreakpoint.xl:
     case BeBreakpoint.xl2:
-      return const BeDesktopValues();
+      return const BeDesktopValue();
     default:
-      return const BeMobileValues();
+      return const BeMobileValue();
   }
 }
 
 extension BeStyleValueFromBreakpoint on BeBreakpoint? {
-  BeStyleValues get styleValues {
+  BeStyleValue get styleValues {
     switch (this) {
       case BeBreakpoint.xs:
       case BeBreakpoint.sm:
-        return const BeMobileValues();
+        return const BeMobileValue();
       case BeBreakpoint.md:
-        return const BeTabletValues();
+        return const BeTabletValue();
       case BeBreakpoint.lg:
       case BeBreakpoint.xl:
       case BeBreakpoint.xl2:
-        return const BeDesktopValues();
+        return const BeDesktopValue();
       default:
-        return const BeMobileValues();
+        return const BeMobileValue();
     }
   }
 }

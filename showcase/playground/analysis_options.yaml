@@ -36,6 +36,7 @@ analyzer:
     unawaited_futures: error
     unnecessary_overrides: error
     unused_element: warning
+    invalid_use_of_protected_member: ignore
 linter:
   rules:
     - always_declare_return_types

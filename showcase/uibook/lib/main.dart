@@ -37,7 +37,7 @@ class WidgetbookApp extends StatelessWidget {
             data: BeThemeData(
               breakpoint: BeBreakpoint.md,
               themeMode: ThemeMode.dark,
-              styleValues: BeMobileValues(),
+              styleValue: BeMobileValue(),
             ),
           ),
           const WidgetbookTheme(
@@ -45,7 +45,7 @@ class WidgetbookApp extends StatelessWidget {
             data: BeThemeData(
               breakpoint: BeBreakpoint.md,
               themeMode: ThemeMode.light,
-              styleValues: BeMobileValues(),
+              styleValue: BeMobileValue(),
             ),
           ),
         ],

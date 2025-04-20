@@ -23,8 +23,8 @@ class BeIconShapeBorder extends OutlinedBorder {
     this.width = 2.0,
     this.alignment = BeIconAlignment.topCenter,
     this.offset = Offset.zero,
-    this.iconInset = 8.0, // New: controls how much the icon is inset
-    this.iconStyle, // New: allows custom text style for the icon
+    this.iconInset = 8.0,
+    this.iconStyle,
   });
 
   final IconData icon;

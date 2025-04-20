@@ -1,7 +1,7 @@
 /// BeInsets should build responsive padding and margin based on device type of screen size
 /// Yet to be developed based on design system
 ///
-abstract class BeStyleValues {
+abstract class BeStyleValue {
   // Display
   double get displayLargeTextSize;
   double get displayLargeLineHeight;
@@ -41,4 +41,8 @@ abstract class BeStyleValues {
   double get labelMediumLineHeight;
   double get labelSmallTextSize;
   double get labelSmallLineHeight;
+
+  // Notification
+  double get notificationMaxWidth;
+  double get notificationMaxCount;
 }

@@ -1,7 +1,7 @@
-import 'package:beui/src/theme/be_style_values.dart';
+import 'package:beui/src/theme/styles/be_mobile_value.dart';
 
-class BeDesktopValues implements BeStyleValues {
-  const BeDesktopValues();
+class BeDesktopValue extends BeMobileValue {
+  const BeDesktopValue();
 
   // Display
   @override

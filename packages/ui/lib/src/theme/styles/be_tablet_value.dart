@@ -1,7 +1,7 @@
-import 'package:beui/src/theme/be_style_values.dart';
+import 'package:beui/src/theme/styles/be_mobile_value.dart';
 
-class BeTabletValues implements BeStyleValues {
-  const BeTabletValues();
+class BeTabletValue extends BeMobileValue {
+  const BeTabletValue();
 
   // Display
   @override

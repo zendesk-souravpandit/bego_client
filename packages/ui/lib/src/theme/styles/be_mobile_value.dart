@@ -1,7 +1,7 @@
-import 'package:beui/src/theme/be_style_values.dart';
+import 'package:beui/src/theme/be_style_value.dart';
 
-class BeMobileValues implements BeStyleValues {
-  const BeMobileValues();
+class BeMobileValue implements BeStyleValue {
+  const BeMobileValue();
 
   @override
   double get displayLargeTextSize => 48;
@@ -67,6 +67,12 @@ class BeMobileValues implements BeStyleValues {
   double get labelSmallTextSize => 10;
   @override
   double get labelSmallLineHeight => 12;
+
+  @override
+  double get notificationMaxWidth => 420;
+
+  @override
+  double get notificationMaxCount => 3;
 }
 
 // @immutable
