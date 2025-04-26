@@ -1,22 +1,25 @@
 import 'package:becomponent/app.dart';
+import 'package:beui/decoration.dart';
 import 'package:beui/overlay.dart';
 import 'package:beui/text.dart';
 import 'package:beui/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:playground/notification.main.dart';
 
 void main() {
-  runApp(const AppStateWrapper(child: BegoApp()));
+  runApp(AppStateWrapper(child: BegoApp()));
 }
 
 class BegoApp extends StatelessWidget {
-  const BegoApp({super.key});
+  BegoApp({super.key});
 
+  final controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     // final betheme = context.betheme;
     final appState = AppStateProvider.of(context).state;
     // final appEvent = AppStateProvider.of(context).appEventBus;
-    final updateEvent = AppStateProvider.of(context).updateEvent;
+    // final updateEvent = AppStateProvider.of(context).updateEvent;
     // appEvent.on<UpdateLocaleEvent>().listen((event) {
     //   updateEvent(UpdateLocaleEvent(const Locale('fr', 'FR')));
     // });
@@ -29,92 +32,44 @@ class BegoApp extends StatelessWidget {
       home: BeNotificationsProvider(
         child: Builder(
           builder: (context) {
+            final _formKey = GlobalKey<FormState>();
             return Scaffold(
-              backgroundColor: Colors.green.shade100,
+              // backgroundColor: Colors.green.shade100,
               // appBar: AppBar(title: const Text('BegoApp')),
-              body: Column(
+              body: Form(
+                key: _formKey,
+                child: Container(
+                  padding: p32,
+                  child: BeFormField<String>(
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter some text';
+                      }
+                      return null;
+                    },
+                    initialValue: "Hello",
+                    onChanged:
+                        (value) => () {
+                          print(value);
+                          // controller.text = value;
+                        },
+                    builder: (field) => const BeText("Hello"),
+                  ),
+                ),
+              ),
+              bottomNavigationBar: Row(
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      updateEvent(
-                        UpdateThemeModeEvent(
-                          appState.themeMode == ThemeMode.light
-                              ? ThemeMode.dark
-                              : ThemeMode.light,
-                        ),
-                      );
+                      _formKey.currentState?.validate();
                     },
-                    child: const Text('Change Theme'),
+                    child: const Text("Hello"),
                   ),
-                  Expanded(
-                    child: Center(
-                      child: ElevatedButton(
-                        onPressed: () {
-                          BeNotificationManager.of(context).show(
-                            const Row(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [BeText.headlineLarge("Hello World")],
-                            ),
-                          );
-                        },
-                        child: const Text('Regular Notifications'),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Center(
-                      child: ElevatedButton(
-                        onPressed: () {
-                          final persistentKey = GlobalKey();
-                          final container = MyNotificationContent(
-                            persistentKey,
-                          );
-                          BeNotificationManager.of(
-                            context,
-                          ).show(container, key: persistentKey);
-                        },
-                        child: const Text('Notification'),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Center(
-                      child: ElevatedButton(
-                        onPressed: () {
-                          final persistentKey = UniqueKey();
-                          final container = MyNotificationContent2(
-                            persistentKey,
-                          );
-                          BeNotificationManager.of(
-                            context,
-                          ).show(container, key: persistentKey);
-                        },
-                        child: const Text('Notification 2'),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Center(
-                      child: ElevatedButton(
-                        onPressed: () {
-                          BeNotificationManager.of(context).dismissAll();
-                        },
-                        child: const Text('Clear All Notifications'),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Center(
-                      child: ElevatedButton(
-                        onPressed: () {
-                          BeNotificationManager.of(
-                            context,
-                          ).dismissAllOfType(MyNotificationContent2);
-                        },
-                        child: const Text('Clear Type2 Notifications'),
-                      ),
-                    ),
+                  ElevatedButton(
+                    onPressed: () {
+                      _formKey.currentState?.reset();
+                    },
+                    child: const Text("reset"),
                   ),
                 ],
               ),
@@ -122,48 +77,6 @@ class BegoApp extends StatelessWidget {
           },
         ),
       ),
-    );
-  }
-}
-
-class MyNotificationContent extends StatelessWidget {
-  MyNotificationContent(this.persistentKey);
-
-  final GlobalKey<State<StatefulWidget>> persistentKey;
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        const Text('This is my notification'),
-        const Spacer(),
-        IconButton(
-          icon: const Icon(Icons.close),
-          onPressed: () {
-            BeNotificationManager.of(context).dismissByKey(persistentKey);
-          },
-        ),
-      ],
-    );
-  }
-}
-
-class MyNotificationContent2 extends StatelessWidget {
-  MyNotificationContent2(this.persistentKey);
-
-  final Key persistentKey;
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        const Text('This is my notification 2'),
-        const Spacer(),
-        IconButton(
-          icon: const Icon(Icons.close),
-          onPressed: () {
-            BeNotificationManager.of(context).dismissByKey(persistentKey);
-          },
-        ),
-      ],
     );
   }
 }

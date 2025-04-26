@@ -265,12 +265,17 @@ class _AnimatedNotification extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = betheme(context);
+
+    final isCompact =
+        theme.breakpoint == BeBreakpoint.xs ||
+        theme.breakpoint == BeBreakpoint.sm;
     return Container(
       margin: pb8,
       padding: p8,
       decoration: BeBoxDecoration(
         color: theme.colors.background,
-        borderRadius: const BorderRadius.all(Radius.circular(8)),
+        borderRadius:
+            isCompact ? null : const BorderRadius.all(Radius.circular(8)),
         boxShadow: [
           const BeBoxShadow(
             color: Color.fromRGBO(0, 0, 0, 0.1),
