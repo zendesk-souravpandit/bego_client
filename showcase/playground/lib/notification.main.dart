@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:playground/be_enable.dart';
 
-/// A highly customizable FormField wrapper for consistent form inputs
 class BeFormField<T> extends FormField<T> {
   BeFormField({
     Key? key,
@@ -30,52 +30,56 @@ class BeFormField<T> extends FormField<T> {
          autovalidateMode: autovalidateMode,
          enabled: enabled,
          restorationId: restorationId,
+         forceErrorText: forceErrorText,
          builder: (FormFieldState<T> field) {
            void handleChanged(T? value) {
              field.didChange(value);
              onChanged?.call(value);
            }
 
-           return Column(
-             crossAxisAlignment: CrossAxisAlignment.start,
-             mainAxisSize: MainAxisSize.min,
-             children: [
-               if (title != null || trailingTitleWidgets.isNotEmpty)
-                 _BeFormHeader(
-                   title: title,
-                   titleStyle: titleStyle,
-                   trailingWidgets: trailingTitleWidgets,
-                 ),
+           return BeEnabled(
+             enabled: enabled,
+             child: Column(
+               crossAxisAlignment: CrossAxisAlignment.start,
+               mainAxisSize: MainAxisSize.min,
+               children: [
+                 if (title != null || trailingTitleWidgets.isNotEmpty)
+                   _BeFormHeader(
+                     title: title,
+                     titleStyle: titleStyle,
+                     trailingWidgets: trailingTitleWidgets,
+                   ),
 
-               build(
-                 _BeFormFieldState(
-                   field: field,
-                   onChanged: handleChanged,
-                   enabled: enabled,
-                 ),
-               ),
-
-               if (helperText != null || trailingHelperWidgets.isNotEmpty)
-                 _BeFormHelper(
-                   helperText: helperText,
-                   helperStyle: helperStyle,
-                   trailingWidgets: trailingHelperWidgets,
-                 ),
-
-               if (shouldValidate && field.hasError)
-                 Padding(
-                   padding: EdgeInsets.only(top: spacing),
-                   child: Text(
-                     field.errorText!,
-                     style:
-                         errorStyle ??
-                         TextStyle(
-                           color: Theme.of(field.context).colorScheme.error,
-                           fontSize: 12,
-                         ),
+                 build(
+                   _BeFormFieldState(
+                     field: field,
+                     onChanged: handleChanged,
+                     enabled: enabled,
                    ),
                  ),
-             ],
+
+                 if (helperText != null || trailingHelperWidgets.isNotEmpty)
+                   _BeFormHelper(
+                     helperText: helperText,
+                     helperStyle: helperStyle,
+                     trailingWidgets: trailingHelperWidgets,
+                   ),
+
+                 if (shouldValidate && field.hasError)
+                   Padding(
+                     padding: EdgeInsets.only(top: spacing),
+                     child: Text(
+                       field.errorText!,
+                       style:
+                           errorStyle ??
+                           TextStyle(
+                             color: Theme.of(field.context).colorScheme.error,
+                             fontSize: 12,
+                           ),
+                     ),
+                   ),
+               ],
+             ),
            );
          },
        );
@@ -111,10 +115,10 @@ class _BeFormFieldState<T> extends FormFieldState<T> {
   final ValueChanged<T?> onChanged;
   final bool enabled;
 
-  T? get value => field.value;
-  bool get hasError => field.hasError;
-  String? get errorText => field.errorText;
-  bool get isValid => field.isValid;
+  // T? get value => field.value;
+  // bool get hasError => field.hasError;
+  // String? get errorText => field.errorText;
+  // bool get isValid => field.isValid;
 
   void didChange(T? value) => onChanged(value);
   void markAsTouched() {

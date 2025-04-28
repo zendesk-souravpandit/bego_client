@@ -42,6 +42,7 @@ class BegoApp extends StatelessWidget {
                     child: Container(
                       padding: p32,
                       child: BeFormField<String>(
+                        enabled: false,
                         title: 'Username',
                         helperText: 'Enter your username',
                         trailingTitleWidgets: [

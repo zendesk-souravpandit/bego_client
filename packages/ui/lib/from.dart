@@ -2,4 +2,6 @@
 
 library beui.form;
 
+export 'src/widgets/form/be_enable.dart';
+export 'src/widgets/form/be_form_wrapper.dart';
 export 'src/widgets/picker/be_number_form_field.dart';
