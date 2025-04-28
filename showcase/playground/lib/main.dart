@@ -1,5 +1,6 @@
 import 'package:becomponent/app.dart';
 import 'package:beui/overlay.dart';
+import 'package:beui/screen.dart';
 import 'package:beui/theme.dart';
 import 'package:flutter/material.dart';
 
@@ -31,7 +32,16 @@ class BegoApp extends StatelessWidget {
             return Scaffold(
               // backgroundColor: Colors.green.shade100,
               // appBar: AppBar(title: const Text('BegoApp')),
-              body: Container(),
+              body: Container(
+                decoration: const BoxDecoration(
+                  color: Colors.green,
+                  // borderRadius: const BeResponsiveUtil(100).radius(context),
+                ),
+                child: const BeResponsiveUtil(
+                  400,
+                  desktopFactor: 2,
+                ).gap(context),
+              ),
             );
           },
         ),
