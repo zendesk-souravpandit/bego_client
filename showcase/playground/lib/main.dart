@@ -12,7 +12,6 @@ void main() {
 class BegoApp extends StatelessWidget {
   BegoApp({super.key});
 
-  final controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     // final betheme = context.betheme;
@@ -35,28 +34,33 @@ class BegoApp extends StatelessWidget {
             return Scaffold(
               // backgroundColor: Colors.green.shade100,
               // appBar: AppBar(title: const Text('BegoApp')),
-              body: Form(
-                key: _formKey,
+              body: Column(
+                children: [
+                  Form(
+                    key: _formKey,
 
-                child: Container(
-                  padding: p32,
-                  child: BeFormField<String>(
-                    validator: (value) {
-                      print(value);
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter some text';
-                      }
-                      return 'Please enter some text';
-                    },
-                    initialValue: "Hello",
-                    onChanged:
-                        (value) => () {
-                          print(value);
-                          // controller.text = value;
-                        },
-                    builder: (field) => TextField(onChanged: field.didChange),
+                    child: Container(
+                      padding: p32,
+                      child: BeFormField<String>(
+                        title: 'Username',
+                        helperText: 'Enter your username',
+                        trailingTitleWidgets: [
+                          const Icon(Icons.info_outline, size: 16),
+                        ],
+                        build:
+                            (field) => TextFormField(
+                              decoration: const InputDecoration(
+                                hintText: 'Type here...',
+                              ),
+                              onChanged: field.didChange,
+                            ),
+                        validator:
+                            (value) =>
+                                value?.isEmpty ?? true ? 'Required' : null,
+                      ),
+                    ),
                   ),
-                ),
+                ],
               ),
               bottomNavigationBar: Row(
                 children: [
