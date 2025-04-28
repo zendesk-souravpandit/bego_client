@@ -1,7 +1,6 @@
 import 'package:becomponent/app.dart';
 import 'package:beui/decoration.dart';
 import 'package:beui/overlay.dart';
-import 'package:beui/text.dart';
 import 'package:beui/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:playground/notification.main.dart';
@@ -38,14 +37,16 @@ class BegoApp extends StatelessWidget {
               // appBar: AppBar(title: const Text('BegoApp')),
               body: Form(
                 key: _formKey,
+
                 child: Container(
                   padding: p32,
                   child: BeFormField<String>(
                     validator: (value) {
+                      print(value);
                       if (value == null || value.isEmpty) {
                         return 'Please enter some text';
                       }
-                      return null;
+                      return 'Please enter some text';
                     },
                     initialValue: "Hello",
                     onChanged:
@@ -53,7 +54,7 @@ class BegoApp extends StatelessWidget {
                           print(value);
                           // controller.text = value;
                         },
-                    builder: (field) => const BeText("Hello"),
+                    builder: (field) => TextField(onChanged: field.didChange),
                   ),
                 ),
               ),
@@ -68,6 +69,8 @@ class BegoApp extends StatelessWidget {
                   ElevatedButton(
                     onPressed: () {
                       _formKey.currentState?.reset();
+                      // final value = _formKey.currentState?.value;
+                      // debugPrint("value: $value");
                     },
                     child: const Text("reset"),
                   ),

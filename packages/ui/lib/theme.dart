@@ -17,4 +17,6 @@ export 'src/theme/styles/be_mobile_value.dart';
 export 'src/theme/styles/be_style_dark.dart';
 export 'src/theme/styles/be_style_light.dart';
 export 'src/theme/styles/be_tablet_value.dart';
+export 'src/theme/styles/be_theme_const.dart';
+export 'src/theme/styles/be_ui_const.dart';
 export 'src/theme/theme_helper.dart';

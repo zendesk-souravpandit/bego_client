@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
 class BeUIConst {
@@ -13,6 +11,9 @@ class BeUIConst {
 
 class BeStyleConst {
   const BeStyleConst._();
+
+  static const double enabled = 1;
+  static const double disabled = .6;
 
   // static const textScleFactor = 0.8;
   // static const buttonTextSize = 14.0;
@@ -46,7 +47,7 @@ class BeStyleConst {
   // static final dialogBlur = ImageFilter.blur(sigmaX: 1, sigmaY: 1);
   // static final tinyBlur = ImageFilter.blur(sigmaX: 0.8, sigmaY: 0.8);
   // static final blurLevel1 = ImageFilter.blur(sigmaX: 6, sigmaY: 6);
-  static final blurLevel2 = ImageFilter.blur(sigmaX: 12, sigmaY: 12);
+  // static final blurLevel2 = ImageFilter.blur(sigmaX: 12, sigmaY: 12);
   // static final blurLevel3 = ImageFilter.blur(sigmaX: 25, sigmaY: 25);
   // static final blurLevel4 = ImageFilter.blur(sigmaX: 50, sigmaY: 20);
 }
