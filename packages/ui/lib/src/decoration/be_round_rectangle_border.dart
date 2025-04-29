@@ -1,3 +1,4 @@
+import 'package:beui/src/extentions/be_double_ext.dart';
 import 'package:flutter/material.dart';
 
 class BeRoundedRectangleBorder extends RoundedRectangleBorder {
@@ -30,7 +31,7 @@ class BeRoundedRectangleBorder extends RoundedRectangleBorder {
     return BeRoundedRectangleBorder(
       side: side.scale(t),
       borderRadius: borderRadius * t,
-      backgroundColor: backgroundColor?.withOpacity(t),
+      backgroundColor: backgroundColor?.withAlpha(t.toAlpha()),
     );
   }
 

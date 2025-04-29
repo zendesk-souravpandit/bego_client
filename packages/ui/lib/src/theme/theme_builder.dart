@@ -68,6 +68,7 @@
 // }
 
 import 'package:beui/src/decoration/be_round_rectangle_border.dart';
+import 'package:beui/src/extentions/be_double_ext.dart';
 import 'package:beui/theme.dart';
 import 'package:flutter/material.dart';
 
@@ -262,7 +263,7 @@ ChipThemeData _buildChipTheme(ColorScheme colorScheme) {
   return ChipThemeData(
     backgroundColor: colorScheme.surfaceContainerHighest,
     deleteIconColor: colorScheme.onSurfaceVariant,
-    disabledColor: colorScheme.onSurface.withOpacity(0.12),
+    disabledColor: colorScheme.onSurface.withAlpha(0.12.toAlpha()),
     selectedColor: colorScheme.primary,
     secondarySelectedColor: colorScheme.secondary,
     shadowColor: colorScheme.shadow,
@@ -295,7 +296,7 @@ DialogTheme _buildDialogTheme(ColorScheme colorScheme) {
     ),
     contentTextStyle: TextStyle(
       fontSize: 16,
-      color: colorScheme.onSurface.withOpacity(0.8),
+      color: colorScheme.onSurface.withAlpha(0.8.toAlpha()),
     ),
     actionsPadding: const EdgeInsets.all(16),
   );
@@ -365,7 +366,7 @@ TextTheme _buildTextTheme() {
 
 DividerThemeData _buildDividerTheme(ColorScheme colorScheme) {
   return DividerThemeData(
-    color: colorScheme.outline.withOpacity(0.3),
+    color: colorScheme.outline.withAlpha(0.3.toAlpha()),
     thickness: 1,
     indent: 16,
     endIndent: 16,
@@ -399,18 +400,18 @@ ElevatedButtonThemeData _buildElevatedButtonTheme(ColorScheme colorScheme) {
     style: ButtonStyle(
       backgroundColor: WidgetStateProperty.resolveWith((states) {
         if (states.contains(WidgetState.disabled)) {
-          return colorScheme.onSurface.withOpacity(0.12);
+          return colorScheme.onSurface.withAlpha(0.12.toAlpha());
         }
         return colorScheme.primary;
       }),
       foregroundColor: WidgetStateProperty.resolveWith((states) {
         if (states.contains(WidgetState.disabled)) {
-          return colorScheme.onSurface.withOpacity(0.38);
+          return colorScheme.onSurface.withAlpha(0.38.toAlpha());
         }
         return colorScheme.onPrimary;
       }),
       overlayColor: WidgetStatePropertyAll(
-        colorScheme.onPrimary.withOpacity(0.12),
+        colorScheme.onPrimary.withAlpha(0.12.toAlpha()),
       ),
       elevation: const WidgetStatePropertyAll(0),
       shadowColor: const WidgetStatePropertyAll(Colors.transparent),
@@ -466,18 +467,18 @@ FilledButtonThemeData _buildFilledButtonTheme(ColorScheme colorScheme) {
     style: ButtonStyle(
       backgroundColor: WidgetStateProperty.resolveWith((states) {
         if (states.contains(WidgetState.disabled)) {
-          return colorScheme.onSurface.withOpacity(0.12);
+          return colorScheme.onSurface.withAlpha(0.12.toAlpha());
         }
         return colorScheme.primaryContainer;
       }),
       foregroundColor: WidgetStateProperty.resolveWith((states) {
         if (states.contains(WidgetState.disabled)) {
-          return colorScheme.onSurface.withOpacity(0.38);
+          return colorScheme.onSurface.withAlpha(0.38.toAlpha());
         }
         return colorScheme.onPrimaryContainer;
       }),
       overlayColor: WidgetStatePropertyAll(
-        colorScheme.onPrimaryContainer.withOpacity(0.12),
+        colorScheme.onPrimaryContainer.withAlpha(0.12.toAlpha()),
       ),
       elevation: const WidgetStatePropertyAll(0),
       textStyle: const WidgetStatePropertyAll(
@@ -524,13 +525,13 @@ IconButtonThemeData _buildIconButtonTheme(ColorScheme colorScheme) {
     style: ButtonStyle(
       iconColor: WidgetStateProperty.resolveWith((states) {
         if (states.contains(WidgetState.disabled)) {
-          return colorScheme.onSurface.withOpacity(0.38);
+          return colorScheme.onSurface.withAlpha(0.38.toAlpha());
         }
         return colorScheme.primary;
       }),
       backgroundColor: WidgetStateProperty.resolveWith((states) {
         if (states.contains(WidgetState.pressed)) {
-          return colorScheme.primary.withOpacity(0.12);
+          return colorScheme.primary.withAlpha(0.12.toAlpha());
         }
         return Colors.transparent;
       }),
@@ -547,7 +548,7 @@ InputDecorationTheme _buildInputDecorationTheme(ColorScheme colorScheme) {
     filled: true,
     fillColor: colorScheme.surfaceContainerHighest,
     focusColor: colorScheme.primary,
-    hoverColor: colorScheme.onSurface.withOpacity(0.08),
+    hoverColor: colorScheme.onSurface.withAlpha(0.08.toAlpha()),
     errorStyle: TextStyle(color: colorScheme.error),
     floatingLabelStyle: TextStyle(color: colorScheme.primary),
     labelStyle: TextStyle(color: colorScheme.onSurfaceVariant),
@@ -641,18 +642,20 @@ OutlinedButtonThemeData _buildOutlinedButtonTheme(ColorScheme colorScheme) {
     style: ButtonStyle(
       side: WidgetStateProperty.resolveWith((states) {
         if (states.contains(WidgetState.disabled)) {
-          return BorderSide(color: colorScheme.onSurface.withOpacity(0.12));
+          return BorderSide(
+            color: colorScheme.onSurface.withAlpha(0.12.toAlpha()),
+          );
         }
         return BorderSide(color: colorScheme.outline);
       }),
       foregroundColor: WidgetStateProperty.resolveWith((states) {
         if (states.contains(WidgetState.disabled)) {
-          return colorScheme.onSurface.withOpacity(0.38);
+          return colorScheme.onSurface.withAlpha(0.38.toAlpha());
         }
         return colorScheme.onSurface;
       }),
       overlayColor: WidgetStatePropertyAll(
-        colorScheme.onSurface.withOpacity(0.12),
+        colorScheme.onSurface.withAlpha(0.12.toAlpha()),
       ),
       elevation: const WidgetStatePropertyAll(0),
       textStyle: const WidgetStatePropertyAll(
@@ -682,7 +685,7 @@ PopupMenuThemeData _buildPopupMenuTheme(ColorScheme colorScheme) {
     textStyle: TextStyle(fontSize: 14, color: colorScheme.onSurface),
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(8),
-      side: BorderSide(color: colorScheme.outline.withOpacity(0.2)),
+      side: BorderSide(color: colorScheme.outline.withAlpha(0.2.toAlpha())),
     ),
     position: PopupMenuPosition.under,
     iconColor: colorScheme.onSurfaceVariant,
@@ -731,10 +734,10 @@ RadioThemeData _buildRadioTheme(ColorScheme colorScheme) {
     }),
     overlayColor: WidgetStateProperty.resolveWith((states) {
       if (states.contains(WidgetState.pressed)) {
-        return colorScheme.primary.withOpacity(0.1);
+        return colorScheme.primary.withAlpha(0.1.toAlpha());
       }
       if (states.contains(WidgetState.hovered)) {
-        return colorScheme.onSurface.withOpacity(0.04);
+        return colorScheme.onSurface.withAlpha(0.04.toAlpha());
       }
       return null;
     }),
@@ -751,7 +754,7 @@ SliderThemeData _buildSliderTheme(ColorScheme colorScheme) {
     inactiveTrackColor: colorScheme.surfaceContainerHighest,
     secondaryActiveTrackColor: colorScheme.primaryContainer,
     thumbColor: colorScheme.primary,
-    overlayColor: colorScheme.primary.withOpacity(0.12),
+    overlayColor: colorScheme.primary.withAlpha(0.12.toAlpha()),
     valueIndicatorColor: colorScheme.primary,
     activeTickMarkColor: colorScheme.onPrimary,
     inactiveTickMarkColor: colorScheme.surfaceContainerHighest,
@@ -772,7 +775,7 @@ SnackBarThemeData _buildSnackBarTheme(ColorScheme colorScheme) {
   return SnackBarThemeData(
     backgroundColor: colorScheme.inverseSurface,
     actionTextColor: colorScheme.inversePrimary,
-    disabledActionTextColor: colorScheme.onSurface.withOpacity(0.38),
+    disabledActionTextColor: colorScheme.onSurface.withAlpha(0.38.toAlpha()),
     contentTextStyle: TextStyle(color: colorScheme.onInverseSurface),
     elevation: 6,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
@@ -834,7 +837,7 @@ TabBarTheme _buildTabBarTheme(ColorScheme colorScheme) {
     ),
     overlayColor: WidgetStateProperty.resolveWith((states) {
       if (states.contains(WidgetState.pressed)) {
-        return colorScheme.primary.withOpacity(0.12);
+        return colorScheme.primary.withAlpha(0.12.toAlpha());
       }
       return null;
     }),
@@ -848,12 +851,12 @@ TextButtonThemeData _buildTextButtonTheme(ColorScheme colorScheme) {
     style: ButtonStyle(
       foregroundColor: WidgetStateProperty.resolveWith((states) {
         if (states.contains(WidgetState.disabled)) {
-          return colorScheme.onSurface.withOpacity(0.38);
+          return colorScheme.onSurface.withAlpha(0.38.toAlpha());
         }
         return colorScheme.primary;
       }),
       overlayColor: WidgetStatePropertyAll(
-        colorScheme.primary.withOpacity(0.12),
+        colorScheme.primary.withAlpha(0.12.toAlpha()),
       ),
       textStyle: const WidgetStatePropertyAll(
         TextStyle(
@@ -876,7 +879,7 @@ TextButtonThemeData _buildTextButtonTheme(ColorScheme colorScheme) {
 TextSelectionThemeData _buildTextSelectionTheme(ColorScheme colorScheme) {
   return TextSelectionThemeData(
     cursorColor: colorScheme.primary,
-    selectionColor: colorScheme.primary.withOpacity(0.4),
+    selectionColor: colorScheme.primary.withAlpha(0.4.toAlpha()),
     selectionHandleColor: colorScheme.primary,
   );
 }
@@ -983,7 +986,7 @@ DataTableThemeData _buildDataTableTheme(ColorScheme colorScheme) {
     dividerThickness: 1,
     checkboxHorizontalMargin: 12,
     decoration: BoxDecoration(
-      border: Border.all(color: colorScheme.outline.withOpacity(0.2)),
+      border: Border.all(color: colorScheme.outline.withAlpha(0.2.toAlpha())),
       borderRadius: BorderRadius.circular(8),
     ),
   );
@@ -1057,7 +1060,7 @@ DatePickerThemeData _buildDatePickerTheme(ColorScheme colorScheme) {
     rangePickerHeaderBackgroundColor: colorScheme.primary,
     rangePickerHeaderForegroundColor: colorScheme.onPrimary,
     rangeSelectionBackgroundColor: colorScheme.primaryContainer,
-    // rangeSelectionOverlayColor: colorScheme.onPrimaryContainer.withOpacity(
+    // rangeSelectionOverlayColor: colorScheme.onPrimaryContainer.withAlpha(
     //   0.12,
     // ),
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
@@ -1067,7 +1070,7 @@ DatePickerThemeData _buildDatePickerTheme(ColorScheme colorScheme) {
 
     dayOverlayColor: WidgetStateProperty.resolveWith((states) {
       if (states.contains(WidgetState.selected)) {
-        return colorScheme.primary.withOpacity(0.12);
+        return colorScheme.primary.withAlpha(0.12.toAlpha());
       }
       return null;
     }),
@@ -1085,7 +1088,7 @@ DrawerThemeData _buildDrawerTheme(ColorScheme colorScheme) {
     surfaceTintColor: colorScheme.surfaceTint,
     shape: const RoundedRectangleBorder(),
     width: 304,
-    scrimColor: colorScheme.scrim.withOpacity(0.5),
+    scrimColor: colorScheme.scrim.withAlpha(0.5.toAlpha()),
     endShape: const RoundedRectangleBorder(),
   );
 }
@@ -1152,13 +1155,13 @@ MenuButtonThemeData _buildMenuButtonTheme(ColorScheme colorScheme) {
     style: ButtonStyle(
       backgroundColor: WidgetStateProperty.resolveWith((states) {
         if (states.contains(WidgetState.pressed)) {
-          return colorScheme.primary.withOpacity(0.12);
+          return colorScheme.primary.withAlpha(0.12.toAlpha());
         }
         return null;
       }),
       foregroundColor: WidgetStatePropertyAll(colorScheme.onSurface),
       overlayColor: WidgetStatePropertyAll(
-        colorScheme.primary.withOpacity(0.08),
+        colorScheme.primary.withAlpha(0.08.toAlpha()),
       ),
       padding: const WidgetStatePropertyAll(EdgeInsets.all(8)),
       shape: WidgetStatePropertyAll(
@@ -1204,12 +1207,12 @@ ScrollbarThemeData _buildScrollbarTheme(ColorScheme colorScheme) {
   return ScrollbarThemeData(
     thumbColor: WidgetStateProperty.resolveWith((states) {
       if (states.contains(WidgetState.pressed)) {
-        return colorScheme.onSurface.withOpacity(0.6);
+        return colorScheme.onSurface.withAlpha(0.6.toAlpha());
       }
       if (states.contains(WidgetState.hovered)) {
-        return colorScheme.onSurface.withOpacity(0.4);
+        return colorScheme.onSurface.withAlpha(0.4.toAlpha());
       }
-      return colorScheme.onSurface.withOpacity(0.3);
+      return colorScheme.onSurface.withAlpha(0.3.toAlpha());
     }),
     trackColor: WidgetStatePropertyAll(colorScheme.surfaceContainerHighest),
     trackBorderColor: WidgetStatePropertyAll(colorScheme.outline),
@@ -1293,10 +1296,12 @@ SearchBarThemeData _buildSearchBarTheme(ColorScheme colorScheme) {
     ),
     elevation: const WidgetStatePropertyAll(0),
     surfaceTintColor: const WidgetStatePropertyAll(Colors.transparent),
-    overlayColor: WidgetStatePropertyAll(colorScheme.primary.withOpacity(0.12)),
+    overlayColor: WidgetStatePropertyAll(
+      colorScheme.primary.withAlpha(0.12.toAlpha()),
+    ),
     shadowColor: const WidgetStatePropertyAll(Colors.transparent),
     side: WidgetStatePropertyAll(
-      BorderSide(color: colorScheme.outline.withOpacity(0.5)),
+      BorderSide(color: colorScheme.outline.withAlpha(0.5.toAlpha())),
     ),
     shape: WidgetStatePropertyAll(
       RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
@@ -1335,7 +1340,7 @@ SegmentedButtonThemeData _buildSegmentedButtonTheme(ColorScheme colorScheme) {
         return colorScheme.onSurface;
       }),
       overlayColor: WidgetStatePropertyAll(
-        colorScheme.primary.withOpacity(0.12),
+        colorScheme.primary.withAlpha(0.12.toAlpha()),
       ),
       side: WidgetStatePropertyAll(BorderSide(color: colorScheme.outline)),
       elevation: const WidgetStatePropertyAll(0),
@@ -1357,15 +1362,15 @@ ToggleButtonsThemeData _buildToggleButtonsTheme(ColorScheme colorScheme) {
   return ToggleButtonsThemeData(
     color: colorScheme.onSurfaceVariant,
     selectedColor: colorScheme.onPrimary,
-    disabledColor: colorScheme.onSurface.withOpacity(0.38),
+    disabledColor: colorScheme.onSurface.withAlpha(0.38.toAlpha()),
     fillColor: Colors.transparent,
-    focusColor: colorScheme.primary.withOpacity(0.12),
-    highlightColor: colorScheme.primary.withOpacity(0.12),
-    hoverColor: colorScheme.primary.withOpacity(0.08),
-    splashColor: colorScheme.primary.withOpacity(0.12),
+    focusColor: colorScheme.primary.withAlpha(0.12.toAlpha()),
+    highlightColor: colorScheme.primary.withAlpha(0.12.toAlpha()),
+    hoverColor: colorScheme.primary.withAlpha(0.08.toAlpha()),
+    splashColor: colorScheme.primary.withAlpha(0.12.toAlpha()),
     borderColor: colorScheme.outline,
     selectedBorderColor: colorScheme.primary,
-    disabledBorderColor: colorScheme.onSurface.withOpacity(0.12),
+    disabledBorderColor: colorScheme.onSurface.withAlpha(0.12.toAlpha()),
     borderRadius: BorderRadius.circular(8),
     borderWidth: 1,
     constraints: const BoxConstraints(minHeight: 40, minWidth: 64),
