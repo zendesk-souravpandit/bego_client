@@ -22,7 +22,7 @@ class BeResponsiveUtil {
 
   double value(BuildContext context) {
     final breakpoint = BeTheme.of(context).breakpoint;
-    return baseSize * _getMultiplier(breakpoint);
+    return (baseSize * _getMultiplier(breakpoint)).truncateToDouble();
   }
 
   // Layout utilities

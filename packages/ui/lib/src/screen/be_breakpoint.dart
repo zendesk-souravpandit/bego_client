@@ -93,3 +93,12 @@ BeBreakpoint calculateBreakpoint(
   _ when screenWidth < breakpoints.xl2 => BeBreakpoint.xl,
   _ => BeBreakpoint.xl2,
 };
+
+extension BeBreakpointDevice on BeBreakpoint {
+  bool get isMobile => this == BeBreakpoint.xs || this == BeBreakpoint.sm;
+  bool get isTablet => this == BeBreakpoint.md;
+  bool get isDesktop =>
+      this == BeBreakpoint.lg ||
+      this == BeBreakpoint.xl ||
+      this == BeBreakpoint.xl2;
+}
