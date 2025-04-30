@@ -83,9 +83,9 @@ final class BeResponsivePoints with Diagnosticable {
 }
 
 BeBreakpoint calculateBreakpoint(
-  double screenWidth,
-  BeResponsivePoints breakpoints,
-) => switch (screenWidth) {
+  double screenWidth, [
+  BeResponsivePoints breakpoints = const BeResponsivePoints(),
+]) => switch (screenWidth) {
   _ when screenWidth < breakpoints.sm => BeBreakpoint.xs,
   _ when screenWidth < breakpoints.md => BeBreakpoint.sm,
   _ when screenWidth < breakpoints.lg => BeBreakpoint.md,

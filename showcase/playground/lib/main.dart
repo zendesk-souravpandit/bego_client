@@ -1,6 +1,8 @@
 import 'package:becomponent/app.dart';
+import 'package:beui/be_icons.dart';
+import 'package:beui/decoration.dart';
+import 'package:beui/from.dart';
 import 'package:beui/overlay.dart';
-import 'package:beui/screen.dart';
 import 'package:beui/theme.dart';
 import 'package:flutter/material.dart';
 
@@ -33,14 +35,41 @@ class BegoApp extends StatelessWidget {
               // backgroundColor: Colors.green.shade100,
               // appBar: AppBar(title: const Text('BegoApp')),
               body: Container(
-                decoration: const BoxDecoration(
-                  color: Colors.green,
-                  // borderRadius: const BeResponsiveUtil(100).radius(context),
+                padding: p20,
+                alignment: Alignment.center,
+
+                child: Container(
+                  child: BeFormField(
+                    title:
+                        'Form Field lorm ipsum dolor sit amet consectetur adipiscing elit.',
+                    startEndAxisAlignment: CrossAxisAlignment.center,
+                    helperStyle: const TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 14,
+                      color: Colors.grey,
+                    ),
+                    helperText: 'Helper Text',
+
+                    trailingTitleWidgets: [
+                      const Icon(BeIcons.icon_abstract, size: 12),
+                    ],
+                    trailingHelperWidgets: [
+                      const Icon(BeIcons.icon_abstract),
+                      const Icon(BeIcons.icon_abstract),
+                    ],
+                    startWidgets: [
+                      const Icon(BeIcons.icon_abstract),
+                      const Icon(BeIcons.icon_abstract),
+                    ],
+                    endWidgets: [
+                      const Icon(BeIcons.icon_abstract),
+                      const Icon(BeIcons.icon_abstract),
+                    ],
+                    build: (form) {
+                      return TextFormField(onChanged: form.didChange);
+                    },
+                  ),
                 ),
-                child: const BeResponsiveUtil(
-                  400,
-                  desktopFactor: 2,
-                ).gap(context),
               ),
             );
           },

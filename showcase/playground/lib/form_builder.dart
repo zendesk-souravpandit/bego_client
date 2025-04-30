@@ -118,7 +118,7 @@
 //     if (!_registered) {
 //       _form = _BeFormInherited.of(context);
 //       if (_form != null) {
-//         _form!._registerField((widget as BeFormField<T>).name, this);
+//         _form!._registerField((widget asBeFormField<T>).name, this);
 //         _registered = true;
 //       }
 //     }

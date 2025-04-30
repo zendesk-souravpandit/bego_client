@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 abstract class BeColor {
+  Color get formFillColor;
+
   // Primary palette
 
   bool get isDark;

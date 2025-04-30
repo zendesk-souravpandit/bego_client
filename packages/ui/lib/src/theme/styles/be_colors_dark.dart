@@ -1,8 +1,7 @@
-import 'package:beui/src/theme/be_color.dart';
-import 'package:beui/src/theme/colors/be_colors.dart';
+import 'package:beui/theme.dart';
 import 'package:flutter/material.dart';
 
-class BeColorsDark implements BeColor {
+class BeColorsDark extends BeColorsLight {
   const BeColorsDark();
 
   @override

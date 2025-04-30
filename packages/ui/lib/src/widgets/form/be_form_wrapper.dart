@@ -1,81 +1,73 @@
 import 'package:beui/src/widgets/form/be_enable.dart';
+import 'package:beui/text.dart';
 import 'package:flutter/material.dart';
 
 class BeFormField<T> extends FormField<T> {
   BeFormField({
-    Key? key,
+    super.key,
     required this.build,
-    T? initialValue,
-    FormFieldSetter<T>? onSaved,
-    FormFieldValidator<T>? validator,
-    AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
-    bool enabled = true,
-    String? restorationId,
-    String? forceErrorText,
+    super.initialValue,
+    super.onSaved,
+    super.validator,
+    super.autovalidateMode = AutovalidateMode.disabled,
+    super.enabled = true,
+    super.restorationId,
     this.onChanged,
     this.shouldValidate = true,
     this.title,
     this.titleStyle,
+
+    this.startEndAxisAlignment = CrossAxisAlignment.center,
     this.helperText,
     this.helperStyle,
     this.trailingTitleWidgets = const [],
     this.trailingHelperWidgets = const [],
+    this.startWidgets = const [],
+    this.endWidgets = const [],
     this.spacing = 4.0,
     this.errorStyle,
+    this.gap = 8.0,
   }) : super(
-         key: key,
-         initialValue: initialValue,
-         onSaved: onSaved,
-         validator: validator,
-         autovalidateMode: autovalidateMode,
-         enabled: enabled,
-         restorationId: restorationId,
-         forceErrorText: forceErrorText,
-         builder: (FormFieldState<T> field) {
-           void handleChanged(T? value) {
-             field.didChange(value);
-             onChanged?.call(value);
-           }
-
+         builder: (field) {
            return BeEnabled(
              enabled: enabled,
-             child: Column(
-               crossAxisAlignment: CrossAxisAlignment.start,
-               mainAxisSize: MainAxisSize.min,
+             child: _BeFormFieldLayout(
+               startEndAxisAlignment: startEndAxisAlignment,
+               startWidgets: startWidgets,
+               endWidgets: endWidgets,
                children: [
                  if (title != null || trailingTitleWidgets.isNotEmpty)
-                   _BeFormHeader(
+                   _BeFormTitleSection(
                      title: title,
                      titleStyle: titleStyle,
                      trailingWidgets: trailingTitleWidgets,
                    ),
-
+                 SizedBox(height: spacing),
                  build(
                    _BeFormFieldState(
                      field: field,
-                     onChanged: handleChanged,
+                     onChanged: (value) {
+                       field.didChange(value);
+                       onChanged?.call(value);
+                     },
                      enabled: enabled,
                    ),
                  ),
-
                  if (helperText != null || trailingHelperWidgets.isNotEmpty)
-                   _BeFormHelper(
-                     helperText: helperText,
-                     helperStyle: helperStyle,
-                     trailingWidgets: trailingHelperWidgets,
-                   ),
-
-                 if (shouldValidate && field.hasError)
                    Padding(
                      padding: EdgeInsets.only(top: spacing),
-                     child: Text(
-                       field.errorText!,
-                       style:
-                           errorStyle ??
-                           TextStyle(
-                             color: Theme.of(field.context).colorScheme.error,
-                             fontSize: 12,
-                           ),
+                     child: _BeFormHelperSection(
+                       helperText: helperText,
+                       helperStyle: helperStyle,
+                       trailingWidgets: trailingHelperWidgets,
+                     ),
+                   ),
+                 if (shouldValidate && field.errorText != null)
+                   Padding(
+                     padding: EdgeInsets.only(top: spacing / 2),
+                     child: _BeFormErrorText(
+                       errorText: field.errorText!,
+                       errorStyle: errorStyle,
                      ),
                    ),
                ],
@@ -87,50 +79,53 @@ class BeFormField<T> extends FormField<T> {
   final Widget Function(FormFieldState<T> field) build;
   final ValueChanged<T?>? onChanged;
   final bool shouldValidate;
-
-  // Header section
   final String? title;
   final TextStyle? titleStyle;
-  final List<Widget> trailingTitleWidgets;
-
-  // Helper section
   final String? helperText;
   final TextStyle? helperStyle;
+  final List<Widget> trailingTitleWidgets;
   final List<Widget> trailingHelperWidgets;
-
-  // Layout
+  final List<Widget> startWidgets;
+  final List<Widget> endWidgets;
   final double spacing;
+  final double gap;
+  final CrossAxisAlignment startEndAxisAlignment;
   final TextStyle? errorStyle;
 }
 
-/// Custom FormField state that exposes additional properties
-class _BeFormFieldState<T> extends FormFieldState<T> {
-  _BeFormFieldState({
-    required this.field,
-    required this.onChanged,
-    this.enabled = true,
+class _BeFormFieldLayout extends StatelessWidget {
+  const _BeFormFieldLayout({
+    required this.startWidgets,
+    required this.endWidgets,
+    required this.children,
+    this.startEndAxisAlignment = CrossAxisAlignment.center,
   });
 
-  final FormFieldState<T> field;
-  final ValueChanged<T?> onChanged;
-  final bool enabled;
-
-  // T? get value => field.value;
-  // bool get hasError => field.hasError;
-  // String? get errorText => field.errorText;
-  // bool get isValid => field.isValid;
-
-  void didChange(T? value) => onChanged(value);
-  void markAsTouched() {
-    if (!field.hasError) {
-      field.didChange(field.value);
-    }
+  final List<Widget> startWidgets;
+  final List<Widget> endWidgets;
+  final List<Widget> children;
+  final CrossAxisAlignment startEndAxisAlignment;
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: startEndAxisAlignment,
+      children: [
+        if (startWidgets.isNotEmpty) ...startWidgets,
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: children,
+          ),
+        ),
+        if (endWidgets.isNotEmpty) ...endWidgets,
+      ],
+    );
   }
 }
 
-/// Reusable header component
-class _BeFormHeader extends StatelessWidget {
-  const _BeFormHeader({
+class _BeFormTitleSection extends StatelessWidget {
+  const _BeFormTitleSection({
     this.title,
     this.titleStyle,
     this.trailingWidgets = const [],
@@ -146,22 +141,23 @@ class _BeFormHeader extends StatelessWidget {
       children: [
         if (title != null)
           Expanded(
-            child: Text(
+            child: BeText(
               title!,
+              maxLine: 1,
+              overflow: TextOverflow.ellipsis,
               style:
                   titleStyle ??
                   const TextStyle(fontWeight: FontWeight.w600, fontSize: 12),
             ),
           ),
-        ...trailingWidgets,
+        if (trailingWidgets.isNotEmpty) ...trailingWidgets,
       ],
     );
   }
 }
 
-/// Reusable helper text component
-class _BeFormHelper extends StatelessWidget {
-  const _BeFormHelper({
+class _BeFormHelperSection extends StatelessWidget {
+  const _BeFormHelperSection({
     this.helperText,
     this.helperStyle,
     this.trailingWidgets = const [],
@@ -177,8 +173,10 @@ class _BeFormHelper extends StatelessWidget {
       children: [
         if (helperText != null)
           Expanded(
-            child: Text(
-              helperText!,
+            child: BeText(
+              helperText,
+              maxLine: 1,
+              overflow: TextOverflow.ellipsis,
               style:
                   helperStyle ??
                   const TextStyle(
@@ -188,8 +186,47 @@ class _BeFormHelper extends StatelessWidget {
                   ),
             ),
           ),
-        ...trailingWidgets,
+        if (trailingWidgets.isNotEmpty) ...trailingWidgets,
       ],
     );
+  }
+}
+
+class _BeFormErrorText extends StatelessWidget {
+  const _BeFormErrorText({required this.errorText, this.errorStyle});
+
+  final String errorText;
+  final TextStyle? errorStyle;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return BeText(
+      errorText,
+      style:
+          errorStyle ?? TextStyle(color: theme.colorScheme.error, fontSize: 12),
+    );
+  }
+}
+
+class _BeFormFieldState<T> extends FormFieldState<T> {
+  _BeFormFieldState({
+    required this.field,
+    required this.onChanged,
+    this.enabled = true,
+  });
+
+  final FormFieldState<T> field;
+  final ValueChanged<T?> onChanged;
+  final bool enabled;
+
+  @override
+  void didChange(T? value) => onChanged(value);
+
+  void markAsTouched() {
+    if (!field.hasError) {
+      field.didChange(field.value);
+    }
   }
 }

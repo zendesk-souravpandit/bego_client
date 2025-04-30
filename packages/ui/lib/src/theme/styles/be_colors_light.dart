@@ -58,4 +58,6 @@ class BeColorsLight implements BeColor {
   Color get textSecondary => const Color(0xFF6B7280);
   @override
   Color get icon => const Color(0xFF374151);
+  @override
+  Color get formFillColor => BeColors.gray100;
 }

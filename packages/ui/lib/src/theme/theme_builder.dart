@@ -70,6 +70,7 @@
 import 'package:beui/src/decoration/be_round_rectangle_border.dart';
 import 'package:beui/src/extentions/be_double_ext.dart';
 import 'package:beui/theme.dart';
+import 'package:beui/ui.dart';
 import 'package:flutter/material.dart';
 
 ThemeData buildTheme({
@@ -106,7 +107,7 @@ ThemeData buildTheme({
     filledButtonTheme: _buildFilledButtonTheme(colorScheme),
     floatingActionButtonTheme: _buildFloatingActionButtonTheme(colorScheme),
     iconButtonTheme: _buildIconButtonTheme(colorScheme),
-    inputDecorationTheme: _buildInputDecorationTheme(colorScheme),
+    inputDecorationTheme: _buildInputDecorationTheme(betheme),
     listTileTheme: _buildListTileTheme(colorScheme),
     navigationBarTheme: _buildNavigationBarTheme(colorScheme),
     outlinedButtonTheme: _buildOutlinedButtonTheme(colorScheme),
@@ -543,44 +544,45 @@ IconButtonThemeData _buildIconButtonTheme(ColorScheme colorScheme) {
   );
 }
 
-InputDecorationTheme _buildInputDecorationTheme(ColorScheme colorScheme) {
+InputDecorationTheme _buildInputDecorationTheme(BeThemeData betheme) {
+  final colors = ColorUtils.createColorSwatch(betheme.colors.formFillColor);
   return InputDecorationTheme(
     filled: true,
-    fillColor: colorScheme.surfaceContainerHighest,
-    focusColor: colorScheme.primary,
-    hoverColor: colorScheme.onSurface.withAlpha(0.08.toAlpha()),
-    errorStyle: TextStyle(color: colorScheme.error),
-    floatingLabelStyle: TextStyle(color: colorScheme.primary),
-    labelStyle: TextStyle(color: colorScheme.onSurfaceVariant),
-    helperStyle: TextStyle(color: colorScheme.onSurfaceVariant),
-    hintStyle: TextStyle(color: colorScheme.onSurfaceVariant),
-    prefixStyle: TextStyle(color: colorScheme.onSurface),
-    suffixStyle: TextStyle(color: colorScheme.onSurface),
-    counterStyle: TextStyle(color: colorScheme.onSurfaceVariant),
+    fillColor: betheme.colors.formFillColor,
+    // focusColor: colorScheme.primary,
+    // hoverColor: colorScheme.onSurface.withAlpha(0.08.toAlpha()),
+    // errorStyle: TextStyle(color: colorScheme.error),
+    // floatingLabelStyle: TextStyle(color: colorScheme.primary),
+    // labelStyle: TextStyle(color: colorScheme.onSurfaceVariant),
+    // helperStyle: TextStyle(color: colorScheme.onSurfaceVariant),
+    // hintStyle: TextStyle(color: colorScheme.onSurfaceVariant),
+    // prefixStyle: TextStyle(color: colorScheme.onSurface),
+    // suffixStyle: TextStyle(color: colorScheme.onSurface),
+    // counterStyle: TextStyle(color: colorScheme.onSurfaceVariant),
     border: OutlineInputBorder(
       borderRadius: BorderRadius.circular(8),
-      borderSide: BorderSide(color: colorScheme.outline),
+      borderSide: const BorderSide(color: Colors.transparent),
     ),
     enabledBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(8),
-      borderSide: BorderSide(color: colorScheme.outline),
+      borderSide: const BorderSide(color: Colors.transparent),
     ),
     focusedBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(8),
-      borderSide: BorderSide(color: colorScheme.primary, width: 2),
+      borderSide: BorderSide(color: colors.shade100, width: 2),
     ),
     errorBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(8),
-      borderSide: BorderSide(color: colorScheme.error),
+      borderSide: const BorderSide(color: Colors.transparent),
     ),
     focusedErrorBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(8),
-      borderSide: BorderSide(color: colorScheme.error, width: 2),
+      borderSide: BorderSide(color: colors.shade700, width: 2),
     ),
-    contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-    isDense: true,
-    alignLabelWithHint: true,
-    errorMaxLines: 2,
+    // contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+    // isDense: true,
+    // alignLabelWithHint: true,
+    // errorMaxLines: 2,
   );
 }
 
@@ -915,7 +917,7 @@ TimePickerThemeData _buildTimePickerTheme(ColorScheme colorScheme) {
     dayPeriodShape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(8),
     ),
-    inputDecorationTheme: _buildInputDecorationTheme(colorScheme),
+    // inputDecorationTheme: _buildInputDecorationTheme(betheme),
   );
 }
 
