@@ -34,7 +34,9 @@ ThemeData buildTheme({
     chipTheme: _buildChipTheme(colorScheme),
     dialogTheme: _buildDialogTheme(colorScheme),
     dividerTheme: _buildDividerTheme(colorScheme),
-    dropdownMenuTheme: _buildDropdownMenuTheme(colorScheme),
+
+    dropdownMenuTheme: _buildDropdownMenuTheme(betheme),
+
     elevatedButtonTheme: _buildElevatedButtonTheme(betheme),
     filledButtonTheme: _buildFilledButtonTheme(betheme),
     outlinedButtonTheme: _buildOutlinedButtonTheme(betheme),
@@ -311,22 +313,26 @@ DividerThemeData _buildDividerTheme(ColorScheme colorScheme) {
   );
 }
 
-DropdownMenuThemeData _buildDropdownMenuTheme(ColorScheme colorScheme) {
+DropdownMenuThemeData _buildDropdownMenuTheme(BeThemeData betheme) {
   return DropdownMenuThemeData(
-    textStyle: TextStyle(color: colorScheme.onSurface, fontSize: 16),
+    textStyle: TextStyle(color: betheme.colors.textPrimary, fontSize: 16),
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
-      fillColor: colorScheme.surfaceContainerHighest,
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(8),
-        borderSide: BorderSide(color: colorScheme.outline),
-      ),
+      fillColor: BeColors.white,
+      border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
     ),
+
     menuStyle: MenuStyle(
-      backgroundColor: WidgetStatePropertyAll(colorScheme.surface),
+      padding: const WidgetStatePropertyAll(
+        EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+      ),
+      surfaceTintColor: const WidgetStatePropertyAll(BeColors.transparent),
+      // side: const WidgetStatePropertyAll(BorderSide(color: Colors.red)),
+      backgroundColor: const WidgetStatePropertyAll(BeColors.white),
+
       elevation: const WidgetStatePropertyAll(8),
       shape: WidgetStatePropertyAll(
-        RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       ),
     ),
   );

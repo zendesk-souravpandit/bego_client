@@ -1,7 +1,7 @@
 import 'package:becomponent/app.dart';
 import 'package:beui/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:playground/use_case_buttons.dart';
+import 'package:playground/use_case_dropdown.dart';
 
 void main() {
   runApp(AppStateWrapper(child: BegoApp()));
@@ -26,7 +26,7 @@ class BegoApp extends StatelessWidget {
     return MaterialApp(
       themeMode: appState.themeMode,
       theme: BeTheme.buildThemeof(context),
-      home: const ButtonShowcase(),
+      home: const DropdownMenuShowcase(),
     );
   }
 }
