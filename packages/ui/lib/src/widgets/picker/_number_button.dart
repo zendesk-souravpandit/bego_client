@@ -1,3 +1,4 @@
+import 'package:beui/theme.dart';
 import 'package:flutter/widgets.dart';
 
 class NumberPickerButton extends StatelessWidget {
@@ -13,11 +14,7 @@ class NumberPickerButton extends StatelessWidget {
     opacity: _isEnabled ? 1 : 0.5,
     child: GestureDetector(
       onTap: onPressed,
-      child: Icon(
-        iconData,
-        // color: becolors(context).accent,
-        size: 24,
-      ),
+      child: Icon(iconData, color: BeColors.white, size: 16),
     ),
   );
 }

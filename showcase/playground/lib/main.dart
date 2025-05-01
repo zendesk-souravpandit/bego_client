@@ -1,6 +1,7 @@
 import 'package:becomponent/app.dart';
 import 'package:beui/be_icons.dart';
 import 'package:beui/decoration.dart';
+import 'package:beui/from.dart';
 import 'package:beui/overlay.dart';
 import 'package:beui/theme.dart';
 import 'package:flutter/material.dart';
@@ -85,6 +86,10 @@ class BegoApp extends StatelessWidget {
                     // crossAxisAlignment: CrossAxisAlignment.start,
                     // mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      BeNumberFormField(
+                        initialValue: 0,
+                        validationError: "Hello",
+                      ),
                       ElevatedButton(
                         onPressed: onPressed,
                         child: const Text("Hello"),

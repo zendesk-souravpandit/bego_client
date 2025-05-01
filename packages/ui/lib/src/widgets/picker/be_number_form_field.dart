@@ -1,4 +1,7 @@
+import 'package:beui/be_icons.dart';
+import 'package:beui/src/decoration/bego_edge_insets.dart';
 import 'package:beui/src/widgets/picker/_number_button.dart';
+import 'package:beui/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -169,7 +172,7 @@ class _BeNumberPickerState extends State<_BeNumberPicker> {
     final value = _value;
 
     return TextFormField(
-      scrollPadding: EdgeInsets.zero,
+      scrollPadding: p0,
       textAlign: TextAlign.center,
       cursorWidth: 0,
       autocorrect: false,
@@ -177,16 +180,36 @@ class _BeNumberPickerState extends State<_BeNumberPicker> {
       keyboardType: TextInputType.number,
       controller: _effectiveController,
       focusNode: AlwaysDisabledFocusNode(),
+      cursorHeight: 0,
+
       inputFormatters: [
         FilteringTextInputFormatter.allow(_integersOrEmptyString),
       ],
+      style: const TextStyle(
+        fontWeight: FontWeight.w600,
+        fontSize: 14,
+        color: BeColors.white,
+      ),
+
+      textAlignVertical: const TextAlignVertical(y: 0),
       decoration: InputDecoration(
+        contentPadding: px8 + py8,
+
+        isDense: true,
+        isCollapsed: true,
+
+        constraints: const BoxConstraints(maxWidth: 84),
+        suffixIconConstraints: const BoxConstraints(minWidth: 14 + 12),
+        prefixIconConstraints: const BoxConstraints(minWidth: 14 + 12),
+        fillColor: BeColors.primary,
+
         prefixIcon: NumberPickerButton(
-          iconData: Icons.remove,
+          iconData: BeIcons.icon_math_minus,
+
           onPressed: value == null || value > widget.min ? _onMinusTap : null,
         ),
         suffixIcon: NumberPickerButton(
-          iconData: Icons.add,
+          iconData: BeIcons.icon_math_plus,
           onPressed: value == null || value < widget.max ? _onPlusTap : null,
         ),
       ),
