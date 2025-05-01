@@ -198,7 +198,7 @@ class _BeNumberPickerState extends State<_BeNumberPicker> {
         isDense: true,
         isCollapsed: true,
 
-        constraints: const BoxConstraints(maxWidth: 84),
+        constraints: const BoxConstraints(maxWidth: 86),
         suffixIconConstraints: const BoxConstraints(minWidth: 14 + 12),
         prefixIconConstraints: const BoxConstraints(minWidth: 14 + 12),
         fillColor: BeColors.primary,
