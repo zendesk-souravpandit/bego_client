@@ -39,6 +39,8 @@ const darkModeValues = {
 };
 
 class ColorUtils {
+  const ColorUtils._();
+
   static Map<int, Color> tonalPalette(Color baseColor, {bool isDark = false}) {
     final hsl = HSLColor.fromColor(baseColor);
     return {
@@ -58,7 +60,10 @@ class ColorUtils {
     };
   }
 
-  static MaterialColor createColorSwatch(Color color, {bool isDarkMode = false}) {
+  static MaterialColor createColorSwatch(
+    Color color, {
+    bool isDarkMode = false,
+  }) {
     final hsl = HSLColor.fromColor(color);
 
     double getLightness(int key) {
@@ -100,14 +105,21 @@ class ColorUtils {
     return hsl.withLightness(lightness).toColor();
   }
 
-  static double _getLightnessForLevel(ColorSwatchLevel level, bool isDarkMode) =>
-      isDarkMode ? darkModeValues[level] ?? lightModeValues[level]! : lightModeValues[level]!;
+  static double _getLightnessForLevel(
+    ColorSwatchLevel level,
+    bool isDarkMode,
+  ) =>
+      isDarkMode
+          ? darkModeValues[level] ?? lightModeValues[level]!
+          : lightModeValues[level]!;
 
   /// Returns true if the color's brightness is [Brightness.light], else false.
-  bool isLight(Color color) => ThemeData.estimateBrightnessForColor(color) == Brightness.light;
+  bool isLight(Color color) =>
+      ThemeData.estimateBrightnessForColor(color) == Brightness.light;
 
   /// Returns true if the color's brightness is [Brightness.dark], else false.
-  bool isDark(Color color) => ThemeData.estimateBrightnessForColor(color) == Brightness.dark;
+  bool isDark(Color color) =>
+      ThemeData.estimateBrightnessForColor(color) == Brightness.dark;
 }
 
 extension ColorExtension on Color {

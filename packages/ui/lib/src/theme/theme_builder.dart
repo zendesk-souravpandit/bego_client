@@ -1,74 +1,6 @@
-// import 'package:flutter/material.dart';
-
-// ThemeData buildTheme() {
-//   return ThemeData(
-//     useMaterial3: useMaterial3,
-//     extensions: [betheme],
-//     colorScheme: colorScheme,
-//     brightness: brightness,
-
-//     // Component themes
-//     appBarTheme: _buildAppBarTheme(),
-//     badgeTheme: _buildBadgeTheme(),
-//     buttonTheme: _buildButtonTheme(),
-//     cardTheme: _buildCardTheme(),
-//     checkboxTheme: _buildCheckboxTheme(),
-//     chipTheme: _buildChipTheme(),
-//     dialogTheme: _buildDialogTheme(),
-//     dividerTheme: _buildDividerTheme(),
-//     dropdownMenuTheme: _buildDropdownMenuTheme(),
-//     elevatedButtonTheme: _buildElevatedButtonTheme(),
-//     expansionTileTheme: _buildExpansionTileTheme(),
-//     filledButtonTheme: _buildFilledButtonTheme(),
-//     floatingActionButtonTheme: _buildFloatingActionButtonTheme(),
-//     iconButtonTheme: _buildIconButtonTheme(),
-//     inputDecorationTheme: _buildInputDecorationTheme(),
-//     listTileTheme: _buildListTileTheme(),
-//     navigationBarTheme: _buildNavigationBarTheme(),
-//     outlinedButtonTheme: _buildOutlinedButtonTheme(),
-//     popupMenuTheme: _buildPopupMenuTheme(),
-//     progressIndicatorTheme: _buildProgressIndicatorTheme(),
-//     radioTheme: _buildRadioTheme(),
-//     sliderTheme: _buildSliderTheme(),
-//     snackBarTheme: _buildSnackBarTheme(),
-//     switchTheme: _buildSwitchTheme(),
-//     tabBarTheme: _buildTabBarTheme(),
-//     textButtonTheme: _buildTextButtonTheme(),
-//     textSelectionTheme: _buildTextSelectionTheme(),
-//     timePickerTheme: _buildTimePickerTheme(),
-//     tooltipTheme: _buildTooltipTheme(),
-//     actionIconTheme: _buildActionIconTheme(),
-//     dataTableTheme: _buildDataTableTheme(),
-//     bottomSheetTheme: _buildBottomSheetTheme(),
-//     bottomNavigationBarTheme: _buildBottomNavigationBarTheme(),
-//     datePickerTheme: _buildDatePickerTheme(),
-
-//     drawerTheme: _buildDrawerTheme(),
-//     iconTheme: _buildIconTheme(),
-//     bottomAppBarTheme: _buildBottomAppBarTheme(),
-//     bannerTheme: _buildBannerTheme(),
-//     menuBarTheme: _buildMenuBarTheme(),
-//     menuButtonTheme: _buildMenuButtonTheme(),
-//     navigationRailTheme: _buildNavigationRailTheme(),
-//     pageTransitionsTheme: _buildPageTransitionsTheme(),
-//     scrollbarTheme: _buildScrollbarTheme(),
-//     navigationDrawerTheme: _buildNavigationDrawerTheme(),
-//     menuTheme: _buildMenuTheme(),
-//     textTheme: _buildTextTheme(),
-//     primaryIconTheme: _buildPrimaryIconTheme(),
-//     // package: 'beui',
-//     searchViewTheme: _buildSearchViewTheme(),
-//     searchBarTheme: _buildSearchBarTheme(),
-//     segmentedButtonTheme: _buildSegmentedButtonTheme(),
-//     toggleButtonsTheme: _buildToggleButtonsTheme(),
-//     primaryTextTheme: _buildPrimaryTextTheme(),
-
-//     // Add other component themes as needed
-//   );
-// }
-
 import 'package:beui/src/decoration/be_round_rectangle_border.dart';
 import 'package:beui/src/extentions/be_double_ext.dart';
+import 'package:beui/src/theme/colors/be_color_schema.dart';
 import 'package:beui/theme.dart';
 import 'package:beui/ui.dart';
 import 'package:flutter/material.dart';
@@ -78,10 +10,10 @@ ThemeData buildTheme({
   bool useMaterial3 = true,
   Brightness brightness = Brightness.light,
 }) {
-  final colorScheme = ColorScheme.fromSeed(
-    seedColor: betheme.colors.primary,
-    brightness: brightness,
-  );
+  final colorScheme =
+      betheme.colors.isDark
+          ? BeColorSchemeDark.darkScheme
+          : BeColorSchemeLight.lightScheme;
 
   return ThemeData(
     useMaterial3: useMaterial3,
@@ -91,18 +23,19 @@ ThemeData buildTheme({
     extensions: [betheme],
     fontFamily: BeUIConst.fontFamily,
     splashFactory: InkRipple.splashFactory,
+    disabledColor: betheme.colors.disabled,
 
     // Component themes
     appBarTheme: _buildAppBarTheme(colorScheme),
     badgeTheme: _buildBadgeTheme(colorScheme),
-    buttonTheme: _buildButtonTheme(),
+    buttonTheme: _buildButtonTheme(betheme),
     cardTheme: _buildCardTheme(colorScheme),
     checkboxTheme: _buildCheckboxTheme(colorScheme),
     chipTheme: _buildChipTheme(colorScheme),
     dialogTheme: _buildDialogTheme(colorScheme),
     dividerTheme: _buildDividerTheme(colorScheme),
     dropdownMenuTheme: _buildDropdownMenuTheme(colorScheme),
-    elevatedButtonTheme: _buildElevatedButtonTheme(colorScheme),
+    elevatedButtonTheme: _buildElevatedButtonTheme(betheme),
     expansionTileTheme: _buildExpansionTileTheme(colorScheme),
     filledButtonTheme: _buildFilledButtonTheme(colorScheme),
     floatingActionButtonTheme: _buildFloatingActionButtonTheme(colorScheme),
@@ -224,11 +157,13 @@ BadgeThemeData _buildBadgeTheme(ColorScheme colorScheme) {
   );
 }
 
-ButtonThemeData _buildButtonTheme() {
-  return const ButtonThemeData(
+ButtonThemeData _buildButtonTheme(BeThemeData betheme) {
+  return ButtonThemeData(
     alignedDropdown: true,
     layoutBehavior: ButtonBarLayoutBehavior.padded,
-    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+    buttonColor: betheme.colors.error,
+
+    // padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
   );
 }
 
@@ -396,40 +331,81 @@ DropdownMenuThemeData _buildDropdownMenuTheme(ColorScheme colorScheme) {
   );
 }
 
-ElevatedButtonThemeData _buildElevatedButtonTheme(ColorScheme colorScheme) {
+ElevatedButtonThemeData _buildElevatedButtonTheme(BeThemeData betheme) {
+  final swPrimary = ColorUtils.createColorSwatch(betheme.colors.primary);
+
   return ElevatedButtonThemeData(
     style: ButtonStyle(
       backgroundColor: WidgetStateProperty.resolveWith((states) {
         if (states.contains(WidgetState.disabled)) {
-          return colorScheme.onSurface.withAlpha(0.12.toAlpha());
+          return swPrimary.shade100;
         }
-        return colorScheme.primary;
+
+        return swPrimary.shade500;
       }),
+      // foregroundColor: WidgetStateProperty.resolveWith((states) {
+      //   if (states.contains(WidgetState.disabled)) {
+      //     return swPrimary.shade700;
+      //   }
+      //   return swPrimary.shade300;
+      // }),
       foregroundColor: WidgetStateProperty.resolveWith((states) {
         if (states.contains(WidgetState.disabled)) {
-          return colorScheme.onSurface.withAlpha(0.38.toAlpha());
+          return swPrimary.shade700;
         }
-        return colorScheme.onPrimary;
+        return swPrimary.shade100;
       }),
-      overlayColor: WidgetStatePropertyAll(
-        colorScheme.onPrimary.withAlpha(0.12.toAlpha()),
-      ),
+      overlayColor: const WidgetStatePropertyAll(BeColors.transparent),
       elevation: const WidgetStatePropertyAll(0),
       shadowColor: const WidgetStatePropertyAll(Colors.transparent),
       surfaceTintColor: const WidgetStatePropertyAll(Colors.transparent),
-      textStyle: const WidgetStatePropertyAll(
-        TextStyle(
+      textStyle: WidgetStateProperty.resolveWith((state) {
+        if (state.containsAll([WidgetState.hovered, WidgetState.pressed])) {
+          return const TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+            letterSpacing: 0.7,
+          );
+        }
+
+        return const TextStyle(
           fontSize: 14,
-          fontWeight: FontWeight.w500,
-          letterSpacing: 0.1,
-        ),
-      ),
+          fontWeight: FontWeight.w600,
+          letterSpacing: 0.5,
+        );
+      }),
+      // iconColor: const WidgetStatePropertyAll(0),
+      iconSize: WidgetStateProperty.resolveWith((state) {
+        if (state.containsAll([WidgetState.hovered, WidgetState.pressed])) {
+          return 16;
+        }
+        return 14;
+      }),
       padding: const WidgetStatePropertyAll(
-        EdgeInsets.symmetric(horizontal: 24, vertical: 10),
+        EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       ),
-      shape: WidgetStatePropertyAll(
-        RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-      ),
+      animationDuration: const Duration(milliseconds: 500),
+
+      shape: WidgetStateProperty.resolveWith((states) {
+        if (states.contains(WidgetState.disabled)) {
+          return const ContinuousRectangleBorder();
+        }
+        if (states.contains(WidgetState.pressed)) {
+          return ContinuousRectangleBorder(
+            borderRadius: const BorderRadius.all(Radius.circular(16)),
+            side: BorderSide(color: swPrimary.shade500, width: 2),
+          );
+        }
+        if (states.contains(WidgetState.hovered)) {
+          return const ContinuousRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(16)),
+          );
+        }
+        return ContinuousRectangleBorder(
+          borderRadius: const BorderRadius.all(Radius.circular(16)),
+          side: BorderSide(color: swPrimary.shade500, width: 2),
+        );
+      }),
     ),
   );
 }
@@ -559,6 +535,9 @@ InputDecorationTheme _buildInputDecorationTheme(BeThemeData betheme) {
     // prefixStyle: TextStyle(color: colorScheme.onSurface),
     // suffixStyle: TextStyle(color: colorScheme.onSurface),
     // counterStyle: TextStyle(color: colorScheme.onSurfaceVariant),
+    errorMaxLines: 1,
+
+    // contentPadding: p0,
     border: OutlineInputBorder(
       borderRadius: BorderRadius.circular(8),
       borderSide: const BorderSide(color: Colors.transparent),
@@ -573,12 +552,23 @@ InputDecorationTheme _buildInputDecorationTheme(BeThemeData betheme) {
     ),
     errorBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(8),
-      borderSide: const BorderSide(color: Colors.transparent),
+      borderSide: BorderSide(
+        color: betheme.colors.error.withAlpha(125),
+        width: 2,
+      ),
     ),
     focusedErrorBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(8),
-      borderSide: BorderSide(color: colors.shade700, width: 2),
+      borderSide: BorderSide(color: betheme.colors.error, width: 2),
     ),
+    disabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(8),
+      borderSide: BorderSide(color: betheme.colors.disabled),
+    ),
+
+    // isCollapsed: true,
+    // isDense: true,
+    // contentPadding: px16 + py12,
     // contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
     // isDense: true,
     // alignLabelWithHint: true,

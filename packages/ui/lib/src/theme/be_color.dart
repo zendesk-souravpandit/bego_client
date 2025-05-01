@@ -27,6 +27,8 @@ abstract class BeColor {
   Color get error;
   Color get warning;
   Color get info;
+  // Disabled , Inactive or Sad color
+  Color get disabled;
 
   // Surface colors
   Color get background;

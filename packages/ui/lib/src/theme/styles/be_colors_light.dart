@@ -46,6 +46,9 @@ class BeColorsLight implements BeColor {
   Color get info => const Color(0xFF2563EB);
 
   @override
+  Color get disabled => BeColors.gray300;
+
+  @override
   Color get background => const Color(0xFFFDFDFD);
   @override
   Color get surface => const Color(0xFFFFFFFF);
