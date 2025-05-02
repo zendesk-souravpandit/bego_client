@@ -1,4 +1,5 @@
 import 'package:beui/src/decoration/be_round_rectangle_border.dart';
+import 'package:beui/src/decoration/bego_edge_insets.dart';
 import 'package:beui/src/extentions/be_double_ext.dart';
 import 'package:beui/src/theme/colors/be_color_schema.dart';
 import 'package:beui/theme.dart';
@@ -323,11 +324,12 @@ DropdownMenuThemeData _buildDropdownMenuTheme(BeThemeData betheme) {
     ),
 
     menuStyle: MenuStyle(
-      padding: const WidgetStatePropertyAll(
-        EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-      ),
+      padding: const WidgetStatePropertyAll(p0),
       surfaceTintColor: const WidgetStatePropertyAll(BeColors.transparent),
       // side: const WidgetStatePropertyAll(BorderSide(color: Colors.red)),
+      side: const WidgetStatePropertyAll(BorderSide.none),
+
+      // visualDensity: const VisualDensity(horizontal: 1),
       backgroundColor: const WidgetStatePropertyAll(BeColors.white),
 
       elevation: const WidgetStatePropertyAll(8),
@@ -547,45 +549,15 @@ FloatingActionButtonThemeData _buildFloatingActionButtonTheme(
   );
 }
 
-// IconButtonThemeData _buildIconButtonTheme(ColorScheme colorScheme) {
-//   return IconButtonThemeData(
-//     style: ButtonStyle(
-//       iconColor: WidgetStateProperty.resolveWith((states) {
-//         if (states.contains(WidgetState.disabled)) {
-//           return colorScheme.onSurface.withAlpha(0.38.toAlpha());
-//         }
-//         return colorScheme.primary;
-//       }),
-//       backgroundColor: WidgetStateProperty.resolveWith((states) {
-//         if (states.contains(WidgetState.pressed)) {
-//           return colorScheme.primary.withAlpha(0.12.toAlpha());
-//         }
-//         return Colors.transparent;
-//       }),
-//       surfaceTintColor: const WidgetStatePropertyAll(Colors.transparent),
-//       minimumSize: const WidgetStatePropertyAll(Size(40, 40)),
-//       padding: const WidgetStatePropertyAll(EdgeInsets.all(8)),
-//       shape: const WidgetStatePropertyAll(CircleBorder()),
-//     ),
-//   );
-// }
-
 IconButtonThemeData _buildIconButtonTheme(BeThemeData betheme) {
   final swPrimary = ColorUtils.createColorSwatch(betheme.colors.primary);
   return IconButtonThemeData(
     style: ButtonStyle(
-      backgroundColor: WidgetStateProperty.resolveWith((states) {
-        if (states.contains(WidgetState.disabled)) {
-          return BeColors.gray200;
-        }
-
-        return swPrimary.shade500;
-      }),
       foregroundColor: WidgetStateProperty.resolveWith((states) {
         if (states.contains(WidgetState.disabled)) {
           return BeColors.gray400;
         }
-        return swPrimary.shade100;
+        return swPrimary.shade500;
       }),
 
       overlayColor: const WidgetStatePropertyAll(BeColors.transparent),
@@ -615,33 +587,7 @@ IconButtonThemeData _buildIconButtonTheme(BeThemeData betheme) {
         }
         return 14;
       }),
-      padding: const WidgetStatePropertyAll(
-        EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-      ),
       animationDuration: const Duration(milliseconds: 500),
-      shape: WidgetStateProperty.resolveWith((states) {
-        if (states.contains(WidgetState.disabled)) {
-          return const ContinuousRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(16)),
-            side: BorderSide(color: BeColors.gray200, width: 2),
-          );
-        }
-        if (states.contains(WidgetState.pressed)) {
-          return ContinuousRectangleBorder(
-            borderRadius: const BorderRadius.all(Radius.circular(16)),
-            side: BorderSide(color: swPrimary.shade500, width: 2),
-          );
-        }
-        if (states.contains(WidgetState.hovered)) {
-          return const ContinuousRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(16)),
-          );
-        }
-        return ContinuousRectangleBorder(
-          borderRadius: const BorderRadius.all(Radius.circular(16)),
-          side: BorderSide(color: swPrimary.shade500, width: 2),
-        );
-      }),
     ),
   );
 }
@@ -651,19 +597,7 @@ InputDecorationTheme _buildInputDecorationTheme(BeThemeData betheme) {
   return InputDecorationTheme(
     filled: true,
     fillColor: betheme.colors.formFillColor,
-    // focusColor: colorScheme.primary,
-    // hoverColor: colorScheme.onSurface.withAlpha(0.08.toAlpha()),
-    // errorStyle: TextStyle(color: colorScheme.error),
-    // floatingLabelStyle: TextStyle(color: colorScheme.primary),
-    // labelStyle: TextStyle(color: colorScheme.onSurfaceVariant),
-    // helperStyle: TextStyle(color: colorScheme.onSurfaceVariant),
-    // hintStyle: TextStyle(color: colorScheme.onSurfaceVariant),
-    // prefixStyle: TextStyle(color: colorScheme.onSurface),
-    // suffixStyle: TextStyle(color: colorScheme.onSurface),
-    // counterStyle: TextStyle(color: colorScheme.onSurfaceVariant),
     errorMaxLines: 1,
-
-    // contentPadding: p0,
     border: OutlineInputBorder(
       borderRadius: BorderRadius.circular(8),
       borderSide: const BorderSide(color: Colors.transparent),
