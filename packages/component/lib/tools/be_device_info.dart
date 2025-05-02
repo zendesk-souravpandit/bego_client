@@ -10,7 +10,6 @@ class BeDeviceInfo {
 
     try {
       if (Platform.isIOS) {
-        // import 'dart:io'
         final iosDeviceInfo = await deviceInfo.iosInfo;
         return iosDeviceInfo.identifierForVendor; // unique ID on iOS
       }
@@ -28,7 +27,8 @@ class BeDeviceInfo {
         return androidDeviceInfo.deviceId; // unique ID on Android
       }
       if (kIsWeb) {
-        // Some web specific code there
+        final browserInfo = await deviceInfo.webBrowserInfo;
+        return browserInfo.userAgent ?? '-1';
       }
       // ignore: unused_catch_clause, avoid_catches_without_on_clauses
     } catch (e) {
