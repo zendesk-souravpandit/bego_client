@@ -18,18 +18,14 @@ push-bego:
 	./scripts/update_bego_client.sh  
 	
 proto-clone:
-	./scripts/copy_common_proto.sh ./packages/bego_service/protos;  
+	./scripts/copy_common_proto.sh ./services/beservice/protos;  
 
 proto-google:
-	 protoc --dart_out=packages/bego_service/lib/src/gen -I=packages/bego_service/protos packages/bego_service/protos/google/protobuf/any.proto \
-    && protoc --dart_out=packages/bego_service/lib/src/gen -I=packages/bego_service/protos packages/bego_service/protos/google/protobuf/duration.proto \
-    && protoc --dart_out=packages/bego_service/lib/src/gen -I=packages/bego_service/protos packages/bego_service/protos/google/protobuf/timestamp.proto	\
-
-proto-buf-gen:
-	buf generate;  
+	 protoc --dart_out=services/beservice/lib/src/ -I=services/beservice/protos services/beservice/protos/google/protobuf/any.proto \
+    && protoc --dart_out=services/beservice/lib/src/ -I=services/beservice/protos services/beservice/protos/google/protobuf/duration.proto \
+    && protoc --dart_out=services/beservice/lib/src/ -I=services/beservice/protos services/beservice/protos/google/protobuf/timestamp.proto	\
 
 proto-gen:
-	# find protos -name "packages/bego_service*.proto" | xargs protoc --dart_out=packages/bego_service/lib/src/gen -I=packages/bego_service/protos
-	# cd packages/bego_service && find protos -name "*.proto" | xargs protoc --dart_out=grpc:lib/src/gen -I=protos  
-	cd packages/bego_service && find protos -name "*.proto" | xargs protoc --dart_out=lib/src/gen -I=protos  
+	buf generate && \
+	cd services/beservice && find protos -name "*.proto" | xargs protoc --dart_out=grpc:lib/src/ -I=protos  
 .PHONY: build-bego	
