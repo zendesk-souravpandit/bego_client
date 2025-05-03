@@ -182,7 +182,7 @@ class ButtonShowcase extends StatelessWidget {
                       ButtonSegment(value: 2, label: Text('Option 2')),
                     ],
                     selected: const {1},
-                    onSelectionChanged: (Set) {},
+                    onSelectionChanged: (_) {},
                   ),
                 ),
               ],

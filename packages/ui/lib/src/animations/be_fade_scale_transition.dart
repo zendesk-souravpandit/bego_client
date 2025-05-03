@@ -98,7 +98,8 @@ class FadeScaleTransition extends StatelessWidget {
   /// This widget is not to be confused with Flutter's [FadeTransition] widget,
   /// which animates only the opacity of its child widget.
   ///
-  /// [animation] is typically an [AnimationController] that drives the transition
+  /// [animation] is typically an [AnimationController]
+  /// that drives the transition
   /// animation. [animation] cannot be null.
   const FadeScaleTransition({super.key, required this.animation, this.child});
 

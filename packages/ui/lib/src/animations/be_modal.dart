@@ -55,7 +55,8 @@ Future<T?> showModal<T>({
   ui.ImageFilter? filter,
 }) {
   var barrierLabel = configuration.barrierLabel;
-  // Avoid looking up [MaterialLocalizations.of(context).modalBarrierDismissLabel]
+  // Avoid looking up
+  // [MaterialLocalizations.of(context).modalBarrierDismissLabel]
   // if there is no dismissible barrier.
   if (configuration.barrierDismissible && configuration.barrierLabel == null) {
     barrierLabel = MaterialLocalizations.of(context).modalBarrierDismissLabel;

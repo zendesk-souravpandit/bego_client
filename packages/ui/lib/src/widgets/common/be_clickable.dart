@@ -65,6 +65,8 @@
 //     _controller.animateWith(_springSimulation);
 //   }
 
+// ignore_for_file: lines_longer_than_80_chars
+
 //   @override
 //   Widget build(BuildContext context) => GestureDetector(
 //     onTap: widget.onPressed,

@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_setters_without_getters, always_put_control_body_on_new_line
+// ignore_for_file: avoid_setters_without_getters, always_put_control_body_on_new_line, lines_longer_than_80_chars
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -32,7 +32,10 @@ class BeTextMore extends LeafRenderObjectWidget {
   );
 
   @override
-  void updateRenderObject(BuildContext context, RenderExpandableText renderObject) {
+  void updateRenderObject(
+    BuildContext context,
+    RenderExpandableText renderObject,
+  ) {
     renderObject
       ..text = text
       ..maxLines = maxLines
@@ -142,7 +145,8 @@ class RenderExpandableText extends RenderBox {
     _combinedSpan = TextSpan(
       children: [
         TextSpan(text: _text, style: _style),
-        if (_needsLink || _isExpanded) TextSpan(text: ' $linkText', style: _linkStyle),
+        if (_needsLink || _isExpanded)
+          TextSpan(text: ' $linkText', style: _linkStyle),
       ],
     );
 
@@ -179,7 +183,12 @@ class RenderExpandableText extends RenderBox {
     );
     final linkWidth = _textPainter.width;
     final linkHeight = _textPainter.preferredLineHeight;
-    _linkRect = Rect.fromLTWH(linkOffset.dx, linkOffset.dy, linkWidth, linkHeight);
+    _linkRect = Rect.fromLTWH(
+      linkOffset.dx,
+      linkOffset.dy,
+      linkWidth,
+      linkHeight,
+    );
 
     // Set final size
     size = constraints.constrain(_textPainter.size);

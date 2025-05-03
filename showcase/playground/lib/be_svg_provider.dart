@@ -196,5 +196,6 @@
 
 //   @override
 //   String toString() => '${objectRuntimeType(this, 'SvgImageKey')}'
-//       '(path: "$path", pixelWidth: $pixelWidth, pixelHeight: $pixelHeight, scale: $scale, source: $source)';
+//       '(path: "$path", pixelWidth: $pixelWidth, pixelHeight: $pixelHeight,
+//        scale: $scale, source: $source)';
 // }

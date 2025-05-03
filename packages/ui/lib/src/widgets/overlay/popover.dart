@@ -1,3 +1,5 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 import 'package:beui/foundation.dart';
 import 'package:beui/src/layouts/portal/portal.dart';
 import 'package:beui/src/layouts/portal/portal_shift.dart';

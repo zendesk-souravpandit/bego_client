@@ -86,7 +86,9 @@ enum BeTextVariant { none, normal, primary, tertiary, secandory, error }
 //     switch (this) {
 //       default:
 //         textColor = color.textPrimary;
-//         backgroundColor = ColorUtils.createColorSwatchLevel(color.textPrimary, isDarkMode: color.isDark);
+//         backgroundColor = ColorUtils.
+//         createColorSwatchLevel(color.textPrimary,
+//         isDarkMode: color.isDark);
 //         return (textColor, backgroundColor);
 //     }
 //   }

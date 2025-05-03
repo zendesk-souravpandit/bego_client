@@ -1,6 +1,9 @@
 /// BeInsets should build responsive padding and margin based on device type of screen size
 /// Yet to be developed based on design system
 ///
+library;
+// ignore_for_file: lines_longer_than_80_chars
+
 abstract class BeStyleValue {
   // Display
   double get displayLargeTextSize;

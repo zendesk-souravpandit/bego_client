@@ -70,7 +70,8 @@
 //         canvas.drawRRect(
 //           shadowRect,
 //           paint
-//             ..maskFilter = MaskFilter.blur(BlurStyle.normal, shadow.blurSigma),
+//             ..maskFilter = MaskFilter.
+//               blur(BlurStyle.normal, shadow.blurSigma),
 //         );
 //       }
 

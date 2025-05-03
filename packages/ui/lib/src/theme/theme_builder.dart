@@ -1,3 +1,5 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 import 'package:beui/src/decoration/be_round_rectangle_border.dart';
 import 'package:beui/src/decoration/bego_edge_insets.dart';
 import 'package:beui/src/extentions/be_double_ext.dart';

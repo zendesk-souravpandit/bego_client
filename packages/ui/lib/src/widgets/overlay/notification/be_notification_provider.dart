@@ -48,12 +48,13 @@ class _BeNotificationsProviderState extends State<BeNotificationsProvider>
         dismissDuration: duration,
       ),
     );
-
-    if (_notifications.contains(notificationKey)) {
+    final notificationKeys = _notifications.map((w) => w.key);
+    if (notificationKeys.contains(notificationKey)) {
       // If the notification is already in the list, remove it first
       _removeNotification(wrappedNotification);
       debugPrint(
-        'Notification with key $notificationKey already exists. Removing it first.',
+        'Notification with key $notificationKey already exists.'
+        'Removing it first.',
       );
     }
 

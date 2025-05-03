@@ -1,3 +1,5 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
@@ -5,7 +7,12 @@ import 'package:flutter/widgets.dart';
 /// An outline around a focused widget that does not affect its layout.
 class BeFocusedOutline extends SingleChildRenderObjectWidget {
   /// Creates a [BeFocusedOutline].
-  const BeFocusedOutline({required this.focused, required super.child, this.style, super.key});
+  const BeFocusedOutline({
+    required this.focused,
+    required super.child,
+    this.style,
+    super.key,
+  });
 
   /// The style.
   final BeFocusedOutlineStyle? style;
@@ -39,7 +46,8 @@ class BeFocusedOutline extends SingleChildRenderObjectWidget {
 }
 
 class _Outline extends RenderProxyBox {
-  _Outline(this._style, this._textDirection, {required bool focused}) : _focused = focused;
+  _Outline(this._style, this._textDirection, {required bool focused})
+    : _focused = focused;
   BeFocusedOutlineStyle _style;
   TextDirection _textDirection;
   bool _focused;
@@ -68,7 +76,8 @@ class _Outline extends RenderProxyBox {
   }
 
   @override
-  Rect get paintBounds => _focused ? child!.paintBounds.inflate(_style.spacing) : super.paintBounds;
+  Rect get paintBounds =>
+      _focused ? child!.paintBounds.inflate(_style.spacing) : super.paintBounds;
 
   BeFocusedOutlineStyle get style => _style;
 
@@ -110,8 +119,12 @@ class _Outline extends RenderProxyBox {
 /// The [BeFocusedOutline]'s style.
 class BeFocusedOutlineStyle with Diagnosticable {
   /// Creates a [BeFocusedOutlineStyle].
-  const BeFocusedOutlineStyle({required this.color, required this.borderRadius, this.width = 1, this.spacing = 3})
-    : assert(0 < width, 'The width must be greater than 0.');
+  const BeFocusedOutlineStyle({
+    required this.color,
+    required this.borderRadius,
+    this.width = 1,
+    this.spacing = 3,
+  }) : assert(0 < width, 'The width must be greater than 0.');
 
   /// The outline's color.
   final Color color;
@@ -129,16 +142,23 @@ class BeFocusedOutlineStyle with Diagnosticable {
   final double spacing;
 
   /// Returns a copy of this [BeFocusedOutlineStyle] with the given properties replaced.
-  BeFocusedOutlineStyle copyWith({Color? color, BorderRadiusGeometry? borderRadius, double? width, double? spacing}) =>
-      BeFocusedOutlineStyle(
-        color: color ?? this.color,
-        borderRadius: borderRadius ?? this.borderRadius,
-        width: width ?? this.width,
-        spacing: spacing ?? this.spacing,
-      );
+  BeFocusedOutlineStyle copyWith({
+    Color? color,
+    BorderRadiusGeometry? borderRadius,
+    double? width,
+    double? spacing,
+  }) => BeFocusedOutlineStyle(
+    color: color ?? this.color,
+    borderRadius: borderRadius ?? this.borderRadius,
+    width: width ?? this.width,
+    spacing: spacing ?? this.spacing,
+  );
 
   /// A default style for [BeFocusedOutline].
-  static const defaultStyle = BeFocusedOutlineStyle(color: Color(0xFF000000), borderRadius: BorderRadius.zero);
+  static const defaultStyle = BeFocusedOutlineStyle(
+    color: Color(0xFF000000),
+    borderRadius: BorderRadius.zero,
+  );
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
@@ -160,5 +180,9 @@ class BeFocusedOutlineStyle with Diagnosticable {
           spacing == other.spacing);
 
   @override
-  int get hashCode => color.hashCode ^ borderRadius.hashCode ^ width.hashCode ^ spacing.hashCode;
+  int get hashCode =>
+      color.hashCode ^
+      borderRadius.hashCode ^
+      width.hashCode ^
+      spacing.hashCode;
 }

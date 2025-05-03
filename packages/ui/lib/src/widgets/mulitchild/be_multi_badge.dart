@@ -1,4 +1,4 @@
-// ignore_for_file: library_private_types_in_public_api, avoid_setters_without_getters, always_put_control_body_on_new_line, use_if_null_to_convert_nulls_to_bools
+// ignore_for_file: lines_longer_than_80_chars, library_private_types_in_public_api
 
 import 'dart:math';
 
@@ -9,16 +9,24 @@ import 'package:flutter/rendering.dart';
 /// [child] of Widget Type. badge widget respects child widget dimension
 /// [rounded] will min(size.width, size.height) / 4 inside;
 class BeMultiBadge extends MultiChildRenderObjectWidget {
-  BeMultiBadge({required this.child, required this.labels, super.key, this.rounded = false})
-    : super(children: [child, ...labels]);
+  BeMultiBadge({
+    required this.child,
+    required this.labels,
+    super.key,
+    this.rounded = false,
+  }) : super(children: [child, ...labels]);
   final Widget child;
   final bool rounded;
   final List<BeBadgeChild> labels;
   @override
-  RenderObject createRenderObject(BuildContext context) => _BeMultiLabelRenderObject(rounded: rounded);
+  RenderObject createRenderObject(BuildContext context) =>
+      _BeMultiLabelRenderObject(rounded: rounded);
 
   @override
-  void updateRenderObject(BuildContext context, _BeMultiLabelRenderObject renderObject) {
+  void updateRenderObject(
+    BuildContext context,
+    _BeMultiLabelRenderObject renderObject,
+  ) {
     renderObject.rounded = rounded;
   }
 
@@ -55,9 +63,16 @@ class _BeMultiLabelRenderObject extends RenderBox
 
     for (final c in getChildrenAsList()) {
       if (c == firstChild) continue;
-      final badge = (c as _BadgeRenderBox)..layout(const BoxConstraints(), parentUsesSize: true);
+      final badge =
+          (c as _BadgeRenderBox)
+            ..layout(const BoxConstraints(), parentUsesSize: true);
       final badgeParentData = badge.parentData! as _BeMultiBadgeParentData;
-      final labelOffset = _getOffset(badge._position, badge._offset, badge.size.width, badge.size.height);
+      final labelOffset = _getOffset(
+        badge._position,
+        badge._offset,
+        badge.size.width,
+        badge.size.height,
+      );
       badgeParentData.offset = labelOffset;
     }
   }
@@ -67,7 +82,12 @@ class _BeMultiLabelRenderObject extends RenderBox
     defaultPaint(context, offset);
   }
 
-  Offset _getOffset(BeMultiBadgePosition badgePosition, Offset childOffset, double badgeWidth, double badgeHeight) {
+  Offset _getOffset(
+    BeMultiBadgePosition badgePosition,
+    Offset childOffset,
+    double badgeWidth,
+    double badgeHeight,
+  ) {
     var translateX = 0.0;
     var translateY = 0.0;
     final radius = min(size.width, size.height) / 2;
@@ -78,7 +98,10 @@ class _BeMultiLabelRenderObject extends RenderBox
         (-badgeWidth / 2) + (_rounded ? roundShift : 0),
         -badgeHeight / 2 + (_rounded ? roundShift / 3 : 0),
       ),
-      BeMultiBadgePosition.topCenter => ((size.width - badgeWidth) / 2, -badgeHeight / 2),
+      BeMultiBadgePosition.topCenter => (
+        (size.width - badgeWidth) / 2,
+        -badgeHeight / 2,
+      ),
       BeMultiBadgePosition.topRight => (
         (size.width - badgeWidth / 2) - (_rounded ? roundShift : 0),
         (-badgeHeight / 2) + (_rounded ? roundShift / 3 : 0),
@@ -87,14 +110,26 @@ class _BeMultiLabelRenderObject extends RenderBox
         (size.width - badgeWidth / 2) - (_rounded ? roundShift : 0),
         (size.height - badgeHeight / 2) - (_rounded ? roundShift / 3 : 0),
       ),
-      BeMultiBadgePosition.bottomCenter => ((size.width - badgeWidth) / 2, size.height - badgeHeight / 2),
+      BeMultiBadgePosition.bottomCenter => (
+        (size.width - badgeWidth) / 2,
+        size.height - badgeHeight / 2,
+      ),
       BeMultiBadgePosition.bottomLeft => (
         (-badgeWidth / 2) + (_rounded ? roundShift : 0),
         (size.height - badgeHeight / 2) - (_rounded ? roundShift / 3 : 0),
       ),
-      BeMultiBadgePosition.centerLeft => (-badgeWidth / 2, (size.height - badgeHeight) / 2),
-      BeMultiBadgePosition.center => ((size.width - badgeWidth) / 2, (size.height - badgeHeight) / 2),
-      BeMultiBadgePosition.centerRight => (size.width - badgeWidth / 2, (size.height - badgeHeight) / 2),
+      BeMultiBadgePosition.centerLeft => (
+        -badgeWidth / 2,
+        (size.height - badgeHeight) / 2,
+      ),
+      BeMultiBadgePosition.center => (
+        (size.width - badgeWidth) / 2,
+        (size.height - badgeHeight) / 2,
+      ),
+      BeMultiBadgePosition.centerRight => (
+        size.width - badgeWidth / 2,
+        (size.height - badgeHeight) / 2,
+      ),
     };
     translateX = x + childOffset.dx;
     translateY = y + childOffset.dy;
@@ -110,16 +145,21 @@ class _BeMultiLabelRenderObject extends RenderBox
   bool hitTest(BoxHitTestResult result, {required Offset position}) {
     for (final child in getChildrenAsList()) {
       final badgeParentData = child.parentData! as _BeMultiBadgeParentData;
-      final badgePosition = Offset(position.dx - badgeParentData.offset.dx, position.dy - badgeParentData.offset.dy);
+      final badgePosition = Offset(
+        position.dx - badgeParentData.offset.dx,
+        position.dy - badgeParentData.offset.dy,
+      );
       if (child.size.contains(badgePosition)) {
-        if (hitTestChildren(result, position: position) || hitTestSelf(position)) {
+        if (hitTestChildren(result, position: position) ||
+            hitTestSelf(position)) {
           result.add(BoxHitTestEntry(this, position));
           return true;
         }
       }
 
       if (size.contains(position)) {
-        if (hitTestChildren(result, position: position) || hitTestSelf(position)) {
+        if (hitTestChildren(result, position: position) ||
+            hitTestSelf(position)) {
           result.add(BoxHitTestEntry(this, position));
           return true;
         }
@@ -129,7 +169,8 @@ class _BeMultiLabelRenderObject extends RenderBox
   }
 }
 
-class _BeMultiBadgeParentData extends ContainerBoxParentData<RenderBox> with ContainerParentDataMixin<RenderBox> {}
+class _BeMultiBadgeParentData extends ContainerBoxParentData<RenderBox>
+    with ContainerParentDataMixin<RenderBox> {}
 
 // ==========================================================================
 
@@ -138,12 +179,18 @@ class _BeMultiBadgeParentData extends ContainerBoxParentData<RenderBox> with Con
 /// [offset] translate widget to offset based on [Offset] default is [Offset.zero]
 /// [position] set alignment position of badge
 class BeBadgeChild extends SingleChildRenderObjectWidget {
-  const BeBadgeChild({required this.position, required super.child, super.key, this.offset = Offset.zero});
+  const BeBadgeChild({
+    required this.position,
+    required super.child,
+    super.key,
+    this.offset = Offset.zero,
+  });
   final BeMultiBadgePosition position;
   final Offset offset;
 
   @override
-  RenderObject createRenderObject(BuildContext context) => _BadgeRenderBox(offset: offset, position: position);
+  RenderObject createRenderObject(BuildContext context) =>
+      _BadgeRenderBox(offset: offset, position: position);
 
   @override
   void updateRenderObject(BuildContext context, _BadgeRenderBox renderObject) {
@@ -161,11 +208,15 @@ class BeBadgeChild extends SingleChildRenderObjectWidget {
   }
 }
 
-class _BadgeRenderBox extends RenderBox with RenderObjectWithChildMixin<RenderBox> {
+///
+final class _BadgeRenderBox extends RenderBox
+    with RenderObjectWithChildMixin<RenderBox> {
   // Add any properties and constructor you need
-  _BadgeRenderBox({required BeMultiBadgePosition position, required Offset offset})
-    : _position = position,
-      _offset = offset;
+  _BadgeRenderBox({
+    required BeMultiBadgePosition position,
+    required Offset offset,
+  }) : _position = position,
+       _offset = offset;
 
   var _lastSize = Size.zero;
 

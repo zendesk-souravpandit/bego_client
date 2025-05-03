@@ -280,11 +280,19 @@ class BeText extends StatelessWidget {
     }
 
     final theme = BeTheme.of(context);
-    final textStyle = (style ?? type.getStyle(theme.style)).copyWith(color: color);
+    final textStyle = (style ?? type.getStyle(theme.style)).copyWith(
+      color: color,
+    );
 
     return Padding(
       padding: padding ?? EdgeInsets.zero,
-      child: Text(text!, style: textStyle, maxLines: maxLine, overflow: overflow, textAlign: align ?? TextAlign.start),
+      child: Text(
+        text!,
+        style: textStyle,
+        maxLines: maxLine,
+        overflow: overflow,
+        textAlign: align ?? TextAlign.start,
+      ),
     );
   }
 

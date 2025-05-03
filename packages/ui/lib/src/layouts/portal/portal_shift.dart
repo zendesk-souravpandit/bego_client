@@ -1,3 +1,5 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 import 'package:beui/src/layouts/rendering.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';

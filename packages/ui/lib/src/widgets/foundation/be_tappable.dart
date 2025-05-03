@@ -1,3 +1,5 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 import 'package:beui/src/widgets/foundation/be_tappable.style.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
@@ -211,7 +213,7 @@ class _BeTappableState<T extends BeTappable> extends State<T> {
     var tappable = widget.builder(context, (
       focused: _focused,
       hovered: _hovered || _touched,
-    ), widget.child,);
+    ), widget.child);
     tappable = _decorate(context, tappable);
 
     if (widget._enabled) {

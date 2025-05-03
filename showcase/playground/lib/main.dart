@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:playground/use_case_dropdown.dart';
 
 void main() {
-  runApp(AppStateWrapper(child: BegoApp()));
+  runApp(const AppStateWrapper(child: BegoApp()));
 }
 
 class BegoApp extends StatelessWidget {
-  BegoApp({super.key});
+  const BegoApp({super.key});
 
   void onPressed() {}
   @override

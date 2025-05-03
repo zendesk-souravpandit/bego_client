@@ -77,7 +77,8 @@ class BeMobileValue implements BeStyleValue {
 
 // @immutable
 // class BeEdgeInsets extends ThemeExtension<BeEdgeInsets> implements BeInsets {
-//   const BeEdgeInsets({required this.gutter, required this.textInset, required this.buttonInset});
+//   const BeEdgeInsets({required this.gutter,
+//   required this.textInset, required this.buttonInset});
 //   @override
 //   final EdgeInsets gutter;
 //   @override
@@ -97,7 +98,8 @@ class BeMobileValue implements BeStyleValue {
 //   );
 
 //   @override
-//   BeEdgeInsets copyWith({EdgeInsets? gutter, EdgeInsets? textInset, EdgeInsets? buttonInset}) => BeEdgeInsets(
+//   BeEdgeInsets copyWith({EdgeInsets? gutter, EdgeInsets? textInset,
+//   EdgeInsets? buttonInset}) => BeEdgeInsets(
 //     gutter: gutter ?? this.gutter,
 //     textInset: textInset ?? this.textInset,
 //     buttonInset: buttonInset ?? this.buttonInset,
