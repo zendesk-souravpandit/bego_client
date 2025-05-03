@@ -29,7 +29,6 @@ analyzer:
 
 linter:
   rules:
-    - unnecessary_library_name: false
     - always_declare_return_types
     - avoid_empty_else
     - avoid_print
