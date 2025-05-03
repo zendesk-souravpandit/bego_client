@@ -2,7 +2,7 @@
 //  Generated code. Do not modify.
 //  source: auth/apis/auth_service.proto
 //
-// @dart = 2.12
+// @dart = 3.3
 
 // ignore_for_file: annotate_overrides, camel_case_types, comment_references
 // ignore_for_file: constant_identifier_names, library_prefixes
@@ -49,4 +49,22 @@ final $typed_data.Uint8List authStartResponseDescriptor = $convert.base64Decode(
     'J0UmVzcG9uc2UuU3RhdHVzUgZzdGF0dXMSGAoHbWVzc2FnZRgCIAEoCVIHbWVzc2FnZSJeCgZT'
     'dGF0dXMSFgoSU1RBVFVTX1VOU1BFQ0lGSUVEEAASEgoOU1RBVFVTX1VOS05PV04QARISCg5TVE'
     'FUVVNfSEVBTFRIWRACEhQKEFNUQVRVU19VTkhFQUxUSFkQAw==');
+
+const $core.Map<$core.String, $core.dynamic> AuthServiceBase$json = {
+  '1': 'AuthService',
+  '2': [
+    {'1': 'AuthStart', '2': '.auth.apis.AuthStartRequest', '3': '.auth.apis.AuthStartResponse', '4': {}},
+  ],
+};
+
+@$core.Deprecated('Use authServiceDescriptor instead')
+const $core.Map<$core.String, $core.Map<$core.String, $core.dynamic>> AuthServiceBase$messageJson = {
+  '.auth.apis.AuthStartRequest': AuthStartRequest$json,
+  '.auth.apis.AuthStartResponse': AuthStartResponse$json,
+};
+
+/// Descriptor for `AuthService`. Decode as a `google.protobuf.ServiceDescriptorProto`.
+final $typed_data.Uint8List authServiceDescriptor = $convert.base64Decode(
+    'CgtBdXRoU2VydmljZRJICglBdXRoU3RhcnQSGy5hdXRoLmFwaXMuQXV0aFN0YXJ0UmVxdWVzdB'
+    'ocLmF1dGguYXBpcy5BdXRoU3RhcnRSZXNwb25zZSIA');
 

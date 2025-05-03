@@ -2,18 +2,21 @@
 //  Generated code. Do not modify.
 //  source: healthcheck/apis/health_service.proto
 //
-// @dart = 2.12
+// @dart = 3.3
 
 // ignore_for_file: annotate_overrides, camel_case_types, comment_references
 // ignore_for_file: constant_identifier_names, library_prefixes
 // ignore_for_file: non_constant_identifier_names, prefer_final_fields
 // ignore_for_file: unnecessary_import, unnecessary_this, unused_import
 
+import 'dart:async' as $async;
 import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
 import 'health_service.pbenum.dart';
+
+export 'package:protobuf/protobuf.dart' show GeneratedMessageGenericExtensions;
 
 export 'health_service.pbenum.dart';
 
@@ -100,11 +103,11 @@ class CheckHealthServiceResponse extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   CheckHealthServiceResponse_Status get status => $_getN(0);
   @$pb.TagNumber(1)
-  set status(CheckHealthServiceResponse_Status v) { setField(1, v); }
+  set status(CheckHealthServiceResponse_Status v) { $_setField(1, v); }
   @$pb.TagNumber(1)
   $core.bool hasStatus() => $_has(0);
   @$pb.TagNumber(1)
-  void clearStatus() => clearField(1);
+  void clearStatus() => $_clearField(1);
 
   /// Additional details or error messages can be included here.
   @$pb.TagNumber(2)
@@ -114,7 +117,18 @@ class CheckHealthServiceResponse extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   $core.bool hasMessage() => $_has(1);
   @$pb.TagNumber(2)
-  void clearMessage() => clearField(2);
+  void clearMessage() => $_clearField(2);
+}
+
+/// HealthCheckService is the service definition for health check operations.
+class HealthCheckServiceApi {
+  $pb.RpcClient _client;
+  HealthCheckServiceApi(this._client);
+
+  /// CheckHealthService is the RPC method to check the health of the service.
+  $async.Future<CheckHealthServiceResponse> checkHealthService($pb.ClientContext? ctx, CheckHealthServiceRequest request) =>
+    _client.invoke<CheckHealthServiceResponse>(ctx, 'HealthCheckService', 'CheckHealthService', request, CheckHealthServiceResponse())
+  ;
 }
 
 

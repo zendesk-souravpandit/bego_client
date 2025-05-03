@@ -2,7 +2,7 @@
 //  Generated code. Do not modify.
 //  source: auth/apis/auth_service.proto
 //
-// @dart = 2.12
+// @dart = 3.3
 
 // ignore_for_file: annotate_overrides, camel_case_types, comment_references
 // ignore_for_file: constant_identifier_names
@@ -15,24 +15,24 @@ import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import 'auth_service.pb.dart' as $0;
+import 'auth_service.pb.dart' as $7;
 import 'auth_service.pbjson.dart';
 
 export 'auth_service.pb.dart';
 
 abstract class AuthServiceBase extends $pb.GeneratedService {
-  $async.Future<$0.AuthStartResponse> authStart($pb.ServerContext ctx, $0.AuthStartRequest request);
+  $async.Future<$7.AuthStartResponse> authStart($pb.ServerContext ctx, $7.AuthStartRequest request);
 
   $pb.GeneratedMessage createRequest($core.String methodName) {
     switch (methodName) {
-      case 'AuthStart': return $0.AuthStartRequest();
+      case 'AuthStart': return $7.AuthStartRequest();
       default: throw $core.ArgumentError('Unknown method: $methodName');
     }
   }
 
   $async.Future<$pb.GeneratedMessage> handleCall($pb.ServerContext ctx, $core.String methodName, $pb.GeneratedMessage request) {
     switch (methodName) {
-      case 'AuthStart': return this.authStart(ctx, request as $0.AuthStartRequest);
+      case 'AuthStart': return this.authStart(ctx, request as $7.AuthStartRequest);
       default: throw $core.ArgumentError('Unknown method: $methodName');
     }
   }

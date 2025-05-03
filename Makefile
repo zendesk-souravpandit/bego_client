@@ -27,5 +27,6 @@ proto-google:
 
 proto-gen:
 	buf generate && \
-	cd services/beservice && find protos -name "*.proto" | xargs protoc --dart_out=grpc:lib/src/ -I=protos  
+    cd services/beservice && find protos -name "*.proto" | xargs protoc --dart_out=grpc:lib/src/ -I=protos && \
+    find protos -name "*.proto" | xargs protoc --dart_out=lib/src/ -I=protos
 .PHONY: build-bego	

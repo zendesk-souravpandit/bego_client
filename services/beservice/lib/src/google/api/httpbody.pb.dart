@@ -2,7 +2,7 @@
 //  Generated code. Do not modify.
 //  source: google/api/httpbody.proto
 //
-// @dart = 2.12
+// @dart = 3.3
 
 // ignore_for_file: annotate_overrides, camel_case_types, comment_references
 // ignore_for_file: constant_identifier_names, library_prefixes
@@ -13,7 +13,9 @@ import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import '../protobuf/any.pb.dart' as $3;
+import '../protobuf/any.pb.dart' as $0;
+
+export 'package:protobuf/protobuf.dart' show GeneratedMessageGenericExtensions;
 
 ///  Message that represents an arbitrary HTTP body. It should only be used for
 ///  payload formats that can't be represented as JSON, such as raw binary or
@@ -62,7 +64,7 @@ class HttpBody extends $pb.GeneratedMessage {
   factory HttpBody({
     $core.String? contentType,
     $core.List<$core.int>? data,
-    $core.Iterable<$3.Any>? extensions,
+    $core.Iterable<$0.Any>? extensions,
   }) {
     final $result = create();
     if (contentType != null) {
@@ -83,7 +85,7 @@ class HttpBody extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'HttpBody', package: const $pb.PackageName(_omitMessageNames ? '' : 'google.api'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'contentType')
     ..a<$core.List<$core.int>>(2, _omitFieldNames ? '' : 'data', $pb.PbFieldType.OY)
-    ..pc<$3.Any>(3, _omitFieldNames ? '' : 'extensions', $pb.PbFieldType.PM, subBuilder: $3.Any.create)
+    ..pc<$0.Any>(3, _omitFieldNames ? '' : 'extensions', $pb.PbFieldType.PM, subBuilder: $0.Any.create)
     ..hasRequiredFields = false
   ;
 
@@ -116,7 +118,7 @@ class HttpBody extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   $core.bool hasContentType() => $_has(0);
   @$pb.TagNumber(1)
-  void clearContentType() => clearField(1);
+  void clearContentType() => $_clearField(1);
 
   /// The HTTP request/response body as raw binary.
   @$pb.TagNumber(2)
@@ -126,12 +128,12 @@ class HttpBody extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   $core.bool hasData() => $_has(1);
   @$pb.TagNumber(2)
-  void clearData() => clearField(2);
+  void clearData() => $_clearField(2);
 
   /// Application specific response metadata. Must be set in the first response
   /// for streaming APIs.
   @$pb.TagNumber(3)
-  $core.List<$3.Any> get extensions => $_getList(2);
+  $pb.PbList<$0.Any> get extensions => $_getList(2);
 }
 
 

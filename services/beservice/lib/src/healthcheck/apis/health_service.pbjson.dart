@@ -2,7 +2,7 @@
 //  Generated code. Do not modify.
 //  source: healthcheck/apis/health_service.proto
 //
-// @dart = 2.12
+// @dart = 3.3
 
 // ignore_for_file: annotate_overrides, camel_case_types, comment_references
 // ignore_for_file: constant_identifier_names, library_prefixes
@@ -50,4 +50,23 @@ final $typed_data.Uint8List checkHealthServiceResponseDescriptor = $convert.base
     'c3NhZ2UYAiABKAlSB21lc3NhZ2UiXgoGU3RhdHVzEhYKElNUQVRVU19VTlNQRUNJRklFRBAAEh'
     'IKDlNUQVRVU19VTktOT1dOEAESEgoOU1RBVFVTX0hFQUxUSFkQAhIUChBTVEFUVVNfVU5IRUFM'
     'VEhZEAM=');
+
+const $core.Map<$core.String, $core.dynamic> HealthCheckServiceBase$json = {
+  '1': 'HealthCheckService',
+  '2': [
+    {'1': 'CheckHealthService', '2': '.healthcheck.apis.CheckHealthServiceRequest', '3': '.healthcheck.apis.CheckHealthServiceResponse', '4': {}},
+  ],
+};
+
+@$core.Deprecated('Use healthCheckServiceDescriptor instead')
+const $core.Map<$core.String, $core.Map<$core.String, $core.dynamic>> HealthCheckServiceBase$messageJson = {
+  '.healthcheck.apis.CheckHealthServiceRequest': CheckHealthServiceRequest$json,
+  '.healthcheck.apis.CheckHealthServiceResponse': CheckHealthServiceResponse$json,
+};
+
+/// Descriptor for `HealthCheckService`. Decode as a `google.protobuf.ServiceDescriptorProto`.
+final $typed_data.Uint8List healthCheckServiceDescriptor = $convert.base64Decode(
+    'ChJIZWFsdGhDaGVja1NlcnZpY2UScQoSQ2hlY2tIZWFsdGhTZXJ2aWNlEisuaGVhbHRoY2hlY2'
+    'suYXBpcy5DaGVja0hlYWx0aFNlcnZpY2VSZXF1ZXN0GiwuaGVhbHRoY2hlY2suYXBpcy5DaGVj'
+    'a0hlYWx0aFNlcnZpY2VSZXNwb25zZSIA');
 

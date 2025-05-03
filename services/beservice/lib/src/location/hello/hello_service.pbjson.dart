@@ -2,7 +2,7 @@
 //  Generated code. Do not modify.
 //  source: location/hello/hello_service.proto
 //
-// @dart = 2.12
+// @dart = 3.3
 
 // ignore_for_file: annotate_overrides, camel_case_types, comment_references
 // ignore_for_file: constant_identifier_names, library_prefixes
@@ -12,6 +12,8 @@
 import 'dart:convert' as $convert;
 import 'dart:core' as $core;
 import 'dart:typed_data' as $typed_data;
+
+import '../../google/protobuf/timestamp.pbjson.dart' as $4;
 
 @$core.Deprecated('Use persionDescriptor instead')
 const Persion$json = {
@@ -151,4 +153,38 @@ const DeletePersionResponse$json = {
 /// Descriptor for `DeletePersionResponse`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List deletePersionResponseDescriptor = $convert.base64Decode(
     'ChVEZWxldGVQZXJzaW9uUmVzcG9uc2USGAoHc3VjY2VzcxgBIAEoCFIHc3VjY2Vzcw==');
+
+const $core.Map<$core.String, $core.dynamic> PersionServiceBase$json = {
+  '1': 'PersionService',
+  '2': [
+    {'1': 'CreatePersion', '2': '.location.hello.CreatePersionRequest', '3': '.location.hello.CreatePersionResponse'},
+    {'1': 'ReadPersion', '2': '.location.hello.ReadPersionRequest', '3': '.location.hello.ReadPersionResponse'},
+    {'1': 'UpdatePersion', '2': '.location.hello.UpdatePersionRequest', '3': '.location.hello.UpdatePersionResponse'},
+    {'1': 'DeletePersion', '2': '.location.hello.DeletePersionRequest', '3': '.location.hello.DeletePersionResponse'},
+  ],
+};
+
+@$core.Deprecated('Use persionServiceDescriptor instead')
+const $core.Map<$core.String, $core.Map<$core.String, $core.dynamic>> PersionServiceBase$messageJson = {
+  '.location.hello.CreatePersionRequest': CreatePersionRequest$json,
+  '.location.hello.CreatePersionResponse': CreatePersionResponse$json,
+  '.location.hello.Persion': Persion$json,
+  '.google.protobuf.Timestamp': $4.Timestamp$json,
+  '.location.hello.ReadPersionRequest': ReadPersionRequest$json,
+  '.location.hello.ReadPersionResponse': ReadPersionResponse$json,
+  '.location.hello.UpdatePersionRequest': UpdatePersionRequest$json,
+  '.location.hello.UpdatePersionResponse': UpdatePersionResponse$json,
+  '.location.hello.DeletePersionRequest': DeletePersionRequest$json,
+  '.location.hello.DeletePersionResponse': DeletePersionResponse$json,
+};
+
+/// Descriptor for `PersionService`. Decode as a `google.protobuf.ServiceDescriptorProto`.
+final $typed_data.Uint8List persionServiceDescriptor = $convert.base64Decode(
+    'Cg5QZXJzaW9uU2VydmljZRJcCg1DcmVhdGVQZXJzaW9uEiQubG9jYXRpb24uaGVsbG8uQ3JlYX'
+    'RlUGVyc2lvblJlcXVlc3QaJS5sb2NhdGlvbi5oZWxsby5DcmVhdGVQZXJzaW9uUmVzcG9uc2US'
+    'VgoLUmVhZFBlcnNpb24SIi5sb2NhdGlvbi5oZWxsby5SZWFkUGVyc2lvblJlcXVlc3QaIy5sb2'
+    'NhdGlvbi5oZWxsby5SZWFkUGVyc2lvblJlc3BvbnNlElwKDVVwZGF0ZVBlcnNpb24SJC5sb2Nh'
+    'dGlvbi5oZWxsby5VcGRhdGVQZXJzaW9uUmVxdWVzdBolLmxvY2F0aW9uLmhlbGxvLlVwZGF0ZV'
+    'BlcnNpb25SZXNwb25zZRJcCg1EZWxldGVQZXJzaW9uEiQubG9jYXRpb24uaGVsbG8uRGVsZXRl'
+    'UGVyc2lvblJlcXVlc3QaJS5sb2NhdGlvbi5oZWxsby5EZWxldGVQZXJzaW9uUmVzcG9uc2U=');
 

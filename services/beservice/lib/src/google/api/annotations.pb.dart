@@ -2,7 +2,7 @@
 //  Generated code. Do not modify.
 //  source: google/api/annotations.proto
 //
-// @dart = 2.12
+// @dart = 3.3
 
 // ignore_for_file: annotate_overrides, camel_case_types, comment_references
 // ignore_for_file: constant_identifier_names, library_prefixes
@@ -13,10 +13,12 @@ import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import 'http.pb.dart' as $4;
+import 'http.pb.dart' as $1;
+
+export 'package:protobuf/protobuf.dart' show GeneratedMessageGenericExtensions;
 
 class Annotations {
-  static final http = $pb.Extension<$4.HttpRule>(_omitMessageNames ? '' : 'google.protobuf.MethodOptions', _omitFieldNames ? '' : 'http', 72295728, $pb.PbFieldType.OM, defaultOrMaker: $4.HttpRule.getDefault, subBuilder: $4.HttpRule.create);
+  static final http = $pb.Extension<$1.HttpRule>(_omitMessageNames ? '' : 'google.protobuf.MethodOptions', _omitFieldNames ? '' : 'http', 72295728, $pb.PbFieldType.OM, defaultOrMaker: $1.HttpRule.getDefault, subBuilder: $1.HttpRule.create);
   static void registerAllExtensions($pb.ExtensionRegistry registry) {
     registry.add(http);
   }

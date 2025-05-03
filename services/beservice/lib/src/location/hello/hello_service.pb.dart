@@ -2,18 +2,21 @@
 //  Generated code. Do not modify.
 //  source: location/hello/hello_service.proto
 //
-// @dart = 2.12
+// @dart = 3.3
 
 // ignore_for_file: annotate_overrides, camel_case_types, comment_references
 // ignore_for_file: constant_identifier_names, library_prefixes
 // ignore_for_file: non_constant_identifier_names, prefer_final_fields
 // ignore_for_file: unnecessary_import, unnecessary_this, unused_import
 
+import 'dart:async' as $async;
 import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import '../../google/protobuf/timestamp.pb.dart' as $7;
+import '../../google/protobuf/timestamp.pb.dart' as $4;
+
+export 'package:protobuf/protobuf.dart' show GeneratedMessageGenericExtensions;
 
 class Persion extends $pb.GeneratedMessage {
   factory Persion({
@@ -23,8 +26,8 @@ class Persion extends $pb.GeneratedMessage {
     $core.bool? completed,
     $core.String? name,
     $core.int? age,
-    $7.Timestamp? purchaseDate,
-    $7.Timestamp? deliveryDate,
+    $4.Timestamp? purchaseDate,
+    $4.Timestamp? deliveryDate,
     $core.String? price,
   }) {
     final $result = create();
@@ -68,8 +71,8 @@ class Persion extends $pb.GeneratedMessage {
     ..aOB(4, _omitFieldNames ? '' : 'completed')
     ..aOS(5, _omitFieldNames ? '' : 'name')
     ..a<$core.int>(6, _omitFieldNames ? '' : 'age', $pb.PbFieldType.O3)
-    ..aOM<$7.Timestamp>(7, _omitFieldNames ? '' : 'purchaseDate', subBuilder: $7.Timestamp.create)
-    ..aOM<$7.Timestamp>(8, _omitFieldNames ? '' : 'deliveryDate', subBuilder: $7.Timestamp.create)
+    ..aOM<$4.Timestamp>(7, _omitFieldNames ? '' : 'purchaseDate', subBuilder: $4.Timestamp.create)
+    ..aOM<$4.Timestamp>(8, _omitFieldNames ? '' : 'deliveryDate', subBuilder: $4.Timestamp.create)
     ..aOS(9, _omitFieldNames ? '' : 'price')
     ..hasRequiredFields = false
   ;
@@ -102,7 +105,7 @@ class Persion extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   $core.bool hasId() => $_has(0);
   @$pb.TagNumber(1)
-  void clearId() => clearField(1);
+  void clearId() => $_clearField(1);
 
   /// User's title, must be at least 1 character long.
   @$pb.TagNumber(2)
@@ -112,7 +115,7 @@ class Persion extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   $core.bool hasTitle() => $_has(1);
   @$pb.TagNumber(2)
-  void clearTitle() => clearField(2);
+  void clearTitle() => $_clearField(2);
 
   @$pb.TagNumber(3)
   $core.String get description => $_getSZ(2);
@@ -121,7 +124,7 @@ class Persion extends $pb.GeneratedMessage {
   @$pb.TagNumber(3)
   $core.bool hasDescription() => $_has(2);
   @$pb.TagNumber(3)
-  void clearDescription() => clearField(3);
+  void clearDescription() => $_clearField(3);
 
   @$pb.TagNumber(4)
   $core.bool get completed => $_getBF(3);
@@ -130,7 +133,7 @@ class Persion extends $pb.GeneratedMessage {
   @$pb.TagNumber(4)
   $core.bool hasCompleted() => $_has(3);
   @$pb.TagNumber(4)
-  void clearCompleted() => clearField(4);
+  void clearCompleted() => $_clearField(4);
 
   @$pb.TagNumber(5)
   $core.String get name => $_getSZ(4);
@@ -139,7 +142,7 @@ class Persion extends $pb.GeneratedMessage {
   @$pb.TagNumber(5)
   $core.bool hasName() => $_has(4);
   @$pb.TagNumber(5)
-  void clearName() => clearField(5);
+  void clearName() => $_clearField(5);
 
   @$pb.TagNumber(6)
   $core.int get age => $_getIZ(5);
@@ -148,29 +151,29 @@ class Persion extends $pb.GeneratedMessage {
   @$pb.TagNumber(6)
   $core.bool hasAge() => $_has(5);
   @$pb.TagNumber(6)
-  void clearAge() => clearField(6);
+  void clearAge() => $_clearField(6);
 
   @$pb.TagNumber(7)
-  $7.Timestamp get purchaseDate => $_getN(6);
+  $4.Timestamp get purchaseDate => $_getN(6);
   @$pb.TagNumber(7)
-  set purchaseDate($7.Timestamp v) { setField(7, v); }
+  set purchaseDate($4.Timestamp v) { $_setField(7, v); }
   @$pb.TagNumber(7)
   $core.bool hasPurchaseDate() => $_has(6);
   @$pb.TagNumber(7)
-  void clearPurchaseDate() => clearField(7);
+  void clearPurchaseDate() => $_clearField(7);
   @$pb.TagNumber(7)
-  $7.Timestamp ensurePurchaseDate() => $_ensure(6);
+  $4.Timestamp ensurePurchaseDate() => $_ensure(6);
 
   @$pb.TagNumber(8)
-  $7.Timestamp get deliveryDate => $_getN(7);
+  $4.Timestamp get deliveryDate => $_getN(7);
   @$pb.TagNumber(8)
-  set deliveryDate($7.Timestamp v) { setField(8, v); }
+  set deliveryDate($4.Timestamp v) { $_setField(8, v); }
   @$pb.TagNumber(8)
   $core.bool hasDeliveryDate() => $_has(7);
   @$pb.TagNumber(8)
-  void clearDeliveryDate() => clearField(8);
+  void clearDeliveryDate() => $_clearField(8);
   @$pb.TagNumber(8)
-  $7.Timestamp ensureDeliveryDate() => $_ensure(7);
+  $4.Timestamp ensureDeliveryDate() => $_ensure(7);
 
   @$pb.TagNumber(9)
   $core.String get price => $_getSZ(8);
@@ -179,7 +182,7 @@ class Persion extends $pb.GeneratedMessage {
   @$pb.TagNumber(9)
   $core.bool hasPrice() => $_has(8);
   @$pb.TagNumber(9)
-  void clearPrice() => clearField(9);
+  void clearPrice() => $_clearField(9);
 }
 
 class CreatePersionRequest extends $pb.GeneratedMessage {
@@ -234,7 +237,7 @@ class CreatePersionRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   $core.bool hasTitle() => $_has(0);
   @$pb.TagNumber(1)
-  void clearTitle() => clearField(1);
+  void clearTitle() => $_clearField(1);
 
   @$pb.TagNumber(2)
   $core.String get description => $_getSZ(1);
@@ -243,7 +246,7 @@ class CreatePersionRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   $core.bool hasDescription() => $_has(1);
   @$pb.TagNumber(2)
-  void clearDescription() => clearField(2);
+  void clearDescription() => $_clearField(2);
 }
 
 class CreatePersionResponse extends $pb.GeneratedMessage {
@@ -289,11 +292,11 @@ class CreatePersionResponse extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   Persion get persion => $_getN(0);
   @$pb.TagNumber(1)
-  set persion(Persion v) { setField(1, v); }
+  set persion(Persion v) { $_setField(1, v); }
   @$pb.TagNumber(1)
   $core.bool hasPersion() => $_has(0);
   @$pb.TagNumber(1)
-  void clearPersion() => clearField(1);
+  void clearPersion() => $_clearField(1);
   @$pb.TagNumber(1)
   Persion ensurePersion() => $_ensure(0);
 }
@@ -345,7 +348,7 @@ class ReadPersionRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   $core.bool hasId() => $_has(0);
   @$pb.TagNumber(1)
-  void clearId() => clearField(1);
+  void clearId() => $_clearField(1);
 }
 
 class ReadPersionResponse extends $pb.GeneratedMessage {
@@ -391,11 +394,11 @@ class ReadPersionResponse extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   Persion get persion => $_getN(0);
   @$pb.TagNumber(1)
-  set persion(Persion v) { setField(1, v); }
+  set persion(Persion v) { $_setField(1, v); }
   @$pb.TagNumber(1)
   $core.bool hasPersion() => $_has(0);
   @$pb.TagNumber(1)
-  void clearPersion() => clearField(1);
+  void clearPersion() => $_clearField(1);
   @$pb.TagNumber(1)
   Persion ensurePersion() => $_ensure(0);
 }
@@ -462,7 +465,7 @@ class UpdatePersionRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   $core.bool hasId() => $_has(0);
   @$pb.TagNumber(1)
-  void clearId() => clearField(1);
+  void clearId() => $_clearField(1);
 
   @$pb.TagNumber(2)
   $core.String get title => $_getSZ(1);
@@ -471,7 +474,7 @@ class UpdatePersionRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   $core.bool hasTitle() => $_has(1);
   @$pb.TagNumber(2)
-  void clearTitle() => clearField(2);
+  void clearTitle() => $_clearField(2);
 
   @$pb.TagNumber(3)
   $core.String get description => $_getSZ(2);
@@ -480,7 +483,7 @@ class UpdatePersionRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(3)
   $core.bool hasDescription() => $_has(2);
   @$pb.TagNumber(3)
-  void clearDescription() => clearField(3);
+  void clearDescription() => $_clearField(3);
 
   @$pb.TagNumber(4)
   $core.bool get completed => $_getBF(3);
@@ -489,7 +492,7 @@ class UpdatePersionRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(4)
   $core.bool hasCompleted() => $_has(3);
   @$pb.TagNumber(4)
-  void clearCompleted() => clearField(4);
+  void clearCompleted() => $_clearField(4);
 }
 
 class UpdatePersionResponse extends $pb.GeneratedMessage {
@@ -535,11 +538,11 @@ class UpdatePersionResponse extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   Persion get persion => $_getN(0);
   @$pb.TagNumber(1)
-  set persion(Persion v) { setField(1, v); }
+  set persion(Persion v) { $_setField(1, v); }
   @$pb.TagNumber(1)
   $core.bool hasPersion() => $_has(0);
   @$pb.TagNumber(1)
-  void clearPersion() => clearField(1);
+  void clearPersion() => $_clearField(1);
   @$pb.TagNumber(1)
   Persion ensurePersion() => $_ensure(0);
 }
@@ -591,7 +594,7 @@ class DeletePersionRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   $core.bool hasId() => $_has(0);
   @$pb.TagNumber(1)
-  void clearId() => clearField(1);
+  void clearId() => $_clearField(1);
 }
 
 class DeletePersionResponse extends $pb.GeneratedMessage {
@@ -641,7 +644,25 @@ class DeletePersionResponse extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   $core.bool hasSuccess() => $_has(0);
   @$pb.TagNumber(1)
-  void clearSuccess() => clearField(1);
+  void clearSuccess() => $_clearField(1);
+}
+
+class PersionServiceApi {
+  $pb.RpcClient _client;
+  PersionServiceApi(this._client);
+
+  $async.Future<CreatePersionResponse> createPersion($pb.ClientContext? ctx, CreatePersionRequest request) =>
+    _client.invoke<CreatePersionResponse>(ctx, 'PersionService', 'CreatePersion', request, CreatePersionResponse())
+  ;
+  $async.Future<ReadPersionResponse> readPersion($pb.ClientContext? ctx, ReadPersionRequest request) =>
+    _client.invoke<ReadPersionResponse>(ctx, 'PersionService', 'ReadPersion', request, ReadPersionResponse())
+  ;
+  $async.Future<UpdatePersionResponse> updatePersion($pb.ClientContext? ctx, UpdatePersionRequest request) =>
+    _client.invoke<UpdatePersionResponse>(ctx, 'PersionService', 'UpdatePersion', request, UpdatePersionResponse())
+  ;
+  $async.Future<DeletePersionResponse> deletePersion($pb.ClientContext? ctx, DeletePersionRequest request) =>
+    _client.invoke<DeletePersionResponse>(ctx, 'PersionService', 'DeletePersion', request, DeletePersionResponse())
+  ;
 }
 
 

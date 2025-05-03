@@ -2,7 +2,7 @@
 //  Generated code. Do not modify.
 //  source: location/hello/hello_service.proto
 //
-// @dart = 2.12
+// @dart = 3.3
 
 // ignore_for_file: annotate_overrides, camel_case_types, comment_references
 // ignore_for_file: constant_identifier_names, library_prefixes
@@ -96,20 +96,20 @@ abstract class PersionServiceBase extends $grpc.Service {
         ($0.DeletePersionResponse value) => value.writeToBuffer()));
   }
 
-  $async.Future<$0.CreatePersionResponse> createPersion_Pre($grpc.ServiceCall call, $async.Future<$0.CreatePersionRequest> request) async {
-    return createPersion(call, await request);
+  $async.Future<$0.CreatePersionResponse> createPersion_Pre($grpc.ServiceCall $call, $async.Future<$0.CreatePersionRequest> $request) async {
+    return createPersion($call, await $request);
   }
 
-  $async.Future<$0.ReadPersionResponse> readPersion_Pre($grpc.ServiceCall call, $async.Future<$0.ReadPersionRequest> request) async {
-    return readPersion(call, await request);
+  $async.Future<$0.ReadPersionResponse> readPersion_Pre($grpc.ServiceCall $call, $async.Future<$0.ReadPersionRequest> $request) async {
+    return readPersion($call, await $request);
   }
 
-  $async.Future<$0.UpdatePersionResponse> updatePersion_Pre($grpc.ServiceCall call, $async.Future<$0.UpdatePersionRequest> request) async {
-    return updatePersion(call, await request);
+  $async.Future<$0.UpdatePersionResponse> updatePersion_Pre($grpc.ServiceCall $call, $async.Future<$0.UpdatePersionRequest> $request) async {
+    return updatePersion($call, await $request);
   }
 
-  $async.Future<$0.DeletePersionResponse> deletePersion_Pre($grpc.ServiceCall call, $async.Future<$0.DeletePersionRequest> request) async {
-    return deletePersion(call, await request);
+  $async.Future<$0.DeletePersionResponse> deletePersion_Pre($grpc.ServiceCall $call, $async.Future<$0.DeletePersionRequest> $request) async {
+    return deletePersion($call, await $request);
   }
 
   $async.Future<$0.CreatePersionResponse> createPersion($grpc.ServiceCall call, $0.CreatePersionRequest request);

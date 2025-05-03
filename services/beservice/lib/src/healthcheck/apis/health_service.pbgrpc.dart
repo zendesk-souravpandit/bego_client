@@ -2,7 +2,7 @@
 //  Generated code. Do not modify.
 //  source: healthcheck/apis/health_service.proto
 //
-// @dart = 2.12
+// @dart = 3.3
 
 // ignore_for_file: annotate_overrides, camel_case_types, comment_references
 // ignore_for_file: constant_identifier_names, library_prefixes
@@ -51,8 +51,8 @@ abstract class HealthCheckServiceBase extends $grpc.Service {
         ($1.CheckHealthServiceResponse value) => value.writeToBuffer()));
   }
 
-  $async.Future<$1.CheckHealthServiceResponse> checkHealthService_Pre($grpc.ServiceCall call, $async.Future<$1.CheckHealthServiceRequest> request) async {
-    return checkHealthService(call, await request);
+  $async.Future<$1.CheckHealthServiceResponse> checkHealthService_Pre($grpc.ServiceCall $call, $async.Future<$1.CheckHealthServiceRequest> $request) async {
+    return checkHealthService($call, await $request);
   }
 
   $async.Future<$1.CheckHealthServiceResponse> checkHealthService($grpc.ServiceCall call, $1.CheckHealthServiceRequest request);

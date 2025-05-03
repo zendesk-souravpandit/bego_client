@@ -2,7 +2,7 @@
 //  Generated code. Do not modify.
 //  source: healthcheck/apis/health_service.proto
 //
-// @dart = 2.12
+// @dart = 3.3
 
 // ignore_for_file: annotate_overrides, camel_case_types, comment_references
 // ignore_for_file: constant_identifier_names
@@ -15,24 +15,24 @@ import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import 'health_service.pb.dart' as $3;
+import 'health_service.pb.dart' as $6;
 import 'health_service.pbjson.dart';
 
 export 'health_service.pb.dart';
 
 abstract class HealthCheckServiceBase extends $pb.GeneratedService {
-  $async.Future<$3.CheckHealthServiceResponse> checkHealthService($pb.ServerContext ctx, $3.CheckHealthServiceRequest request);
+  $async.Future<$6.CheckHealthServiceResponse> checkHealthService($pb.ServerContext ctx, $6.CheckHealthServiceRequest request);
 
   $pb.GeneratedMessage createRequest($core.String methodName) {
     switch (methodName) {
-      case 'CheckHealthService': return $3.CheckHealthServiceRequest();
+      case 'CheckHealthService': return $6.CheckHealthServiceRequest();
       default: throw $core.ArgumentError('Unknown method: $methodName');
     }
   }
 
   $async.Future<$pb.GeneratedMessage> handleCall($pb.ServerContext ctx, $core.String methodName, $pb.GeneratedMessage request) {
     switch (methodName) {
-      case 'CheckHealthService': return this.checkHealthService(ctx, request as $3.CheckHealthServiceRequest);
+      case 'CheckHealthService': return this.checkHealthService(ctx, request as $6.CheckHealthServiceRequest);
       default: throw $core.ArgumentError('Unknown method: $methodName');
     }
   }

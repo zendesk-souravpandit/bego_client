@@ -2,7 +2,7 @@
 //  Generated code. Do not modify.
 //  source: auth/apis/auth_service.proto
 //
-// @dart = 2.12
+// @dart = 3.3
 
 // ignore_for_file: annotate_overrides, camel_case_types, comment_references
 // ignore_for_file: constant_identifier_names, library_prefixes
@@ -30,7 +30,7 @@ class AuthStartResponse_Status extends $pb.ProtobufEnum {
   static final $core.Map<$core.int, AuthStartResponse_Status> _byValue = $pb.ProtobufEnum.initByValue(values);
   static AuthStartResponse_Status? valueOf($core.int value) => _byValue[value];
 
-  const AuthStartResponse_Status._($core.int v, $core.String n) : super(v, n);
+  const AuthStartResponse_Status._(super.v, super.n);
 }
 
 

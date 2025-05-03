@@ -2,7 +2,7 @@
 //  Generated code. Do not modify.
 //  source: auth/apis/auth_service.proto
 //
-// @dart = 2.12
+// @dart = 3.3
 
 // ignore_for_file: annotate_overrides, camel_case_types, comment_references
 // ignore_for_file: constant_identifier_names, library_prefixes
@@ -51,8 +51,8 @@ abstract class AuthServiceBase extends $grpc.Service {
         ($2.AuthStartResponse value) => value.writeToBuffer()));
   }
 
-  $async.Future<$2.AuthStartResponse> authStart_Pre($grpc.ServiceCall call, $async.Future<$2.AuthStartRequest> request) async {
-    return authStart(call, await request);
+  $async.Future<$2.AuthStartResponse> authStart_Pre($grpc.ServiceCall $call, $async.Future<$2.AuthStartRequest> $request) async {
+    return authStart($call, await $request);
   }
 
   $async.Future<$2.AuthStartResponse> authStart($grpc.ServiceCall call, $2.AuthStartRequest request);

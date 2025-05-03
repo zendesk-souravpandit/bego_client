@@ -2,7 +2,7 @@
 //  Generated code. Do not modify.
 //  source: google/protobuf/duration.proto
 //
-// @dart = 2.12
+// @dart = 3.3
 
 // ignore_for_file: annotate_overrides, camel_case_types, comment_references
 // ignore_for_file: constant_identifier_names, library_prefixes
@@ -14,6 +14,8 @@ import 'dart:core' as $core;
 import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 import 'package:protobuf/src/protobuf/mixins/well_known.dart' as $mixin;
+
+export 'package:protobuf/protobuf.dart' show GeneratedMessageGenericExtensions;
 
 ///  A Duration represents a signed, fixed-length span of time represented
 ///  as a count of seconds and fractions of seconds at nanosecond
@@ -128,7 +130,7 @@ class Duration extends $pb.GeneratedMessage with $mixin.DurationMixin {
   @$pb.TagNumber(1)
   $core.bool hasSeconds() => $_has(0);
   @$pb.TagNumber(1)
-  void clearSeconds() => clearField(1);
+  void clearSeconds() => $_clearField(1);
 
   /// Signed fractions of a second at nanosecond resolution of the span
   /// of time. Durations less than one second are represented with a 0
@@ -143,7 +145,7 @@ class Duration extends $pb.GeneratedMessage with $mixin.DurationMixin {
   @$pb.TagNumber(2)
   $core.bool hasNanos() => $_has(1);
   @$pb.TagNumber(2)
-  void clearNanos() => clearField(2);
+  void clearNanos() => $_clearField(2);
 }
 
 
