@@ -36,6 +36,8 @@ dependencies:
     path: ../../packages/core
   beui:
     path: ../../packages/ui
+  beservice:
+    path: ../../services/beservice
   cupertino_icons: ^1.0.8
   flutter:
     sdk: flutter
