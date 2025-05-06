@@ -26,7 +26,7 @@ class BegoApp extends StatelessWidget {
     return MaterialApp(
       themeMode: appState.themeMode,
       theme: BeTheme.buildThemeof(context),
-      home: BeNetworkServiceDemo(),
+      home: const BeNetworkServiceDemo(),
     );
   }
 }

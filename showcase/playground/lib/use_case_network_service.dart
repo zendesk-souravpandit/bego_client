@@ -1,67 +1,123 @@
 import 'package:beservice/begrpc.dart';
 import 'package:beservice/health.service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart'; // For rootBundle
 
-class BeNetworkServiceDemo extends StatelessWidget {
-  BeNetworkServiceDemo({super.key});
+class BeNetworkServiceDemo extends StatefulWidget {
+  const BeNetworkServiceDemo({super.key});
 
-  final channel = ClientChannel(
-    'localhost', // Your server address
-    port: 5002, // Your server port
-    options: ChannelOptions(
-      credentials: ChannelCredentials.secure(
-        onBadCertificate:
-            (cert, host) => true, // Allow self-signed certificates
-      ),
+  @override
+  State<BeNetworkServiceDemo> createState() => _BeNetworkServiceDemoState();
+}
 
-      // Use secure credentials in production
-    ),
-  );
+class _BeNetworkServiceDemoState extends State<BeNetworkServiceDemo> {
+  late ClientChannel channel;
+  late HealthCheckServiceClient stub;
+  String data = 'This is a test';
+  bool isLoading = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _initializeChannel();
+  }
+
+  Future<void> _initializeChannel() async {
+    try {
+      // For development with self-signed certs (remove in production)
+      // channel = ClientChannel(
+      //   'localhost',
+      //   port: 5002,
+      //   options: ChannelOptions(
+      //     credentials: ChannelCredentials.secure(
+      //       onBadCertificate: (cert, host) => true,
+      //     ),
+      //   ),
+      // );
+
+      // For production with real certificates:
+      final certBytes =
+          (await rootBundle.load(
+            'assets/certs/server.crt',
+          )).buffer.asUint8List();
+
+      channel = ClientChannel(
+        'localhost',
+        port: 5002,
+        options: ChannelOptions(
+          credentials: ChannelCredentials.secure(
+            certificates: certBytes,
+            authority: 'localhost',
+            onBadCertificate: (cert, host) {
+              // debugPrint(
+              //   'Warning: Bypassing certificate verification for $cert',
+              // );
+              // debugPrint(
+              //   'Warning: Bypassing certificate verification for $host',
+              // );
+              return true; // Accept any certificate
+            },
+          ),
+        ),
+      );
+
+      stub = HealthCheckServiceClient(channel);
+    } catch (e) {
+      setState(() {
+        data = 'Channel initialization failed: ${e.toString()}';
+      });
+    }
+  }
+
+  Future<void> _checkHealth() async {
+    setState(() {
+      isLoading = true;
+    });
+
+    try {
+      final response = await stub.checkHealthService(
+        CheckHealthServiceRequest(),
+        options: CallOptions(timeout: const Duration(seconds: 5)),
+      );
+
+      setState(() {
+        data = response.message;
+      });
+    } catch (e) {
+      setState(() {
+        data = 'Error: ${e.toString()}';
+      });
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    channel.shutdown();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final stub = HealthCheckServiceClient(channel, options: CallOptions());
-    var data = 'This is a test';
-
     return Scaffold(
-      body: Column(
-        children: [
-          StatefulBuilder(
-            builder:
-                (ctx, setState) => Column(
-                  children: [
-                    Center(
-                      child: ElevatedButton(
-                        onPressed: () {
-                          stub
-                              .checkHealthService(
-                                CheckHealthServiceRequest(),
-                                options: CallOptions(),
-                              )
-                              .then((response) {
-                                data = response.message;
-                              })
-                              .onError((e, stack) {
-                                // print("-------------------------");
-                                // print(e);
-                                // print("-------------------------");
-                                // print(stack);
-                                data = e.toString();
-                              })
-                              .whenComplete(() {
-                                setState(() {});
-                                // print("***********************");
-                              });
-                        },
-                        child: const Text('Click me'),
-                      ),
-                    ),
-                    Text(data),
-                  ],
-                ),
-          ),
-          // Center(child: BeAsset.images.demoImage.image()),
-        ],
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: isLoading ? null : _checkHealth,
+              child:
+                  isLoading
+                      ? const CircularProgressIndicator()
+                      : const Text('Check Health'),
+            ),
+            const SizedBox(height: 20),
+            SelectableText(data),
+          ],
+        ),
       ),
     );
   }
