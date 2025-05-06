@@ -1,7 +1,7 @@
 import 'package:becomponent/app.dart';
 import 'package:beui/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:playground/use_case_network_service.dart';
+import 'package:playground/use_case_color_schema.dart';
 
 void main() {
   runApp(const AppStateWrapper(child: BegoApp()));
@@ -26,7 +26,7 @@ class BegoApp extends StatelessWidget {
     return MaterialApp(
       themeMode: appState.themeMode,
       theme: BeTheme.buildThemeof(context),
-      home: const BeNetworkServiceDemo(),
+      home: const ColorSchemeDisplay(),
     );
   }
 }
