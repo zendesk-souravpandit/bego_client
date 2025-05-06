@@ -7,3 +7,6 @@ class BeUIBlurFilter {
   static final blurRegular = ImageFilter.blur(sigmaX: 1, sigmaY: 1);
   static final blurHuge = ImageFilter.blur(sigmaX: 6, sigmaY: 6);
 }
+
+const widthInfinity = double.infinity;
+const heightInfinity = double.infinity;
