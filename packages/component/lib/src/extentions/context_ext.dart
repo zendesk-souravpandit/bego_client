@@ -1,5 +1,5 @@
 import 'package:becomponent/app.dart' show AppStateProvider;
-import 'package:beui/screen.dart';
+import 'package:beui/layout.dart';
 import 'package:flutter/material.dart';
 
 // Use getx for build context extension

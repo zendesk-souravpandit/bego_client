@@ -1,7 +1,7 @@
 // ignore_for_file: lines_longer_than_80_chars
 
 import 'package:beui/common.dart';
-import 'package:beui/screen.dart';
+import 'package:beui/layout.dart';
 import 'package:beui/theme.dart';
 import 'package:flutter/material.dart';
 

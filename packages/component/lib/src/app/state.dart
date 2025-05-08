@@ -1,4 +1,4 @@
-import 'package:beui/screen.dart' show BeBreakpoint, BeResponsivePoints;
+import 'package:beui/layout.dart' show BeBreakpoint, BeResponsivePoints;
 import 'package:beui/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';

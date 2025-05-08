@@ -13,8 +13,8 @@ class BegoApp extends StatelessWidget {
   void onPressed() {}
   @override
   Widget build(BuildContext context) {
-    // final betheme = context.betheme;
     final appState = AppStateProvider.of(context).state;
+    // final betheme = context.betheme;
     // final appEvent = AppStateProvider.of(context).appEventBus;
     // final updateEvent = AppStateProvider.of(context).updateEvent;
     // appEvent.on<UpdateLocaleEvent>().listen((event) {
@@ -26,7 +26,12 @@ class BegoApp extends StatelessWidget {
     return MaterialApp(
       themeMode: appState.themeMode,
       theme: BeTheme.buildThemeof(context),
-      home: const BuildComponent(),
+      home: StatefulBuilder(
+        builder: (context, state) {
+          return DropdownExample();
+          // return const CounterWidget();
+        },
+      ),
     );
   }
 }

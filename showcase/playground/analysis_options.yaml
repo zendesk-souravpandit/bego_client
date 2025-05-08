@@ -29,11 +29,13 @@ analyzer:
 
 linter:
   rules:
+    - avoid_unused_constructor_parameters
+    - prefer_final_locals
+    - prefer_final_fields
     - always_declare_return_types
     - avoid_empty_else
     - avoid_print
     - avoid_renaming_method_parameters
-    - avoid_unused_constructor_parameters
     - avoid_void_async
     - cancel_subscriptions
     - constant_identifier_names
@@ -60,9 +62,7 @@ linter:
     - prefer_const_constructors
     - prefer_const_declarations
     - prefer_contains
-    - prefer_final_fields
     - prefer_final_in_for_each
-    - prefer_final_locals
     - prefer_for_elements_to_map_fromIterable
     - prefer_foreach
     - prefer_generic_function_type_aliases

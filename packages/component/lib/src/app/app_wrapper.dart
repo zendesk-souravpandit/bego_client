@@ -6,7 +6,7 @@ import 'package:becomponent/src/app/events.dart';
 import 'package:becomponent/src/app/state.dart';
 import 'package:becomponent/src/app/state_provider.dart';
 import 'package:becore/event.dart' show BeEventBus, EventAction;
-import 'package:beui/screen.dart';
+import 'package:beui/layout.dart';
 import 'package:beui/theme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

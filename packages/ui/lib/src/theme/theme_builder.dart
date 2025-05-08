@@ -1,7 +1,7 @@
 // ignore_for_file: lines_longer_than_80_chars
 
+import 'package:beui/src/decoration/be_edge_insets.dart';
 import 'package:beui/src/decoration/be_round_rectangle_border.dart';
-import 'package:beui/src/decoration/bego_edge_insets.dart';
 import 'package:beui/src/extentions/be_double_ext.dart';
 import 'package:beui/src/theme/colors/be_color_schema.dart';
 import 'package:beui/theme.dart';
@@ -27,6 +27,7 @@ ThemeData buildTheme({
     fontFamily: BeUIConst.fontFamily,
     splashFactory: InkRipple.splashFactory,
     disabledColor: betheme.colors.disabled,
+    visualDensity: VisualDensity.adaptivePlatformDensity,
 
     // Component themes
     appBarTheme: _buildAppBarTheme(colorScheme),
@@ -166,7 +167,8 @@ BadgeThemeData _buildBadgeTheme(ColorScheme colorScheme) {
 ButtonThemeData _buildButtonTheme(BeThemeData betheme) {
   return ButtonThemeData(
     alignedDropdown: true,
-    layoutBehavior: ButtonBarLayoutBehavior.padded,
+
+    // layoutBehavior: ButtonBarLayoutBehavior.padded,
     buttonColor: betheme.colors.error,
 
     // padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -360,25 +362,27 @@ ElevatedButtonThemeData _buildElevatedButtonTheme(BeThemeData betheme) {
         }
         return swPrimary.shade100;
       }),
-      overlayColor: const WidgetStatePropertyAll(BeColors.transparent),
+      overlayColor: WidgetStatePropertyAll(swPrimary.shade600),
       elevation: const WidgetStatePropertyAll(0),
-      shadowColor: const WidgetStatePropertyAll(Colors.transparent),
-      surfaceTintColor: const WidgetStatePropertyAll(Colors.transparent),
-      textStyle: WidgetStateProperty.resolveWith((state) {
-        if (state.containsAll([WidgetState.hovered, WidgetState.pressed])) {
-          return const TextStyle(
-            fontSize: 15,
-            fontWeight: FontWeight.w600,
-            letterSpacing: 0.5,
-          );
-        }
+      // shadowColor: const WidgetStatePropertyAll(Colors.transparent),
+      surfaceTintColor: const WidgetStatePropertyAll(Colors.white),
+      // textStyle: WidgetStateProperty.resolveWith((state) {
+      //   if (state.containsAll([WidgetState.hovered, WidgetState.pressed])) {
+      //     return const TextStyle(
+      //       fontSize: 15,
+      //       color: BeColors.white,
+      //       fontWeight: FontWeight.w600,
+      //       letterSpacing: 0.5,
+      //     );
+      //   }
 
-        return const TextStyle(
-          fontSize: 14,
-          fontWeight: FontWeight.w600,
-          letterSpacing: 0.5,
-        );
-      }),
+      //   return const TextStyle(
+      //     fontSize: 14,
+      //     color: BeColors.white,
+      //     fontWeight: FontWeight.w600,
+      //     letterSpacing: 0.5,
+      //   );
+      // }),
       // iconColor: const WidgetStatePropertyAll(0),
       iconSize: WidgetStateProperty.resolveWith((state) {
         if (state.containsAll([WidgetState.hovered, WidgetState.pressed])) {
@@ -390,7 +394,6 @@ ElevatedButtonThemeData _buildElevatedButtonTheme(BeThemeData betheme) {
         EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       ),
       animationDuration: const Duration(milliseconds: 500),
-
       shape: WidgetStateProperty.resolveWith((states) {
         if (states.contains(WidgetState.disabled)) {
           return ContinuousRectangleBorder(

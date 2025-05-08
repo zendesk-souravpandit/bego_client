@@ -1,5 +1,5 @@
 import 'package:beui/be_icons.dart';
-import 'package:beui/src/decoration/bego_edge_insets.dart';
+import 'package:beui/src/decoration/be_edge_insets.dart';
 import 'package:beui/src/widgets/picker/_number_button.dart';
 import 'package:beui/theme.dart';
 import 'package:flutter/material.dart';

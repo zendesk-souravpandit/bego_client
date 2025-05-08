@@ -2,6 +2,19 @@ import 'package:beui/src/widgets/form/be_enable.dart';
 import 'package:beui/text.dart';
 import 'package:flutter/material.dart';
 
+/// A customizable form field wrapper that provides consistent layout
+/// and styling
+/// for form fields with labels, helper text, and error messages.
+///
+/// Features:
+/// - Flexible layout with start/end widgets
+/// - Customizable title and helper sections
+/// - Built-in validation handling
+/// - Consistent error display
+
+/// A customizable form field wrapper that provides consistent
+/// layout and styling
+/// for form fields with labels, helper text, and error messages.
 class BeFormField<T> extends FormField<T> {
   BeFormField({
     super.key,
@@ -16,7 +29,6 @@ class BeFormField<T> extends FormField<T> {
     this.shouldValidate = true,
     this.title,
     this.titleStyle,
-
     this.startEndAxisAlignment = CrossAxisAlignment.center,
     this.helperText,
     this.helperStyle,
@@ -29,6 +41,7 @@ class BeFormField<T> extends FormField<T> {
     this.gap = 8.0,
   }) : super(
          builder: (field) {
+           onChanged?.call(field.value);
            return BeEnabled(
              enabled: enabled,
              child: _BeFormFieldLayout(
@@ -43,16 +56,7 @@ class BeFormField<T> extends FormField<T> {
                      trailingWidgets: trailingTitleWidgets,
                    ),
                  SizedBox(height: spacing),
-                 build(
-                   _BeFormFieldState(
-                     field: field,
-                     onChanged: (value) {
-                       field.didChange(value);
-                       onChanged?.call(value);
-                     },
-                     enabled: enabled,
-                   ),
-                 ),
+                 build(field),
                  if (helperText != null || trailingHelperWidgets.isNotEmpty)
                    Padding(
                      padding: EdgeInsets.only(top: spacing),
@@ -62,7 +66,7 @@ class BeFormField<T> extends FormField<T> {
                        trailingWidgets: trailingHelperWidgets,
                      ),
                    ),
-                 if (shouldValidate && field.errorText != null)
+                 if (shouldValidate && field.hasError)
                    Padding(
                      padding: EdgeInsets.only(top: spacing / 2),
                      child: _BeFormErrorText(
@@ -77,6 +81,7 @@ class BeFormField<T> extends FormField<T> {
        );
 
   final Widget Function(FormFieldState<T> field) build;
+
   final ValueChanged<T?>? onChanged;
   final bool shouldValidate;
   final String? title;
@@ -91,7 +96,15 @@ class BeFormField<T> extends FormField<T> {
   final double gap;
   final CrossAxisAlignment startEndAxisAlignment;
   final TextStyle? errorStyle;
+
+  @override
+  FormFieldState<T> createState() => BeFormFieldState<T>();
 }
+
+// class _BeFormFieldState<T> extends FormFieldState<T> {
+//   @override
+//   BeFormField<T> get widget => super.widget as BeFormField<T>;
+// }
 
 class _BeFormFieldLayout extends StatelessWidget {
   const _BeFormFieldLayout({
@@ -210,23 +223,4 @@ class _BeFormErrorText extends StatelessWidget {
   }
 }
 
-class _BeFormFieldState<T> extends FormFieldState<T> {
-  _BeFormFieldState({
-    required this.field,
-    required this.onChanged,
-    this.enabled = true,
-  });
-
-  final FormFieldState<T> field;
-  final ValueChanged<T?> onChanged;
-  final bool enabled;
-
-  @override
-  void didChange(T? value) => onChanged(value);
-
-  void markAsTouched() {
-    if (!field.hasError) {
-      field.didChange(field.value);
-    }
-  }
-}
+class BeFormFieldState<T> extends FormFieldState<T> {}
