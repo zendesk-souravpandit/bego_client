@@ -1,7 +1,7 @@
 import 'package:becomponent/app.dart';
 import 'package:beui/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:playground/build_component.dart';
+import 'package:playground/be_svg_provider.dart';
 
 void main() {
   runApp(const AppStateWrapper(child: BegoApp()));
@@ -26,12 +26,7 @@ class BegoApp extends StatelessWidget {
     return MaterialApp(
       themeMode: appState.themeMode,
       theme: BeTheme.buildThemeof(context),
-      home: StatefulBuilder(
-        builder: (context, state) {
-          return DropdownExample();
-          // return const CounterWidget();
-        },
-      ),
+      home: const CounterPage(),
     );
   }
 }

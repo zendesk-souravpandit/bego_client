@@ -1,201 +1,164 @@
-// import 'dart:async';
-// import 'dart:io';
+// State
+import 'package:becomponent/page.dart';
+import 'package:becore/hooks.dart';
+import 'package:flutter/material.dart';
 
-// import 'package:flutter/foundation.dart';
-// import 'package:flutter/material.dart';
-// import 'package:flutter/services.dart' show rootBundle;
-// import 'package:flutter_svg/flutter_svg.dart';
-// import 'package:http/http.dart' as http;
+class CounterState with BePageState {
+  CounterState({this.count = 0, this.status = const BePageStatus.empty()});
+  final int count;
+  @override
+  final BePageStatus status;
 
-// /// Get svg string.
-// typedef SvgStringGetter = Future<String?> Function(SvgImageKey key);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is CounterState &&
+          runtimeType == other.runtimeType &&
+          count == other.count &&
+          status == other.status;
 
-// /// An [Enum] of the possible image path sources.
-// enum SvgSource {
-//   file,
-//   asset,
-//   network,
-// }
+  @override
+  int get hashCode => count.hashCode ^ status.hashCode;
 
-// /// Rasterizes given svg picture for displaying in [Image] widget:
-// ///
-// /// ```dart
-// /// Image(
-// ///   width: 32,
-// ///   height: 32,
-// ///   image: Svg('assets/my_icon.svg'),
-// /// )
-// /// ```
-// class BeSvgProvider extends ImageProvider<SvgImageKey> {
-//   /// Width and height can also be specified from [Image] constructor.
-//   /// Default size is 100x100 logical pixels.
-//   /// Different size can be specified in [Image] parameters
-//   const BeSvgProvider(
-//     this.path, {
-//     this.size,
-//     this.scale,
-//     this.color,
-//     this.source = SvgSource.asset,
-//     this.svgGetter,
-//   });
+  CounterState copyWith({int? count, BePageStatus? status}) {
+    return CounterState(
+      count: count ?? this.count,
+      status: status ?? this.status,
+    );
+  }
+}
 
-//   /// Path to svg file or asset
-//   final String path;
+// Actions
+class IncrementAction extends BePageAction {}
 
-//   /// Size in logical pixels to render.
-//   /// Useful for [DecorationImage].
-//   /// If not specified, will use size from [Image].
-//   /// If [Image] not specifies size too, will use default size 100x100.
-//   final Size? size;
+class DecrementAction extends BePageAction {}
 
-//   /// Color to tint the SVG
-//   final Color? color;
+// Reducer
+CounterState reducer(
+  CounterState state,
+  BePageAction action, [
+  BuildContext? context,
+]) {
+  return switch (action) {
+    IncrementAction() => CounterState(count: state.count + 1),
+    DecrementAction() => CounterState(count: state.count - 1),
+    SetStateAction<CounterState>(state: final newState) => newState,
+    _ => state, // Default case
+  };
+}
 
-//   /// Source of svg image
-//   final SvgSource source;
+// Usage in Widget
+class CounterPage extends StatelessWidget {
+  const CounterPage({super.key});
 
-//   /// Image scale.
-//   final double? scale;
+  @override
+  Widget build(BuildContext context) {
+    return BePageProvider<CounterState, BePageAction>(
+      initialState: CounterState(count: 32),
+      reducer: reducer,
+      child: const CounterView(),
+    );
+  }
+}
 
-//   /// Get svg string.
-//   /// Override the default get method.
-//   /// When returning null, use the default method.
-//   final SvgStringGetter? svgGetter;
+class CounterView extends StatelessWidget {
+  const CounterView({super.key});
 
-//   @override
-//   Future<SvgImageKey> obtainKey(ImageConfiguration configuration) {
-//     final color = this.color ?? Colors.transparent;
-//     final scale = this.scale ?? configuration.devicePixelRatio ?? 1.0;
-//     final logicWidth = size?.width ?? configuration.size?.width ?? 100;
-//     final logicHeight = size?.height ?? configuration.size?.height ?? 100;
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      body: Center(
+        child: Column(
+          children: [
+            // Text('Count: ${state.count}'),
+            MyWidget(),
+            MyWidget2(),
+            MyWidget3(),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingOption(),
+    );
+  }
+}
 
-//     return SynchronousFuture<SvgImageKey>(
-//       SvgImageKey(
-//         path: path,
-//         scale: scale,
-//         color: color,
-//         source: source,
-//         pixelWidth: (logicWidth * scale).round(),
-//         pixelHeight: (logicHeight * scale).round(),
-//         svgGetter: svgGetter,
-//       ),
-//     );
-//   }
+class FloatingOption extends StatelessWidget {
+  const FloatingOption({super.key});
 
-//   @override
-//   ImageStreamCompleter loadImage(SvgImageKey key, Function decode) =>
-//       OneFrameImageStreamCompleter(_loadAsync(key));
+  @override
+  Widget build(BuildContext context) {
+    final (state, dispatch) = usePageReducer<CounterState, BePageAction>(
+      context,
+    );
 
-//   static Future<String> _getSvgString(SvgImageKey key) async {
-//     if (key.svgGetter != null) {
-//       final rawSvg = await key.svgGetter!.call(key);
-//       if (rawSvg != null) {
-//         return rawSvg;
-//       }
-//     }
-//     switch (key.source) {
-//       case SvgSource.network:
-//         return http.read(Uri.parse(key.path));
-//       case SvgSource.asset:
-//         return rootBundle.loadString(key.path);
-//       case SvgSource.file:
-//         return File(key.path).readAsString();
-//     }
-//   }
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        FloatingActionButton(
+          onPressed: () => dispatch(IncrementAction()),
+          child: const Icon(Icons.add),
+        ),
+        FloatingActionButton(
+          onPressed: () => dispatch(DecrementAction()),
+          child: const Icon(Icons.remove),
+        ),
+      ],
+    );
+  }
+}
 
-//   static Future<ImageInfo> _loadAsync(SvgImageKey key) async {
-//     final rawSvg = await _getSvgString(key);
-//     final pictureInfo = await vg.loadPicture(
-//       SvgStringLoader(rawSvg),
-//       null,
-//       clipViewbox: false,
-//     );
-//     final image = await pictureInfo.picture.toImage(
-//       pictureInfo.size.width.round(),
-//       pictureInfo.size.height.round(),
-//     );
+class MyWidget extends HookWidget {
+  const MyWidget({super.key});
 
-//     return ImageInfo(
-//       image: image,
-//       scale: 1.0,
-//     );
-//   }
+  @override
+  Widget build(BuildContext context) {
+    print("MyWidget1 render");
+    final count = useStateSelector<CounterState, BePageAction, int>(
+      context,
+      (state) => state.count,
+    );
+    final dispatch = usePageAction<CounterState, BePageAction>(context);
 
-//   // Note: == and hashCode not overrided as changes in properties
-//   // (width, height and scale) are not observable from the here.
-//   // [SvgImageKey] instances will be compared instead.
-//   @override
-//   String toString() => '$runtimeType(${describeIdentity(path)})';
+    return Row(
+      children: [
+        Text('Count $count '),
+        ElevatedButton(
+          onPressed: () {
+            dispatch(
+              SetStateAction(
+                CounterState(count: 0, status: const BePageStatus.loading()),
+              ),
+            );
+          },
+          child: const Text("Change Status"),
+        ),
+      ],
+    );
+  }
+}
 
-//   // Running on web with Colors.transparent may throws the exception `Expected a value of type 'SkDeletable', but got one of type 'Null'`.
-//   static Color getFilterColor(Color? color) {
-//     if (kIsWeb && color == Colors.transparent) {
-//       return const Color(0x01ffffff);
-//     } else {
-//       return color ?? Colors.transparent;
-//     }
-//   }
-// }
+class MyWidget2 extends HookWidget {
+  const MyWidget2({super.key});
 
-// @immutable
-// class SvgImageKey {
-//   const SvgImageKey({
-//     required this.path,
-//     required this.pixelWidth,
-//     required this.pixelHeight,
-//     required this.scale,
-//     required this.source,
-//     this.color,
-//     this.svgGetter,
-//   });
+  @override
+  Widget build(BuildContext context) {
+    print("MyWidget2 render");
+    final status = useStateSelector<CounterState, BePageAction, String>(
+      context,
+      (state) => state.status.toString(),
+    );
 
-//   /// Path to svg asset.
-//   final String path;
+    return Text('Status $status');
+  }
+}
 
-//   /// Width in physical pixels.
-//   /// Used when raterizing.
-//   final int pixelWidth;
+class MyWidget3 extends HookWidget {
+  const MyWidget3({super.key});
 
-//   /// Height in physical pixels.
-//   /// Used when raterizing.
-//   final int pixelHeight;
+  @override
+  Widget build(BuildContext context) {
+    print("MyWidget3 render");
 
-//   /// Color to tint the SVG
-//   final Color? color;
-
-//   /// Image source.
-//   final SvgSource source;
-
-//   /// Used to calculate logical size from physical, i.e.
-//   /// logicalWidth = [pixelWidth] / [scale],
-//   /// logicalHeight = [pixelHeight] / [scale].
-//   /// Should be equal to [MediaQueryData.devicePixelRatio].
-//   final double scale;
-
-//   /// Svg string getter.
-//   final SvgStringGetter? svgGetter;
-
-//   @override
-//   bool operator ==(Object other) {
-//     if (other.runtimeType != runtimeType) {
-//       return false;
-//     }
-
-//     return other is SvgImageKey &&
-//         other.path == path &&
-//         other.pixelWidth == pixelWidth &&
-//         other.pixelHeight == pixelHeight &&
-//         other.scale == scale &&
-//         other.source == source &&
-//         other.svgGetter == svgGetter;
-//   }
-
-//   @override
-//   int get hashCode =>
-//       Object.hash(path, pixelWidth, pixelHeight, scale, source, svgGetter);
-
-//   @override
-//   String toString() => '${objectRuntimeType(this, 'SvgImageKey')}'
-//       '(path: "$path", pixelWidth: $pixelWidth, pixelHeight: $pixelHeight,
-//        scale: $scale, source: $source)';
-// }
+    return const Text('MyWidget3');
+  }
+}

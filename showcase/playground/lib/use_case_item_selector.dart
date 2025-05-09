@@ -1,6 +1,5 @@
 import 'package:becore/hooks.dart';
 import 'package:becore/modal.dart';
-import 'package:beui/be_icons.dart';
 import 'package:beui/from.dart';
 import 'package:beui/text.dart';
 import 'package:flutter/material.dart';
@@ -27,21 +26,6 @@ class DropdownExample extends HookWidget {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
-              const InputDecorator(
-                decoration: InputDecoration(
-                  error: Text("data"),
-                  filled: true,
-
-                  suffixIcon: Icon(BeIcons.icon_arrow_bottom_left),
-                  contentPadding: EdgeInsets.all(0),
-                ),
-                // expands: true,
-                isEmpty: true,
-                child: Padding(
-                  padding: EdgeInsets.all(16.0),
-                  child: Text("data"),
-                ),
-              ),
               // Example 1: Using enum with custom display strings
               BeItemSelector<User>(
                 value: selectedFruit.value,

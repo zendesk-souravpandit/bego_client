@@ -20,12 +20,17 @@ class BePageContext<S extends BePageState, A extends BePageAction>
 
   @override
   bool updateShouldNotify(covariant BePageContext<S, A> oldWidget) {
-    final shouldUpdate = oldWidget.state != state;
-    if (debugLabel != null && shouldUpdate) {
-      debugPrint('[$debugLabel] State updated');
-    }
-    return shouldUpdate;
+    return oldWidget.state != state; // Relies on your == implementation
   }
+
+  // @override
+  // bool updateShouldNotify(covariant BePageContext<S, A> oldWidget) {
+  //   final shouldUpdate = oldWidget.state != state;
+  //   if (debugLabel != null && shouldUpdate) {
+  //     debugPrint('[$debugLabel] State updated');
+  //   }
+  //   return !const DeepCollectionEquality().equals(oldWidget.state, state);
+  // }
 
   static BePageContext<S, A>? of<S extends BePageState, A extends BePageAction>(
     BuildContext context, {
