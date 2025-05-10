@@ -17,8 +17,8 @@ class CounterState with BePageState {
           count == other.count &&
           status == other.status;
 
-  @override
-  int get hashCode => count.hashCode ^ status.hashCode;
+  // @override
+  // int get hashCode => count.hashCode ^ status.hashCode;
 
   CounterState copyWith({int? count, BePageStatus? status}) {
     return CounterState(
