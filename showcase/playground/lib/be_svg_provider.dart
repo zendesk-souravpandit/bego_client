@@ -3,24 +3,13 @@ import 'package:becomponent/page.dart';
 import 'package:becore/hooks.dart';
 import 'package:flutter/material.dart';
 
-class CounterState with BePageState {
-  CounterState({this.count = 0, this.status = const BePageStatus.empty()});
+class CounterState with BeState {
+  CounterState({this.count = 0, this.status = const BeStatus.empty()});
   final int count;
   @override
-  final BePageStatus status;
+  final BeStatus status;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is CounterState &&
-          runtimeType == other.runtimeType &&
-          count == other.count &&
-          status == other.status;
-
-  // @override
-  // int get hashCode => count.hashCode ^ status.hashCode;
-
-  CounterState copyWith({int? count, BePageStatus? status}) {
+  CounterState copyWith({int? count, BeStatus? status}) {
     return CounterState(
       count: count ?? this.count,
       status: status ?? this.status,
@@ -29,14 +18,14 @@ class CounterState with BePageState {
 }
 
 // Actions
-class IncrementAction extends BePageAction {}
+class IncrementAction extends BeStateAction {}
 
-class DecrementAction extends BePageAction {}
+class DecrementAction extends BeStateAction {}
 
 // Reducer
 CounterState reducer(
   CounterState state,
-  BePageAction action, [
+  BeStateAction action, [
   BuildContext? context,
 ]) {
   return switch (action) {
@@ -53,7 +42,7 @@ class CounterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BePageProvider<CounterState, BePageAction>(
+    return BePageProvider<CounterState, BeStateAction>(
       initialState: CounterState(count: 32),
       reducer: reducer,
       child: const CounterView(),
@@ -87,7 +76,7 @@ class FloatingOption extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final (state, dispatch) = usePageReducer<CounterState, BePageAction>(
+    final (state, dispatch) = usePageReducer<CounterState, BeStateAction>(
       context,
     );
 
@@ -113,11 +102,11 @@ class MyWidget extends HookWidget {
   @override
   Widget build(BuildContext context) {
     print("MyWidget1 render");
-    final count = useStateSelector<CounterState, BePageAction, int>(
+    final count = useStateSelector<CounterState, BeStateAction, int>(
       context,
       (state) => state.count,
     );
-    final dispatch = usePageAction<CounterState, BePageAction>(context);
+    final dispatch = usePageAction<CounterState, BeStateAction>(context);
 
     return Row(
       children: [
@@ -126,7 +115,7 @@ class MyWidget extends HookWidget {
           onPressed: () {
             dispatch(
               SetStateAction(
-                CounterState(count: 0, status: const BePageStatus.loading()),
+                CounterState(count: 0, status: const BeStatus.loading()),
               ),
             );
           },
@@ -143,7 +132,7 @@ class MyWidget2 extends HookWidget {
   @override
   Widget build(BuildContext context) {
     print("MyWidget2 render");
-    final status = useStateSelector<CounterState, BePageAction, String>(
+    final status = useStateSelector<CounterState, BeStateAction, String>(
       context,
       (state) => state.status.toString(),
     );
