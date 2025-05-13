@@ -1,12 +1,10 @@
-import 'package:becomponent/src/page/be_page_action.dart';
-import 'package:becomponent/src/page/be_page_state.dart';
-import 'package:becomponent/src/page/be_reducer.dart';
+import 'package:becomponent/page.dart';
 import 'package:becore/hooks.dart';
 import 'package:flutter/material.dart';
 
-class BePageContext<S extends BePageState, A extends BePageAction>
+class BeStateContext<S extends BeState, A extends BeStateAction>
     extends InheritedWidget {
-  const BePageContext({
+  const BeStateContext({
     super.key,
     required this.state,
     required this.dispatch,
@@ -19,31 +17,22 @@ class BePageContext<S extends BePageState, A extends BePageAction>
   final String? debugLabel;
 
   @override
-  bool updateShouldNotify(covariant BePageContext<S, A> oldWidget) {
-    return oldWidget.state != state; // Relies on your == implementation
+  bool updateShouldNotify(covariant BeStateContext<S, A> oldWidget) {
+    return oldWidget.state != state;
   }
 
-  // @override
-  // bool updateShouldNotify(covariant BePageContext<S, A> oldWidget) {
-  //   final shouldUpdate = oldWidget.state != state;
-  //   if (debugLabel != null && shouldUpdate) {
-  //     debugPrint('[$debugLabel] State updated');
-  //   }
-  //   return !const DeepCollectionEquality().equals(oldWidget.state, state);
-  // }
-
-  static BePageContext<S, A>? of<S extends BePageState, A extends BePageAction>(
+  static BeStateContext<S, A>? of<S extends BeState, A extends BeStateAction>(
     BuildContext context, {
     bool listen = true,
   }) {
     return listen
-        ? context.dependOnInheritedWidgetOfExactType<BePageContext<S, A>>()
-        : context.getInheritedWidgetOfExactType<BePageContext<S, A>>();
+        ? context.dependOnInheritedWidgetOfExactType<BeStateContext<S, A>>()
+        : context.getInheritedWidgetOfExactType<BeStateContext<S, A>>();
   }
 }
 
 /// Enhanced Provider with middleware support
-class BePageProvider<S extends BePageState, A extends BePageAction>
+class BePageProvider<S extends BeState, A extends BeStateAction>
     extends HookWidget {
   const BePageProvider({
     super.key,
@@ -76,7 +65,7 @@ class BePageProvider<S extends BePageState, A extends BePageAction>
       initialAction: SetStateAction<S>(initialState) as A,
     );
 
-    return BePageContext<S, A>(
+    return BeStateContext<S, A>(
       state: stateAndDispatch.state,
       dispatch: stateAndDispatch.dispatch,
       debugLabel: debugLabel,
