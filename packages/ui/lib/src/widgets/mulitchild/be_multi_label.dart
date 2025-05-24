@@ -11,10 +11,10 @@ class BeMultiLabel extends MultiChildRenderObjectWidget {
   final Widget child;
   final List<BeLabelChild> labels;
   @override
-  RenderObject createRenderObject(BuildContext context) => _BeMultiLabelRenderObject();
+  RenderObject createRenderObject(final BuildContext context) => _BeMultiLabelRenderObject();
 
   @override
-  void updateRenderObject(BuildContext context, _BeMultiLabelRenderObject renderObject) {}
+  void updateRenderObject(final BuildContext context, final _BeMultiLabelRenderObject renderObject) {}
 }
 
 class _BeMultiLabelRenderObject extends RenderBox
@@ -24,7 +24,7 @@ class _BeMultiLabelRenderObject extends RenderBox
   _BeMultiLabelRenderObject();
 
   @override
-  void setupParentData(covariant RenderObject child) {
+  void setupParentData(covariant final RenderObject child) {
     child.parentData = _BeMultiLabelParentData();
   }
 
@@ -45,9 +45,9 @@ class _BeMultiLabelRenderObject extends RenderBox
   }
 
   @override
-  void paint(PaintingContext context, Offset offset) => defaultPaint(context, offset);
+  void paint(final PaintingContext context, final Offset offset) => defaultPaint(context, offset);
 
-  Offset _getOffset(BeMultiLabelPosition position, Offset childOffset, double labelWidth, double labelHeight) {
+  Offset _getOffset(final BeMultiLabelPosition position, final Offset childOffset, final double labelWidth, final double labelHeight) {
     var translateX = 0.0;
     var translateY = 0.0;
 
@@ -73,11 +73,11 @@ class _BeMultiLabelRenderObject extends RenderBox
   }
 
   @override
-  bool hitTestChildren(BoxHitTestResult result, {required Offset position}) =>
+  bool hitTestChildren(final BoxHitTestResult result, {required final Offset position}) =>
       defaultHitTestChildren(result, position: position);
 
   @override
-  bool hitTest(BoxHitTestResult result, {required Offset position}) {
+  bool hitTest(final BoxHitTestResult result, {required final Offset position}) {
     for (final child in getChildrenAsList()) {
       final badgeParentData = child.parentData! as _BeMultiLabelParentData;
       final badgePosition = Offset(position.dx - badgeParentData.offset.dx, position.dy - badgeParentData.offset.dy);
@@ -112,17 +112,17 @@ class BeLabelChild extends SingleChildRenderObjectWidget {
   final Offset offset;
 
   @override
-  RenderObject createRenderObject(BuildContext context) => _LabelRenderBox(offset: offset, position: position);
+  RenderObject createRenderObject(final BuildContext context) => _LabelRenderBox(offset: offset, position: position);
 
   @override
-  void updateRenderObject(BuildContext context, _LabelRenderBox renderObject) {
+  void updateRenderObject(final BuildContext context, final _LabelRenderBox renderObject) {
     renderObject
       ..position = position
       ..offset = offset;
   }
 
   @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  void debugFillProperties(final DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
       ..add(EnumProperty<BeMultiLabelPosition>('position', position))
@@ -132,20 +132,20 @@ class BeLabelChild extends SingleChildRenderObjectWidget {
 
 class _LabelRenderBox extends RenderBox with RenderObjectWithChildMixin<RenderBox> {
   // Add any properties and constructor you need
-  _LabelRenderBox({required BeMultiLabelPosition position, required Offset offset})
+  _LabelRenderBox({required final BeMultiLabelPosition position, required final Offset offset})
     : _position = position,
       _offset = offset;
 
   var _lastSize = Size.zero;
 
   BeMultiLabelPosition _position;
-  set position(BeMultiLabelPosition position) {
+  set position(final BeMultiLabelPosition position) {
     _position = position;
     markNeedsPaint();
   }
 
   Offset _offset;
-  set offset(Offset value) {
+  set offset(final Offset value) {
     _offset = value;
     markNeedsPaint();
   }
@@ -167,7 +167,7 @@ class _LabelRenderBox extends RenderBox with RenderObjectWithChildMixin<RenderBo
   }
 
   @override
-  void paint(PaintingContext context, Offset offset) {
+  void paint(final PaintingContext context, final Offset offset) {
     final child = this.child;
     if (child != null) {
       context.paintChild(child, offset);
@@ -175,7 +175,7 @@ class _LabelRenderBox extends RenderBox with RenderObjectWithChildMixin<RenderBo
   }
 
   @override
-  bool hitTestChildren(BoxHitTestResult result, {required Offset position}) =>
+  bool hitTestChildren(final BoxHitTestResult result, {required final Offset position}) =>
       child?.hitTest(result, position: position) == true;
 }
 

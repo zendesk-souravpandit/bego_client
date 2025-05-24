@@ -12,16 +12,16 @@ class BeTheme extends StatelessWidget {
   final BeThemeData betheme;
 
   // @useResult
-  static BeThemeData of(BuildContext context) => Theme.of(context).extension<BeThemeData>()!;
+  static BeThemeData of(final BuildContext context) => Theme.of(context).extension<BeThemeData>()!;
 
-  static ThemeData buildThemeof(BuildContext context) {
+  static ThemeData buildThemeof(final BuildContext context) {
     final betheme = of(context);
     final brightness = betheme.themeMode == ThemeMode.dark ? Brightness.dark : Brightness.light;
     return buildTheme(betheme: betheme, brightness: brightness);
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     final brightness = MediaQuery.platformBrightnessOf(context);
     final materialTheme = brightness == Brightness.dark ? ThemeData.dark() : ThemeData.light();
     final themeData = materialTheme.copyWith(extensions: <ThemeExtension<BeThemeData>>[betheme]);
@@ -29,7 +29,7 @@ class BeTheme extends StatelessWidget {
   }
 
   @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  void debugFillProperties(final DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties.add(DiagnosticsProperty<BeThemeData>('betheme', betheme));
   }

@@ -70,7 +70,7 @@ class BeStack extends StatelessWidget {
   /// Defines amount of space taken by the main axis.
   final MainAxisSize mainAxisSize;
 
-  Axis _direction(BuildContext context) {
+  Axis _direction(final BuildContext context) {
     final breakpoint = BeTheme.of(context).breakpoint;
 
     if (direction == Axis.vertical) {
@@ -83,13 +83,13 @@ class BeStack extends StatelessWidget {
     return stackBreakpoint.index <= breakpoint.index ? Axis.vertical : Axis.horizontal;
   }
 
-  List<Widget> _children(BuildContext context) => switch (distribution) {
+  List<Widget> _children(final BuildContext context) => switch (distribution) {
     BeStackDistribution.basic => _childrenWithSpacing(context, children),
     BeStackDistribution.spaceBetween => children.intersperse(const Spacer()).toList(),
-    BeStackDistribution.stretch => _childrenWithSpacing(context, children.map((c) => Expanded(child: c)).toList()),
+    BeStackDistribution.stretch => _childrenWithSpacing(context, children.map((final c) => Expanded(child: c)).toList()),
   };
 
-  List<Widget> _childrenWithSpacing(BuildContext context, List<Widget> children) {
+  List<Widget> _childrenWithSpacing(final BuildContext context, final List<Widget> children) {
     final direction = _direction(context);
     final spacer = SizedBox(
       width: direction == Axis.vertical ? null : spacing,
@@ -100,7 +100,7 @@ class BeStack extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) => Flex(
+  Widget build(final BuildContext context) => Flex(
     direction: _direction(context),
     mainAxisAlignment: mainAxisAlignment.mainAxisAlignment,
     crossAxisAlignment: crossAxisAlignment.crossAxisAlignment,

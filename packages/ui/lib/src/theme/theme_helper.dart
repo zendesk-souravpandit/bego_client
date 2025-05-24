@@ -12,17 +12,17 @@ extension ThemeStateGetter on State<dynamic> {
 extension ThemeGetter on StatelessWidget {
   /// [BeStyle] helper extension for obtaining [BeThemeData] contains
   /// style, insets, colors attribute
-  BeThemeData betheme(BuildContext context) => BeTheme.of(context);
+  BeThemeData betheme(final BuildContext context) => BeTheme.of(context);
 
   /// [BeStyle] helper extension for obtaining the style of contains
   /// TextStyle, ButtonStyle, RoundedCorner, Decoration, Shadow,
   /// Elevation anount etc
-  BeStyle bestyles(BuildContext context) => BeTheme.of(context).style;
-  BeColor becolors(BuildContext context) => BeTheme.of(context).colors;
-  BeStyleValue beinsets(BuildContext context) => BeTheme.of(context).styleValue;
+  BeStyle bestyles(final BuildContext context) => BeTheme.of(context).style;
+  BeColor becolors(final BuildContext context) => BeTheme.of(context).colors;
+  BeStyleValue beinsets(final BuildContext context) => BeTheme.of(context).styleValue;
 }
 
-BeStyleValue getStyleValue(BeBreakpoint? breakpoint) {
+BeStyleValue getStyleValue(final BeBreakpoint? breakpoint) {
   switch (breakpoint) {
     case BeBreakpoint.xs:
     case BeBreakpoint.sm:

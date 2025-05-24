@@ -24,7 +24,7 @@ class _AppStateWrapperState extends State<AppStateWrapper> {
   late final BeEventBus appEventBus = BeEventBus();
   late StreamSubscription<EventAction> _eventSubscription;
 
-  void _handleEvent(AppEventAction event) {
+  void _handleEvent(final AppEventAction event) {
     setState(() {
       switch (event) {
         case UpdateThemeModeEvent(themeMode: final themeMode):
@@ -43,12 +43,12 @@ class _AppStateWrapperState extends State<AppStateWrapper> {
     _eventSubscription = appEventBus.on<AppEventAction>().listen(_handleEvent);
   }
 
-  void _updateThemeMode(ThemeMode themeMode) {
+  void _updateThemeMode(final ThemeMode themeMode) {
     final newThemeData = _createThemeData(themeMode: themeMode, breakpoint: _state.breakpoint);
     _updateState(_state.copyWith(themeMode: themeMode, bethemeData: newThemeData));
   }
 
-  void _updateLocale(Locale locale) => _updateState(_state.copyWith(locale: locale));
+  void _updateLocale(final Locale locale) => _updateState(_state.copyWith(locale: locale));
 
   void _updateScreenWidth() {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -59,7 +59,7 @@ class _AppStateWrapperState extends State<AppStateWrapper> {
     _updateState(_state.copyWith(screenWidth: screenWidth, breakpoint: newBreakpoint, bethemeData: newThemeData));
   }
 
-  BeThemeData _createThemeData({required ThemeMode themeMode, required BeBreakpoint breakpoint}) {
+  BeThemeData _createThemeData({required final ThemeMode themeMode, required final BeBreakpoint breakpoint}) {
     final insets = getStyleValue(breakpoint);
     final colors = themeMode == ThemeMode.light ? const BeColorsLight() : const BeColorsDark();
     final style =
@@ -70,11 +70,11 @@ class _AppStateWrapperState extends State<AppStateWrapper> {
     return BeThemeData(breakpoint: breakpoint, styleValue: insets, colors: colors, style: style, themeMode: themeMode);
   }
 
-  void _updateState(AppState newState) => setState(() => _state = newState);
+  void _updateState(final AppState newState) => setState(() => _state = newState);
 
   @override
-  Widget build(BuildContext context) => LayoutBuilder(
-    builder: (context, constraints) {
+  Widget build(final BuildContext context) => LayoutBuilder(
+    builder: (final context, final constraints) {
       // Update screen width whenever the layout changes
       if (_state.screenWidth != constraints.maxWidth) {
         WidgetsBinding.instance.addPostFrameCallback((_) => _updateScreenWidth());
@@ -100,7 +100,7 @@ class _AppStateWrapperState extends State<AppStateWrapper> {
   }
 
   @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  void debugFillProperties(final DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties.add(DiagnosticsProperty<BeEventBus>('appEventBus', appEventBus));
   }

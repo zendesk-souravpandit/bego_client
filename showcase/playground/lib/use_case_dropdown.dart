@@ -17,7 +17,7 @@ class _DropdownMenuShowcaseState extends State<DropdownMenuShowcase> {
   String? _menuAnchorValue;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Dropdown & Menu Showcase')),
       body: SingleChildScrollView(
@@ -43,7 +43,7 @@ class _DropdownMenuShowcaseState extends State<DropdownMenuShowcase> {
                 underline: emptyWidget,
                 padding: px8 + p4,
 
-                onChanged: (value) {
+                onChanged: (final value) {
                   setState(() => _simpleDropdownValue = value);
                 },
               ),
@@ -66,7 +66,7 @@ class _DropdownMenuShowcaseState extends State<DropdownMenuShowcase> {
                   const DropdownMenuItem(value: 'item3', child: Text('Item 3')),
                 ],
                 borderRadius: const BorderRadius.all(Radius.circular(16)),
-                onChanged: (value) {
+                onChanged: (final value) {
                   setState(() => _outlinedDropdownValue = value);
                 },
               ),
@@ -89,7 +89,7 @@ class _DropdownMenuShowcaseState extends State<DropdownMenuShowcase> {
                 ],
 
                 borderRadius: const BorderRadius.all(Radius.circular(16)),
-                onChanged: (value) {
+                onChanged: (final value) {
                   setState(() => _filledDropdownValue = value);
                 },
               ),
@@ -111,7 +111,7 @@ class _DropdownMenuShowcaseState extends State<DropdownMenuShowcase> {
                   DropdownMenuItem(value: 'custom2', child: Text('Custom Option 2')),
                 ],
                 // selectedItemBuilder: (context) => [const BeText("text")],
-                onChanged: (value) {
+                onChanged: (final value) {
                   setState(() => _customDropdownValue = value);
                 },
               ),
@@ -140,7 +140,7 @@ class _DropdownMenuShowcaseState extends State<DropdownMenuShowcase> {
                 children: [
                   DropdownMenu<String>(
                     initialSelection: null,
-                    onSelected: (value) {
+                    onSelected: (final value) {
                       setState(() => _menuAnchorValue = value);
                     },
                     dropdownMenuEntries: const [
@@ -164,11 +164,9 @@ class _DropdownMenuShowcaseState extends State<DropdownMenuShowcase> {
             _buildExampleCard(
               child: MenuAnchor(
                 style: const MenuStyle(padding: WidgetStatePropertyAll(p0)),
-                builder: (BuildContext context, MenuController controller, Widget? child) {
+                builder: (final BuildContext context, final MenuController controller, final Widget? child) {
                   return FilledButton(
-                    onPressed: () {
-                      controller.open();
-                    },
+                    onPressed: controller.open,
                     child: const Text('Open Menu'),
                   );
                 },
@@ -198,9 +196,9 @@ class _DropdownMenuShowcaseState extends State<DropdownMenuShowcase> {
             _buildExampleCard(
               child: Center(
                 child: PopupMenuButton<String>(
-                  onSelected: (value) => _showSnackbar(context, 'Selected $value'),
+                  onSelected: (final value) => _showSnackbar(context, 'Selected $value'),
                   itemBuilder:
-                      (context) => [
+                      (final context) => [
                         const PopupMenuItem(value: 'edit', child: Text('Edit')),
                         const PopupMenuItem(value: 'delete', child: Text('Delete')),
                         const PopupMenuItem(value: 'share', child: Text('Share')),
@@ -215,18 +213,18 @@ class _DropdownMenuShowcaseState extends State<DropdownMenuShowcase> {
     );
   }
 
-  Widget _buildSectionTitle(String title) {
+  Widget _buildSectionTitle(final String title) {
     return Padding(
       padding: const EdgeInsets.only(top: 24, bottom: 12),
       child: Text(title, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
     );
   }
 
-  Widget _buildExampleCard({required Widget child}) {
+  Widget _buildExampleCard({required final Widget child}) {
     return Padding(padding: const EdgeInsets.all(16), child: child);
   }
 
-  void _showSnackbar(BuildContext context, String message) {
+  void _showSnackbar(final BuildContext context, final String message) {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
   }
 }

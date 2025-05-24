@@ -2,11 +2,11 @@
 import 'package:intl/intl.dart';
 
 class BeDateUtils {
-  static String formatDate(DateTime date, {String format = 'yyyy-MM-dd'}) => DateFormat(format).format(date);
+  static String formatDate(final DateTime date, {final String format = 'yyyy-MM-dd'}) => DateFormat(format).format(date);
 
-  static DateTime? parseDate(String dateString, {String format = 'yyyy-MM-dd'}) => DateFormat(format).parse(dateString);
+  static DateTime? parseDate(final String dateString, {final String format = 'yyyy-MM-dd'}) => DateFormat(format).parse(dateString);
 
-  static String timeAgo(DateTime date) {
+  static String timeAgo(final DateTime date) {
     final now = DateTime.now();
     final difference = now.difference(date);
     if (difference.inDays > 365) {

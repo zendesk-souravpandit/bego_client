@@ -5,7 +5,7 @@ import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 @widgetbook.UseCase(name: 'Icon button', path: 'widget', type: BeIconTextButton)
-Widget createDefaultStyle(BuildContext context) {
+Widget createDefaultStyle(final BuildContext context) {
   final k = context.knobs;
 
   final leadingIcon = k.beIconOrNullKnob(label: 'Leading Icon');
@@ -19,7 +19,7 @@ Widget createDefaultStyle(BuildContext context) {
       children:
           BeIconDirection.values
               .map(
-                (v) => Padding(
+                (final v) => Padding(
                   padding: const EdgeInsets.all(8),
                   child: BeIconTextButton(
                     padding: EdgeInsets.symmetric(horizontal: padding.toDouble(), vertical: padding.toDouble() / 2),
@@ -47,8 +47,8 @@ class BeIconTextButton extends IconButton {
     required this.buttonText,
     required super.onPressed,
     super.key,
-    double space = 4,
-    BeIconDirection direction = BeIconDirection.top,
+    final double space = 4,
+    final BeIconDirection direction = BeIconDirection.top,
     super.iconSize,
     super.visualDensity,
     super.padding,

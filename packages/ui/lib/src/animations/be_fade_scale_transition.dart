@@ -71,10 +71,10 @@ class FadeScaleTransitionConfiguration extends ModalConfiguration {
 
   @override
   Widget transitionBuilder(
-    BuildContext context,
-    Animation<double> animation,
-    Animation<double> secondaryAnimation,
-    Widget child,
+    final BuildContext context,
+    final Animation<double> animation,
+    final Animation<double> secondaryAnimation,
+    final Widget child,
   ) => FadeScaleTransition(animation: animation, child: child);
 }
 
@@ -125,15 +125,15 @@ class FadeScaleTransition extends StatelessWidget {
   static final Animatable<double> _fadeOutTransition = Tween<double>(begin: 1.0, end: 0.0);
 
   @override
-  Widget build(BuildContext context) => DualTransitionBuilder(
+  Widget build(final BuildContext context) => DualTransitionBuilder(
     animation: animation,
     forwardBuilder:
-        (BuildContext context, Animation<double> animation, Widget? child) => FadeTransition(
+        (final BuildContext context, final Animation<double> animation, final Widget? child) => FadeTransition(
           opacity: _fadeInTransition.animate(animation),
           child: ScaleTransition(scale: _scaleInTransition.animate(animation), child: child),
         ),
     reverseBuilder:
-        (BuildContext context, Animation<double> animation, Widget? child) =>
+        (final BuildContext context, final Animation<double> animation, final Widget? child) =>
             FadeTransition(opacity: _fadeOutTransition.animate(animation), child: child),
     child: child,
   );

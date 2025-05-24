@@ -21,7 +21,7 @@ class BeTextMore extends LeafRenderObjectWidget {
   final String collapseText;
 
   @override
-  RenderObject createRenderObject(BuildContext context) => RenderExpandableText(
+  RenderObject createRenderObject(final BuildContext context) => RenderExpandableText(
     text: text,
     maxLines: maxLines,
     style: style,
@@ -32,7 +32,7 @@ class BeTextMore extends LeafRenderObjectWidget {
   );
 
   @override
-  void updateRenderObject(BuildContext context, RenderExpandableText renderObject) {
+  void updateRenderObject(final BuildContext context, final RenderExpandableText renderObject) {
     renderObject
       ..text = text
       ..maxLines = maxLines
@@ -44,7 +44,7 @@ class BeTextMore extends LeafRenderObjectWidget {
   }
 
   @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  void debugFillProperties(final DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
       ..add(StringProperty('text', text))
@@ -58,13 +58,13 @@ class BeTextMore extends LeafRenderObjectWidget {
 
 class RenderExpandableText extends RenderBox {
   RenderExpandableText({
-    required String text,
-    required int maxLines,
-    required TextStyle style,
-    required TextStyle linkStyle,
-    required String expandText,
-    required String collapseText,
-    required TextDirection textDirection,
+    required final String text,
+    required final int maxLines,
+    required final TextStyle style,
+    required final TextStyle linkStyle,
+    required final String expandText,
+    required final String collapseText,
+    required final TextDirection textDirection,
   }) : _text = text,
        _maxLines = maxLines,
        _style = style,
@@ -88,48 +88,48 @@ class RenderExpandableText extends RenderBox {
   late TextSpan _combinedSpan;
   late Rect _linkRect;
 
-  set text(String value) {
+  set text(final String value) {
     if (_text == value) return;
     _text = value;
     _updateTextPainter();
     markNeedsLayout();
   }
 
-  set maxLines(int value) {
+  set maxLines(final int value) {
     if (_maxLines == value) return;
     _maxLines = value;
     markNeedsLayout();
   }
 
-  set style(TextStyle value) {
+  set style(final TextStyle value) {
     if (_style == value) return;
     _style = value;
     _updateTextPainter();
     markNeedsLayout();
   }
 
-  set linkStyle(TextStyle value) {
+  set linkStyle(final TextStyle value) {
     if (_linkStyle == value) return;
     _linkStyle = value;
     _updateTextPainter();
     markNeedsLayout();
   }
 
-  set expandText(String value) {
+  set expandText(final String value) {
     if (_expandText == value) return;
     _expandText = value;
     _updateTextPainter();
     markNeedsLayout();
   }
 
-  set collapseText(String value) {
+  set collapseText(final String value) {
     if (_collapseText == value) return;
     _collapseText = value;
     _updateTextPainter();
     markNeedsLayout();
   }
 
-  set textDirection(TextDirection value) {
+  set textDirection(final TextDirection value) {
     if (_textDirection == value) return;
     _textDirection = value;
     _updateTextPainter();
@@ -186,15 +186,15 @@ class RenderExpandableText extends RenderBox {
   }
 
   @override
-  void paint(PaintingContext context, Offset offset) {
+  void paint(final PaintingContext context, final Offset offset) {
     _textPainter.paint(context.canvas, offset);
   }
 
   @override
-  bool hitTestSelf(Offset position) => true;
+  bool hitTestSelf(final Offset position) => true;
 
   @override
-  void handleEvent(PointerEvent event, covariant BoxHitTestEntry entry) {
+  void handleEvent(final PointerEvent event, covariant final BoxHitTestEntry entry) {
     if (event is PointerUpEvent && _needsLink) {
       final localPosition = event.localPosition;
       if (_linkRect.contains(localPosition)) {
@@ -207,7 +207,7 @@ class RenderExpandableText extends RenderBox {
   }
 
   @override
-  void describeSemanticsConfiguration(SemanticsConfiguration config) {
+  void describeSemanticsConfiguration(final SemanticsConfiguration config) {
     super.describeSemanticsConfiguration(config);
     config
       ..label = _text

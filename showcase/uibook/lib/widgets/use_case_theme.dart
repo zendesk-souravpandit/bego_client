@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 @widgetbook.UseCase(name: 'Theme', path: 'theme', type: MaterialApp)
-Widget redContainerUseCase(BuildContext context) => const ThemeDemoPage();
+Widget redContainerUseCase(final BuildContext context) => const ThemeDemoPage();
 
 class ThemeDemoPage extends StatefulWidget {
   const ThemeDemoPage({super.key});
@@ -32,7 +32,7 @@ class _ThemeDemoPageState extends State<ThemeDemoPage> with SingleTickerProvider
   }
 
   @override
-  Widget build(BuildContext context) => BeDisableWrapper(
+  Widget build(final BuildContext context) => BeDisableWrapper(
     disabled: false,
 
     child: Scaffold(
@@ -42,7 +42,7 @@ class _ThemeDemoPageState extends State<ThemeDemoPage> with SingleTickerProvider
           IconButton(icon: const Icon(Icons.search), onPressed: () {}),
           PopupMenuButton<String>(
             itemBuilder:
-                (context) => [
+                (final context) => [
                   const PopupMenuItem(value: 'settings', child: Text('Settings')),
                   const PopupMenuItem(value: 'about', child: Text('About')),
                 ],
@@ -100,7 +100,7 @@ class _ThemeDemoPageState extends State<ThemeDemoPage> with SingleTickerProvider
       ),
       bottomNavigationBar: NavigationBar(
         selectedIndex: _currentIndex,
-        onDestinationSelected: (index) => setState(() => _currentIndex = index),
+        onDestinationSelected: (final index) => setState(() => _currentIndex = index),
         destinations: const [
           NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
           NavigationDestination(icon: Icon(Icons.settings), label: 'Settings'),
@@ -110,7 +110,7 @@ class _ThemeDemoPageState extends State<ThemeDemoPage> with SingleTickerProvider
     ),
   );
 
-  Widget _buildSectionTitle(String title) => Padding(
+  Widget _buildSectionTitle(final String title) => Padding(
     padding: const EdgeInsets.symmetric(vertical: 16),
     child: Text(title, style: Theme.of(context).textTheme.headlineSmall),
   );
@@ -130,22 +130,22 @@ class _ThemeDemoPageState extends State<ThemeDemoPage> with SingleTickerProvider
     children: [
       Row(
         children: [
-          Switch(value: _switchValue, onChanged: (v) => setState(() => _switchValue = v)),
-          Checkbox(value: _checkboxValue, onChanged: (v) => setState(() => _checkboxValue = v ?? false)),
+          Switch(value: _switchValue, onChanged: (final v) => setState(() => _switchValue = v)),
+          Checkbox(value: _checkboxValue, onChanged: (final v) => setState(() => _checkboxValue = v ?? false)),
           ...List.generate(
             2,
-            (index) => Radio<int>(
+            (final index) => Radio<int>(
               value: index,
               groupValue: _radioValue,
-              onChanged: (v) => setState(() => _radioValue = v ?? 0),
+              onChanged: (final v) => setState(() => _radioValue = v ?? 0),
             ),
           ),
         ],
       ),
-      Slider(value: _sliderValue, onChanged: (v) => setState(() => _sliderValue = v)),
+      Slider(value: _sliderValue, onChanged: (final v) => setState(() => _sliderValue = v)),
       ToggleButtons(
         isSelected: _toggleButtonsSelection,
-        onPressed: (i) => setState(() => _toggleButtonsSelection[i] = !_toggleButtonsSelection[i]),
+        onPressed: (final i) => setState(() => _toggleButtonsSelection[i] = !_toggleButtonsSelection[i]),
         children: const [Icon(Icons.format_bold), Icon(Icons.format_italic), Icon(Icons.format_underline)],
       ),
     ],
@@ -159,9 +159,9 @@ class _ThemeDemoPageState extends State<ThemeDemoPage> with SingleTickerProvider
     spacing: 8,
     children: [
       ActionChip(label: const Text('Action'), onPressed: () {}),
-      FilterChip(label: const Text('Filter'), selected: _checkboxValue, onSelected: (v) {}),
+      FilterChip(label: const Text('Filter'), selected: _checkboxValue, onSelected: (final v) {}),
       const InputChip(label: Text('Input')),
-      ChoiceChip(label: const Text('Choice'), selected: _radioValue == 0, onSelected: (v) {}),
+      ChoiceChip(label: const Text('Choice'), selected: _radioValue == 0, onSelected: (final v) {}),
     ],
   );
 
@@ -185,7 +185,7 @@ class _ThemeDemoPageState extends State<ThemeDemoPage> with SingleTickerProvider
             () => showDialog<void>(
               context: context,
               builder:
-                  (context) => AlertDialog(
+                  (final context) => AlertDialog(
                     title: const Text('Dialog Title'),
                     content: const Text('Dialog content'),
                     actions: [TextButton(onPressed: () => Navigator.pop(context), child: const Text('Close'))],
@@ -303,7 +303,7 @@ class _ThemeDemoPageState extends State<ThemeDemoPage> with SingleTickerProvider
         onPressed:
             () => showModalBottomSheet<void>(
               context: context,
-              builder: (context) => const Padding(padding: EdgeInsets.all(16), child: Text('Bottom Sheet Content')),
+              builder: (final context) => const Padding(padding: EdgeInsets.all(16), child: Text('Bottom Sheet Content')),
             ),
       ),
     ],

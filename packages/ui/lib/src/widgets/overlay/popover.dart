@@ -11,7 +11,7 @@ import 'package:flutter/services.dart';
 /// A controller that controls whether a [BePopover] is shown or hidden.
 final class BePopoverController extends ChangeNotifier {
   /// Creates a [BePopoverController] with the given [vsync] and animation [animationDuration].
-  BePopoverController({required TickerProvider vsync, Duration animationDuration = const Duration(milliseconds: 100)}) {
+  BePopoverController({required final TickerProvider vsync, final Duration animationDuration = const Duration(milliseconds: 100)}) {
     _animation = AnimationController(vsync: vsync, duration: animationDuration);
     _fade = _fadeTween.animate(_animation);
     _scale = _scaleTween.animate(_animation);
@@ -88,8 +88,8 @@ class BePopover extends StatefulWidget {
     this.autofocus = false,
     this.focusNode,
     this.onFocusChange,
-    AlignmentGeometry? popoverAnchor,
-    AlignmentGeometry? childAnchor,
+    final AlignmentGeometry? popoverAnchor,
+    final AlignmentGeometry? childAnchor,
     super.key,
   }) : popoverAnchor = popoverAnchor ?? defaultPlatform.popover,
        childAnchor = childAnchor ?? defaultPlatform.child,
@@ -111,8 +111,8 @@ class BePopover extends StatefulWidget {
     this.focusNode,
     this.onFocusChange,
     this.semanticLabel,
-    AlignmentGeometry? popoverAnchor,
-    AlignmentGeometry? childAnchor,
+    final AlignmentGeometry? popoverAnchor,
+    final AlignmentGeometry? childAnchor,
     super.key,
   }) : popoverAnchor = popoverAnchor ?? defaultPlatform.popover,
        childAnchor = childAnchor ?? defaultPlatform.child,
@@ -191,7 +191,7 @@ class BePopover extends StatefulWidget {
   State<BePopover> createState() => _State();
 
   @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  void debugFillProperties(final DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('controller', controller))
@@ -219,7 +219,7 @@ class _State extends State<BePopover> with SingleTickerProviderStateMixin {
   }
 
   @override
-  void didUpdateWidget(covariant BePopover old) {
+  void didUpdateWidget(covariant final BePopover old) {
     super.didUpdateWidget(old);
     if (widget.controller == old.controller) {
       return;
@@ -233,7 +233,7 @@ class _State extends State<BePopover> with SingleTickerProviderStateMixin {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     final textDirection = Directionality.maybeOf(context) ?? TextDirection.ltr;
     final popover = widget.popoverAnchor;
     final childAnchor = widget.childAnchor;
@@ -261,7 +261,7 @@ class _State extends State<BePopover> with SingleTickerProviderStateMixin {
                 childAnchor.resolve(textDirection),
               ),
       portalBuilder:
-          (context) => CallbackShortcuts(
+          (final context) => CallbackShortcuts(
             bindings: {const SingleActivator(LogicalKeyboardKey.escape): _controller.hide},
             child: Semantics(
               label: widget.semanticLabel,

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 @widgetbook.UseCase(name: 'BeIconShapeBorder', path: 'decoration', type: BeIconShapeBorder)
-Widget useCaseBeIcon(BuildContext context) => Center(
+Widget useCaseBeIcon(final BuildContext context) => Center(
   child: Container(
     width: 400,
     height: 100,
@@ -19,6 +19,6 @@ Widget useCaseBeIcon(BuildContext context) => Center(
         alignment: BeIconAlignment.centerRight,
       ),
     ),
-    child: const Center(child: Text("Hello", style: TextStyle(color: Colors.green))),
+    child: const Center(child: Text('Hello', style: TextStyle(color: Colors.green))),
   ),
 );

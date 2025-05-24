@@ -28,7 +28,7 @@ extension RenderBoxes on RenderBox {
 
 @internal
 extension Alignments on Alignment {
-  static Offset removeDirectionalPadding(EdgeInsets padding, Alignment follower, Alignment target) {
+  static Offset removeDirectionalPadding(final EdgeInsets padding, final Alignment follower, final Alignment target) {
     final Alignment(:x, :y) = follower;
     // ignore corners that are diagonal.
     if (x != 0 && y != 0 && x == -target.x && y == -target.y) {
@@ -69,7 +69,7 @@ extension Alignments on Alignment {
     _ => this,
   };
 
-  Offset relative({required Size to, Offset origin = Offset.zero}) => switch (this) {
+  Offset relative({required final Size to, final Offset origin = Offset.zero}) => switch (this) {
     Alignment.topCenter => to.topCenter(origin),
     Alignment.topRight => to.topRight(origin),
     Alignment.centerLeft => to.centerLeft(origin),

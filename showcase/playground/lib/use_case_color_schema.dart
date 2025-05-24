@@ -4,7 +4,7 @@ class ColorSchemeDisplay extends StatelessWidget {
   const ColorSchemeDisplay({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
     final colorEntries = <MapEntry<String, Color>>[
       MapEntry('brightness', scheme.brightness == Brightness.dark ? Colors.black : Colors.white),
@@ -81,7 +81,7 @@ class ColorSchemeDisplay extends StatelessWidget {
           crossAxisSpacing: 8,
           mainAxisSpacing: 8,
         ),
-        itemBuilder: (context, index) {
+        itemBuilder: (final context, final index) {
           final entry = colorEntries[index];
           final textColor =
               ThemeData.estimateBrightnessForColor(entry.value) == Brightness.dark ? Colors.white : Colors.black;

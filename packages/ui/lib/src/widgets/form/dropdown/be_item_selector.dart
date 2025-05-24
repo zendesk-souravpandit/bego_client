@@ -69,10 +69,10 @@ class BeItemSelector<T extends KeyValuePair> extends HookWidget {
   final bool autofocus;
   final FormFieldSetter<T>? onSaved;
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     final isOpen = useState(false);
 
-    Widget defaultItemBuilder(T item) {
+    Widget defaultItemBuilder(final T item) {
       return BeText(item.display, overflow: TextOverflow.ellipsis);
     }
 
@@ -90,7 +90,7 @@ class BeItemSelector<T extends KeyValuePair> extends HookWidget {
       trailingTitleWidgets: trailingTitleWidgets,
       startEndAxisAlignment: startEndAxisAlignment,
 
-      build: (field) {
+      build: (final field) {
         final state = field as BeFormFieldState<T>;
         return DropdownButtonFormField<T>(
           value: state.value,
@@ -112,7 +112,7 @@ class BeItemSelector<T extends KeyValuePair> extends HookWidget {
           },
           icon: Icon(isOpen.value ? BeIcons.icon_chevron_up : BeIcons.icon_chevron_down),
           items:
-              items.map((T item) {
+              items.map((final T item) {
                 return DropdownMenuItem<T>(value: item, child: (itemBuilder ?? defaultItemBuilder)(item));
               }).toList(),
           decoration: InputDecoration(

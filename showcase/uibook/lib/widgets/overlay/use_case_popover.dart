@@ -8,7 +8,7 @@ import 'package:uibook/widgets/buttons/use_case_icon_text_button.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 @widgetbook.UseCase(name: 'BePopover', path: 'widget/overlay', type: BePopover)
-Widget useCasePopover(BuildContext context) => const PopoverDemo();
+Widget useCasePopover(final BuildContext context) => const PopoverDemo();
 
 class PopoverDemo extends StatefulWidget {
   const PopoverDemo({super.key});
@@ -21,7 +21,7 @@ class _PopoverDemoState extends State<PopoverDemo> with SingleTickerProviderStat
   late final BePopoverController controller = BePopoverController(vsync: this);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -34,12 +34,12 @@ class _PopoverDemoState extends State<PopoverDemo> with SingleTickerProviderStat
           child: BeIconTextButton(
             direction: BeIconDirection.left,
             buttonIcon: const Icon(BeIcons.icon_fi_rr_menu_dots, size: 32),
-            buttonText: const BeText("Menu", padding: EdgeInsets.symmetric(horizontal: 4)),
+            buttonText: const BeText('Menu', padding: EdgeInsets.symmetric(horizontal: 4)),
             onPressed: () {
               controller.show();
             },
           ),
-          popoverBuilder: (BuildContext context, BoxDecoration value, Widget? child) {
+          popoverBuilder: (final BuildContext context, final BoxDecoration value, final Widget? child) {
             return Container(
               color: ColorUtils.createColorSwatchLevel(
                 context.betheme.colors.background,
@@ -48,7 +48,7 @@ class _PopoverDemoState extends State<PopoverDemo> with SingleTickerProviderStat
               ),
               width: 200,
               height: 200,
-              child: const Center(child: Text("Popover")),
+              child: const Center(child: Text('Popover')),
             );
           },
         ),

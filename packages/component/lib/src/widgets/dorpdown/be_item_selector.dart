@@ -4,7 +4,7 @@ class MyWidget extends StatelessWidget {
   const MyWidget({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return const Placeholder();
   }
 }

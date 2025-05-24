@@ -16,7 +16,7 @@ class BeFocusedOutline extends SingleChildRenderObjectWidget {
   final bool focused;
 
   @override
-  RenderObject createRenderObject(BuildContext context) => _Outline(
+  RenderObject createRenderObject(final BuildContext context) => _Outline(
     style ?? BeFocusedOutlineStyle.defaultStyle,
     Directionality.maybeOf(context) ?? TextDirection.ltr,
     focused: focused,
@@ -24,7 +24,7 @@ class BeFocusedOutline extends SingleChildRenderObjectWidget {
 
   @override
   // ignore: library_private_types_in_public_api
-  void updateRenderObject(BuildContext context, _Outline renderObject) {
+  void updateRenderObject(final BuildContext context, final _Outline renderObject) {
     renderObject
       ..style = style ?? BeFocusedOutlineStyle.defaultStyle
       ..textDirection = Directionality.maybeOf(context) ?? TextDirection.ltr
@@ -32,7 +32,7 @@ class BeFocusedOutline extends SingleChildRenderObjectWidget {
   }
 
   @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  void debugFillProperties(final DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('style', style))
@@ -41,13 +41,13 @@ class BeFocusedOutline extends SingleChildRenderObjectWidget {
 }
 
 class _Outline extends RenderProxyBox {
-  _Outline(this._style, this._textDirection, {required bool focused}) : _focused = focused;
+  _Outline(this._style, this._textDirection, {required final bool focused}) : _focused = focused;
   BeFocusedOutlineStyle _style;
   TextDirection _textDirection;
   bool _focused;
 
   @override
-  void paint(PaintingContext context, Offset offset) {
+  void paint(final PaintingContext context, final Offset offset) {
     context.paintChild(child!, offset);
     if (focused) {
       final radius = _style.borderRadius.resolve(_textDirection);
@@ -74,7 +74,7 @@ class _Outline extends RenderProxyBox {
 
   BeFocusedOutlineStyle get style => _style;
 
-  set style(BeFocusedOutlineStyle value) {
+  set style(final BeFocusedOutlineStyle value) {
     if (style != value) {
       _style = value;
       markNeedsPaint();
@@ -83,7 +83,7 @@ class _Outline extends RenderProxyBox {
 
   TextDirection get textDirection => _textDirection;
 
-  set textDirection(TextDirection value) {
+  set textDirection(final TextDirection value) {
     if (textDirection != value) {
       _textDirection = value;
       markNeedsPaint();
@@ -92,7 +92,7 @@ class _Outline extends RenderProxyBox {
 
   bool get focused => _focused;
 
-  set focused(bool value) {
+  set focused(final bool value) {
     if (focused != value) {
       _focused = value;
       markNeedsPaint();
@@ -100,7 +100,7 @@ class _Outline extends RenderProxyBox {
   }
 
   @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  void debugFillProperties(final DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('style', style))
@@ -131,7 +131,7 @@ class BeFocusedOutlineStyle with Diagnosticable {
   final double spacing;
 
   /// Returns a copy of this [BeFocusedOutlineStyle] with the given properties replaced.
-  BeFocusedOutlineStyle copyWith({Color? color, BorderRadiusGeometry? borderRadius, double? width, double? spacing}) =>
+  BeFocusedOutlineStyle copyWith({final Color? color, final BorderRadiusGeometry? borderRadius, final double? width, final double? spacing}) =>
       BeFocusedOutlineStyle(
         color: color ?? this.color,
         borderRadius: borderRadius ?? this.borderRadius,
@@ -143,7 +143,7 @@ class BeFocusedOutlineStyle with Diagnosticable {
   static const defaultStyle = BeFocusedOutlineStyle(color: Color(0xFF000000), borderRadius: BorderRadius.zero);
 
   @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  void debugFillProperties(final DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
       ..add(ColorProperty('color', color))
@@ -153,7 +153,7 @@ class BeFocusedOutlineStyle with Diagnosticable {
   }
 
   @override
-  bool operator ==(Object other) =>
+  bool operator ==(final Object other) =>
       identical(this, other) ||
       (other is BeFocusedOutlineStyle &&
           color == other.color &&

@@ -5,7 +5,7 @@ class LoadingPage extends StatelessWidget {
   const LoadingPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const BeText.displayLarge("Loading Page");
+  Widget build(final BuildContext context) {
+    return const BeText.displayLarge('Loading Page');
   }
 }

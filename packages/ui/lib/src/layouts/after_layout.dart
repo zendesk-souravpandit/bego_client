@@ -11,5 +11,5 @@ mixin AfterLayout<T extends StatefulWidget> on State<T> {
     });
   }
 
-  FutureOr<void> onFirstFrame(BuildContext context);
+  FutureOr<void> onFirstFrame(final BuildContext context);
 }

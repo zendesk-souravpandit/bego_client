@@ -34,7 +34,7 @@ class _BeNotificationsProviderState extends State<BeNotificationsProvider> imple
   final GlobalKey<AnimatedListState> _listKey = GlobalKey();
 
   @override
-  void show(Widget notification, {Key? key, Duration? dissmissDuration}) {
+  void show(final Widget notification, {final Key? key, final Duration? dissmissDuration}) {
     final notificationKey = key ?? UniqueKey();
     final duration = dissmissDuration ?? widget.autoDismissDuration;
 
@@ -47,7 +47,7 @@ class _BeNotificationsProviderState extends State<BeNotificationsProvider> imple
         dismissDuration: duration,
       ),
     );
-    final notificationKeys = _notifications.map((w) => w.key);
+    final notificationKeys = _notifications.map((final w) => w.key);
     if (notificationKeys.contains(notificationKey)) {
       // If the notification is already in the list, remove it first
       _removeNotification(wrappedNotification);
@@ -65,9 +65,9 @@ class _BeNotificationsProviderState extends State<BeNotificationsProvider> imple
   }
 
   @override
-  void dismissByKey(Key key) {
+  void dismissByKey(final Key key) {
     try {
-      final notification = _notifications.firstWhere((n) => (n as KeyedSubtree).key == key);
+      final notification = _notifications.firstWhere((final n) => (n as KeyedSubtree).key == key);
       _removeNotification(notification);
     } catch (e) {
       // Notification not found
@@ -78,29 +78,26 @@ class _BeNotificationsProviderState extends State<BeNotificationsProvider> imple
   @override
   void dismissAll() {
     if (_notifications.isEmpty) return;
-
-    final notificationsToRemove = List<Widget>.from(_notifications);
-    notificationsToRemove.forEach(_removeNotification);
+    _notifications.forEach(_removeNotification);
     _queue.clear();
   }
 
   @override
-  void dismissAllOfType(Type type) {
+  void dismissAllOfType(final Type type) {
     if (_notifications.isEmpty) return;
-
-    final notificationsToRemove =
-        List<Widget>.from(_notifications).where((notification) {
+    _notifications
+        .where((final notification) {
           if (notification is KeyedSubtree) {
             final child = notification.child;
             return child is _NotificationWrapper && child.notification.runtimeType == type;
           }
           return false;
-        }).toList();
-
-    notificationsToRemove.forEach(_removeNotification);
+        })
+        .toList()
+        .forEach(_removeNotification);
   }
 
-  void _addNotification(Widget notification, {int index = 0, Key? key, Duration? dissmissDuration}) {
+  void _addNotification(final Widget notification, {final int index = 0, final Key? key, final Duration? dissmissDuration}) {
     _notifications.insert(index, notification);
     _listKey.currentState?.insertItem(index, duration: widget.animationDuration);
     // Set the key to null if it is not provided set to autoDismiss
@@ -113,13 +110,13 @@ class _BeNotificationsProviderState extends State<BeNotificationsProvider> imple
     }
   }
 
-  void _removeNotification(Widget notification) {
+  void _removeNotification(final Widget notification) {
     final index = _notifications.indexOf(notification);
     if (index != -1) {
       _notifications.removeAt(index);
       _listKey.currentState?.removeItem(
         index,
-        (context, animation) => _buildRemovedNotification(animation, notification),
+        (final context, final animation) => _buildRemovedNotification(animation, notification),
         duration: widget.leavingAnimationDuration,
       );
       _handleNotificationDismiss();
@@ -132,7 +129,7 @@ class _BeNotificationsProviderState extends State<BeNotificationsProvider> imple
     }
   }
 
-  _AnimatedNotification _buildRemovedNotification(Animation<double> animation, Widget notification) {
+  _AnimatedNotification _buildRemovedNotification(final Animation<double> animation, final Widget notification) {
     return _AnimatedNotification(
       animation: animation,
       notification: notification,
@@ -142,7 +139,7 @@ class _BeNotificationsProviderState extends State<BeNotificationsProvider> imple
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     final isCompact = betheme.breakpoint == BeBreakpoint.xs || betheme.breakpoint == BeBreakpoint.sm;
 
     final notificationConstraints = widget.constraints ?? const BoxConstraints(maxWidth: 400);
@@ -165,7 +162,7 @@ class _BeNotificationsProviderState extends State<BeNotificationsProvider> imple
                   shrinkWrap: true,
                   reverse: widget.position.reverse,
                   itemBuilder:
-                      (context, index, animation) => _AnimatedNotification(
+                      (final context, final index, final animation) => _AnimatedNotification(
                         animation: animation,
                         notification: _notifications[index],
                         slideTween: widget.position.slideTween,
@@ -198,21 +195,21 @@ class _NotificationWrapper extends StatefulWidget {
 
 class _NotificationWrapperState extends State<_NotificationWrapper> {
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return widget.notification;
   }
 }
 
 abstract class BeNotificationManager {
-  static BeNotificationManager of(BuildContext context) =>
+  static BeNotificationManager of(final BuildContext context) =>
       context.dependOnInheritedWidgetOfExactType<_BeNotificationData>()!.manager;
 
   BeNotificationsProvider get widget;
 
-  void show(Widget notification, {Key? key, Duration? dissmissDuration});
-  void dismissByKey(Key key);
+  void show(final Widget notification, {final Key? key, final Duration? dissmissDuration});
+  void dismissByKey(final Key key);
   void dismissAll();
-  void dismissAllOfType(Type type);
+  void dismissAllOfType(final Type type);
 }
 
 class _BeNotificationData extends InheritedWidget {
@@ -221,7 +218,7 @@ class _BeNotificationData extends InheritedWidget {
   final BeNotificationManager manager;
 
   @override
-  bool updateShouldNotify(_BeNotificationData oldWidget) => false;
+  bool updateShouldNotify(final _BeNotificationData oldWidget) => false;
 }
 
 class _AnimatedNotification extends StatelessWidget {
@@ -238,7 +235,7 @@ class _AnimatedNotification extends StatelessWidget {
   final bool isOutgoing;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     final theme = betheme(context);
 
     final isCompact = theme.breakpoint == BeBreakpoint.xs || theme.breakpoint == BeBreakpoint.sm;
@@ -275,21 +272,21 @@ class _AnimatedNotification extends StatelessWidget {
 }
 
 class _NoClipSizeTransition extends AnimatedWidget {
-  const _NoClipSizeTransition({required Animation<double> sizeFactor, this.child}) : super(listenable: sizeFactor);
+  const _NoClipSizeTransition({required final Animation<double> sizeFactor, this.child}) : super(listenable: sizeFactor);
 
   final Widget? child;
 
   Animation<double> get sizeFactor => listenable as Animation<double>;
 
   @override
-  Widget build(BuildContext context) =>
+  Widget build(final BuildContext context) =>
       Align(alignment: AlignmentDirectional.centerStart, heightFactor: math.max(sizeFactor.value, 0.0), child: child);
 }
 
 enum BeNotificationPosition { topLeft, topRight, bottomRight, bottomLeft }
 
 extension on BeNotificationPosition {
-  double? left(bool isCompact) {
+  double? left(final bool isCompact) {
     switch (this) {
       case BeNotificationPosition.bottomLeft:
       case BeNotificationPosition.topLeft:
@@ -300,7 +297,7 @@ extension on BeNotificationPosition {
     }
   }
 
-  double? top(bool isCompact) {
+  double? top(final bool isCompact) {
     switch (this) {
       case BeNotificationPosition.topLeft:
       case BeNotificationPosition.topRight:
@@ -311,7 +308,7 @@ extension on BeNotificationPosition {
     }
   }
 
-  double? right(bool isCompact) {
+  double? right(final bool isCompact) {
     switch (this) {
       case BeNotificationPosition.bottomRight:
       case BeNotificationPosition.topRight:
@@ -322,7 +319,7 @@ extension on BeNotificationPosition {
     }
   }
 
-  double? bottom(bool isCompact) {
+  double? bottom(final bool isCompact) {
     switch (this) {
       case BeNotificationPosition.topLeft:
       case BeNotificationPosition.topRight:

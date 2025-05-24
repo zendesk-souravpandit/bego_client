@@ -9,12 +9,12 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 //  const Icon(BeIcons.icon_youtube, color: Colors.red, size: 100);
 
 @widgetbook.UseCase(name: 'Icons', path: 'widget', type: BeIcons)
-Widget useCaseBeIconsList(BuildContext context) {
-  final color = context.knobs.colorOrNull(label: "Color");
+Widget useCaseBeIconsList(final BuildContext context) {
+  final color = context.knobs.colorOrNull(label: 'Color');
   return GridView.builder(
     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, childAspectRatio: 1),
     itemCount: begoIcons.length,
-    itemBuilder: (_, index) {
+    itemBuilder: (_, final index) {
       final icon = begoIcons[index];
       return Column(
         mainAxisAlignment: MainAxisAlignment.center,

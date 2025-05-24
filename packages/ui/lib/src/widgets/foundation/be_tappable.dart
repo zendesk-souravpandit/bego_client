@@ -18,7 +18,7 @@ extension BeTouch on Never {
   static bool get primary => _primary ?? platforms.contains(defaultTargetPlatform);
 
   @visibleForTesting
-  static set primary(bool? value) {
+  static set primary(final bool? value) {
     if (!kDebugMode) {
       throw UnsupportedError('Setting Touch.primary is only available in debug mode.');
     }
@@ -53,7 +53,7 @@ class BeTappable extends StatefulWidget {
     this.onPress,
     this.onLongPress,
     this.child,
-    ValueWidgetBuilder<BeTappableData>? builder,
+    final ValueWidgetBuilder<BeTappableData>? builder,
     super.key,
   }) : assert(builder != null || child != null, 'Either builder or child must be provided.'),
        builder = builder ?? _builder;
@@ -63,24 +63,24 @@ class BeTappable extends StatefulWidget {
   /// ## Contract
   /// Throws [AssertionError] if [builder] and [child] are both null.
   const factory BeTappable.animated({
-    BeFocusedOutlineStyle? focusedOutlineStyle,
-    String? semanticLabel,
-    bool semanticSelected,
-    bool excludeSemantics,
-    bool autofocus,
-    FocusNode? focusNode,
-    ValueChanged<bool>? onFocusChange,
-    Tween<double>? animationTween,
-    HitTestBehavior behavior,
-    Duration touchHoverEnterDuration,
-    Duration touchHoverExitDuration,
-    VoidCallback? onPress,
-    VoidCallback? onLongPress,
-    ValueWidgetBuilder<BeTappableData>? builder,
-    Widget? child,
-    Key? key,
+    final BeFocusedOutlineStyle? focusedOutlineStyle,
+    final String? semanticLabel,
+    final bool semanticSelected,
+    final bool excludeSemantics,
+    final bool autofocus,
+    final FocusNode? focusNode,
+    final ValueChanged<bool>? onFocusChange,
+    final Tween<double>? animationTween,
+    final HitTestBehavior behavior,
+    final Duration touchHoverEnterDuration,
+    final Duration touchHoverExitDuration,
+    final VoidCallback? onPress,
+    final VoidCallback? onLongPress,
+    final ValueWidgetBuilder<BeTappableData>? builder,
+    final Widget? child,
+    final Key? key,
   }) = AnimatedBeTapable;
-  static Widget _builder(BuildContext _, BeTappableData _, Widget? child) => child!;
+  static Widget _builder(BuildContext _, BeTappableData _, final Widget? child) => child!;
 
   /// The style used when the tappable is focused. This tappable will not be outlined if null.
   final BeFocusedOutlineStyle? focusedOutlineStyle;
@@ -139,7 +139,7 @@ class BeTappable extends StatefulWidget {
   State<BeTappable> createState() => _BeTappableState<BeTappable>();
 
   @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  void debugFillProperties(final DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('focusedOutlineStyle', focusedOutlineStyle))
@@ -173,7 +173,7 @@ class _BeTappableState<T extends BeTappable> extends State<T> {
   }
 
   @override
-  void didUpdateWidget(covariant T old) {
+  void didUpdateWidget(covariant final T old) {
     super.didUpdateWidget(old);
     if (widget._enabled != old._enabled) {
       _hovered = false;
@@ -182,7 +182,7 @@ class _BeTappableState<T extends BeTappable> extends State<T> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     var tappable = widget.builder(context, (focused: _focused, hovered: _hovered || _touched), widget.child);
     tappable = _decorate(context, tappable);
 
@@ -233,7 +233,7 @@ class _BeTappableState<T extends BeTappable> extends State<T> {
       child: Focus(
         autofocus: widget.autofocus,
         focusNode: widget.focusNode,
-        onFocusChange: (focused) {
+        onFocusChange: (final focused) {
           setState(() => _focused = focused);
           widget.onFocusChange?.call(focused);
         },
@@ -258,7 +258,7 @@ class _BeTappableState<T extends BeTappable> extends State<T> {
     return tappable;
   }
 
-  Widget _decorate(BuildContext _, Widget child) => child;
+  Widget _decorate(BuildContext _, final Widget child) => child;
 
   void _onPointerDown() {}
 
@@ -291,7 +291,7 @@ class AnimatedBeTapable extends BeTappable {
   State<BeTappable> createState() => AnimatedBeTapableState();
 
   @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  void debugFillProperties(final DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties.add(DiagnosticsProperty('animationTween', animationTween));
   }
@@ -310,7 +310,7 @@ class AnimatedBeTapableState extends _BeTappableState<AnimatedBeTapable> with Si
   }
 
   @override
-  void didUpdateWidget(covariant AnimatedBeTapable old) {
+  void didUpdateWidget(covariant final AnimatedBeTapable old) {
     super.didUpdateWidget(old);
     if (widget.animationTween != old.animationTween) {
       animation = (widget.animationTween ?? Tween(begin: 1.0, end: 0.97)).animate(controller);
@@ -324,7 +324,7 @@ class AnimatedBeTapableState extends _BeTappableState<AnimatedBeTapable> with Si
   void _onPointerUp() => controller.reverse();
 
   @override
-  Widget _decorate(BuildContext _, Widget child) => ScaleTransition(scale: animation, child: child);
+  Widget _decorate(BuildContext _, final Widget child) => ScaleTransition(scale: animation, child: child);
 
   @override
   void dispose() {
@@ -333,7 +333,7 @@ class AnimatedBeTapableState extends _BeTappableState<AnimatedBeTapable> with Si
   }
 
   @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  void debugFillProperties(final DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('controller', controller))

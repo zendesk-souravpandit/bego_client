@@ -45,7 +45,7 @@ class _BeNetworkServiceDemoState extends State<BeNetworkServiceDemo> {
           credentials: ChannelCredentials.secure(
             certificates: certBytes,
             authority: 'localhost',
-            onBadCertificate: (cert, host) {
+            onBadCertificate: (final cert, final host) {
               // debugPrint(
               //   'Warning: Bypassing certificate verification for $cert',
               // );
@@ -98,7 +98,7 @@ class _BeNetworkServiceDemoState extends State<BeNetworkServiceDemo> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Scaffold(
       body: Center(
         child: Column(

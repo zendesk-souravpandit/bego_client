@@ -1,7 +1,7 @@
 import 'package:beui/src/theme/colors/be_colors.dart';
 import 'package:flutter/material.dart';
 
-MaterialColor createPrimarySwatch(Color primary) {
+MaterialColor createPrimarySwatch(final Color primary) {
   final hsl = HSLColor.fromColor(primary);
   return MaterialColor(primary.toARGB32(), {
     50: hsl.withLightness(0.95).toColor(),

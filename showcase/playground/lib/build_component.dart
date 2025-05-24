@@ -9,14 +9,14 @@ class DropdownExample extends HookWidget {
   DropdownExample({super.key});
 
   final items = [
-    User(key: 1, value: "Item 1"),
-    User(key: 2, value: "Item 2"),
-    User(key: 3, value: "Item 3"),
-    User(key: 4, value: "Item 4"),
+    User(key: 1, value: 'Item 1'),
+    User(key: 2, value: 'Item 2'),
+    User(key: 3, value: 'Item 3'),
+    User(key: 4, value: 'Item 4'),
   ];
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     final selectedFruit = useState<User?>(null);
     final formKey = GlobalKey<FormState>();
     return Scaffold(
@@ -29,7 +29,7 @@ class DropdownExample extends HookWidget {
             children: [
               const InputDecorator(
                 decoration: InputDecoration(
-                  error: Text("data"),
+                  error: Text('data'),
                   filled: true,
 
                   suffixIcon: Icon(BeIcons.icon_arrow_bottom_left),
@@ -37,21 +37,21 @@ class DropdownExample extends HookWidget {
                 ),
                 // expands: true,
                 isEmpty: true,
-                child: Padding(padding: EdgeInsets.all(16.0), child: Text("data")),
+                child: Padding(padding: EdgeInsets.all(16.0), child: Text('data')),
               ),
               // Example 1: Using enum with custom display strings
               BeItemSelector<User>(
                 value: selectedFruit.value,
                 items: items,
-                itemToString: (user) => user.display,
+                itemToString: (final user) => user.display,
                 hint: 'Select a Item',
                 label: 'Fruits',
                 startEndAxisAlignment: CrossAxisAlignment.center,
-                onSaved: (newValue) {
-                  print("Save Dropdown value");
+                onSaved: (final newValue) {
+                  print('Save Dropdown value');
                 },
-                validator: (value) => "Error Form",
-                onChanged: (value) {
+                validator: (final value) => 'Error Form',
+                onChanged: (final value) {
                   // selectedFruit.value = value;
                   // print(selectedFruit.value?.display.toString());
                   print(value?.display.toString());
@@ -64,19 +64,19 @@ class DropdownExample extends HookWidget {
                     onPressed: () {
                       formKey.currentState?.validate();
                     },
-                    child: const BeText("Validate"),
+                    child: const BeText('Validate'),
                   ),
                   ElevatedButton(
                     onPressed: () {
                       formKey.currentState?.reset();
                     },
-                    child: const BeText("Reset"),
+                    child: const BeText('Reset'),
                   ),
                   ElevatedButton(
                     onPressed: () {
                       formKey.currentState?.save();
                     },
-                    child: const BeText("Save"),
+                    child: const BeText('Save'),
                   ),
                 ],
               ),

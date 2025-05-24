@@ -14,7 +14,7 @@ typedef FPortalBox = ({Size size, Alignment anchor});
 extension FPortalShift on Never {
   /// Flips the portal to the opposite side of the child if it does not cause the portal to overflow out of the
   /// viewport. Otherwise shifts the portal along the child's edge.
-  static Offset flip(Size view, FPortalChildBox child, FPortalBox portal) {
+  static Offset flip(final Size view, final FPortalChildBox child, final FPortalBox portal) {
     var anchor = none(view, child, portal).translate(child.offset.dx, child.offset.dy);
 
     final viewBox = Offset.zero & view;
@@ -52,7 +52,7 @@ extension FPortalShift on Never {
     return foo.translate(-child.offset.dx, -child.offset.dy);
   }
 
-  static Offset _flip(FPortalChildBox child, FPortalBox portal, {required bool x}) {
+  static Offset _flip(final FPortalChildBox child, final FPortalBox portal, {required final bool x}) {
     final childAnchor = x ? child.anchor.flipX() : child.anchor.flipY();
     final portalAnchor = x ? portal.anchor.flipX() : portal.anchor.flipY();
 
@@ -62,7 +62,7 @@ extension FPortalShift on Never {
   }
 
   /// Shifts the portal along the child's edge if the portal overflows out of the viewport.
-  static Offset along(Size view, FPortalChildBox child, FPortalBox portal) {
+  static Offset along(final Size view, final FPortalChildBox child, final FPortalBox portal) {
     final anchor = none(view, child, portal).translate(child.offset.dx, child.offset.dy);
 
     final viewBox = Offset.zero & view;
@@ -71,7 +71,7 @@ extension FPortalShift on Never {
     return _along(anchor, viewBox, portalBox).translate(-child.offset.dx, -child.offset.dy);
   }
 
-  static Offset _along(Offset anchor, Rect viewBox, Rect portalBox) {
+  static Offset _along(Offset anchor, final Rect viewBox, final Rect portalBox) {
     anchor = switch ((viewBox, portalBox)) {
       _ when portalBox.left < viewBox.left => Offset(anchor.dx + (viewBox.left - portalBox.left), anchor.dy),
       _ when viewBox.right < portalBox.right => Offset(anchor.dx - portalBox.right + viewBox.right, anchor.dy),
@@ -88,7 +88,7 @@ extension FPortalShift on Never {
   }
 
   /// Does not perform any shifting if the portal overflows out of the viewport.
-  static Offset none(Size _, FPortalChildBox child, FPortalBox portal) {
+  static Offset none(Size _, final FPortalChildBox child, final FPortalBox portal) {
     final childAnchor = child.anchor.relative(to: child.size);
     final portalAnchor = portal.anchor.relative(to: portal.size);
     return childAnchor - portalAnchor;

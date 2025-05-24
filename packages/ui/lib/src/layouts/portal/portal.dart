@@ -65,7 +65,7 @@ class FPortal extends StatefulWidget {
   State<FPortal> createState() => _State();
 
   @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  void debugFillProperties(final DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('controller', controller))
@@ -86,7 +86,7 @@ class _State extends State<FPortal> {
     child: OverlayPortal(
       controller: widget.controller,
       overlayChildBuilder:
-          (context) => CompositedTransformFollower(
+          (final context) => CompositedTransformFollower(
             link: _link,
             child: _Alignment(
               link: _link,
@@ -104,12 +104,12 @@ class _State extends State<FPortal> {
 
 class _Alignment extends SingleChildRenderObjectWidget {
   const _Alignment({
-    required Widget child,
-    required LayerLink link,
-    required AlignmentGeometry childAnchor,
-    required AlignmentGeometry portalAnchor,
-    required Offset Function(Size, FPortalChildBox, FPortalBox) shift,
-    required Offset offset,
+    required final Widget child,
+    required final LayerLink link,
+    required final AlignmentGeometry childAnchor,
+    required final AlignmentGeometry portalAnchor,
+    required final Offset Function(Size, FPortalChildBox, FPortalBox) shift,
+    required final Offset offset,
   }) : _link = link,
        _childAnchor = childAnchor,
        _portalAnchor = portalAnchor,
@@ -123,7 +123,7 @@ class _Alignment extends SingleChildRenderObjectWidget {
   final Offset _offset;
 
   @override
-  RenderObject createRenderObject(BuildContext context) {
+  RenderObject createRenderObject(final BuildContext context) {
     final direction = Directionality.maybeOf(context) ?? TextDirection.ltr;
     return _RenderBox(
       link: _link,
@@ -135,7 +135,7 @@ class _Alignment extends SingleChildRenderObjectWidget {
   }
 
   @override
-  void updateRenderObject(BuildContext context, _RenderBox box) {
+  void updateRenderObject(final BuildContext context, final _RenderBox box) {
     final direction = Directionality.maybeOf(context) ?? TextDirection.ltr;
     box
       ..link = _link
@@ -148,11 +148,11 @@ class _Alignment extends SingleChildRenderObjectWidget {
 
 class _RenderBox extends RenderBox with RenderObjectWithChildMixin<RenderBox> {
   _RenderBox({
-    required LayerLink link,
-    required Alignment childAnchor,
-    required Alignment portalAnchor,
-    required Offset Function(Size, FPortalChildBox, FPortalBox) shift,
-    required Offset offset,
+    required final LayerLink link,
+    required final Alignment childAnchor,
+    required final Alignment portalAnchor,
+    required final Offset Function(Size, FPortalChildBox, FPortalBox) shift,
+    required final Offset offset,
   }) : _link = link,
        _childAnchor = childAnchor,
        _portalAnchor = portalAnchor,
@@ -174,7 +174,7 @@ class _RenderBox extends RenderBox with RenderObjectWithChildMixin<RenderBox> {
   }
 
   @override
-  void paint(PaintingContext context, Offset _) {
+  void paint(final PaintingContext context, Offset _) {
     final tuple = (child, child?.parentData, link.leader?.offset, link.leaderSize);
     if (tuple case (final child?, final BoxParentData data?, final offset?, final leaderSize?)) {
       data.offset =
@@ -189,12 +189,12 @@ class _RenderBox extends RenderBox with RenderObjectWithChildMixin<RenderBox> {
   }
 
   @override
-  bool hitTest(BoxHitTestResult result, {required Offset position}) {
+  bool hitTest(final BoxHitTestResult result, {required final Offset position}) {
     if ((child, child?.parentData) case (final child?, final BoxParentData data?)) {
       if (result.addWithPaintOffset(
         offset: data.offset,
         position: position,
-        hitTest: (result, transformed) => child.hitTest(result, position: transformed),
+        hitTest: (final result, final transformed) => child.hitTest(result, position: transformed),
       )) {
         result.add(BoxHitTestEntry(this, position));
         return true;
@@ -205,7 +205,7 @@ class _RenderBox extends RenderBox with RenderObjectWithChildMixin<RenderBox> {
   }
 
   @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  void debugFillProperties(final DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('link', link))
@@ -217,7 +217,7 @@ class _RenderBox extends RenderBox with RenderObjectWithChildMixin<RenderBox> {
 
   LayerLink get link => _link;
 
-  set link(LayerLink value) {
+  set link(final LayerLink value) {
     if (_link == value) {
       return;
     }
@@ -228,7 +228,7 @@ class _RenderBox extends RenderBox with RenderObjectWithChildMixin<RenderBox> {
 
   Alignment get childAnchor => _childAnchor;
 
-  set childAnchor(Alignment value) {
+  set childAnchor(final Alignment value) {
     if (_childAnchor == value) {
       return;
     }
@@ -239,7 +239,7 @@ class _RenderBox extends RenderBox with RenderObjectWithChildMixin<RenderBox> {
 
   Alignment get portalAnchor => _portalAnchor;
 
-  set portalAnchor(Alignment value) {
+  set portalAnchor(final Alignment value) {
     if (_portalAnchor == value) {
       return;
     }
@@ -250,7 +250,7 @@ class _RenderBox extends RenderBox with RenderObjectWithChildMixin<RenderBox> {
 
   Offset Function(Size, FPortalChildBox, FPortalBox) get shift => _shift;
 
-  set shift(Offset Function(Size, FPortalChildBox, FPortalBox) value) {
+  set shift(final Offset Function(Size, FPortalChildBox, FPortalBox) value) {
     if (_shift == value) {
       return;
     }
@@ -261,7 +261,7 @@ class _RenderBox extends RenderBox with RenderObjectWithChildMixin<RenderBox> {
 
   Offset get offset => _offset;
 
-  set offset(Offset value) {
+  set offset(final Offset value) {
     if (_offset == value) {
       return;
     }

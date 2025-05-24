@@ -9,7 +9,7 @@ class CounterState with BeState {
   @override
   final BeStatus status;
 
-  CounterState copyWith({int? count, BeStatus? status}) {
+  CounterState copyWith({final int? count, final BeStatus? status}) {
     return CounterState(count: count ?? this.count, status: status ?? this.status);
   }
 }
@@ -20,7 +20,7 @@ class IncrementAction extends BeStateAction {}
 class DecrementAction extends BeStateAction {}
 
 // Reducer
-CounterState reducer(CounterState state, BeStateAction action, [BuildContext? context]) {
+CounterState reducer(final CounterState state, final BeStateAction action, [final BuildContext? context]) {
   return switch (action) {
     IncrementAction() => CounterState(count: state.count + 1),
     DecrementAction() => CounterState(count: state.count - 1),
@@ -34,7 +34,7 @@ class CounterPage extends StatelessWidget {
   const CounterPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return BePageProvider<CounterState, BeStateAction>(
       initialState: CounterState(count: 32),
       reducer: reducer,
@@ -47,7 +47,7 @@ class CounterView extends StatelessWidget {
   const CounterView({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return const Scaffold(
       body: Center(
         child: Column(
@@ -68,7 +68,7 @@ class FloatingOption extends StatelessWidget {
   const FloatingOption({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     final (state, dispatch) = usePageReducer<CounterState, BeStateAction>(context);
 
     return Column(
@@ -85,9 +85,9 @@ class MyWidget extends HookWidget {
   const MyWidget({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    print("MyWidget1 render");
-    final count = useStateSelector<CounterState, BeStateAction, int>(context, (state) => state.count);
+  Widget build(final BuildContext context) {
+    print('MyWidget1 render');
+    final count = useStateSelector<CounterState, BeStateAction, int>(context, (final state) => state.count);
     final dispatch = usePageAction<CounterState, BeStateAction>(context);
 
     return Row(
@@ -97,7 +97,7 @@ class MyWidget extends HookWidget {
           onPressed: () {
             dispatch(SetStateAction(CounterState(count: 0, status: const BeStatus.loading())));
           },
-          child: const Text("Change Status"),
+          child: const Text('Change Status'),
         ),
       ],
     );
@@ -108,9 +108,9 @@ class MyWidget2 extends HookWidget {
   const MyWidget2({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    print("MyWidget2 render");
-    final status = useStateSelector<CounterState, BeStateAction, String>(context, (state) => state.status.toString());
+  Widget build(final BuildContext context) {
+    print('MyWidget2 render');
+    final status = useStateSelector<CounterState, BeStateAction, String>(context, (final state) => state.status.toString());
 
     return Text('Status $status');
   }
@@ -120,8 +120,8 @@ class MyWidget3 extends HookWidget {
   const MyWidget3({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    print("MyWidget3 render");
+  Widget build(final BuildContext context) {
+    print('MyWidget3 render');
 
     return const Text('MyWidget3');
   }

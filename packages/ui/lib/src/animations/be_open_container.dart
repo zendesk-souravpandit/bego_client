@@ -296,7 +296,7 @@ class _OpenContainerState<T> extends State<OpenContainer<T?>> {
   }
 
   @override
-  Widget build(BuildContext context) => _Hideable(
+  Widget build(final BuildContext context) => _Hideable(
     key: _hideableKey,
     child: GestureDetector(
       onTap: widget.tappable ? openContainer : null,
@@ -307,7 +307,7 @@ class _OpenContainerState<T> extends State<OpenContainer<T?>> {
         shape: widget.closedShape,
         child: Builder(
           key: _closedBuilderKey,
-          builder: (BuildContext context) => widget.closedBuilder(context, openContainer),
+          builder: (final BuildContext context) => widget.closedBuilder(context, openContainer),
         ),
       ),
     ),
@@ -338,7 +338,7 @@ class _HideableState extends State<_Hideable> {
   /// When non-null the child is replaced by a [SizedBox] of the set size.
   Size? get placeholderSize => _placeholderSize;
   Size? _placeholderSize;
-  set placeholderSize(Size? value) {
+  set placeholderSize(final Size? value) {
     if (_placeholderSize == value) {
       return;
     }
@@ -353,7 +353,7 @@ class _HideableState extends State<_Hideable> {
   /// (i.e. [isInTree] returns false).
   bool get isVisible => _visible;
   bool _visible = true;
-  set isVisible(bool value) {
+  set isVisible(final bool value) {
     if (_visible == value) {
       return;
     }
@@ -368,7 +368,7 @@ class _HideableState extends State<_Hideable> {
   bool get isInTree => _placeholderSize == null;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     if (_placeholderSize != null) {
       return SizedBox.fromSize(size: _placeholderSize);
     }
@@ -387,9 +387,9 @@ class _OpenContainerRoute<T> extends ModalRoute<T> {
     required this.closedColor,
     required this.openColor,
     required this.middleColor,
-    required double closedElevation,
+    required final double closedElevation,
     required this.openElevation,
-    required ShapeBorder closedShape,
+    required final ShapeBorder closedShape,
     required this.openShape,
     required this.closedBuilder,
     required this.openBuilder,
@@ -398,7 +398,7 @@ class _OpenContainerRoute<T> extends ModalRoute<T> {
     required this.transitionDuration,
     required this.transitionType,
     required this.useRootNavigator,
-    required RouteSettings? routeSettings,
+    required final RouteSettings? routeSettings,
   }) : _elevationTween = Tween<double>(begin: closedElevation, end: openElevation),
        _shapeTween = ShapeBorderTween(begin: closedShape, end: openShape),
        _colorTween = _getColorTween(
@@ -412,10 +412,10 @@ class _OpenContainerRoute<T> extends ModalRoute<T> {
        super(settings: routeSettings);
 
   static _FlippableTweenSequence<Color?> _getColorTween({
-    required ContainerTransitionType transitionType,
-    required Color closedColor,
-    required Color openColor,
-    required Color middleColor,
+    required final ContainerTransitionType transitionType,
+    required final Color closedColor,
+    required final Color openColor,
+    required final Color middleColor,
   }) {
     switch (transitionType) {
       case ContainerTransitionType.fade:
@@ -432,7 +432,7 @@ class _OpenContainerRoute<T> extends ModalRoute<T> {
     }
   }
 
-  static _FlippableTweenSequence<double> _getClosedOpacityTween(ContainerTransitionType transitionType) {
+  static _FlippableTweenSequence<double> _getClosedOpacityTween(final ContainerTransitionType transitionType) {
     switch (transitionType) {
       case ContainerTransitionType.fade:
         return _FlippableTweenSequence<double>(<TweenSequenceItem<double>>[
@@ -446,7 +446,7 @@ class _OpenContainerRoute<T> extends ModalRoute<T> {
     }
   }
 
-  static _FlippableTweenSequence<double> _getOpenOpacityTween(ContainerTransitionType transitionType) {
+  static _FlippableTweenSequence<double> _getOpenOpacityTween(final ContainerTransitionType transitionType) {
     switch (transitionType) {
       case ContainerTransitionType.fade:
         return _FlippableTweenSequence<double>(<TweenSequenceItem<double>>[
@@ -511,7 +511,7 @@ class _OpenContainerRoute<T> extends ModalRoute<T> {
   TickerFuture didPush() {
     _takeMeasurements(navigatorContext: hideableKey.currentContext!);
 
-    animation!.addStatusListener((AnimationStatus status) {
+    animation!.addStatusListener((final AnimationStatus status) {
       _lastAnimationStatus = _currentAnimationStatus;
       _currentAnimationStatus = status;
       switch (status) {
@@ -531,7 +531,7 @@ class _OpenContainerRoute<T> extends ModalRoute<T> {
   }
 
   @override
-  bool didPop(T? result) {
+  bool didPop(final T? result) {
     _takeMeasurements(navigatorContext: subtreeContext!, delayForSourceRoute: true);
     return super.didPop(result);
   }
@@ -541,12 +541,12 @@ class _OpenContainerRoute<T> extends ModalRoute<T> {
     if (hideableKey.currentState?.isVisible == false) {
       // This route may be disposed without dismissing its animation if it is
       // removed by the navigator.
-      SchedulerBinding.instance.addPostFrameCallback((Duration d) => _toggleHideable(hide: false));
+      SchedulerBinding.instance.addPostFrameCallback((final Duration d) => _toggleHideable(hide: false));
     }
     super.dispose();
   }
 
-  void _toggleHideable({required bool hide}) {
+  void _toggleHideable({required final bool hide}) {
     if (hideableKey.currentState != null) {
       hideableKey.currentState!
         ..placeholderSize = null
@@ -554,7 +554,7 @@ class _OpenContainerRoute<T> extends ModalRoute<T> {
     }
   }
 
-  void _takeMeasurements({required BuildContext navigatorContext, bool delayForSourceRoute = false}) {
+  void _takeMeasurements({required final BuildContext navigatorContext, final bool delayForSourceRoute = false}) {
     final navigator =
         Navigator.of(navigatorContext, rootNavigator: useRootNavigator).context.findRenderObject()! as RenderBox;
     final navSize = _getSize(navigator);
@@ -575,14 +575,14 @@ class _OpenContainerRoute<T> extends ModalRoute<T> {
     }
   }
 
-  Size _getSize(RenderBox render) {
+  Size _getSize(final RenderBox render) {
     assert(render.hasSize);
     return render.size;
   }
 
   // Returns the bounds of the [RenderObject] identified by `key` in the
   // coordinate system of `ancestor`.
-  Rect _getRect(GlobalKey key, RenderBox ancestor) {
+  Rect _getRect(final GlobalKey key, final RenderBox ancestor) {
     assert(key.currentContext != null);
     assert(ancestor.hasSize);
     final render = key.currentContext!.findRenderObject()! as RenderBox;
@@ -621,16 +621,16 @@ class _OpenContainerRoute<T> extends ModalRoute<T> {
     return wasInProgress && isInProgress;
   }
 
-  void closeContainer({T? returnValue}) {
+  void closeContainer({final T? returnValue}) {
     Navigator.of(subtreeContext!).pop(returnValue);
   }
 
   @override
-  Widget buildPage(BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) => Align(
+  Widget buildPage(final BuildContext context, final Animation<double> animation, final Animation<double> secondaryAnimation) => Align(
     alignment: Alignment.topLeft,
     child: AnimatedBuilder(
       animation: animation,
-      builder: (BuildContext context, Widget? child) {
+      builder: (final BuildContext context, final Widget? child) {
         if (animation.isCompleted) {
           return SizedBox.expand(
             child: Material(
@@ -639,7 +639,7 @@ class _OpenContainerRoute<T> extends ModalRoute<T> {
               shape: openShape,
               child: Builder(
                 key: _openBuilderKey,
-                builder: (BuildContext context) => openBuilder(context, closeContainer),
+                builder: (final BuildContext context) => openBuilder(context, closeContainer),
               ),
             ),
           );
@@ -721,7 +721,7 @@ class _OpenContainerRoute<T> extends ModalRoute<T> {
                                         // Use dummy "open container" callback
                                         // since we are in the
                                         // process of opening.
-                                        builder: (BuildContext context) => closedBuilder(context, () {}),
+                                        builder: (final BuildContext context) => closedBuilder(context, () {}),
                                       ),
                                     ),
                           ),
@@ -738,7 +738,7 @@ class _OpenContainerRoute<T> extends ModalRoute<T> {
                               opacity: openOpacityTween!.animate(animation),
                               child: Builder(
                                 key: _openBuilderKey,
-                                builder: (BuildContext context) => openBuilder(context, closeContainer),
+                                builder: (final BuildContext context) => openBuilder(context, closeContainer),
                               ),
                             ),
                           ),

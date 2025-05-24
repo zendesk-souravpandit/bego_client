@@ -42,7 +42,7 @@ final class BeResponsivePoints with Diagnosticable {
   final double xl2;
 
   /// Returns the numeric value for a given [BeBreakpoint] enum.
-  double valueForBreakpoint(BeBreakpoint breakpoint) => switch (breakpoint) {
+  double valueForBreakpoint(final BeBreakpoint breakpoint) => switch (breakpoint) {
     BeBreakpoint.xs => 0, // xs has no minimum width
     BeBreakpoint.sm => sm,
     BeBreakpoint.md => md,
@@ -52,7 +52,7 @@ final class BeResponsivePoints with Diagnosticable {
   };
 
   @override
-  bool operator ==(Object other) =>
+  bool operator ==(final Object other) =>
       identical(this, other) ||
       other is BeResponsivePoints &&
           runtimeType == other.runtimeType &&
@@ -66,7 +66,7 @@ final class BeResponsivePoints with Diagnosticable {
   int get hashCode => sm.hashCode ^ md.hashCode ^ lg.hashCode ^ xl.hashCode ^ xl2.hashCode;
 
   @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  void debugFillProperties(final DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
       ..add(DoubleProperty('sm', sm, defaultValue: 640))
@@ -77,7 +77,7 @@ final class BeResponsivePoints with Diagnosticable {
   }
 }
 
-BeBreakpoint calculateBreakpoint(double screenWidth, [BeResponsivePoints breakpoints = const BeResponsivePoints()]) =>
+BeBreakpoint calculateBreakpoint(final double screenWidth, [final BeResponsivePoints breakpoints = const BeResponsivePoints()]) =>
     switch (screenWidth) {
       _ when screenWidth < breakpoints.sm => BeBreakpoint.xs,
       _ when screenWidth < breakpoints.md => BeBreakpoint.sm,

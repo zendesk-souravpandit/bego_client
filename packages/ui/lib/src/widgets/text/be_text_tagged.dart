@@ -27,7 +27,7 @@ class BeTextTagged extends StatelessWidget {
   final double tagspace;
   final Widget child;
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     final tagTextStyle = tagStyle ?? BeTheme.of(context).style.titleSmall;
     return BeBadge(
       offset: offset ?? _calculateOffset(tagTextStyle),
@@ -44,7 +44,7 @@ class BeTextTagged extends StatelessWidget {
     );
   }
 
-  Offset _calculateOffset(TextStyle tagTextStyle) {
+  Offset _calculateOffset(final TextStyle tagTextStyle) {
     final size = BeTextUtil.textSize(label, tagTextStyle);
     var dx = size.width;
     var dy = size.height;

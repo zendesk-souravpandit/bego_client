@@ -3,7 +3,7 @@ import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 @widgetbook.UseCase(name: 'Buttons', path: 'widget', type: ElevatedButton)
-Widget useCaseButtons(BuildContext context) => Padding(
+Widget useCaseButtons(final BuildContext context) => Padding(
   padding: const EdgeInsets.all(16.0),
   child: SingleChildScrollView(
     child: Column(
@@ -112,7 +112,7 @@ Widget useCaseButtons(BuildContext context) => Padding(
   ),
 );
 
-Widget _buildButtonSection({required BuildContext context, required String title, required List<Widget> buttons}) =>
+Widget _buildButtonSection({required final BuildContext context, required final String title, required final List<Widget> buttons}) =>
     Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -125,7 +125,7 @@ Widget _buildButtonSection({required BuildContext context, required String title
       ],
     );
 
-ButtonStyle _buttonStyle(BuildContext context, {ButtonSize size = ButtonSize.medium}) {
+ButtonStyle _buttonStyle(final BuildContext context, {final ButtonSize size = ButtonSize.medium}) {
   final padding = switch (size) {
     ButtonSize.small => const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
     ButtonSize.medium => const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
@@ -144,6 +144,6 @@ ButtonStyle _buttonStyle(BuildContext context, {ButtonSize size = ButtonSize.med
   );
 }
 
-VoidCallback? _getOnPressed(BuildContext context) => context.knobs.boolean(label: 'Disabled') ? null : () {};
+VoidCallback? _getOnPressed(final BuildContext context) => context.knobs.boolean(label: 'Disabled') ? null : () {};
 
 enum ButtonSize { small, medium, large }

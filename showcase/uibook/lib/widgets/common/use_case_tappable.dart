@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 @widgetbook.UseCase(name: 'BeTapable', path: 'utils', type: BeTappable)
-Widget useCaseTappableAnimation(BuildContext context) => BeTappable.animated(
+Widget useCaseTappableAnimation(final BuildContext context) => BeTappable.animated(
   builder:
-      (context, data, child) => Container(
+      (final context, final data, final child) => Container(
         decoration: BoxDecoration(
           color:
               data.hovered

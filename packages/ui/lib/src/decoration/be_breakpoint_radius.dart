@@ -9,7 +9,7 @@ class DialogRadius {
   final double xl;
   final double xl2;
 
-  double getValue(BeBreakpoint breakpoint) => switch (breakpoint) {
+  double getValue(final BeBreakpoint breakpoint) => switch (breakpoint) {
     BeBreakpoint.xs => xs,
     BeBreakpoint.sm => sm,
     BeBreakpoint.md => md,

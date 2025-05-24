@@ -12,17 +12,17 @@ class BeNumberFormField extends FormField<int> {
   /// to [initialValue].
   BeNumberFormField({
     super.key,
-    int? initialValue,
-    int min = 0,
-    int max = 100,
+    final int? initialValue,
+    final int min = 0,
+    final int max = 100,
     super.onSaved,
-    ValueChanged<int?>? onChanged,
+    final ValueChanged<int?>? onChanged,
     AutovalidateMode super.autovalidateMode = AutovalidateMode.always,
-    String? validationError,
+    final String? validationError,
     super.enabled,
-    FocusNode? focusNode,
-    TextEditingController? controller,
-    BoxConstraints? constraints,
+    final FocusNode? focusNode,
+    final TextEditingController? controller,
+    final BoxConstraints? constraints,
   }) : assert(initialValue == null || controller == null, 'initialValue or controller must be null'),
        assert(
          initialValue == null || initialValue >= min && initialValue <= max,
@@ -30,9 +30,9 @@ class BeNumberFormField extends FormField<int> {
        ),
        super(
          initialValue: initialValue ?? int.tryParse(controller?.text ?? ''),
-         validator: (value) => value != null && (value >= min && value <= max) ? null : validationError,
-         builder: (FormFieldState<int> field) {
-           void handleChanged(int? value) {
+         validator: (final value) => value != null && (value >= min && value <= max) ? null : validationError,
+         builder: (final FormFieldState<int> field) {
+           void handleChanged(final int? value) {
              field.didChange(value);
              onChanged?.call(value);
            }
@@ -138,7 +138,7 @@ class _BeNumberPickerState extends State<_BeNumberPicker> {
     _updateController(newValue);
   }
 
-  void _onChanged(String v) {
+  void _onChanged(final String v) {
     final value = int.tryParse(v);
     if (value != null && value >= widget.min && value <= widget.max) {
       widget.onChanged(value);
@@ -148,7 +148,7 @@ class _BeNumberPickerState extends State<_BeNumberPicker> {
     _value = value;
   }
 
-  void _updateController(int? value) {
+  void _updateController(final int? value) {
     final newValue = value?.toString() ?? '';
     _effectiveController
       ..text = newValue
@@ -156,7 +156,7 @@ class _BeNumberPickerState extends State<_BeNumberPicker> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     final value = _value;
 
     return TextFormField(

@@ -16,7 +16,7 @@ class BeResponsiveSize extends StatelessWidget {
   BeResponsiveSize.paddingAll({
     super.key,
     required this.baseSize,
-    required Widget child,
+    required final Widget child,
     this.mobileFactor = 1.0,
     this.tabletFactor = 1.15,
     this.desktopFactor = 1.25,
@@ -27,7 +27,7 @@ class BeResponsiveSize extends StatelessWidget {
   final double tabletFactor;
   final double desktopFactor;
 
-  double _getValue(BuildContext context) {
+  double _getValue(final BuildContext context) {
     final breakpoint = BeTheme.of(context).breakpoint;
     final multiplier = switch (breakpoint) {
       BeBreakpoint.xs || BeBreakpoint.sm => mobileFactor,
@@ -38,7 +38,7 @@ class BeResponsiveSize extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     final value = _getValue(context);
     return child ?? SizedBox.square(dimension: value);
   }

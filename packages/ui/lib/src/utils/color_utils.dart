@@ -41,7 +41,7 @@ const darkModeValues = {
 class ColorUtils {
   const ColorUtils._();
 
-  static Map<int, Color> tonalPalette(Color baseColor, {bool isDark = false}) {
+  static Map<int, Color> tonalPalette(final Color baseColor, {final bool isDark = false}) {
     final hsl = HSLColor.fromColor(baseColor);
     return {
       0: hsl.withLightness(isDark ? 0.0 : 1.0).toColor(),
@@ -60,10 +60,10 @@ class ColorUtils {
     };
   }
 
-  static MaterialColor createColorSwatch(Color color, {bool isDarkMode = false}) {
+  static MaterialColor createColorSwatch(final Color color, {final bool isDarkMode = false}) {
     final hsl = HSLColor.fromColor(color);
 
-    double getLightness(int key) {
+    double getLightness(final int key) {
       final baseLightness = hsl.lightness;
       final lightnessValues = {
         50: isDarkMode ? 0.10 : 0.95,
@@ -87,9 +87,9 @@ class ColorUtils {
   }
 
   static Color createColorSwatchLevel(
-    Color baseColor, {
-    ColorSwatchLevel level = ColorSwatchLevel.shade50,
-    bool isDarkMode = false,
+    final Color baseColor, {
+    final ColorSwatchLevel level = ColorSwatchLevel.shade50,
+    final bool isDarkMode = false,
   }) {
     // Directly return base color for 500 level
     if (level == ColorSwatchLevel.shade500) {
@@ -102,14 +102,14 @@ class ColorUtils {
     return hsl.withLightness(lightness).toColor();
   }
 
-  static double _getLightnessForLevel(ColorSwatchLevel level, bool isDarkMode) =>
+  static double _getLightnessForLevel(final ColorSwatchLevel level, final bool isDarkMode) =>
       isDarkMode ? darkModeValues[level] ?? lightModeValues[level]! : lightModeValues[level]!;
 
   /// Returns true if the color's brightness is [Brightness.light], else false.
-  bool isLight(Color color) => ThemeData.estimateBrightnessForColor(color) == Brightness.light;
+  bool isLight(final Color color) => ThemeData.estimateBrightnessForColor(color) == Brightness.light;
 
   /// Returns true if the color's brightness is [Brightness.dark], else false.
-  bool isDark(Color color) => ThemeData.estimateBrightnessForColor(color) == Brightness.dark;
+  bool isDark(final Color color) => ThemeData.estimateBrightnessForColor(color) == Brightness.dark;
 }
 
 extension ColorExtension on Color {
@@ -124,7 +124,7 @@ extension ColorExtension on Color {
   /// by blending in white color with light scheme color.
   ///
   /// Defaults to 10% alpha blend of the passed in Color value.
-  Color blend(Color input, [int amount = 10]) {
+  Color blend(final Color input, [final int amount = 10]) {
     // Skip blending for impossible value and return the instance color value.
     if (amount <= 0) {
       return this;
@@ -148,7 +148,7 @@ extension ColorExtension on Color {
   ///
   /// Defaults to alpha 0x0A alpha blend of the passed in Color value,
   /// which is 10% alpha blend.
-  Color blendAlpha(Color input, [int alpha = 0x0A]) {
+  Color blendAlpha(final Color input, [final int alpha = 0x0A]) {
     // Skip blending for impossible value and return the instance color value.
     if (alpha <= 0) {
       return this;
