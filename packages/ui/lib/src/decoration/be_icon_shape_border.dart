@@ -50,22 +50,17 @@ class BeIconShapeBorder extends OutlinedBorder {
     alignment: alignment,
     offset: offset * t,
     iconInset: iconInset * t,
-    iconStyle: iconStyle?.copyWith(
-      fontSize: iconStyle?.fontSize != null ? iconStyle!.fontSize! * t : null,
-    ),
+    iconStyle: iconStyle?.copyWith(fontSize: iconStyle?.fontSize != null ? iconStyle!.fontSize! * t : null),
   );
 
   @override
   Path getInnerPath(Rect rect, {TextDirection? textDirection}) {
-    return Path()..addRRect(
-      RRect.fromRectAndRadius(rect.deflate(width), Radius.circular(radius)),
-    );
+    return Path()..addRRect(RRect.fromRectAndRadius(rect.deflate(width), Radius.circular(radius)));
   }
 
   @override
   Path getOuterPath(Rect rect, {TextDirection? textDirection}) {
-    return Path()
-      ..addRRect(RRect.fromRectAndRadius(rect, Radius.circular(radius)));
+    return Path()..addRRect(RRect.fromRectAndRadius(rect, Radius.circular(radius)));
   }
 
   Offset _getIconPosition(Rect rect, Size iconSize) {
@@ -75,17 +70,11 @@ class BeIconShapeBorder extends OutlinedBorder {
 
     switch (alignment) {
       case BeIconAlignment.topLeft:
-        return Offset(
-          insetRect.left + halfIconWidth,
-          insetRect.top + halfIconHeight,
-        );
+        return Offset(insetRect.left + halfIconWidth, insetRect.top + halfIconHeight);
       case BeIconAlignment.topCenter:
         return Offset(insetRect.center.dx, insetRect.top + halfIconHeight);
       case BeIconAlignment.topRight:
-        return Offset(
-          insetRect.right - halfIconWidth,
-          insetRect.top + halfIconHeight,
-        );
+        return Offset(insetRect.right - halfIconWidth, insetRect.top + halfIconHeight);
       case BeIconAlignment.centerLeft:
         return Offset(insetRect.left + halfIconWidth, insetRect.center.dy);
       case BeIconAlignment.center:
@@ -93,17 +82,11 @@ class BeIconShapeBorder extends OutlinedBorder {
       case BeIconAlignment.centerRight:
         return Offset(insetRect.right - halfIconWidth, insetRect.center.dy);
       case BeIconAlignment.bottomLeft:
-        return Offset(
-          insetRect.left + halfIconWidth,
-          insetRect.bottom - halfIconHeight,
-        );
+        return Offset(insetRect.left + halfIconWidth, insetRect.bottom - halfIconHeight);
       case BeIconAlignment.bottomCenter:
         return Offset(insetRect.center.dx, insetRect.bottom - halfIconHeight);
       case BeIconAlignment.bottomRight:
-        return Offset(
-          insetRect.right - halfIconWidth,
-          insetRect.bottom - halfIconHeight,
-        );
+        return Offset(insetRect.right - halfIconWidth, insetRect.bottom - halfIconHeight);
     }
   }
 
@@ -116,10 +99,7 @@ class BeIconShapeBorder extends OutlinedBorder {
           ..style = PaintingStyle.stroke
           ..strokeWidth = width;
 
-    canvas.drawRRect(
-      RRect.fromRectAndRadius(rect, Radius.circular(radius)),
-      paint,
-    );
+    canvas.drawRRect(RRect.fromRectAndRadius(rect, Radius.circular(radius)), paint);
 
     // Prepare icon text style
     final effectiveStyle = (iconStyle ?? const TextStyle()).copyWith(
@@ -131,10 +111,7 @@ class BeIconShapeBorder extends OutlinedBorder {
 
     // Draw the icon
     final textPainter = TextPainter(
-      text: TextSpan(
-        text: String.fromCharCode(icon.codePoint),
-        style: effectiveStyle,
-      ),
+      text: TextSpan(text: String.fromCharCode(icon.codePoint), style: effectiveStyle),
       textDirection: TextDirection.ltr,
     )..layout();
 
@@ -142,22 +119,13 @@ class BeIconShapeBorder extends OutlinedBorder {
 
     // Ensure icon stays within bounds
     final boundedPosition = Offset(
-      iconPosition.dx.clamp(
-        rect.left + width + iconInset,
-        rect.right - width - iconInset,
-      ),
-      iconPosition.dy.clamp(
-        rect.top + width + iconInset,
-        rect.bottom - width - iconInset,
-      ),
+      iconPosition.dx.clamp(rect.left + width + iconInset, rect.right - width - iconInset),
+      iconPosition.dy.clamp(rect.top + width + iconInset, rect.bottom - width - iconInset),
     );
 
     textPainter.paint(
       canvas,
-      Offset(
-        boundedPosition.dx - textPainter.width / 2,
-        boundedPosition.dy - textPainter.height / 2,
-      ),
+      Offset(boundedPosition.dx - textPainter.width / 2, boundedPosition.dy - textPainter.height / 2),
     );
   }
 

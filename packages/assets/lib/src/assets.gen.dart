@@ -13,8 +13,7 @@ class $AssetsImagesGen {
   const $AssetsImagesGen();
 
   /// File path: assets/images/demo_image.jpg
-  AssetGenImage get demoImage =>
-      const AssetGenImage('assets/images/demo_image.jpg');
+  AssetGenImage get demoImage => const AssetGenImage('assets/images/demo_image.jpg');
 
   /// Directory path: packages/beassets/assets/images
   String get path => 'packages/beassets/assets/images';
@@ -61,8 +60,7 @@ class AssetGenImage {
     bool matchTextDirection = false,
     bool gaplessPlayback = true,
     bool isAntiAlias = false,
-    @Deprecated('Do not specify package for a generated library asset')
-    String? package = package,
+    @Deprecated('Do not specify package for a generated library asset') String? package = package,
     FilterQuality filterQuality = FilterQuality.medium,
     int? cacheWidth,
     int? cacheHeight,
@@ -97,8 +95,7 @@ class AssetGenImage {
 
   ImageProvider provider({
     AssetBundle? bundle,
-    @Deprecated('Do not specify package for a generated library asset')
-    String? package = package,
+    @Deprecated('Do not specify package for a generated library asset') String? package = package,
   }) {
     return AssetImage(_assetName, bundle: bundle, package: package);
   }

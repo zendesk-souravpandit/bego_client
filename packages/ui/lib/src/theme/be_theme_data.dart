@@ -22,12 +22,7 @@ class BeThemeData extends ThemeExtension<BeThemeData> {
   final BeBreakpoint breakpoint;
 
   @override
-  BeThemeData copyWith({
-    BeBreakpoint? breakpoint,
-    BeStyle? style,
-    BeColor? colors,
-    BeStyleValue? inset,
-  }) => BeThemeData(
+  BeThemeData copyWith({BeBreakpoint? breakpoint, BeStyle? style, BeColor? colors, BeStyleValue? inset}) => BeThemeData(
     breakpoint: breakpoint ?? this.breakpoint,
     style: style ?? this.style,
     colors: colors ?? this.colors,
@@ -40,8 +35,7 @@ class BeThemeData extends ThemeExtension<BeThemeData> {
       return this;
     }
     return BeThemeData(
-      breakpoint:
-          other.breakpoint, // Implement breakpoint interpolation if needed
+      breakpoint: other.breakpoint, // Implement breakpoint interpolation if needed
       style: other.style, // You can implement lerping for style if needed
       colors: other.colors,
       styleValue: other.styleValue, // Implement color interpolation if needed

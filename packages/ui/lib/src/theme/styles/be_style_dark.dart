@@ -2,10 +2,7 @@ import 'package:beui/theme.dart';
 import 'package:flutter/material.dart';
 
 class BeStyleDark implements BeStyle {
-  const BeStyleDark({
-    this.color = const BeColorsDark(),
-    this.inset = const BeMobileValue(),
-  });
+  const BeStyleDark({this.color = const BeColorsDark(), this.inset = const BeMobileValue()});
   final BeColor color;
   final BeStyleValue inset;
 

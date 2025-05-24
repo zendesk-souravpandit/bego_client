@@ -48,8 +48,7 @@ class BeBoxShadow extends BoxShadow {
       return a.scale(1.0 - t);
     }
 
-    final blurStyle =
-        a.blurStyle == BlurStyle.normal ? b.blurStyle : a.blurStyle;
+    final blurStyle = a.blurStyle == BlurStyle.normal ? b.blurStyle : a.blurStyle;
 
     if (a.inset != b.inset) {
       return BeBoxShadow(
@@ -77,11 +76,7 @@ class BeBoxShadow extends BoxShadow {
   /// If the lists differ in length, excess items are lerped with null.
   ///
   /// {@macro dart.ui.shadow.lerp}
-  static List<BeBoxShadow>? lerpList(
-    List<BeBoxShadow>? a,
-    List<BeBoxShadow>? b,
-    double t,
-  ) {
+  static List<BeBoxShadow>? lerpList(List<BeBoxShadow>? a, List<BeBoxShadow>? b, double t) {
     if (a == null && b == null) {
       return null;
     }
@@ -89,8 +84,7 @@ class BeBoxShadow extends BoxShadow {
     b ??= <BeBoxShadow>[];
     final int commonLength = math.min(a.length, b.length);
     return <BeBoxShadow>[
-      for (int i = 0; i < commonLength; i += 1)
-        BeBoxShadow.lerp(a[i], b[i], t)!,
+      for (int i = 0; i < commonLength; i += 1) BeBoxShadow.lerp(a[i], b[i], t)!,
       for (int i = commonLength; i < a.length; i += 1) a[i].scale(1.0 - t),
       for (int i = commonLength; i < b.length; i += 1) b[i].scale(t),
     ];
@@ -114,8 +108,7 @@ class BeBoxShadow extends BoxShadow {
   }
 
   @override
-  int get hashCode =>
-      Object.hash(color, offset, blurRadius, spreadRadius, blurStyle, inset);
+  int get hashCode => Object.hash(color, offset, blurRadius, spreadRadius, blurStyle, inset);
 
   @override
   String toString() =>

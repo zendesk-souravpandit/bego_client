@@ -23,10 +23,6 @@ class BegoApp extends StatelessWidget {
     // const BeTextVariant variant = BeTextVariant.primary;
     // final (color, background) = variant.variantColor(betheme.colors);
 
-    return MaterialApp(
-      themeMode: appState.themeMode,
-      theme: BeTheme.buildThemeof(context),
-      home: const CounterPage(),
-    );
+    return MaterialApp(themeMode: appState.themeMode, theme: BeTheme.buildThemeof(context), home: const CounterPage());
   }
 }

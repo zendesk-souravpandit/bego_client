@@ -22,8 +22,7 @@ bool? _isEmpty(dynamic value) {
 /// standard dart types that contains it.
 ///
 /// This is here to for the 'DRY'
-bool _hasLength(dynamic value) =>
-    value is Iterable || value is String || value is Map;
+bool _hasLength(dynamic value) => value is Iterable || value is String || value is Map;
 
 /// Obtains a length of a dynamic value
 /// by previously validating it's type
@@ -182,16 +181,13 @@ class BeCheckValue {
   static bool isChm(String filePath) => filePath.toLowerCase().endsWith('.chm');
 
   /// Checks if string is a vector file.
-  static bool isVector(String filePath) =>
-      filePath.toLowerCase().endsWith('.svg');
+  static bool isVector(String filePath) => filePath.toLowerCase().endsWith('.svg');
 
   /// Checks if string is an html file.
-  static bool isHTML(String filePath) =>
-      filePath.toLowerCase().endsWith('.html');
+  static bool isHTML(String filePath) => filePath.toLowerCase().endsWith('.html');
 
   /// Checks if string is a valid username.
-  static bool isUsername(String s) =>
-      hasMatch(s, r'^[a-zA-Z0-9][a-zA-Z0-9_.]+[a-zA-Z0-9]$');
+  static bool isUsername(String s) => hasMatch(s, r'^[a-zA-Z0-9][a-zA-Z0-9_.]+[a-zA-Z0-9]$');
 
   /// Checks if string is URL.
   static bool isURL(String s) => hasMatch(
@@ -214,32 +210,25 @@ class BeCheckValue {
   }
 
   /// Checks if string is DateTime (UTC or Iso8601).
-  static bool isDateTime(String s) =>
-      hasMatch(s, r'^\d{4}-\d{2}-\d{2}[ T]\d{2}:\d{2}:\d{2}.\d{3}Z?$');
+  static bool isDateTime(String s) => hasMatch(s, r'^\d{4}-\d{2}-\d{2}[ T]\d{2}:\d{2}:\d{2}.\d{3}Z?$');
 
   /// Checks if string is MD5 hash.
   static bool isMD5(String s) => hasMatch(s, r'^[a-f0-9]{32}$');
 
   /// Checks if string is SHA1 hash.
-  static bool isSHA1(String s) =>
-      hasMatch(s, r'(([A-Fa-f0-9]{2}\:){19}[A-Fa-f0-9]{2}|[A-Fa-f0-9]{40})');
+  static bool isSHA1(String s) => hasMatch(s, r'(([A-Fa-f0-9]{2}\:){19}[A-Fa-f0-9]{2}|[A-Fa-f0-9]{40})');
 
   /// Checks if string is SHA256 hash.
-  static bool isSHA256(String s) =>
-      hasMatch(s, r'([A-Fa-f0-9]{2}\:){31}[A-Fa-f0-9]{2}|[A-Fa-f0-9]{64}');
+  static bool isSHA256(String s) => hasMatch(s, r'([A-Fa-f0-9]{2}\:){31}[A-Fa-f0-9]{2}|[A-Fa-f0-9]{64}');
 
   /// Checks if string is SSN (Social Security Number).
-  static bool isSSN(String s) => hasMatch(
-    s,
-    r'^(?!0{3}|6{3}|9[0-9]{2})[0-9]{3}-?(?!0{2})[0-9]{2}-?(?!0{4})[0-9]{4}$',
-  );
+  static bool isSSN(String s) => hasMatch(s, r'^(?!0{3}|6{3}|9[0-9]{2})[0-9]{3}-?(?!0{2})[0-9]{2}-?(?!0{4})[0-9]{4}$');
 
   /// Checks if string is binary.
   static bool isBinary(String s) => hasMatch(s, r'^[0-1]+$');
 
   /// Checks if string is IPv4.
-  static bool isIPv4(String s) =>
-      hasMatch(s, r'^(?:(?:^|\.)(?:2(?:5[0-5]|[0-4]\d)|1?\d?\d)){4}$');
+  static bool isIPv4(String s) => hasMatch(s, r'^(?:(?:^|\.)(?:2(?:5[0-5]|[0-4]\d)|1?\d?\d)){4}$');
 
   /// Checks if string is IPv6.
   static bool isIPv6(String s) => hasMatch(
@@ -249,15 +238,11 @@ class BeCheckValue {
 
   /// Checks if string is hexadecimal.
   /// Example: HexColor => #12F
-  static bool isHexadecimal(String s) =>
-      hasMatch(s, r'^#?([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$');
+  static bool isHexadecimal(String s) => hasMatch(s, r'^#?([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$');
 
   /// Checks if string is Palindrom.
   static bool isPalindrom(String string) {
-    final cleanString = string
-        .toLowerCase()
-        .replaceAll(RegExp(r'\s+'), '')
-        .replaceAll(RegExp('[^0-9a-zA-Z]+'), '');
+    final cleanString = string.toLowerCase().replaceAll(RegExp(r'\s+'), '').replaceAll(RegExp('[^0-9a-zA-Z]+'), '');
 
     for (var i = 0; i < cleanString.length; i++) {
       if (cleanString[i] != cleanString[cleanString.length - i - 1]) {
@@ -301,8 +286,7 @@ class BeCheckValue {
   }
 
   /// Checks if string is Passport No.
-  static bool isPassport(String s) =>
-      hasMatch(s, r'^(?!^0+$)[a-zA-Z0-9]{6,9}$');
+  static bool isPassport(String s) => hasMatch(s, r'^(?!^0+$)[a-zA-Z0-9]{6,9}$');
 
   /// Checks if string is Currency.
   static bool isCurrency(String s) => hasMatch(
@@ -370,14 +354,12 @@ class BeCheckValue {
       return false;
     }
 
-    return isLengthGreaterOrEqual(value, minLength) &&
-        isLengthLessOrEqual(value, maxLength);
+    return isLengthGreaterOrEqual(value, minLength) && isLengthLessOrEqual(value, maxLength);
   }
 
   /// Checks if a contains b (Treating or interpreting upper- and lowercase
   /// letters as being the same).
-  static bool isCaseInsensitiveContains(String a, String b) =>
-      a.toLowerCase().contains(b.toLowerCase());
+  static bool isCaseInsensitiveContains(String a, String b) => a.toLowerCase().contains(b.toLowerCase());
 
   /// Checks if a contains b or b contains a (Treating or
   /// interpreting upper- and lowercase letters as being the same).
@@ -526,17 +508,14 @@ class BeCheckValue {
       return null;
     }
 
-    final separatedWords = value.split(
-      RegExp(r'[!@#<>?":`~;[\]\\|=+)(*&^%-\s_]+'),
-    );
+    final separatedWords = value.split(RegExp(r'[!@#<>?":`~;[\]\\|=+)(*&^%-\s_]+'));
     final newString = StringBuffer();
 
     for (final word in separatedWords) {
       newString.write(word[0].toUpperCase() + word.substring(1).toLowerCase());
     }
 
-    return newString.toString()[0].toLowerCase() +
-        newString.toString().substring(1);
+    return newString.toString()[0].toLowerCase() + newString.toString().substring(1);
   }
 
   /// credits to "ReCase" package.
@@ -555,9 +534,7 @@ class BeCheckValue {
       }
       sb.write(char);
       final isEndOfWord =
-          nextChar == null ||
-          (_upperAlphaRegex.hasMatch(nextChar) && !isAllCaps) ||
-          _symbolSet.contains(nextChar);
+          nextChar == null || (_upperAlphaRegex.hasMatch(nextChar) && !isAllCaps) || _symbolSet.contains(nextChar);
       if (isEndOfWord) {
         words.add('$sb');
         sb.clear();
@@ -571,9 +548,7 @@ class BeCheckValue {
     if (isNullOrBlank(text)!) {
       return null;
     }
-    return _groupIntoWords(
-      text!,
-    ).map((word) => word.toLowerCase()).join(separator);
+    return _groupIntoWords(text!).map((word) => word.toLowerCase()).join(separator);
   }
 
   /// param-case
@@ -633,8 +608,7 @@ class BeCheckValue {
     return finalResult;
   }
 
-  static bool hasMatch(String? value, String pattern) =>
-      value != null && RegExp(pattern).hasMatch(value);
+  static bool hasMatch(String? value, String pattern) => value != null && RegExp(pattern).hasMatch(value);
 
   static String createPath(String path, [Iterable<dynamic>? segments]) {
     if (segments == null || segments.isEmpty) {
@@ -644,15 +618,9 @@ class BeCheckValue {
     return path + list.join();
   }
 
-  static void printFunction(
-    String prefix,
-    dynamic value,
-    String info, {
-    bool isError = false,
-  }) {
+  static void printFunction(String prefix, dynamic value, String info, {bool isError = false}) {
     debugPrint('$prefix $value $info'.trim());
   }
 }
 
-typedef PrintFunctionCallback =
-    void Function(String prefix, dynamic value, String info, {bool? isError});
+typedef PrintFunctionCallback = void Function(String prefix, dynamic value, String info, {bool? isError});

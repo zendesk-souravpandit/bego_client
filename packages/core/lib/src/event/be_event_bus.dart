@@ -18,8 +18,7 @@ class BeEventBus {
   /// during a [fire] call. If false (the default), the event will be passed to
   /// the listeners at a later time, after the code creating the event has
   /// completed.
-  BeEventBus({bool sync = false})
-    : _streamController = StreamController.broadcast(sync: sync);
+  BeEventBus({bool sync = false}) : _streamController = StreamController.broadcast(sync: sync);
 
   factory BeEventBus._() {
     _instance ??= BeEventBus();
@@ -30,8 +29,7 @@ class BeEventBus {
   /// you can use this constructor to pass your own controller.
   ///
   /// An example would be to use an RxDart Subject as the controller.
-  BeEventBus.customController(StreamController<dynamic> controller)
-    : _streamController = controller;
+  BeEventBus.customController(StreamController<dynamic> controller) : _streamController = controller;
 
   static BeEventBus? _instance;
 

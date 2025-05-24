@@ -12,26 +12,19 @@ class BeTheme extends StatelessWidget {
   final BeThemeData betheme;
 
   // @useResult
-  static BeThemeData of(BuildContext context) =>
-      Theme.of(context).extension<BeThemeData>()!;
+  static BeThemeData of(BuildContext context) => Theme.of(context).extension<BeThemeData>()!;
 
   static ThemeData buildThemeof(BuildContext context) {
     final betheme = of(context);
-    final brightness =
-        betheme.themeMode == ThemeMode.dark
-            ? Brightness.dark
-            : Brightness.light;
+    final brightness = betheme.themeMode == ThemeMode.dark ? Brightness.dark : Brightness.light;
     return buildTheme(betheme: betheme, brightness: brightness);
   }
 
   @override
   Widget build(BuildContext context) {
     final brightness = MediaQuery.platformBrightnessOf(context);
-    final materialTheme =
-        brightness == Brightness.dark ? ThemeData.dark() : ThemeData.light();
-    final themeData = materialTheme.copyWith(
-      extensions: <ThemeExtension<BeThemeData>>[betheme],
-    );
+    final materialTheme = brightness == Brightness.dark ? ThemeData.dark() : ThemeData.light();
+    final themeData = materialTheme.copyWith(extensions: <ThemeExtension<BeThemeData>>[betheme]);
     return Theme(data: themeData, child: child);
   }
 

@@ -20,13 +20,7 @@ enum BeBreakpoint {
 
 final class BeResponsivePoints with Diagnosticable {
   /// Creates a [BeResponsivePoints].
-  const BeResponsivePoints({
-    this.sm = 640,
-    this.md = 768,
-    this.lg = 1024,
-    this.xl = 1280,
-    this.xl2 = 1536,
-  });
+  const BeResponsivePoints({this.sm = 640, this.md = 768, this.lg = 1024, this.xl = 1280, this.xl2 = 1536});
 
   /// The minimum width of the small breakpoint, inclusive. Defaults to 640.
   ///
@@ -69,8 +63,7 @@ final class BeResponsivePoints with Diagnosticable {
           xl2 == other.xl2;
 
   @override
-  int get hashCode =>
-      sm.hashCode ^ md.hashCode ^ lg.hashCode ^ xl.hashCode ^ xl2.hashCode;
+  int get hashCode => sm.hashCode ^ md.hashCode ^ lg.hashCode ^ xl.hashCode ^ xl2.hashCode;
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
@@ -84,23 +77,18 @@ final class BeResponsivePoints with Diagnosticable {
   }
 }
 
-BeBreakpoint calculateBreakpoint(
-  double screenWidth, [
-  BeResponsivePoints breakpoints = const BeResponsivePoints(),
-]) => switch (screenWidth) {
-  _ when screenWidth < breakpoints.sm => BeBreakpoint.xs,
-  _ when screenWidth < breakpoints.md => BeBreakpoint.sm,
-  _ when screenWidth < breakpoints.lg => BeBreakpoint.md,
-  _ when screenWidth < breakpoints.xl => BeBreakpoint.lg,
-  _ when screenWidth < breakpoints.xl2 => BeBreakpoint.xl,
-  _ => BeBreakpoint.xl2,
-};
+BeBreakpoint calculateBreakpoint(double screenWidth, [BeResponsivePoints breakpoints = const BeResponsivePoints()]) =>
+    switch (screenWidth) {
+      _ when screenWidth < breakpoints.sm => BeBreakpoint.xs,
+      _ when screenWidth < breakpoints.md => BeBreakpoint.sm,
+      _ when screenWidth < breakpoints.lg => BeBreakpoint.md,
+      _ when screenWidth < breakpoints.xl => BeBreakpoint.lg,
+      _ when screenWidth < breakpoints.xl2 => BeBreakpoint.xl,
+      _ => BeBreakpoint.xl2,
+    };
 
 extension BeBreakpointDevice on BeBreakpoint {
   bool get isMobile => this == BeBreakpoint.xs || this == BeBreakpoint.sm;
   bool get isTablet => this == BeBreakpoint.md;
-  bool get isDesktop =>
-      this == BeBreakpoint.lg ||
-      this == BeBreakpoint.xl ||
-      this == BeBreakpoint.xl2;
+  bool get isDesktop => this == BeBreakpoint.lg || this == BeBreakpoint.xl || this == BeBreakpoint.xl2;
 }

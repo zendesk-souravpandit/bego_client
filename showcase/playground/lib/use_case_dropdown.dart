@@ -61,11 +61,7 @@ class _DropdownMenuShowcaseState extends State<DropdownMenuShowcase> {
                   contentPadding: EdgeInsets.symmetric(horizontal: 16),
                 ),
                 items: [
-                  DropdownMenuItem(
-                    value: 'item1',
-                    child: const Text('Item 1'),
-                    onTap: () {},
-                  ),
+                  DropdownMenuItem(value: 'item1', child: const Text('Item 1'), onTap: () {}),
                   const DropdownMenuItem(value: 'item2', child: Text('Item 2')),
                   const DropdownMenuItem(value: 'item3', child: Text('Item 3')),
                 ],
@@ -107,21 +103,12 @@ class _DropdownMenuShowcaseState extends State<DropdownMenuShowcase> {
                 hint: const Text('Custom dropdown'),
                 icon: const Icon(Icons.arrow_drop_down_circle),
                 iconSize: 24,
-                style: const TextStyle(
-                  fontWeight: FontWeight.w500,
-                  color: Colors.black,
-                ),
+                style: const TextStyle(fontWeight: FontWeight.w500, color: Colors.black),
                 underline: emptyWidget,
                 borderRadius: const BorderRadius.all(Radius.circular(18)),
                 items: const [
-                  DropdownMenuItem(
-                    value: 'custom1',
-                    child: Text('Custom Option 1'),
-                  ),
-                  DropdownMenuItem(
-                    value: 'custom2',
-                    child: Text('Custom Option 2'),
-                  ),
+                  DropdownMenuItem(value: 'custom1', child: Text('Custom Option 1')),
+                  DropdownMenuItem(value: 'custom2', child: Text('Custom Option 2')),
                 ],
                 // selectedItemBuilder: (context) => [const BeText("text")],
                 onChanged: (value) {
@@ -162,17 +149,12 @@ class _DropdownMenuShowcaseState extends State<DropdownMenuShowcase> {
                       DropdownMenuEntry(value: 'menu3', label: 'Menu Item 3'),
                     ],
                     inputDecorationTheme: InputDecorationTheme(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
+                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
                     ),
                     width: 200,
                   ),
                   if (_menuAnchorValue != null)
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8),
-                      child: Text('Selected: $_menuAnchorValue'),
-                    ),
+                    Padding(padding: const EdgeInsets.only(top: 8), child: Text('Selected: $_menuAnchorValue')),
                 ],
               ),
             ),
@@ -182,11 +164,7 @@ class _DropdownMenuShowcaseState extends State<DropdownMenuShowcase> {
             _buildExampleCard(
               child: MenuAnchor(
                 style: const MenuStyle(padding: WidgetStatePropertyAll(p0)),
-                builder: (
-                  BuildContext context,
-                  MenuController controller,
-                  Widget? child,
-                ) {
+                builder: (BuildContext context, MenuController controller, Widget? child) {
                   return FilledButton(
                     onPressed: () {
                       controller.open();
@@ -195,28 +173,18 @@ class _DropdownMenuShowcaseState extends State<DropdownMenuShowcase> {
                   );
                 },
                 menuChildren: [
-                  MenuItemButton(
-                    child: const Text('Copy'),
-                    onPressed: () => _showSnackbar(context, 'Copied!'),
-                  ),
-                  MenuItemButton(
-                    child: const Text('Paste'),
-                    onPressed: () => _showSnackbar(context, 'Pasted!'),
-                  ),
+                  MenuItemButton(child: const Text('Copy'), onPressed: () => _showSnackbar(context, 'Copied!')),
+                  MenuItemButton(child: const Text('Paste'), onPressed: () => _showSnackbar(context, 'Pasted!')),
                   SubmenuButton(
-                    menuStyle: const MenuStyle(
-                      padding: WidgetStatePropertyAll(p0),
-                    ),
+                    menuStyle: const MenuStyle(padding: WidgetStatePropertyAll(p0)),
                     menuChildren: [
                       MenuItemButton(
                         child: const Text('Option A'),
-                        onPressed:
-                            () => _showSnackbar(context, 'Option A selected'),
+                        onPressed: () => _showSnackbar(context, 'Option A selected'),
                       ),
                       MenuItemButton(
                         child: const Text('Option B'),
-                        onPressed:
-                            () => _showSnackbar(context, 'Option B selected'),
+                        onPressed: () => _showSnackbar(context, 'Option B selected'),
                       ),
                     ],
                     child: const Text('More Options'),
@@ -230,24 +198,14 @@ class _DropdownMenuShowcaseState extends State<DropdownMenuShowcase> {
             _buildExampleCard(
               child: Center(
                 child: PopupMenuButton<String>(
-                  onSelected:
-                      (value) => _showSnackbar(context, 'Selected $value'),
+                  onSelected: (value) => _showSnackbar(context, 'Selected $value'),
                   itemBuilder:
                       (context) => [
                         const PopupMenuItem(value: 'edit', child: Text('Edit')),
-                        const PopupMenuItem(
-                          value: 'delete',
-                          child: Text('Delete'),
-                        ),
-                        const PopupMenuItem(
-                          value: 'share',
-                          child: Text('Share'),
-                        ),
+                        const PopupMenuItem(value: 'delete', child: Text('Delete')),
+                        const PopupMenuItem(value: 'share', child: Text('Share')),
                       ],
-                  child: const Chip(
-                    label: Text('Actions'),
-                    avatar: Icon(Icons.arrow_drop_down),
-                  ),
+                  child: const Chip(label: Text('Actions'), avatar: Icon(Icons.arrow_drop_down)),
                 ),
               ),
             ),
@@ -260,10 +218,7 @@ class _DropdownMenuShowcaseState extends State<DropdownMenuShowcase> {
   Widget _buildSectionTitle(String title) {
     return Padding(
       padding: const EdgeInsets.only(top: 24, bottom: 12),
-      child: Text(
-        title,
-        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-      ),
+      child: Text(title, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
     );
   }
 
@@ -272,8 +227,6 @@ class _DropdownMenuShowcaseState extends State<DropdownMenuShowcase> {
   }
 
   void _showSnackbar(BuildContext context, String message) {
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(SnackBar(content: Text(message)));
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
   }
 }

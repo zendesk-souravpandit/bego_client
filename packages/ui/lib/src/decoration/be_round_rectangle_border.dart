@@ -1,4 +1,4 @@
-import 'package:beui/src/extentions/be_double_ext.dart';
+import 'package:beui/src/extensions/be_double_ext.dart';
 import 'package:flutter/material.dart';
 
 class BeRoundedRectangleBorder extends RoundedRectangleBorder {
@@ -40,12 +40,7 @@ class BeRoundedRectangleBorder extends RoundedRectangleBorder {
     if (a is BeRoundedRectangleBorder) {
       return BeRoundedRectangleBorder(
         side: BorderSide.lerp(a.side, side, t),
-        borderRadius:
-            BorderRadius.lerp(
-              a.borderRadius as BorderRadius?,
-              borderRadius as BorderRadius?,
-              t,
-            )!,
+        borderRadius: BorderRadius.lerp(a.borderRadius as BorderRadius?, borderRadius as BorderRadius?, t)!,
         backgroundColor: Color.lerp(a.backgroundColor, backgroundColor, t),
       );
     }
@@ -57,12 +52,7 @@ class BeRoundedRectangleBorder extends RoundedRectangleBorder {
     if (b is BeRoundedRectangleBorder) {
       return BeRoundedRectangleBorder(
         side: BorderSide.lerp(side, b.side, t),
-        borderRadius:
-            BorderRadius.lerp(
-              borderRadius as BorderRadius?,
-              b.borderRadius as BorderRadius?,
-              t,
-            )!,
+        borderRadius: BorderRadius.lerp(borderRadius as BorderRadius?, b.borderRadius as BorderRadius?, t)!,
         backgroundColor: Color.lerp(backgroundColor, b.backgroundColor, t),
       );
     }

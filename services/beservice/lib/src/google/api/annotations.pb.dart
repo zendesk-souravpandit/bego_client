@@ -18,12 +18,13 @@ import 'http.pb.dart' as $1;
 export 'package:protobuf/protobuf.dart' show GeneratedMessageGenericExtensions;
 
 class Annotations {
-  static final http = $pb.Extension<$1.HttpRule>(_omitMessageNames ? '' : 'google.protobuf.MethodOptions', _omitFieldNames ? '' : 'http', 72295728, $pb.PbFieldType.OM, defaultOrMaker: $1.HttpRule.getDefault, subBuilder: $1.HttpRule.create);
+  static final http = $pb.Extension<$1.HttpRule>(_omitMessageNames ? '' : 'google.protobuf.MethodOptions',
+      _omitFieldNames ? '' : 'http', 72295728, $pb.PbFieldType.OM,
+      defaultOrMaker: $1.HttpRule.getDefault, subBuilder: $1.HttpRule.create);
   static void registerAllExtensions($pb.ExtensionRegistry registry) {
     registry.add(http);
   }
 }
-
 
 const _omitFieldNames = $core.bool.fromEnvironment('protobuf.omit_field_names');
 const _omitMessageNames = $core.bool.fromEnvironment('protobuf.omit_message_names');

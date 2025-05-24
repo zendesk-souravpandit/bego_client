@@ -35,33 +35,19 @@ class WidgetbookApp extends StatelessWidget {
         themes: [
           const WidgetbookTheme(
             name: 'Dark',
-            data: BeThemeData(
-              breakpoint: BeBreakpoint.md,
-              themeMode: ThemeMode.dark,
-              styleValue: BeMobileValue(),
-            ),
+            data: BeThemeData(breakpoint: BeBreakpoint.md, themeMode: ThemeMode.dark, styleValue: BeMobileValue()),
           ),
           const WidgetbookTheme(
             name: 'Light',
-            data: BeThemeData(
-              breakpoint: BeBreakpoint.md,
-              themeMode: ThemeMode.light,
-              styleValue: BeMobileValue(),
-            ),
+            data: BeThemeData(breakpoint: BeBreakpoint.md, themeMode: ThemeMode.light, styleValue: BeMobileValue()),
           ),
         ],
 
         themeBuilder:
             (context, theme, child) => LayoutBuilder(
               builder: (context, constraints) {
-                final bebreakpoint = calculateBreakpoint(
-                  constraints.maxWidth,
-                  const BeResponsivePoints(),
-                );
-                final betheme = BeThemeManager.createThemeData(
-                  themeMode: theme.themeMode,
-                  breakpoint: bebreakpoint,
-                );
+                final bebreakpoint = calculateBreakpoint(constraints.maxWidth, const BeResponsivePoints());
+                final betheme = BeThemeManager.createThemeData(themeMode: theme.themeMode, breakpoint: bebreakpoint);
 
                 return BeTheme(
                   betheme: betheme,
@@ -72,10 +58,7 @@ class WidgetbookApp extends StatelessWidget {
                         return MaterialApp(
                           themeMode: betheme.themeMode,
                           theme: BeTheme.buildThemeof(context),
-                          home: Scaffold(
-                            backgroundColor: betheme.colors.background,
-                            body: child,
-                          ),
+                          home: Scaffold(backgroundColor: betheme.colors.background, body: child),
                         );
                       },
                     ),

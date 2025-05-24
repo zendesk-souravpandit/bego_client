@@ -28,8 +28,7 @@ class BeNotificationsProvider extends StatefulWidget {
   State<StatefulWidget> createState() => _BeNotificationsProviderState();
 }
 
-class _BeNotificationsProviderState extends State<BeNotificationsProvider>
-    implements BeNotificationManager {
+class _BeNotificationsProviderState extends State<BeNotificationsProvider> implements BeNotificationManager {
   final List<Widget> _notifications = [];
   final List<Widget> _queue = [];
   final GlobalKey<AnimatedListState> _listKey = GlobalKey();
@@ -59,12 +58,7 @@ class _BeNotificationsProviderState extends State<BeNotificationsProvider>
     }
 
     if (_notifications.length < widget.maxVisible) {
-      _addNotification(
-        wrappedNotification,
-        index: 0,
-        key: key,
-        dissmissDuration: duration,
-      );
+      _addNotification(wrappedNotification, index: 0, key: key, dissmissDuration: duration);
     } else {
       _queue.add(wrappedNotification);
     }
@@ -73,9 +67,7 @@ class _BeNotificationsProviderState extends State<BeNotificationsProvider>
   @override
   void dismissByKey(Key key) {
     try {
-      final notification = _notifications.firstWhere(
-        (n) => (n as KeyedSubtree).key == key,
-      );
+      final notification = _notifications.firstWhere((n) => (n as KeyedSubtree).key == key);
       _removeNotification(notification);
     } catch (e) {
       // Notification not found
@@ -100,8 +92,7 @@ class _BeNotificationsProviderState extends State<BeNotificationsProvider>
         List<Widget>.from(_notifications).where((notification) {
           if (notification is KeyedSubtree) {
             final child = notification.child;
-            return child is _NotificationWrapper &&
-                child.notification.runtimeType == type;
+            return child is _NotificationWrapper && child.notification.runtimeType == type;
           }
           return false;
         }).toList();
@@ -109,17 +100,9 @@ class _BeNotificationsProviderState extends State<BeNotificationsProvider>
     notificationsToRemove.forEach(_removeNotification);
   }
 
-  void _addNotification(
-    Widget notification, {
-    int index = 0,
-    Key? key,
-    Duration? dissmissDuration,
-  }) {
+  void _addNotification(Widget notification, {int index = 0, Key? key, Duration? dissmissDuration}) {
     _notifications.insert(index, notification);
-    _listKey.currentState?.insertItem(
-      index,
-      duration: widget.animationDuration,
-    );
+    _listKey.currentState?.insertItem(index, duration: widget.animationDuration);
     // Set the key to null if it is not provided set to autoDismiss
     if (key == null) {
       Future<void>.delayed(dissmissDuration ?? widget.autoDismissDuration, () {
@@ -136,8 +119,7 @@ class _BeNotificationsProviderState extends State<BeNotificationsProvider>
       _notifications.removeAt(index);
       _listKey.currentState?.removeItem(
         index,
-        (context, animation) =>
-            _buildRemovedNotification(animation, notification),
+        (context, animation) => _buildRemovedNotification(animation, notification),
         duration: widget.leavingAnimationDuration,
       );
       _handleNotificationDismiss();
@@ -150,10 +132,7 @@ class _BeNotificationsProviderState extends State<BeNotificationsProvider>
     }
   }
 
-  _AnimatedNotification _buildRemovedNotification(
-    Animation<double> animation,
-    Widget notification,
-  ) {
+  _AnimatedNotification _buildRemovedNotification(Animation<double> animation, Widget notification) {
     return _AnimatedNotification(
       animation: animation,
       notification: notification,
@@ -164,12 +143,9 @@ class _BeNotificationsProviderState extends State<BeNotificationsProvider>
 
   @override
   Widget build(BuildContext context) {
-    final isCompact =
-        betheme.breakpoint == BeBreakpoint.xs ||
-        betheme.breakpoint == BeBreakpoint.sm;
+    final isCompact = betheme.breakpoint == BeBreakpoint.xs || betheme.breakpoint == BeBreakpoint.sm;
 
-    final notificationConstraints =
-        widget.constraints ?? const BoxConstraints(maxWidth: 400);
+    final notificationConstraints = widget.constraints ?? const BoxConstraints(maxWidth: 400);
     return _BeNotificationData(
       this,
       child: Stack(
@@ -229,9 +205,7 @@ class _NotificationWrapperState extends State<_NotificationWrapper> {
 
 abstract class BeNotificationManager {
   static BeNotificationManager of(BuildContext context) =>
-      context
-          .dependOnInheritedWidgetOfExactType<_BeNotificationData>()!
-          .manager;
+      context.dependOnInheritedWidgetOfExactType<_BeNotificationData>()!.manager;
 
   BeNotificationsProvider get widget;
 
@@ -267,16 +241,13 @@ class _AnimatedNotification extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = betheme(context);
 
-    final isCompact =
-        theme.breakpoint == BeBreakpoint.xs ||
-        theme.breakpoint == BeBreakpoint.sm;
+    final isCompact = theme.breakpoint == BeBreakpoint.xs || theme.breakpoint == BeBreakpoint.sm;
     return Container(
       margin: pb8,
       padding: p8,
       decoration: BeBoxDecoration(
         color: theme.colors.background,
-        borderRadius:
-            isCompact ? null : const BorderRadius.all(Radius.circular(8)),
+        borderRadius: isCompact ? null : const BorderRadius.all(Radius.circular(8)),
         boxShadow: [
           const BeBoxShadow(
             color: Color.fromRGBO(0, 0, 0, 0.1),
@@ -291,15 +262,9 @@ class _AnimatedNotification extends StatelessWidget {
         child: FadeTransition(
           opacity: animation,
           child: _NoClipSizeTransition(
-            sizeFactor: CurvedAnimation(
-              parent: animation,
-              curve: Curves.easeOutQuart,
-            ),
+            sizeFactor: CurvedAnimation(parent: animation, curve: Curves.easeOutQuart),
             child: SlideTransition(
-              position: CurvedAnimation(
-                parent: animation,
-                curve: Curves.easeInOutCubic,
-              ).drive(slideTween),
+              position: CurvedAnimation(parent: animation, curve: Curves.easeInOutCubic).drive(slideTween),
               child: notification,
             ),
           ),
@@ -310,21 +275,15 @@ class _AnimatedNotification extends StatelessWidget {
 }
 
 class _NoClipSizeTransition extends AnimatedWidget {
-  const _NoClipSizeTransition({
-    required Animation<double> sizeFactor,
-    this.child,
-  }) : super(listenable: sizeFactor);
+  const _NoClipSizeTransition({required Animation<double> sizeFactor, this.child}) : super(listenable: sizeFactor);
 
   final Widget? child;
 
   Animation<double> get sizeFactor => listenable as Animation<double>;
 
   @override
-  Widget build(BuildContext context) => Align(
-    alignment: AlignmentDirectional.centerStart,
-    heightFactor: math.max(sizeFactor.value, 0.0),
-    child: child,
-  );
+  Widget build(BuildContext context) =>
+      Align(alignment: AlignmentDirectional.centerStart, heightFactor: math.max(sizeFactor.value, 0.0), child: child);
 }
 
 enum BeNotificationPosition { topLeft, topRight, bottomRight, bottomLeft }

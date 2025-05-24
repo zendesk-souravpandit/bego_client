@@ -23,21 +23,14 @@ class BeNumberFormField extends FormField<int> {
     FocusNode? focusNode,
     TextEditingController? controller,
     BoxConstraints? constraints,
-  }) : assert(
-         initialValue == null || controller == null,
-         'initialValue or controller must be null',
-       ),
+  }) : assert(initialValue == null || controller == null, 'initialValue or controller must be null'),
        assert(
          initialValue == null || initialValue >= min && initialValue <= max,
          'initial value should be null or in [min, max] range',
        ),
        super(
          initialValue: initialValue ?? int.tryParse(controller?.text ?? ''),
-         validator:
-             (value) =>
-                 value != null && (value >= min && value <= max)
-                     ? null
-                     : validationError,
+         validator: (value) => value != null && (value >= min && value <= max) ? null : validationError,
          builder: (FormFieldState<int> field) {
            void handleChanged(int? value) {
              field.didChange(value);
@@ -92,10 +85,7 @@ class _BeNumberPickerState extends State<_BeNumberPicker> {
   TextEditingController? _controller;
 
   TextEditingController get _effectiveController =>
-      widget.controller ??
-      (_controller ??= TextEditingController(
-        text: widget.initialValue?.toString() ?? '',
-      ));
+      widget.controller ?? (_controller ??= TextEditingController(text: widget.initialValue?.toString() ?? ''));
 
   FocusNode? _focusNode;
 
@@ -162,9 +152,7 @@ class _BeNumberPickerState extends State<_BeNumberPicker> {
     final newValue = value?.toString() ?? '';
     _effectiveController
       ..text = newValue
-      ..selection = TextSelection.fromPosition(
-        TextPosition(offset: newValue.length),
-      );
+      ..selection = TextSelection.fromPosition(TextPosition(offset: newValue.length));
   }
 
   @override
@@ -182,14 +170,8 @@ class _BeNumberPickerState extends State<_BeNumberPicker> {
       focusNode: AlwaysDisabledFocusNode(),
       cursorHeight: 0,
 
-      inputFormatters: [
-        FilteringTextInputFormatter.allow(_integersOrEmptyString),
-      ],
-      style: const TextStyle(
-        fontWeight: FontWeight.w600,
-        fontSize: 14,
-        color: BeColors.white,
-      ),
+      inputFormatters: [FilteringTextInputFormatter.allow(_integersOrEmptyString)],
+      style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 14, color: BeColors.white),
 
       textAlignVertical: const TextAlignVertical(y: 0),
       decoration: InputDecoration(

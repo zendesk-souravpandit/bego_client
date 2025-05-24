@@ -39,24 +39,26 @@ class PersionServiceClient extends $grpc.Client {
       ($core.List<$core.int> value) => $0.DeletePersionResponse.fromBuffer(value));
 
   PersionServiceClient($grpc.ClientChannel channel,
-      {$grpc.CallOptions? options,
-      $core.Iterable<$grpc.ClientInterceptor>? interceptors})
-      : super(channel, options: options,
-        interceptors: interceptors);
+      {$grpc.CallOptions? options, $core.Iterable<$grpc.ClientInterceptor>? interceptors})
+      : super(channel, options: options, interceptors: interceptors);
 
-  $grpc.ResponseFuture<$0.CreatePersionResponse> createPersion($0.CreatePersionRequest request, {$grpc.CallOptions? options}) {
+  $grpc.ResponseFuture<$0.CreatePersionResponse> createPersion($0.CreatePersionRequest request,
+      {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$createPersion, request, options: options);
   }
 
-  $grpc.ResponseFuture<$0.ReadPersionResponse> readPersion($0.ReadPersionRequest request, {$grpc.CallOptions? options}) {
+  $grpc.ResponseFuture<$0.ReadPersionResponse> readPersion($0.ReadPersionRequest request,
+      {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$readPersion, request, options: options);
   }
 
-  $grpc.ResponseFuture<$0.UpdatePersionResponse> updatePersion($0.UpdatePersionRequest request, {$grpc.CallOptions? options}) {
+  $grpc.ResponseFuture<$0.UpdatePersionResponse> updatePersion($0.UpdatePersionRequest request,
+      {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$updatePersion, request, options: options);
   }
 
-  $grpc.ResponseFuture<$0.DeletePersionResponse> deletePersion($0.DeletePersionRequest request, {$grpc.CallOptions? options}) {
+  $grpc.ResponseFuture<$0.DeletePersionResponse> deletePersion($0.DeletePersionRequest request,
+      {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$deletePersion, request, options: options);
   }
 }
@@ -96,19 +98,23 @@ abstract class PersionServiceBase extends $grpc.Service {
         ($0.DeletePersionResponse value) => value.writeToBuffer()));
   }
 
-  $async.Future<$0.CreatePersionResponse> createPersion_Pre($grpc.ServiceCall $call, $async.Future<$0.CreatePersionRequest> $request) async {
+  $async.Future<$0.CreatePersionResponse> createPersion_Pre(
+      $grpc.ServiceCall $call, $async.Future<$0.CreatePersionRequest> $request) async {
     return createPersion($call, await $request);
   }
 
-  $async.Future<$0.ReadPersionResponse> readPersion_Pre($grpc.ServiceCall $call, $async.Future<$0.ReadPersionRequest> $request) async {
+  $async.Future<$0.ReadPersionResponse> readPersion_Pre(
+      $grpc.ServiceCall $call, $async.Future<$0.ReadPersionRequest> $request) async {
     return readPersion($call, await $request);
   }
 
-  $async.Future<$0.UpdatePersionResponse> updatePersion_Pre($grpc.ServiceCall $call, $async.Future<$0.UpdatePersionRequest> $request) async {
+  $async.Future<$0.UpdatePersionResponse> updatePersion_Pre(
+      $grpc.ServiceCall $call, $async.Future<$0.UpdatePersionRequest> $request) async {
     return updatePersion($call, await $request);
   }
 
-  $async.Future<$0.DeletePersionResponse> deletePersion_Pre($grpc.ServiceCall $call, $async.Future<$0.DeletePersionRequest> $request) async {
+  $async.Future<$0.DeletePersionResponse> deletePersion_Pre(
+      $grpc.ServiceCall $call, $async.Future<$0.DeletePersionRequest> $request) async {
     return deletePersion($call, await $request);
   }
 

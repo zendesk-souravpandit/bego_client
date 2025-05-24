@@ -10,10 +10,10 @@ typedef BePageReducer<S extends BeState, A extends BeStateAction> =
     S Function(S state, A action, [BuildContext? context]);
 
 /// Enhanced hooks with better error messages
-(S, void Function(A)) usePageReducer<
-  S extends BeState,
-  A extends BeStateAction
->(BuildContext context, {String? debugLabel}) {
+(S, void Function(A)) usePageReducer<S extends BeState, A extends BeStateAction>(
+  BuildContext context, {
+  String? debugLabel,
+}) {
   final ctx = BeStateContext.of<S, A>(context);
   if (ctx == null) {
     throw FlutterError('''useBePageStateReducer<$S, $A> must be used
@@ -23,30 +23,20 @@ ${debugLabel != null ? 'Debug label: $debugLabel' : ''}''');
   return (ctx.state, ctx.dispatch);
 }
 
-S usePageState<S extends BeState, A extends BeStateAction>(
-  BuildContext context, {
-  String? debugLabel,
-}) {
+S usePageState<S extends BeState, A extends BeStateAction>(BuildContext context, {String? debugLabel}) {
   final ctx = BeStateContext.of<S, A>(context);
   if (ctx == null) {
-    throw FlutterError(
-      '''useBePageState<$S, $A> must be used within a BePageProvider<$S, $A>.
-${debugLabel != null ? 'Debug label: $debugLabel' : ''}''',
-    );
+    throw FlutterError('''useBePageState<$S, $A> must be used within a BePageProvider<$S, $A>.
+${debugLabel != null ? 'Debug label: $debugLabel' : ''}''');
   }
   return ctx.state;
 }
 
-void Function(A) usePageAction<S extends BeState, A extends BeStateAction>(
-  BuildContext context, {
-  String? debugLabel,
-}) {
+void Function(A) usePageAction<S extends BeState, A extends BeStateAction>(BuildContext context, {String? debugLabel}) {
   final ctx = BeStateContext.of<S, A>(context);
   if (ctx == null) {
-    throw FlutterError(
-      '''useBePageAction<$S, $A> must be used within a BePageProvider<$S, $A>.
-${debugLabel != null ? 'Debug label: $debugLabel' : ''}''',
-    );
+    throw FlutterError('''useBePageAction<$S, $A> must be used within a BePageProvider<$S, $A>.
+${debugLabel != null ? 'Debug label: $debugLabel' : ''}''');
   }
   return ctx.dispatch;
 }
@@ -68,10 +58,7 @@ ${debugLabel != null ? 'Debug label: $debugLabel' : ''}''',
 /// }
 /// ```
 
-T useStateSelector<S extends BeState, A extends BeStateAction, T>(
-  BuildContext context,
-  T Function(S state) selector,
-) {
+T useStateSelector<S extends BeState, A extends BeStateAction, T>(BuildContext context, T Function(S state) selector) {
   final state = usePageState<S, A>(context);
 
   return useMemoized(() => selector(state), [state]);

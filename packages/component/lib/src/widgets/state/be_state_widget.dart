@@ -2,15 +2,8 @@ import 'package:becomponent/page.dart';
 import 'package:becore/hooks.dart';
 import 'package:flutter/material.dart';
 
-class BeStateContext<S extends BeState, A extends BeStateAction>
-    extends InheritedWidget {
-  const BeStateContext({
-    super.key,
-    required this.state,
-    required this.dispatch,
-    required super.child,
-    this.debugLabel,
-  });
+class BeStateContext<S extends BeState, A extends BeStateAction> extends InheritedWidget {
+  const BeStateContext({super.key, required this.state, required this.dispatch, required super.child, this.debugLabel});
 
   final S state;
   final void Function(A action) dispatch;
@@ -32,8 +25,7 @@ class BeStateContext<S extends BeState, A extends BeStateAction>
 }
 
 /// Enhanced Provider with middleware support
-class BePageProvider<S extends BeState, A extends BeStateAction>
-    extends HookWidget {
+class BePageProvider<S extends BeState, A extends BeStateAction> extends HookWidget {
   const BePageProvider({
     super.key,
     required this.initialState,

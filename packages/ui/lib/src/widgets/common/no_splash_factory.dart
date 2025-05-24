@@ -17,19 +17,11 @@ class NoSplashFactory extends InteractiveInkFeatureFactory {
     ShapeBorder? customBorder,
     double? radius,
     VoidCallback? onRemoved,
-  }) => NoSplash(
-    controller: controller,
-    referenceBox: referenceBox,
-    color: BeColors.transparent,
-  );
+  }) => NoSplash(controller: controller, referenceBox: referenceBox, color: BeColors.transparent);
 }
 
 class NoSplash extends InteractiveInkFeature {
-  NoSplash({
-    required super.controller,
-    required super.referenceBox,
-    required super.color,
-  });
+  NoSplash({required super.controller, required super.referenceBox, required super.color});
 
   @override
   void paintFeature(Canvas canvas, Matrix4 transform) {}

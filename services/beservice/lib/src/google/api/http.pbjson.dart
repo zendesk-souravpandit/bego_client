@@ -23,10 +23,10 @@ const Http$json = {
 };
 
 /// Descriptor for `Http`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List httpDescriptor = $convert.base64Decode(
-    'CgRIdHRwEioKBXJ1bGVzGAEgAygLMhQuZ29vZ2xlLmFwaS5IdHRwUnVsZVIFcnVsZXMSRQofZn'
-    'VsbHlfZGVjb2RlX3Jlc2VydmVkX2V4cGFuc2lvbhgCIAEoCFIcZnVsbHlEZWNvZGVSZXNlcnZl'
-    'ZEV4cGFuc2lvbg==');
+final $typed_data.Uint8List httpDescriptor =
+    $convert.base64Decode('CgRIdHRwEioKBXJ1bGVzGAEgAygLMhQuZ29vZ2xlLmFwaS5IdHRwUnVsZVIFcnVsZXMSRQofZn'
+        'VsbHlfZGVjb2RlX3Jlc2VydmVkX2V4cGFuc2lvbhgCIAEoCFIcZnVsbHlEZWNvZGVSZXNlcnZl'
+        'ZEV4cGFuc2lvbg==');
 
 @$core.Deprecated('Use httpRuleDescriptor instead')
 const HttpRule$json = {
@@ -49,14 +49,14 @@ const HttpRule$json = {
 };
 
 /// Descriptor for `HttpRule`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List httpRuleDescriptor = $convert.base64Decode(
-    'CghIdHRwUnVsZRIaCghzZWxlY3RvchgBIAEoCVIIc2VsZWN0b3ISEgoDZ2V0GAIgASgJSABSA2'
-    'dldBISCgNwdXQYAyABKAlIAFIDcHV0EhQKBHBvc3QYBCABKAlIAFIEcG9zdBIYCgZkZWxldGUY'
-    'BSABKAlIAFIGZGVsZXRlEhYKBXBhdGNoGAYgASgJSABSBXBhdGNoEjcKBmN1c3RvbRgIIAEoCz'
-    'IdLmdvb2dsZS5hcGkuQ3VzdG9tSHR0cFBhdHRlcm5IAFIGY3VzdG9tEhIKBGJvZHkYByABKAlS'
-    'BGJvZHkSIwoNcmVzcG9uc2VfYm9keRgMIAEoCVIMcmVzcG9uc2VCb2R5EkUKE2FkZGl0aW9uYW'
-    'xfYmluZGluZ3MYCyADKAsyFC5nb29nbGUuYXBpLkh0dHBSdWxlUhJhZGRpdGlvbmFsQmluZGlu'
-    'Z3NCCQoHcGF0dGVybg==');
+final $typed_data.Uint8List httpRuleDescriptor =
+    $convert.base64Decode('CghIdHRwUnVsZRIaCghzZWxlY3RvchgBIAEoCVIIc2VsZWN0b3ISEgoDZ2V0GAIgASgJSABSA2'
+        'dldBISCgNwdXQYAyABKAlIAFIDcHV0EhQKBHBvc3QYBCABKAlIAFIEcG9zdBIYCgZkZWxldGUY'
+        'BSABKAlIAFIGZGVsZXRlEhYKBXBhdGNoGAYgASgJSABSBXBhdGNoEjcKBmN1c3RvbRgIIAEoCz'
+        'IdLmdvb2dsZS5hcGkuQ3VzdG9tSHR0cFBhdHRlcm5IAFIGY3VzdG9tEhIKBGJvZHkYByABKAlS'
+        'BGJvZHkSIwoNcmVzcG9uc2VfYm9keRgMIAEoCVIMcmVzcG9uc2VCb2R5EkUKE2FkZGl0aW9uYW'
+        'xfYmluZGluZ3MYCyADKAsyFC5nb29nbGUuYXBpLkh0dHBSdWxlUhJhZGRpdGlvbmFsQmluZGlu'
+        'Z3NCCQoHcGF0dGVybg==');
 
 @$core.Deprecated('Use customHttpPatternDescriptor instead')
 const CustomHttpPattern$json = {
@@ -68,7 +68,6 @@ const CustomHttpPattern$json = {
 };
 
 /// Descriptor for `CustomHttpPattern`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List customHttpPatternDescriptor = $convert.base64Decode(
-    'ChFDdXN0b21IdHRwUGF0dGVybhISCgRraW5kGAEgASgJUgRraW5kEhIKBHBhdGgYAiABKAlSBH'
-    'BhdGg=');
-
+final $typed_data.Uint8List customHttpPatternDescriptor =
+    $convert.base64Decode('ChFDdXN0b21IdHRwUGF0dGVybhISCgRraW5kGAEgASgJUgRraW5kEhIKBHBhdGgYAiABKAlSBH'
+        'BhdGg=');

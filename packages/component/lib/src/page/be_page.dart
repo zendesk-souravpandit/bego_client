@@ -7,8 +7,7 @@ import 'package:becomponent/src/page/be_page_state.dart';
 import 'package:becore/getx.dart';
 import 'package:flutter/material.dart';
 
-class BePage<S extends BePageState, C extends BePageController<S>>
-    extends GetView<C> {
+class BePage<S extends BePageState, C extends BePageController<S>> extends GetView<C> {
   // const BePage({super.key});
 
   const BePage({super.key});

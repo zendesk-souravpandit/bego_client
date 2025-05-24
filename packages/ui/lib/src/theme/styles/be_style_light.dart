@@ -2,10 +2,7 @@ import 'package:beui/theme.dart';
 import 'package:flutter/material.dart';
 
 class BeStyleLight implements BeStyle {
-  const BeStyleLight({
-    this.color = const BeColorsLight(),
-    this.inset = const BeMobileValue(),
-  });
+  const BeStyleLight({this.color = const BeColorsLight(), this.inset = const BeMobileValue()});
   final BeColor color;
   final BeStyleValue inset;
 

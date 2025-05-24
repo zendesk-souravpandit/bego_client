@@ -80,25 +80,16 @@ class BeStack extends StatelessWidget {
     final width = MediaQuery.sizeOf(context).width;
     final stackBreakpoint = calculateBreakpoint(width);
 
-    return stackBreakpoint.index <= breakpoint.index
-        ? Axis.vertical
-        : Axis.horizontal;
+    return stackBreakpoint.index <= breakpoint.index ? Axis.vertical : Axis.horizontal;
   }
 
   List<Widget> _children(BuildContext context) => switch (distribution) {
     BeStackDistribution.basic => _childrenWithSpacing(context, children),
-    BeStackDistribution.spaceBetween =>
-      children.intersperse(const Spacer()).toList(),
-    BeStackDistribution.stretch => _childrenWithSpacing(
-      context,
-      children.map((c) => Expanded(child: c)).toList(),
-    ),
+    BeStackDistribution.spaceBetween => children.intersperse(const Spacer()).toList(),
+    BeStackDistribution.stretch => _childrenWithSpacing(context, children.map((c) => Expanded(child: c)).toList()),
   };
 
-  List<Widget> _childrenWithSpacing(
-    BuildContext context,
-    List<Widget> children,
-  ) {
+  List<Widget> _childrenWithSpacing(BuildContext context, List<Widget> children) {
     final direction = _direction(context);
     final spacer = SizedBox(
       width: direction == Axis.vertical ? null : spacing,

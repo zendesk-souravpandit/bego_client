@@ -13,19 +13,12 @@ Widget displayTypographyUseCase(BuildContext context) {
     initialValue: 'Almost before we knew it, we had left the ground.',
   );
 
-  final useVariant = context.knobs.boolean(
-    label: 'Use Variant',
-    description: 'Apply text variant styling',
-  );
+  final useVariant = context.knobs.boolean(label: 'Use Variant', description: 'Apply text variant styling');
 
-  final selectedColor = context.knobs.color(
-    label: 'Text Color',
-    initialValue: BeColors.secondary,
-  );
+  final selectedColor = context.knobs.color(label: 'Text Color', initialValue: BeColors.secondary);
 
   final variant = useVariant ? BeTextVariant.primary : BeTextVariant.none;
-  final color =
-      context.knobs.boolean(label: 'Custom Color') ? selectedColor : null;
+  final color = context.knobs.boolean(label: 'Custom Color') ? selectedColor : null;
 
   // Text type configuration
   final textCategories = [
@@ -114,15 +107,8 @@ class _TextSize {
 Widget _buildFontHeader() => const Column(
   crossAxisAlignment: CrossAxisAlignment.start,
   children: [
-    BeText(
-      'Roboto ',
-      color: BeColors.lightTextSecondary,
-      style: TextStyle(fontSize: 68, height: 1.2),
-    ),
-    BeText.labelMedium(
-      'https://fonts.google.com/specimen/Roboto',
-      color: BeColors.lightTextLink,
-    ),
+    BeText('Roboto ', color: BeColors.lightTextSecondary, style: TextStyle(fontSize: 68, height: 1.2)),
+    BeText.labelMedium('https://fonts.google.com/specimen/Roboto', color: BeColors.lightTextLink),
     SizedBox(height: 8),
     BeText.labelMedium(
       'Roboto is the world-script expansion of the Lexend fonts. '
@@ -149,11 +135,7 @@ List<Widget> _buildCategorySection(
       children: [
         BeText(
           category,
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.w500,
-            color: BeTheme.of(context).colors.textSecondary,
-          ),
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500, color: BeTheme.of(context).colors.textSecondary),
         ),
         const Divider(thickness: 1),
       ],
@@ -161,10 +143,7 @@ List<Widget> _buildCategorySection(
   ),
   ...sizes.map(
     (size) => Column(
-      children: [
-        Label(textType: category, textSize: size.name),
-        size.builder(text, color: color, variant: variant),
-      ],
+      children: [Label(textType: category, textSize: size.name), size.builder(text, color: color, variant: variant)],
     ),
   ),
 ];

@@ -100,28 +100,16 @@ class CounterWidget extends HookWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              'Count: ${counter.count}',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
+            Text('Count: ${counter.count}', style: Theme.of(context).textTheme.headlineMedium),
             const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ElevatedButton(
-                  onPressed: counter.decrement,
-                  child: const Text('Decrement'),
-                ),
+                ElevatedButton(onPressed: counter.decrement, child: const Text('Decrement')),
                 const SizedBox(width: 20),
-                ElevatedButton(
-                  onPressed: counter.reset,
-                  child: const Text('Reset'),
-                ),
+                ElevatedButton(onPressed: counter.reset, child: const Text('Reset')),
                 const SizedBox(width: 20),
-                ElevatedButton(
-                  onPressed: counter.increment,
-                  child: const Text('Increment'),
-                ),
+                ElevatedButton(onPressed: counter.increment, child: const Text('Increment')),
               ],
             ),
           ],

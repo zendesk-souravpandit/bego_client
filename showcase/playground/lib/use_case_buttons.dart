@@ -19,14 +19,8 @@ class ButtonShowcase extends StatelessWidget {
             _buildSectionTitle('Elevated Buttons'),
             _buildButtonGrid(
               children: [
-                _buildButtonVariant(
-                  'Enabled',
-                  ElevatedButton(onPressed: () {}, child: const Text('Button')),
-                ),
-                _buildButtonVariant(
-                  'Disabled',
-                  const ElevatedButton(onPressed: null, child: Text('Button')),
-                ),
+                _buildButtonVariant('Enabled', ElevatedButton(onPressed: () {}, child: const Text('Button'))),
+                _buildButtonVariant('Disabled', const ElevatedButton(onPressed: null, child: Text('Button'))),
                 _buildButtonVariant(
                   'Pressed',
                   ElevatedButton(
@@ -40,11 +34,7 @@ class ButtonShowcase extends StatelessWidget {
                 ),
                 _buildButtonVariant(
                   'With Icon',
-                  ElevatedButton.icon(
-                    onPressed: () {},
-                    icon: const Icon(Icons.add),
-                    label: const Text('Button'),
-                  ),
+                  ElevatedButton.icon(onPressed: () {}, icon: const Icon(Icons.add), label: const Text('Button')),
                 ),
               ],
             ),
@@ -52,35 +42,17 @@ class ButtonShowcase extends StatelessWidget {
             _buildSectionTitle('Filled Buttons'),
             _buildButtonGrid(
               children: [
-                _buildButtonVariant(
-                  'Enabled',
-                  FilledButton(onPressed: () {}, child: const Text('Button')),
-                ),
-                _buildButtonVariant(
-                  'Disabled',
-                  const FilledButton(onPressed: null, child: Text('Button')),
-                ),
-                _buildButtonVariant(
-                  'Tonal',
-                  FilledButton.tonal(
-                    onPressed: () {},
-                    child: const Text('Button'),
-                  ),
-                ),
+                _buildButtonVariant('Enabled', FilledButton(onPressed: () {}, child: const Text('Button'))),
+                _buildButtonVariant('Disabled', const FilledButton(onPressed: null, child: Text('Button'))),
+                _buildButtonVariant('Tonal', FilledButton.tonal(onPressed: () {}, child: const Text('Button'))),
               ],
             ),
 
             _buildSectionTitle('Outlined Buttons'),
             _buildButtonGrid(
               children: [
-                _buildButtonVariant(
-                  'Enabled',
-                  OutlinedButton(onPressed: () {}, child: const Text('Button')),
-                ),
-                _buildButtonVariant(
-                  'Disabled',
-                  const OutlinedButton(onPressed: null, child: Text('Button')),
-                ),
+                _buildButtonVariant('Enabled', OutlinedButton(onPressed: () {}, child: const Text('Button'))),
+                _buildButtonVariant('Disabled', const OutlinedButton(onPressed: null, child: Text('Button'))),
                 _buildButtonVariant(
                   'Pressed',
                   OutlinedButton(
@@ -97,14 +69,8 @@ class ButtonShowcase extends StatelessWidget {
             _buildSectionTitle('Text Buttons'),
             _buildButtonGrid(
               children: [
-                _buildButtonVariant(
-                  'Enabled',
-                  TextButton(onPressed: () {}, child: const Text('Button')),
-                ),
-                _buildButtonVariant(
-                  'Disabled',
-                  const TextButton(onPressed: null, child: Text('Button')),
-                ),
+                _buildButtonVariant('Enabled', TextButton(onPressed: () {}, child: const Text('Button'))),
+                _buildButtonVariant('Disabled', const TextButton(onPressed: null, child: Text('Button'))),
               ],
             ),
 
@@ -112,46 +78,14 @@ class ButtonShowcase extends StatelessWidget {
             _buildButtonGrid(
               crossAxisCount: 4,
               children: [
-                _buildButtonVariant(
-                  'Enabled',
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.favorite),
-                  ),
-                ),
-                _buildButtonVariant(
-                  'Disabled',
-                  const IconButton(onPressed: null, icon: Icon(Icons.favorite)),
-                ),
-                _buildButtonVariant(
-                  'Filled',
-                  IconButton.filled(
-                    onPressed: () {},
-                    icon: const Icon(Icons.star),
-                  ),
-                ),
-                _buildButtonVariant(
-                  'Outlined',
-                  IconButton.outlined(
-                    onPressed: () {},
-                    icon: const Icon(Icons.share),
-                  ),
-                ),
-                _buildButtonVariant(
-                  'Small',
-                  IconButton(
-                    iconSize: 20,
-                    onPressed: () {},
-                    icon: const Icon(Icons.add),
-                  ),
-                ),
+                _buildButtonVariant('Enabled', IconButton(onPressed: () {}, icon: const Icon(Icons.favorite))),
+                _buildButtonVariant('Disabled', const IconButton(onPressed: null, icon: Icon(Icons.favorite))),
+                _buildButtonVariant('Filled', IconButton.filled(onPressed: () {}, icon: const Icon(Icons.star))),
+                _buildButtonVariant('Outlined', IconButton.outlined(onPressed: () {}, icon: const Icon(Icons.share))),
+                _buildButtonVariant('Small', IconButton(iconSize: 20, onPressed: () {}, icon: const Icon(Icons.add))),
                 _buildButtonVariant(
                   'Large',
-                  IconButton(
-                    iconSize: 36,
-                    onPressed: () {},
-                    icon: const Icon(Icons.thumb_up),
-                  ),
+                  IconButton(iconSize: 36, onPressed: () {}, icon: const Icon(Icons.thumb_up)),
                 ),
               ],
             ),
@@ -161,10 +95,7 @@ class ButtonShowcase extends StatelessWidget {
               children: [
                 _buildButtonVariant(
                   'Floating Action',
-                  FloatingActionButton(
-                    onPressed: () {},
-                    child: const Icon(Icons.add),
-                  ),
+                  FloatingActionButton(onPressed: () {}, child: const Icon(Icons.add)),
                 ),
                 _buildButtonVariant(
                   'Extended FAB',
@@ -196,17 +127,11 @@ class ButtonShowcase extends StatelessWidget {
   Widget _buildSectionTitle(String title) {
     return Padding(
       padding: const EdgeInsets.only(top: 24, bottom: 12),
-      child: Text(
-        title,
-        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-      ),
+      child: Text(title, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
     );
   }
 
-  Widget _buildButtonGrid({
-    required List<Widget> children,
-    int crossAxisCount = 2,
-  }) {
+  Widget _buildButtonGrid({required List<Widget> children, int crossAxisCount = 2}) {
     return GridView.count(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
@@ -224,11 +149,7 @@ class ButtonShowcase extends StatelessWidget {
       children: [
         SizedBox(height: 48, child: Center(child: button)),
         const SizedBox(height: 8),
-        Text(
-          label,
-          style: const TextStyle(fontSize: 12),
-          textAlign: TextAlign.center,
-        ),
+        Text(label, style: const TextStyle(fontSize: 12), textAlign: TextAlign.center),
       ],
     );
   }

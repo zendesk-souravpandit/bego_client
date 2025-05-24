@@ -50,11 +50,7 @@ class BeFormField<T> extends FormField<T> {
                endWidgets: endWidgets,
                children: [
                  if (title != null || trailingTitleWidgets.isNotEmpty)
-                   _BeFormTitleSection(
-                     title: title,
-                     titleStyle: titleStyle,
-                     trailingWidgets: trailingTitleWidgets,
-                   ),
+                   _BeFormTitleSection(title: title, titleStyle: titleStyle, trailingWidgets: trailingTitleWidgets),
                  SizedBox(height: spacing),
                  build(field),
                  if (helperText != null || trailingHelperWidgets.isNotEmpty)
@@ -69,10 +65,7 @@ class BeFormField<T> extends FormField<T> {
                  if (shouldValidate && field.hasError)
                    Padding(
                      padding: EdgeInsets.only(top: spacing / 2),
-                     child: _BeFormErrorText(
-                       errorText: field.errorText!,
-                       errorStyle: errorStyle,
-                     ),
+                     child: _BeFormErrorText(errorText: field.errorText!, errorStyle: errorStyle),
                    ),
                ],
              ),
@@ -138,11 +131,7 @@ class _BeFormFieldLayout extends StatelessWidget {
 }
 
 class _BeFormTitleSection extends StatelessWidget {
-  const _BeFormTitleSection({
-    this.title,
-    this.titleStyle,
-    this.trailingWidgets = const [],
-  });
+  const _BeFormTitleSection({this.title, this.titleStyle, this.trailingWidgets = const []});
 
   final String? title;
   final TextStyle? titleStyle;
@@ -158,9 +147,7 @@ class _BeFormTitleSection extends StatelessWidget {
               title!,
               maxLine: 1,
               overflow: TextOverflow.ellipsis,
-              style:
-                  titleStyle ??
-                  const TextStyle(fontWeight: FontWeight.w600, fontSize: 12),
+              style: titleStyle ?? const TextStyle(fontWeight: FontWeight.w600, fontSize: 12),
             ),
           ),
         if (trailingWidgets.isNotEmpty) ...trailingWidgets,
@@ -170,11 +157,7 @@ class _BeFormTitleSection extends StatelessWidget {
 }
 
 class _BeFormHelperSection extends StatelessWidget {
-  const _BeFormHelperSection({
-    this.helperText,
-    this.helperStyle,
-    this.trailingWidgets = const [],
-  });
+  const _BeFormHelperSection({this.helperText, this.helperStyle, this.trailingWidgets = const []});
 
   final String? helperText;
   final TextStyle? helperStyle;
@@ -190,13 +173,7 @@ class _BeFormHelperSection extends StatelessWidget {
               helperText,
               maxLine: 1,
               overflow: TextOverflow.ellipsis,
-              style:
-                  helperStyle ??
-                  const TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 14,
-                    color: Colors.grey,
-                  ),
+              style: helperStyle ?? const TextStyle(fontWeight: FontWeight.w500, fontSize: 14, color: Colors.grey),
             ),
           ),
         if (trailingWidgets.isNotEmpty) ...trailingWidgets,
@@ -215,11 +192,7 @@ class _BeFormErrorText extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return BeText(
-      errorText,
-      style:
-          errorStyle ?? TextStyle(color: theme.colorScheme.error, fontSize: 12),
-    );
+    return BeText(errorText, style: errorStyle ?? TextStyle(color: theme.colorScheme.error, fontSize: 12));
   }
 }
 

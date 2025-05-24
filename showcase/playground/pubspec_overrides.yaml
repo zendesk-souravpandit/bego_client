@@ -1,8 +1,12 @@
-# melos_managed_dependency_overrides: becomponent,becore,beui
+# melos_managed_dependency_overrides: becomponent,becore,beui,beassets,beservice
 dependency_overrides:
+  beassets:
+    path: ../../packages/assets
   becomponent:
     path: ../../packages/component
   becore:
     path: ../../packages/core
+  beservice:
+    path: ../../services/beservice
   beui:
     path: ../../packages/ui

@@ -24,23 +24,25 @@ export 'auth_service.pbenum.dart';
 class AuthStartRequest extends $pb.GeneratedMessage {
   factory AuthStartRequest() => create();
   AuthStartRequest._() : super();
-  factory AuthStartRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory AuthStartRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  factory AuthStartRequest.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory AuthStartRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'AuthStartRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'auth.apis'), createEmptyInstance: create)
-    ..hasRequiredFields = false
-  ;
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'AuthStartRequest',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'auth.apis'), createEmptyInstance: create)
+    ..hasRequiredFields = false;
 
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
   AuthStartRequest clone() => AuthStartRequest()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  AuthStartRequest copyWith(void Function(AuthStartRequest) updates) => super.copyWith((message) => updates(message as AuthStartRequest)) as AuthStartRequest;
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  AuthStartRequest copyWith(void Function(AuthStartRequest) updates) =>
+      super.copyWith((message) => updates(message as AuthStartRequest)) as AuthStartRequest;
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -49,7 +51,8 @@ class AuthStartRequest extends $pb.GeneratedMessage {
   AuthStartRequest createEmptyInstance() => create();
   static $pb.PbList<AuthStartRequest> createRepeated() => $pb.PbList<AuthStartRequest>();
   @$core.pragma('dart2js:noInline')
-  static AuthStartRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<AuthStartRequest>(create);
+  static AuthStartRequest getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<AuthStartRequest>(create);
   static AuthStartRequest? _defaultInstance;
 }
 
@@ -69,25 +72,30 @@ class AuthStartResponse extends $pb.GeneratedMessage {
     return $result;
   }
   AuthStartResponse._() : super();
-  factory AuthStartResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory AuthStartResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  factory AuthStartResponse.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory AuthStartResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'AuthStartResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'auth.apis'), createEmptyInstance: create)
-    ..e<AuthStartResponse_Status>(1, _omitFieldNames ? '' : 'status', $pb.PbFieldType.OE, defaultOrMaker: AuthStartResponse_Status.STATUS_UNSPECIFIED, valueOf: AuthStartResponse_Status.valueOf, enumValues: AuthStartResponse_Status.values)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'AuthStartResponse',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'auth.apis'), createEmptyInstance: create)
+    ..e<AuthStartResponse_Status>(1, _omitFieldNames ? '' : 'status', $pb.PbFieldType.OE,
+        defaultOrMaker: AuthStartResponse_Status.STATUS_UNSPECIFIED,
+        valueOf: AuthStartResponse_Status.valueOf,
+        enumValues: AuthStartResponse_Status.values)
     ..aOS(2, _omitFieldNames ? '' : 'message')
-    ..hasRequiredFields = false
-  ;
+    ..hasRequiredFields = false;
 
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
   AuthStartResponse clone() => AuthStartResponse()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  AuthStartResponse copyWith(void Function(AuthStartResponse) updates) => super.copyWith((message) => updates(message as AuthStartResponse)) as AuthStartResponse;
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  AuthStartResponse copyWith(void Function(AuthStartResponse) updates) =>
+      super.copyWith((message) => updates(message as AuthStartResponse)) as AuthStartResponse;
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -96,14 +104,18 @@ class AuthStartResponse extends $pb.GeneratedMessage {
   AuthStartResponse createEmptyInstance() => create();
   static $pb.PbList<AuthStartResponse> createRepeated() => $pb.PbList<AuthStartResponse>();
   @$core.pragma('dart2js:noInline')
-  static AuthStartResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<AuthStartResponse>(create);
+  static AuthStartResponse getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<AuthStartResponse>(create);
   static AuthStartResponse? _defaultInstance;
 
   /// Status of the service.
   @$pb.TagNumber(1)
   AuthStartResponse_Status get status => $_getN(0);
   @$pb.TagNumber(1)
-  set status(AuthStartResponse_Status v) { $_setField(1, v); }
+  set status(AuthStartResponse_Status v) {
+    $_setField(1, v);
+  }
+
   @$pb.TagNumber(1)
   $core.bool hasStatus() => $_has(0);
   @$pb.TagNumber(1)
@@ -113,7 +125,10 @@ class AuthStartResponse extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   $core.String get message => $_getSZ(1);
   @$pb.TagNumber(2)
-  set message($core.String v) { $_setString(1, v); }
+  set message($core.String v) {
+    $_setString(1, v);
+  }
+
   @$pb.TagNumber(2)
   $core.bool hasMessage() => $_has(1);
   @$pb.TagNumber(2)
@@ -127,10 +142,8 @@ class AuthServiceApi {
 
   /// AuthStart is the RPC method to check the health of the service.
   $async.Future<AuthStartResponse> authStart($pb.ClientContext? ctx, AuthStartRequest request) =>
-    _client.invoke<AuthStartResponse>(ctx, 'AuthService', 'AuthStart', request, AuthStartResponse())
-  ;
+      _client.invoke<AuthStartResponse>(ctx, 'AuthService', 'AuthStart', request, AuthStartResponse());
 }
-
 
 const _omitFieldNames = $core.bool.fromEnvironment('protobuf.omit_field_names');
 const _omitMessageNames = $core.bool.fromEnvironment('protobuf.omit_message_names');

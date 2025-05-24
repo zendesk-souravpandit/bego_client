@@ -4,9 +4,7 @@ class BeColorSchemeLight {
   static const Color primary = Color(0xFFBE3455);
   static const Color onPrimary = Colors.white;
   static const Color primaryContainer = Color(0xFFFFD7DC); // soft tone
-  static const Color onPrimaryContainer = Color(
-    0xFF430012,
-  ); // dark for contrast
+  static const Color onPrimaryContainer = Color(0xFF430012); // dark for contrast
 
   static const Color secondary = Color(0xFF5755A3);
   static const Color onSecondary = Colors.white;
@@ -36,9 +34,7 @@ class BeColorSchemeLight {
 
   static const Color inverseSurface = Color(0xFF313033);
   static const Color onInverseSurface = Color(0xFFF4EFF4);
-  static const Color inversePrimary = Color(
-    0xFFFFB1C0,
-  ); // light version of primary
+  static const Color inversePrimary = Color(0xFFFFB1C0); // light version of primary
 
   static ColorScheme lightScheme = const ColorScheme(
     brightness: Brightness.light,

@@ -46,6 +46,7 @@ class Ignore extends $pb.ProtobufEnum {
   ///  }
   ///  ```
   static const Ignore IGNORE_UNSPECIFIED = Ignore._(0, _omitEnumNames ? '' : 'IGNORE_UNSPECIFIED');
+
   ///  Validation is skipped if the field is unpopulated. This rule is redundant
   ///  if the field is already nullable. This value is equivalent behavior to the
   ///  deprecated ignore_empty rule.
@@ -84,6 +85,7 @@ class Ignore extends $pb.ProtobufEnum {
   ///  }
   ///  ```
   static const Ignore IGNORE_IF_UNPOPULATED = Ignore._(1, _omitEnumNames ? '' : 'IGNORE_IF_UNPOPULATED');
+
   ///  Validation is skipped if the field is unpopulated or if it is a nullable
   ///  field populated with its default value. This is typically the zero or
   ///  empty value, but proto2 scalars support custom defaults. For messages, the
@@ -141,6 +143,7 @@ class Ignore extends $pb.ProtobufEnum {
   ///    ];
   ///  }
   static const Ignore IGNORE_IF_DEFAULT_VALUE = Ignore._(2, _omitEnumNames ? '' : 'IGNORE_IF_DEFAULT_VALUE');
+
   ///  The validation rules of this field will be skipped and not evaluated. This
   ///  is useful for situations that necessitate turning off the rules of a field
   ///  containing a message that may not make sense in the current context, or to
@@ -159,7 +162,7 @@ class Ignore extends $pb.ProtobufEnum {
   static const Ignore IGNORE_EMPTY = IGNORE_IF_UNPOPULATED;
   static const Ignore IGNORE_DEFAULT = IGNORE_IF_DEFAULT_VALUE;
 
-  static const $core.List<Ignore> values = <Ignore> [
+  static const $core.List<Ignore> values = <Ignore>[
     IGNORE_UNSPECIFIED,
     IGNORE_IF_UNPOPULATED,
     IGNORE_IF_DEFAULT_VALUE,
@@ -175,12 +178,16 @@ class Ignore extends $pb.ProtobufEnum {
 /// WellKnownRegex contain some well-known patterns.
 class KnownRegex extends $pb.ProtobufEnum {
   static const KnownRegex KNOWN_REGEX_UNSPECIFIED = KnownRegex._(0, _omitEnumNames ? '' : 'KNOWN_REGEX_UNSPECIFIED');
-  /// HTTP header name as defined by [RFC 7230](https://tools.ietf.org/html/rfc7230#section-3.2).
-  static const KnownRegex KNOWN_REGEX_HTTP_HEADER_NAME = KnownRegex._(1, _omitEnumNames ? '' : 'KNOWN_REGEX_HTTP_HEADER_NAME');
-  /// HTTP header value as defined by [RFC 7230](https://tools.ietf.org/html/rfc7230#section-3.2.4).
-  static const KnownRegex KNOWN_REGEX_HTTP_HEADER_VALUE = KnownRegex._(2, _omitEnumNames ? '' : 'KNOWN_REGEX_HTTP_HEADER_VALUE');
 
-  static const $core.List<KnownRegex> values = <KnownRegex> [
+  /// HTTP header name as defined by [RFC 7230](https://tools.ietf.org/html/rfc7230#section-3.2).
+  static const KnownRegex KNOWN_REGEX_HTTP_HEADER_NAME =
+      KnownRegex._(1, _omitEnumNames ? '' : 'KNOWN_REGEX_HTTP_HEADER_NAME');
+
+  /// HTTP header value as defined by [RFC 7230](https://tools.ietf.org/html/rfc7230#section-3.2.4).
+  static const KnownRegex KNOWN_REGEX_HTTP_HEADER_VALUE =
+      KnownRegex._(2, _omitEnumNames ? '' : 'KNOWN_REGEX_HTTP_HEADER_VALUE');
+
+  static const $core.List<KnownRegex> values = <KnownRegex>[
     KNOWN_REGEX_UNSPECIFIED,
     KNOWN_REGEX_HTTP_HEADER_NAME,
     KNOWN_REGEX_HTTP_HEADER_VALUE,
@@ -191,6 +198,5 @@ class KnownRegex extends $pb.ProtobufEnum {
 
   const KnownRegex._(super.v, super.n);
 }
-
 
 const _omitEnumNames = $core.bool.fromEnvironment('protobuf.omit_enum_names');

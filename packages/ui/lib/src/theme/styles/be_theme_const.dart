@@ -4,9 +4,7 @@ class BeUIConst {
   const BeUIConst._();
   static const String packageName = 'beui';
   static const String fontFamily = 'Roboto';
-  static const List<Shadow> textShadow = [
-    Shadow(color: Color(0x0A000000), blurRadius: 1, offset: Offset(0, 1)),
-  ];
+  static const List<Shadow> textShadow = [Shadow(color: Color(0x0A000000), blurRadius: 1, offset: Offset(0, 1))];
 }
 
 class BeStyleConst {

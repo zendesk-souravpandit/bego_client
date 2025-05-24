@@ -2,13 +2,9 @@
 import 'package:intl/intl.dart';
 
 class BeDateUtils {
-  static String formatDate(DateTime date, {String format = 'yyyy-MM-dd'}) =>
-      DateFormat(format).format(date);
+  static String formatDate(DateTime date, {String format = 'yyyy-MM-dd'}) => DateFormat(format).format(date);
 
-  static DateTime? parseDate(
-    String dateString, {
-    String format = 'yyyy-MM-dd',
-  }) => DateFormat(format).parse(dateString);
+  static DateTime? parseDate(String dateString, {String format = 'yyyy-MM-dd'}) => DateFormat(format).parse(dateString);
 
   static String timeAgo(DateTime date) {
     final now = DateTime.now();

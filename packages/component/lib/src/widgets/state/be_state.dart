@@ -26,12 +26,6 @@ mixin BeState {
 sealed class BeStatus with _$BeStatus {
   const factory BeStatus.empty() = _BeStatusEmpty;
   const factory BeStatus.loading() = _BeStatusLoading;
-  const factory BeStatus.error({
-    required String title,
-    required String description,
-  }) = _BeStatusError;
-  const factory BeStatus.success({
-    @Default('') String title,
-    @Default('') String description,
-  }) = _BeStatusSuccess;
+  const factory BeStatus.error({required String title, required String description}) = _BeStatusError;
+  const factory BeStatus.success({@Default('') String title, @Default('') String description}) = _BeStatusSuccess;
 }

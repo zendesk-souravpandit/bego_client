@@ -12,9 +12,6 @@ class NumberPickerButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Opacity(
     opacity: _isEnabled ? 1 : 0.5,
-    child: GestureDetector(
-      onTap: onPressed,
-      child: Icon(iconData, color: BeColors.white, size: 16),
-    ),
+    child: GestureDetector(onTap: onPressed, child: Icon(iconData, color: BeColors.white, size: 16)),
   );
 }

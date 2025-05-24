@@ -27,12 +27,11 @@ class HealthCheckServiceClient extends $grpc.Client {
       ($core.List<$core.int> value) => $1.CheckHealthServiceResponse.fromBuffer(value));
 
   HealthCheckServiceClient($grpc.ClientChannel channel,
-      {$grpc.CallOptions? options,
-      $core.Iterable<$grpc.ClientInterceptor>? interceptors})
-      : super(channel, options: options,
-        interceptors: interceptors);
+      {$grpc.CallOptions? options, $core.Iterable<$grpc.ClientInterceptor>? interceptors})
+      : super(channel, options: options, interceptors: interceptors);
 
-  $grpc.ResponseFuture<$1.CheckHealthServiceResponse> checkHealthService($1.CheckHealthServiceRequest request, {$grpc.CallOptions? options}) {
+  $grpc.ResponseFuture<$1.CheckHealthServiceResponse> checkHealthService($1.CheckHealthServiceRequest request,
+      {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$checkHealthService, request, options: options);
   }
 }
@@ -51,9 +50,11 @@ abstract class HealthCheckServiceBase extends $grpc.Service {
         ($1.CheckHealthServiceResponse value) => value.writeToBuffer()));
   }
 
-  $async.Future<$1.CheckHealthServiceResponse> checkHealthService_Pre($grpc.ServiceCall $call, $async.Future<$1.CheckHealthServiceRequest> $request) async {
+  $async.Future<$1.CheckHealthServiceResponse> checkHealthService_Pre(
+      $grpc.ServiceCall $call, $async.Future<$1.CheckHealthServiceRequest> $request) async {
     return checkHealthService($call, await $request);
   }
 
-  $async.Future<$1.CheckHealthServiceResponse> checkHealthService($grpc.ServiceCall call, $1.CheckHealthServiceRequest request);
+  $async.Future<$1.CheckHealthServiceResponse> checkHealthService(
+      $grpc.ServiceCall call, $1.CheckHealthServiceRequest request);
 }

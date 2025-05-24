@@ -7,10 +7,7 @@ class ColorSchemeDisplay extends StatelessWidget {
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
     final colorEntries = <MapEntry<String, Color>>[
-      MapEntry(
-        'brightness',
-        scheme.brightness == Brightness.dark ? Colors.black : Colors.white,
-      ),
+      MapEntry('brightness', scheme.brightness == Brightness.dark ? Colors.black : Colors.white),
       MapEntry('primary', scheme.primary),
       MapEntry('onPrimary', scheme.onPrimary),
       MapEntry('primaryContainer', scheme.primaryContainer),
@@ -87,10 +84,7 @@ class ColorSchemeDisplay extends StatelessWidget {
         itemBuilder: (context, index) {
           final entry = colorEntries[index];
           final textColor =
-              ThemeData.estimateBrightnessForColor(entry.value) ==
-                      Brightness.dark
-                  ? Colors.white
-                  : Colors.black;
+              ThemeData.estimateBrightnessForColor(entry.value) == Brightness.dark ? Colors.white : Colors.black;
 
           return Container(
             decoration: BoxDecoration(
@@ -99,13 +93,7 @@ class ColorSchemeDisplay extends StatelessWidget {
               border: Border.all(color: Colors.grey.shade300),
             ),
             padding: const EdgeInsets.all(8),
-            child: Center(
-              child: Text(
-                entry.key,
-                textAlign: TextAlign.center,
-                style: TextStyle(color: textColor),
-              ),
-            ),
+            child: Center(child: Text(entry.key, textAlign: TextAlign.center, style: TextStyle(color: textColor))),
           );
         },
       ),

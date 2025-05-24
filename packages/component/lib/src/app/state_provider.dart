@@ -18,12 +18,10 @@ class AppStateProvider extends InheritedWidget {
   final AppState state;
   final EventActionHandler updateEvent;
 
-  static AppStateProvider of(BuildContext context) =>
-      context.dependOnInheritedWidgetOfExactType<AppStateProvider>()!;
+  static AppStateProvider of(BuildContext context) => context.dependOnInheritedWidgetOfExactType<AppStateProvider>()!;
 
   @override
-  bool updateShouldNotify(AppStateProvider oldWidget) =>
-      oldWidget.state != state;
+  bool updateShouldNotify(AppStateProvider oldWidget) => oldWidget.state != state;
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
@@ -31,8 +29,6 @@ class AppStateProvider extends InheritedWidget {
     properties
       ..add(DiagnosticsProperty<AppState>('state', state))
       ..add(DiagnosticsProperty<BeEventBus>('appEvent', appEventBus))
-      ..add(
-        ObjectFlagProperty<EventActionHandler>.has('updateState', updateEvent),
-      );
+      ..add(ObjectFlagProperty<EventActionHandler>.has('updateState', updateEvent));
   }
 }

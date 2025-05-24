@@ -26,12 +26,7 @@ mixin BePageState {
 sealed class BePageStatus with _$BePageStatus {
   const factory BePageStatus.empty() = BePageStatusEmpty;
   const factory BePageStatus.loading() = BePageStatusLoading;
-  const factory BePageStatus.error({
-    required String title,
-    required String description,
-  }) = BePageStatusError;
-  const factory BePageStatus.success({
-    @Default('') String title,
-    @Default('') String description,
-  }) = BePageStatusSuccess;
+  const factory BePageStatus.error({required String title, required String description}) = BePageStatusError;
+  const factory BePageStatus.success({@Default('') String title, @Default('') String description}) =
+      BePageStatusSuccess;
 }

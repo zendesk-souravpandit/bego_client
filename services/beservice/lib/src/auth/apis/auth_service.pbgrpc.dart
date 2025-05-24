@@ -27,10 +27,8 @@ class AuthServiceClient extends $grpc.Client {
       ($core.List<$core.int> value) => $2.AuthStartResponse.fromBuffer(value));
 
   AuthServiceClient($grpc.ClientChannel channel,
-      {$grpc.CallOptions? options,
-      $core.Iterable<$grpc.ClientInterceptor>? interceptors})
-      : super(channel, options: options,
-        interceptors: interceptors);
+      {$grpc.CallOptions? options, $core.Iterable<$grpc.ClientInterceptor>? interceptors})
+      : super(channel, options: options, interceptors: interceptors);
 
   $grpc.ResponseFuture<$2.AuthStartResponse> authStart($2.AuthStartRequest request, {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$authStart, request, options: options);
@@ -51,7 +49,8 @@ abstract class AuthServiceBase extends $grpc.Service {
         ($2.AuthStartResponse value) => value.writeToBuffer()));
   }
 
-  $async.Future<$2.AuthStartResponse> authStart_Pre($grpc.ServiceCall $call, $async.Future<$2.AuthStartRequest> $request) async {
+  $async.Future<$2.AuthStartResponse> authStart_Pre(
+      $grpc.ServiceCall $call, $async.Future<$2.AuthStartRequest> $request) async {
     return authStart($call, await $request);
   }
 

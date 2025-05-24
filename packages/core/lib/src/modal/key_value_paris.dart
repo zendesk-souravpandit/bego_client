@@ -21,10 +21,7 @@ class KeyValueIS implements KeyValuePair {
 
   @override
   bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is KeyValueIS &&
-          runtimeType == other.runtimeType &&
-          key == other.key;
+      identical(this, other) || other is KeyValueIS && runtimeType == other.runtimeType && key == other.key;
   @override
   int get hashCode => key.hashCode;
 }
@@ -41,10 +38,7 @@ class KeyValueSI implements KeyValuePair {
 
   @override
   bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is KeyValueSI &&
-          runtimeType == other.runtimeType &&
-          key == other.key;
+      identical(this, other) || other is KeyValueSI && runtimeType == other.runtimeType && key == other.key;
   @override
   int get hashCode => key.hashCode;
 }
@@ -72,21 +66,14 @@ class KeyValueSS implements KeyValuePair {
 
   @override
   bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is KeyValueSS &&
-          runtimeType == other.runtimeType &&
-          key == other.key;
+      identical(this, other) || other is KeyValueSS && runtimeType == other.runtimeType && key == other.key;
   @override
   int get hashCode => key.hashCode;
 }
 
 /// [KeyValueISS]: Key=int, Value=String + extra String.
 class KeyValueISS implements KeyValuePair {
-  KeyValueISS({
-    required this.key,
-    required this.value,
-    required this.extraValue,
-  });
+  KeyValueISS({required this.key, required this.value, required this.extraValue});
   @override
   final int key;
   @override
@@ -97,10 +84,7 @@ class KeyValueISS implements KeyValuePair {
 
   @override
   bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is KeyValueISS &&
-          runtimeType == other.runtimeType &&
-          key == other.key;
+      identical(this, other) || other is KeyValueISS && runtimeType == other.runtimeType && key == other.key;
   @override
   int get hashCode => key.hashCode;
 }
@@ -118,10 +102,7 @@ class KeyValueSSD implements KeyValuePair {
 
   @override
   bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is KeyValueSSD &&
-          runtimeType == other.runtimeType &&
-          key == other.key;
+      identical(this, other) || other is KeyValueSSD && runtimeType == other.runtimeType && key == other.key;
   @override
   int get hashCode => key.hashCode;
 }
@@ -139,10 +120,7 @@ class KeyValueSD<T> implements KeyValuePair {
 
   @override
   bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is KeyValueSD &&
-          runtimeType == other.runtimeType &&
-          key == other.key;
+      identical(this, other) || other is KeyValueSD && runtimeType == other.runtimeType && key == other.key;
   @override
   int get hashCode => key.hashCode;
 }
