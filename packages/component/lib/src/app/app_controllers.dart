@@ -34,10 +34,10 @@ class AppStateController extends GetxController {
 }
 
 class AppThemeController extends GetxController {
-  final Rx<BeThemeData> _bethemeMode = const BeThemeData.light().obs;
+  // final Rx<BeThemeData> _bethemeMode = const BeThemeData.light().obs;
   // late Rx<ThemeData> _themeMode;
 
-  ThemeMode get themeMode => _bethemeMode.value.themeMode;
+  // ThemeMode get themeMode => _bethemeMode.value.themeMode;
 
   // void toggleTheme() {
   //   if (_bethemeMode.value.themeMode == ThemeMode.light) {
