@@ -40,9 +40,7 @@ class BeEnabled extends SingleChildRenderObjectWidget {
 }
 
 class RenderBeEnabled extends RenderProxyBox {
-  RenderBeEnabled({required bool enabled, RenderBox? child})
-    : _enabled = enabled,
-      super(child);
+  RenderBeEnabled({required bool enabled, RenderBox? child}) : _enabled = enabled, super(child);
   bool _enabled;
 
   set enabled(bool value) {
@@ -68,17 +66,13 @@ class RenderBeEnabled extends RenderProxyBox {
         context.paintChild(child!, offset);
       } else {
         // Paint with grayscale filter when disabled
-        context.pushLayer(ColorFilterLayer(colorFilter: filter), (
-          PaintingContext context,
-          Offset offset,
-        ) {
+        context.pushLayer(ColorFilterLayer(colorFilter: filter), (PaintingContext context, Offset offset) {
           context.paintChild(child!, offset);
         }, offset);
       }
     }
   }
 }
-
 
 /*
 class BeEnabled extends StatelessWidget {

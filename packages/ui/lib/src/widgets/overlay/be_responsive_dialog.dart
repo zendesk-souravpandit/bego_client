@@ -18,11 +18,7 @@ void showBegoDialog<T>({
     barrierColor: barrierColor,
     useSafeArea: true,
     builder: (context) {
-      return ResponsiveDialog(
-        betheme: betheme,
-        showShadow: showShadow,
-        child: child,
-      );
+      return ResponsiveDialog(betheme: betheme, showShadow: showShadow, child: child);
     },
   );
 }
@@ -63,25 +59,16 @@ class ResponsiveDialog extends StatelessWidget {
             child: ConstrainedBox(
               constraints: BoxConstraints(
                 maxWidth: dialogWidth,
-                maxHeight:
-                    breakpoint.isMobile
-                        ? MediaQuery.of(context).size.height * 0.8
-                        : 700.0,
+                maxHeight: breakpoint.isMobile ? MediaQuery.of(context).size.height * 0.8 : 700.0,
               ),
               child: Container(
                 decoration: BoxDecoration(
                   color: Theme.of(context).cardColor,
-                  borderRadius: BorderRadius.circular(
-                    radius.getValue(breakpoint),
-                  ),
+                  borderRadius: BorderRadius.circular(radius.getValue(breakpoint)),
                   boxShadow:
                       showShadow
                           ? [
-                            BoxShadow(
-                              color: Colors.black.withAlpha(100),
-                              blurRadius: 24.0,
-                              offset: const Offset(0, 8),
-                            ),
+                            BoxShadow(color: Colors.black.withAlpha(100), blurRadius: 24.0, offset: const Offset(0, 8)),
                           ]
                           : null,
                 ),

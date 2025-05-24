@@ -71,10 +71,7 @@ enum SharedAxisTransitionType {
 /// ```
 class SharedAxisPageTransitionsBuilder extends PageTransitionsBuilder {
   /// Construct a [SharedAxisPageTransitionsBuilder].
-  const SharedAxisPageTransitionsBuilder({
-    required this.transitionType,
-    this.fillColor,
-  });
+  const SharedAxisPageTransitionsBuilder({required this.transitionType, this.fillColor});
 
   /// Determines which [SharedAxisTransitionType] to build.
   final SharedAxisTransitionType transitionType;
@@ -231,44 +228,23 @@ class SharedAxisTransition extends StatelessWidget {
       animation: animation,
       forwardBuilder:
           (BuildContext context, Animation<double> animation, Widget? child) =>
-              _EnterTransition(
-                animation: animation,
-                transitionType: transitionType,
-                child: child,
-              ),
+              _EnterTransition(animation: animation, transitionType: transitionType, child: child),
       reverseBuilder:
-          (BuildContext context, Animation<double> animation, Widget? child) =>
-              _ExitTransition(
-                animation: animation,
-                transitionType: transitionType,
-                reverse: true,
-                fillColor: color,
-                child: child,
-              ),
+          (BuildContext context, Animation<double> animation, Widget? child) => _ExitTransition(
+            animation: animation,
+            transitionType: transitionType,
+            reverse: true,
+            fillColor: color,
+            child: child,
+          ),
       child: DualTransitionBuilder(
         animation: ReverseAnimation(secondaryAnimation),
         forwardBuilder:
-            (
-              BuildContext context,
-              Animation<double> animation,
-              Widget? child,
-            ) => _EnterTransition(
-              animation: animation,
-              transitionType: transitionType,
-              reverse: true,
-              child: child,
-            ),
+            (BuildContext context, Animation<double> animation, Widget? child) =>
+                _EnterTransition(animation: animation, transitionType: transitionType, reverse: true, child: child),
         reverseBuilder:
-            (
-              BuildContext context,
-              Animation<double> animation,
-              Widget? child,
-            ) => _ExitTransition(
-              animation: animation,
-              transitionType: transitionType,
-              fillColor: color,
-              child: child,
-            ),
+            (BuildContext context, Animation<double> animation, Widget? child) =>
+                _ExitTransition(animation: animation, transitionType: transitionType, fillColor: color, child: child),
         child: child,
       ),
     );
@@ -276,12 +252,7 @@ class SharedAxisTransition extends StatelessWidget {
 }
 
 class _EnterTransition extends StatelessWidget {
-  const _EnterTransition({
-    required this.animation,
-    required this.transitionType,
-    this.reverse = false,
-    this.child,
-  });
+  const _EnterTransition({required this.animation, required this.transitionType, this.reverse = false, this.child});
 
   final Animation<double> animation;
   final SharedAxisTransitionType transitionType;
@@ -316,10 +287,8 @@ class _EnterTransition extends StatelessWidget {
           child: AnimatedBuilder(
             animation: animation,
             builder:
-                (BuildContext context, Widget? child) => Transform.translate(
-                  offset: slideInTransition.evaluate(animation),
-                  child: child,
-                ),
+                (BuildContext context, Widget? child) =>
+                    Transform.translate(offset: slideInTransition.evaluate(animation), child: child),
             child: child,
           ),
         );
@@ -334,10 +303,8 @@ class _EnterTransition extends StatelessWidget {
           child: AnimatedBuilder(
             animation: animation,
             builder:
-                (BuildContext context, Widget? child) => Transform.translate(
-                  offset: slideInTransition.evaluate(animation),
-                  child: child,
-                ),
+                (BuildContext context, Widget? child) =>
+                    Transform.translate(offset: slideInTransition.evaluate(animation), child: child),
             child: child,
           ),
         );
@@ -345,8 +312,7 @@ class _EnterTransition extends StatelessWidget {
         return FadeTransition(
           opacity: _fadeInTransition.animate(animation),
           child: ScaleTransition(
-            scale: (!reverse ? _scaleUpTransition : _scaleDownTransition)
-                .animate(animation),
+            scale: (!reverse ? _scaleUpTransition : _scaleDownTransition).animate(animation),
             child: child,
           ),
         );
@@ -399,10 +365,8 @@ class _ExitTransition extends StatelessWidget {
             child: AnimatedBuilder(
               animation: animation,
               builder:
-                  (BuildContext context, Widget? child) => Transform.translate(
-                    offset: slideOutTransition.evaluate(animation),
-                    child: child,
-                  ),
+                  (BuildContext context, Widget? child) =>
+                      Transform.translate(offset: slideOutTransition.evaluate(animation), child: child),
               child: child,
             ),
           ),
@@ -420,10 +384,8 @@ class _ExitTransition extends StatelessWidget {
             child: AnimatedBuilder(
               animation: animation,
               builder:
-                  (BuildContext context, Widget? child) => Transform.translate(
-                    offset: slideOutTransition.evaluate(animation),
-                    child: child,
-                  ),
+                  (BuildContext context, Widget? child) =>
+                      Transform.translate(offset: slideOutTransition.evaluate(animation), child: child),
               child: child,
             ),
           ),
@@ -434,8 +396,7 @@ class _ExitTransition extends StatelessWidget {
           child: Container(
             color: fillColor,
             child: ScaleTransition(
-              scale: (!reverse ? _scaleUpTransition : _scaleDownTransition)
-                  .animate(animation),
+              scale: (!reverse ? _scaleUpTransition : _scaleDownTransition).animate(animation),
               child: child,
             ),
           ),

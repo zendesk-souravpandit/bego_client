@@ -40,10 +40,7 @@ void showExampleDialog(BuildContext context) {
         const SizedBox(height: 16),
         const Text('This dialog automatically adapts to screen size'),
         const SizedBox(height: 24),
-        ElevatedButton(
-          onPressed: () => Navigator.pop(context),
-          child: const Text('Close'),
-        ),
+        ElevatedButton(onPressed: () => Navigator.pop(context), child: const Text('Close')),
       ],
     ),
   );

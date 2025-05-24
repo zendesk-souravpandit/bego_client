@@ -37,10 +37,7 @@ class DropdownExample extends HookWidget {
                 ),
                 // expands: true,
                 isEmpty: true,
-                child: Padding(
-                  padding: EdgeInsets.all(16.0),
-                  child: Text("data"),
-                ),
+                child: Padding(padding: EdgeInsets.all(16.0), child: Text("data")),
               ),
               // Example 1: Using enum with custom display strings
               BeItemSelector<User>(

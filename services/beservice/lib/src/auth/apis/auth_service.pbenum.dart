@@ -15,12 +15,16 @@ import 'package:protobuf/protobuf.dart' as $pb;
 
 /// Status indicates the health status of the service.
 class AuthStartResponse_Status extends $pb.ProtobufEnum {
-  static const AuthStartResponse_Status STATUS_UNSPECIFIED = AuthStartResponse_Status._(0, _omitEnumNames ? '' : 'STATUS_UNSPECIFIED');
-  static const AuthStartResponse_Status STATUS_UNKNOWN = AuthStartResponse_Status._(1, _omitEnumNames ? '' : 'STATUS_UNKNOWN');
-  static const AuthStartResponse_Status STATUS_HEALTHY = AuthStartResponse_Status._(2, _omitEnumNames ? '' : 'STATUS_HEALTHY');
-  static const AuthStartResponse_Status STATUS_UNHEALTHY = AuthStartResponse_Status._(3, _omitEnumNames ? '' : 'STATUS_UNHEALTHY');
+  static const AuthStartResponse_Status STATUS_UNSPECIFIED =
+      AuthStartResponse_Status._(0, _omitEnumNames ? '' : 'STATUS_UNSPECIFIED');
+  static const AuthStartResponse_Status STATUS_UNKNOWN =
+      AuthStartResponse_Status._(1, _omitEnumNames ? '' : 'STATUS_UNKNOWN');
+  static const AuthStartResponse_Status STATUS_HEALTHY =
+      AuthStartResponse_Status._(2, _omitEnumNames ? '' : 'STATUS_HEALTHY');
+  static const AuthStartResponse_Status STATUS_UNHEALTHY =
+      AuthStartResponse_Status._(3, _omitEnumNames ? '' : 'STATUS_UNHEALTHY');
 
-  static const $core.List<AuthStartResponse_Status> values = <AuthStartResponse_Status> [
+  static const $core.List<AuthStartResponse_Status> values = <AuthStartResponse_Status>[
     STATUS_UNSPECIFIED,
     STATUS_UNKNOWN,
     STATUS_HEALTHY,
@@ -32,6 +36,5 @@ class AuthStartResponse_Status extends $pb.ProtobufEnum {
 
   const AuthStartResponse_Status._(super.v, super.n);
 }
-
 
 const _omitEnumNames = $core.bool.fromEnvironment('protobuf.omit_enum_names');

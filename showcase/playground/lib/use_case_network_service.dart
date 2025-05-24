@@ -36,10 +36,7 @@ class _BeNetworkServiceDemoState extends State<BeNetworkServiceDemo> {
       // );
 
       // For production with real certificates:
-      final certBytes =
-          (await rootBundle.load(
-            'assets/certs/server.crt',
-          )).buffer.asUint8List();
+      final certBytes = (await rootBundle.load('assets/certs/server.crt')).buffer.asUint8List();
 
       channel = ClientChannel(
         'localhost',
@@ -109,10 +106,7 @@ class _BeNetworkServiceDemoState extends State<BeNetworkServiceDemo> {
           children: [
             ElevatedButton(
               onPressed: isLoading ? null : _checkHealth,
-              child:
-                  isLoading
-                      ? const CircularProgressIndicator()
-                      : const Text('Check Health'),
+              child: isLoading ? const CircularProgressIndicator() : const Text('Check Health'),
             ),
             const SizedBox(height: 20),
             SelectableText(data),

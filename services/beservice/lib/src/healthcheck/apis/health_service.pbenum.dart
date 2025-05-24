@@ -15,12 +15,16 @@ import 'package:protobuf/protobuf.dart' as $pb;
 
 /// Status indicates the health status of the service.
 class CheckHealthServiceResponse_Status extends $pb.ProtobufEnum {
-  static const CheckHealthServiceResponse_Status STATUS_UNSPECIFIED = CheckHealthServiceResponse_Status._(0, _omitEnumNames ? '' : 'STATUS_UNSPECIFIED');
-  static const CheckHealthServiceResponse_Status STATUS_UNKNOWN = CheckHealthServiceResponse_Status._(1, _omitEnumNames ? '' : 'STATUS_UNKNOWN');
-  static const CheckHealthServiceResponse_Status STATUS_HEALTHY = CheckHealthServiceResponse_Status._(2, _omitEnumNames ? '' : 'STATUS_HEALTHY');
-  static const CheckHealthServiceResponse_Status STATUS_UNHEALTHY = CheckHealthServiceResponse_Status._(3, _omitEnumNames ? '' : 'STATUS_UNHEALTHY');
+  static const CheckHealthServiceResponse_Status STATUS_UNSPECIFIED =
+      CheckHealthServiceResponse_Status._(0, _omitEnumNames ? '' : 'STATUS_UNSPECIFIED');
+  static const CheckHealthServiceResponse_Status STATUS_UNKNOWN =
+      CheckHealthServiceResponse_Status._(1, _omitEnumNames ? '' : 'STATUS_UNKNOWN');
+  static const CheckHealthServiceResponse_Status STATUS_HEALTHY =
+      CheckHealthServiceResponse_Status._(2, _omitEnumNames ? '' : 'STATUS_HEALTHY');
+  static const CheckHealthServiceResponse_Status STATUS_UNHEALTHY =
+      CheckHealthServiceResponse_Status._(3, _omitEnumNames ? '' : 'STATUS_UNHEALTHY');
 
-  static const $core.List<CheckHealthServiceResponse_Status> values = <CheckHealthServiceResponse_Status> [
+  static const $core.List<CheckHealthServiceResponse_Status> values = <CheckHealthServiceResponse_Status>[
     STATUS_UNSPECIFIED,
     STATUS_UNKNOWN,
     STATUS_HEALTHY,
@@ -32,6 +36,5 @@ class CheckHealthServiceResponse_Status extends $pb.ProtobufEnum {
 
   const CheckHealthServiceResponse_Status._(super.v, super.n);
 }
-
 
 const _omitEnumNames = $core.bool.fromEnvironment('protobuf.omit_enum_names');

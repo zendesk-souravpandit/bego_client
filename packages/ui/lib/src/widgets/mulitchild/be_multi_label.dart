@@ -7,19 +7,14 @@ import 'package:flutter/rendering.dart';
 /// [child] of Widget Type. badge widget respects child widget dimention
 /// [labels] of Widget Type. badge widget respects child
 class BeMultiLabel extends MultiChildRenderObjectWidget {
-  BeMultiLabel({required this.child, required this.labels, super.key})
-    : super(children: [child, ...labels]);
+  BeMultiLabel({required this.child, required this.labels, super.key}) : super(children: [child, ...labels]);
   final Widget child;
   final List<BeLabelChild> labels;
   @override
-  RenderObject createRenderObject(BuildContext context) =>
-      _BeMultiLabelRenderObject();
+  RenderObject createRenderObject(BuildContext context) => _BeMultiLabelRenderObject();
 
   @override
-  void updateRenderObject(
-    BuildContext context,
-    _BeMultiLabelRenderObject renderObject,
-  ) {}
+  void updateRenderObject(BuildContext context, _BeMultiLabelRenderObject renderObject) {}
 }
 
 class _BeMultiLabelRenderObject extends RenderBox
@@ -42,71 +37,34 @@ class _BeMultiLabelRenderObject extends RenderBox
 
     for (final c in getChildrenAsList()) {
       if (c == firstChild) continue;
-      final badge =
-          (c as _LabelRenderBox)
-            ..layout(const BoxConstraints(), parentUsesSize: true);
+      final badge = (c as _LabelRenderBox)..layout(const BoxConstraints(), parentUsesSize: true);
       final badgeParentData = badge.parentData! as _BeMultiLabelParentData;
-      final labelOffset = _getOffset(
-        badge._position,
-        badge._offset,
-        badge.size.width,
-        badge.size.height,
-      );
+      final labelOffset = _getOffset(badge._position, badge._offset, badge.size.width, badge.size.height);
       badgeParentData.offset = labelOffset;
     }
   }
 
   @override
-  void paint(PaintingContext context, Offset offset) =>
-      defaultPaint(context, offset);
+  void paint(PaintingContext context, Offset offset) => defaultPaint(context, offset);
 
-  Offset _getOffset(
-    BeMultiLabelPosition position,
-    Offset childOffset,
-    double labelWidth,
-    double labelHeight,
-  ) {
+  Offset _getOffset(BeMultiLabelPosition position, Offset childOffset, double labelWidth, double labelHeight) {
     var translateX = 0.0;
     var translateY = 0.0;
 
     final (double x, double y) = switch (position) {
       BeMultiLabelPosition.topLeft => (0, -labelHeight),
       BeMultiLabelPosition.leftTop => (-labelWidth, 0),
-      BeMultiLabelPosition.topCenter => (
-        (size.width - labelWidth) / 2,
-        -labelHeight,
-      ),
+      BeMultiLabelPosition.topCenter => ((size.width - labelWidth) / 2, -labelHeight),
       BeMultiLabelPosition.topRight => (size.width - labelWidth, -labelHeight),
       BeMultiLabelPosition.rightTop => (size.width, 0),
-      BeMultiLabelPosition.bottomRight => (
-        size.width - labelWidth,
-        size.height,
-      ),
-      BeMultiLabelPosition.rightBottom => (
-        size.width,
-        size.height - labelHeight,
-      ),
-      BeMultiLabelPosition.rightCenter => (
-        size.width,
-        (size.height - labelHeight) / 2,
-      ),
-      BeMultiLabelPosition.bottomCenter => (
-        (size.width - labelWidth) / 2,
-        size.height,
-      ),
+      BeMultiLabelPosition.bottomRight => (size.width - labelWidth, size.height),
+      BeMultiLabelPosition.rightBottom => (size.width, size.height - labelHeight),
+      BeMultiLabelPosition.rightCenter => (size.width, (size.height - labelHeight) / 2),
+      BeMultiLabelPosition.bottomCenter => ((size.width - labelWidth) / 2, size.height),
       BeMultiLabelPosition.bottomLeft => (0, size.height),
-      BeMultiLabelPosition.leftBottom => (
-        -labelWidth,
-        size.height - labelHeight,
-      ),
-      BeMultiLabelPosition.leftCenter => (
-        -labelWidth,
-        (size.height - labelHeight) / 2,
-      ),
-      BeMultiLabelPosition.center => (
-        (size.width - labelWidth) / 2,
-        (size.height - labelHeight) / 2,
-      ),
+      BeMultiLabelPosition.leftBottom => (-labelWidth, size.height - labelHeight),
+      BeMultiLabelPosition.leftCenter => (-labelWidth, (size.height - labelHeight) / 2),
+      BeMultiLabelPosition.center => ((size.width - labelWidth) / 2, (size.height - labelHeight) / 2),
     };
     translateX = x + childOffset.dx;
     translateY = y + childOffset.dy;
@@ -122,21 +80,16 @@ class _BeMultiLabelRenderObject extends RenderBox
   bool hitTest(BoxHitTestResult result, {required Offset position}) {
     for (final child in getChildrenAsList()) {
       final badgeParentData = child.parentData! as _BeMultiLabelParentData;
-      final badgePosition = Offset(
-        position.dx - badgeParentData.offset.dx,
-        position.dy - badgeParentData.offset.dy,
-      );
+      final badgePosition = Offset(position.dx - badgeParentData.offset.dx, position.dy - badgeParentData.offset.dy);
       if (child.size.contains(badgePosition)) {
-        if (hitTestChildren(result, position: position) ||
-            hitTestSelf(position)) {
+        if (hitTestChildren(result, position: position) || hitTestSelf(position)) {
           result.add(BoxHitTestEntry(this, position));
           return true;
         }
       }
 
       if (size.contains(position)) {
-        if (hitTestChildren(result, position: position) ||
-            hitTestSelf(position)) {
+        if (hitTestChildren(result, position: position) || hitTestSelf(position)) {
           result.add(BoxHitTestEntry(this, position));
           return true;
         }
@@ -146,8 +99,7 @@ class _BeMultiLabelRenderObject extends RenderBox
   }
 }
 
-class _BeMultiLabelParentData extends ContainerBoxParentData<RenderBox>
-    with ContainerParentDataMixin<RenderBox> {}
+class _BeMultiLabelParentData extends ContainerBoxParentData<RenderBox> with ContainerParentDataMixin<RenderBox> {}
 
 // ==========================================================================
 /// Custom Flutter widget for rendering a badge on another widget </br>
@@ -155,18 +107,12 @@ class _BeMultiLabelParentData extends ContainerBoxParentData<RenderBox>
 /// [offset] translate widget to offset based on [Offset] default is [Offset.zero]
 /// [position] set alignment position of badge
 class BeLabelChild extends SingleChildRenderObjectWidget {
-  const BeLabelChild({
-    required this.position,
-    required super.child,
-    super.key,
-    this.offset = Offset.zero,
-  });
+  const BeLabelChild({required this.position, required super.child, super.key, this.offset = Offset.zero});
   final BeMultiLabelPosition position;
   final Offset offset;
 
   @override
-  RenderObject createRenderObject(BuildContext context) =>
-      _LabelRenderBox(offset: offset, position: position);
+  RenderObject createRenderObject(BuildContext context) => _LabelRenderBox(offset: offset, position: position);
 
   @override
   void updateRenderObject(BuildContext context, _LabelRenderBox renderObject) {
@@ -184,14 +130,11 @@ class BeLabelChild extends SingleChildRenderObjectWidget {
   }
 }
 
-class _LabelRenderBox extends RenderBox
-    with RenderObjectWithChildMixin<RenderBox> {
+class _LabelRenderBox extends RenderBox with RenderObjectWithChildMixin<RenderBox> {
   // Add any properties and constructor you need
-  _LabelRenderBox({
-    required BeMultiLabelPosition position,
-    required Offset offset,
-  }) : _position = position,
-       _offset = offset;
+  _LabelRenderBox({required BeMultiLabelPosition position, required Offset offset})
+    : _position = position,
+      _offset = offset;
 
   var _lastSize = Size.zero;
 

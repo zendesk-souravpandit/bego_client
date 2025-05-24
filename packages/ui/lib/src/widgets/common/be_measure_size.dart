@@ -41,21 +41,14 @@ class MeasureSizeRenderObject extends RenderProxyBox {
 
 /// Tool class for monitoring Widget width and height changes
 class MeasureSize extends SingleChildRenderObjectWidget {
-  const MeasureSize({
-    required this.onChange,
-    required Widget super.child,
-    super.key,
-  });
+  const MeasureSize({required this.onChange, required Widget super.child, super.key});
   final OnWidgetSizeChange onChange;
   @override
-  RenderObject createRenderObject(BuildContext context) =>
-      MeasureSizeRenderObject(onChange);
+  RenderObject createRenderObject(BuildContext context) => MeasureSizeRenderObject(onChange);
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(
-      ObjectFlagProperty<OnWidgetSizeChange>.has('onChange', onChange),
-    );
+    properties.add(ObjectFlagProperty<OnWidgetSizeChange>.has('onChange', onChange));
   }
 }

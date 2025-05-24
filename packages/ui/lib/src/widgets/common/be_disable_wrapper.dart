@@ -49,10 +49,7 @@ class BeDisableWrapper extends StatelessWidget {
     }
 
     return AbsorbPointer(
-      child: Opacity(
-        opacity: _getOpacity(context),
-        child: ColorFiltered(colorFilter: _grayscaleMatrix, child: child),
-      ),
+      child: Opacity(opacity: _getOpacity(context), child: ColorFiltered(colorFilter: _grayscaleMatrix, child: child)),
     );
   }
 

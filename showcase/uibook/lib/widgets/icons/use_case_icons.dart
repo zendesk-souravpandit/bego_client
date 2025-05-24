@@ -12,20 +12,13 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 Widget useCaseBeIconsList(BuildContext context) {
   final color = context.knobs.colorOrNull(label: "Color");
   return GridView.builder(
-    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-      crossAxisCount: 3,
-      childAspectRatio: 1,
-    ),
+    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, childAspectRatio: 1),
     itemCount: begoIcons.length,
     itemBuilder: (_, index) {
       final icon = begoIcons[index];
       return Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(icon.data, size: 32, color: color),
-          const SizedBox(height: 10),
-          Text(icon.name),
-        ],
+        children: [Icon(icon.data, size: 32, color: color), const SizedBox(height: 10), Text(icon.name)],
       );
     },
   );

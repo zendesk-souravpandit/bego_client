@@ -1,5 +1,4 @@
-library beui.helper_extentions;
+library beui.helper_extensions;
 
-export './src/extentions/be_double_ext.dart';
-
-// export './src/extentions/be_theme_ext.dart';
+export 'src/extensions/be_double_ext.dart';
+export 'src/extensions/be_theme_ext.dart';

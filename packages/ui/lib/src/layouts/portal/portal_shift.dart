@@ -15,11 +15,7 @@ extension FPortalShift on Never {
   /// Flips the portal to the opposite side of the child if it does not cause the portal to overflow out of the
   /// viewport. Otherwise shifts the portal along the child's edge.
   static Offset flip(Size view, FPortalChildBox child, FPortalBox portal) {
-    var anchor = none(
-      view,
-      child,
-      portal,
-    ).translate(child.offset.dx, child.offset.dy);
+    var anchor = none(view, child, portal).translate(child.offset.dx, child.offset.dy);
 
     final viewBox = Offset.zero & view;
     final portalBox = anchor & portal.size;
@@ -56,61 +52,35 @@ extension FPortalShift on Never {
     return foo.translate(-child.offset.dx, -child.offset.dy);
   }
 
-  static Offset _flip(
-    FPortalChildBox child,
-    FPortalBox portal, {
-    required bool x,
-  }) {
+  static Offset _flip(FPortalChildBox child, FPortalBox portal, {required bool x}) {
     final childAnchor = x ? child.anchor.flipX() : child.anchor.flipY();
     final portalAnchor = x ? portal.anchor.flipX() : portal.anchor.flipY();
 
-    final anchor =
-        childAnchor.relative(to: child.size) -
-        portalAnchor.relative(to: portal.size);
+    final anchor = childAnchor.relative(to: child.size) - portalAnchor.relative(to: portal.size);
 
     return anchor.translate(child.offset.dx, child.offset.dy);
   }
 
   /// Shifts the portal along the child's edge if the portal overflows out of the viewport.
   static Offset along(Size view, FPortalChildBox child, FPortalBox portal) {
-    final anchor = none(
-      view,
-      child,
-      portal,
-    ).translate(child.offset.dx, child.offset.dy);
+    final anchor = none(view, child, portal).translate(child.offset.dx, child.offset.dy);
 
     final viewBox = Offset.zero & view;
     final portalBox = anchor & portal.size;
 
-    return _along(
-      anchor,
-      viewBox,
-      portalBox,
-    ).translate(-child.offset.dx, -child.offset.dy);
+    return _along(anchor, viewBox, portalBox).translate(-child.offset.dx, -child.offset.dy);
   }
 
   static Offset _along(Offset anchor, Rect viewBox, Rect portalBox) {
     anchor = switch ((viewBox, portalBox)) {
-      _ when portalBox.left < viewBox.left => Offset(
-        anchor.dx + (viewBox.left - portalBox.left),
-        anchor.dy,
-      ),
-      _ when viewBox.right < portalBox.right => Offset(
-        anchor.dx - portalBox.right + viewBox.right,
-        anchor.dy,
-      ),
+      _ when portalBox.left < viewBox.left => Offset(anchor.dx + (viewBox.left - portalBox.left), anchor.dy),
+      _ when viewBox.right < portalBox.right => Offset(anchor.dx - portalBox.right + viewBox.right, anchor.dy),
       _ => anchor,
     };
 
     anchor = switch ((viewBox, portalBox)) {
-      _ when portalBox.top < viewBox.top => Offset(
-        anchor.dx,
-        anchor.dy + (viewBox.top - portalBox.top),
-      ),
-      _ when viewBox.bottom < portalBox.bottom => Offset(
-        anchor.dx,
-        anchor.dy - portalBox.bottom + viewBox.bottom,
-      ),
+      _ when portalBox.top < viewBox.top => Offset(anchor.dx, anchor.dy + (viewBox.top - portalBox.top)),
+      _ when viewBox.bottom < portalBox.bottom => Offset(anchor.dx, anchor.dy - portalBox.bottom + viewBox.bottom),
       _ => anchor,
     };
 

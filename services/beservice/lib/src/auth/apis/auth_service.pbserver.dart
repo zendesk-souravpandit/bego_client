@@ -25,19 +25,23 @@ abstract class AuthServiceBase extends $pb.GeneratedService {
 
   $pb.GeneratedMessage createRequest($core.String methodName) {
     switch (methodName) {
-      case 'AuthStart': return $7.AuthStartRequest();
-      default: throw $core.ArgumentError('Unknown method: $methodName');
+      case 'AuthStart':
+        return $7.AuthStartRequest();
+      default:
+        throw $core.ArgumentError('Unknown method: $methodName');
     }
   }
 
-  $async.Future<$pb.GeneratedMessage> handleCall($pb.ServerContext ctx, $core.String methodName, $pb.GeneratedMessage request) {
+  $async.Future<$pb.GeneratedMessage> handleCall(
+      $pb.ServerContext ctx, $core.String methodName, $pb.GeneratedMessage request) {
     switch (methodName) {
-      case 'AuthStart': return this.authStart(ctx, request as $7.AuthStartRequest);
-      default: throw $core.ArgumentError('Unknown method: $methodName');
+      case 'AuthStart':
+        return this.authStart(ctx, request as $7.AuthStartRequest);
+      default:
+        throw $core.ArgumentError('Unknown method: $methodName');
     }
   }
 
   $core.Map<$core.String, $core.dynamic> get $json => AuthServiceBase$json;
   $core.Map<$core.String, $core.Map<$core.String, $core.dynamic>> get $messageJson => AuthServiceBase$messageJson;
 }
-

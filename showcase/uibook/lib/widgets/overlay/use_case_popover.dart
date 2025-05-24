@@ -1,7 +1,7 @@
 import 'package:beui/be_icons.dart';
+import 'package:beui/helper_ext.dart';
 import 'package:beui/overlay.dart';
 import 'package:beui/text.dart';
-import 'package:beui/theme.dart';
 import 'package:beui/ui.dart';
 import 'package:flutter/material.dart';
 import 'package:uibook/widgets/buttons/use_case_icon_text_button.dart';
@@ -17,8 +17,7 @@ class PopoverDemo extends StatefulWidget {
   State<PopoverDemo> createState() => _PopoverDemoState();
 }
 
-class _PopoverDemoState extends State<PopoverDemo>
-    with SingleTickerProviderStateMixin {
+class _PopoverDemoState extends State<PopoverDemo> with SingleTickerProviderStateMixin {
   late final BePopoverController controller = BePopoverController(vsync: this);
 
   @override
@@ -35,19 +34,12 @@ class _PopoverDemoState extends State<PopoverDemo>
           child: BeIconTextButton(
             direction: BeIconDirection.left,
             buttonIcon: const Icon(BeIcons.icon_fi_rr_menu_dots, size: 32),
-            buttonText: const BeText(
-              "Menu",
-              padding: EdgeInsets.symmetric(horizontal: 4),
-            ),
+            buttonText: const BeText("Menu", padding: EdgeInsets.symmetric(horizontal: 4)),
             onPressed: () {
               controller.show();
             },
           ),
-          popoverBuilder: (
-            BuildContext context,
-            BoxDecoration value,
-            Widget? child,
-          ) {
+          popoverBuilder: (BuildContext context, BoxDecoration value, Widget? child) {
             return Container(
               color: ColorUtils.createColorSwatchLevel(
                 context.betheme.colors.background,

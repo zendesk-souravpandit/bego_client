@@ -27,24 +27,26 @@ class FieldConstraints extends $pb.GeneratedMessage {
     return $result;
   }
   FieldConstraints._() : super();
-  factory FieldConstraints.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory FieldConstraints.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  factory FieldConstraints.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory FieldConstraints.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'FieldConstraints', package: const $pb.PackageName(_omitMessageNames ? '' : 'validate.priv'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'FieldConstraints',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'validate.priv'), createEmptyInstance: create)
     ..pc<Constraint>(1, _omitFieldNames ? '' : 'cel', $pb.PbFieldType.PM, subBuilder: Constraint.create)
-    ..hasRequiredFields = false
-  ;
+    ..hasRequiredFields = false;
 
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
   FieldConstraints clone() => FieldConstraints()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  FieldConstraints copyWith(void Function(FieldConstraints) updates) => super.copyWith((message) => updates(message as FieldConstraints)) as FieldConstraints;
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  FieldConstraints copyWith(void Function(FieldConstraints) updates) =>
+      super.copyWith((message) => updates(message as FieldConstraints)) as FieldConstraints;
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -53,7 +55,8 @@ class FieldConstraints extends $pb.GeneratedMessage {
   FieldConstraints createEmptyInstance() => create();
   static $pb.PbList<FieldConstraints> createRepeated() => $pb.PbList<FieldConstraints>();
   @$core.pragma('dart2js:noInline')
-  static FieldConstraints getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<FieldConstraints>(create);
+  static FieldConstraints getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<FieldConstraints>(create);
   static FieldConstraints? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -80,26 +83,27 @@ class Constraint extends $pb.GeneratedMessage {
     return $result;
   }
   Constraint._() : super();
-  factory Constraint.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory Constraint.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  factory Constraint.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory Constraint.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Constraint', package: const $pb.PackageName(_omitMessageNames ? '' : 'validate.priv'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Constraint',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'validate.priv'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'id')
     ..aOS(2, _omitFieldNames ? '' : 'message')
     ..aOS(3, _omitFieldNames ? '' : 'expression')
-    ..hasRequiredFields = false
-  ;
+    ..hasRequiredFields = false;
 
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
   Constraint clone() => Constraint()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  Constraint copyWith(void Function(Constraint) updates) => super.copyWith((message) => updates(message as Constraint)) as Constraint;
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  Constraint copyWith(void Function(Constraint) updates) =>
+      super.copyWith((message) => updates(message as Constraint)) as Constraint;
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -114,7 +118,10 @@ class Constraint extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   $core.String get id => $_getSZ(0);
   @$pb.TagNumber(1)
-  set id($core.String v) { $_setString(0, v); }
+  set id($core.String v) {
+    $_setString(0, v);
+  }
+
   @$pb.TagNumber(1)
   $core.bool hasId() => $_has(0);
   @$pb.TagNumber(1)
@@ -123,7 +130,10 @@ class Constraint extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   $core.String get message => $_getSZ(1);
   @$pb.TagNumber(2)
-  set message($core.String v) { $_setString(1, v); }
+  set message($core.String v) {
+    $_setString(1, v);
+  }
+
   @$pb.TagNumber(2)
   $core.bool hasMessage() => $_has(1);
   @$pb.TagNumber(2)
@@ -132,7 +142,10 @@ class Constraint extends $pb.GeneratedMessage {
   @$pb.TagNumber(3)
   $core.String get expression => $_getSZ(2);
   @$pb.TagNumber(3)
-  set expression($core.String v) { $_setString(2, v); }
+  set expression($core.String v) {
+    $_setString(2, v);
+  }
+
   @$pb.TagNumber(3)
   $core.bool hasExpression() => $_has(2);
   @$pb.TagNumber(3)
@@ -140,12 +153,13 @@ class Constraint extends $pb.GeneratedMessage {
 }
 
 class Private {
-  static final field_1160 = $pb.Extension<FieldConstraints>(_omitMessageNames ? '' : 'google.protobuf.FieldOptions', _omitFieldNames ? '' : 'field_1160', 1160, $pb.PbFieldType.OM, defaultOrMaker: FieldConstraints.getDefault, subBuilder: FieldConstraints.create);
+  static final field_1160 = $pb.Extension<FieldConstraints>(_omitMessageNames ? '' : 'google.protobuf.FieldOptions',
+      _omitFieldNames ? '' : 'field_1160', 1160, $pb.PbFieldType.OM,
+      defaultOrMaker: FieldConstraints.getDefault, subBuilder: FieldConstraints.create);
   static void registerAllExtensions($pb.ExtensionRegistry registry) {
     registry.add(field_1160);
   }
 }
-
 
 const _omitFieldNames = $core.bool.fromEnvironment('protobuf.omit_field_names');
 const _omitMessageNames = $core.bool.fromEnvironment('protobuf.omit_message_names');

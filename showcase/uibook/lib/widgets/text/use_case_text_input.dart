@@ -8,24 +8,14 @@ Widget textFieldUseCase(BuildContext context) => Column(
   children: [
     BeTappable.animated(
       onPress: () {},
-      child: Container(
-        color: Colors.red,
-        padding: const EdgeInsets.all(20),
-        child: const Text('Button'),
-      ),
+      child: Container(color: Colors.red, padding: const EdgeInsets.all(20), child: const Text('Button')),
     ),
     Padding(
       padding: const EdgeInsets.all(16.0),
       child: TextField(
         decoration: InputDecoration(
-          labelText: context.knobs.string(
-            label: 'Label',
-            initialValue: 'Username',
-          ),
-          errorText:
-              context.knobs.boolean(label: 'Show Error')
-                  ? 'Invalid input'
-                  : null,
+          labelText: context.knobs.string(label: 'Label', initialValue: 'Username'),
+          errorText: context.knobs.boolean(label: 'Show Error') ? 'Invalid input' : null,
         ),
       ),
     ),

@@ -19,14 +19,21 @@ const CheckHealthServiceRequest$json = {
 };
 
 /// Descriptor for `CheckHealthServiceRequest`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List checkHealthServiceRequestDescriptor = $convert.base64Decode(
-    'ChlDaGVja0hlYWx0aFNlcnZpY2VSZXF1ZXN0');
+final $typed_data.Uint8List checkHealthServiceRequestDescriptor =
+    $convert.base64Decode('ChlDaGVja0hlYWx0aFNlcnZpY2VSZXF1ZXN0');
 
 @$core.Deprecated('Use checkHealthServiceResponseDescriptor instead')
 const CheckHealthServiceResponse$json = {
   '1': 'CheckHealthServiceResponse',
   '2': [
-    {'1': 'status', '3': 1, '4': 1, '5': 14, '6': '.healthcheck.apis.CheckHealthServiceResponse.Status', '10': 'status'},
+    {
+      '1': 'status',
+      '3': 1,
+      '4': 1,
+      '5': 14,
+      '6': '.healthcheck.apis.CheckHealthServiceResponse.Status',
+      '10': 'status'
+    },
     {'1': 'message', '3': 2, '4': 1, '5': 9, '10': 'message'},
   ],
   '4': [CheckHealthServiceResponse_Status$json],
@@ -44,17 +51,22 @@ const CheckHealthServiceResponse_Status$json = {
 };
 
 /// Descriptor for `CheckHealthServiceResponse`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List checkHealthServiceResponseDescriptor = $convert.base64Decode(
-    'ChpDaGVja0hlYWx0aFNlcnZpY2VSZXNwb25zZRJLCgZzdGF0dXMYASABKA4yMy5oZWFsdGhjaG'
-    'Vjay5hcGlzLkNoZWNrSGVhbHRoU2VydmljZVJlc3BvbnNlLlN0YXR1c1IGc3RhdHVzEhgKB21l'
-    'c3NhZ2UYAiABKAlSB21lc3NhZ2UiXgoGU3RhdHVzEhYKElNUQVRVU19VTlNQRUNJRklFRBAAEh'
-    'IKDlNUQVRVU19VTktOT1dOEAESEgoOU1RBVFVTX0hFQUxUSFkQAhIUChBTVEFUVVNfVU5IRUFM'
-    'VEhZEAM=');
+final $typed_data.Uint8List checkHealthServiceResponseDescriptor =
+    $convert.base64Decode('ChpDaGVja0hlYWx0aFNlcnZpY2VSZXNwb25zZRJLCgZzdGF0dXMYASABKA4yMy5oZWFsdGhjaG'
+        'Vjay5hcGlzLkNoZWNrSGVhbHRoU2VydmljZVJlc3BvbnNlLlN0YXR1c1IGc3RhdHVzEhgKB21l'
+        'c3NhZ2UYAiABKAlSB21lc3NhZ2UiXgoGU3RhdHVzEhYKElNUQVRVU19VTlNQRUNJRklFRBAAEh'
+        'IKDlNUQVRVU19VTktOT1dOEAESEgoOU1RBVFVTX0hFQUxUSFkQAhIUChBTVEFUVVNfVU5IRUFM'
+        'VEhZEAM=');
 
 const $core.Map<$core.String, $core.dynamic> HealthCheckServiceBase$json = {
   '1': 'HealthCheckService',
   '2': [
-    {'1': 'CheckHealthService', '2': '.healthcheck.apis.CheckHealthServiceRequest', '3': '.healthcheck.apis.CheckHealthServiceResponse', '4': {}},
+    {
+      '1': 'CheckHealthService',
+      '2': '.healthcheck.apis.CheckHealthServiceRequest',
+      '3': '.healthcheck.apis.CheckHealthServiceResponse',
+      '4': {}
+    },
   ],
 };
 
@@ -65,8 +77,7 @@ const $core.Map<$core.String, $core.Map<$core.String, $core.dynamic>> HealthChec
 };
 
 /// Descriptor for `HealthCheckService`. Decode as a `google.protobuf.ServiceDescriptorProto`.
-final $typed_data.Uint8List healthCheckServiceDescriptor = $convert.base64Decode(
-    'ChJIZWFsdGhDaGVja1NlcnZpY2UScQoSQ2hlY2tIZWFsdGhTZXJ2aWNlEisuaGVhbHRoY2hlY2'
-    'suYXBpcy5DaGVja0hlYWx0aFNlcnZpY2VSZXF1ZXN0GiwuaGVhbHRoY2hlY2suYXBpcy5DaGVj'
-    'a0hlYWx0aFNlcnZpY2VSZXNwb25zZSIA');
-
+final $typed_data.Uint8List healthCheckServiceDescriptor =
+    $convert.base64Decode('ChJIZWFsdGhDaGVja1NlcnZpY2UScQoSQ2hlY2tIZWFsdGhTZXJ2aWNlEisuaGVhbHRoY2hlY2'
+        'suYXBpcy5DaGVja0hlYWx0aFNlcnZpY2VSZXF1ZXN0GiwuaGVhbHRoY2hlY2suYXBpcy5DaGVj'
+        'a0hlYWx0aFNlcnZpY2VSZXNwb25zZSIA');

@@ -19,8 +19,7 @@ const AuthStartRequest$json = {
 };
 
 /// Descriptor for `AuthStartRequest`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List authStartRequestDescriptor = $convert.base64Decode(
-    'ChBBdXRoU3RhcnRSZXF1ZXN0');
+final $typed_data.Uint8List authStartRequestDescriptor = $convert.base64Decode('ChBBdXRoU3RhcnRSZXF1ZXN0');
 
 @$core.Deprecated('Use authStartResponseDescriptor instead')
 const AuthStartResponse$json = {
@@ -44,11 +43,11 @@ const AuthStartResponse_Status$json = {
 };
 
 /// Descriptor for `AuthStartResponse`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List authStartResponseDescriptor = $convert.base64Decode(
-    'ChFBdXRoU3RhcnRSZXNwb25zZRI7CgZzdGF0dXMYASABKA4yIy5hdXRoLmFwaXMuQXV0aFN0YX'
-    'J0UmVzcG9uc2UuU3RhdHVzUgZzdGF0dXMSGAoHbWVzc2FnZRgCIAEoCVIHbWVzc2FnZSJeCgZT'
-    'dGF0dXMSFgoSU1RBVFVTX1VOU1BFQ0lGSUVEEAASEgoOU1RBVFVTX1VOS05PV04QARISCg5TVE'
-    'FUVVNfSEVBTFRIWRACEhQKEFNUQVRVU19VTkhFQUxUSFkQAw==');
+final $typed_data.Uint8List authStartResponseDescriptor =
+    $convert.base64Decode('ChFBdXRoU3RhcnRSZXNwb25zZRI7CgZzdGF0dXMYASABKA4yIy5hdXRoLmFwaXMuQXV0aFN0YX'
+        'J0UmVzcG9uc2UuU3RhdHVzUgZzdGF0dXMSGAoHbWVzc2FnZRgCIAEoCVIHbWVzc2FnZSJeCgZT'
+        'dGF0dXMSFgoSU1RBVFVTX1VOU1BFQ0lGSUVEEAASEgoOU1RBVFVTX1VOS05PV04QARISCg5TVE'
+        'FUVVNfSEVBTFRIWRACEhQKEFNUQVRVU19VTkhFQUxUSFkQAw==');
 
 const $core.Map<$core.String, $core.dynamic> AuthServiceBase$json = {
   '1': 'AuthService',
@@ -64,7 +63,6 @@ const $core.Map<$core.String, $core.Map<$core.String, $core.dynamic>> AuthServic
 };
 
 /// Descriptor for `AuthService`. Decode as a `google.protobuf.ServiceDescriptorProto`.
-final $typed_data.Uint8List authServiceDescriptor = $convert.base64Decode(
-    'CgtBdXRoU2VydmljZRJICglBdXRoU3RhcnQSGy5hdXRoLmFwaXMuQXV0aFN0YXJ0UmVxdWVzdB'
-    'ocLmF1dGguYXBpcy5BdXRoU3RhcnRSZXNwb25zZSIA');
-
+final $typed_data.Uint8List authServiceDescriptor =
+    $convert.base64Decode('CgtBdXRoU2VydmljZRJICglBdXRoU3RhcnQSGy5hdXRoLmFwaXMuQXV0aFN0YXJ0UmVxdWVzdB'
+        'ocLmF1dGguYXBpcy5BdXRoU3RhcnRSZXNwb25zZSIA');

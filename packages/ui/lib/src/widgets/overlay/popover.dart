@@ -11,10 +11,7 @@ import 'package:flutter/services.dart';
 /// A controller that controls whether a [BePopover] is shown or hidden.
 final class BePopoverController extends ChangeNotifier {
   /// Creates a [BePopoverController] with the given [vsync] and animation [animationDuration].
-  BePopoverController({
-    required TickerProvider vsync,
-    Duration animationDuration = const Duration(milliseconds: 100),
-  }) {
+  BePopoverController({required TickerProvider vsync, Duration animationDuration = const Duration(milliseconds: 100)}) {
     _animation = AnimationController(vsync: vsync, duration: animationDuration);
     _fade = _fadeTween.animate(_animation);
     _scale = _scaleTween.animate(_animation);
@@ -202,13 +199,7 @@ class BePopover extends StatefulWidget {
       ..add(DiagnosticsProperty('childAnchor', childAnchor))
       ..add(ObjectFlagProperty.has('shift', shift))
       ..add(EnumProperty('hideOnTapOutside', hideOnTapOutside))
-      ..add(
-        FlagProperty(
-          'directionPadding',
-          value: directionPadding,
-          ifTrue: 'directionPadding',
-        ),
-      )
+      ..add(FlagProperty('directionPadding', value: directionPadding, ifTrue: 'directionPadding'))
       ..add(StringProperty('semanticLabel', semanticLabel))
       ..add(FlagProperty('autofocus', value: autofocus, ifTrue: 'autofocus'))
       ..add(DiagnosticsProperty('focusNode', focusNode))
@@ -249,19 +240,11 @@ class _State extends State<BePopover> with SingleTickerProviderStateMixin {
 
     var child =
         widget._automatic
-            ? GestureDetector(
-              behavior: HitTestBehavior.translucent,
-              onTap: _controller.toggle,
-              child: widget.child,
-            )
+            ? GestureDetector(behavior: HitTestBehavior.translucent, onTap: _controller.toggle, child: widget.child)
             : widget.child;
 
     if (widget.hideOnTapOutside == BeHidePopoverRegion.excludeTarget) {
-      child = TapRegion(
-        groupId: _group,
-        onTapOutside: (_) => _controller.hide(),
-        child: child,
-      );
+      child = TapRegion(groupId: _group, onTapOutside: (_) => _controller.hide(), child: child);
     }
 
     return FPortal(
@@ -279,10 +262,7 @@ class _State extends State<BePopover> with SingleTickerProviderStateMixin {
               ),
       portalBuilder:
           (context) => CallbackShortcuts(
-            bindings: {
-              const SingleActivator(LogicalKeyboardKey.escape):
-                  _controller.hide,
-            },
+            bindings: {const SingleActivator(LogicalKeyboardKey.escape): _controller.hide},
             child: Semantics(
               label: widget.semanticLabel,
               container: true,
@@ -300,27 +280,15 @@ class _State extends State<BePopover> with SingleTickerProviderStateMixin {
                         child: TapRegion(
                           groupId: _group,
                           onTapOutside:
-                              widget.hideOnTapOutside ==
-                                      BeHidePopoverRegion.none
-                                  ? null
-                                  : (_) => _controller.hide(),
+                              widget.hideOnTapOutside == BeHidePopoverRegion.none ? null : (_) => _controller.hide(),
                           child: DecoratedBox(
                             decoration: BoxDecoration(
                               color: Colors.white, // Default color
-                              borderRadius: BorderRadius.circular(
-                                4,
-                              ), // Default border radius
-                              border: Border.all(
-                                width: 1,
-                                color: Colors.black,
-                              ), // Default border
+                              borderRadius: BorderRadius.circular(4), // Default border radius
+                              border: Border.all(width: 1, color: Colors.black), // Default border
                               boxShadow: const [], // Default shadow
                             ),
-                            child: widget.popoverBuilder(
-                              context,
-                              const BoxDecoration(),
-                              null,
-                            ),
+                            child: widget.popoverBuilder(context, const BoxDecoration(), null),
                           ),
                         ),
                       ),

@@ -22,9 +22,9 @@ const FieldConstraints$json = {
 };
 
 /// Descriptor for `FieldConstraints`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List fieldConstraintsDescriptor = $convert.base64Decode(
-    'ChBGaWVsZENvbnN0cmFpbnRzEisKA2NlbBgBIAMoCzIZLnZhbGlkYXRlLnByaXYuQ29uc3RyYW'
-    'ludFIDY2Vs');
+final $typed_data.Uint8List fieldConstraintsDescriptor =
+    $convert.base64Decode('ChBGaWVsZENvbnN0cmFpbnRzEisKA2NlbBgBIAMoCzIZLnZhbGlkYXRlLnByaXYuQ29uc3RyYW'
+        'ludFIDY2Vs');
 
 @$core.Deprecated('Use constraintDescriptor instead')
 const Constraint$json = {
@@ -37,7 +37,6 @@ const Constraint$json = {
 };
 
 /// Descriptor for `Constraint`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List constraintDescriptor = $convert.base64Decode(
-    'CgpDb25zdHJhaW50Eg4KAmlkGAEgASgJUgJpZBIYCgdtZXNzYWdlGAIgASgJUgdtZXNzYWdlEh'
-    '4KCmV4cHJlc3Npb24YAyABKAlSCmV4cHJlc3Npb24=');
-
+final $typed_data.Uint8List constraintDescriptor =
+    $convert.base64Decode('CgpDb25zdHJhaW50Eg4KAmlkGAEgASgJUgJpZBIYCgdtZXNzYWdlGAIgASgJUgdtZXNzYWdlEh'
+        '4KCmV4cHJlc3Npb24YAyABKAlSCmV4cHJlc3Npb24=');

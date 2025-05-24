@@ -4,7 +4,6 @@ analyzer:
   errors:
     public_member_api_docs: ignore
     invalid_annotation_target: ignore
-    lines_longer_than_80_chars: warning
     unnecessary_library_name: ignore
     require_trailing_commas: ignore
   language:
@@ -16,11 +15,7 @@ analyzer:
     - dart_code_metrics
 
   exclude:
-    - "**/*.pb.dart"
-    - "**/*.pbenum.dart"
-    - "**/*.pbgrpc.dart"
-    - "**/*.pbjson.dart"
-    - "**/*.pbserver.dart"
+    - "**/*.g.dart"
     - "**/*.freezed.dart"
     - "**/generated_plugin_registrant.dart"
     - "**/build/**"
@@ -30,7 +25,8 @@ analyzer:
     - "**/*.gr.dart"
     - "**/l10n*.dart"
     - "**/*.gen.dart"
-
+formatter:
+  page_width: 120
 linter:
   rules:
     - always_declare_return_types
@@ -115,4 +111,3 @@ linter:
     - use_to_and_as_if_applicable
     - valid_regexps
     - void_checks
-    - lines_longer_than_80_chars

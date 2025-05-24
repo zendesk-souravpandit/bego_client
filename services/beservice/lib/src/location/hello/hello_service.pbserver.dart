@@ -28,25 +28,35 @@ abstract class PersionServiceBase extends $pb.GeneratedService {
 
   $pb.GeneratedMessage createRequest($core.String methodName) {
     switch (methodName) {
-      case 'CreatePersion': return $5.CreatePersionRequest();
-      case 'ReadPersion': return $5.ReadPersionRequest();
-      case 'UpdatePersion': return $5.UpdatePersionRequest();
-      case 'DeletePersion': return $5.DeletePersionRequest();
-      default: throw $core.ArgumentError('Unknown method: $methodName');
+      case 'CreatePersion':
+        return $5.CreatePersionRequest();
+      case 'ReadPersion':
+        return $5.ReadPersionRequest();
+      case 'UpdatePersion':
+        return $5.UpdatePersionRequest();
+      case 'DeletePersion':
+        return $5.DeletePersionRequest();
+      default:
+        throw $core.ArgumentError('Unknown method: $methodName');
     }
   }
 
-  $async.Future<$pb.GeneratedMessage> handleCall($pb.ServerContext ctx, $core.String methodName, $pb.GeneratedMessage request) {
+  $async.Future<$pb.GeneratedMessage> handleCall(
+      $pb.ServerContext ctx, $core.String methodName, $pb.GeneratedMessage request) {
     switch (methodName) {
-      case 'CreatePersion': return this.createPersion(ctx, request as $5.CreatePersionRequest);
-      case 'ReadPersion': return this.readPersion(ctx, request as $5.ReadPersionRequest);
-      case 'UpdatePersion': return this.updatePersion(ctx, request as $5.UpdatePersionRequest);
-      case 'DeletePersion': return this.deletePersion(ctx, request as $5.DeletePersionRequest);
-      default: throw $core.ArgumentError('Unknown method: $methodName');
+      case 'CreatePersion':
+        return this.createPersion(ctx, request as $5.CreatePersionRequest);
+      case 'ReadPersion':
+        return this.readPersion(ctx, request as $5.ReadPersionRequest);
+      case 'UpdatePersion':
+        return this.updatePersion(ctx, request as $5.UpdatePersionRequest);
+      case 'DeletePersion':
+        return this.deletePersion(ctx, request as $5.DeletePersionRequest);
+      default:
+        throw $core.ArgumentError('Unknown method: $methodName');
     }
   }
 
   $core.Map<$core.String, $core.dynamic> get $json => PersionServiceBase$json;
   $core.Map<$core.String, $core.Map<$core.String, $core.dynamic>> get $messageJson => PersionServiceBase$messageJson;
 }
-

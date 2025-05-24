@@ -61,10 +61,13 @@ class Persion extends $pb.GeneratedMessage {
     return $result;
   }
   Persion._() : super();
-  factory Persion.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory Persion.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  factory Persion.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory Persion.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Persion', package: const $pb.PackageName(_omitMessageNames ? '' : 'location.hello'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Persion',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'location.hello'), createEmptyInstance: create)
     ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
     ..aOS(2, _omitFieldNames ? '' : 'title')
     ..aOS(3, _omitFieldNames ? '' : 'description')
@@ -74,19 +77,17 @@ class Persion extends $pb.GeneratedMessage {
     ..aOM<$4.Timestamp>(7, _omitFieldNames ? '' : 'purchaseDate', subBuilder: $4.Timestamp.create)
     ..aOM<$4.Timestamp>(8, _omitFieldNames ? '' : 'deliveryDate', subBuilder: $4.Timestamp.create)
     ..aOS(9, _omitFieldNames ? '' : 'price')
-    ..hasRequiredFields = false
-  ;
+    ..hasRequiredFields = false;
 
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
   Persion clone() => Persion()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  Persion copyWith(void Function(Persion) updates) => super.copyWith((message) => updates(message as Persion)) as Persion;
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  Persion copyWith(void Function(Persion) updates) =>
+      super.copyWith((message) => updates(message as Persion)) as Persion;
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -101,7 +102,10 @@ class Persion extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   $core.int get id => $_getIZ(0);
   @$pb.TagNumber(1)
-  set id($core.int v) { $_setSignedInt32(0, v); }
+  set id($core.int v) {
+    $_setSignedInt32(0, v);
+  }
+
   @$pb.TagNumber(1)
   $core.bool hasId() => $_has(0);
   @$pb.TagNumber(1)
@@ -111,7 +115,10 @@ class Persion extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   $core.String get title => $_getSZ(1);
   @$pb.TagNumber(2)
-  set title($core.String v) { $_setString(1, v); }
+  set title($core.String v) {
+    $_setString(1, v);
+  }
+
   @$pb.TagNumber(2)
   $core.bool hasTitle() => $_has(1);
   @$pb.TagNumber(2)
@@ -120,7 +127,10 @@ class Persion extends $pb.GeneratedMessage {
   @$pb.TagNumber(3)
   $core.String get description => $_getSZ(2);
   @$pb.TagNumber(3)
-  set description($core.String v) { $_setString(2, v); }
+  set description($core.String v) {
+    $_setString(2, v);
+  }
+
   @$pb.TagNumber(3)
   $core.bool hasDescription() => $_has(2);
   @$pb.TagNumber(3)
@@ -129,7 +139,10 @@ class Persion extends $pb.GeneratedMessage {
   @$pb.TagNumber(4)
   $core.bool get completed => $_getBF(3);
   @$pb.TagNumber(4)
-  set completed($core.bool v) { $_setBool(3, v); }
+  set completed($core.bool v) {
+    $_setBool(3, v);
+  }
+
   @$pb.TagNumber(4)
   $core.bool hasCompleted() => $_has(3);
   @$pb.TagNumber(4)
@@ -138,7 +151,10 @@ class Persion extends $pb.GeneratedMessage {
   @$pb.TagNumber(5)
   $core.String get name => $_getSZ(4);
   @$pb.TagNumber(5)
-  set name($core.String v) { $_setString(4, v); }
+  set name($core.String v) {
+    $_setString(4, v);
+  }
+
   @$pb.TagNumber(5)
   $core.bool hasName() => $_has(4);
   @$pb.TagNumber(5)
@@ -147,7 +163,10 @@ class Persion extends $pb.GeneratedMessage {
   @$pb.TagNumber(6)
   $core.int get age => $_getIZ(5);
   @$pb.TagNumber(6)
-  set age($core.int v) { $_setSignedInt32(5, v); }
+  set age($core.int v) {
+    $_setSignedInt32(5, v);
+  }
+
   @$pb.TagNumber(6)
   $core.bool hasAge() => $_has(5);
   @$pb.TagNumber(6)
@@ -156,7 +175,10 @@ class Persion extends $pb.GeneratedMessage {
   @$pb.TagNumber(7)
   $4.Timestamp get purchaseDate => $_getN(6);
   @$pb.TagNumber(7)
-  set purchaseDate($4.Timestamp v) { $_setField(7, v); }
+  set purchaseDate($4.Timestamp v) {
+    $_setField(7, v);
+  }
+
   @$pb.TagNumber(7)
   $core.bool hasPurchaseDate() => $_has(6);
   @$pb.TagNumber(7)
@@ -167,7 +189,10 @@ class Persion extends $pb.GeneratedMessage {
   @$pb.TagNumber(8)
   $4.Timestamp get deliveryDate => $_getN(7);
   @$pb.TagNumber(8)
-  set deliveryDate($4.Timestamp v) { $_setField(8, v); }
+  set deliveryDate($4.Timestamp v) {
+    $_setField(8, v);
+  }
+
   @$pb.TagNumber(8)
   $core.bool hasDeliveryDate() => $_has(7);
   @$pb.TagNumber(8)
@@ -178,7 +203,10 @@ class Persion extends $pb.GeneratedMessage {
   @$pb.TagNumber(9)
   $core.String get price => $_getSZ(8);
   @$pb.TagNumber(9)
-  set price($core.String v) { $_setString(8, v); }
+  set price($core.String v) {
+    $_setString(8, v);
+  }
+
   @$pb.TagNumber(9)
   $core.bool hasPrice() => $_has(8);
   @$pb.TagNumber(9)
@@ -200,25 +228,27 @@ class CreatePersionRequest extends $pb.GeneratedMessage {
     return $result;
   }
   CreatePersionRequest._() : super();
-  factory CreatePersionRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory CreatePersionRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  factory CreatePersionRequest.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory CreatePersionRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'CreatePersionRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'location.hello'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'CreatePersionRequest',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'location.hello'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'title')
     ..aOS(2, _omitFieldNames ? '' : 'description')
-    ..hasRequiredFields = false
-  ;
+    ..hasRequiredFields = false;
 
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
   CreatePersionRequest clone() => CreatePersionRequest()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  CreatePersionRequest copyWith(void Function(CreatePersionRequest) updates) => super.copyWith((message) => updates(message as CreatePersionRequest)) as CreatePersionRequest;
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  CreatePersionRequest copyWith(void Function(CreatePersionRequest) updates) =>
+      super.copyWith((message) => updates(message as CreatePersionRequest)) as CreatePersionRequest;
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -227,13 +257,17 @@ class CreatePersionRequest extends $pb.GeneratedMessage {
   CreatePersionRequest createEmptyInstance() => create();
   static $pb.PbList<CreatePersionRequest> createRepeated() => $pb.PbList<CreatePersionRequest>();
   @$core.pragma('dart2js:noInline')
-  static CreatePersionRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<CreatePersionRequest>(create);
+  static CreatePersionRequest getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<CreatePersionRequest>(create);
   static CreatePersionRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get title => $_getSZ(0);
   @$pb.TagNumber(1)
-  set title($core.String v) { $_setString(0, v); }
+  set title($core.String v) {
+    $_setString(0, v);
+  }
+
   @$pb.TagNumber(1)
   $core.bool hasTitle() => $_has(0);
   @$pb.TagNumber(1)
@@ -242,7 +276,10 @@ class CreatePersionRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   $core.String get description => $_getSZ(1);
   @$pb.TagNumber(2)
-  set description($core.String v) { $_setString(1, v); }
+  set description($core.String v) {
+    $_setString(1, v);
+  }
+
   @$pb.TagNumber(2)
   $core.bool hasDescription() => $_has(1);
   @$pb.TagNumber(2)
@@ -260,24 +297,26 @@ class CreatePersionResponse extends $pb.GeneratedMessage {
     return $result;
   }
   CreatePersionResponse._() : super();
-  factory CreatePersionResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory CreatePersionResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  factory CreatePersionResponse.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory CreatePersionResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'CreatePersionResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'location.hello'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'CreatePersionResponse',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'location.hello'), createEmptyInstance: create)
     ..aOM<Persion>(1, _omitFieldNames ? '' : 'persion', subBuilder: Persion.create)
-    ..hasRequiredFields = false
-  ;
+    ..hasRequiredFields = false;
 
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
   CreatePersionResponse clone() => CreatePersionResponse()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  CreatePersionResponse copyWith(void Function(CreatePersionResponse) updates) => super.copyWith((message) => updates(message as CreatePersionResponse)) as CreatePersionResponse;
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  CreatePersionResponse copyWith(void Function(CreatePersionResponse) updates) =>
+      super.copyWith((message) => updates(message as CreatePersionResponse)) as CreatePersionResponse;
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -286,13 +325,17 @@ class CreatePersionResponse extends $pb.GeneratedMessage {
   CreatePersionResponse createEmptyInstance() => create();
   static $pb.PbList<CreatePersionResponse> createRepeated() => $pb.PbList<CreatePersionResponse>();
   @$core.pragma('dart2js:noInline')
-  static CreatePersionResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<CreatePersionResponse>(create);
+  static CreatePersionResponse getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<CreatePersionResponse>(create);
   static CreatePersionResponse? _defaultInstance;
 
   @$pb.TagNumber(1)
   Persion get persion => $_getN(0);
   @$pb.TagNumber(1)
-  set persion(Persion v) { $_setField(1, v); }
+  set persion(Persion v) {
+    $_setField(1, v);
+  }
+
   @$pb.TagNumber(1)
   $core.bool hasPersion() => $_has(0);
   @$pb.TagNumber(1)
@@ -312,24 +355,26 @@ class ReadPersionRequest extends $pb.GeneratedMessage {
     return $result;
   }
   ReadPersionRequest._() : super();
-  factory ReadPersionRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory ReadPersionRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  factory ReadPersionRequest.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory ReadPersionRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ReadPersionRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'location.hello'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ReadPersionRequest',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'location.hello'), createEmptyInstance: create)
     ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
-    ..hasRequiredFields = false
-  ;
+    ..hasRequiredFields = false;
 
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
   ReadPersionRequest clone() => ReadPersionRequest()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  ReadPersionRequest copyWith(void Function(ReadPersionRequest) updates) => super.copyWith((message) => updates(message as ReadPersionRequest)) as ReadPersionRequest;
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  ReadPersionRequest copyWith(void Function(ReadPersionRequest) updates) =>
+      super.copyWith((message) => updates(message as ReadPersionRequest)) as ReadPersionRequest;
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -338,13 +383,17 @@ class ReadPersionRequest extends $pb.GeneratedMessage {
   ReadPersionRequest createEmptyInstance() => create();
   static $pb.PbList<ReadPersionRequest> createRepeated() => $pb.PbList<ReadPersionRequest>();
   @$core.pragma('dart2js:noInline')
-  static ReadPersionRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ReadPersionRequest>(create);
+  static ReadPersionRequest getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ReadPersionRequest>(create);
   static ReadPersionRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.int get id => $_getIZ(0);
   @$pb.TagNumber(1)
-  set id($core.int v) { $_setSignedInt32(0, v); }
+  set id($core.int v) {
+    $_setSignedInt32(0, v);
+  }
+
   @$pb.TagNumber(1)
   $core.bool hasId() => $_has(0);
   @$pb.TagNumber(1)
@@ -362,24 +411,26 @@ class ReadPersionResponse extends $pb.GeneratedMessage {
     return $result;
   }
   ReadPersionResponse._() : super();
-  factory ReadPersionResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory ReadPersionResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  factory ReadPersionResponse.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory ReadPersionResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ReadPersionResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'location.hello'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ReadPersionResponse',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'location.hello'), createEmptyInstance: create)
     ..aOM<Persion>(1, _omitFieldNames ? '' : 'persion', subBuilder: Persion.create)
-    ..hasRequiredFields = false
-  ;
+    ..hasRequiredFields = false;
 
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
   ReadPersionResponse clone() => ReadPersionResponse()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  ReadPersionResponse copyWith(void Function(ReadPersionResponse) updates) => super.copyWith((message) => updates(message as ReadPersionResponse)) as ReadPersionResponse;
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  ReadPersionResponse copyWith(void Function(ReadPersionResponse) updates) =>
+      super.copyWith((message) => updates(message as ReadPersionResponse)) as ReadPersionResponse;
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -388,13 +439,17 @@ class ReadPersionResponse extends $pb.GeneratedMessage {
   ReadPersionResponse createEmptyInstance() => create();
   static $pb.PbList<ReadPersionResponse> createRepeated() => $pb.PbList<ReadPersionResponse>();
   @$core.pragma('dart2js:noInline')
-  static ReadPersionResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ReadPersionResponse>(create);
+  static ReadPersionResponse getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ReadPersionResponse>(create);
   static ReadPersionResponse? _defaultInstance;
 
   @$pb.TagNumber(1)
   Persion get persion => $_getN(0);
   @$pb.TagNumber(1)
-  set persion(Persion v) { $_setField(1, v); }
+  set persion(Persion v) {
+    $_setField(1, v);
+  }
+
   @$pb.TagNumber(1)
   $core.bool hasPersion() => $_has(0);
   @$pb.TagNumber(1)
@@ -426,27 +481,29 @@ class UpdatePersionRequest extends $pb.GeneratedMessage {
     return $result;
   }
   UpdatePersionRequest._() : super();
-  factory UpdatePersionRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory UpdatePersionRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  factory UpdatePersionRequest.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory UpdatePersionRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'UpdatePersionRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'location.hello'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'UpdatePersionRequest',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'location.hello'), createEmptyInstance: create)
     ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
     ..aOS(2, _omitFieldNames ? '' : 'title')
     ..aOS(3, _omitFieldNames ? '' : 'description')
     ..aOB(4, _omitFieldNames ? '' : 'completed')
-    ..hasRequiredFields = false
-  ;
+    ..hasRequiredFields = false;
 
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
   UpdatePersionRequest clone() => UpdatePersionRequest()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  UpdatePersionRequest copyWith(void Function(UpdatePersionRequest) updates) => super.copyWith((message) => updates(message as UpdatePersionRequest)) as UpdatePersionRequest;
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  UpdatePersionRequest copyWith(void Function(UpdatePersionRequest) updates) =>
+      super.copyWith((message) => updates(message as UpdatePersionRequest)) as UpdatePersionRequest;
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -455,13 +512,17 @@ class UpdatePersionRequest extends $pb.GeneratedMessage {
   UpdatePersionRequest createEmptyInstance() => create();
   static $pb.PbList<UpdatePersionRequest> createRepeated() => $pb.PbList<UpdatePersionRequest>();
   @$core.pragma('dart2js:noInline')
-  static UpdatePersionRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<UpdatePersionRequest>(create);
+  static UpdatePersionRequest getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<UpdatePersionRequest>(create);
   static UpdatePersionRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.int get id => $_getIZ(0);
   @$pb.TagNumber(1)
-  set id($core.int v) { $_setSignedInt32(0, v); }
+  set id($core.int v) {
+    $_setSignedInt32(0, v);
+  }
+
   @$pb.TagNumber(1)
   $core.bool hasId() => $_has(0);
   @$pb.TagNumber(1)
@@ -470,7 +531,10 @@ class UpdatePersionRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   $core.String get title => $_getSZ(1);
   @$pb.TagNumber(2)
-  set title($core.String v) { $_setString(1, v); }
+  set title($core.String v) {
+    $_setString(1, v);
+  }
+
   @$pb.TagNumber(2)
   $core.bool hasTitle() => $_has(1);
   @$pb.TagNumber(2)
@@ -479,7 +543,10 @@ class UpdatePersionRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(3)
   $core.String get description => $_getSZ(2);
   @$pb.TagNumber(3)
-  set description($core.String v) { $_setString(2, v); }
+  set description($core.String v) {
+    $_setString(2, v);
+  }
+
   @$pb.TagNumber(3)
   $core.bool hasDescription() => $_has(2);
   @$pb.TagNumber(3)
@@ -488,7 +555,10 @@ class UpdatePersionRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(4)
   $core.bool get completed => $_getBF(3);
   @$pb.TagNumber(4)
-  set completed($core.bool v) { $_setBool(3, v); }
+  set completed($core.bool v) {
+    $_setBool(3, v);
+  }
+
   @$pb.TagNumber(4)
   $core.bool hasCompleted() => $_has(3);
   @$pb.TagNumber(4)
@@ -506,24 +576,26 @@ class UpdatePersionResponse extends $pb.GeneratedMessage {
     return $result;
   }
   UpdatePersionResponse._() : super();
-  factory UpdatePersionResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory UpdatePersionResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  factory UpdatePersionResponse.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory UpdatePersionResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'UpdatePersionResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'location.hello'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'UpdatePersionResponse',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'location.hello'), createEmptyInstance: create)
     ..aOM<Persion>(1, _omitFieldNames ? '' : 'persion', subBuilder: Persion.create)
-    ..hasRequiredFields = false
-  ;
+    ..hasRequiredFields = false;
 
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
   UpdatePersionResponse clone() => UpdatePersionResponse()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  UpdatePersionResponse copyWith(void Function(UpdatePersionResponse) updates) => super.copyWith((message) => updates(message as UpdatePersionResponse)) as UpdatePersionResponse;
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  UpdatePersionResponse copyWith(void Function(UpdatePersionResponse) updates) =>
+      super.copyWith((message) => updates(message as UpdatePersionResponse)) as UpdatePersionResponse;
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -532,13 +604,17 @@ class UpdatePersionResponse extends $pb.GeneratedMessage {
   UpdatePersionResponse createEmptyInstance() => create();
   static $pb.PbList<UpdatePersionResponse> createRepeated() => $pb.PbList<UpdatePersionResponse>();
   @$core.pragma('dart2js:noInline')
-  static UpdatePersionResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<UpdatePersionResponse>(create);
+  static UpdatePersionResponse getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<UpdatePersionResponse>(create);
   static UpdatePersionResponse? _defaultInstance;
 
   @$pb.TagNumber(1)
   Persion get persion => $_getN(0);
   @$pb.TagNumber(1)
-  set persion(Persion v) { $_setField(1, v); }
+  set persion(Persion v) {
+    $_setField(1, v);
+  }
+
   @$pb.TagNumber(1)
   $core.bool hasPersion() => $_has(0);
   @$pb.TagNumber(1)
@@ -558,24 +634,26 @@ class DeletePersionRequest extends $pb.GeneratedMessage {
     return $result;
   }
   DeletePersionRequest._() : super();
-  factory DeletePersionRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory DeletePersionRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  factory DeletePersionRequest.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory DeletePersionRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'DeletePersionRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'location.hello'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'DeletePersionRequest',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'location.hello'), createEmptyInstance: create)
     ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
-    ..hasRequiredFields = false
-  ;
+    ..hasRequiredFields = false;
 
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
   DeletePersionRequest clone() => DeletePersionRequest()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  DeletePersionRequest copyWith(void Function(DeletePersionRequest) updates) => super.copyWith((message) => updates(message as DeletePersionRequest)) as DeletePersionRequest;
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  DeletePersionRequest copyWith(void Function(DeletePersionRequest) updates) =>
+      super.copyWith((message) => updates(message as DeletePersionRequest)) as DeletePersionRequest;
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -584,13 +662,17 @@ class DeletePersionRequest extends $pb.GeneratedMessage {
   DeletePersionRequest createEmptyInstance() => create();
   static $pb.PbList<DeletePersionRequest> createRepeated() => $pb.PbList<DeletePersionRequest>();
   @$core.pragma('dart2js:noInline')
-  static DeletePersionRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<DeletePersionRequest>(create);
+  static DeletePersionRequest getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<DeletePersionRequest>(create);
   static DeletePersionRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.int get id => $_getIZ(0);
   @$pb.TagNumber(1)
-  set id($core.int v) { $_setSignedInt32(0, v); }
+  set id($core.int v) {
+    $_setSignedInt32(0, v);
+  }
+
   @$pb.TagNumber(1)
   $core.bool hasId() => $_has(0);
   @$pb.TagNumber(1)
@@ -608,24 +690,26 @@ class DeletePersionResponse extends $pb.GeneratedMessage {
     return $result;
   }
   DeletePersionResponse._() : super();
-  factory DeletePersionResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory DeletePersionResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  factory DeletePersionResponse.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory DeletePersionResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'DeletePersionResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'location.hello'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'DeletePersionResponse',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'location.hello'), createEmptyInstance: create)
     ..aOB(1, _omitFieldNames ? '' : 'success')
-    ..hasRequiredFields = false
-  ;
+    ..hasRequiredFields = false;
 
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
   DeletePersionResponse clone() => DeletePersionResponse()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  DeletePersionResponse copyWith(void Function(DeletePersionResponse) updates) => super.copyWith((message) => updates(message as DeletePersionResponse)) as DeletePersionResponse;
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  DeletePersionResponse copyWith(void Function(DeletePersionResponse) updates) =>
+      super.copyWith((message) => updates(message as DeletePersionResponse)) as DeletePersionResponse;
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -634,13 +718,17 @@ class DeletePersionResponse extends $pb.GeneratedMessage {
   DeletePersionResponse createEmptyInstance() => create();
   static $pb.PbList<DeletePersionResponse> createRepeated() => $pb.PbList<DeletePersionResponse>();
   @$core.pragma('dart2js:noInline')
-  static DeletePersionResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<DeletePersionResponse>(create);
+  static DeletePersionResponse getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<DeletePersionResponse>(create);
   static DeletePersionResponse? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.bool get success => $_getBF(0);
   @$pb.TagNumber(1)
-  set success($core.bool v) { $_setBool(0, v); }
+  set success($core.bool v) {
+    $_setBool(0, v);
+  }
+
   @$pb.TagNumber(1)
   $core.bool hasSuccess() => $_has(0);
   @$pb.TagNumber(1)
@@ -652,19 +740,14 @@ class PersionServiceApi {
   PersionServiceApi(this._client);
 
   $async.Future<CreatePersionResponse> createPersion($pb.ClientContext? ctx, CreatePersionRequest request) =>
-    _client.invoke<CreatePersionResponse>(ctx, 'PersionService', 'CreatePersion', request, CreatePersionResponse())
-  ;
+      _client.invoke<CreatePersionResponse>(ctx, 'PersionService', 'CreatePersion', request, CreatePersionResponse());
   $async.Future<ReadPersionResponse> readPersion($pb.ClientContext? ctx, ReadPersionRequest request) =>
-    _client.invoke<ReadPersionResponse>(ctx, 'PersionService', 'ReadPersion', request, ReadPersionResponse())
-  ;
+      _client.invoke<ReadPersionResponse>(ctx, 'PersionService', 'ReadPersion', request, ReadPersionResponse());
   $async.Future<UpdatePersionResponse> updatePersion($pb.ClientContext? ctx, UpdatePersionRequest request) =>
-    _client.invoke<UpdatePersionResponse>(ctx, 'PersionService', 'UpdatePersion', request, UpdatePersionResponse())
-  ;
+      _client.invoke<UpdatePersionResponse>(ctx, 'PersionService', 'UpdatePersion', request, UpdatePersionResponse());
   $async.Future<DeletePersionResponse> deletePersion($pb.ClientContext? ctx, DeletePersionRequest request) =>
-    _client.invoke<DeletePersionResponse>(ctx, 'PersionService', 'DeletePersion', request, DeletePersionResponse())
-  ;
+      _client.invoke<DeletePersionResponse>(ctx, 'PersionService', 'DeletePersion', request, DeletePersionResponse());
 }
-
 
 const _omitFieldNames = $core.bool.fromEnvironment('protobuf.omit_field_names');
 const _omitMessageNames = $core.bool.fromEnvironment('protobuf.omit_message_names');

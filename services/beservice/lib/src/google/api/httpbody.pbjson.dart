@@ -24,8 +24,7 @@ const HttpBody$json = {
 };
 
 /// Descriptor for `HttpBody`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List httpBodyDescriptor = $convert.base64Decode(
-    'CghIdHRwQm9keRIhCgxjb250ZW50X3R5cGUYASABKAlSC2NvbnRlbnRUeXBlEhIKBGRhdGEYAi'
-    'ABKAxSBGRhdGESNAoKZXh0ZW5zaW9ucxgDIAMoCzIULmdvb2dsZS5wcm90b2J1Zi5BbnlSCmV4'
-    'dGVuc2lvbnM=');
-
+final $typed_data.Uint8List httpBodyDescriptor =
+    $convert.base64Decode('CghIdHRwQm9keRIhCgxjb250ZW50X3R5cGUYASABKAlSC2NvbnRlbnRUeXBlEhIKBGRhdGEYAi'
+        'ABKAxSBGRhdGESNAoKZXh0ZW5zaW9ucxgDIAMoCzIULmdvb2dsZS5wcm90b2J1Zi5BbnlSCmV4'
+        'dGVuc2lvbnM=');
