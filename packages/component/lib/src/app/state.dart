@@ -10,16 +10,16 @@ const _defaultTheme = BeThemeData(styleValue: BeMobileValue(), breakpoint: BeBre
 @freezed
 abstract class AppState with _$AppState {
   const factory AppState({
-    required String name,
-    required String package,
-    required String version,
-    required String? deviceId,
-    required double screenWidth,
-    @Default(ThemeMode.light) ThemeMode themeMode,
-    @Default(Locale('en', 'US')) Locale locale,
-    @Default(BeBreakpoint.md) BeBreakpoint breakpoint,
-    @Default(_defaultTheme) BeThemeData bethemeData,
-    @Default(BeResponsivePoints()) BeResponsivePoints responsivePoints,
+    required final String name,
+    required final String package,
+    required final String version,
+    required final String? deviceId,
+    required final double screenWidth,
+    @Default(ThemeMode.light) final ThemeMode themeMode,
+    @Default(Locale('en', 'US')) final Locale locale,
+    @Default(BeBreakpoint.md) final BeBreakpoint breakpoint,
+    @Default(_defaultTheme) final BeThemeData bethemeData,
+    @Default(BeResponsivePoints()) final BeResponsivePoints responsivePoints,
   }) = _AppState;
 
   factory AppState.initial() => const AppState(

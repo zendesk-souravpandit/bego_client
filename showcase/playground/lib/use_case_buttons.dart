@@ -5,7 +5,7 @@ class ButtonShowcase extends StatelessWidget {
   const ButtonShowcase({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     final theme = Theme.of(context);
     final colors = theme.colorScheme;
 
@@ -124,14 +124,14 @@ class ButtonShowcase extends StatelessWidget {
     );
   }
 
-  Widget _buildSectionTitle(String title) {
+  Widget _buildSectionTitle(final String title) {
     return Padding(
       padding: const EdgeInsets.only(top: 24, bottom: 12),
       child: Text(title, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
     );
   }
 
-  Widget _buildButtonGrid({required List<Widget> children, int crossAxisCount = 2}) {
+  Widget _buildButtonGrid({required final List<Widget> children, final int crossAxisCount = 2}) {
     return GridView.count(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
@@ -143,7 +143,7 @@ class ButtonShowcase extends StatelessWidget {
     );
   }
 
-  Widget _buildButtonVariant(String label, Widget button) {
+  Widget _buildButtonVariant(final String label, final Widget button) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [

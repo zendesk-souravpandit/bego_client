@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:path/path.dart';
 
-void main(List<String> arguments) {
+void main(final List<String> arguments) {
   final inputDir = Directory(arguments.first);
   final outputDir = Directory(arguments[1]);
   final List<FileSystemEntity> directoryEntities = inputDir.listSync(followLinks: false).toList();
@@ -47,7 +47,7 @@ void main(List<String> arguments) {
   }
 }
 
-String convertGlyphName(String name) {
+String convertGlyphName(final String name) {
   String out = name.replaceAll(_glyphNameRegex, '_');
   for (final r in dartReserved) {
     if (out == r) {

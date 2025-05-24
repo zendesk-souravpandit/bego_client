@@ -11,8 +11,8 @@ typedef BePageReducer<S extends BeState, A extends BeStateAction> =
 
 /// Enhanced hooks with better error messages
 (S, void Function(A)) usePageReducer<S extends BeState, A extends BeStateAction>(
-  BuildContext context, {
-  String? debugLabel,
+  final BuildContext context, {
+  final String? debugLabel,
 }) {
   final ctx = BeStateContext.of<S, A>(context);
   if (ctx == null) {
@@ -23,7 +23,7 @@ ${debugLabel != null ? 'Debug label: $debugLabel' : ''}''');
   return (ctx.state, ctx.dispatch);
 }
 
-S usePageState<S extends BeState, A extends BeStateAction>(BuildContext context, {String? debugLabel}) {
+S usePageState<S extends BeState, A extends BeStateAction>(final BuildContext context, {final String? debugLabel}) {
   final ctx = BeStateContext.of<S, A>(context);
   if (ctx == null) {
     throw FlutterError('''useBePageState<$S, $A> must be used within a BePageProvider<$S, $A>.
@@ -32,7 +32,7 @@ ${debugLabel != null ? 'Debug label: $debugLabel' : ''}''');
   return ctx.state;
 }
 
-void Function(A) usePageAction<S extends BeState, A extends BeStateAction>(BuildContext context, {String? debugLabel}) {
+void Function(A) usePageAction<S extends BeState, A extends BeStateAction>(final BuildContext context, {final String? debugLabel}) {
   final ctx = BeStateContext.of<S, A>(context);
   if (ctx == null) {
     throw FlutterError('''useBePageAction<$S, $A> must be used within a BePageProvider<$S, $A>.
@@ -58,7 +58,7 @@ ${debugLabel != null ? 'Debug label: $debugLabel' : ''}''');
 /// }
 /// ```
 
-T useStateSelector<S extends BeState, A extends BeStateAction, T>(BuildContext context, T Function(S state) selector) {
+T useStateSelector<S extends BeState, A extends BeStateAction, T>(final BuildContext context, final T Function(S state) selector) {
   final state = usePageState<S, A>(context);
 
   return useMemoized(() => selector(state), [state]);

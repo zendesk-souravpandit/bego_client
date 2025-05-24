@@ -6,42 +6,42 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 /// Returns a [AutofillGroupState].
-AutofillGroupState useAutofillGroupOf(BuildContext context) => AutofillGroup.of(context);
+AutofillGroupState useAutofillGroupOf(final BuildContext context) => AutofillGroup.of(context);
 
 /// Returns a [FormState].
-FormState useFormOf(BuildContext context) => Form.of(context);
+FormState useFormOf(final BuildContext context) => Form.of(context);
 
 /// Returns a [HeroController].
-HeroController useHeroControllerScopeOf(BuildContext context) => HeroControllerScope.of(context);
+HeroController useHeroControllerScopeOf(final BuildContext context) => HeroControllerScope.of(context);
 
 /// Returns a [MaterialInkController].
-MaterialInkController useMaterialOf(BuildContext context) => Material.of(context);
+MaterialInkController useMaterialOf(final BuildContext context) => Material.of(context);
 
 /// Returns a [OverlayState].
-OverlayState useOverlayOf(BuildContext context, {bool rootOverlay = false, Widget? debugRequiredFor}) =>
+OverlayState useOverlayOf(final BuildContext context, {final bool rootOverlay = false, final Widget? debugRequiredFor}) =>
     Overlay.of(context, rootOverlay: rootOverlay, debugRequiredFor: debugRequiredFor);
 
 /// Returns a [PageStorageBucket].
-PageStorageBucket usePageStorageOf(BuildContext context) => PageStorage.of(context);
+PageStorageBucket usePageStorageOf(final BuildContext context) => PageStorage.of(context);
 
 /// Returns a [ScrollController].
-ScrollController usePrimaryScrollControllerOf(BuildContext context) => PrimaryScrollController.of(context);
+ScrollController usePrimaryScrollControllerOf(final BuildContext context) => PrimaryScrollController.of(context);
 
 /// Returns a [RenderAbstractViewport].
-RenderAbstractViewport useRenderAbstractViewportOf(RenderObject? object) => RenderAbstractViewport.of(object);
+RenderAbstractViewport useRenderAbstractViewportOf(final RenderObject? object) => RenderAbstractViewport.of(object);
 
 /// Returns a [RestorationBucket].
-RestorationBucket useRestorationScopeOf(BuildContext context) => RestorationScope.of(context);
+RestorationBucket useRestorationScopeOf(final BuildContext context) => RestorationScope.of(context);
 
 /// Returns a [ScrollableState].
-ScrollableState useScrollableOf(BuildContext context) => Scrollable.of(context);
+ScrollableState useScrollableOf(final BuildContext context) => Scrollable.of(context);
 
 /// Returns a [ScrollNotificationObserverState].
-ScrollNotificationObserverState useScrollNotificationObserverOf(BuildContext context) =>
+ScrollNotificationObserverState useScrollNotificationObserverOf(final BuildContext context) =>
     ScrollNotificationObserver.of(context);
 
 /// Returns a [TabController].
-TabController useDefaultTabControllerOf(BuildContext context) => DefaultTabController.of(context);
+TabController useDefaultTabControllerOf(final BuildContext context) => DefaultTabController.of(context);
 
 /// Returns a [TextHeightBehavior].
-TextHeightBehavior useDefaultTextHeightBehaviorOf(BuildContext context) => DefaultTextHeightBehavior.of(context);
+TextHeightBehavior useDefaultTextHeightBehaviorOf(final BuildContext context) => DefaultTextHeightBehavior.of(context);

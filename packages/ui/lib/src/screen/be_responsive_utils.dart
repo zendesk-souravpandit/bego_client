@@ -9,29 +9,29 @@ class BeResponsiveUtil {
   final double tabletFactor;
   final double desktopFactor;
 
-  double _getMultiplier(BeBreakpoint breakpoint) => switch (breakpoint) {
+  double _getMultiplier(final BeBreakpoint breakpoint) => switch (breakpoint) {
     BeBreakpoint.xs || BeBreakpoint.sm => mobileFactor,
     BeBreakpoint.md => tabletFactor,
     BeBreakpoint.lg || BeBreakpoint.xl || BeBreakpoint.xl2 => desktopFactor,
   };
 
-  double value(BuildContext context) {
+  double value(final BuildContext context) {
     final breakpoint = BeTheme.of(context).breakpoint;
     return (baseSize * _getMultiplier(breakpoint)).truncateToDouble();
   }
 
   // Layout utilities
-  SizedBox gap(BuildContext context) => SizedBox.square(dimension: value(context));
-  SizedBox gapW(BuildContext context) => SizedBox(width: value(context));
-  SizedBox gapH(BuildContext context) => SizedBox(height: value(context));
+  SizedBox gap(final BuildContext context) => SizedBox.square(dimension: value(context));
+  SizedBox gapW(final BuildContext context) => SizedBox(width: value(context));
+  SizedBox gapH(final BuildContext context) => SizedBox(height: value(context));
 
   // Padding utilities
-  EdgeInsets paddingAll(BuildContext context) => EdgeInsets.all(value(context));
-  EdgeInsets paddingH(BuildContext context) => EdgeInsets.symmetric(horizontal: value(context));
-  EdgeInsets paddingV(BuildContext context) => EdgeInsets.symmetric(vertical: value(context));
-  EdgeInsets paddingHV(BuildContext context, [double hFactor = 1.5]) =>
+  EdgeInsets paddingAll(final BuildContext context) => EdgeInsets.all(value(context));
+  EdgeInsets paddingH(final BuildContext context) => EdgeInsets.symmetric(horizontal: value(context));
+  EdgeInsets paddingV(final BuildContext context) => EdgeInsets.symmetric(vertical: value(context));
+  EdgeInsets paddingHV(final BuildContext context, [final double hFactor = 1.5]) =>
       EdgeInsets.symmetric(horizontal: value(context) * hFactor, vertical: value(context));
 
   // Border radius
-  BorderRadius radius(BuildContext context) => BorderRadius.circular(value(context));
+  BorderRadius radius(final BuildContext context) => BorderRadius.circular(value(context));
 }

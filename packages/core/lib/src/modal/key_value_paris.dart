@@ -20,7 +20,7 @@ class KeyValueIS implements KeyValuePair {
   String get display => value.toString();
 
   @override
-  bool operator ==(Object other) =>
+  bool operator ==(final Object other) =>
       identical(this, other) || other is KeyValueIS && runtimeType == other.runtimeType && key == other.key;
   @override
   int get hashCode => key.hashCode;
@@ -37,7 +37,7 @@ class KeyValueSI implements KeyValuePair {
   String get display => value.toString();
 
   @override
-  bool operator ==(Object other) =>
+  bool operator ==(final Object other) =>
       identical(this, other) || other is KeyValueSI && runtimeType == other.runtimeType && key == other.key;
   @override
   int get hashCode => key.hashCode;
@@ -65,7 +65,7 @@ class KeyValueSS implements KeyValuePair {
   String get display => value;
 
   @override
-  bool operator ==(Object other) =>
+  bool operator ==(final Object other) =>
       identical(this, other) || other is KeyValueSS && runtimeType == other.runtimeType && key == other.key;
   @override
   int get hashCode => key.hashCode;
@@ -83,7 +83,7 @@ class KeyValueISS implements KeyValuePair {
   String get display => value;
 
   @override
-  bool operator ==(Object other) =>
+  bool operator ==(final Object other) =>
       identical(this, other) || other is KeyValueISS && runtimeType == other.runtimeType && key == other.key;
   @override
   int get hashCode => key.hashCode;
@@ -101,7 +101,7 @@ class KeyValueSSD implements KeyValuePair {
   String get display => value;
 
   @override
-  bool operator ==(Object other) =>
+  bool operator ==(final Object other) =>
       identical(this, other) || other is KeyValueSSD && runtimeType == other.runtimeType && key == other.key;
   @override
   int get hashCode => key.hashCode;
@@ -119,7 +119,7 @@ class KeyValueSD<T> implements KeyValuePair {
   String get display => value;
 
   @override
-  bool operator ==(Object other) =>
+  bool operator ==(final Object other) =>
       identical(this, other) || other is KeyValueSD && runtimeType == other.runtimeType && key == other.key;
   @override
   int get hashCode => key.hashCode;

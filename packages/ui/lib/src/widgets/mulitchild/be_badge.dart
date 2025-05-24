@@ -26,11 +26,11 @@ class BeBadge extends MultiChildRenderObjectWidget {
   final bool rounded;
   final Offset offset;
   @override
-  RenderObject createRenderObject(BuildContext context) =>
+  RenderObject createRenderObject(final BuildContext context) =>
       _BeBadgeRenderObject(position: position, rounded: rounded, offset: offset);
 
   @override
-  void updateRenderObject(BuildContext context, _BeBadgeRenderObject renderObject) {
+  void updateRenderObject(final BuildContext context, final _BeBadgeRenderObject renderObject) {
     renderObject
       ..badgePosition = position
       ..rounded = rounded
@@ -38,7 +38,7 @@ class BeBadge extends MultiChildRenderObjectWidget {
   }
 
   @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  void debugFillProperties(final DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
       ..add(EnumProperty<BeBadgePosition>('position', position))
@@ -51,36 +51,36 @@ class _BeBadgeRenderObject extends RenderBox
     with
         ContainerRenderObjectMixin<RenderBox, _BeBadgeChildParentData>,
         RenderBoxContainerDefaultsMixin<RenderBox, _BeBadgeChildParentData> {
-  _BeBadgeRenderObject({required BeBadgePosition position, required bool rounded, required Offset offset})
+  _BeBadgeRenderObject({required final BeBadgePosition position, required final bool rounded, required final Offset offset})
     : _badgePosition = position,
       _rounded = rounded,
       _offset = offset;
 
   BeBadgePosition _badgePosition;
-  set badgePosition(BeBadgePosition position) {
+  set badgePosition(final BeBadgePosition position) {
     _badgePosition = position;
     markNeedsPaint();
   }
 
   bool _rounded;
-  set rounded(bool value) {
+  set rounded(final bool value) {
     _rounded = value;
     markNeedsPaint();
   }
 
   Offset _offset;
-  set offset(Offset value) {
+  set offset(final Offset value) {
     _offset = value;
     markNeedsPaint();
   }
 
   @override
-  void setupParentData(covariant RenderObject child) {
+  void setupParentData(covariant final RenderObject child) {
     child.parentData = _BeBadgeChildParentData();
   }
 
   @override
-  bool hitTest(BoxHitTestResult result, {required Offset position}) {
+  bool hitTest(final BoxHitTestResult result, {required final Offset position}) {
     final badgeParentData = lastChild!.parentData! as _BeBadgeChildParentData;
     final badgePosition = Offset(position.dx - badgeParentData.offset.dx, position.dy - badgeParentData.offset.dy);
 
@@ -121,10 +121,10 @@ class _BeBadgeRenderObject extends RenderBox
   }
 
   @override
-  void paint(PaintingContext context, Offset offset) => defaultPaint(context, offset);
+  void paint(final PaintingContext context, final Offset offset) => defaultPaint(context, offset);
 
   /// Calculate the offset for the badge based on its position
-  Offset _getOffset(double badgeWidth, double badgeHeight) {
+  Offset _getOffset(final double badgeWidth, final double badgeHeight) {
     final radius = min(size.width, size.height) / 2;
     final roundShift = radius / 2;
     // Use a switch statement to determine the offset based on the badge position
@@ -158,7 +158,7 @@ class _BeBadgeRenderObject extends RenderBox
   }
 
   @override
-  bool hitTestChildren(BoxHitTestResult result, {required Offset position}) =>
+  bool hitTestChildren(final BoxHitTestResult result, {required final Offset position}) =>
       defaultHitTestChildren(result, position: position);
 }
 

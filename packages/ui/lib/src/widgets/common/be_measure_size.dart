@@ -31,7 +31,7 @@ class MeasureSizeRenderObject extends RenderProxyBox {
   }
 
   @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  void debugFillProperties(final DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty<Size?>('oldSize', oldSize))
@@ -44,10 +44,10 @@ class MeasureSize extends SingleChildRenderObjectWidget {
   const MeasureSize({required this.onChange, required Widget super.child, super.key});
   final OnWidgetSizeChange onChange;
   @override
-  RenderObject createRenderObject(BuildContext context) => MeasureSizeRenderObject(onChange);
+  RenderObject createRenderObject(final BuildContext context) => MeasureSizeRenderObject(onChange);
 
   @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  void debugFillProperties(final DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties.add(ObjectFlagProperty<OnWidgetSizeChange>.has('onChange', onChange));
   }

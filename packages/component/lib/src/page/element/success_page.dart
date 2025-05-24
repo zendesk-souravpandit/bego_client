@@ -7,9 +7,9 @@ class SuccessPage extends StatelessWidget {
   const SuccessPage({super.key, this.data});
   final dynamic data;
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     final String jsonString = jsonEncode(data);
 
-    return BeText.displayLarge("Loading Page + $jsonString");
+    return BeText.displayLarge('Loading Page + $jsonString');
   }
 }

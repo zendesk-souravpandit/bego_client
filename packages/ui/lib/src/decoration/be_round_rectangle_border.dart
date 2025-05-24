@@ -10,7 +10,7 @@ class BeRoundedRectangleBorder extends RoundedRectangleBorder {
   final Color? backgroundColor;
 
   @override
-  void paint(Canvas canvas, Rect rect, {TextDirection? textDirection}) {
+  void paint(final Canvas canvas, final Rect rect, {final TextDirection? textDirection}) {
     // Draw background first
     if (backgroundColor != null) {
       final RRect rrect = borderRadius.resolve(textDirection).toRRect(rect);
@@ -27,7 +27,7 @@ class BeRoundedRectangleBorder extends RoundedRectangleBorder {
   }
 
   @override
-  ShapeBorder scale(double t) {
+  ShapeBorder scale(final double t) {
     return BeRoundedRectangleBorder(
       side: side.scale(t),
       borderRadius: borderRadius * t,
@@ -36,7 +36,7 @@ class BeRoundedRectangleBorder extends RoundedRectangleBorder {
   }
 
   @override
-  ShapeBorder? lerpFrom(ShapeBorder? a, double t) {
+  ShapeBorder? lerpFrom(final ShapeBorder? a, final double t) {
     if (a is BeRoundedRectangleBorder) {
       return BeRoundedRectangleBorder(
         side: BorderSide.lerp(a.side, side, t),
@@ -48,7 +48,7 @@ class BeRoundedRectangleBorder extends RoundedRectangleBorder {
   }
 
   @override
-  ShapeBorder? lerpTo(ShapeBorder? b, double t) {
+  ShapeBorder? lerpTo(final ShapeBorder? b, final double t) {
     if (b is BeRoundedRectangleBorder) {
       return BeRoundedRectangleBorder(
         side: BorderSide.lerp(side, b.side, t),

@@ -22,7 +22,7 @@ class AppStateController extends GetxController {
   String? get deviceName => state.version;
 
   Stream<T> on<T extends EventAction>() => _eventBus.on<T>();
-  void fire<T>(T event) => _eventBus.fire(event);
+  void fire<T>(final T event) => _eventBus.fire(event);
 
   @override
   void onClose() {
@@ -59,7 +59,7 @@ class AppLocaleController extends GetxController {
 
   Locale get locale => _locale.value;
 
-  void changeLanguage(Locale newLocale) {
+  void changeLanguage(final Locale newLocale) {
     _locale.value = newLocale;
     Get.updateLocale(newLocale);
   }

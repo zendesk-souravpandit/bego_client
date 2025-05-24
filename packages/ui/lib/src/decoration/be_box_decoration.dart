@@ -21,14 +21,14 @@ class BeBoxDecoration extends BoxDecoration {
   /// new values.
   @override
   BeBoxDecoration copyWith({
-    Color? color,
-    DecorationImage? image,
-    BoxBorder? border,
-    BorderRadiusGeometry? borderRadius,
-    List<BoxShadow>? boxShadow,
-    Gradient? gradient,
-    BlendMode? backgroundBlendMode,
-    BoxShape? shape,
+    final Color? color,
+    final DecorationImage? image,
+    final BoxBorder? border,
+    final BorderRadiusGeometry? borderRadius,
+    final List<BoxShadow>? boxShadow,
+    final Gradient? gradient,
+    final BlendMode? backgroundBlendMode,
+    final BoxShape? shape,
   }) => BeBoxDecoration(
     color: color ?? this.color,
     image: image ?? this.image,
@@ -42,7 +42,7 @@ class BeBoxDecoration extends BoxDecoration {
 
   /// Returns a new box decoration that is scaled by the given factor.
   @override
-  BeBoxDecoration scale(double factor) => BeBoxDecoration(
+  BeBoxDecoration scale(final double factor) => BeBoxDecoration(
     color: Color.lerp(null, color, factor),
     image: image, // @TODO(ianh): fade the image from transparent
     border: BoxBorder.lerp(null, border, factor),
@@ -53,14 +53,14 @@ class BeBoxDecoration extends BoxDecoration {
   );
 
   @override
-  BeBoxDecoration? lerpFrom(Decoration? a, double t) {
+  BeBoxDecoration? lerpFrom(final Decoration? a, final double t) {
     if (a == null) return scale(t);
     if (a is BeBoxDecoration) return BeBoxDecoration.lerp(a, this, t);
     return super.lerpFrom(a, t) as BeBoxDecoration?;
   }
 
   @override
-  BeBoxDecoration? lerpTo(Decoration? b, double t) {
+  BeBoxDecoration? lerpTo(final Decoration? b, final double t) {
     if (b == null) return scale(1.0 - t);
     if (b is BeBoxDecoration) return BeBoxDecoration.lerp(this, b, t);
     return super.lerpTo(b, t) as BeBoxDecoration?;
@@ -89,7 +89,7 @@ class BeBoxDecoration extends BoxDecoration {
   ///  * [lerpFrom] and [lerpTo], which are used to implement [Decoration.lerp]
   ///    and which use [BeBoxDecoration.lerp] when interpolating two
   ///    [BeBoxDecoration]s or a [BeBoxDecoration] to or from null.
-  static BeBoxDecoration? lerp(BeBoxDecoration? a, BeBoxDecoration? b, double t) {
+  static BeBoxDecoration? lerp(final BeBoxDecoration? a, final BeBoxDecoration? b, final double t) {
     if (a == null && b == null) {
       return null;
     }
@@ -117,7 +117,7 @@ class BeBoxDecoration extends BoxDecoration {
   }
 
   @override
-  BoxPainter createBoxPainter([VoidCallback? onChanged]) {
+  BoxPainter createBoxPainter([final VoidCallback? onChanged]) {
     assert(onChanged != null || image == null, 'onChanged != null || image == null');
     return _InsetBoxDecorationPainter(this, onChanged);
   }
@@ -125,13 +125,13 @@ class BeBoxDecoration extends BoxDecoration {
 
 /// An object that paints a [BeBoxDecoration] or an [InsetBoxDecoration] into a canvas.
 class _InsetBoxDecorationPainter extends BoxPainter {
-  _InsetBoxDecorationPainter(this._decoration, VoidCallback? onChanged) : super(onChanged);
+  _InsetBoxDecorationPainter(this._decoration, final VoidCallback? onChanged) : super(onChanged);
 
   final BeBoxDecoration _decoration;
 
   Paint? _cachedBackgroundPaint;
   Rect? _rectForCachedBackgroundPaint;
-  Paint _getBackgroundPaint(Rect rect, TextDirection? textDirection) {
+  Paint _getBackgroundPaint(final Rect rect, final TextDirection? textDirection) {
     assert(
       _decoration.gradient != null || _rectForCachedBackgroundPaint == null,
       '_decoration.gradient != null || _rectForCachedBackgroundPaint == null,',
@@ -153,7 +153,7 @@ class _InsetBoxDecorationPainter extends BoxPainter {
     return _cachedBackgroundPaint!;
   }
 
-  void _paintBox(Canvas canvas, Rect rect, Paint paint, TextDirection? textDirection) {
+  void _paintBox(final Canvas canvas, final Rect rect, final Paint paint, final TextDirection? textDirection) {
     switch (_decoration.shape) {
       case BoxShape.circle:
         assert(_decoration.borderRadius == null, '_decoration.borderRadius == null');
@@ -171,7 +171,7 @@ class _InsetBoxDecorationPainter extends BoxPainter {
     }
   }
 
-  void _paintOuterShadows(Canvas canvas, Rect rect, TextDirection? textDirection) {
+  void _paintOuterShadows(final Canvas canvas, final Rect rect, final TextDirection? textDirection) {
     if (_decoration.boxShadow == null) {
       return;
     }
@@ -187,14 +187,14 @@ class _InsetBoxDecorationPainter extends BoxPainter {
     }
   }
 
-  void _paintBackgroundColor(Canvas canvas, Rect rect, TextDirection? textDirection) {
+  void _paintBackgroundColor(final Canvas canvas, final Rect rect, final TextDirection? textDirection) {
     if (_decoration.color != null || _decoration.gradient != null) {
       _paintBox(canvas, rect, _getBackgroundPaint(rect, textDirection), textDirection);
     }
   }
 
   DecorationImagePainter? _imagePainter;
-  void _paintBackgroundImage(Canvas canvas, Rect rect, ImageConfiguration configuration) {
+  void _paintBackgroundImage(final Canvas canvas, final Rect rect, final ImageConfiguration configuration) {
     if (_decoration.image == null) return;
     _imagePainter ??= _decoration.image!.createPainter(onChanged!);
     Path? clipPath;
@@ -215,7 +215,7 @@ class _InsetBoxDecorationPainter extends BoxPainter {
     _imagePainter!.paint(canvas, rect, clipPath, configuration);
   }
 
-  void _paintInnerShadows(Canvas canvas, Rect rect, TextDirection? textDirection) {
+  void _paintInnerShadows(final Canvas canvas, Rect rect, final TextDirection? textDirection) {
     if (_decoration.boxShadow == null) {
       return;
     }
@@ -274,7 +274,7 @@ class _InsetBoxDecorationPainter extends BoxPainter {
 
   /// Paint the box decoration into the given location on the given canvas.
   @override
-  void paint(Canvas canvas, Offset offset, ImageConfiguration configuration) {
+  void paint(final Canvas canvas, final Offset offset, final ImageConfiguration configuration) {
     assert(configuration.size != null, 'configuration.size != null');
     final rect = offset & configuration.size!;
     final textDirection = configuration.textDirection;
@@ -295,7 +295,7 @@ class _InsetBoxDecorationPainter extends BoxPainter {
   String toString() => '_InsetBoxDecorationPainter for $_decoration';
 }
 
-Rect _areaCastingShadowInHole(Rect holeRect, BeBoxShadow shadow) {
+Rect _areaCastingShadowInHole(final Rect holeRect, final BeBoxShadow shadow) {
   var bounds = holeRect;
   bounds = bounds.inflate(shadow.blurRadius);
 
@@ -308,7 +308,7 @@ Rect _areaCastingShadowInHole(Rect holeRect, BeBoxShadow shadow) {
   return _unionRects(bounds, offsetBounds);
 }
 
-Rect _unionRects(Rect a, Rect b) {
+Rect _unionRects(final Rect a, final Rect b) {
   if (a.isEmpty) {
     return b;
   }

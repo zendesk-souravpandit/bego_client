@@ -47,12 +47,12 @@ typedef _ModalTransitionBuilder =
 /// * [ModalConfiguration], which is the configuration object used to define
 /// the modal's characteristics.
 Future<T?> showModal<T>({
-  required BuildContext context,
-  ModalConfiguration configuration = const FadeScaleTransitionConfiguration(),
-  bool useRootNavigator = true,
-  required WidgetBuilder builder,
-  RouteSettings? routeSettings,
-  ui.ImageFilter? filter,
+  required final BuildContext context,
+  final ModalConfiguration configuration = const FadeScaleTransitionConfiguration(),
+  final bool useRootNavigator = true,
+  required final WidgetBuilder builder,
+  final RouteSettings? routeSettings,
+  final ui.ImageFilter? filter,
 }) {
   var barrierLabel = configuration.barrierLabel;
   // Avoid looking up
@@ -94,9 +94,9 @@ class _ModalRoute<T> extends PopupRoute<T> {
     this.barrierLabel,
     required this.transitionDuration,
     required this.reverseTransitionDuration,
-    required _ModalTransitionBuilder transitionBuilder,
+    required final _ModalTransitionBuilder transitionBuilder,
     required this.builder,
-    RouteSettings? routeSettings,
+    final RouteSettings? routeSettings,
     super.filter,
   }) : assert(!barrierDismissible || barrierLabel != null),
        _transitionBuilder = transitionBuilder,
@@ -123,14 +123,14 @@ class _ModalRoute<T> extends PopupRoute<T> {
   final _ModalTransitionBuilder _transitionBuilder;
 
   @override
-  Widget buildPage(BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
+  Widget buildPage(final BuildContext context, final Animation<double> animation, final Animation<double> secondaryAnimation) {
     final theme = Theme.of(context);
     return Semantics(
       scopesRoute: true,
       explicitChildNodes: true,
       child: SafeArea(
         child: Builder(
-          builder: (BuildContext context) {
+          builder: (final BuildContext context) {
             final Widget child = Builder(builder: builder);
             return Theme(data: theme, child: child);
           },
@@ -141,10 +141,10 @@ class _ModalRoute<T> extends PopupRoute<T> {
 
   @override
   Widget buildTransitions(
-    BuildContext context,
-    Animation<double> animation,
-    Animation<double> secondaryAnimation,
-    Widget child,
+    final BuildContext context,
+    final Animation<double> animation,
+    final Animation<double> secondaryAnimation,
+    final Widget child,
   ) => _transitionBuilder(context, animation, secondaryAnimation, child);
 }
 
@@ -204,9 +204,9 @@ abstract class ModalConfiguration {
   /// topmost route, e.g. because the use pressed the back button, the
   /// primary animation runs from 1.0 to 0.0.
   Widget transitionBuilder(
-    BuildContext context,
-    Animation<double> animation,
-    Animation<double> secondaryAnimation,
-    Widget child,
+    final BuildContext context,
+    final Animation<double> animation,
+    final Animation<double> secondaryAnimation,
+    final Widget child,
   );
 }

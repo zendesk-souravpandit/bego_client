@@ -5,7 +5,7 @@ import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 @widgetbook.UseCase(name: 'Multi Child', path: 'multi-child', type: BeBadge)
-Widget renderBeBadgeWidget(BuildContext context) {
+Widget renderBeBadgeWidget(final BuildContext context) {
   final BeBadgePosition position = context.knobs.list(label: 'Position', options: BeBadgePosition.values);
   final icon = context.knobs.list(
     label: 'Icon',

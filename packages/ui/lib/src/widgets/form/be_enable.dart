@@ -29,21 +29,21 @@ class BeEnabled extends SingleChildRenderObjectWidget {
   final bool enabled;
 
   @override
-  RenderObject createRenderObject(BuildContext context) {
+  RenderObject createRenderObject(final BuildContext context) {
     return RenderBeEnabled(enabled: enabled);
   }
 
   @override
-  void updateRenderObject(BuildContext context, RenderBeEnabled renderObject) {
+  void updateRenderObject(final BuildContext context, final RenderBeEnabled renderObject) {
     renderObject.enabled = enabled;
   }
 }
 
 class RenderBeEnabled extends RenderProxyBox {
-  RenderBeEnabled({required bool enabled, RenderBox? child}) : _enabled = enabled, super(child);
+  RenderBeEnabled({required final bool enabled, final RenderBox? child}) : _enabled = enabled, super(child);
   bool _enabled;
 
-  set enabled(bool value) {
+  set enabled(final bool value) {
     if (_enabled != value) {
       _enabled = value;
       markNeedsPaint();
@@ -53,20 +53,20 @@ class RenderBeEnabled extends RenderProxyBox {
   bool get enabled => _enabled;
 
   @override
-  bool hitTestChildren(BoxHitTestResult result, {required Offset position}) {
+  bool hitTestChildren(final BoxHitTestResult result, {required final Offset position}) {
     if (!enabled) return false;
     return super.hitTestChildren(result, position: position);
   }
 
   @override
-  void paint(PaintingContext context, Offset offset) {
+  void paint(final PaintingContext context, final Offset offset) {
     if (child != null) {
       if (enabled) {
         // Paint normally when enabled
         context.paintChild(child!, offset);
       } else {
         // Paint with grayscale filter when disabled
-        context.pushLayer(ColorFilterLayer(colorFilter: filter), (PaintingContext context, Offset offset) {
+        context.pushLayer(ColorFilterLayer(colorFilter: filter), (final PaintingContext context, final Offset offset) {
           context.paintChild(child!, offset);
         }, offset);
       }

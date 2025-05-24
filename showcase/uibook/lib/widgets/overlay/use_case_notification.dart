@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 @widgetbook.UseCase(name: 'BeNotificationProvider', path: 'widget/overlay', type: BeNotificationsProvider)
-Widget useCaseBeNotificationProvider(BuildContext context) => const BeNotificationPoviderDemo();
+Widget useCaseBeNotificationProvider(final BuildContext context) => const BeNotificationPoviderDemo();
 
 class BeNotificationPoviderDemo extends StatefulWidget {
   const BeNotificationPoviderDemo({super.key});
@@ -17,7 +17,7 @@ class _BeNotificationPoviderDemoState extends State<BeNotificationPoviderDemo> w
   late final BePopoverController controller = BePopoverController(vsync: this);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,

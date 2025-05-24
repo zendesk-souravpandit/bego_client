@@ -23,7 +23,7 @@ enum BeTextType {
 }
 
 extension BeTextTypeExtension on BeTextType {
-  TextStyle getStyle(BeStyle style) {
+  TextStyle getStyle(final BeStyle style) {
     switch (this) {
       case BeTextType.displayLarge:
         return style.displayLarge;
@@ -61,7 +61,7 @@ extension BeTextTypeExtension on BeTextType {
 
 // Add this extension for convenient context access
 extension BeThemeContextExtension on BuildContext {
-  TextStyle beTextStyle(BeTextType type) {
+  TextStyle beTextStyle(final BeTextType type) {
     final beTheme = BeTheme.of(this); // Assuming you have BeTheme setup
     return type.getStyle(beTheme.style);
   }
@@ -274,7 +274,7 @@ class BeText extends StatelessWidget {
   final TextOverflow? overflow;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     if (text == null || text!.isEmpty) {
       return emptyWidget;
     }
@@ -289,7 +289,7 @@ class BeText extends StatelessWidget {
   }
 
   @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  void debugFillProperties(final DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
       ..add(StringProperty('text', text))

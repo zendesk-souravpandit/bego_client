@@ -37,13 +37,13 @@ class BeDisableWrapper extends StatelessWidget {
     0,
   ]);
 
-  double _getOpacity(BuildContext context) {
+  double _getOpacity(final BuildContext context) {
     final brightness = Theme.of(context).brightness;
     return brightness == Brightness.dark ? darkModeOpacity : lightModeOpacity;
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     if (!disabled) {
       return child;
     }
@@ -54,7 +54,7 @@ class BeDisableWrapper extends StatelessWidget {
   }
 
   @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  void debugFillProperties(final DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty<bool>('disabled', disabled))

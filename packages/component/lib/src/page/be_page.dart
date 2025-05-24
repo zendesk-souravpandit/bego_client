@@ -13,8 +13,8 @@ class BePage<S extends BePageState, C extends BePageController<S>> extends GetVi
   const BePage({super.key});
 
   @override
-  Widget build(BuildContext context) => controller.obx(
-    (S state) => switch (state.status) {
+  Widget build(final BuildContext context) => controller.obx(
+    (final S state) => switch (state.status) {
       BePageStatusEmpty() => const Text('Empty'),
       BePageStatusLoading() => const Text('Loading'),
       BePageStatusError() => const Text('Error'),

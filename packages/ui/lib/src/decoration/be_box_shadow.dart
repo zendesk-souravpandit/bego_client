@@ -21,7 +21,7 @@ class BeBoxShadow extends BoxShadow {
 
   /// Returns a new box shadow with its offset, blurRadius, and spreadRadius scaled by the given factor.
   @override
-  BeBoxShadow scale(double factor) => BeBoxShadow(
+  BeBoxShadow scale(final double factor) => BeBoxShadow(
     color: color,
     offset: offset * factor,
     blurRadius: blurRadius * factor,
@@ -37,7 +37,7 @@ class BeBoxShadow extends BoxShadow {
   /// offset and a zero blurRadius.
   ///
   /// {@macro dart.ui.shadow.lerp}
-  static BeBoxShadow? lerp(BeBoxShadow? a, BeBoxShadow? b, double t) {
+  static BeBoxShadow? lerp(final BeBoxShadow? a, final BeBoxShadow? b, final double t) {
     if (a == null && b == null) {
       return null;
     }
@@ -76,7 +76,7 @@ class BeBoxShadow extends BoxShadow {
   /// If the lists differ in length, excess items are lerped with null.
   ///
   /// {@macro dart.ui.shadow.lerp}
-  static List<BeBoxShadow>? lerpList(List<BeBoxShadow>? a, List<BeBoxShadow>? b, double t) {
+  static List<BeBoxShadow>? lerpList(List<BeBoxShadow>? a, List<BeBoxShadow>? b, final double t) {
     if (a == null && b == null) {
       return null;
     }
@@ -91,7 +91,7 @@ class BeBoxShadow extends BoxShadow {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(final Object other) {
     if (identical(this, other)) {
       return true;
     }
@@ -115,7 +115,7 @@ class BeBoxShadow extends BoxShadow {
       'BoxShadow($color, $offset, ${debugFormatDouble(blurRadius)}, ${debugFormatDouble(spreadRadius)}), $blurStyle, $inset)';
 }
 
-double lerpDoubleWithPivot(num? a, num? b, double t) {
+double lerpDoubleWithPivot(final num? a, final num? b, final double t) {
   if (t < 0.5) {
     return ui.lerpDouble(a, 0, t * 2)!;
   }
@@ -123,7 +123,7 @@ double lerpDoubleWithPivot(num? a, num? b, double t) {
   return ui.lerpDouble(0, b, (t - 0.5) * 2)!;
 }
 
-Offset lerpOffsetWithPivot(Offset? a, Offset? b, double t) {
+Offset lerpOffsetWithPivot(final Offset? a, final Offset? b, final double t) {
   if (t < 0.5) {
     return Offset.lerp(a, Offset.zero, t * 2)!;
   }
@@ -131,7 +131,7 @@ Offset lerpOffsetWithPivot(Offset? a, Offset? b, double t) {
   return Offset.lerp(Offset.zero, b, (t - 0.5) * 2)!;
 }
 
-Color lerpColorWithPivot(Color? a, Color? b, double t) {
+Color lerpColorWithPivot(final Color? a, final Color? b, final double t) {
   if (t < 0.5) {
     return Color.lerp(a, a?.withValues(alpha: 0), t * 2)!;
   }

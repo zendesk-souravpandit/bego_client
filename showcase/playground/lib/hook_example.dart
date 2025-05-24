@@ -37,7 +37,7 @@ class CounterHookState extends HookState<CounterController, _CounterHook> {
   void reset() => setState(() => _count = hook.initialValue);
 
   @override
-  CounterController build(BuildContext context) => _controller;
+  CounterController build(final BuildContext context) => _controller;
 
   @override
   void dispose() {
@@ -46,7 +46,7 @@ class CounterHookState extends HookState<CounterController, _CounterHook> {
   }
 }
 
-CounterController useCounter({int initialValue = 0}) {
+CounterController useCounter({final int initialValue = 0}) {
   return use(_CounterHook(initialValue: initialValue));
 }
 
@@ -68,7 +68,7 @@ class _TimeAliveState extends HookState<void, _TimeAlive> {
   }
 
   @override
-  void build(BuildContext context) {
+  void build(final BuildContext context) {
     final duration = DateTime.now().difference(_start);
     debugPrint(duration.toString());
   }
@@ -89,7 +89,7 @@ class CounterWidget extends HookWidget {
   const CounterWidget({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     useTimeAlive();
 
     final counter = useCounter();

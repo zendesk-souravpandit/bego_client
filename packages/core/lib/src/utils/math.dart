@@ -1,7 +1,7 @@
 import 'dart:math';
 
 class BeMathUtils {
-  static double roundToDecimalPlaces(double value, int decimalPlaces) {
+  static double roundToDecimalPlaces(final double value, final int decimalPlaces) {
     final mod = pow(10, decimalPlaces);
     return (value * mod).round() / mod;
   }

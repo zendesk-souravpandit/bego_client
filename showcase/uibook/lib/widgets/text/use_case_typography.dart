@@ -6,7 +6,7 @@ import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 @widgetbook.UseCase(name: 'Typography', path: 'widget/text', type: BeText)
-Widget displayTypographyUseCase(BuildContext context) {
+Widget displayTypographyUseCase(final BuildContext context) {
   // Knobs configuration
   final text = context.knobs.string(
     label: 'Text Content',
@@ -69,7 +69,7 @@ Widget displayTypographyUseCase(BuildContext context) {
     children: [
       _buildFontHeader(),
       ...textCategories.expand(
-        (category) => _buildCategorySection(
+        (final category) => _buildCategorySection(
           context,
           category: category.type,
           sizes: category.sizes,
@@ -121,12 +121,12 @@ Widget _buildFontHeader() => const Column(
 );
 
 List<Widget> _buildCategorySection(
-  BuildContext context, {
-  required String category,
-  required List<_TextSize> sizes,
-  required String text,
-  required Color? color,
-  required BeTextVariant variant,
+  final BuildContext context, {
+  required final String category,
+  required final List<_TextSize> sizes,
+  required final String text,
+  required final Color? color,
+  required final BeTextVariant variant,
 }) => [
   Padding(
     padding: const EdgeInsets.only(top: 16),
@@ -142,7 +142,7 @@ List<Widget> _buildCategorySection(
     ),
   ),
   ...sizes.map(
-    (size) => Column(
+    (final size) => Column(
       children: [Label(textType: category, textSize: size.name), size.builder(text, color: color, variant: variant)],
     ),
   ),
@@ -155,7 +155,7 @@ class Label extends StatelessWidget {
   final String textSize;
 
   @override
-  Widget build(BuildContext context) => Padding(
+  Widget build(final BuildContext context) => Padding(
     padding: const EdgeInsets.only(top: 16, bottom: 2),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -176,7 +176,7 @@ class Label extends StatelessWidget {
   );
 
   @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  void debugFillProperties(final DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
       ..add(StringProperty('textType', textType))

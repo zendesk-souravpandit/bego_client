@@ -6,7 +6,7 @@ class ResponsiveDialogDemo extends StatelessWidget {
   const ResponsiveDialogDemo({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Scaffold(
       body: Center(
         child: Column(
@@ -17,7 +17,7 @@ class ResponsiveDialogDemo extends StatelessWidget {
               onPressed: () {
                 showExampleDialog(context);
               },
-              child: const BeText.labelLarge("Dialog"),
+              child: const BeText.labelLarge('Dialog'),
             ),
           ],
         ),
@@ -27,7 +27,7 @@ class ResponsiveDialogDemo extends StatelessWidget {
 }
 
 // Usage example:
-void showExampleDialog(BuildContext context) {
+void showExampleDialog(final BuildContext context) {
   showBegoDialog<void>(
     context: context,
 

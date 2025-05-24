@@ -15,15 +15,15 @@ class BeMultiBadge extends MultiChildRenderObjectWidget {
   final bool rounded;
   final List<BeBadgeChild> labels;
   @override
-  RenderObject createRenderObject(BuildContext context) => _BeMultiLabelRenderObject(rounded: rounded);
+  RenderObject createRenderObject(final BuildContext context) => _BeMultiLabelRenderObject(rounded: rounded);
 
   @override
-  void updateRenderObject(BuildContext context, _BeMultiLabelRenderObject renderObject) {
+  void updateRenderObject(final BuildContext context, final _BeMultiLabelRenderObject renderObject) {
     renderObject.rounded = rounded;
   }
 
   @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  void debugFillProperties(final DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties.add(DiagnosticsProperty<bool>('rounded', rounded));
   }
@@ -33,16 +33,16 @@ class _BeMultiLabelRenderObject extends RenderBox
     with
         ContainerRenderObjectMixin<RenderBox, _BeMultiBadgeParentData>,
         RenderBoxContainerDefaultsMixin<RenderBox, _BeMultiBadgeParentData> {
-  _BeMultiLabelRenderObject({required bool rounded}) : _rounded = rounded;
+  _BeMultiLabelRenderObject({required final bool rounded}) : _rounded = rounded;
 
   bool _rounded;
-  set rounded(bool value) {
+  set rounded(final bool value) {
     _rounded = value;
     markNeedsPaint();
   }
 
   @override
-  void setupParentData(covariant RenderObject child) {
+  void setupParentData(covariant final RenderObject child) {
     child.parentData = _BeMultiBadgeParentData();
   }
 
@@ -63,11 +63,11 @@ class _BeMultiLabelRenderObject extends RenderBox
   }
 
   @override
-  void paint(PaintingContext context, Offset offset) {
+  void paint(final PaintingContext context, final Offset offset) {
     defaultPaint(context, offset);
   }
 
-  Offset _getOffset(BeMultiBadgePosition badgePosition, Offset childOffset, double badgeWidth, double badgeHeight) {
+  Offset _getOffset(final BeMultiBadgePosition badgePosition, final Offset childOffset, final double badgeWidth, final double badgeHeight) {
     var translateX = 0.0;
     var translateY = 0.0;
     final radius = min(size.width, size.height) / 2;
@@ -103,11 +103,11 @@ class _BeMultiLabelRenderObject extends RenderBox
   }
 
   @override
-  bool hitTestChildren(BoxHitTestResult result, {required Offset position}) =>
+  bool hitTestChildren(final BoxHitTestResult result, {required final Offset position}) =>
       defaultHitTestChildren(result, position: position);
 
   @override
-  bool hitTest(BoxHitTestResult result, {required Offset position}) {
+  bool hitTest(final BoxHitTestResult result, {required final Offset position}) {
     for (final child in getChildrenAsList()) {
       final badgeParentData = child.parentData! as _BeMultiBadgeParentData;
       final badgePosition = Offset(position.dx - badgeParentData.offset.dx, position.dy - badgeParentData.offset.dy);
@@ -143,17 +143,17 @@ class BeBadgeChild extends SingleChildRenderObjectWidget {
   final Offset offset;
 
   @override
-  RenderObject createRenderObject(BuildContext context) => _BadgeRenderBox(offset: offset, position: position);
+  RenderObject createRenderObject(final BuildContext context) => _BadgeRenderBox(offset: offset, position: position);
 
   @override
-  void updateRenderObject(BuildContext context, _BadgeRenderBox renderObject) {
+  void updateRenderObject(final BuildContext context, final _BadgeRenderBox renderObject) {
     renderObject
       ..position = position
       ..offset = offset;
   }
 
   @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  void debugFillProperties(final DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
       ..add(EnumProperty<BeMultiBadgePosition>('position', position))
@@ -164,20 +164,20 @@ class BeBadgeChild extends SingleChildRenderObjectWidget {
 ///
 final class _BadgeRenderBox extends RenderBox with RenderObjectWithChildMixin<RenderBox> {
   // Add any properties and constructor you need
-  _BadgeRenderBox({required BeMultiBadgePosition position, required Offset offset})
+  _BadgeRenderBox({required final BeMultiBadgePosition position, required final Offset offset})
     : _position = position,
       _offset = offset;
 
   var _lastSize = Size.zero;
 
   BeMultiBadgePosition _position;
-  set position(BeMultiBadgePosition position) {
+  set position(final BeMultiBadgePosition position) {
     _position = position;
     markNeedsPaint();
   }
 
   Offset _offset;
-  set offset(Offset value) {
+  set offset(final Offset value) {
     _offset = value;
     markNeedsPaint();
   }
@@ -199,7 +199,7 @@ final class _BadgeRenderBox extends RenderBox with RenderObjectWithChildMixin<Re
   }
 
   @override
-  void paint(PaintingContext context, Offset offset) {
+  void paint(final PaintingContext context, final Offset offset) {
     final child = this.child;
     if (child != null) {
       context.paintChild(child, offset);
@@ -207,7 +207,7 @@ final class _BadgeRenderBox extends RenderBox with RenderObjectWithChildMixin<Re
   }
 
   @override
-  bool hitTestChildren(BoxHitTestResult result, {required Offset position}) =>
+  bool hitTestChildren(final BoxHitTestResult result, {required final Offset position}) =>
       child?.hitTest(result, position: position) == true;
 }
 

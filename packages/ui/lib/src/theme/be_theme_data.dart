@@ -22,7 +22,7 @@ class BeThemeData extends ThemeExtension<BeThemeData> {
   final BeBreakpoint breakpoint;
 
   @override
-  BeThemeData copyWith({BeBreakpoint? breakpoint, BeStyle? style, BeColor? colors, BeStyleValue? inset}) => BeThemeData(
+  BeThemeData copyWith({final BeBreakpoint? breakpoint, final BeStyle? style, final BeColor? colors, final BeStyleValue? inset}) => BeThemeData(
     breakpoint: breakpoint ?? this.breakpoint,
     style: style ?? this.style,
     colors: colors ?? this.colors,
@@ -30,7 +30,7 @@ class BeThemeData extends ThemeExtension<BeThemeData> {
   );
 
   @override
-  BeThemeData lerp(BeThemeData? other, double t) {
+  BeThemeData lerp(final BeThemeData? other, final double t) {
     if (other is! BeThemeData) {
       return this;
     }

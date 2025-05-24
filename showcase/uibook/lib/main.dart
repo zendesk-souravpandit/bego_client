@@ -16,7 +16,7 @@ class WidgetbookApp extends StatelessWidget {
   const WidgetbookApp({super.key});
 
   @override
-  Widget build(BuildContext context) => Widgetbook.material(
+  Widget build(final BuildContext context) => Widgetbook.material(
     // themeMode: ThemeMode.system,
     directories: directories,
     addons: <WidgetbookAddon>[
@@ -44,8 +44,8 @@ class WidgetbookApp extends StatelessWidget {
         ],
 
         themeBuilder:
-            (context, theme, child) => LayoutBuilder(
-              builder: (context, constraints) {
+            (final context, final theme, final child) => LayoutBuilder(
+              builder: (final context, final constraints) {
                 final bebreakpoint = calculateBreakpoint(constraints.maxWidth, const BeResponsivePoints());
                 final betheme = BeThemeManager.createThemeData(themeMode: theme.themeMode, breakpoint: bebreakpoint);
 
@@ -54,7 +54,7 @@ class WidgetbookApp extends StatelessWidget {
                   child: BeNotificationsProvider(
                     maxVisible: betheme.styleValue.notificationMaxCount,
                     child: Builder(
-                      builder: (context) {
+                      builder: (final context) {
                         return MaterialApp(
                           themeMode: betheme.themeMode,
                           theme: BeTheme.buildThemeOf(context),

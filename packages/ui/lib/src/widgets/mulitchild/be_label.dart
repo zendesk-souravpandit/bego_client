@@ -26,11 +26,11 @@ class BeLabel extends MultiChildRenderObjectWidget {
   final bool childSized;
   final bool innerLabel;
   @override
-  RenderObject createRenderObject(BuildContext context) =>
+  RenderObject createRenderObject(final BuildContext context) =>
       _BeLabelRenderObject(position: position, offset: offset, childSized: childSized, innerLabel: innerLabel);
 
   @override
-  void updateRenderObject(BuildContext context, _BeLabelRenderObject renderObject) {
+  void updateRenderObject(final BuildContext context, final _BeLabelRenderObject renderObject) {
     renderObject
       ..position = position
       ..offset = offset
@@ -39,7 +39,7 @@ class BeLabel extends MultiChildRenderObjectWidget {
   }
 
   @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  void debugFillProperties(final DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
       ..add(EnumProperty<BeLabelPosition>('position', position))
@@ -54,48 +54,48 @@ class _BeLabelRenderObject extends RenderBox
         ContainerRenderObjectMixin<RenderBox, _BeLabelChildParentData>,
         RenderBoxContainerDefaultsMixin<RenderBox, _BeLabelChildParentData> {
   _BeLabelRenderObject({
-    required BeLabelPosition position,
-    required Offset offset,
-    required bool childSized,
-    required bool innerLabel,
+    required final BeLabelPosition position,
+    required final Offset offset,
+    required final bool childSized,
+    required final bool innerLabel,
   }) : _position = position,
        _childSized = childSized,
        _offset = offset,
        _innerLabel = innerLabel;
 
   BeLabelPosition _position;
-  set position(BeLabelPosition position) {
+  set position(final BeLabelPosition position) {
     _position = position;
     markNeedsPaint();
   }
 
   Offset _offset;
-  set offset(Offset value) {
+  set offset(final Offset value) {
     _offset = value;
     markNeedsPaint();
   }
 
   bool _childSized;
-  set childSized(bool value) {
+  set childSized(final bool value) {
     _childSized = value;
     markNeedsLayout();
     markNeedsPaint();
   }
 
   bool _innerLabel;
-  set innerLabel(bool value) {
+  set innerLabel(final bool value) {
     _innerLabel = value;
     markNeedsLayout();
     markNeedsPaint();
   }
 
   @override
-  void setupParentData(covariant RenderObject child) {
+  void setupParentData(covariant final RenderObject child) {
     child.parentData = _BeLabelChildParentData();
   }
 
   @override
-  bool hitTest(BoxHitTestResult result, {required Offset position}) {
+  bool hitTest(final BoxHitTestResult result, {required final Offset position}) {
     final labelParentData = lastChild!.parentData! as _BeLabelChildParentData;
     final labelPosition = Offset(position.dx - labelParentData.offset.dx, position.dy - labelParentData.offset.dy);
     if (lastChild!.size.contains(labelPosition)) {
@@ -133,11 +133,11 @@ class _BeLabelRenderObject extends RenderBox
   }
 
   @override
-  void paint(PaintingContext context, Offset offset) {
+  void paint(final PaintingContext context, final Offset offset) {
     defaultPaint(context, offset);
   }
 
-  Offset _getOffset(double labelWidth, double labelHeight) {
+  Offset _getOffset(final double labelWidth, final double labelHeight) {
     final (double x, double y) = switch (_position) {
       BeLabelPosition.topLeft => (0, -labelHeight),
       BeLabelPosition.leftTop => (-labelWidth, 0),
@@ -157,7 +157,7 @@ class _BeLabelRenderObject extends RenderBox
     return Offset(x + _offset.dx, y + _offset.dy);
   }
 
-  Offset _getInnerLabelOffset(double labelWidth, double labelHeight) {
+  Offset _getInnerLabelOffset(final double labelWidth, final double labelHeight) {
     final (double x, double y) = switch (_position) {
       BeLabelPosition.topLeft => (0, 0),
       BeLabelPosition.leftTop => (0, 0),
@@ -178,7 +178,7 @@ class _BeLabelRenderObject extends RenderBox
   }
 
   @override
-  bool hitTestChildren(BoxHitTestResult result, {required Offset position}) =>
+  bool hitTestChildren(final BoxHitTestResult result, {required final Offset position}) =>
       defaultHitTestChildren(result, position: position);
 }
 

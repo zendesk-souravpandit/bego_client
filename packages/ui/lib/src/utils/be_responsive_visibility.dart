@@ -12,7 +12,7 @@ final class BeResponsiveVisibility {
 
   final Widget child;
 
-  Widget resolve(BuildContext context) {
+  Widget resolve(final BuildContext context) {
     if (visibleFor == null || visibleFor!.isEmpty) return child;
 
     final currentBreakpoint = BeTheme.of(context).breakpoint;

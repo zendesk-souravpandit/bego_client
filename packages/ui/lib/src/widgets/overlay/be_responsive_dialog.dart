@@ -4,11 +4,11 @@ import 'package:beui/theme.dart';
 import 'package:flutter/material.dart';
 
 void showBegoDialog<T>({
-  required BuildContext context,
-  required Widget child,
-  bool barrierDismissible = true,
-  Color barrierColor = Colors.black54,
-  bool showShadow = true,
+  required final BuildContext context,
+  required final Widget child,
+  final bool barrierDismissible = true,
+  final Color barrierColor = Colors.black54,
+  final bool showShadow = true,
 }) {
   final betheme = BeTheme.of(context);
 
@@ -17,7 +17,7 @@ void showBegoDialog<T>({
     barrierDismissible: barrierDismissible,
     barrierColor: barrierColor,
     useSafeArea: true,
-    builder: (context) {
+    builder: (final context) {
       return ResponsiveDialog(betheme: betheme, showShadow: showShadow, child: child);
     },
   );
@@ -37,9 +37,9 @@ class ResponsiveDialog extends StatelessWidget {
   final bool showShadow;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return LayoutBuilder(
-      builder: (context, constraints) {
+      builder: (final context, final constraints) {
         final breakpoint = calculateBreakpoint(constraints.maxWidth);
         final dialogWidth = switch (breakpoint) {
           BeBreakpoint.xs => MediaQuery.of(context).size.width * 0.9,

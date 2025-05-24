@@ -7,7 +7,7 @@ class BeApp extends StatelessWidget {
   const BeApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     Get
       ..put(AppStateController(AppState.initial()), permanent: true)
       ..put(AppThemeController(), permanent: true)

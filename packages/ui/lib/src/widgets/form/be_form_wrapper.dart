@@ -40,7 +40,7 @@ class BeFormField<T> extends FormField<T> {
     this.errorStyle,
     this.gap = 8.0,
   }) : super(
-         builder: (field) {
+         builder: (final field) {
            onChanged?.call(field.value);
            return BeEnabled(
              enabled: enabled,
@@ -112,7 +112,7 @@ class _BeFormFieldLayout extends StatelessWidget {
   final List<Widget> children;
   final CrossAxisAlignment startEndAxisAlignment;
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Row(
       crossAxisAlignment: startEndAxisAlignment,
       children: [
@@ -138,7 +138,7 @@ class _BeFormTitleSection extends StatelessWidget {
   final List<Widget> trailingWidgets;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Row(
       children: [
         if (title != null)
@@ -164,7 +164,7 @@ class _BeFormHelperSection extends StatelessWidget {
   final List<Widget> trailingWidgets;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Row(
       children: [
         if (helperText != null)
@@ -189,7 +189,7 @@ class _BeFormErrorText extends StatelessWidget {
   final TextStyle? errorStyle;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     final theme = Theme.of(context);
 
     return BeText(errorText, style: errorStyle ?? TextStyle(color: theme.colorScheme.error, fontSize: 12));

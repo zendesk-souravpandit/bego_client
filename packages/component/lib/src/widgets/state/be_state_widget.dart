@@ -10,13 +10,13 @@ class BeStateContext<S extends BeState, A extends BeStateAction> extends Inherit
   final String? debugLabel;
 
   @override
-  bool updateShouldNotify(covariant BeStateContext<S, A> oldWidget) {
+  bool updateShouldNotify(covariant final BeStateContext<S, A> oldWidget) {
     return oldWidget.state != state;
   }
 
   static BeStateContext<S, A>? of<S extends BeState, A extends BeStateAction>(
-    BuildContext context, {
-    bool listen = true,
+    final BuildContext context, {
+    final bool listen = true,
   }) {
     return listen
         ? context.dependOnInheritedWidgetOfExactType<BeStateContext<S, A>>()
@@ -42,9 +42,9 @@ class BePageProvider<S extends BeState, A extends BeStateAction> extends HookWid
   final String? debugLabel;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     final stateAndDispatch = useReducer<S, A>(
-      (state, action) {
+      (final state, final action) {
         middleware?.call(action, state, context);
         final newState = reducer(state, action, context);
 

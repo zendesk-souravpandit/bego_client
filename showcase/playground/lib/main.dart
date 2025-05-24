@@ -13,7 +13,7 @@ class BegoApp extends StatelessWidget {
 
   void onPressed() {}
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     final appState = AppStateProvider.of(context).state;
     // final betheme = context.betheme;
     // final appEvent = AppStateProvider.of(context).appEventBus;

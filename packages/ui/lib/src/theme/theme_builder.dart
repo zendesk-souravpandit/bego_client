@@ -9,9 +9,9 @@ import 'package:beui/ui.dart';
 import 'package:flutter/material.dart';
 
 ThemeData buildTheme({
-  required BeThemeData betheme,
-  bool useMaterial3 = true,
-  Brightness brightness = Brightness.light,
+  required final BeThemeData betheme,
+  final bool useMaterial3 = true,
+  final Brightness brightness = Brightness.light,
 }) {
   final colorScheme = betheme.colors.isDark ? BeColorSchemeDark.darkScheme : BeColorSchemeLight.lightScheme;
 
@@ -125,7 +125,7 @@ ThemeData buildTheme({
 
 // ========== Component Themes ==========
 
-AppBarTheme _buildAppBarTheme(ColorScheme colorScheme) {
+AppBarTheme _buildAppBarTheme(final ColorScheme colorScheme) {
   return AppBarTheme(
     backgroundColor: colorScheme.surface,
     foregroundColor: colorScheme.onSurface,
@@ -140,7 +140,7 @@ AppBarTheme _buildAppBarTheme(ColorScheme colorScheme) {
   );
 }
 
-BadgeThemeData _buildBadgeTheme(ColorScheme colorScheme) {
+BadgeThemeData _buildBadgeTheme(final ColorScheme colorScheme) {
   return BadgeThemeData(
     backgroundColor: colorScheme.error,
     textColor: colorScheme.onError,
@@ -153,7 +153,7 @@ BadgeThemeData _buildBadgeTheme(ColorScheme colorScheme) {
   );
 }
 
-ButtonThemeData _buildButtonTheme(BeThemeData betheme) {
+ButtonThemeData _buildButtonTheme(final BeThemeData betheme) {
   return ButtonThemeData(
     alignedDropdown: true,
 
@@ -164,7 +164,7 @@ ButtonThemeData _buildButtonTheme(BeThemeData betheme) {
   );
 }
 
-CardThemeData _buildCardTheme(ColorScheme colorScheme) {
+CardThemeData _buildCardTheme(final ColorScheme colorScheme) {
   return CardThemeData(
     color: colorScheme.surface,
     shadowColor: colorScheme.shadow,
@@ -176,9 +176,9 @@ CardThemeData _buildCardTheme(ColorScheme colorScheme) {
   );
 }
 
-CheckboxThemeData _buildCheckboxTheme(ColorScheme colorScheme) {
+CheckboxThemeData _buildCheckboxTheme(final ColorScheme colorScheme) {
   return CheckboxThemeData(
-    fillColor: WidgetStateProperty.resolveWith<Color>((states) {
+    fillColor: WidgetStateProperty.resolveWith<Color>((final states) {
       if (states.contains(WidgetState.selected)) {
         return colorScheme.primary;
       }
@@ -192,7 +192,7 @@ CheckboxThemeData _buildCheckboxTheme(ColorScheme colorScheme) {
   );
 }
 
-ChipThemeData _buildChipTheme(ColorScheme colorScheme) {
+ChipThemeData _buildChipTheme(final ColorScheme colorScheme) {
   return ChipThemeData(
     backgroundColor: colorScheme.surfaceContainerHighest,
     deleteIconColor: colorScheme.onSurfaceVariant,
@@ -214,7 +214,7 @@ ChipThemeData _buildChipTheme(ColorScheme colorScheme) {
   );
 }
 
-DialogThemeData _buildDialogTheme(ColorScheme colorScheme) {
+DialogThemeData _buildDialogTheme(final ColorScheme colorScheme) {
   return DialogThemeData(
     backgroundColor: colorScheme.surface,
     elevation: 6,
@@ -254,7 +254,7 @@ TextTheme _buildTextTheme() {
 
 // ========== Remaining Theme Builders ==========
 
-DividerThemeData _buildDividerTheme(ColorScheme colorScheme) {
+DividerThemeData _buildDividerTheme(final ColorScheme colorScheme) {
   return DividerThemeData(
     color: colorScheme.outline.withAlpha(0.3.toAlpha()),
     thickness: 1,
@@ -264,7 +264,7 @@ DividerThemeData _buildDividerTheme(ColorScheme colorScheme) {
   );
 }
 
-DropdownMenuThemeData _buildDropdownMenuTheme(BeThemeData betheme) {
+DropdownMenuThemeData _buildDropdownMenuTheme(final BeThemeData betheme) {
   return DropdownMenuThemeData(
     textStyle: TextStyle(color: betheme.colors.textPrimary, fontSize: 16),
     inputDecorationTheme: InputDecorationTheme(
@@ -288,19 +288,19 @@ DropdownMenuThemeData _buildDropdownMenuTheme(BeThemeData betheme) {
   );
 }
 
-ElevatedButtonThemeData _buildElevatedButtonTheme(BeThemeData betheme) {
+ElevatedButtonThemeData _buildElevatedButtonTheme(final BeThemeData betheme) {
   final swPrimary = ColorUtils.createColorSwatch(betheme.colors.primary);
 
   return ElevatedButtonThemeData(
     style: ButtonStyle(
-      backgroundColor: WidgetStateProperty.resolveWith((states) {
+      backgroundColor: WidgetStateProperty.resolveWith((final states) {
         if (states.contains(WidgetState.disabled)) {
           return betheme.colors.disabled;
         }
 
         return swPrimary.shade500;
       }),
-      foregroundColor: WidgetStateProperty.resolveWith((states) {
+      foregroundColor: WidgetStateProperty.resolveWith((final states) {
         if (states.contains(WidgetState.disabled)) {
           return BeColors.gray400;
         }
@@ -331,7 +331,7 @@ ElevatedButtonThemeData _buildElevatedButtonTheme(BeThemeData betheme) {
       iconSize: const WidgetStatePropertyAll(16),
       padding: const WidgetStatePropertyAll(EdgeInsets.symmetric(horizontal: 10, vertical: 5)),
       animationDuration: const Duration(milliseconds: 300),
-      shape: WidgetStateProperty.resolveWith((states) {
+      shape: WidgetStateProperty.resolveWith((final states) {
         if (states.contains(WidgetState.disabled)) {
           return ContinuousRectangleBorder(
             borderRadius: const BorderRadius.all(Radius.circular(16)),
@@ -356,7 +356,7 @@ ElevatedButtonThemeData _buildElevatedButtonTheme(BeThemeData betheme) {
   );
 }
 
-ExpansionTileThemeData _buildExpansionTileTheme(ColorScheme colorScheme) {
+ExpansionTileThemeData _buildExpansionTileTheme(final ColorScheme colorScheme) {
   return ExpansionTileThemeData(
     backgroundColor: colorScheme.surface,
     collapsedBackgroundColor: colorScheme.surface,
@@ -385,18 +385,18 @@ ExpansionTileThemeData _buildExpansionTileTheme(ColorScheme colorScheme) {
   );
 }
 
-FilledButtonThemeData _buildFilledButtonTheme(BeThemeData betheme) {
+FilledButtonThemeData _buildFilledButtonTheme(final BeThemeData betheme) {
   final swPrimary = ColorUtils.createColorSwatch(betheme.colors.primary);
   return FilledButtonThemeData(
     style: ButtonStyle(
-      backgroundColor: WidgetStateProperty.resolveWith((states) {
+      backgroundColor: WidgetStateProperty.resolveWith((final states) {
         if (states.contains(WidgetState.disabled)) {
           return BeColors.gray200;
         }
 
         return swPrimary.shade100;
       }),
-      foregroundColor: WidgetStateProperty.resolveWith((states) {
+      foregroundColor: WidgetStateProperty.resolveWith((final states) {
         if (states.contains(WidgetState.disabled)) {
           return BeColors.gray400;
         }
@@ -412,7 +412,7 @@ FilledButtonThemeData _buildFilledButtonTheme(BeThemeData betheme) {
       padding: const WidgetStatePropertyAll(EdgeInsets.symmetric(horizontal: 10, vertical: 5)),
       animationDuration: const Duration(milliseconds: 300),
 
-      shape: WidgetStateProperty.resolveWith((states) {
+      shape: WidgetStateProperty.resolveWith((final states) {
         if (states.contains(WidgetState.disabled)) {
           return const ContinuousRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(16)),
@@ -437,7 +437,7 @@ FilledButtonThemeData _buildFilledButtonTheme(BeThemeData betheme) {
   );
 }
 
-FloatingActionButtonThemeData _buildFloatingActionButtonTheme(BeThemeData betheme) {
+FloatingActionButtonThemeData _buildFloatingActionButtonTheme(final BeThemeData betheme) {
   final swPrimary = ColorUtils.createColorSwatch(betheme.colors.primary);
   return FloatingActionButtonThemeData(
     backgroundColor: swPrimary,
@@ -458,11 +458,11 @@ FloatingActionButtonThemeData _buildFloatingActionButtonTheme(BeThemeData bethem
   );
 }
 
-IconButtonThemeData _buildIconButtonTheme(BeThemeData betheme) {
+IconButtonThemeData _buildIconButtonTheme(final BeThemeData betheme) {
   final swPrimary = ColorUtils.createColorSwatch(betheme.colors.primary);
   return IconButtonThemeData(
     style: ButtonStyle(
-      foregroundColor: WidgetStateProperty.resolveWith((states) {
+      foregroundColor: WidgetStateProperty.resolveWith((final states) {
         if (states.contains(WidgetState.disabled)) {
           return BeColors.gray400;
         }
@@ -474,7 +474,7 @@ IconButtonThemeData _buildIconButtonTheme(BeThemeData betheme) {
       shadowColor: const WidgetStatePropertyAll(Colors.transparent),
       surfaceTintColor: const WidgetStatePropertyAll(Colors.transparent),
       minimumSize: const WidgetStatePropertyAll(Size.zero),
-      textStyle: WidgetStateProperty.resolveWith((state) {
+      textStyle: WidgetStateProperty.resolveWith((final state) {
         if (state.containsAll([WidgetState.hovered, WidgetState.pressed])) {
           return const TextStyle(fontSize: 14.5, fontWeight: FontWeight.w600, letterSpacing: 0.5);
         }
@@ -482,7 +482,7 @@ IconButtonThemeData _buildIconButtonTheme(BeThemeData betheme) {
         return const TextStyle(fontSize: 14, fontWeight: FontWeight.w600, letterSpacing: 0.5);
       }),
       // iconColor: const WidgetStatePropertyAll(0),
-      iconSize: WidgetStateProperty.resolveWith((state) {
+      iconSize: WidgetStateProperty.resolveWith((final state) {
         if (state.containsAll([WidgetState.hovered, WidgetState.pressed])) {
           return 14.5;
         }
@@ -493,7 +493,7 @@ IconButtonThemeData _buildIconButtonTheme(BeThemeData betheme) {
   );
 }
 
-InputDecorationTheme _buildInputDecorationTheme(BeThemeData betheme) {
+InputDecorationTheme _buildInputDecorationTheme(final BeThemeData betheme) {
   final colors = ColorUtils.createColorSwatch(betheme.colors.formFillColor);
   return InputDecorationTheme(
     filled: true,
@@ -534,7 +534,7 @@ InputDecorationTheme _buildInputDecorationTheme(BeThemeData betheme) {
   );
 }
 
-ListTileThemeData _buildListTileTheme(ColorScheme colorScheme) {
+ListTileThemeData _buildListTileTheme(final ColorScheme colorScheme) {
   return ListTileThemeData(
     dense: false,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
@@ -548,7 +548,7 @@ ListTileThemeData _buildListTileTheme(ColorScheme colorScheme) {
     minVerticalPadding: 8,
     minLeadingWidth: 40,
     enableFeedback: true,
-    mouseCursor: WidgetStateProperty.resolveWith((states) {
+    mouseCursor: WidgetStateProperty.resolveWith((final states) {
       if (states.contains(WidgetState.disabled)) {
         return SystemMouseCursors.forbidden;
       }
@@ -560,14 +560,14 @@ ListTileThemeData _buildListTileTheme(ColorScheme colorScheme) {
   );
 }
 
-NavigationBarThemeData _buildNavigationBarTheme(ColorScheme colorScheme) {
+NavigationBarThemeData _buildNavigationBarTheme(final ColorScheme colorScheme) {
   return NavigationBarThemeData(
     height: 80,
     backgroundColor: colorScheme.surface,
     elevation: 3,
     indicatorColor: colorScheme.secondaryContainer,
     labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
-    labelTextStyle: WidgetStateProperty.resolveWith((states) {
+    labelTextStyle: WidgetStateProperty.resolveWith((final states) {
       final isSelected = states.contains(WidgetState.selected);
       return TextStyle(
         fontSize: 12,
@@ -575,19 +575,19 @@ NavigationBarThemeData _buildNavigationBarTheme(ColorScheme colorScheme) {
         color: isSelected ? colorScheme.onSurface : colorScheme.onSurfaceVariant,
       );
     }),
-    iconTheme: WidgetStateProperty.resolveWith((states) {
+    iconTheme: WidgetStateProperty.resolveWith((final states) {
       final isSelected = states.contains(WidgetState.selected);
       return IconThemeData(size: 24, color: isSelected ? colorScheme.onSurface : colorScheme.onSurfaceVariant);
     }),
   );
 }
 
-OutlinedButtonThemeData _buildOutlinedButtonTheme(BeThemeData betheme) {
+OutlinedButtonThemeData _buildOutlinedButtonTheme(final BeThemeData betheme) {
   final swPrimary = ColorUtils.createColorSwatch(betheme.colors.primary);
   return OutlinedButtonThemeData(
     style: ButtonStyle(
       backgroundColor: const WidgetStatePropertyAll(BeColors.transparent),
-      foregroundColor: WidgetStateProperty.resolveWith((states) {
+      foregroundColor: WidgetStateProperty.resolveWith((final states) {
         if (states.contains(WidgetState.disabled)) {
           return BeColors.gray400;
         }
@@ -602,7 +602,7 @@ OutlinedButtonThemeData _buildOutlinedButtonTheme(BeThemeData betheme) {
       ),
       // iconColor: const WidgetStatePropertyAll(0),
       iconSize: const WidgetStatePropertyAll(14),
-      side: WidgetStateProperty.resolveWith((state) {
+      side: WidgetStateProperty.resolveWith((final state) {
         if (state.contains(WidgetState.disabled)) {
           return const BorderSide(color: BeColors.gray400);
         }
@@ -611,7 +611,7 @@ OutlinedButtonThemeData _buildOutlinedButtonTheme(BeThemeData betheme) {
       padding: const WidgetStatePropertyAll(EdgeInsets.symmetric(horizontal: 10, vertical: 5)),
       animationDuration: const Duration(milliseconds: 500),
 
-      shape: WidgetStateProperty.resolveWith((states) {
+      shape: WidgetStateProperty.resolveWith((final states) {
         if (states.contains(WidgetState.disabled)) {
           return const ContinuousRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(16)),
@@ -640,7 +640,7 @@ OutlinedButtonThemeData _buildOutlinedButtonTheme(BeThemeData betheme) {
 }
 
 // ========== Popup Menu Theme ==========
-PopupMenuThemeData _buildPopupMenuTheme(ColorScheme colorScheme) {
+PopupMenuThemeData _buildPopupMenuTheme(final ColorScheme colorScheme) {
   return PopupMenuThemeData(
     color: colorScheme.surface,
     elevation: 3,
@@ -656,13 +656,13 @@ PopupMenuThemeData _buildPopupMenuTheme(ColorScheme colorScheme) {
     iconSize: 24,
     enableFeedback: true,
     menuPadding: const EdgeInsets.all(8),
-    mouseCursor: WidgetStateProperty.resolveWith((states) {
+    mouseCursor: WidgetStateProperty.resolveWith((final states) {
       if (states.contains(WidgetState.disabled)) {
         return SystemMouseCursors.forbidden;
       }
       return SystemMouseCursors.click;
     }),
-    labelTextStyle: WidgetStateProperty.resolveWith((states) {
+    labelTextStyle: WidgetStateProperty.resolveWith((final states) {
       final isSelected = states.contains(WidgetState.selected);
       return TextStyle(
         fontSize: 14,
@@ -674,7 +674,7 @@ PopupMenuThemeData _buildPopupMenuTheme(ColorScheme colorScheme) {
 }
 
 // ========== Progress Indicator Theme ==========
-ProgressIndicatorThemeData _buildProgressIndicatorTheme(ColorScheme colorScheme) {
+ProgressIndicatorThemeData _buildProgressIndicatorTheme(final ColorScheme colorScheme) {
   return ProgressIndicatorThemeData(
     color: colorScheme.primary,
     linearTrackColor: colorScheme.surfaceContainerHighest,
@@ -685,15 +685,15 @@ ProgressIndicatorThemeData _buildProgressIndicatorTheme(ColorScheme colorScheme)
 }
 
 // ========== Radio Theme ==========
-RadioThemeData _buildRadioTheme(ColorScheme colorScheme) {
+RadioThemeData _buildRadioTheme(final ColorScheme colorScheme) {
   return RadioThemeData(
-    fillColor: WidgetStateProperty.resolveWith((states) {
+    fillColor: WidgetStateProperty.resolveWith((final states) {
       if (states.contains(WidgetState.selected)) {
         return colorScheme.primary;
       }
       return colorScheme.onSurfaceVariant;
     }),
-    overlayColor: WidgetStateProperty.resolveWith((states) {
+    overlayColor: WidgetStateProperty.resolveWith((final states) {
       if (states.contains(WidgetState.pressed)) {
         return colorScheme.primary.withAlpha(0.1.toAlpha());
       }
@@ -709,7 +709,7 @@ RadioThemeData _buildRadioTheme(ColorScheme colorScheme) {
 }
 
 // ========== Slider Theme ==========
-SliderThemeData _buildSliderTheme(ColorScheme colorScheme) {
+SliderThemeData _buildSliderTheme(final ColorScheme colorScheme) {
   return SliderThemeData(
     activeTrackColor: colorScheme.primary,
     inactiveTrackColor: colorScheme.surfaceContainerHighest,
@@ -732,7 +732,7 @@ SliderThemeData _buildSliderTheme(ColorScheme colorScheme) {
 }
 
 // ========== SnackBar Theme ==========
-SnackBarThemeData _buildSnackBarTheme(ColorScheme colorScheme) {
+SnackBarThemeData _buildSnackBarTheme(final ColorScheme colorScheme) {
   return SnackBarThemeData(
     backgroundColor: colorScheme.inverseSurface,
     actionTextColor: colorScheme.inversePrimary,
@@ -749,21 +749,21 @@ SnackBarThemeData _buildSnackBarTheme(ColorScheme colorScheme) {
 }
 
 // ========== Switch Theme ==========
-SwitchThemeData _buildSwitchTheme(ColorScheme colorScheme) {
+SwitchThemeData _buildSwitchTheme(final ColorScheme colorScheme) {
   return SwitchThemeData(
-    thumbColor: WidgetStateProperty.resolveWith((states) {
+    thumbColor: WidgetStateProperty.resolveWith((final states) {
       if (states.contains(WidgetState.selected)) {
         return colorScheme.onPrimary;
       }
       return colorScheme.outlineVariant;
     }),
-    trackColor: WidgetStateProperty.resolveWith((states) {
+    trackColor: WidgetStateProperty.resolveWith((final states) {
       if (states.contains(WidgetState.selected)) {
         return colorScheme.primary;
       }
       return colorScheme.surfaceContainerHighest;
     }),
-    trackOutlineColor: WidgetStateProperty.resolveWith((states) {
+    trackOutlineColor: WidgetStateProperty.resolveWith((final states) {
       if (states.contains(WidgetState.selected)) {
         return Colors.transparent;
       }
@@ -772,7 +772,7 @@ SwitchThemeData _buildSwitchTheme(ColorScheme colorScheme) {
     trackOutlineWidth: const WidgetStatePropertyAll(2),
     splashRadius: 16,
     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-    mouseCursor: WidgetStateProperty.resolveWith((states) {
+    mouseCursor: WidgetStateProperty.resolveWith((final states) {
       if (states.contains(WidgetState.disabled)) {
         return SystemMouseCursors.forbidden;
       }
@@ -782,7 +782,7 @@ SwitchThemeData _buildSwitchTheme(ColorScheme colorScheme) {
 }
 
 // ========== Tab Bar Theme ==========
-TabBarThemeData _buildTabBarTheme(ColorScheme colorScheme) {
+TabBarThemeData _buildTabBarTheme(final ColorScheme colorScheme) {
   return TabBarThemeData(
     indicator: UnderlineTabIndicator(borderSide: BorderSide(width: 2, color: colorScheme.primary)),
     indicatorSize: TabBarIndicatorSize.tab,
@@ -791,7 +791,7 @@ TabBarThemeData _buildTabBarTheme(ColorScheme colorScheme) {
     unselectedLabelColor: colorScheme.onSurfaceVariant,
     labelStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
     unselectedLabelStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
-    overlayColor: WidgetStateProperty.resolveWith((states) {
+    overlayColor: WidgetStateProperty.resolveWith((final states) {
       if (states.contains(WidgetState.pressed)) {
         return colorScheme.primary.withAlpha(0.12.toAlpha());
       }
@@ -802,13 +802,13 @@ TabBarThemeData _buildTabBarTheme(ColorScheme colorScheme) {
 }
 
 // ========== Text Button Theme ==========
-TextButtonThemeData _buildTextButtonTheme(BeThemeData betheme) {
+TextButtonThemeData _buildTextButtonTheme(final BeThemeData betheme) {
   final swPrimary = ColorUtils.createColorSwatch(betheme.colors.primary);
 
   return TextButtonThemeData(
     style: ButtonStyle(
       backgroundColor: const WidgetStatePropertyAll(BeColors.transparent),
-      foregroundColor: WidgetStateProperty.resolveWith((states) {
+      foregroundColor: WidgetStateProperty.resolveWith((final states) {
         if (states.contains(WidgetState.disabled)) {
           return BeColors.gray400;
         }
@@ -818,7 +818,7 @@ TextButtonThemeData _buildTextButtonTheme(BeThemeData betheme) {
       elevation: const WidgetStatePropertyAll(0),
       shadowColor: const WidgetStatePropertyAll(Colors.transparent),
       surfaceTintColor: const WidgetStatePropertyAll(Colors.transparent),
-      textStyle: WidgetStateProperty.resolveWith((state) {
+      textStyle: WidgetStateProperty.resolveWith((final state) {
         if (state.containsAll([WidgetState.hovered, WidgetState.pressed])) {
           return TextStyle(fontSize: 15, fontWeight: FontWeight.w600, letterSpacing: 0.5, color: swPrimary.shade500);
         }
@@ -826,7 +826,7 @@ TextButtonThemeData _buildTextButtonTheme(BeThemeData betheme) {
         return TextStyle(color: swPrimary.shade500, fontSize: 14, fontWeight: FontWeight.w600, letterSpacing: 0.5);
       }),
       // iconColor: const WidgetStatePropertyAll(0),
-      iconSize: WidgetStateProperty.resolveWith((state) {
+      iconSize: WidgetStateProperty.resolveWith((final state) {
         if (state.containsAll([WidgetState.hovered, WidgetState.pressed])) {
           return 16;
         }
@@ -836,7 +836,7 @@ TextButtonThemeData _buildTextButtonTheme(BeThemeData betheme) {
       padding: const WidgetStatePropertyAll(EdgeInsets.symmetric(horizontal: 10, vertical: 5)),
       animationDuration: const Duration(milliseconds: 500),
 
-      shape: WidgetStateProperty.resolveWith((states) {
+      shape: WidgetStateProperty.resolveWith((final states) {
         if (states.contains(WidgetState.disabled)) {
           return const ContinuousRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(16)));
         }
@@ -853,7 +853,7 @@ TextButtonThemeData _buildTextButtonTheme(BeThemeData betheme) {
 }
 
 // ========== Text Selection Theme ==========
-TextSelectionThemeData _buildTextSelectionTheme(ColorScheme colorScheme) {
+TextSelectionThemeData _buildTextSelectionTheme(final ColorScheme colorScheme) {
   return TextSelectionThemeData(
     cursorColor: colorScheme.primary,
     selectionColor: colorScheme.primary.withAlpha(0.4.toAlpha()),
@@ -862,7 +862,7 @@ TextSelectionThemeData _buildTextSelectionTheme(ColorScheme colorScheme) {
 }
 
 // ========== Time Picker Theme ==========
-TimePickerThemeData _buildTimePickerTheme(ColorScheme colorScheme) {
+TimePickerThemeData _buildTimePickerTheme(final ColorScheme colorScheme) {
   return TimePickerThemeData(
     backgroundColor: colorScheme.surface,
     hourMinuteTextColor: colorScheme.onSurface,
@@ -885,7 +885,7 @@ TimePickerThemeData _buildTimePickerTheme(ColorScheme colorScheme) {
 }
 
 // ========== Tooltip Theme ==========
-TooltipThemeData _buildTooltipTheme(ColorScheme colorScheme) {
+TooltipThemeData _buildTooltipTheme(final ColorScheme colorScheme) {
   return TooltipThemeData(
     constraints: const BoxConstraints(minHeight: 32),
     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -901,23 +901,24 @@ TooltipThemeData _buildTooltipTheme(ColorScheme colorScheme) {
 }
 
 // ========== Action Icon Theme ==========
-ActionIconThemeData _buildActionIconTheme(ColorScheme colorScheme) {
+ActionIconThemeData _buildActionIconTheme(final ColorScheme colorScheme) {
   return ActionIconThemeData(
     backButtonIconBuilder:
-        (context) => IconButton(icon: const Icon(Icons.arrow_back), onPressed: () => Navigator.maybePop(context)),
+        (final context) => IconButton(icon: const Icon(Icons.arrow_back), onPressed: () => Navigator.maybePop(context)),
     closeButtonIconBuilder:
-        (context) => IconButton(icon: const Icon(Icons.close), onPressed: () => Navigator.maybePop(context)),
+        (final context) => IconButton(icon: const Icon(Icons.close), onPressed: () => Navigator.maybePop(context)),
     drawerButtonIconBuilder:
-        (context) => IconButton(icon: const Icon(Icons.menu), onPressed: () => Scaffold.of(context).openDrawer()),
+        (final context) => IconButton(icon: const Icon(Icons.menu), onPressed: () => Scaffold.of(context).openDrawer()),
     endDrawerButtonIconBuilder:
-        (context) => IconButton(icon: const Icon(Icons.menu), onPressed: () => Scaffold.of(context).openEndDrawer()),
+        (final context) =>
+            IconButton(icon: const Icon(Icons.menu), onPressed: () => Scaffold.of(context).openEndDrawer()),
   );
 }
 
 // ========== Data Table Theme ==========
-DataTableThemeData _buildDataTableTheme(ColorScheme colorScheme) {
+DataTableThemeData _buildDataTableTheme(final ColorScheme colorScheme) {
   return DataTableThemeData(
-    dataRowColor: WidgetStateProperty.resolveWith((states) {
+    dataRowColor: WidgetStateProperty.resolveWith((final states) {
       if (states.contains(WidgetState.selected)) {
         return colorScheme.primaryContainer;
       }
@@ -938,7 +939,7 @@ DataTableThemeData _buildDataTableTheme(ColorScheme colorScheme) {
 }
 
 // ========== Bottom Sheet Theme ==========
-BottomSheetThemeData _buildBottomSheetTheme(ColorScheme colorScheme) {
+BottomSheetThemeData _buildBottomSheetTheme(final ColorScheme colorScheme) {
   return BottomSheetThemeData(
     backgroundColor: colorScheme.surface,
     elevation: 6,
@@ -955,7 +956,7 @@ BottomSheetThemeData _buildBottomSheetTheme(ColorScheme colorScheme) {
 }
 
 // ========== Bottom Navigation Bar Theme ==========
-BottomNavigationBarThemeData _buildBottomNavigationBarTheme(ColorScheme colorScheme) {
+BottomNavigationBarThemeData _buildBottomNavigationBarTheme(final ColorScheme colorScheme) {
   return BottomNavigationBarThemeData(
     backgroundColor: colorScheme.surface,
     elevation: 3,
@@ -974,7 +975,7 @@ BottomNavigationBarThemeData _buildBottomNavigationBarTheme(ColorScheme colorSch
 }
 
 // ========== Date Picker Theme ==========
-DatePickerThemeData _buildDatePickerTheme(BeThemeData betheme, ColorScheme colorScheme) {
+DatePickerThemeData _buildDatePickerTheme(final BeThemeData betheme, final ColorScheme colorScheme) {
   return DatePickerThemeData(
     backgroundColor: colorScheme.surface,
     elevation: 6,
@@ -1000,7 +1001,7 @@ DatePickerThemeData _buildDatePickerTheme(BeThemeData betheme, ColorScheme color
     confirmButtonStyle: _buildTextButtonTheme(betheme).style,
     headerHelpStyle: TextStyle(color: colorScheme.onSurfaceVariant),
 
-    dayOverlayColor: WidgetStateProperty.resolveWith((states) {
+    dayOverlayColor: WidgetStateProperty.resolveWith((final states) {
       if (states.contains(WidgetState.selected)) {
         return colorScheme.primary.withAlpha(0.12.toAlpha());
       }
@@ -1012,7 +1013,7 @@ DatePickerThemeData _buildDatePickerTheme(BeThemeData betheme, ColorScheme color
 }
 
 // ========== Drawer Theme ==========
-DrawerThemeData _buildDrawerTheme(ColorScheme colorScheme) {
+DrawerThemeData _buildDrawerTheme(final ColorScheme colorScheme) {
   return DrawerThemeData(
     backgroundColor: colorScheme.surface,
     elevation: 16,
@@ -1026,7 +1027,7 @@ DrawerThemeData _buildDrawerTheme(ColorScheme colorScheme) {
 }
 
 // ========== Icon Theme ==========
-IconThemeData _buildIconTheme(ColorScheme colorScheme) {
+IconThemeData _buildIconTheme(final ColorScheme colorScheme) {
   return IconThemeData(
     color: colorScheme.onSurfaceVariant,
     size: 24,
@@ -1039,7 +1040,7 @@ IconThemeData _buildIconTheme(ColorScheme colorScheme) {
 }
 
 // ========== Bottom App Bar Theme ==========
-BottomAppBarTheme _buildBottomAppBarTheme(ColorScheme colorScheme) {
+BottomAppBarTheme _buildBottomAppBarTheme(final ColorScheme colorScheme) {
   return BottomAppBarTheme(
     color: colorScheme.surface,
     elevation: 4,
@@ -1053,7 +1054,7 @@ BottomAppBarTheme _buildBottomAppBarTheme(ColorScheme colorScheme) {
 }
 
 // ========== Banner Theme ==========
-MaterialBannerThemeData _buildBannerTheme(ColorScheme colorScheme) {
+MaterialBannerThemeData _buildBannerTheme(final ColorScheme colorScheme) {
   return MaterialBannerThemeData(
     backgroundColor: colorScheme.surfaceContainerHighest,
     contentTextStyle: TextStyle(color: colorScheme.onSurfaceVariant),
@@ -1064,7 +1065,7 @@ MaterialBannerThemeData _buildBannerTheme(ColorScheme colorScheme) {
 }
 
 // ========== Menu Bar Theme ==========
-MenuBarThemeData _buildMenuBarTheme(ColorScheme colorScheme) {
+MenuBarThemeData _buildMenuBarTheme(final ColorScheme colorScheme) {
   return MenuBarThemeData(
     style: MenuStyle(
       backgroundColor: WidgetStatePropertyAll(colorScheme.surface),
@@ -1077,10 +1078,10 @@ MenuBarThemeData _buildMenuBarTheme(ColorScheme colorScheme) {
 }
 
 // ========== Menu Button Theme ==========
-MenuButtonThemeData _buildMenuButtonTheme(ColorScheme colorScheme) {
+MenuButtonThemeData _buildMenuButtonTheme(final ColorScheme colorScheme) {
   return MenuButtonThemeData(
     style: ButtonStyle(
-      backgroundColor: WidgetStateProperty.resolveWith((states) {
+      backgroundColor: WidgetStateProperty.resolveWith((final states) {
         if (states.contains(WidgetState.pressed)) {
           return colorScheme.primary.withAlpha(0.12.toAlpha());
         }
@@ -1095,7 +1096,7 @@ MenuButtonThemeData _buildMenuButtonTheme(ColorScheme colorScheme) {
 }
 
 // ========== Navigation Rail Theme ==========
-NavigationRailThemeData _buildNavigationRailTheme(ColorScheme colorScheme) {
+NavigationRailThemeData _buildNavigationRailTheme(final ColorScheme colorScheme) {
   return NavigationRailThemeData(
     backgroundColor: colorScheme.surface,
     elevation: 2,
@@ -1126,9 +1127,9 @@ PageTransitionsTheme _buildPageTransitionsTheme() {
 }
 
 // ========== Scrollbar Theme ==========
-ScrollbarThemeData _buildScrollbarTheme(ColorScheme colorScheme) {
+ScrollbarThemeData _buildScrollbarTheme(final ColorScheme colorScheme) {
   return ScrollbarThemeData(
-    thumbColor: WidgetStateProperty.resolveWith((states) {
+    thumbColor: WidgetStateProperty.resolveWith((final states) {
       if (states.contains(WidgetState.pressed)) {
         return colorScheme.onSurface.withAlpha(0.6.toAlpha());
       }
@@ -1139,7 +1140,7 @@ ScrollbarThemeData _buildScrollbarTheme(ColorScheme colorScheme) {
     }),
     trackColor: WidgetStatePropertyAll(colorScheme.surfaceContainerHighest),
     trackBorderColor: WidgetStatePropertyAll(colorScheme.outline),
-    thickness: WidgetStateProperty.resolveWith((states) {
+    thickness: WidgetStateProperty.resolveWith((final states) {
       if (states.contains(WidgetState.hovered)) {
         return 8;
       }
@@ -1154,7 +1155,7 @@ ScrollbarThemeData _buildScrollbarTheme(ColorScheme colorScheme) {
 }
 
 // ========== Navigation Drawer Theme ==========
-NavigationDrawerThemeData _buildNavigationDrawerTheme(ColorScheme colorScheme) {
+NavigationDrawerThemeData _buildNavigationDrawerTheme(final ColorScheme colorScheme) {
   return NavigationDrawerThemeData(
     backgroundColor: colorScheme.surface,
     elevation: 16,
@@ -1162,14 +1163,14 @@ NavigationDrawerThemeData _buildNavigationDrawerTheme(ColorScheme colorScheme) {
     surfaceTintColor: colorScheme.surfaceTint,
     indicatorColor: colorScheme.secondaryContainer,
     indicatorShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-    labelTextStyle: WidgetStateProperty.resolveWith((states) {
+    labelTextStyle: WidgetStateProperty.resolveWith((final states) {
       final isSelected = states.contains(WidgetState.selected);
       return TextStyle(
         color: isSelected ? colorScheme.onSurface : colorScheme.onSurfaceVariant,
         fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
       );
     }),
-    iconTheme: WidgetStateProperty.resolveWith((states) {
+    iconTheme: WidgetStateProperty.resolveWith((final states) {
       final isSelected = states.contains(WidgetState.selected);
       return IconThemeData(color: isSelected ? colorScheme.onSurface : colorScheme.onSurfaceVariant);
     }),
@@ -1177,7 +1178,7 @@ NavigationDrawerThemeData _buildNavigationDrawerTheme(ColorScheme colorScheme) {
 }
 
 // ========== Menu Theme ==========
-MenuThemeData _buildMenuTheme(ColorScheme colorScheme) {
+MenuThemeData _buildMenuTheme(final ColorScheme colorScheme) {
   return MenuThemeData(
     style: MenuStyle(
       backgroundColor: WidgetStatePropertyAll(colorScheme.surface),
@@ -1191,7 +1192,7 @@ MenuThemeData _buildMenuTheme(ColorScheme colorScheme) {
 }
 
 // ========== Primary Icon Theme ==========
-IconThemeData _buildPrimaryIconTheme(ColorScheme colorScheme) {
+IconThemeData _buildPrimaryIconTheme(final ColorScheme colorScheme) {
   return IconThemeData(
     color: colorScheme.primary,
     size: 24,
@@ -1204,7 +1205,7 @@ IconThemeData _buildPrimaryIconTheme(ColorScheme colorScheme) {
 }
 
 // ========== Search Bar Theme ==========
-SearchBarThemeData _buildSearchBarTheme(ColorScheme colorScheme) {
+SearchBarThemeData _buildSearchBarTheme(final ColorScheme colorScheme) {
   return SearchBarThemeData(
     backgroundColor: WidgetStatePropertyAll(colorScheme.surfaceContainerHighest),
     elevation: const WidgetStatePropertyAll(0),
@@ -1227,17 +1228,17 @@ SearchBarThemeData _buildSearchBarTheme(ColorScheme colorScheme) {
 }
 
 // ========== Segmented Button Theme ==========
-SegmentedButtonThemeData _buildSegmentedButtonTheme(BeThemeData betheme) {
+SegmentedButtonThemeData _buildSegmentedButtonTheme(final BeThemeData betheme) {
   final swPrimary = ColorUtils.createColorSwatch(betheme.colors.primary);
   return SegmentedButtonThemeData(
     style: ButtonStyle(
-      backgroundColor: WidgetStateProperty.resolveWith((states) {
+      backgroundColor: WidgetStateProperty.resolveWith((final states) {
         if (states.contains(WidgetState.selected)) {
           return betheme.colors.primary;
         }
         return BeColors.transparent;
       }),
-      foregroundColor: WidgetStateProperty.resolveWith((states) {
+      foregroundColor: WidgetStateProperty.resolveWith((final states) {
         if (states.contains(WidgetState.selected)) {
           return BeColors.white;
         }
@@ -1256,7 +1257,7 @@ SegmentedButtonThemeData _buildSegmentedButtonTheme(BeThemeData betheme) {
 }
 
 // ========== Toggle Buttons Theme ==========
-ToggleButtonsThemeData _buildToggleButtonsTheme(ColorScheme colorScheme) {
+ToggleButtonsThemeData _buildToggleButtonsTheme(final ColorScheme colorScheme) {
   return ToggleButtonsThemeData(
     color: colorScheme.onSurfaceVariant,
     selectedColor: colorScheme.onPrimary,
@@ -1276,7 +1277,7 @@ ToggleButtonsThemeData _buildToggleButtonsTheme(ColorScheme colorScheme) {
 }
 
 // ========== Primary Text Theme ==========
-TextTheme _buildPrimaryTextTheme(ColorScheme colorScheme) {
+TextTheme _buildPrimaryTextTheme(final ColorScheme colorScheme) {
   return TextTheme(
     displayLarge: TextStyle(
       fontSize: 57,

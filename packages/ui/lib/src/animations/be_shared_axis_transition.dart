@@ -83,11 +83,11 @@ class SharedAxisPageTransitionsBuilder extends PageTransitionsBuilder {
 
   @override
   Widget buildTransitions<T>(
-    PageRoute<T>? route,
-    BuildContext? context,
-    Animation<double> animation,
-    Animation<double> secondaryAnimation,
-    Widget child,
+    final PageRoute<T>? route,
+    final BuildContext? context,
+    final Animation<double> animation,
+    final Animation<double> secondaryAnimation,
+    final Widget child,
   ) => SharedAxisTransition(
     animation: animation,
     secondaryAnimation: secondaryAnimation,
@@ -222,15 +222,15 @@ class SharedAxisTransition extends StatelessWidget {
   final Widget? child;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     final color = fillColor ?? Theme.of(context).canvasColor;
     return DualTransitionBuilder(
       animation: animation,
       forwardBuilder:
-          (BuildContext context, Animation<double> animation, Widget? child) =>
+          (final BuildContext context, final Animation<double> animation, final Widget? child) =>
               _EnterTransition(animation: animation, transitionType: transitionType, child: child),
       reverseBuilder:
-          (BuildContext context, Animation<double> animation, Widget? child) => _ExitTransition(
+          (final BuildContext context, final Animation<double> animation, final Widget? child) => _ExitTransition(
             animation: animation,
             transitionType: transitionType,
             reverse: true,
@@ -240,10 +240,10 @@ class SharedAxisTransition extends StatelessWidget {
       child: DualTransitionBuilder(
         animation: ReverseAnimation(secondaryAnimation),
         forwardBuilder:
-            (BuildContext context, Animation<double> animation, Widget? child) =>
+            (final BuildContext context, final Animation<double> animation, final Widget? child) =>
                 _EnterTransition(animation: animation, transitionType: transitionType, reverse: true, child: child),
         reverseBuilder:
-            (BuildContext context, Animation<double> animation, Widget? child) =>
+            (final BuildContext context, final Animation<double> animation, final Widget? child) =>
                 _ExitTransition(animation: animation, transitionType: transitionType, fillColor: color, child: child),
         child: child,
       ),
@@ -274,7 +274,7 @@ class _EnterTransition extends StatelessWidget {
   ).chain(CurveTween(curve: Easing.legacy));
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     switch (transitionType) {
       case SharedAxisTransitionType.horizontal:
         final slideInTransition = Tween<Offset>(
@@ -287,7 +287,7 @@ class _EnterTransition extends StatelessWidget {
           child: AnimatedBuilder(
             animation: animation,
             builder:
-                (BuildContext context, Widget? child) =>
+                (final BuildContext context, final Widget? child) =>
                     Transform.translate(offset: slideInTransition.evaluate(animation), child: child),
             child: child,
           ),
@@ -303,7 +303,7 @@ class _EnterTransition extends StatelessWidget {
           child: AnimatedBuilder(
             animation: animation,
             builder:
-                (BuildContext context, Widget? child) =>
+                (final BuildContext context, final Widget? child) =>
                     Transform.translate(offset: slideInTransition.evaluate(animation), child: child),
             child: child,
           ),
@@ -350,7 +350,7 @@ class _ExitTransition extends StatelessWidget {
   ).chain(CurveTween(curve: Easing.legacy));
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     switch (transitionType) {
       case SharedAxisTransitionType.horizontal:
         final slideOutTransition = Tween<Offset>(
@@ -365,7 +365,7 @@ class _ExitTransition extends StatelessWidget {
             child: AnimatedBuilder(
               animation: animation,
               builder:
-                  (BuildContext context, Widget? child) =>
+                  (final BuildContext context, final Widget? child) =>
                       Transform.translate(offset: slideOutTransition.evaluate(animation), child: child),
               child: child,
             ),
@@ -384,7 +384,7 @@ class _ExitTransition extends StatelessWidget {
             child: AnimatedBuilder(
               animation: animation,
               builder:
-                  (BuildContext context, Widget? child) =>
+                  (final BuildContext context, final Widget? child) =>
                       Transform.translate(offset: slideOutTransition.evaluate(animation), child: child),
               child: child,
             ),
@@ -417,5 +417,5 @@ class _FlippedCurveTween extends CurveTween {
   _FlippedCurveTween({required super.curve});
 
   @override
-  double transform(double t) => 1.0 - super.transform(t);
+  double transform(final double t) => 1.0 - super.transform(t);
 }

@@ -260,7 +260,7 @@ class PageTransitionSwitcher extends StatefulWidget {
   /// See [PageTransitionSwitcherTransitionBuilder]
   ///  for more information on the function
   /// signature.
-  static Widget defaultLayoutBuilder(List<Widget> entries) => Stack(alignment: Alignment.center, children: entries);
+  static Widget defaultLayoutBuilder(final List<Widget> entries) => Stack(alignment: Alignment.center, children: entries);
 
   @override
   State<PageTransitionSwitcher> createState() => _PageTransitionSwitcherState();
@@ -278,7 +278,7 @@ class _PageTransitionSwitcherState extends State<PageTransitionSwitcher> with Ti
   }
 
   @override
-  void didUpdateWidget(PageTransitionSwitcher oldWidget) {
+  void didUpdateWidget(final PageTransitionSwitcher oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     // If the transition builder changed, then update all of the old
@@ -305,7 +305,7 @@ class _PageTransitionSwitcherState extends State<PageTransitionSwitcher> with Ti
     }
   }
 
-  void _addEntryForNewChild({required bool shouldAnimate}) {
+  void _addEntryForNewChild({required final bool shouldAnimate}) {
     assert(shouldAnimate || _currentEntry == null);
     if (_currentEntry != null) {
       assert(shouldAnimate);
@@ -350,10 +350,10 @@ class _PageTransitionSwitcherState extends State<PageTransitionSwitcher> with Ti
   }
 
   _ChildEntry _newEntry({
-    required Widget child,
-    required PageTransitionSwitcherTransitionBuilder builder,
-    required AnimationController primaryController,
-    required AnimationController secondaryController,
+    required final Widget child,
+    required final PageTransitionSwitcherTransitionBuilder builder,
+    required final AnimationController primaryController,
+    required final AnimationController secondaryController,
   }) {
     final transition = builder(child, primaryController, secondaryController);
     final entry = _ChildEntry(
@@ -362,7 +362,7 @@ class _PageTransitionSwitcherState extends State<PageTransitionSwitcher> with Ti
       primaryController: primaryController,
       secondaryController: secondaryController,
     );
-    secondaryController.addStatusListener((AnimationStatus status) {
+    secondaryController.addStatusListener((final AnimationStatus status) {
       if (status == AnimationStatus.completed) {
         assert(mounted);
         assert(_activeEntries.contains(entry));
@@ -372,7 +372,7 @@ class _PageTransitionSwitcherState extends State<PageTransitionSwitcher> with Ti
         });
       }
     });
-    primaryController.addStatusListener((AnimationStatus status) {
+    primaryController.addStatusListener((final AnimationStatus status) {
       if (status == AnimationStatus.dismissed) {
         assert(mounted);
         assert(_activeEntries.contains(entry));
@@ -385,7 +385,7 @@ class _PageTransitionSwitcherState extends State<PageTransitionSwitcher> with Ti
     return entry;
   }
 
-  void _updateTransitionForEntry(_ChildEntry entry) {
+  void _updateTransitionForEntry(final _ChildEntry entry) {
     final transition = widget.transitionBuilder(entry.widgetChild, entry.primaryController, entry.secondaryController);
     entry.transition = KeyedSubtree(key: entry.transition.key, child: transition);
   }
@@ -399,6 +399,6 @@ class _PageTransitionSwitcherState extends State<PageTransitionSwitcher> with Ti
   }
 
   @override
-  Widget build(BuildContext context) =>
-      widget.layoutBuilder(_activeEntries.map<Widget>((_ChildEntry entry) => entry.transition).toList());
+  Widget build(final BuildContext context) =>
+      widget.layoutBuilder(_activeEntries.map<Widget>((final _ChildEntry entry) => entry.transition).toList());
 }

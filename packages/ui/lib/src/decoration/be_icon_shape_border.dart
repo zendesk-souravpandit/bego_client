@@ -41,7 +41,7 @@ class BeIconShapeBorder extends OutlinedBorder {
   EdgeInsetsGeometry get dimensions => EdgeInsets.all(width);
 
   @override
-  OutlinedBorder scale(double t) => BeIconShapeBorder(
+  OutlinedBorder scale(final double t) => BeIconShapeBorder(
     icon: icon,
     size: size * t,
     color: color,
@@ -54,16 +54,16 @@ class BeIconShapeBorder extends OutlinedBorder {
   );
 
   @override
-  Path getInnerPath(Rect rect, {TextDirection? textDirection}) {
+  Path getInnerPath(final Rect rect, {final TextDirection? textDirection}) {
     return Path()..addRRect(RRect.fromRectAndRadius(rect.deflate(width), Radius.circular(radius)));
   }
 
   @override
-  Path getOuterPath(Rect rect, {TextDirection? textDirection}) {
+  Path getOuterPath(final Rect rect, {final TextDirection? textDirection}) {
     return Path()..addRRect(RRect.fromRectAndRadius(rect, Radius.circular(radius)));
   }
 
-  Offset _getIconPosition(Rect rect, Size iconSize) {
+  Offset _getIconPosition(final Rect rect, final Size iconSize) {
     final insetRect = rect.deflate(iconInset + width);
     final halfIconWidth = iconSize.width / 2;
     final halfIconHeight = iconSize.height / 2;
@@ -91,7 +91,7 @@ class BeIconShapeBorder extends OutlinedBorder {
   }
 
   @override
-  void paint(Canvas canvas, Rect rect, {TextDirection? textDirection}) {
+  void paint(final Canvas canvas, final Rect rect, {final TextDirection? textDirection}) {
     // Draw the border
     final paint =
         Paint()
@@ -131,16 +131,16 @@ class BeIconShapeBorder extends OutlinedBorder {
 
   @override
   BeIconShapeBorder copyWith({
-    BorderSide? side,
-    IconData? icon,
-    double? size,
-    Color? color,
-    double? radius,
-    double? width,
-    BeIconAlignment? alignment,
-    Offset? offset,
-    double? iconInset,
-    TextStyle? iconStyle,
+    final BorderSide? side,
+    final IconData? icon,
+    final double? size,
+    final Color? color,
+    final double? radius,
+    final double? width,
+    final BeIconAlignment? alignment,
+    final Offset? offset,
+    final double? iconInset,
+    final TextStyle? iconStyle,
   }) => BeIconShapeBorder(
     icon: icon ?? this.icon,
     size: size ?? this.size,

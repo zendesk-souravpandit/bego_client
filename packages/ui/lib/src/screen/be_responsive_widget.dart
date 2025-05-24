@@ -43,7 +43,7 @@ class BeResponsiveWidget extends StatelessWidget {
   final Widget? fallback;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     final breakpoint = BeTheme.of(context).breakpoint;
     final resolveWidget = resolver(breakpoint);
     return resolveWidget ?? fallback ?? emptyWidget;
