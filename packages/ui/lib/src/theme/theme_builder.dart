@@ -328,14 +328,9 @@ ElevatedButtonThemeData _buildElevatedButtonTheme(BeThemeData betheme) {
       //   );
       // }),
       // iconColor: const WidgetStatePropertyAll(0),
-      iconSize: WidgetStateProperty.resolveWith((state) {
-        if (state.containsAll([WidgetState.hovered, WidgetState.pressed])) {
-          return 16;
-        }
-        return 14;
-      }),
+      iconSize: const WidgetStatePropertyAll(16),
       padding: const WidgetStatePropertyAll(EdgeInsets.symmetric(horizontal: 10, vertical: 5)),
-      animationDuration: const Duration(milliseconds: 500),
+      animationDuration: const Duration(milliseconds: 300),
       shape: WidgetStateProperty.resolveWith((states) {
         if (states.contains(WidgetState.disabled)) {
           return ContinuousRectangleBorder(
@@ -346,7 +341,7 @@ ElevatedButtonThemeData _buildElevatedButtonTheme(BeThemeData betheme) {
         if (states.contains(WidgetState.pressed)) {
           return ContinuousRectangleBorder(
             borderRadius: const BorderRadius.all(Radius.circular(16)),
-            side: BorderSide(color: swPrimary.shade500, width: 2),
+            side: BorderSide(color: swPrimary.shade500, width: 4),
           );
         }
         if (states.contains(WidgetState.hovered)) {
@@ -354,7 +349,7 @@ ElevatedButtonThemeData _buildElevatedButtonTheme(BeThemeData betheme) {
         }
         return ContinuousRectangleBorder(
           borderRadius: const BorderRadius.all(Radius.circular(16)),
-          side: BorderSide(color: swPrimary.shade500, width: 2),
+          side: BorderSide(color: swPrimary.shade500, width: 0),
         );
       }),
     ),
@@ -399,34 +394,23 @@ FilledButtonThemeData _buildFilledButtonTheme(BeThemeData betheme) {
           return BeColors.gray200;
         }
 
-        return swPrimary.shade500;
+        return swPrimary.shade100;
       }),
       foregroundColor: WidgetStateProperty.resolveWith((states) {
         if (states.contains(WidgetState.disabled)) {
           return BeColors.gray400;
         }
-        return swPrimary.shade100;
+        return swPrimary.shade500;
       }),
       overlayColor: const WidgetStatePropertyAll(BeColors.transparent),
       elevation: const WidgetStatePropertyAll(0),
       shadowColor: const WidgetStatePropertyAll(Colors.transparent),
       surfaceTintColor: const WidgetStatePropertyAll(Colors.transparent),
-      textStyle: WidgetStateProperty.resolveWith((state) {
-        if (state.containsAll([WidgetState.hovered, WidgetState.pressed])) {
-          return const TextStyle(fontSize: 15, fontWeight: FontWeight.w600, letterSpacing: 0.5);
-        }
-
-        return const TextStyle(fontSize: 14, fontWeight: FontWeight.w600, letterSpacing: 0.5);
-      }),
+      textStyle: const WidgetStatePropertyAll(TextStyle(fontSize: 14, fontWeight: FontWeight.w400)),
       // iconColor: const WidgetStatePropertyAll(0),
-      iconSize: WidgetStateProperty.resolveWith((state) {
-        if (state.containsAll([WidgetState.hovered, WidgetState.pressed])) {
-          return 16;
-        }
-        return 14;
-      }),
+      iconSize: const WidgetStatePropertyAll(14),
       padding: const WidgetStatePropertyAll(EdgeInsets.symmetric(horizontal: 10, vertical: 5)),
-      animationDuration: const Duration(milliseconds: 500),
+      animationDuration: const Duration(milliseconds: 300),
 
       shape: WidgetStateProperty.resolveWith((states) {
         if (states.contains(WidgetState.disabled)) {
@@ -438,7 +422,7 @@ FilledButtonThemeData _buildFilledButtonTheme(BeThemeData betheme) {
         if (states.contains(WidgetState.pressed)) {
           return ContinuousRectangleBorder(
             borderRadius: const BorderRadius.all(Radius.circular(16)),
-            side: BorderSide(color: swPrimary.shade500, width: 2),
+            side: BorderSide(color: swPrimary.shade300, width: 2),
           );
         }
         if (states.contains(WidgetState.hovered)) {
@@ -446,7 +430,7 @@ FilledButtonThemeData _buildFilledButtonTheme(BeThemeData betheme) {
         }
         return ContinuousRectangleBorder(
           borderRadius: const BorderRadius.all(Radius.circular(16)),
-          side: BorderSide(color: swPrimary.shade500, width: 2),
+          side: BorderSide(color: swPrimary.shade100, width: 2),
         );
       }),
     ),
@@ -613,20 +597,11 @@ OutlinedButtonThemeData _buildOutlinedButtonTheme(BeThemeData betheme) {
       elevation: const WidgetStatePropertyAll(0),
       shadowColor: const WidgetStatePropertyAll(Colors.transparent),
       surfaceTintColor: const WidgetStatePropertyAll(Colors.transparent),
-      textStyle: WidgetStateProperty.resolveWith((state) {
-        if (state.containsAll([WidgetState.hovered, WidgetState.pressed])) {
-          return TextStyle(fontSize: 15, fontWeight: FontWeight.w600, letterSpacing: 0.5, color: swPrimary.shade500);
-        }
-
-        return TextStyle(color: swPrimary.shade500, fontSize: 14, fontWeight: FontWeight.w600, letterSpacing: 0.5);
-      }),
+      textStyle: WidgetStatePropertyAll(
+        TextStyle(color: swPrimary.shade500, fontSize: 14, fontWeight: FontWeight.w400, height: 0.95),
+      ),
       // iconColor: const WidgetStatePropertyAll(0),
-      iconSize: WidgetStateProperty.resolveWith((state) {
-        if (state.containsAll([WidgetState.hovered, WidgetState.pressed])) {
-          return 16;
-        }
-        return 14;
-      }),
+      iconSize: const WidgetStatePropertyAll(14),
       side: WidgetStateProperty.resolveWith((state) {
         if (state.contains(WidgetState.disabled)) {
           return const BorderSide(color: BeColors.gray400);

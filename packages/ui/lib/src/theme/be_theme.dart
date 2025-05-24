@@ -14,7 +14,7 @@ class BeTheme extends StatelessWidget {
   // @useResult
   static BeThemeData of(BuildContext context) => Theme.of(context).extension<BeThemeData>()!;
 
-  static ThemeData buildThemeof(BuildContext context) {
+  static ThemeData buildThemeOf(BuildContext context) {
     final betheme = of(context);
     final brightness = betheme.themeMode == ThemeMode.dark ? Brightness.dark : Brightness.light;
     return buildTheme(betheme: betheme, brightness: brightness);

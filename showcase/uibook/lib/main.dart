@@ -57,7 +57,7 @@ class WidgetbookApp extends StatelessWidget {
                       builder: (context) {
                         return MaterialApp(
                           themeMode: betheme.themeMode,
-                          theme: BeTheme.buildThemeof(context),
+                          theme: BeTheme.buildThemeOf(context),
                           home: Scaffold(backgroundColor: betheme.colors.background, body: child),
                         );
                       },
