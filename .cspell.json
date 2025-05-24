@@ -1,0 +1,17 @@
+{
+  "words": [
+    "becomponent",
+    "becore",
+    "betheme",
+    "beui",
+    "getx",
+    "pubspec",
+    "uibook"
+  ],
+  "ignorePaths": [
+    "**/pubspec.yaml",
+    "**/pbjson.dart",
+    "**/pubspec.lock",
+    "**/analysis_options.yaml"
+  ]
+}
