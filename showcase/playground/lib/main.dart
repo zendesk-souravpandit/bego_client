@@ -1,7 +1,8 @@
 import 'package:becomponent/app.dart';
 import 'package:beui/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:playground/be_svg_provider.dart';
+import 'package:playground/use_case_buttons.dart';
+import 'package:playground/use_case_dropdown.dart';
 
 void main() {
   runApp(const AppStateWrapper(child: BegoApp()));
@@ -23,6 +24,10 @@ class BegoApp extends StatelessWidget {
     // const BeTextVariant variant = BeTextVariant.primary;
     // final (color, background) = variant.variantColor(betheme.colors);
 
-    return MaterialApp(themeMode: appState.themeMode, theme: BeTheme.buildThemeof(context), home: const CounterPage());
+    return MaterialApp(
+      themeMode: appState.themeMode,
+      theme: BeTheme.buildThemeOf(context),
+      home: const ButtonShowcase(),
+    );
   }
 }

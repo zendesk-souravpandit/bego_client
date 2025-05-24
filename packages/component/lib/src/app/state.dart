@@ -28,6 +28,5 @@ abstract class AppState with _$AppState {
     version: '1.0.0',
     screenWidth: 768,
     deviceId: null,
-    themeMode: ThemeMode.system,
   );
 }
