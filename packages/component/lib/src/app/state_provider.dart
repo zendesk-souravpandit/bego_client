@@ -18,7 +18,14 @@ class AppStateProvider extends InheritedWidget {
   final AppState state;
   final EventActionHandler updateEvent;
 
-  static AppStateProvider of(final BuildContext context) => context.dependOnInheritedWidgetOfExactType<AppStateProvider>()!;
+  // static AppStateProvider of(final BuildContext context) =>
+  //     context.dependOnInheritedWidgetOfExactType<AppStateProvider>()!;
+
+  //  return listen
+  //         ? context.dependOnInheritedWidgetOfExactType<BeStateContext<S, A>>()
+  //         : context.getInheritedWidgetOfExactType<BeStateContext<S, A>>();
+  static AppStateProvider of(final BuildContext context, {final bool listen = false}) =>
+      context.getInheritedWidgetOfExactType<AppStateProvider>()!;
 
   @override
   bool updateShouldNotify(final AppStateProvider oldWidget) => oldWidget.state != state;

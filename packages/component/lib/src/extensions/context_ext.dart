@@ -1,5 +1,5 @@
-import 'package:becomponent/app.dart' show AppStateProvider;
-import 'package:beui/layout.dart';
+// import 'package:becomponent/app.dart' show AppStateProvider;
+// import 'package:beui/layout.dart';
 import 'package:flutter/material.dart';
 
 // Use getx for build context extension
@@ -13,7 +13,7 @@ extension ContextExt on BuildContext {
 
   double get mediaQueryShortestSide => mediaQuerySize.shortestSide;
 
-  BeBreakpoint get breakpoint => AppStateProvider.of(this).state.breakpoint;
+  // BeBreakpoint get breakpoint => AppStateProvider.of(this).state.breakpoint;
 
   // /// Returns a specific value according to the screen size
   // /// if the device width is higher than or equal to 1200 return
