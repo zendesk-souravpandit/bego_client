@@ -2,8 +2,8 @@
 
 import 'dart:async';
 
+import 'package:becomponent/src/app/app_state.dart';
 import 'package:becomponent/src/app/events.dart';
-import 'package:becomponent/src/app/state.dart';
 import 'package:becomponent/src/app/state_provider.dart';
 import 'package:becore/event.dart' show BeEventBus, EventAction;
 import 'package:beui/layout.dart';

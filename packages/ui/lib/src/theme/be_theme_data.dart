@@ -1,17 +1,14 @@
 import 'package:beui/src/screen/be_breakpoint.dart';
-import 'package:beui/src/theme/be_color.dart';
-import 'package:beui/src/theme/be_style.dart';
-import 'package:beui/src/theme/be_style_value.dart';
-import 'package:beui/src/theme/styles/be_colors_light.dart';
-import 'package:beui/src/theme/styles/be_style_light.dart';
+import 'package:beui/theme.dart';
 import 'package:flutter/material.dart';
+// @Default(BeResponsivePoints()) final BeResponsivePoints responsivePoints,
 
 @immutable
 class BeThemeData extends ThemeExtension<BeThemeData> {
   const BeThemeData({
-    required this.breakpoint,
-    required this.styleValue,
-    this.themeMode = ThemeMode.system,
+    this.breakpoint = BeBreakpoint.md,
+    this.themeMode = ThemeMode.light,
+    this.styleValue = const BeMobileValue(),
     this.colors = const BeColorsLight(),
     this.style = const BeStyleLight(),
   });
@@ -21,8 +18,41 @@ class BeThemeData extends ThemeExtension<BeThemeData> {
   final BeStyleValue styleValue;
   final BeBreakpoint breakpoint;
 
+  static ThemeData light() {
+    return ThemeData(
+      brightness: Brightness.light,
+      extensions: <ThemeExtension<BeThemeData>>[
+        const BeThemeData(
+          breakpoint: BeBreakpoint.md,
+          styleValue: BeMobileValue(),
+          colors: BeColorsLight(),
+          style: BeStyleLight(),
+        ),
+      ],
+    );
+  }
+
+  static ThemeData dark() {
+    return ThemeData(
+      brightness: Brightness.dark,
+      extensions: <ThemeExtension<BeThemeData>>[
+        const BeThemeData(
+          breakpoint: BeBreakpoint.md,
+          styleValue: BeMobileValue(),
+          colors: BeColorsDark(),
+          style: BeStyleDark(),
+        ),
+      ],
+    );
+  }
+
   @override
-  BeThemeData copyWith({final BeBreakpoint? breakpoint, final BeStyle? style, final BeColor? colors, final BeStyleValue? inset}) => BeThemeData(
+  BeThemeData copyWith({
+    final BeBreakpoint? breakpoint,
+    final BeStyle? style,
+    final BeColor? colors,
+    final BeStyleValue? inset,
+  }) => BeThemeData(
     breakpoint: breakpoint ?? this.breakpoint,
     style: style ?? this.style,
     colors: colors ?? this.colors,

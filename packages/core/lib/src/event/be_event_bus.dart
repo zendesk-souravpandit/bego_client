@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:becore/event.dart';
+
 /// Dispatches events to listeners using the Dart [Stream] API. The [BeEventBus]
 /// enables decoupled applications. It allows objects to interact without
 /// requiring to explicitly define listeners and keeping track of them.
@@ -57,7 +59,7 @@ class BeEventBus {
   /// resumed or cancelled. So it's usually better to just cancel and later
   /// subscribe again (avoids memory leak).
   ///
-  Stream<T> on<T>() {
+  Stream<T> on<T extends EventAction>() {
     if (T == dynamic) {
       return streamController.stream as Stream<T>;
     }

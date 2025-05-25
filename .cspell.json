@@ -3,10 +3,12 @@
     "bebreakpoint",
     "becomponent",
     "becore",
+    "Bego",
     "betheme",
     "beui",
     "getx",
     "pubspec",
+    "Superellipse",
     "uibook"
   ],
   "ignorePaths": [

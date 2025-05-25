@@ -16,6 +16,18 @@ class ButtonShowcase extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // ElevatedButton(onPressed: () {}, child: const BeText.labelMedium('Change Theme')),
+            ElevatedButton(
+              onPressed: () {
+                // final betheme = Get.theme;
+                // Get.find<BeThemeController>().toggleTheme();
+                // final newThemeMode = Get.isDarkMode ? ThemeMode.light : ThemeMode.dark;
+                // Get.changeTheme(
+                //   ThemeData.dark().copyWith(extensions: [const BeThemeData(breakpoint: BeBreakpoint.sm)]),
+                // );
+              },
+              child: const Text('Change Theme'),
+            ),
             _buildSectionTitle('Elevated Buttons'),
             _buildButtonGrid(
               children: [
@@ -138,7 +150,7 @@ class ButtonShowcase extends StatelessWidget {
       crossAxisCount: crossAxisCount,
       crossAxisSpacing: 16,
       mainAxisSpacing: 16,
-      childAspectRatio: 2,
+      childAspectRatio: 1.5,
       children: children,
     );
   }
@@ -147,9 +159,9 @@ class ButtonShowcase extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        SizedBox(height: 48, child: Center(child: button)),
+        Expanded(child: SizedBox(height: 48, child: Center(child: button))),
         const SizedBox(height: 8),
-        Text(label, style: const TextStyle(fontSize: 12), textAlign: TextAlign.center),
+        Expanded(child: Text(label, style: const TextStyle(fontSize: 12), textAlign: TextAlign.center)),
       ],
     );
   }

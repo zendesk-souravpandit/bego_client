@@ -1,11 +1,10 @@
-import 'package:becomponent/app.dart';
+import 'package:becore/getx.dart';
 import 'package:beui/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:playground/use_case_buttons.dart';
-import 'package:playground/use_case_dropdown.dart';
 
 void main() {
-  runApp(const AppStateWrapper(child: BegoApp()));
+  runApp(const BegoApp());
 }
 
 class BegoApp extends StatelessWidget {
@@ -14,7 +13,7 @@ class BegoApp extends StatelessWidget {
   void onPressed() {}
   @override
   Widget build(final BuildContext context) {
-    final appState = AppStateProvider.of(context).state;
+    // final appState = AppStateProvider.of(context).state;
     // final betheme = context.betheme;
     // final appEvent = AppStateProvider.of(context).appEventBus;
     // final updateEvent = AppStateProvider.of(context).updateEvent;
@@ -24,8 +23,8 @@ class BegoApp extends StatelessWidget {
     // const BeTextVariant variant = BeTextVariant.primary;
     // final (color, background) = variant.variantColor(betheme.colors);
 
-    return MaterialApp(
-      themeMode: appState.themeMode,
+    return GetMaterialApp(
+      // themeMode: appState.themeMode,
       theme: BeTheme.buildThemeOf(context),
       home: const ButtonShowcase(),
     );
