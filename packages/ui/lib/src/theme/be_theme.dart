@@ -20,10 +20,8 @@ class BeTheme extends StatelessWidget {
     return beThemeData;
   }
 
-  static ThemeData buildThemeOf(final BuildContext context, {final BeThemeData betheme = const BeThemeData()}) {
-    // final betheme = of(context);
-    final brightness = betheme.themeMode == ThemeMode.dark ? Brightness.dark : Brightness.light;
-    return buildTheme(betheme: betheme, brightness: brightness);
+  static ThemeData buildThemeData({required final BeThemeData betheme}) {
+    return buildTheme(betheme: betheme);
   }
 
   @override

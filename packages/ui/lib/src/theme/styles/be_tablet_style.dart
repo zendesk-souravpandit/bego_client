@@ -1,4 +1,5 @@
-import 'package:beui/src/theme/styles/be_mobile_value.dart';
+import 'package:beui/theme.dart';
+import 'package:flutter/material.dart';
 
 class BeTabletValue extends BeMobileValue {
   const BeTabletValue();
@@ -72,4 +73,7 @@ class BeTabletValue extends BeMobileValue {
   double get labelSmallTextSize => 12; // +2 from mobile
   @override
   double get labelSmallLineHeight => 18; // 12 * 1.5
+
+  @override
+  Color get deviceColor => BeColors.blue;
 }

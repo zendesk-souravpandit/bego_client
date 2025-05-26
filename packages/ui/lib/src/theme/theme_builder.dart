@@ -8,23 +8,22 @@ import 'package:beui/theme.dart';
 import 'package:beui/ui.dart';
 import 'package:flutter/material.dart';
 
-ThemeData buildTheme({
-  required final BeThemeData betheme,
-  final bool useMaterial3 = true,
-  final Brightness brightness = Brightness.light,
-}) {
-  final colorScheme = betheme.colors.isDark ? BeColorSchemeDark.darkScheme : BeColorSchemeLight.lightScheme;
+ThemeData buildTheme({required final BeThemeData betheme, final bool useMaterial3 = true}) {
+  final isDark = betheme.colors.isDark;
+  final brightness = isDark ? Brightness.dark : Brightness.light;
+  final colorScheme = isDark ? BeColorSchemeDark.darkScheme : BeColorSchemeLight.lightScheme;
+  final bestyle = betheme.style;
 
   return ThemeData(
     useMaterial3: useMaterial3,
     colorScheme: colorScheme,
     brightness: brightness,
     package: BeUIConst.packageName,
-    extensions: [betheme],
     fontFamily: BeUIConst.fontFamily,
     splashFactory: InkRipple.splashFactory,
     disabledColor: betheme.colors.disabled,
     visualDensity: VisualDensity.adaptivePlatformDensity,
+    textTheme: _buildTextTheme(bestyle),
 
     // Component themes
     appBarTheme: _buildAppBarTheme(colorScheme),
@@ -76,11 +75,10 @@ ThemeData buildTheme({
     scrollbarTheme: _buildScrollbarTheme(colorScheme),
     navigationDrawerTheme: _buildNavigationDrawerTheme(colorScheme),
     menuTheme: _buildMenuTheme(colorScheme),
-    textTheme: _buildTextTheme(),
     primaryIconTheme: _buildPrimaryIconTheme(colorScheme),
     searchBarTheme: _buildSearchBarTheme(colorScheme),
-
     primaryTextTheme: _buildPrimaryTextTheme(colorScheme),
+    extensions: [betheme],
 
     // searchViewTheme: _buildSearchViewTheme(colorScheme),
   );
@@ -232,23 +230,24 @@ DialogThemeData _buildDialogTheme(final ColorScheme colorScheme) {
 // (Note: Due to length, I've shown a subset. The full implementation would include all requested theme builders.)
 
 // ========== Text Theme ==========
-TextTheme _buildTextTheme() {
-  return const TextTheme(
-    displayLarge: TextStyle(fontSize: 57, fontWeight: FontWeight.w400, letterSpacing: -0.25),
-    displayMedium: TextStyle(fontSize: 45, fontWeight: FontWeight.w400),
-    displaySmall: TextStyle(fontSize: 36, fontWeight: FontWeight.w400),
-    headlineLarge: TextStyle(fontSize: 32, fontWeight: FontWeight.w400),
-    headlineMedium: TextStyle(fontSize: 28, fontWeight: FontWeight.w400),
-    headlineSmall: TextStyle(fontSize: 24, fontWeight: FontWeight.w400),
-    titleLarge: TextStyle(fontSize: 22, fontWeight: FontWeight.w400),
-    titleMedium: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, letterSpacing: 0.15),
-    titleSmall: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, letterSpacing: 0.1),
-    bodyLarge: TextStyle(fontSize: 16, fontWeight: FontWeight.w400, letterSpacing: 0.5),
-    bodyMedium: TextStyle(fontSize: 14, fontWeight: FontWeight.w400, letterSpacing: 0.25),
-    bodySmall: TextStyle(fontSize: 12, fontWeight: FontWeight.w400, letterSpacing: 0.4),
-    labelLarge: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, letterSpacing: 0.1),
-    labelMedium: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, letterSpacing: 0.5),
-    labelSmall: TextStyle(fontSize: 11, fontWeight: FontWeight.w500, letterSpacing: 0.5),
+TextTheme _buildTextTheme(final BeStyle bestyle) {
+  print('Building TextTheme with style: ${bestyle.headlineLarge.fontSize}');
+  return TextTheme(
+    displayLarge: bestyle.displayLarge,
+    displayMedium: bestyle.displayMedium,
+    displaySmall: bestyle.displaySmall,
+    headlineLarge: bestyle.headlineLarge,
+    headlineMedium: bestyle.headlineMedium,
+    headlineSmall: bestyle.headlineSmall,
+    titleLarge: bestyle.titleLarge,
+    titleMedium: bestyle.titleMedium,
+    titleSmall: bestyle.titleSmall,
+    bodyLarge: bestyle.bodyLarge,
+    bodyMedium: bestyle.bodyMedium,
+    bodySmall: bestyle.bodySmall,
+    labelLarge: bestyle.labelLarge,
+    labelMedium: bestyle.labelMedium,
+    labelSmall: bestyle.labelSmall,
   );
 }
 
@@ -813,20 +812,21 @@ TextButtonThemeData _buildTextButtonTheme(final BeThemeData betheme) {
       surfaceTintColor: const WidgetStatePropertyAll(Colors.transparent),
       textStyle: WidgetStateProperty.resolveWith((final state) {
         if (state.containsAll([WidgetState.hovered, WidgetState.pressed])) {
-          return TextStyle(fontSize: 15, fontWeight: FontWeight.w600, letterSpacing: 0.5, color: swPrimary.shade500);
+          return const TextStyle(fontSize: 14, fontWeight: FontWeight.w600);
         }
 
-        return TextStyle(color: swPrimary.shade500, fontSize: 14, fontWeight: FontWeight.w600, letterSpacing: 0.5);
+        return const TextStyle(fontSize: 14, fontWeight: FontWeight.w500);
       }),
       // iconColor: const WidgetStatePropertyAll(0),
       iconSize: WidgetStateProperty.resolveWith((final state) {
         if (state.containsAll([WidgetState.hovered, WidgetState.pressed])) {
-          return 16;
+          return 15.5;
         }
-        return 14;
+        return 16;
       }),
       side: const WidgetStatePropertyAll(BorderSide(color: BeColors.transparent)),
-      padding: const WidgetStatePropertyAll(EdgeInsets.symmetric(horizontal: 10, vertical: 5)),
+
+      padding: const WidgetStatePropertyAll(EdgeInsets.symmetric(horizontal: 12, vertical: 8)),
       animationDuration: const Duration(milliseconds: 100),
 
       shape: WidgetStateProperty.resolveWith((final states) {

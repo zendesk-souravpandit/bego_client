@@ -5,59 +5,46 @@ import 'package:flutter/material.dart';
 
 @immutable
 class BeThemeData extends ThemeExtension<BeThemeData> {
-  const BeThemeData({
-    this.breakpoint = BeBreakpoint.md,
-    this.themeMode = ThemeMode.light,
-    this.styleValue = const BeMobileValue(),
-    this.colors = const BeColorsLight(),
-    this.style = const BeStyleLight(),
-  });
+  BeThemeData({
+    required this.breakpoint,
+    required this.colors,
+    required this.themeMode,
+    final BeAdaptiveStyle? adaptiveStyle,
+  }) : style =
+           themeMode == ThemeMode.light
+               ? BeStyleLight(color: colors, adaptiveStyle: adaptiveStyle ?? breakpoint.adaptiveStyle)
+               : BeStyleDark(color: colors, adaptiveStyle: adaptiveStyle ?? breakpoint.adaptiveStyle);
+
+  final BeBreakpoint breakpoint;
+  final BeColor colors;
   final ThemeMode themeMode;
   final BeStyle style;
-  final BeColor colors;
-  final BeStyleValue styleValue;
-  final BeBreakpoint breakpoint;
 
   static ThemeData light() {
-    return ThemeData(
-      brightness: Brightness.light,
-      extensions: <ThemeExtension<BeThemeData>>[
-        const BeThemeData(
-          breakpoint: BeBreakpoint.md,
-          styleValue: BeMobileValue(),
-          colors: BeColorsLight(),
-          style: BeStyleLight(),
-        ),
-      ],
-    );
+    final betheme = BeThemeData(themeMode: ThemeMode.light, breakpoint: BeBreakpoint.md, colors: const BeColorsLight());
+    return BeTheme.buildThemeData(betheme: betheme);
   }
 
   static ThemeData dark() {
-    return ThemeData(
-      brightness: Brightness.dark,
-      extensions: <ThemeExtension<BeThemeData>>[
-        const BeThemeData(
-          breakpoint: BeBreakpoint.md,
-          styleValue: BeMobileValue(),
-          colors: BeColorsDark(),
-          style: BeStyleDark(),
-        ),
-      ],
-    );
+    final betheme = BeThemeData(breakpoint: BeBreakpoint.md, themeMode: ThemeMode.dark, colors: const BeColorsDark());
+    return BeTheme.buildThemeData(betheme: betheme);
   }
 
   @override
   BeThemeData copyWith({
     final BeBreakpoint? breakpoint,
+    final ThemeMode? themeMode,
     final BeStyle? style,
     final BeColor? colors,
-    final BeStyleValue? inset,
-  }) => BeThemeData(
-    breakpoint: breakpoint ?? this.breakpoint,
-    style: style ?? this.style,
-    colors: colors ?? this.colors,
-    styleValue: inset ?? styleValue,
-  );
+    final BeAdaptiveStyle? adaptiveStyle,
+  }) {
+    return BeThemeData(
+      themeMode: themeMode ?? this.themeMode,
+      breakpoint: breakpoint ?? this.breakpoint,
+      colors: colors ?? this.colors,
+      adaptiveStyle: adaptiveStyle ?? this.style.adaptiveStyle,
+    );
+  }
 
   @override
   BeThemeData lerp(final BeThemeData? other, final double t) {
@@ -65,10 +52,10 @@ class BeThemeData extends ThemeExtension<BeThemeData> {
       return this;
     }
     return BeThemeData(
-      breakpoint: other.breakpoint, // Implement breakpoint interpolation if needed
-      style: other.style, // You can implement lerping for style if needed
+      breakpoint: other.breakpoint,
       colors: other.colors,
-      styleValue: other.styleValue, // Implement color interpolation if needed
+      themeMode: other.themeMode,
+      adaptiveStyle: other.style.adaptiveStyle,
     );
   }
 }

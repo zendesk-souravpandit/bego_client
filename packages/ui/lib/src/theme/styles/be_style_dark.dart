@@ -1,111 +1,109 @@
 import 'package:beui/theme.dart';
 import 'package:flutter/material.dart';
 
-class BeStyleDark implements BeStyle {
-  const BeStyleDark({this.color = const BeColorsDark(), this.inset = const BeMobileValue()});
-  final BeColor color;
-  final BeStyleValue inset;
+class BeStyleDark extends BeStyle {
+  const BeStyleDark({required super.color, required super.adaptiveStyle});
 
   @override
   TextStyle get displayLarge => _baseStyle.copyWith(
-    fontSize: inset.displayLargeTextSize,
-    height: inset.displayLargeLineHeight / inset.displayLargeTextSize,
+    fontSize: adaptiveStyle.displayLargeTextSize,
+    height: adaptiveStyle.displayLargeLineHeight / adaptiveStyle.displayLargeTextSize,
     letterSpacing: -0.25,
   );
 
   @override
   TextStyle get displayMedium => _baseStyle.copyWith(
-    fontSize: inset.displayMediumTextSize,
-    height: inset.displayMediumLineHeight / inset.displayMediumTextSize,
+    fontSize: adaptiveStyle.displayMediumTextSize,
+    height: adaptiveStyle.displayMediumLineHeight / adaptiveStyle.displayMediumTextSize,
   );
 
   @override
   TextStyle get displaySmall => _baseStyle.copyWith(
-    fontSize: inset.displaySmallTextSize,
-    height: inset.displaySmallLineHeight / inset.displaySmallTextSize,
+    fontSize: adaptiveStyle.displaySmallTextSize,
+    height: adaptiveStyle.displaySmallLineHeight / adaptiveStyle.displaySmallTextSize,
   );
 
   @override
   TextStyle get headlineLarge => _baseStyle.copyWith(
-    fontSize: inset.headlineLargeTextSize,
-    height: inset.headlineLargeLineHeight / inset.headlineLargeTextSize,
+    fontSize: adaptiveStyle.headlineLargeTextSize,
+    height: adaptiveStyle.headlineLargeLineHeight / adaptiveStyle.headlineLargeTextSize,
   );
 
   @override
   TextStyle get headlineMedium => _baseStyle.copyWith(
-    fontSize: inset.headlineMediumTextSize,
-    height: inset.headlineMediumLineHeight / inset.headlineMediumTextSize,
+    fontSize: adaptiveStyle.headlineMediumTextSize,
+    height: adaptiveStyle.headlineMediumLineHeight / adaptiveStyle.headlineMediumTextSize,
   );
 
   @override
   TextStyle get headlineSmall => _baseStyle.copyWith(
-    fontSize: inset.headlineSmallTextSize,
-    height: inset.headlineSmallLineHeight / inset.headlineSmallTextSize,
+    fontSize: adaptiveStyle.headlineSmallTextSize,
+    height: adaptiveStyle.headlineSmallLineHeight / adaptiveStyle.headlineSmallTextSize,
   );
 
   @override
   TextStyle get titleLarge => _baseStyle.copyWith(
-    fontSize: inset.titleLargeTextSize,
-    height: inset.titleLargeLineHeight / inset.titleLargeTextSize,
+    fontSize: adaptiveStyle.titleLargeTextSize,
+    height: adaptiveStyle.titleLargeLineHeight / adaptiveStyle.titleLargeTextSize,
   );
 
   @override
   TextStyle get titleMedium => _baseStyle.copyWith(
-    fontSize: inset.titleMediumTextSize,
-    height: inset.titleMediumLineHeight / inset.titleMediumTextSize,
+    fontSize: adaptiveStyle.titleMediumTextSize,
+    height: adaptiveStyle.titleMediumLineHeight / adaptiveStyle.titleMediumTextSize,
     letterSpacing: 0.1,
     fontWeight: FontWeight.w500,
   );
 
   @override
   TextStyle get titleSmall => _baseStyle.copyWith(
-    fontSize: inset.titleSmallTextSize,
-    height: inset.titleSmallLineHeight / inset.titleSmallTextSize,
+    fontSize: adaptiveStyle.titleSmallTextSize,
+    height: adaptiveStyle.titleSmallLineHeight / adaptiveStyle.titleSmallTextSize,
     letterSpacing: 0.1,
     fontWeight: FontWeight.w500,
   );
 
   @override
   TextStyle get bodyLarge => _baseStyle.copyWith(
-    fontSize: inset.bodyLargeTextSize,
-    height: inset.bodyLargeLineHeight / inset.bodyLargeTextSize,
+    fontSize: adaptiveStyle.bodyLargeTextSize,
+    height: adaptiveStyle.bodyLargeLineHeight / adaptiveStyle.bodyLargeTextSize,
     letterSpacing: 0.5,
   );
 
   @override
   TextStyle get bodyMedium => _baseStyle.copyWith(
-    fontSize: inset.bodyMediumTextSize,
-    height: inset.bodyMediumLineHeight / inset.bodyMediumTextSize,
+    fontSize: adaptiveStyle.bodyMediumTextSize,
+    height: adaptiveStyle.bodyMediumLineHeight / adaptiveStyle.bodyMediumTextSize,
     letterSpacing: 0.25,
   );
 
   @override
   TextStyle get bodySmall => _baseStyle.copyWith(
-    fontSize: inset.bodySmallTextSize,
-    height: inset.bodySmallLineHeight / inset.bodySmallTextSize,
+    fontSize: adaptiveStyle.bodySmallTextSize,
+    height: adaptiveStyle.bodySmallLineHeight / adaptiveStyle.bodySmallTextSize,
     letterSpacing: 0.25,
   );
 
   @override
   TextStyle get labelLarge => _baseStyle.copyWith(
-    fontSize: inset.labelLargeTextSize,
-    height: inset.labelLargeLineHeight / inset.labelLargeTextSize,
+    fontSize: adaptiveStyle.labelLargeTextSize,
+    height: adaptiveStyle.labelLargeLineHeight / adaptiveStyle.labelLargeTextSize,
     letterSpacing: 0.1,
     fontWeight: FontWeight.w500,
   );
 
   @override
   TextStyle get labelMedium => _baseStyle.copyWith(
-    fontSize: inset.labelMediumTextSize,
-    height: inset.labelMediumLineHeight / inset.labelMediumTextSize,
+    fontSize: adaptiveStyle.labelMediumTextSize,
+    height: adaptiveStyle.labelMediumLineHeight / adaptiveStyle.labelMediumTextSize,
     letterSpacing: 0.5,
     fontWeight: FontWeight.w500,
   );
 
   @override
   TextStyle get labelSmall => _baseStyle.copyWith(
-    fontSize: inset.labelSmallTextSize,
-    height: inset.labelSmallLineHeight / inset.labelSmallTextSize,
+    fontSize: adaptiveStyle.labelSmallTextSize,
+    height: adaptiveStyle.labelSmallLineHeight / adaptiveStyle.labelSmallTextSize,
     letterSpacing: 0.5,
     fontWeight: FontWeight.w500,
   );
@@ -117,4 +115,12 @@ class BeStyleDark implements BeStyle {
     color: color.textPrimary,
     shadows: BeUIConst.textShadow,
   );
+
+  @override
+  BeStyle copyWith({final Object? color, final BeAdaptiveStyle? adaptiveStyle}) {
+    return BeStyleLight(
+      color: color is BeColor ? color : this.color,
+      adaptiveStyle: adaptiveStyle ?? this.adaptiveStyle,
+    );
+  }
 }

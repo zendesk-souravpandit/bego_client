@@ -3,15 +3,11 @@ import 'package:beui/theme.dart';
 import 'package:flutter/material.dart';
 
 class BeThemeManager {
-  static BeThemeData createThemeData({required final ThemeMode themeMode, required final BeBreakpoint breakpoint}) {
-    final insets = getStyleValue(breakpoint);
-    final colors = themeMode == ThemeMode.light ? const BeColorsLight() : const BeColorsDark();
-    final style =
-        themeMode == ThemeMode.light
-            ? BeStyleLight(color: colors, inset: insets)
-            : BeStyleDark(color: colors, inset: insets);
+  static BeThemeData createThemeData({required final BeBreakpoint breakpoint}) {
+    const themeMode = ThemeMode.light;
+    const colors = themeMode == ThemeMode.light ? BeColorsLight() : BeColorsDark();
 
-    return BeThemeData(breakpoint: breakpoint, styleValue: insets, colors: colors, style: style, themeMode: themeMode);
+    return BeThemeData(breakpoint: breakpoint, colors: colors, themeMode: themeMode);
   }
 
   static ThemeData createTheme({required final ThemeMode themeMode}) {

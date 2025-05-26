@@ -31,15 +31,27 @@ class WidgetbookApp extends StatelessWidget {
       ),
       InspectorAddon(),
 
-      ThemeAddon<BeThemeData>(
+      ThemeAddon<ThemeData>(
         themes: [
-          const WidgetbookTheme(
+          WidgetbookTheme(
             name: 'Dark',
-            data: BeThemeData(breakpoint: BeBreakpoint.md, themeMode: ThemeMode.dark, styleValue: BeMobileValue()),
+            data: BeTheme.buildThemeData(
+              betheme: BeThemeData(
+                breakpoint: BeBreakpoint.md,
+                themeMode: ThemeMode.dark,
+                colors: const BeColorsDark(),
+              ),
+            ),
           ),
-          const WidgetbookTheme(
+          WidgetbookTheme(
             name: 'Light',
-            data: BeThemeData(breakpoint: BeBreakpoint.md, themeMode: ThemeMode.light, styleValue: BeMobileValue()),
+            data: BeTheme.buildThemeData(
+              betheme: BeThemeData(
+                breakpoint: BeBreakpoint.md,
+                themeMode: ThemeMode.light,
+                colors: const BeColorsLight(),
+              ),
+            ),
           ),
         ],
 
@@ -47,17 +59,17 @@ class WidgetbookApp extends StatelessWidget {
             (final context, final theme, final child) => LayoutBuilder(
               builder: (final context, final constraints) {
                 final bebreakpoint = calculateBreakpoint(constraints.maxWidth, const BeResponsivePoints());
-                final betheme = BeThemeManager.createThemeData(themeMode: theme.themeMode, breakpoint: bebreakpoint);
+                final betheme = BeThemeManager.createThemeData(breakpoint: bebreakpoint);
 
                 return BeTheme(
                   betheme: betheme,
                   child: BeNotificationsProvider(
-                    maxVisible: betheme.styleValue.notificationMaxCount,
+                    maxVisible: betheme.style.adaptiveStyle.notificationMaxCount,
                     child: Builder(
                       builder: (final context) {
                         return MaterialApp(
-                          themeMode: betheme.themeMode,
-                          theme: BeTheme.buildThemeOf(context),
+                          // themeMode: betheme.themeMode,
+                          // theme: BeTheme.buildThemeData(),
                           home: Scaffold(backgroundColor: betheme.colors.background, body: child),
                         );
                       },
