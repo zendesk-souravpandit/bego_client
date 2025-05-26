@@ -2,8 +2,10 @@
 
 library becomponent.app;
 
-// export 'src/app/app_state.dart';
-// export 'src/app/app_wrapper.dart';
-// export 'src/app/events.dart';
-// export 'src/app/state_provider.dart';
+export 'src/app/app_responsive_wrapper.dart';
+export 'src/app/be_app.dart';
+export 'src/app/locale_controller.dart';
+export 'src/app/root_binding.dart';
+export 'src/app/theme_controller.dart';
 export 'src/extensions/context_ext.dart';
+export 'src/page/app_settings/app_settings_controller.dart';

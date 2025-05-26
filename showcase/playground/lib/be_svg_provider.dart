@@ -3,14 +3,12 @@ import 'package:becomponent/page.dart';
 import 'package:becore/hooks.dart';
 import 'package:flutter/material.dart';
 
-class CounterState with BeState {
-  CounterState({this.count = 0, this.status = const BeStatus.empty()});
+class CounterState {
+  CounterState({this.count = 0});
   final int count;
-  @override
-  final BeStatus status;
 
-  CounterState copyWith({final int? count, final BeStatus? status}) {
-    return CounterState(count: count ?? this.count, status: status ?? this.status);
+  CounterState copyWith({final int? count}) {
+    return CounterState(count: count ?? this.count);
   }
 }
 
@@ -95,7 +93,7 @@ class MyWidget extends HookWidget {
         Text('Count $count '),
         ElevatedButton(
           onPressed: () {
-            dispatch(SetStateAction(CounterState(count: 0, status: const BeStatus.loading())));
+            dispatch(SetStateAction(CounterState(count: 0)));
           },
           child: const Text('Change Status'),
         ),
@@ -110,7 +108,7 @@ class MyWidget2 extends HookWidget {
   @override
   Widget build(final BuildContext context) {
     print('MyWidget2 render');
-    final status = useStateSelector<CounterState, BeStateAction, String>(context, (final state) => state.status.toString());
+    final status = useStateSelector<CounterState, BeStateAction, String>(context, (final state) => state.toString());
 
     return Text('Status $status');
   }

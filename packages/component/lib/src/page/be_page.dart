@@ -1,25 +1,32 @@
-// import 'package:bego_app/bego_app.dart';
-// import 'package:bego_app/src/page/i_be_build.dart';
-// import 'package:bego_core/bego_getx.dart' show GetView, StateExt;
-// import 'package:bego_ui/bego_widgets.dart';
 import 'package:becomponent/src/page/be_page_controller.dart';
-import 'package:becomponent/src/page/be_page_state.dart';
+import 'package:becomponent/src/page/be_page_status_resolver.dart';
 import 'package:becore/getx.dart';
 import 'package:flutter/material.dart';
 
-class BePage<S extends BePageState, C extends BePageController<S>> extends GetView<C> {
-  // const BePage({super.key});
+/// `BePage` is an abstract class that extends `GetView` and provides a structure for building pages in a Flutter application using the GetX state management library.
+/// Example:
+/// ```
+///
+/// class HomePage extends BePage<HomeState, HomePageController> {
+///   HomePage({super.key})
+///     : super(
+///         statusResolver: BePageStatusWidgetResolver<HomeState>(
+///           successBuilder: (final context, final data) {
+///             return Column(children: [Text(' ${data.toJson().toString()}')]);
+///           },
+///           emptyBuilder: (final context) => const Text('No Data found'),
+///           customBuilder: (final context, final state) => Text(state?.toString() ?? 'hello'),
+///         ),
+///       );
+/// }
+/// ```
+abstract class BePage<S, C extends BePageController<S>> extends GetView<C> {
+  const BePage({super.key, required this.statusResolver});
 
-  const BePage({super.key});
+  final BePageStatusWidgetResolver<C> statusResolver;
 
   @override
-  Widget build(final BuildContext context) => controller.obx(
-    (final S state) => switch (state.status) {
-      BePageStatusEmpty() => const Text('Empty'),
-      BePageStatusLoading() => const Text('Loading'),
-      BePageStatusError() => const Text('Error'),
-      // BePageStatusSuccess() => const Text('Success'),
-      _ => const Text('Success and other'),
-    },
-  );
+  Widget build(final BuildContext context) {
+    return Obx(() => statusResolver.widgetForStatus<S>(context, controller));
+  }
 }

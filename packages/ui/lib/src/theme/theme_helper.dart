@@ -19,7 +19,6 @@ extension ThemeGetter on StatelessWidget {
   /// Elevation amount etc
   BeStyle bestyles(final BuildContext context) => BeTheme.of(context).style;
   BeColor becolors(final BuildContext context) => BeTheme.of(context).colors;
-  BeAdaptiveStyle beinsets(final BuildContext context) => BeTheme.of(context).style.adaptiveStyle;
 }
 
 BeAdaptiveStyle getAdaptiveStyles(final BeBreakpoint? breakpoint) {

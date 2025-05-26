@@ -6,8 +6,10 @@
     "becomponent",
     "becore",
     "Bego",
+    "begrpc",
     "beinset",
     "beinsets",
+    "beservice",
     "bestyle",
     "bestyles",
     "betheme",
@@ -24,6 +26,9 @@
     "**/pbjson.dart",
     "**/g.dart",
     "**/pubspec.lock",
-    "**/analysis_options.yaml"
+    "**/analysis_options.yaml",
+    "**/be_icons.dart",
+    "**/icons_list.dart",
+    "showcase/playground/lib/**.dart"
   ]
 }

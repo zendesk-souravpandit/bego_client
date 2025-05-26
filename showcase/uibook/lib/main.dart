@@ -3,13 +3,27 @@ import 'package:beui/overlay.dart';
 import 'package:beui/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:uibook/main.directories.g.dart';
-import 'package:uibook/widgetbook/theme_wrapper.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 void main() {
   runApp(const WidgetbookApp());
 }
+
+final themeList = [
+  WidgetbookTheme(
+    name: 'Light',
+    data: BeTheme.buildThemeData(
+      betheme: BeThemeData(breakpoint: BeBreakpoint.md, themeMode: ThemeMode.light, colors: const BeColorsLight()),
+    ),
+  ),
+  WidgetbookTheme(
+    name: 'Dark',
+    data: BeTheme.buildThemeData(
+      betheme: BeThemeData(breakpoint: BeBreakpoint.md, themeMode: ThemeMode.dark, colors: const BeColorsDark()),
+    ),
+  ),
+];
 
 @widgetbook.App()
 class WidgetbookApp extends StatelessWidget {
@@ -32,49 +46,20 @@ class WidgetbookApp extends StatelessWidget {
       InspectorAddon(),
 
       ThemeAddon<ThemeData>(
-        themes: [
-          WidgetbookTheme(
-            name: 'Dark',
-            data: BeTheme.buildThemeData(
-              betheme: BeThemeData(
-                breakpoint: BeBreakpoint.md,
-                themeMode: ThemeMode.dark,
-                colors: const BeColorsDark(),
-              ),
-            ),
-          ),
-          WidgetbookTheme(
-            name: 'Light',
-            data: BeTheme.buildThemeData(
-              betheme: BeThemeData(
-                breakpoint: BeBreakpoint.md,
-                themeMode: ThemeMode.light,
-                colors: const BeColorsLight(),
-              ),
-            ),
-          ),
-        ],
-
+        themes: themeList,
+        initialTheme: themeList.first,
         themeBuilder:
             (final context, final theme, final child) => LayoutBuilder(
               builder: (final context, final constraints) {
-                final bebreakpoint = calculateBreakpoint(constraints.maxWidth, const BeResponsivePoints());
-                final betheme = BeThemeManager.createThemeData(breakpoint: bebreakpoint);
+                final themeMode = theme.brightness == Brightness.dark ? ThemeMode.dark : ThemeMode.light;
+                final breakpoint = calculateBreakpoint(constraints.maxWidth, const BeResponsivePoints());
+                final colors = themeMode == ThemeMode.light ? const BeColorsLight() : const BeColorsDark();
+                final betheme = BeThemeData(breakpoint: breakpoint, colors: colors, themeMode: themeMode);
+                final themeData = BeTheme.buildThemeData(betheme: betheme);
 
                 return BeTheme(
                   betheme: betheme,
-                  child: BeNotificationsProvider(
-                    maxVisible: betheme.style.adaptiveStyle.notificationMaxCount,
-                    child: Builder(
-                      builder: (final context) {
-                        return MaterialApp(
-                          // themeMode: betheme.themeMode,
-                          // theme: BeTheme.buildThemeData(),
-                          home: Scaffold(backgroundColor: betheme.colors.background, body: child),
-                        );
-                      },
-                    ),
-                  ),
+                  child: BeNotificationsProvider(child: Theme(data: themeData, child: Scaffold(body: child))),
                 );
               },
             ),

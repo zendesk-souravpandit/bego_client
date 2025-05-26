@@ -126,13 +126,14 @@ ThemeData buildTheme({required final BeThemeData betheme, final bool useMaterial
 AppBarTheme _buildAppBarTheme(final ColorScheme colorScheme) {
   return AppBarTheme(
     backgroundColor: colorScheme.surface,
-    foregroundColor: colorScheme.onSurface,
+    foregroundColor: Colors.transparent,
     elevation: 0,
-    scrolledUnderElevation: 3,
-    centerTitle: true,
+    actionsPadding: p0,
+    scrolledUnderElevation: 2,
+    centerTitle: false,
     titleTextStyle: TextStyle(fontSize: 22, fontWeight: FontWeight.w500, color: colorScheme.onSurface),
-    surfaceTintColor: colorScheme.surfaceTint,
-    shadowColor: colorScheme.shadow,
+    surfaceTintColor: Colors.transparent,
+    shadowColor: Colors.blueGrey.withAlpha(100),
     iconTheme: IconThemeData(color: colorScheme.onSurface, size: 24),
     actionsIconTheme: IconThemeData(color: colorScheme.onSurface, size: 24),
   );
@@ -164,13 +165,13 @@ ButtonThemeData _buildButtonTheme(final BeThemeData betheme) {
 
 CardThemeData _buildCardTheme(final ColorScheme colorScheme) {
   return CardThemeData(
-    color: colorScheme.surface,
+    color: Colors.white,
     shadowColor: colorScheme.shadow,
-    surfaceTintColor: colorScheme.surfaceTint,
+    surfaceTintColor: Colors.transparent,
     elevation: 1,
     margin: const EdgeInsets.all(8),
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-    clipBehavior: Clip.antiAlias,
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+    // clipBehavior: Clip.antiAlias,
   );
 }
 
@@ -231,7 +232,6 @@ DialogThemeData _buildDialogTheme(final ColorScheme colorScheme) {
 
 // ========== Text Theme ==========
 TextTheme _buildTextTheme(final BeStyle bestyle) {
-  print('Building TextTheme with style: ${bestyle.headlineLarge.fontSize}');
   return TextTheme(
     displayLarge: bestyle.displayLarge,
     displayMedium: bestyle.displayMedium,
@@ -530,16 +530,24 @@ ListTileThemeData _buildListTileTheme(final ColorScheme colorScheme) {
   return ListTileThemeData(
     dense: false,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-    tileColor: colorScheme.surface,
+    tileColor: Colors.transparent,
     selectedTileColor: colorScheme.primaryContainer,
     iconColor: colorScheme.onSurfaceVariant,
     textColor: colorScheme.onSurface,
     selectedColor: colorScheme.onPrimaryContainer,
-    contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+    contentPadding: px16 + py8,
     horizontalTitleGap: 16,
     minVerticalPadding: 8,
-    minLeadingWidth: 40,
+    // minLeadingWidth: 32,
     enableFeedback: true,
+    minTileHeight: 0,
+    // leadingAndTrailingTextStyle: TextStyle(
+    //   fontSize: 12,
+    //   color: colorScheme.onSurfaceVariant,
+    //   fontWeight: FontWeight.w500,
+    // ),
+    titleTextStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: colorScheme.onSurface),
+    subtitleTextStyle: const TextStyle(fontSize: 12, color: BeColors.gray300),
     mouseCursor: WidgetStateProperty.resolveWith((final states) {
       if (states.contains(WidgetState.disabled)) {
         return SystemMouseCursors.forbidden;
