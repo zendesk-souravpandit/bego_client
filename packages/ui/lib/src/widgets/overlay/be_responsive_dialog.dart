@@ -3,7 +3,7 @@ import 'package:beui/src/decoration/be_breakpoint_radius.dart';
 import 'package:beui/theme.dart';
 import 'package:flutter/material.dart';
 
-void showBegoDialog<T>({
+void showBeResponsiveDialog<T>({
   required final BuildContext context,
   required final Widget child,
   final bool barrierDismissible = true,

@@ -28,7 +28,7 @@ class ResponsiveDialogDemo extends StatelessWidget {
 
 // Usage example:
 void showExampleDialog(final BuildContext context) {
-  showBegoDialog<void>(
+  showBeResponsiveDialog<void>(
     context: context,
 
     // showShadow: false,

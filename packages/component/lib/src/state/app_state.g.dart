@@ -11,7 +11,9 @@ _AppState _$AppStateFromJson(Map<String, dynamic> json) => _AppState(
   package: json['package'] as String,
   version: json['version'] as String,
   deviceId: json['deviceId'] as String?,
-  locale: json['locale'] as String?,
+  locale: const KeyValueSSConverter().fromJson(
+    json['locale'] as Map<String, String>?,
+  ),
   theme: json['theme'] as String?,
 );
 
@@ -20,6 +22,6 @@ Map<String, dynamic> _$AppStateToJson(_AppState instance) => <String, dynamic>{
   'package': instance.package,
   'version': instance.version,
   'deviceId': instance.deviceId,
-  'locale': instance.locale,
+  'locale': const KeyValueSSConverter().toJson(instance.locale),
   'theme': instance.theme,
 };

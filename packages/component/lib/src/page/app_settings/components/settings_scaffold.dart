@@ -1,10 +1,13 @@
 import 'package:becomponent/app.dart';
+import 'package:becomponent/src/page/app_settings/components/locale_picker.dart';
 import 'package:becomponent/src/page/app_settings/components/settings_list_tile.dart';
 import 'package:becomponent/src/state/list_tile_item.dart';
 import 'package:becore/getx.dart';
 import 'package:beui/be_icons.dart';
 import 'package:beui/decoration.dart';
+import 'package:beui/overlay.dart';
 import 'package:beui/text.dart';
+import 'package:beui/theme.dart';
 import 'package:flutter/material.dart';
 
 class AppSettingsScaffold extends StatelessWidget {
@@ -41,7 +44,15 @@ class AppSettingsScaffold extends StatelessWidget {
         icon: BeIcons.icon_globe_alt,
         title: 'Language',
         subtitle: 'Change the app language',
-        onTap: () {},
+        onTap: () async {
+          await showLocalePickerDialog(context);
+        },
+        trailing: Obx(
+          () => Text(
+            controller.state.locale?.value ?? 'English (US)',
+            style: const TextStyle(color: BeColors.gray400),
+          ),
+        ),
       ),
     ];
 
@@ -119,4 +130,8 @@ class _Section extends StatelessWidget {
       ],
     );
   }
+}
+
+Future<void> showLocalePickerDialog(final BuildContext context) async {
+  return showBeResponsiveDialog<void>(context: context, child: const LocalePickerWidget());
 }

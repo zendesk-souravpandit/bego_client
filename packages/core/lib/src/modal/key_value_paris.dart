@@ -55,18 +55,31 @@ class KeyValueII implements KeyValuePair {
 }
 
 /// [KeyValueSS]: Key=String, Value=String.
+
 class KeyValueSS implements KeyValuePair {
   KeyValueSS({required this.key, this.value = 'None'});
+
+  /// Creates a KeyValueSS from a JSON map.
+  factory KeyValueSS.fromJson(final Map<String, dynamic> json) {
+    return KeyValueSS(key: json['key'] as String, value: json['value'] as String? ?? 'None');
+  }
+
   @override
   final String key;
+
   @override
   final String value;
+
   @override
   String get display => value;
+
+  /// Converts KeyValueSS to JSON map.
+  Map<String, dynamic> toJson() => {'key': key, 'value': value};
 
   @override
   bool operator ==(final Object other) =>
       identical(this, other) || other is KeyValueSS && runtimeType == other.runtimeType && key == other.key;
+
   @override
   int get hashCode => key.hashCode;
 }

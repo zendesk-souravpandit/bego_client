@@ -171,7 +171,7 @@ CardThemeData _buildCardTheme(final BeThemeData betheme) {
     elevation: 0,
     margin: const EdgeInsets.all(8),
     shape: const RoundedSuperellipseBorder(
-      borderRadius: BorderRadius.all(Radius.circular(16)),
+      borderRadius: BorderRadius.all(Radius.circular(8)),
       side: BorderSide(color: BeColors.gray400, width: 0.2),
       // side: BorderSide(color: BeColors.gray100, width: 2.0),
     ),

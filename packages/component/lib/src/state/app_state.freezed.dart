@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$AppState {
 
- String get appName; String get package; String get version; String? get deviceId; String? get locale; String? get theme;
+ String get appName; String get package; String get version; String? get deviceId;@KeyValueSSConverter() KeyValueSS? get locale; String? get theme;
 /// Create a copy of AppState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -49,7 +49,7 @@ abstract mixin class $AppStateCopyWith<$Res>  {
   factory $AppStateCopyWith(AppState value, $Res Function(AppState) _then) = _$AppStateCopyWithImpl;
 @useResult
 $Res call({
- String appName, String package, String version, String? deviceId, String? locale, String? theme
+ String appName, String package, String version, String? deviceId,@KeyValueSSConverter() KeyValueSS? locale, String? theme
 });
 
 
@@ -73,7 +73,7 @@ as String,package: null == package ? _self.package : package // ignore: cast_nul
 as String,version: null == version ? _self.version : version // ignore: cast_nullable_to_non_nullable
 as String,deviceId: freezed == deviceId ? _self.deviceId : deviceId // ignore: cast_nullable_to_non_nullable
 as String?,locale: freezed == locale ? _self.locale : locale // ignore: cast_nullable_to_non_nullable
-as String?,theme: freezed == theme ? _self.theme : theme // ignore: cast_nullable_to_non_nullable
+as KeyValueSS?,theme: freezed == theme ? _self.theme : theme // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -85,14 +85,14 @@ as String?,
 @JsonSerializable()
 
 class _AppState implements AppState {
-  const _AppState({required this.appName, required this.package, required this.version, required this.deviceId, required this.locale, required this.theme});
+  const _AppState({required this.appName, required this.package, required this.version, required this.deviceId, @KeyValueSSConverter() required this.locale, required this.theme});
   factory _AppState.fromJson(Map<String, dynamic> json) => _$AppStateFromJson(json);
 
 @override final  String appName;
 @override final  String package;
 @override final  String version;
 @override final  String? deviceId;
-@override final  String? locale;
+@override@KeyValueSSConverter() final  KeyValueSS? locale;
 @override final  String? theme;
 
 /// Create a copy of AppState
@@ -128,7 +128,7 @@ abstract mixin class _$AppStateCopyWith<$Res> implements $AppStateCopyWith<$Res>
   factory _$AppStateCopyWith(_AppState value, $Res Function(_AppState) _then) = __$AppStateCopyWithImpl;
 @override @useResult
 $Res call({
- String appName, String package, String version, String? deviceId, String? locale, String? theme
+ String appName, String package, String version, String? deviceId,@KeyValueSSConverter() KeyValueSS? locale, String? theme
 });
 
 
@@ -152,7 +152,7 @@ as String,package: null == package ? _self.package : package // ignore: cast_nul
 as String,version: null == version ? _self.version : version // ignore: cast_nullable_to_non_nullable
 as String,deviceId: freezed == deviceId ? _self.deviceId : deviceId // ignore: cast_nullable_to_non_nullable
 as String?,locale: freezed == locale ? _self.locale : locale // ignore: cast_nullable_to_non_nullable
-as String?,theme: freezed == theme ? _self.theme : theme // ignore: cast_nullable_to_non_nullable
+as KeyValueSS?,theme: freezed == theme ? _self.theme : theme // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }

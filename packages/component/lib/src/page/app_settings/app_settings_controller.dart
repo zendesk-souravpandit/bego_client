@@ -2,6 +2,7 @@ import 'package:becomponent/app.dart';
 import 'package:becomponent/src/page/be_page_controller.dart';
 import 'package:becomponent/src/state/app_state.dart';
 import 'package:becore/getx.dart';
+import 'package:becore/modal.dart';
 import 'package:flutter/material.dart' show ThemeMode;
 
 class AppSettingsController extends BePageController<AppState> {
@@ -60,7 +61,7 @@ class AppSettingsController extends BePageController<AppState> {
     _state.value = _state.value.copyWith(deviceId: deviceId);
   }
 
-  void updateAppLocale(final String? locale) {
+  void updateAppLocale(final KeyValueSS? locale) {
     _state.value = _state.value.copyWith(locale: locale);
   }
 
