@@ -11,8 +11,8 @@ _AppState _$AppStateFromJson(Map<String, dynamic> json) => _AppState(
   package: json['package'] as String,
   version: json['version'] as String,
   deviceId: json['deviceId'] as String?,
-  appLocale: json['appLocale'] as String?,
-  appTheme: json['appTheme'] as String?,
+  locale: json['locale'] as String?,
+  theme: json['theme'] as String?,
 );
 
 Map<String, dynamic> _$AppStateToJson(_AppState instance) => <String, dynamic>{
@@ -20,6 +20,6 @@ Map<String, dynamic> _$AppStateToJson(_AppState instance) => <String, dynamic>{
   'package': instance.package,
   'version': instance.version,
   'deviceId': instance.deviceId,
-  'appLocale': instance.appLocale,
-  'appTheme': instance.appTheme,
+  'locale': instance.locale,
+  'theme': instance.theme,
 };

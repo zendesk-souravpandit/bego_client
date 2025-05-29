@@ -10,8 +10,8 @@ abstract class AppState with _$AppState {
     required final String package,
     required final String version,
     required final String? deviceId,
-    required final String? appLocale,
-    required final String? appTheme,
+    required final String? locale,
+    required final String? theme,
   }) = _AppState;
 
   factory AppState.initial() => const AppState(
@@ -19,8 +19,8 @@ abstract class AppState with _$AppState {
     package: 'com.example.bego',
     version: '0.0.1',
     deviceId: null,
-    appLocale: null,
-    appTheme: 'light',
+    locale: null,
+    theme: 'light',
   );
 
   factory AppState.fromJson(final Map<String, dynamic> json) => _$AppStateFromJson(json);

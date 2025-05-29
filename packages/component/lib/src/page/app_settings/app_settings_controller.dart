@@ -15,7 +15,7 @@ class AppSettingsController extends BePageController<AppState> {
   void toggleTheme() {
     final themeController = Get.find<AppThemeController>()..toggleTheme();
     themeMode.value = themeController.themeMode.value;
-    _state.value = _state.value.copyWith(appTheme: themeMode.value.name);
+    _state.value = _state.value.copyWith(theme: themeMode.value.name);
   }
 
   @override
@@ -27,8 +27,7 @@ class AppSettingsController extends BePageController<AppState> {
     // if (_state.value.appTheme != themeMode.value.name) {
     //   toggleTheme();
     // }
-    themeMode.value =
-        _state.value.appTheme == ThemeMode.dark.name ? ThemeMode.dark : ThemeMode.light;
+    themeMode.value = _state.value.theme == ThemeMode.dark.name ? ThemeMode.dark : ThemeMode.light;
 
     change(SuccessStatus(_state.value));
 
@@ -62,11 +61,11 @@ class AppSettingsController extends BePageController<AppState> {
   }
 
   void updateAppLocale(final String? locale) {
-    _state.value = _state.value.copyWith(appLocale: locale);
+    _state.value = _state.value.copyWith(locale: locale);
   }
 
   void updateAppTheme(final String? theme) {
-    _state.value = _state.value.copyWith(appTheme: theme);
+    _state.value = _state.value.copyWith(theme: theme);
   }
 
   // Load from JSON, replacing entire state

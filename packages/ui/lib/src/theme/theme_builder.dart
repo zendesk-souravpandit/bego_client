@@ -29,7 +29,7 @@ ThemeData buildTheme({required final BeThemeData betheme, final bool useMaterial
     appBarTheme: _buildAppBarTheme(colorScheme),
     badgeTheme: _buildBadgeTheme(colorScheme),
     buttonTheme: _buildButtonTheme(betheme),
-    cardTheme: _buildCardTheme(colorScheme),
+    cardTheme: _buildCardTheme(betheme),
     checkboxTheme: _buildCheckboxTheme(colorScheme),
     chipTheme: _buildChipTheme(colorScheme),
     dialogTheme: _buildDialogTheme(colorScheme),
@@ -163,14 +163,19 @@ ButtonThemeData _buildButtonTheme(final BeThemeData betheme) {
   );
 }
 
-CardThemeData _buildCardTheme(final ColorScheme colorScheme) {
+CardThemeData _buildCardTheme(final BeThemeData betheme) {
   return CardThemeData(
-    color: Colors.white,
-    shadowColor: colorScheme.shadow,
-    surfaceTintColor: Colors.transparent,
-    elevation: 1,
+    color: betheme.colors.background,
+    // shadowColor: Colors.grey,
+    // surfaceTintColor: Colors.transparent,
+    elevation: 0,
     margin: const EdgeInsets.all(8),
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+    shape: const RoundedSuperellipseBorder(
+      borderRadius: BorderRadius.all(Radius.circular(16)),
+      side: BorderSide(color: BeColors.gray400, width: 0.2),
+      // side: BorderSide(color: BeColors.gray100, width: 2.0),
+    ),
+
     // clipBehavior: Clip.antiAlias,
   );
 }

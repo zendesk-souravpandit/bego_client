@@ -1,3 +1,4 @@
+import 'package:beui/theme.dart';
 import 'package:flutter/material.dart';
 
 class BeColorSchemeLight {
@@ -24,7 +25,7 @@ class BeColorSchemeLight {
   static const Color background = Color(0xFFFFFBFF);
   static const Color onBackground = Color(0xFF1C1B1F);
 
-  static const Color surface = Color(0xFFFFFBFF);
+  static const Color surface = BeColors.gray50;
   static const Color onSurface = Color(0xFF1C1B1F);
   static const Color surfaceVariant = Color(0xFFE7E0EC);
   static const Color onSurfaceVariant = Color(0xFF49454F);

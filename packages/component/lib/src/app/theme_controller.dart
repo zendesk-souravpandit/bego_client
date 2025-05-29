@@ -36,9 +36,9 @@ class AppThemeController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    final tm = Get.find<AppSettingsController>().state.appTheme;
+    final theme = Get.find<AppSettingsController>().state.theme;
 
-    themeMode.value = tm == ThemeMode.dark.name ? ThemeMode.dark : ThemeMode.light;
+    themeMode.value = theme == ThemeMode.dark.name ? ThemeMode.dark : ThemeMode.light;
     // theme
   }
 }
