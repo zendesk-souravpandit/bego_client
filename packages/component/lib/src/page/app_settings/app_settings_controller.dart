@@ -2,31 +2,45 @@ import 'package:becomponent/app.dart';
 import 'package:becomponent/src/page/be_page_controller.dart';
 import 'package:becomponent/src/state/app_state.dart';
 import 'package:becore/getx.dart';
+import 'package:flutter/material.dart' show ThemeMode;
 
 class AppSettingsController extends BePageController<AppState> {
   // Reactive AppState observable
   final Rx<AppState> _state = AppState.initial().obs;
-
+  final themeMode = Rx<ThemeMode>(ThemeMode.light);
   // Shortcut getter for current immutable state
   @override
   AppState get state => _state.value;
 
   void toggleTheme() {
-    Get.find<AppThemeController>().toggleTheme();
-    change(status is LoadingStatus ? SuccessStatus(state) : LoadingStatus());
+    final themeController = Get.find<AppThemeController>()..toggleTheme();
+    themeMode.value = themeController.themeMode.value;
+    _state.value = _state.value.copyWith(appTheme: themeMode.value.name);
   }
 
   @override
   void onInit() {
     super.onInit();
-    change(SuccessStatus(state));
+    // TODO : Load initial state from storage
+    // For example, you might load from shared preferences or a database
+    // final restoredState = state.copyWith(appTheme: themeMode.value.name);
+    // if (_state.value.appTheme != themeMode.value.name) {
+    //   toggleTheme();
+    // }
+    themeMode.value =
+        _state.value.appTheme == ThemeMode.dark.name ? ThemeMode.dark : ThemeMode.light;
+
+    change(SuccessStatus(_state.value));
 
     // Listen to state changes
     ever<AppState>(_state, (final newState) {
+      // if (newState.appTheme != themeMode.value.name) {
+      //   toggleTheme();
+      // }
       // TODO: Handle state change logic here
       // Save when state changes, for example
       // saveStateToStorage(newState);
-      print('AppState changed: $newState');
+      print('AppState changed: ${newState.toJson()}');
     });
   }
 

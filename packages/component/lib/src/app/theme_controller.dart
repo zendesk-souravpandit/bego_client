@@ -1,3 +1,4 @@
+import 'package:becomponent/app.dart';
 import 'package:becore/getx.dart';
 import 'package:beui/layout.dart';
 import 'package:beui/theme.dart';
@@ -21,9 +22,23 @@ class AppThemeController extends GetxController {
   }
 
   void _updateTheme() {
-    final colors = themeMode.value == ThemeMode.light ? const BeColorsLight() : const BeColorsDark();
-    final betheme = BeThemeData(breakpoint: breakpoint.value, colors: colors, themeMode: themeMode.value);
+    final colors =
+        themeMode.value == ThemeMode.light ? const BeColorsLight() : const BeColorsDark();
+    final betheme = BeThemeData(
+      breakpoint: breakpoint.value,
+      colors: colors,
+      themeMode: themeMode.value,
+    );
     theme.value = BeTheme.buildThemeData(betheme: betheme);
     Get.changeTheme(theme.value);
+  }
+
+  @override
+  void onInit() {
+    super.onInit();
+    final tm = Get.find<AppSettingsController>().state.appTheme;
+
+    themeMode.value = tm == ThemeMode.dark.name ? ThemeMode.dark : ThemeMode.light;
+    // theme
   }
 }

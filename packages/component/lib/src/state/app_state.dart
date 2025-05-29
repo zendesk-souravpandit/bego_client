@@ -15,12 +15,12 @@ abstract class AppState with _$AppState {
   }) = _AppState;
 
   factory AppState.initial() => const AppState(
-    appName: 'Bego App reload',
+    appName: 'Business Ocean (Bego)',
     package: 'com.example.bego',
     version: '0.0.1',
     deviceId: null,
     appLocale: null,
-    appTheme: null,
+    appTheme: 'light',
   );
 
   factory AppState.fromJson(final Map<String, dynamic> json) => _$AppStateFromJson(json);
