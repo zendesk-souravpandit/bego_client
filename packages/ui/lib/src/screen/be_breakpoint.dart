@@ -5,9 +5,9 @@ import 'package:flutter/foundation.dart';
 ///
 ///| **Breakpoint**  | **Device Category** | **Button Size** | **Input Size** | **Text Size** |
 ///|---------------|----------------|-------------|------------|------------|
-///| xs, sm       | Mobile         | Small       | Compact    | Small      |
-///| md          | Tablet         | Medium      | Regular    | Medium     |
-///| lg, xl, xl2 | Desktop        | Large       | Big        | Large      |
+///| xs, sm        | Mobile         | Small       | Compact    | Small      |
+///| md            | Tablet         | Medium      | Regular    | Medium     |
+///| lg, xl, xl2   | Desktop        | Large       | Big        | Large      |
 
 enum BeBreakpoint {
   xs, // Extra small
@@ -77,15 +77,17 @@ final class BeResponsivePoints with Diagnosticable {
   }
 }
 
-BeBreakpoint calculateBreakpoint(final double screenWidth, [final BeResponsivePoints breakpoints = const BeResponsivePoints()]) =>
-    switch (screenWidth) {
-      _ when screenWidth < breakpoints.sm => BeBreakpoint.xs,
-      _ when screenWidth < breakpoints.md => BeBreakpoint.sm,
-      _ when screenWidth < breakpoints.lg => BeBreakpoint.md,
-      _ when screenWidth < breakpoints.xl => BeBreakpoint.lg,
-      _ when screenWidth < breakpoints.xl2 => BeBreakpoint.xl,
-      _ => BeBreakpoint.xl2,
-    };
+BeBreakpoint calculateBreakpoint(
+  final double screenWidth, [
+  final BeResponsivePoints breakpoints = const BeResponsivePoints(),
+]) => switch (screenWidth) {
+  _ when screenWidth < breakpoints.sm => BeBreakpoint.xs,
+  _ when screenWidth < breakpoints.md => BeBreakpoint.sm,
+  _ when screenWidth < breakpoints.lg => BeBreakpoint.md,
+  _ when screenWidth < breakpoints.xl => BeBreakpoint.lg,
+  _ when screenWidth < breakpoints.xl2 => BeBreakpoint.xl,
+  _ => BeBreakpoint.xl2,
+};
 
 extension BeBreakpointDevice on BeBreakpoint {
   bool get isMobile => this == BeBreakpoint.xs || this == BeBreakpoint.sm;

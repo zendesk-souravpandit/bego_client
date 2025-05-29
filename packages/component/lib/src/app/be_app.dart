@@ -1,17 +1,46 @@
 import 'package:becomponent/app.dart';
-import 'package:becomponent/src/app/app_controllers.dart';
+import 'package:becomponent/src/page/app_settings/app_settings.page.dart';
 import 'package:becore/getx.dart';
+import 'package:beui/layout.dart';
+import 'package:beui/overlay.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 class BeApp extends StatelessWidget {
-  const BeApp({super.key});
+  BeApp({super.key, this.responsivePoints = const BeResponsivePoints()});
 
+  late final AppRootBindings appBindings = AppRootBindings();
+
+  final BeResponsivePoints responsivePoints;
   @override
   Widget build(final BuildContext context) {
-    Get
-      ..put(AppStateController(AppState.initial()), permanent: true)
-      ..put(AppThemeController(), permanent: true)
-      ..put(AppLocaleController(), permanent: true);
-    return const Placeholder();
+    appBindings.dependencies();
+
+    return Obx(() {
+      final themeController = Get.find<AppThemeController>();
+      final localizationController = Get.find<AppLocaleController>();
+
+      return AppResponsiveWrapper(
+        responsivePoints: responsivePoints,
+
+        child: GetMaterialApp(
+          // binds: [Bind.lazyPut<HomePageController>(HomePageController.new)],
+          debugShowCheckedModeBanner: false,
+          theme: themeController.theme.value,
+          themeMode: themeController.themeMode.value,
+          locale: localizationController.locale.value,
+          supportedLocales: localizationController.locales,
+          fallbackLocale: localizationController.locales.first,
+          // translations: MyTranslations(),
+          builder: (final context, final child) => BeNotificationsProvider(child: Material(child: child)),
+          localizationsDelegates: const [
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          home: AppSettingsPage(),
+        ),
+      );
+    });
   }
 }

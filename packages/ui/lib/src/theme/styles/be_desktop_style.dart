@@ -1,4 +1,5 @@
-import 'package:beui/src/theme/styles/be_mobile_value.dart';
+import 'package:beui/theme.dart';
+import 'package:flutter/material.dart';
 
 class BeDesktopValue extends BeMobileValue {
   const BeDesktopValue();
@@ -72,4 +73,7 @@ class BeDesktopValue extends BeMobileValue {
   double get labelSmallTextSize => 14; // +2 from tablet
   @override
   double get labelSmallLineHeight => 21; // 14 * 1.5
+
+  @override
+  Color get deviceColor => BeColors.green;
 }

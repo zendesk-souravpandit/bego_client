@@ -4,16 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 @widgetbook.UseCase(name: 'BeNotificationProvider', path: 'widget/overlay', type: BeNotificationsProvider)
-Widget useCaseBeNotificationProvider(final BuildContext context) => const BeNotificationPoviderDemo();
+Widget useCaseBeNotificationProvider(final BuildContext context) => const BeNotificationProviderDemo();
 
-class BeNotificationPoviderDemo extends StatefulWidget {
-  const BeNotificationPoviderDemo({super.key});
+class BeNotificationProviderDemo extends StatefulWidget {
+  const BeNotificationProviderDemo({super.key});
 
   @override
-  State<BeNotificationPoviderDemo> createState() => _BeNotificationPoviderDemoState();
+  State<BeNotificationProviderDemo> createState() => _BeNotificationProviderDemoState();
 }
 
-class _BeNotificationPoviderDemoState extends State<BeNotificationPoviderDemo> with SingleTickerProviderStateMixin {
+class _BeNotificationProviderDemoState extends State<BeNotificationProviderDemo> with SingleTickerProviderStateMixin {
   late final BePopoverController controller = BePopoverController(vsync: this);
 
   @override

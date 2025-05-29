@@ -2,7 +2,7 @@ import 'package:becomponent/page.dart';
 import 'package:becore/hooks.dart';
 import 'package:flutter/material.dart';
 
-class BeStateContext<S extends BeState, A extends BeStateAction> extends InheritedWidget {
+class BeStateContext<S, A extends BeStateAction> extends InheritedWidget {
   const BeStateContext({super.key, required this.state, required this.dispatch, required super.child, this.debugLabel});
 
   final S state;
@@ -14,10 +14,7 @@ class BeStateContext<S extends BeState, A extends BeStateAction> extends Inherit
     return oldWidget.state != state;
   }
 
-  static BeStateContext<S, A>? of<S extends BeState, A extends BeStateAction>(
-    final BuildContext context, {
-    final bool listen = true,
-  }) {
+  static BeStateContext<S, A>? of<S, A extends BeStateAction>(final BuildContext context, {final bool listen = true}) {
     return listen
         ? context.dependOnInheritedWidgetOfExactType<BeStateContext<S, A>>()
         : context.getInheritedWidgetOfExactType<BeStateContext<S, A>>();
@@ -25,7 +22,7 @@ class BeStateContext<S extends BeState, A extends BeStateAction> extends Inherit
 }
 
 /// Enhanced Provider with middleware support
-class BePageProvider<S extends BeState, A extends BeStateAction> extends HookWidget {
+class BePageProvider<S, A extends BeStateAction> extends HookWidget {
   const BePageProvider({
     super.key,
     required this.initialState,

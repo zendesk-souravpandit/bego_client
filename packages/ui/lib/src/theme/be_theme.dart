@@ -12,12 +12,16 @@ class BeTheme extends StatelessWidget {
   final BeThemeData betheme;
 
   // @useResult
-  static BeThemeData of(final BuildContext context) => Theme.of(context).extension<BeThemeData>()!;
+  static BeThemeData of(final BuildContext context) {
+    final beThemeData = Theme.of(context).extension<BeThemeData>();
+    if (beThemeData == null) {
+      throw FlutterError('BeThemeData not found in the current Theme context.');
+    }
+    return beThemeData;
+  }
 
-  static ThemeData buildThemeOf(final BuildContext context) {
-    final betheme = of(context);
-    final brightness = betheme.themeMode == ThemeMode.dark ? Brightness.dark : Brightness.light;
-    return buildTheme(betheme: betheme, brightness: brightness);
+  static ThemeData buildThemeData({required final BeThemeData betheme}) {
+    return buildTheme(betheme: betheme);
   }
 
   @override

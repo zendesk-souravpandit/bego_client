@@ -1,5 +1,41 @@
+import 'dart:ui';
+
 import 'package:beui/src/extensions/be_double_ext.dart';
 import 'package:flutter/material.dart';
+
+// class RoundedBlurredRectangleBorder extends RoundedRectangleBorder {
+//   const RoundedBlurredRectangleBorder({BorderRadius super.borderRadius, super.side, this.blurSigma = 10.0});
+//   final double blurSigma;
+
+//   @override
+//   void paint(
+//     final Canvas canvas,
+//     final Rect rect, {
+//     final TextDirection? textDirection,
+//     final BoxShape shape = BoxShape.rectangle,
+//     final BorderRadius? borderRadius,
+//   }) {
+//     final BorderRadius effectiveBorderRadius = borderRadius ?? this.borderRadius.resolve(textDirection);
+//     final RRect rRect = effectiveBorderRadius.toRRect(rect);
+
+//     canvas
+//       ..saveLayer(rect, Paint())
+//       ..drawRRect(
+//         rRect,
+//         Paint()
+//           ..imageFilter = ImageFilter.blur(sigmaX: blurSigma, sigmaY: blurSigma)
+//           ..color = Colors.transparent,
+//       )
+//       ..drawRRect(rRect, Paint()..color = Colors.white.withOpacity(0.2));
+
+//     if (side != BorderSide.none) {
+//       final borderPaint = side.toPaint();
+//       canvas.drawRRect(rRect.deflate(side.width / 2), borderPaint);
+//     }
+
+//     canvas.restore();
+//   }
+// }
 
 class BeRoundedRectangleBorder extends RoundedRectangleBorder {
   const BeRoundedRectangleBorder({

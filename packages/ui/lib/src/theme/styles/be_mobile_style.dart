@@ -1,6 +1,9 @@
-import 'package:beui/src/theme/be_style_value.dart';
+import 'dart:ui';
 
-class BeMobileValue implements BeStyleValue {
+import 'package:beui/src/theme/be_style_value.dart';
+import 'package:beui/src/theme/colors/be_colors.dart';
+
+class BeMobileValue implements BeAdaptiveStyle {
   const BeMobileValue();
 
   @override
@@ -73,6 +76,9 @@ class BeMobileValue implements BeStyleValue {
 
   @override
   int get notificationMaxCount => 3;
+
+  @override
+  Color get deviceColor => BeColors.red;
 }
 
 // @immutable

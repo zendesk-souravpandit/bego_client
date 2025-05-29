@@ -2,9 +2,13 @@
 /// Yet to be developed based on design system
 ///
 library;
+
+import 'package:flutter/material.dart';
 // ignore_for_file: lines_longer_than_80_chars
 
-abstract class BeStyleValue {
+abstract class BeAdaptiveStyle {
+  Color get deviceColor;
+
   // Display
   double get displayLargeTextSize;
   double get displayLargeLineHeight;
