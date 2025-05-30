@@ -1,3 +1,4 @@
+import 'package:becomponent/src/app/app_info.dart';
 import 'package:becore/modal.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -7,20 +8,23 @@ part 'app_state.g.dart';
 @freezed
 abstract class AppState with _$AppState {
   const factory AppState({
-    required final String appName,
-    required final String package,
-    required final String version,
+    required final AppInfo appInfo,
     required final String? deviceId,
     @KeyValueSSConverter() required final KeyValueSS? locale,
     required final String? theme,
   }) = _AppState;
 
   factory AppState.initial() => AppState(
-    appName: 'Business Ocean (Bego)',
-    package: 'com.example.bego',
-    version: '0.0.1',
+    appInfo: const AppInfo(
+      appName: 'Business Ocean (Bego)',
+      packageName: 'com.example.bego',
+      version: '0.0.1',
+      buildNumber: '1',
+      buildSignature: null,
+      installerStore: null,
+    ),
     deviceId: null,
-    locale: KeyValueSS(key: 'en_IN', value: 'English (IN)'),
+    locale: KeyValueSS(key: 'ja_JP', value: 'Japanese (JP)'),
     theme: 'light',
   );
 

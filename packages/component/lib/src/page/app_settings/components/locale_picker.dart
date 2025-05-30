@@ -3,7 +3,7 @@ import 'package:becore/getx.dart';
 import 'package:becore/modal.dart';
 import 'package:beui/be_icons.dart';
 import 'package:beui/decoration.dart';
-import 'package:beui/mulitchild.dart';
+import 'package:beui/text.dart';
 import 'package:beui/theme.dart';
 import 'package:flutter/material.dart';
 
@@ -34,53 +34,60 @@ class LocalePickerWidget extends StatelessWidget {
       // Add more locales as required
     ];
 
-    final currentLocaleKey = controller.state.locale?.key ?? '';
+    final currentLocaleKey = controller.appState.value.locale?.key ?? '';
     final betheme = becolors(context);
 
     return Scaffold(
-      body: BeLabel(
-        innerLabel: true,
-        position: BeLabelPosition.topRight,
-        offset: const Offset(8, -8),
-        label: Container(
-          decoration: const ShapeDecoration(color: BeColors.red, shape: CircleBorder()),
-          child: IconButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            icon: const Icon(BeIcons.icon_close, color: BeColors.white),
-          ),
-        ),
-        child: ListView.builder(
-          padding: pt36,
-          itemCount: locales.length,
-          itemBuilder: (final context, final index) {
-            final locale = locales[index];
-            final isSelected = locale.key == currentLocaleKey;
-            return ListTile(
-              selected: isSelected,
-              selectedTileColor: betheme.isDark ? Colors.grey[800] : Colors.grey[200],
-              title: Text(locale.value),
-              trailing:
-                  isSelected
-                      ? Container(
-                        decoration: const ShapeDecoration(
-                          color: Colors.green,
-                          shape: CircleBorder(side: BorderSide(color: Colors.green, width: 2)),
-                        ),
-                        child: const Padding(
-                          padding: p2,
-                          child: Icon(Icons.check, color: Colors.white, size: 16),
-                        ),
-                      )
-                      : null,
-              onTap: () {
-                controller.updateAppLocale(locale);
+      appBar: AppBar(
+        actionsPadding: p0,
+        title: const BeText.headlineSmall('Select Language'),
+        automaticallyImplyLeading: false,
+        iconTheme: const IconThemeData(),
+        actions: [
+          Container(
+            margin: pr8,
+            decoration: const ShapeDecoration(color: BeColors.red, shape: CircleBorder()),
+            child: IconButton(
+              onPressed: () {
                 Navigator.of(context).pop();
               },
-            );
-          },
-        ),
+              icon: const Icon(BeIcons.icon_close, color: BeColors.white, size: 20),
+            ),
+          ),
+        ],
+      ),
+      body: ListView.builder(
+        itemCount: locales.length,
+        itemBuilder: (final context, final index) {
+          final locale = locales[index];
+          final isSelected = locale.key == currentLocaleKey;
+          return ListTile(
+            minVerticalPadding: 4,
+            selected: isSelected,
+            selectedTileColor: betheme.isDark ? Colors.grey[800] : Colors.grey[200],
+            title: BeText(locale.value),
+            leading: Container(
+              decoration: ShapeDecoration(
+                color: isSelected ? Colors.green : null,
+                shape: CircleBorder(
+                  side: BorderSide(color: isSelected ? Colors.green : BeColors.gray300, width: 1),
+                ),
+              ),
+              child: Padding(
+                padding: p2,
+                child: Icon(
+                  isSelected ? BeIcons.icon_check : const IconData(32),
+                  color: Colors.white,
+                  size: 16,
+                ),
+              ),
+            ),
+            onTap: () {
+              controller.updateAppLocale(locale);
+              Navigator.of(context).pop();
+            },
+          );
+        },
       ),
     );
   }

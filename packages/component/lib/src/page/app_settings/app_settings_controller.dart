@@ -11,6 +11,8 @@ class AppSettingsController extends BePageController<AppState> {
   final Rx<AppState> _state = AppState.initial().obs;
   final themeMode = Rx<ThemeMode>(ThemeMode.light);
   // Shortcut getter for current immutable state
+  Rx<AppState> get appState => _state;
+
   @override
   AppState get state => _state.value;
 
@@ -63,6 +65,7 @@ class AppSettingsController extends BePageController<AppState> {
   }
 
   void updateAppLocale(final KeyValueSS? locale) {
+    print(locale?.toJson());
     _state.value = _state.value.copyWith(locale: locale);
   }
 

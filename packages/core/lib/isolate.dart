@@ -1,4 +1,4 @@
 library becore.isolate;
 
-// https://pub.dev/packages/easy_isolate_mixin
-export 'package:easy_isolate_mixin/easy_isolate_mixin.dart';
+// https://pub.dev/packages/easy_isolate
+export 'package:easy_isolate/easy_isolate.dart';
