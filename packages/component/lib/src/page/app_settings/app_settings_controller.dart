@@ -7,6 +7,7 @@ import 'package:flutter/material.dart' show ThemeMode;
 
 class AppSettingsController extends BePageController<AppState> {
   // Reactive AppState observable
+
   final Rx<AppState> _state = AppState.initial().obs;
   final themeMode = Rx<ThemeMode>(ThemeMode.light);
   // Shortcut getter for current immutable state
