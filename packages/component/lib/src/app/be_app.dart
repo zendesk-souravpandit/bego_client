@@ -1,5 +1,4 @@
 import 'package:becomponent/app.dart';
-import 'package:becomponent/src/page/app_settings/app_settings.page.dart';
 import 'package:becore/getx.dart';
 import 'package:beui/layout.dart';
 import 'package:beui/overlay.dart';
@@ -7,19 +6,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 class BeApp extends StatelessWidget {
-  BeApp({super.key, this.responsivePoints = const BeResponsivePoints()});
-
-  late final AppRootBindings appBindings = AppRootBindings();
+  const BeApp({super.key, this.responsivePoints = const BeResponsivePoints()});
 
   final BeResponsivePoints responsivePoints;
   @override
   Widget build(final BuildContext context) {
-    appBindings.dependencies();
+    final themeController = Get.find<AppThemeController>();
+    final localizationController = Get.find<AppLocaleController>();
 
     return Obx(() {
-      final themeController = Get.find<AppThemeController>();
-      final localizationController = Get.find<AppLocaleController>();
-
       return AppResponsiveWrapper(
         responsivePoints: responsivePoints,
 

@@ -1,5 +1,6 @@
 import 'package:becomponent/app.dart';
 import 'package:becomponent/src/page/be_page_controller.dart';
+import 'package:becomponent/src/page/be_page_section_resolver.dart';
 import 'package:becomponent/src/state/app_state.dart';
 import 'package:becore/getx.dart';
 import 'package:becore/modal.dart';
@@ -11,8 +12,7 @@ class AppSettingsController extends BePageController<AppState> {
   final Rx<AppState> _state = AppState.initial().obs;
   final themeMode = Rx<ThemeMode>(ThemeMode.light);
   // Shortcut getter for current immutable state
-  @override
-  AppState get state => _state.value;
+  Rx<AppState> get appState => _state;
 
   void toggleTheme() {
     final themeController = Get.find<AppThemeController>()..toggleTheme();
@@ -73,5 +73,14 @@ class AppSettingsController extends BePageController<AppState> {
   // Load from JSON, replacing entire state
   void loadFromJson(final Map<String, dynamic> json) {
     _state.value = AppState.fromJson(json);
+  }
+
+  @override
+  Future<AppState?> fetchViewSection(final BeSection section) async {
+    if (section.viewId == 'profile2') {
+      // Return the current state for the app settings section
+      return _state.value;
+    }
+    return null;
   }
 }

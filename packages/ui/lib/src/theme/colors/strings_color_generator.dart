@@ -16,7 +16,7 @@ int stringToColor(final String input, {final bool lightTone = true}) {
   // Choose lightness based on tone
   final double lightness = lightTone ? 0.85 : 0.35; // light or dark tone
 
-  return _hslToColor(hue, saturation, lightness).value;
+  return _hslToColor(hue, saturation, lightness).toARGB32();
 }
 
 Color _hslToColor(double h, final double s, final double l) {
