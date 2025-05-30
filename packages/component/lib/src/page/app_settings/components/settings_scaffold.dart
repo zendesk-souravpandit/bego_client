@@ -1,9 +1,5 @@
 import 'package:becomponent/app.dart';
-import 'package:becomponent/src/page/app_settings/components/locale_picker.dart';
 import 'package:becomponent/src/page/app_settings/components/settings_list_tile.dart';
-import 'package:becomponent/src/page/be_view.dart';
-import 'package:becomponent/src/page/components/be_state_widgets.dart';
-import 'package:becomponent/src/state/app_state.dart';
 import 'package:becomponent/src/state/list_tile_item.dart';
 import 'package:becore/getx.dart';
 import 'package:beui/be_icons.dart';
@@ -50,12 +46,10 @@ class AppSettingsScaffold extends StatelessWidget {
         onTap: () async {
           await showLocalePickerDialog(context);
         },
-        trailing: Obx(
-          () => Text(
-            controller.state.locale?.value ?? 'English (US)',
-            style: const TextStyle(color: BeColors.gray400),
-          ),
-        ),
+        trailing: Obx(() {
+          final lang = controller.state.locale?.value ?? 'English (US)';
+          return Text(lang, style: const TextStyle(color: BeColors.gray400));
+        }),
       ),
     ];
 
@@ -95,11 +89,19 @@ class AppSettingsScaffold extends StatelessWidget {
       ListTileItem(
         icon: BeIcons.icon_fi_rr_info,
         title: 'App Name',
-        subtitle: state.appName,
+        subtitle: state.appInfo.appName,
         onTap: () {},
       ),
-      ListTileItem(icon: BeIcons.icon_fi_rr_apps, title: 'Package Name', subtitle: state.package),
-      ListTileItem(icon: BeIcons.icon_attribution, title: 'Version', subtitle: state.version),
+      ListTileItem(
+        icon: BeIcons.icon_fi_rr_apps,
+        title: 'Package Name',
+        subtitle: state.appInfo.packageName,
+      ),
+      ListTileItem(
+        icon: BeIcons.icon_attribution,
+        title: 'Version',
+        subtitle: state.appInfo.version,
+      ),
     ];
 
     return Scaffold(
@@ -111,9 +113,6 @@ class AppSettingsScaffold extends StatelessWidget {
           _Section(title: 'Other settings', items: otherSettings),
           _Section(title: 'App Info', items: appInfo),
         ],
-      ),
-      bottomSheet: const Card(
-        child: SizedBox(height: 300, width: widthInfinity, child: ProfileView()),
       ),
     );
   }
@@ -142,26 +141,17 @@ class _Section extends StatelessWidget {
 }
 
 Future<void> showLocalePickerDialog(final BuildContext context) async {
-  return showBeResponsiveDialog<void>(context: context, child: const LocalePickerWidget());
-}
-
-class ProfileView extends BeView<AppState, AppSettingsController> {
-  const ProfileView({super.key}) : super(viewId: 'profile');
-
-  @override
-  StateWidget<AppState> viewSuccess(final BuildContext context, final AppState state) {
-    return MyWidget(data: state);
-  }
-}
-
-class MyWidget extends SuccessStateWidget<AppState> {
-  const MyWidget({super.key, required super.data});
-
-  @override
-  Widget build(final BuildContext context) {
-    return Text(
-      data.toJson().toString(),
-      style: const TextStyle(fontSize: 20, color: BeColors.gray800),
-    );
-  }
+  final betheme = BeTheme.of(context);
+  return showBeResponsiveDialog<void>(
+    context: context,
+    child: const LocalePickerWidget(),
+    padding: p4,
+    decoration: ShapeDecoration(
+      color: betheme.colors.background,
+      shape: const RoundedSuperellipseBorder(
+        side: BorderSide(color: Colors.transparent, width: 0.5),
+        borderRadius: BorderRadius.all(Radius.circular(12)),
+      ),
+    ),
+  );
 }

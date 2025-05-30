@@ -32,6 +32,40 @@ import 'package:flutter/material.dart';
 /// - Implement the state-specific UI in the overridable `viewLoading`, `viewError`, `viewEmpty`,
 ///   `viewSuccess`, and `viewCustom` methods.
 /// - The `controller` must call `update([section])` to trigger section-specific rebuilds.
+/// Example:
+///
+/// ```dart
+///  class ProfileView extends BeView<AppState, AppSettingsController> {
+///    const ProfileView({super.key}) : super(viewId: 'profile');
+///
+///    @override
+///    StateWidget<AppState> viewSuccess(final BuildContext context, final AppState state) {
+///      return MyWidget(data: state);
+///    }
+///  }
+///
+///  class MyWidget extends SuccessStateWidget<AppState> {
+///    const MyWidget({super.key, required super.data});
+///
+///    @override
+///    Widget build(final BuildContext context) {
+///      return Text(
+///        data.toJson().toString(),
+///        style: const TextStyle(fontSize: 20, color: BeColors.gray800),
+///      );
+///    }
+///  }
+///
+///  class ProfileView2 extends BeView<AppState, AppSettingsController> {
+///    const ProfileView2({super.key}) : super(viewId: 'profile2');
+///
+///    @override
+///    StateWidget<AppState> viewSuccess(final BuildContext context, final AppState state) {
+///      return MyWidget(data: state);
+///    }
+///  }
+/// ```
+
 abstract class BeView<S, C extends BePageController<S>> extends GetView<C> implements BeSection {
   const BeView({super.key, required this.viewId, this.viewController});
 
