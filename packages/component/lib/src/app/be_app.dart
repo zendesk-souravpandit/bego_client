@@ -32,13 +32,19 @@ class BeApp extends StatelessWidget {
           supportedLocales: localizationController.locales,
           fallbackLocale: localizationController.locales.first,
           // translations: MyTranslations(),
-          builder: (final context, final child) => BeNotificationsProvider(child: Material(child: child)),
+          builder:
+              (final context, final child) =>
+                  BeNotificationsProvider(child: Material(child: child)),
           localizationsDelegates: const [
             GlobalMaterialLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate,
             GlobalCupertinoLocalizations.delegate,
           ],
-          home: AppSettingsPage(),
+          // home: AppSettingsPage(),
+          getPages: [
+            GetPage(name: '/settings', page: AppSettingsPage.new),
+            GetPage(name: '/abc', page: AppSettingsPage.new),
+          ],
         ),
       );
     });
