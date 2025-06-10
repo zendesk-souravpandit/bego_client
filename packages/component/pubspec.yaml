@@ -9,6 +9,8 @@ environment:
   flutter: ">=3.27.0"
 
 dependencies:
+  beassets:
+    path: ./../assets  
   becore:
     path: ../core
   beui:

@@ -7,13 +7,43 @@
 // ignore_for_file: type=lint
 // ignore_for_file: directives_ordering,unnecessary_import,implicit_dynamic_list_literal,deprecated_member_use
 
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_svg/flutter_svg.dart' as _svg;
+import 'package:vector_graphics/vector_graphics.dart' as _vg;
+
+class $AssetsIllustrationGen {
+  const $AssetsIllustrationGen();
+
+  /// File path: assets/illustration/laptop_no_result.svg
+  SvgGenImage get laptopNoResult =>
+      const SvgGenImage('assets/illustration/laptop_no_result.svg');
+
+  /// File path: assets/illustration/spaceship_error_404.svg
+  SvgGenImage get spaceshipError404 =>
+      const SvgGenImage('assets/illustration/spaceship_error_404.svg');
+
+  /// File path: assets/illustration/unplug_error_robot.svg
+  SvgGenImage get unplugErrorRobot =>
+      const SvgGenImage('assets/illustration/unplug_error_robot.svg');
+
+  /// Directory path: packages/beassets/assets/illustration
+  String get path => 'packages/beassets/assets/illustration';
+
+  /// List of all assets
+  List<SvgGenImage> get values => [
+    laptopNoResult,
+    spaceshipError404,
+    unplugErrorRobot,
+  ];
+}
 
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
   /// File path: assets/images/demo_image.jpg
-  AssetGenImage get demoImage => const AssetGenImage('assets/images/demo_image.jpg');
+  AssetGenImage get demoImage =>
+      const AssetGenImage('assets/images/demo_image.jpg');
 
   /// Directory path: packages/beassets/assets/images
   String get path => 'packages/beassets/assets/images';
@@ -27,6 +57,7 @@ class BeAsset {
 
   static const String package = 'beassets';
 
+  static const $AssetsIllustrationGen illustration = $AssetsIllustrationGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
 }
 
@@ -60,7 +91,8 @@ class AssetGenImage {
     bool matchTextDirection = false,
     bool gaplessPlayback = true,
     bool isAntiAlias = false,
-    @Deprecated('Do not specify package for a generated library asset') String? package = package,
+    @Deprecated('Do not specify package for a generated library asset')
+    String? package = package,
     FilterQuality filterQuality = FilterQuality.medium,
     int? cacheWidth,
     int? cacheHeight,
@@ -95,9 +127,85 @@ class AssetGenImage {
 
   ImageProvider provider({
     AssetBundle? bundle,
-    @Deprecated('Do not specify package for a generated library asset') String? package = package,
+    @Deprecated('Do not specify package for a generated library asset')
+    String? package = package,
   }) {
     return AssetImage(_assetName, bundle: bundle, package: package);
+  }
+
+  String get path => _assetName;
+
+  String get keyName => 'packages/beassets/$_assetName';
+}
+
+class SvgGenImage {
+  const SvgGenImage(this._assetName, {this.size, this.flavors = const {}})
+    : _isVecFormat = false;
+
+  const SvgGenImage.vec(this._assetName, {this.size, this.flavors = const {}})
+    : _isVecFormat = true;
+
+  final String _assetName;
+  final Size? size;
+  final Set<String> flavors;
+  final bool _isVecFormat;
+
+  static const String package = 'beassets';
+
+  _svg.SvgPicture svg({
+    Key? key,
+    bool matchTextDirection = false,
+    AssetBundle? bundle,
+    @Deprecated('Do not specify package for a generated library asset')
+    String? package = package,
+    double? width,
+    double? height,
+    BoxFit fit = BoxFit.contain,
+    AlignmentGeometry alignment = Alignment.center,
+    bool allowDrawingOutsideViewBox = false,
+    WidgetBuilder? placeholderBuilder,
+    String? semanticsLabel,
+    bool excludeFromSemantics = false,
+    _svg.SvgTheme? theme,
+    ColorFilter? colorFilter,
+    Clip clipBehavior = Clip.hardEdge,
+    @deprecated Color? color,
+    @deprecated BlendMode colorBlendMode = BlendMode.srcIn,
+    @deprecated bool cacheColorFilter = false,
+  }) {
+    final _svg.BytesLoader loader;
+    if (_isVecFormat) {
+      loader = _vg.AssetBytesLoader(
+        _assetName,
+        assetBundle: bundle,
+        packageName: package,
+      );
+    } else {
+      loader = _svg.SvgAssetLoader(
+        _assetName,
+        assetBundle: bundle,
+        packageName: package,
+        theme: theme,
+      );
+    }
+    return _svg.SvgPicture(
+      loader,
+      key: key,
+      matchTextDirection: matchTextDirection,
+      width: width,
+      height: height,
+      fit: fit,
+      alignment: alignment,
+      allowDrawingOutsideViewBox: allowDrawingOutsideViewBox,
+      placeholderBuilder: placeholderBuilder,
+      semanticsLabel: semanticsLabel,
+      excludeFromSemantics: excludeFromSemantics,
+      colorFilter:
+          colorFilter ??
+          (color == null ? null : ColorFilter.mode(color, colorBlendMode)),
+      clipBehavior: clipBehavior,
+      cacheColorFilter: cacheColorFilter,
+    );
   }
 
   String get path => _assetName;
