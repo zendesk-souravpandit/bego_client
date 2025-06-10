@@ -1,4 +1,7 @@
 import 'package:becomponent/app.dart';
+import 'package:becomponent/src/page/components/connection_lost_page.dart';
+import 'package:becomponent/src/page/components/no_result_found_widget.dart';
+import 'package:becomponent/src/page/components/unknown_page.dart';
 import 'package:becore/getx.dart';
 import 'package:beui/layout.dart';
 import 'package:beui/overlay.dart';
@@ -37,9 +40,11 @@ class BeApp extends StatelessWidget {
           ],
           // home: AppSettingsPage(),
           getPages: [
-            GetPage(name: '/settings', page: AppSettingsPage.new),
-            GetPage(name: '/abc', page: AppSettingsPage.new),
+            GetPage(name: '/settings', page: NoResultFoundWidget.new),
+            // GetPage(name: '/settings', page: AppSettingsPage.new),
+            // GetPage(name: '/abc', page: AppSettingsPage.new),
           ],
+          unknownRoute: GetPage(name: '/not-found', page: UnknownPageWidget.new),
         ),
       );
     });

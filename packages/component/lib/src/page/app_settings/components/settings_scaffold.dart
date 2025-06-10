@@ -59,7 +59,7 @@ class AppSettingsScaffold extends StatelessWidget {
         title: 'Privacy & Security',
         subtitle: 'Control data permissions, app lock, and security settings.',
         onTap: () {
-          Get.toNamed<void>('/abc');
+          Get.toNamed<void>('/abcs');
         },
       ),
       ListTileItem(
