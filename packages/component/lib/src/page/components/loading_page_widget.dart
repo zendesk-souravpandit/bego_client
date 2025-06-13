@@ -1,8 +1,8 @@
 import 'package:beui/text.dart';
 import 'package:flutter/widgets.dart';
 
-class LoadingPage extends StatelessWidget {
-  const LoadingPage({super.key});
+class LoadingPageWidget extends StatelessWidget {
+  const LoadingPageWidget({super.key});
 
   @override
   Widget build(final BuildContext context) {
