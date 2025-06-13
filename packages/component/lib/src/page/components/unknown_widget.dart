@@ -4,8 +4,8 @@ import 'package:beui/text.dart';
 import 'package:beui/theme.dart';
 import 'package:flutter/material.dart';
 
-class UnknownPageWidget extends StatelessWidget {
-  const UnknownPageWidget({super.key, this.data});
+class UnknownWidget extends StatelessWidget {
+  const UnknownWidget({super.key, this.data});
   final dynamic data;
   @override
   Widget build(final BuildContext context) {
