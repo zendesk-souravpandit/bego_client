@@ -4,6 +4,7 @@ library becomponent.app;
 
 export 'src/app/app_responsive_wrapper.dart';
 export 'src/app/be_app.dart';
+export 'src/app/be_app_controller.dart';
 export 'src/app/locale_controller.dart';
 export 'src/app/theme_controller.dart';
 export 'src/extensions/context_ext.dart';

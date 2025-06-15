@@ -9,6 +9,7 @@ environment:
   flutter: ">=3.27.0"
 
 dependencies:
+  dartx: ^1.2.0
   flutter:
     sdk: flutter
   flutter_hooks: ^0.21.2
