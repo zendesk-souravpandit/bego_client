@@ -1,5 +1,8 @@
 import 'package:becomponent/app.dart';
 import 'package:becomponent/src/app/panel/app_bar_panel.dart';
+import 'package:becomponent/src/app/panel/main_content_panel.dart';
+import 'package:becomponent/src/app/panel/nav_bar_panel.dart';
+import 'package:becomponent/src/app/panel/right_content_panel.dart';
 import 'package:becomponent/src/page/components/unknown_widget.dart';
 import 'package:becore/getx.dart';
 import 'package:beui/layout.dart';
@@ -22,7 +25,6 @@ class BeApp extends StatelessWidget {
         responsivePoints: responsivePoints,
 
         child: GetMaterialApp(
-          // binds: [Bind.lazyPut<HomePageController>(HomePageController.new)],
           debugShowCheckedModeBanner: false,
           theme: themeController.theme.value,
           themeMode: themeController.themeMode.value,
@@ -118,8 +120,6 @@ class AuthMiddleware extends GetMiddleware {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Expanded(child: widget),
-        const SizedBox(height: 20),
-        const Divider(),
         Wrap(
           children: [
             ElevatedButton(
@@ -137,7 +137,18 @@ class AuthMiddleware extends GetMiddleware {
               },
               child: const Text('Change Home to Unknown'),
             ),
-            ElevatedButton(onPressed: () {}, child: const Text('Change Home to home')),
+            ElevatedButton(
+              onPressed: () {
+                controller.changeAppBarHeight = controller.appBarSize.value.height + 10.0;
+              },
+              child: const Text('increase appBar height'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                controller.changeAppBarHeight = controller.appBarSize.value.height - 10.0;
+              },
+              child: const Text('decrease appBar height'),
+            ),
             ElevatedButton(
               onPressed: () {
                 // controller.appNavigation.currentState?.pushNamed('/not-found');
@@ -163,174 +174,16 @@ class BeAppPage extends GetView<BeAppController> {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: controller.appBarSize.value,
-        child: Container(
-          color: betheme.colors.primary,
-          child: Navigator(
-            key: controller.navigatorAppBarKey,
-            onGenerateRoute: (final settings) {
-              if (settings.name == '/not-found') {
-                return MaterialPageRoute<void>(builder: (final context) => const BeAppBarPanel());
-              }
-
-              return MaterialPageRoute<void>(
-                builder: (final context) {
-                  return AppBar(
-                    title: const Text('BeApp Dashboard'),
-                    actions: [
-                      IconButton(
-                        icon: const Icon(Icons.settings),
-                        onPressed: () {
-                          controller.appBarNavigator.push(
-                            MaterialPageRoute<void>(
-                              builder:
-                                  (final context) => AppBar(
-                                    title: const Text('Hello'),
-                                    automaticallyImplyLeading: false,
-                                    actions: [
-                                      IconButton(
-                                        icon: const Icon(Icons.close),
-                                        onPressed: () {
-                                          if (controller.mainNavigator.canPop()) {
-                                            controller.mainNavigator.maybePop();
-                                          } else {
-                                            controller.appBarNavigator.pop();
-                                          }
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                            ),
-                          );
-                        },
-                      ),
-                    ],
-                  );
-                },
-              );
-            },
-          ),
-        ),
+        child: const BeAppBarPanel(),
       ),
       body: Center(
         child: Row(
           children: [
-            if (breakpoint.isDesktop || breakpoint.isTablet) ...[
-              BeNavPanel(
-                navigationKey: controller.navigatorDrawerKey,
-                child: const Text('Navigation Panel'),
-              ),
-              const VerticalDivider(indent: 0, endIndent: 0),
-            ],
-            Expanded(
-              child: Navigator(
-                key: controller.navigatorMainKey,
-
-                // initialRoute: controller.appNavigation.currentState,
-                onGenerateRoute: (final settings) {
-                  // print('onGenerateRoute: ${settings.name}');
-                  return MaterialPageRoute<void>(
-                    builder: (final context) {
-                      // if (settings.name == '/profile') {
-                      //   return const ProfilePage();
-                      // }
-                      if (settings.name == '/not-found') {
-                        return const UnknownWidget();
-                      }
-                      return const Center(child: Text('Welcome to BeApp!'));
-                    },
-                  );
-                },
-              ),
-            ),
-
-            if (betheme.breakpoint.isDesktop) ...[
-              const VerticalDivider(indent: 0, endIndent: 0),
-              BeSidePanel(
-                navigationKey: controller.navigatorRightPanelKey,
-                child: const Text('Side Panel'),
-              ),
-            ],
+            if (breakpoint.isDesktop || breakpoint.isTablet) const BeNavBarPanel(),
+            const Expanded(child: BeMainContentPanel()),
+            if (betheme.breakpoint.isDesktop) const BeRightSidePanel(),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class BeSidePanel extends StatelessWidget {
-  const BeSidePanel({super.key, required this.child, required this.navigationKey});
-
-  final Widget child;
-  final GlobalKey<NavigatorState> navigationKey;
-
-  @override
-  Widget build(final BuildContext context) {
-    return Navigator(
-      key: navigationKey,
-      onGenerateRoute:
-          (final settings) => MaterialPageRoute<void>(builder: (final context) => child),
-    );
-  }
-}
-
-class BeNavPanel extends StatelessWidget {
-  const BeNavPanel({super.key, required this.child, required this.navigationKey});
-
-  final Widget child;
-  final GlobalKey<NavigatorState> navigationKey;
-
-  @override
-  Widget build(final BuildContext context) {
-    return Navigator(
-      key: navigationKey,
-      onGenerateRoute:
-          (final settings) => MaterialPageRoute<void>(builder: (final context) => child),
-    );
-  }
-}
-
-class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
-
-  @override
-  Widget build(final BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Center(
-        child: Column(
-          children: [
-            const Text('Welcome to your Profile', style: TextStyle(fontSize: 24)),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('close Profile'),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class SpeakingPage extends StatelessWidget {
-  const SpeakingPage({super.key});
-
-  @override
-  Widget build(final BuildContext context) {
-    return const Center(child: Text('Speaking Content', style: TextStyle(fontSize: 24)));
-  }
-}
-
-class SettingsPage extends StatelessWidget {
-  const SettingsPage({super.key});
-
-  @override
-  Widget build(final BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.all(8.0),
-      child: Center(
-        child: Text('Here you can change your Settings', style: TextStyle(fontSize: 24)),
       ),
     );
   }
