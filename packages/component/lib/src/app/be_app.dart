@@ -2,7 +2,7 @@ import 'package:becomponent/app.dart';
 import 'package:becomponent/src/app/panel/app_bar_panel.dart';
 import 'package:becomponent/src/app/panel/main_content_panel.dart';
 import 'package:becomponent/src/app/panel/nav_bar_panel.dart';
-import 'package:becomponent/src/app/panel/right_content_panel.dart';
+import 'package:becomponent/src/app/panel/right_side_panel.dart';
 import 'package:becomponent/src/page/components/unknown_widget.dart';
 import 'package:becore/getx.dart';
 import 'package:beui/layout.dart';
@@ -116,6 +116,8 @@ class AuthMiddleware extends GetMiddleware {
   Widget onPageBuilt(final Widget page) {
     final widget = super.onPageBuilt(page);
     final controller = Get.find<BeAppController>();
+    final userId = Get.parameters['user_id'];
+    final tenantId = Get.parameters['tenant_id'];
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -139,13 +141,13 @@ class AuthMiddleware extends GetMiddleware {
             ),
             ElevatedButton(
               onPressed: () {
-                controller.changeAppBarHeight = controller.appBarSize.value.height + 10.0;
+                controller.changeAppBarHeight = controller.appBarSize.value.height + 4.0;
               },
               child: const Text('increase appBar height'),
             ),
             ElevatedButton(
               onPressed: () {
-                controller.changeAppBarHeight = controller.appBarSize.value.height - 10.0;
+                controller.changeAppBarHeight = controller.appBarSize.value.height - 4.0;
               },
               child: const Text('decrease appBar height'),
             ),
@@ -157,7 +159,7 @@ class AuthMiddleware extends GetMiddleware {
             ),
           ],
         ),
-        const Text('This is a middleware example'),
+        Text('User ID: $userId, Tenant ID: $tenantId'),
       ],
     );
   }
@@ -176,14 +178,13 @@ class BeAppPage extends GetView<BeAppController> {
         preferredSize: controller.appBarSize.value,
         child: const BeAppBarPanel(),
       ),
-      body: Center(
-        child: Row(
-          children: [
-            if (breakpoint.isDesktop || breakpoint.isTablet) const BeNavBarPanel(),
-            const Expanded(child: BeMainContentPanel()),
-            if (betheme.breakpoint.isDesktop) const BeRightSidePanel(),
-          ],
-        ),
+      drawer: breakpoint.isMobile ? const BeNavBarPanel() : null,
+      body: Row(
+        children: [
+          if (!breakpoint.isMobile) const BeNavBarPanel(),
+          const Expanded(child: BeMainContentPanel()),
+          if (betheme.breakpoint.isDesktop) const BeRightSidePanel(),
+        ],
       ),
     );
   }

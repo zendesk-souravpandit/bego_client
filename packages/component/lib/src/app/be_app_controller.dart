@@ -3,7 +3,6 @@ import 'package:becomponent/src/page/be_page_controller.dart';
 import 'package:becomponent/src/page/be_page_section_resolver.dart';
 // import 'package:becomponent/src/page/be_page_section_resolver.dart';
 import 'package:becore/getx.dart';
-import 'package:beui/theme.dart';
 import 'package:flutter/material.dart';
 
 class BeAppController extends BePageController<void> {
@@ -41,15 +40,17 @@ class BeAppController extends BePageController<void> {
   GlobalKey<NavigatorState> get navigatorRightPanelKey => _rightPanel;
   NavigatorState get rightPanelNavigator => _rightPanel.currentState!;
 
-  final appBarSize = const Size(widthInfinity, 56.0).obs;
+  final appBarSize = const Size.fromHeight(kToolbarHeight).obs;
 
-  set changeAppBarHeight(final double height) {
-    appBarSize.value = Size(widthInfinity, height);
+  set changeAppBarHeight(double height) {
+    if (height <= 0) height = 0;
+    appBarSize.value = Size(appBarSize.value.width, height);
   }
 
-  set changeAppBarWidth(final double width) {
-    appBarSize.value = Size(width, appBarSize.value.height);
-  }
+  // set changeAppBarWidth(double width) {
+  //   if (width <= 0) width = 0;
+  //   appBarSize.value = Size(width, appBarSize.value.height);
+  // }
 
   @override
   Future<dynamic> fetchViewSection(final BeSection section) async {
