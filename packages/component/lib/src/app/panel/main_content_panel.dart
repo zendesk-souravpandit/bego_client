@@ -1,4 +1,5 @@
 import 'package:becomponent/src/app/be_app_controller.dart';
+import 'package:becomponent/src/app/theme_controller.dart';
 import 'package:becomponent/src/page/components/be_state_widgets.dart';
 import 'package:becore/getx.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +23,10 @@ class MainContentStateWidget<T> extends StateWidget<T> {
       onGenerateRoute: (final RouteSettings settings) {
         return MaterialPageRoute<void>(
           builder: (final BuildContext context) {
-            return const Text('MainContentStateWidget');
+            return Obx(() {
+              final AppThemeController themeController = Get.find<AppThemeController>();
+              return Text('MainContentStateWidget: ${themeController.breakpoint.value}');
+            });
           },
         );
       },

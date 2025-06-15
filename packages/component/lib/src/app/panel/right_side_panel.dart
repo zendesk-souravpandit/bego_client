@@ -1,7 +1,9 @@
 import 'package:becomponent/src/app/be_app_controller.dart';
+import 'package:becomponent/src/app/panel/panel_constants.dart';
 import 'package:becomponent/src/page/components/be_state_widgets.dart';
 import 'package:becore/getx.dart';
-import 'package:beui/helper_ext.dart';
+import 'package:beui/layout.dart';
+import 'package:beui/theme.dart';
 import 'package:flutter/material.dart' show MaterialPageRoute;
 import 'package:flutter/widgets.dart';
 
@@ -19,9 +21,13 @@ class RightSidePanel<T> extends StateWidget<T> {
   final BeAppController controller;
   @override
   Widget build(final BuildContext context) {
+    final BeBreakpoint breakpoint = BeTheme.of(context).breakpoint;
     return Container(
-      color: const Color(0xFFEEEEEE),
-      width: context.widthPct(0.3),
+      decoration: BoxDecoration(
+        color: BeColors.gray100,
+        border: Border(left: BorderSide(color: BeTheme.of(context).colors.disabled, width: 0.5)),
+      ),
+      width: const RightSidePanelWidth().getWidth(breakpoint),
       child: Navigator(
         key: controller.navigatorRightPanelKey,
         onGenerateRoute: (final RouteSettings settings) {

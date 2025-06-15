@@ -1,7 +1,9 @@
 import 'package:becomponent/src/app/be_app_controller.dart';
+import 'package:becomponent/src/app/panel/panel_constants.dart';
 import 'package:becomponent/src/page/components/be_state_widgets.dart';
 import 'package:becore/getx.dart';
-import 'package:beui/helper_ext.dart';
+import 'package:beui/layout.dart';
+import 'package:beui/theme.dart';
 import 'package:flutter/material.dart' show MaterialPageRoute;
 import 'package:flutter/widgets.dart';
 
@@ -19,10 +21,14 @@ class NavBarStateWidget<T> extends StateWidget<T> {
   final BeAppController controller;
   @override
   Widget build(final BuildContext context) {
+    final BeBreakpoint breakpoint = BeTheme.of(context).breakpoint;
     return Container(
-      color: const Color(0xFFEEEEEE),
-      width: context.widthPct(0.2),
-      height: double.infinity,
+      width: const NavbarPanelWidth().getWidth(breakpoint),
+      height: heightInfinity,
+      decoration: BoxDecoration(
+        color: BeColors.gray100,
+        border: Border(right: BorderSide(color: BeTheme.of(context).colors.disabled, width: 0.5)),
+      ),
       child: Navigator(
         key: controller.navigatorDrawerKey,
         onGenerateRoute: (final RouteSettings settings) {
