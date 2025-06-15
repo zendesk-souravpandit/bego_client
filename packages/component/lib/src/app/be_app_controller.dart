@@ -1,10 +1,18 @@
-import 'package:becomponent/src/app/panel/panel_contants.dart';
+import 'package:becomponent/src/app/panel/panel_constants.dart';
 import 'package:becomponent/src/page/be_page_controller.dart';
+import 'package:becomponent/src/page/be_page_section_resolver.dart';
+// import 'package:becomponent/src/page/be_page_section_resolver.dart';
 import 'package:becore/getx.dart';
 import 'package:beui/theme.dart';
 import 'package:flutter/material.dart';
 
 class BeAppController extends BePageController<void> {
+  @override
+  void onInit() {
+    super.onInit();
+    change(const SuccessStatus(null));
+  }
+
   // App bar navigation key
   final GlobalKey<NavigatorState> _appBar = GlobalKey<NavigatorState>(
     debugLabel: BePanelConstants.appBarPanel,
@@ -41,5 +49,14 @@ class BeAppController extends BePageController<void> {
 
   set changeAppBarWidth(final double width) {
     appBarSize.value = Size(width, appBarSize.value.height);
+  }
+
+  @override
+  Future<dynamic> fetchViewSection(final BeSection section) async {
+    // print('Fetching view section: $section');
+    // Prevent fetching if the section is not attached
+    return Future.delayed(const Duration(seconds: 1), () {
+      return {};
+    });
   }
 }
