@@ -7,12 +7,3 @@ void main() async {
   await initBeApp(package: 'demo.app');
   runApp(const BeApp());
 }
-
-//  use case demo app run
-// void main() async {
-//   runApp(
-//     GetMaterialApp(
-//       home: Scaffold(appBar: AppBar(title: const Text('Generic Dropdown Example')), body: const ProfileScreen()),
-//     ),
-//   );
-// }
