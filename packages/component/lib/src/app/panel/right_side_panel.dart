@@ -22,21 +22,23 @@ class RightSidePanel<T> extends StateWidget<T> {
   @override
   Widget build(final BuildContext context) {
     final BeBreakpoint breakpoint = BeTheme.of(context).breakpoint;
-    return Container(
-      decoration: BoxDecoration(
-        color: BeColors.gray100,
-        border: Border(left: BorderSide(color: BeTheme.of(context).colors.disabled, width: 0.5)),
-      ),
-      width: const RightSidePanelWidth().getWidth(breakpoint),
-      child: Navigator(
-        key: controller.navigatorRightPanelKey,
-        onGenerateRoute: (final RouteSettings settings) {
-          return MaterialPageRoute<void>(
-            builder: (final BuildContext context) {
-              return const Text('RightSidePanel');
-            },
-          );
-        },
+    return Obx(
+      () => Container(
+        width: controller.rightPanelWidth.value.getWidth(breakpoint),
+        decoration: BoxDecoration(
+          color: BeColors.gray100,
+          border: Border(left: BorderSide(color: BeTheme.of(context).colors.disabled, width: 0.5)),
+        ),
+        child: Navigator(
+          key: controller.navigatorRightPanelKey,
+          onGenerateRoute: (final RouteSettings settings) {
+            return MaterialPageRoute<void>(
+              builder: (final BuildContext context) {
+                return const Text('RightSidePanel');
+              },
+            );
+          },
+        ),
       ),
     );
   }

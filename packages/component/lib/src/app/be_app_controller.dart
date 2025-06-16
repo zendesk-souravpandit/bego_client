@@ -1,7 +1,5 @@
 import 'package:becomponent/src/app/panel/panel_constants.dart';
 import 'package:becomponent/src/page/be_page_controller.dart';
-import 'package:becomponent/src/page/be_page_section_resolver.dart';
-// import 'package:becomponent/src/page/be_page_section_resolver.dart';
 import 'package:becore/getx.dart';
 import 'package:flutter/material.dart';
 
@@ -41,23 +39,19 @@ class BeAppController extends BePageController<void> {
   NavigatorState get rightPanelNavigator => _rightPanel.currentState!;
 
   final appBarSize = const Size.fromHeight(kToolbarHeight).obs;
+  final navbarPanelWidth = const NavbarPanelWidth().obs;
+  final rightPanelWidth = const RightSidePanelWidth().obs;
 
-  set changeAppBarHeight(double height) {
-    if (height <= 0) height = 0;
-    appBarSize.value = Size(appBarSize.value.width, height);
+  set changeAppBarSize(Size appBarSize) {
+    if (appBarSize.height <= 0) appBarSize = const Size(0, 0);
+    this.appBarSize.value = appBarSize;
   }
 
-  // set changeAppBarWidth(double width) {
-  //   if (width <= 0) width = 0;
-  //   appBarSize.value = Size(width, appBarSize.value.height);
-  // }
+  set changeNavbarPanelWidth(final NavbarPanelWidth navbarPanelWidth) {
+    this.navbarPanelWidth.value = navbarPanelWidth;
+  }
 
-  @override
-  Future<dynamic> fetchViewSection(final BeSection section) async {
-    // print('Fetching view section: $section');
-    // Prevent fetching if the section is not attached
-    return Future.delayed(const Duration(seconds: 1), () {
-      return {};
-    });
+  set changeRightPanelWidth(final RightSidePanelWidth rightPanelWidth) {
+    this.rightPanelWidth.value = rightPanelWidth;
   }
 }

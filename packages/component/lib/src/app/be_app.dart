@@ -2,6 +2,7 @@ import 'package:becomponent/app.dart';
 import 'package:becomponent/src/app/panel/app_bar_panel.dart';
 import 'package:becomponent/src/app/panel/main_content_panel.dart';
 import 'package:becomponent/src/app/panel/nav_bar_panel.dart';
+import 'package:becomponent/src/app/panel/panel_constants.dart';
 import 'package:becomponent/src/app/panel/right_side_panel.dart';
 import 'package:becomponent/src/page/components/unknown_widget.dart';
 import 'package:becore/getx.dart';
@@ -141,13 +142,25 @@ class AuthMiddleware extends GetMiddleware {
             ),
             ElevatedButton(
               onPressed: () {
-                controller.changeAppBarHeight = controller.appBarSize.value.height + 4.0;
+                controller.changeNavbarPanelWidth = const NavbarPanelWidth(
+                  xl: 20,
+                  lg: 500,
+                  md: 300,
+                  sm: 30,
+                  xs: 200,
+                );
               },
-              child: const Text('increase appBar height'),
+              child: const Text('zero appBar height'),
             ),
             ElevatedButton(
               onPressed: () {
-                controller.changeAppBarHeight = controller.appBarSize.value.height - 4.0;
+                controller.changeRightPanelWidth = const RightSidePanelWidth(
+                  xl: 20,
+                  lg: 500,
+                  md: 300,
+                  sm: 30,
+                  xs: 200,
+                );
               },
               child: const Text('decrease appBar height'),
             ),
@@ -173,18 +186,20 @@ class BeAppPage extends GetView<BeAppController> {
     final betheme = BeTheme.of(context);
     final breakpoint = betheme.breakpoint;
 
-    return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: controller.appBarSize.value,
-        child: const BeAppBarPanel(),
-      ),
-      drawer: breakpoint.isMobile ? const BeNavBarPanel() : null,
-      body: Row(
-        children: [
-          if (!breakpoint.isMobile) const BeNavBarPanel(),
-          const Expanded(child: BeMainContentPanel()),
-          if (betheme.breakpoint.isDesktop) const BeRightSidePanel(),
-        ],
+    return Obx(
+      () => Scaffold(
+        appBar: PreferredSize(
+          preferredSize: controller.appBarSize.value,
+          child: const BeAppBarPanel(),
+        ),
+        drawer: breakpoint.isMobile ? const BeNavBarPanel() : null,
+        body: Row(
+          children: [
+            if (!breakpoint.isMobile) const BeNavBarPanel(),
+            const Expanded(child: BeMainContentPanel()),
+            if (betheme.breakpoint.isDesktop) const BeRightSidePanel(),
+          ],
+        ),
       ),
     );
   }
