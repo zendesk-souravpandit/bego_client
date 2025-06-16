@@ -1,5 +1,4 @@
 import 'package:becomponent/src/app/be_app_controller.dart';
-import 'package:becomponent/src/app/panel/panel_constants.dart';
 import 'package:becomponent/src/page/components/be_state_widgets.dart';
 import 'package:becore/getx.dart';
 import 'package:beui/layout.dart';
