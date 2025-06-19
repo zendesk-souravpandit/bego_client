@@ -2,7 +2,6 @@ import 'package:becomponent/app.dart';
 import 'package:becomponent/src/app/panel/app_bar_panel.dart';
 import 'package:becomponent/src/app/panel/main_content_panel.dart';
 import 'package:becomponent/src/app/panel/nav_bar_panel.dart';
-import 'package:becomponent/src/app/panel/panel_constants.dart';
 import 'package:becomponent/src/app/panel/right_side_panel.dart';
 import 'package:becomponent/src/app/routes/be_app_delegates.dart';
 import 'package:becomponent/src/app/routes/be_get_delegates.dart';

@@ -1,5 +1,4 @@
 import 'package:becomponent/app.dart';
-import 'package:becomponent/src/app/panel/panel_constants.dart';
 import 'package:becomponent/src/app/routes/be_get_delegates.dart';
 import 'package:becore/getx.dart';
 import 'package:flutter/material.dart';
@@ -162,14 +161,14 @@ class ProfileView extends StatelessWidget {
               child: const Text('Show a test dialog'),
               onPressed: () {
                 //shows a dialog
-                Get.defaultDialog(title: 'Test Dialog !!', barrierDismissible: true);
+                Get.defaultDialog<void>(title: 'Test Dialog !!', barrierDismissible: true);
               },
             ),
             MaterialButton(
               child: const Text('Show a test dialog in Home router outlet'),
               onPressed: () {
                 //shows a dialog
-                Get.defaultDialog(
+                Get.defaultDialog<void>(
                   title: 'Test Dialog In Home Outlet !!',
                   barrierDismissible: true,
                   id: '/home',
