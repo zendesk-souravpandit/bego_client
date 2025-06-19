@@ -19,6 +19,7 @@ Future<bool> initBeApp({required final String package}) async {
     ..lazyPut<AppThemeController>(AppThemeController.new)
     ..lazyPut<AppLocaleController>(AppLocaleController.new)
     ..lazyPut<AppSettingsController>(AppSettingsController.new)
+    ..lazyPut<BeAppController>(BeAppController.new)
     ..lazyPut<BeEventBus>(() => BeEventBus.instance);
 
   return GetStorage(package).initStorage;

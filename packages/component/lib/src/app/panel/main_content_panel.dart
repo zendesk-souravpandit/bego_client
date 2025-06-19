@@ -18,17 +18,42 @@ class MainContentStateWidget<T> extends StateWidget<T> {
 
   @override
   Widget build(final BuildContext context) {
-    return Navigator(
-      key: controller.navigatorMainKey,
-      onGenerateRoute: (final RouteSettings settings) {
-        return MaterialPageRoute<void>(
-          builder: (final BuildContext context) {
-            return Obx(() {
-              final AppThemeController themeController = Get.find<AppThemeController>();
-              return Text('MainContentStateWidget: ${themeController.breakpoint.value}');
-            });
-          },
-        );
+    return GetRouterOutlet(
+      anchorRoute: '/home', // matches your root /home GetPage
+      initialRoute: '/home/dashboard', // initial nested route to show
+      filterPages: (final pages) {
+        var ret = pages.toList();
+
+        // If no pages matched and this modal is current route, fallback to dashboard
+        if (ret.isEmpty && ModalRoute.of(context)!.isCurrent) {
+          ret.add(context.delegate.matchRoute('/home/dashboard').route!);
+        }
+
+        // Access the nested navigator associated with "/home"
+        final nav = Get.nestedKey('/home')?.navigatorKey.currentState?.widget;
+
+        Get.log('Home filter pages: ${pages.map((final e) => e.name)}');
+
+        if (nav != null) {
+          if (ret.isEmpty) {
+            Get.log('Home use olds: ${nav.pages.map((final e) => e.name)}');
+            return nav.pages as List<GetPage>;
+          }
+
+          final depth = ret[0].name.split('/').length;
+
+          for (final p in nav.pages as List<GetPage>) {
+            if (p.maintainState && p.name.split('/').length == depth && !ret.contains(p)) {
+              ret.insert(0, p);
+            }
+          }
+        }
+
+        ret = ret.where((final e) => e.participatesInRootNavigator != true).toList();
+
+        Get.log('Home real pages: ${ret.map((final e) => e.name)}');
+
+        return ret;
       },
     );
   }
