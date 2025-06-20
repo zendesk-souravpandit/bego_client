@@ -29,14 +29,14 @@ class BeApp extends StatelessWidget {
   Widget build(final BuildContext context) {
     final themeController = Get.find<AppThemeController>();
     final localizationController = Get.find<AppLocaleController>();
-    final berouter = routeDelegate ?? BeAppDelegate();
-    final appDelegate = berouter.createDelegate();
+    final appDelegate = routeDelegate ?? BeAppDelegate();
+    final routerDelegate = appDelegate.createDelegate();
 
     return Obx(() {
       return AppResponsiveWrapper(
         responsivePoints: responsivePoints,
         child: GetMaterialApp.router(
-          routerDelegate: appDelegate,
+          routerDelegate: routerDelegate,
           debugShowCheckedModeBanner: false,
           theme: themeController.theme.value,
           themeMode: themeController.themeMode.value,
@@ -56,7 +56,7 @@ class BeApp extends StatelessWidget {
             GlobalWidgetsLocalizations.delegate,
             GlobalCupertinoLocalizations.delegate,
           ],
-          getPages: berouter.routes,
+          getPages: appDelegate.routes,
           unknownRoute: GetPage(name: '/not-found', page: UnknownWidget.new),
         ),
       );

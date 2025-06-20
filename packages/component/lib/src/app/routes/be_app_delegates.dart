@@ -1,5 +1,6 @@
 import 'package:becomponent/app.dart';
 import 'package:becomponent/src/app/routes/be_get_delegates.dart';
+import 'package:becomponent/src/page/components/unknown_widget.dart';
 import 'package:becore/getx.dart';
 import 'package:flutter/material.dart';
 
@@ -9,19 +10,20 @@ class BeAppDelegate extends BeRouteDelegate {
     GetPage(
       preventDuplicates: true,
       participatesInRootNavigator: true,
-      name: '/home',
+      name: '/app',
       page: () => const BeAppPage(),
       middlewares: [AuthMiddleware()],
-
+      unknownRoute: GetPage(name: '/', page: () => const UnknownWidget()),
       title: null,
       children: [
         GetPage(
-          name: '/dashboard',
+          name: '/home',
           page: () => const DashboardView(),
           participatesInRootNavigator: false,
           bindings: [
             // Add DashboardBinding() here
           ],
+          unknownRoute: GetPage(name: '/', page: () => const UnknownWidget()),
         ),
         GetPage(
           middlewares: [
@@ -32,11 +34,12 @@ class BeAppDelegate extends BeRouteDelegate {
           page: () => const ProfileView(),
           title: 'Profile',
           transition: Transition.size,
-          participatesInRootNavigator: false,
+          // participatesInRootNavigator: false,
           bindings: [
             // Add ProfileBinding() here
           ],
         ),
+
         GetPage(
           name: '/products',
           page: () => const ProductsView(),
@@ -52,7 +55,6 @@ class BeAppDelegate extends BeRouteDelegate {
               name: '/:productId',
               transition: Transition.cupertino,
               showCupertinoParallax: true,
-              participatesInRootNavigator: true,
               page: () => const ProductDetailsView(),
               bindings: const [
                 // Add ProductDetailsBinding()
@@ -62,6 +64,19 @@ class BeAppDelegate extends BeRouteDelegate {
                 // EnsureAuthMiddleware(),
               ],
             ),
+          ],
+        ),
+        GetPage(
+          name: '/products/:productId',
+          transition: Transition.cupertino,
+          showCupertinoParallax: true,
+          page: () => const ProductDetailsView(),
+          bindings: const [
+            // Add ProductDetailsBinding()
+          ],
+          middlewares: [
+            // Only enter when authenticated
+            // EnsureAuthMiddleware(),
           ],
         ),
       ],
@@ -102,6 +117,7 @@ class BeAppDelegate extends BeRouteDelegate {
         pages.add(page);
       }
     }
+    print(decoder.pageSettings?.name);
     return pages;
   }
 
@@ -171,7 +187,7 @@ class ProfileView extends StatelessWidget {
                 Get.defaultDialog<void>(
                   title: 'Test Dialog In Home Outlet !!',
                   barrierDismissible: true,
-                  id: '/home',
+                  id: '/app',
                   // navigatorKey: Get.nestedKey(Routes.HOME),
                 );
               },
@@ -183,15 +199,30 @@ class ProfileView extends StatelessWidget {
   }
 }
 
-// Products view matches '/home/products'
 class ProductsView extends StatelessWidget {
   const ProductsView({super.key});
+
+  // Example product IDs
+  final List<String> productIds = const ['1001', '1002', '1003', '1004'];
 
   @override
   Widget build(final BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Products')),
-      body: const Center(child: Text('List of Products')),
+      body: ListView.builder(
+        itemCount: productIds.length,
+        itemBuilder: (final context, final index) {
+          final id = productIds[index];
+          return ListTile(
+            title: Text('Product $id'),
+            onTap: () {
+              print('Selected product ID: $id');
+              // Navigate to product details page with the selected productId
+              Get.toNamed<void>('/app/products/$id', id: '/app');
+            },
+          );
+        },
+      ),
     );
   }
 }
@@ -237,6 +268,7 @@ class LoginView extends StatelessWidget {
           child: const Text('Login'),
           onPressed: () {
             // Add login action here
+            Get.back<void>();
           },
         ),
       ),

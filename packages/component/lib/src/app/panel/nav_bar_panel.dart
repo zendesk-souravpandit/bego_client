@@ -38,10 +38,10 @@ class RouteListPage extends StatelessWidget {
   RouteListPage({super.key});
 
   final List<_RouteItem> routeItems = [
-    _RouteItem(label: 'Dashboard', route: '/home/dashboard'),
-    _RouteItem(label: 'Profile', route: '/home/profile'),
-    _RouteItem(label: 'Products', route: '/home/products'),
-    _RouteItem(label: 'Settings', route: '/settings'),
+    _RouteItem(label: 'Dashboard', route: '/app'),
+    _RouteItem(label: 'Profile', route: '/app/profile'),
+    _RouteItem(label: 'Products', route: '/app/products'),
+    _RouteItem(label: 'Settings', route: '/app/settings'),
     _RouteItem(label: 'Login', route: '/login'),
   ];
 
