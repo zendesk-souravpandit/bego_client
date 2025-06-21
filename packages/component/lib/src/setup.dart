@@ -15,11 +15,12 @@ Future<bool> initBeApp({required final String package}) async {
   WidgetsFlutterBinding.ensureInitialized();
   final storageService = await BeStorageService(package).init();
   Get
-    ..lazyPut<BeStorageService>(() => storageService)
-    ..lazyPut<AppThemeController>(AppThemeController.new)
-    ..lazyPut<AppLocaleController>(AppLocaleController.new)
-    ..lazyPut<AppSettingsController>(AppSettingsController.new)
-    ..lazyPut<BeEventBus>(() => BeEventBus.instance);
+    ..lazyPut<BeStorageService>(() => storageService, permanent: true)
+    ..lazyPut<AppThemeController>(AppThemeController.new, permanent: true)
+    ..lazyPut<AppLocaleController>(AppLocaleController.new, permanent: true)
+    ..lazyPut<AppSettingsController>(AppSettingsController.new, permanent: true)
+    ..lazyPut<BeAppController>(BeAppController.new, permanent: true)
+    ..lazyPut<BeEventBus>(() => BeEventBus.instance, permanent: true);
 
   return GetStorage(package).initStorage;
 }

@@ -3,6 +3,7 @@ import 'package:becomponent/src/app/be_app_controller.dart';
 import 'package:becomponent/src/app/panel/panel_constants.dart';
 import 'package:becomponent/src/page/be_view.dart';
 import 'package:becomponent/src/page/components/be_state_widgets.dart';
+import 'package:becore/getx.dart';
 import 'package:beui/be_icons.dart';
 import 'package:beui/decoration.dart';
 import 'package:beui/layout.dart';
@@ -44,6 +45,7 @@ class AppBarStateWidget<T> extends StateWidget<T> {
 
       title: Navigator(
         key: controller.navigatorAppBarKey,
+        initialRoute: '/appBar',
         onGenerateRoute: (final RouteSettings settings) {
           return MaterialPageRoute<void>(
             builder: (final BuildContext context) {
@@ -66,9 +68,12 @@ class AppBarStateWidget<T> extends StateWidget<T> {
                 border: Border.all(color: BeColors.white, width: 2),
               ),
             ),
-            child: CircleAvatar(
-              backgroundImage: BeAsset.images.demoImage.image().image,
-              radius: 16,
+            child: InkWell(
+              onTap: Get.back<void>,
+              child: CircleAvatar(
+                backgroundImage: BeAsset.images.demoImage.image().image,
+                radius: 16,
+              ),
             ),
           ),
         ),
