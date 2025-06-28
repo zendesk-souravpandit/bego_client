@@ -1,11 +1,12 @@
-import 'package:becomponent/app.dart';
+import 'package:becomponent/src/app/app_responsive_wrapper.dart';
+import 'package:becomponent/src/app/be_app_controller.dart';
+import 'package:becomponent/src/app/locale_controller.dart';
 import 'package:becomponent/src/app/panel/app_bar_panel.dart';
+import 'package:becomponent/src/app/panel/drawer_bar_panel.dart';
 import 'package:becomponent/src/app/panel/main_content_panel.dart';
-import 'package:becomponent/src/app/panel/nav_bar_panel.dart';
 import 'package:becomponent/src/app/panel/right_side_panel.dart';
-import 'package:becomponent/src/app/routes/be_app_delegates.dart';
-import 'package:becomponent/src/app/routes/be_get_delegates.dart';
-import 'package:becomponent/src/page/components/unknown_widget.dart';
+import 'package:becomponent/src/app/routes/be_app_route_delegates.dart';
+import 'package:becomponent/src/app/theme_controller.dart';
 import 'package:becore/getx.dart';
 import 'package:beui/layout.dart';
 import 'package:beui/overlay.dart';
@@ -22,15 +23,28 @@ class BeApp extends StatelessWidget {
   });
 
   final Translations? translations;
-  final BeRouteDelegate? routeDelegate;
+  final BeAppRouteDelegate? routeDelegate;
 
   final BeResponsivePoints responsivePoints;
   @override
   Widget build(final BuildContext context) {
+    const drawerPanel = BeDrawerPanel();
+    const mainPanel = BeMainContentPanel();
+    const rightPanel = BeRightSidePanel();
+    const appBarPanel = BeAppBarPanel();
+
     final themeController = Get.find<AppThemeController>();
     final localizationController = Get.find<AppLocaleController>();
-    final appDelegate = routeDelegate ?? BeAppDelegate();
-    final routerDelegate = appDelegate.createDelegate();
+    final appDelegate = Get.find<BeAppRouteDelegate>();
+    final routerDelegate = appDelegate.createDelegate(
+      drawerPanel,
+      mainPanel,
+      rightPanel,
+      appBarPanel,
+    );
+    final routeInformationProvider = PlatformRouteInformationProvider(
+      initialRouteInformation: appDelegate.initialRouteInfo,
+    );
 
     return Obx(() {
       return AppResponsiveWrapper(
@@ -38,6 +52,7 @@ class BeApp extends StatelessWidget {
         child: GetMaterialApp.router(
           routerDelegate: routerDelegate,
           debugShowCheckedModeBanner: false,
+          routeInformationProvider: routeInformationProvider,
           theme: themeController.theme.value,
           themeMode: themeController.themeMode.value,
           locale: localizationController.locale.value,
@@ -56,44 +71,46 @@ class BeApp extends StatelessWidget {
             GlobalWidgetsLocalizations.delegate,
             GlobalCupertinoLocalizations.delegate,
           ],
-          getPages: appDelegate.routes,
-          unknownRoute: GetPage(name: '/not-found', page: UnknownWidget.new),
+
+          /// All pages are registered in the BeAppRouteDelegate createDelegate method.
+          /// This is just to prevent the app from crashing if no routes are defined.
+          getPages: [appDelegate.unknownRoute],
         ),
       );
     });
   }
 }
 
-class BeAppPageBindings extends Binding {
-  @override
-  List<Bind<dynamic>> dependencies() {
-    return [Bind.lazyPut<BeAppController>(BeAppController.new)];
-  }
-}
-
 class BeAppPage extends GetView<BeAppController> {
-  const BeAppPage({super.key});
+  const BeAppPage({
+    super.key,
+    required this.drawerPanel,
+    required this.mainPanel,
+    required this.rightPanel,
+    required this.appBarPanel,
+  });
+
+  final BeDrawerPanel drawerPanel;
+  final BeMainContentPanel mainPanel;
+  final BeRightSidePanel rightPanel;
+  final BeAppBarPanel appBarPanel;
 
   @override
   Widget build(final BuildContext context) {
     final betheme = BeTheme.of(context);
     final breakpoint = betheme.breakpoint;
-
-    return Obx(
-      () => Scaffold(
-        appBar: PreferredSize(
-          preferredSize: controller.appBarSize.value,
-          child: const BeAppBarPanel(),
-        ),
-        drawer: breakpoint.isMobile ? const BeNavBarPanel() : null,
+    return Obx(() {
+      return Scaffold(
+        appBar: PreferredSize(preferredSize: controller.appBarSize.value, child: appBarPanel),
+        drawer: breakpoint.isMobile ? drawerPanel : null,
         body: Row(
           children: [
-            if (!breakpoint.isMobile) const BeNavBarPanel(),
-            const Expanded(child: BeMainContentPanel()),
-            if (betheme.breakpoint.isDesktop) const BeRightSidePanel(),
+            if (!breakpoint.isMobile) drawerPanel,
+            Expanded(child: mainPanel),
+            if (betheme.breakpoint.isDesktop) rightPanel,
           ],
         ),
-      ),
-    );
+      );
+    });
   }
 }
