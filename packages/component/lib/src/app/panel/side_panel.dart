@@ -34,10 +34,7 @@ class SidePanelContent<T> extends StateWidget<T> {
     return Obx(
       () => Container(
         width: controller.sidePanelWidth.value.getWidth(breakpoint),
-        decoration: BoxDecoration(
-          color: BeColors.gray100,
-          border: Border(left: BorderSide(color: BeTheme.of(context).colors.disabled, width: 0.5)),
-        ),
+        decoration: const BoxDecoration(color: BeColors.gray100),
         child: Navigator(
           key: controller.sidePanelNavigatorKey,
           initialRoute: controller.sidePanelRouteName.value,

@@ -4,7 +4,7 @@ import 'package:becomponent/src/page/be_page_controller.dart';
 import 'package:becore/getx.dart';
 import 'package:flutter/material.dart';
 
-enum PanelType { drawer, main, side }
+enum BePanelType { drawer, main, side }
 
 class BeAppController extends BePageController<void> {
   BeAppController({required this.appDelegate}) : super();
@@ -232,9 +232,8 @@ class BeAppController extends BePageController<void> {
   bool get canPopSidePanel => _sidePanelNavigatorKey.currentState?.canPop() ?? false;
 
   // ------------ reorder panels --------------
-  final RxList<PanelType> panelOrder =
-      <PanelType>[PanelType.drawer, PanelType.main, PanelType.side].obs;
-  set panelOrder(final List<PanelType> order) {
+  late final RxList<BePanelType> panelOrder = RxList<BePanelType>(appDelegate.panelOrder);
+  set panelOrder(final List<BePanelType> order) {
     panelOrder.value = order;
   }
 
@@ -247,7 +246,7 @@ class BeAppController extends BePageController<void> {
   }
 
   /// You can also reorder by moving a specific PanelType to a new index
-  void movePanel(final PanelType panel, final int newIndex) {
+  void movePanel(final BePanelType panel, final int newIndex) {
     final oldIndex = panelOrder.indexOf(panel);
     if (oldIndex == -1 || newIndex < 0 || newIndex >= panelOrder.length) return;
     panelOrder

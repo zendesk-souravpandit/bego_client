@@ -1,3 +1,4 @@
+import 'package:becomponent/app.dart' show BePanelType;
 import 'package:becomponent/src/app/be_app.dart';
 import 'package:becomponent/src/app/panel/app_bar_panel.dart';
 import 'package:becomponent/src/app/panel/drawer_bar_panel.dart';
@@ -11,6 +12,8 @@ import 'package:flutter/material.dart';
 abstract class BeAppRouteDelegate {
   /// The initial route for the application.
   RouteInformation get initialRouteInfo => RouteInformation(uri: Uri.parse(mainRoutePath));
+
+  List<BePanelType> panelOrder = [BePanelType.drawer, BePanelType.main, BePanelType.side];
 
   /// The name of the root route.
   String get mainRoutePath => '/app';

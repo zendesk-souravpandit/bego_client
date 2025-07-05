@@ -41,10 +41,7 @@ class DrawerNavigationWidget<T> extends StateWidget<T> {
       () => Container(
         width: controller.navbarPanelWidth.value.getWidth(breakpoint),
         height: heightInfinity,
-        decoration: BoxDecoration(
-          color: BeColors.gray100,
-          border: Border(right: BorderSide(color: BeTheme.of(context).colors.disabled, width: 0.5)),
-        ),
+        decoration: const BoxDecoration(color: BeColors.gray100),
         child: navigation,
       ),
     );

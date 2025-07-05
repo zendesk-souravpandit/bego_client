@@ -169,7 +169,7 @@ class DashboardView extends StatelessWidget {
             onPressed: () {
               // Get.find<BeAppController>().popRightPanel<void>();
               // Get.find<BeAppController>().panelOrder.value = [PanelType.drawer, PanelType.right, PanelType.main];
-              Get.find<BeAppController>().movePanel(PanelType.side, 1);
+              Get.find<BeAppController>().movePanel(BePanelType.side, 1);
             },
             child: const Text('Pop Right Panel Page'),
           ),
@@ -440,6 +440,102 @@ class _RouteItem {
 //             ),
 //         ],
 //       ),
+//     );
+//   }
+// }
+
+// class AnimatedPositionedReorderExample extends StatefulWidget {
+//   const AnimatedPositionedReorderExample({super.key});
+
+//   @override
+//   _AnimatedPositionedReorderExampleState createState() => _AnimatedPositionedReorderExampleState();
+// }
+
+// class _AnimatedPositionedReorderExampleState extends State<AnimatedPositionedReorderExample> {
+//   List<String> order = ['A', 'B', 'C'];
+//   final Map<String, Color> colors = {'A': Colors.red, 'B': Colors.green, 'C': Colors.blue};
+
+//   // Keys to measure sizes of children
+//   final Map<String, GlobalKey> keys = {'A': GlobalKey(), 'B': GlobalKey(), 'C': GlobalKey()};
+
+//   List<double> positions = []; // x position per child index
+
+//   double totalWidth = 0;
+
+//   @override
+//   void initState() {
+//     super.initState();
+
+//     // After first frame, measure positions
+//     WidgetsBinding.instance.addPostFrameCallback((_) => calculatePositions());
+//   }
+
+//   /// Calculates positions of children based on their widths plus spacing
+//   void calculatePositions() {
+//     const double spacing = 8.0;
+//     final List<double> widths = [];
+//     for (final id in order) {
+//       final ctx = keys[id]!.currentContext;
+//       if (ctx == null) {
+//         widths.add(0);
+//       } else {
+//         final size = ctx.size;
+//         widths.add(size?.width ?? 0);
+//       }
+//     }
+
+//     final List<double> pos = [];
+//     double dx = 0;
+//     for (final w in widths) {
+//       pos.add(dx);
+//       dx += w + spacing;
+//     }
+
+//     setState(() {
+//       positions = pos;
+//       totalWidth = dx - spacing; // subtract last spacing
+//     });
+//   }
+
+//   void reorder() {
+//     setState(() {
+//       // Rotate order for example reorder
+//       order = [order[1], order[2], order[0]];
+//     });
+
+//     // Calculate positions after next frame layout completes
+//     WidgetsBinding.instance.addPostFrameCallback((_) => calculatePositions());
+//   }
+
+//   Widget buildChild(final String id, final int index) {
+//     return AnimatedPositioned(
+//       key: ValueKey(id),
+//       duration: const Duration(milliseconds: 400),
+//       curve: Curves.easeInOut,
+//       left: positions.isNotEmpty ? positions[index] : 0,
+//       top: 0,
+//       width: keys[id]?.currentContext?.size?.width ?? 100, // Use measured width or default
+//       bottom: 0,
+//       child: Container(
+//         key: keys[id],
+//         padding: const EdgeInsets.all(20),
+//         decoration: BoxDecoration(color: colors[id], borderRadius: BorderRadius.circular(12)),
+//         child: Text(id, style: const TextStyle(fontSize: 24, color: Colors.white, fontWeight: FontWeight.bold)),
+//       ),
+//     );
+//   }
+
+//   @override
+//   Widget build(final BuildContext context) {
+//     // Use a fixed height container for the stack
+
+//     return Scaffold(
+//       appBar: AppBar(title: const Text('AnimatedPositioned Reorder Example')),
+//       body: Stack(
+//         clipBehavior: Clip.none,
+//         children: order.asMap().entries.map((final entry) => buildChild(entry.value, entry.key)).toList(),
+//       ),
+//       floatingActionButton: FloatingActionButton(onPressed: reorder, child: const Icon(Icons.shuffle)),
 //     );
 //   }
 // }

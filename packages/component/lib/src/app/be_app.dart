@@ -105,13 +105,13 @@ class BeAppPage extends GetView<BeAppController> {
 
       for (final panel in controller.panelOrder) {
         switch (panel) {
-          case PanelType.drawer:
+          case BePanelType.drawer:
             if (!breakpoint.isMobile) children.add(drawerPanel);
             break;
-          case PanelType.main:
+          case BePanelType.main:
             children.add(Expanded(child: mainPanel));
             break;
-          case PanelType.side:
+          case BePanelType.side:
             if (betheme.breakpoint.isDesktop) children.add(sidePanel);
             break;
         }
