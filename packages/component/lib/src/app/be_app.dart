@@ -4,7 +4,7 @@ import 'package:becomponent/src/app/locale_controller.dart';
 import 'package:becomponent/src/app/panel/app_bar_panel.dart';
 import 'package:becomponent/src/app/panel/drawer_bar_panel.dart';
 import 'package:becomponent/src/app/panel/main_content_panel.dart';
-import 'package:becomponent/src/app/panel/right_side_panel.dart';
+import 'package:becomponent/src/app/panel/side_panel.dart';
 import 'package:becomponent/src/app/routes/be_app_route_delegates.dart';
 import 'package:becomponent/src/app/theme_controller.dart';
 import 'package:becore/getx.dart';
@@ -30,7 +30,7 @@ class BeApp extends StatelessWidget {
   Widget build(final BuildContext context) {
     const drawerPanel = BeDrawerPanel();
     const mainPanel = BeMainContentPanel();
-    const rightPanel = BeRightSidePanel();
+    const sidePanel = BeSidePanel();
     const appBarPanel = BeAppBarPanel();
 
     final themeController = Get.find<AppThemeController>();
@@ -39,7 +39,7 @@ class BeApp extends StatelessWidget {
     final routerDelegate = appDelegate.createDelegate(
       drawerPanel,
       mainPanel,
-      rightPanel,
+      sidePanel,
       appBarPanel,
     );
     final routeInformationProvider = PlatformRouteInformationProvider(
@@ -86,30 +86,41 @@ class BeAppPage extends GetView<BeAppController> {
     super.key,
     required this.drawerPanel,
     required this.mainPanel,
-    required this.rightPanel,
+    required this.sidePanel,
     required this.appBarPanel,
   });
 
-  final BeDrawerPanel drawerPanel;
-  final BeMainContentPanel mainPanel;
-  final BeRightSidePanel rightPanel;
-  final BeAppBarPanel appBarPanel;
+  final Widget drawerPanel;
+  final Widget mainPanel;
+  final Widget sidePanel;
+  final Widget appBarPanel;
 
   @override
   Widget build(final BuildContext context) {
     final betheme = BeTheme.of(context);
     final breakpoint = betheme.breakpoint;
+
     return Obx(() {
+      final children = <Widget>[];
+
+      for (final panel in controller.panelOrder) {
+        switch (panel) {
+          case PanelType.drawer:
+            if (!breakpoint.isMobile) children.add(drawerPanel);
+            break;
+          case PanelType.main:
+            children.add(Expanded(child: mainPanel));
+            break;
+          case PanelType.side:
+            if (betheme.breakpoint.isDesktop) children.add(sidePanel);
+            break;
+        }
+      }
+
       return Scaffold(
         appBar: PreferredSize(preferredSize: controller.appBarSize.value, child: appBarPanel),
         drawer: breakpoint.isMobile ? drawerPanel : null,
-        body: Row(
-          children: [
-            if (!breakpoint.isMobile) drawerPanel,
-            Expanded(child: mainPanel),
-            if (betheme.breakpoint.isDesktop) rightPanel,
-          ],
-        ),
+        body: Row(children: children),
       );
     });
   }

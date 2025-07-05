@@ -12,8 +12,8 @@ void main() async {
 }
 
 class BeAppDelegate extends BeAppRouteDelegate {
-  @override
-  RouteInformation get initialRouteInfo => RouteInformation(uri: Uri.parse('/login'));
+  // @override
+  // RouteInformation get initialRouteInfo => RouteInformation(uri: Uri.parse('/login'));
   @override
   final List<GetPage<dynamic>> routes = [
     GetPage(name: '/settings', page: () => const SettingsView()),
@@ -59,7 +59,7 @@ class BeAppDelegate extends BeAppRouteDelegate {
   };
 
   @override
-  RouteFactory? get rightPanelRouteFactory => (final RouteSettings settings) {
+  RouteFactory? get sidePanelRouteFactory => (final RouteSettings settings) {
     return MaterialPageRoute<void>(
       builder: (final BuildContext context) {
         return const Text('Right Side Panel');
@@ -155,7 +155,7 @@ class DashboardView extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () {
-              Get.find<BeAppController>().popDrawer<void>();
+              Get.find<BeAppController>().popDrawer<void>(routeNameUntil: '/');
             },
             child: const Text('Pop Drawer Page'),
           ),
@@ -167,7 +167,9 @@ class DashboardView extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () {
-              Get.find<BeAppController>().popRightPanel<void>();
+              // Get.find<BeAppController>().popRightPanel<void>();
+              // Get.find<BeAppController>().panelOrder.value = [PanelType.drawer, PanelType.right, PanelType.main];
+              Get.find<BeAppController>().movePanel(PanelType.side, 1);
             },
             child: const Text('Pop Right Panel Page'),
           ),

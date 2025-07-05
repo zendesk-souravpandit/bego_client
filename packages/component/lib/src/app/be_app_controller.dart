@@ -4,23 +4,25 @@ import 'package:becomponent/src/page/be_page_controller.dart';
 import 'package:becore/getx.dart';
 import 'package:flutter/material.dart';
 
+enum PanelType { drawer, main, side }
+
 class BeAppController extends BePageController<void> {
   BeAppController({required this.appDelegate}) : super();
 
   final BeAppRouteDelegate appDelegate;
 
   // Navigator keys
-  final GlobalKey<NavigatorState> _appBarNavigatorKey = GlobalKey<NavigatorState>(
+  late final GlobalKey<NavigatorState> _appBarNavigatorKey = GlobalKey<NavigatorState>(
     debugLabel: BePanelConstants.appBarPanel,
   );
-  final GlobalKey<NavigatorState> _drawerNavigatorKey = GlobalKey<NavigatorState>(
+  late final GlobalKey<NavigatorState> _drawerNavigatorKey = GlobalKey<NavigatorState>(
     debugLabel: BePanelConstants.drawerPanel,
   );
-  final GlobalKey<NavigatorState> _mainNavigatorKey = GlobalKey<NavigatorState>(
+  late final GlobalKey<NavigatorState> _mainNavigatorKey = GlobalKey<NavigatorState>(
     debugLabel: BePanelConstants.mainPanel,
   );
-  final GlobalKey<NavigatorState> _rightPanelNavigatorKey = GlobalKey<NavigatorState>(
-    debugLabel: BePanelConstants.rightPanel,
+  late final GlobalKey<NavigatorState> _sidePanelNavigatorKey = GlobalKey<NavigatorState>(
+    debugLabel: BePanelConstants.sidePanel,
   );
 
   // Getters for navigator keys and states
@@ -33,17 +35,17 @@ class BeAppController extends BePageController<void> {
   GlobalKey<NavigatorState> get mainNavigatorKey => _mainNavigatorKey;
   NavigatorState? get mainNavigator => _mainNavigatorKey.currentState;
 
-  GlobalKey<NavigatorState> get rightPanelNavigatorKey => _rightPanelNavigatorKey;
-  NavigatorState? get rightPanelNavigator => _rightPanelNavigatorKey.currentState;
+  GlobalKey<NavigatorState> get sidePanelNavigatorKey => _sidePanelNavigatorKey;
+  NavigatorState? get sidePanelNavigator => _sidePanelNavigatorKey.currentState;
 
   // Observable sizes
   final appBarSize = const Size.fromHeight(kToolbarHeight).obs;
   final navbarPanelWidth = const NavbarPanelWidth().obs;
-  final rightPanelWidth = const RightSidePanelWidth().obs;
+  final sidePanelWidth = const SidePanelWidth().obs;
 
   late final RxString appBarRouteName = appDelegate.appBarRoutePath.obs;
   late final RxString drawerRouteName = appDelegate.drawerRoutePath.obs;
-  late final RxString rightPanelRouteName = appDelegate.rightPanelRoutePath.obs;
+  late final RxString sidePanelRouteName = appDelegate.sidePanelRoutePath.obs;
 
   set updateAppBarSize(final Size newSize) {
     appBarSize.value = newSize.height <= 0 ? const Size(0, 0) : newSize;
@@ -53,16 +55,16 @@ class BeAppController extends BePageController<void> {
     navbarPanelWidth.value = newWidth;
   }
 
-  set updateRightPanelWidth(final RightSidePanelWidth newWidth) {
-    rightPanelWidth.value = newWidth;
+  set updateSidePanelWidth(final SidePanelWidth newWidth) {
+    sidePanelWidth.value = newWidth;
   }
 
   // Push named route methods
 
   Future<T?> pushAppBar<T>(final String routeName, {final Object? arguments}) {
+    appBarRouteName.value = routeName;
     final navigator = _appBarNavigatorKey.currentState;
     if (navigator != null) {
-      appBarRouteName.value = routeName;
       return navigator.pushNamed<T>(routeName, arguments: arguments);
     }
     return Future.value(null);
@@ -70,8 +72,8 @@ class BeAppController extends BePageController<void> {
 
   Future<T?> pushDrawer<T>(final String routeName, {final Object? arguments}) {
     final navigator = _drawerNavigatorKey.currentState;
+    drawerRouteName.value = routeName;
     if (navigator != null) {
-      drawerRouteName.value = routeName;
       return navigator.pushNamed<T>(routeName, arguments: arguments);
     }
     return Future.value(null);
@@ -85,10 +87,10 @@ class BeAppController extends BePageController<void> {
     return Future.value(null);
   }
 
-  Future<T?> pushRightPanel<T>(final String routeName, {final Object? arguments}) {
-    final navigator = _rightPanelNavigatorKey.currentState;
+  Future<T?> pushSidePanel<T>(final String routeName, {final Object? arguments}) {
+    sidePanelRouteName.value = routeName;
+    final navigator = _sidePanelNavigatorKey.currentState;
     if (navigator != null) {
-      rightPanelRouteName.value = routeName;
       return navigator.pushNamed<T>(routeName, arguments: arguments);
     }
     return Future.value(null);
@@ -120,32 +122,12 @@ class BeAppController extends BePageController<void> {
     return Future.value(null);
   }
 
-  Future<T?> pushRightPanelWidget<T>(final Widget widget) {
-    final navigator = _rightPanelNavigatorKey.currentState;
+  Future<T?> pushSidePanelWidget<T>(final Widget widget) {
+    final navigator = _sidePanelNavigatorKey.currentState;
     if (navigator != null) {
       return navigator.push<T>(MaterialPageRoute(builder: (_) => widget));
     }
     return Future.value(null);
-  }
-
-  // Pop route methods
-
-  bool popAppBar<T>({final T? result}) {
-    final navigator = _appBarNavigatorKey.currentState;
-    if (navigator?.canPop() ?? false) {
-      navigator!.pop(result);
-      return true;
-    }
-    return false;
-  }
-
-  bool popDrawer<T>({final T? result}) {
-    final navigator = _drawerNavigatorKey.currentState;
-    if (navigator?.canPop() ?? false) {
-      navigator!.pop(result);
-      return true;
-    }
-    return false;
   }
 
   bool popMain<T>({final T? result}) {
@@ -157,22 +139,86 @@ class BeAppController extends BePageController<void> {
     return false;
   }
 
-  bool popRightPanel<T>({final T? result}) {
-    final navigator = _rightPanelNavigatorKey.currentState;
-    if (navigator?.canPop() ?? false) {
-      navigator!.pop(result);
+  // Pop route method with generic type parameter for result type
+  bool _popNavigator<T>({
+    required final GlobalKey<NavigatorState> navigatorKey,
+    final String? routeNameUntil,
+    final T? result,
+    required final RxString routeNameObservable,
+    required final String initialRouteName,
+  }) {
+    final navigator = navigatorKey.currentState;
+
+    if (navigator == null) return false;
+    if (routeNameUntil != null) {
+      navigator.popUntil((final route) {
+        final name = route.settings.name;
+        return name == routeNameUntil || route.isFirst;
+      });
+      routeNameObservable.value = routeNameUntil;
+      // Update observable after popping
+      return true;
+    }
+
+    if (navigator.canPop()) {
+      navigator.pop(result);
       return true;
     }
     return false;
   }
 
+  bool popAppBar<T>({final String? routeNameUntil, final T? result}) {
+    return _popNavigator<T>(
+      navigatorKey: _appBarNavigatorKey,
+      routeNameObservable: appBarRouteName,
+      initialRouteName: '/',
+      routeNameUntil: routeNameUntil,
+      result: result,
+    );
+  }
+
+  bool popDrawer<T>({final String? routeNameUntil, final T? result}) {
+    return _popNavigator<T>(
+      navigatorKey: _drawerNavigatorKey,
+      routeNameObservable: drawerRouteName,
+      initialRouteName: '/',
+      routeNameUntil: routeNameUntil,
+      result: result,
+    );
+  }
+
+  bool popSidePanel<T>({final String? routeNameUntil, final T? result}) {
+    return _popNavigator<T>(
+      navigatorKey: _sidePanelNavigatorKey,
+      routeNameObservable: sidePanelRouteName,
+      initialRouteName: '/',
+      routeNameUntil: routeNameUntil,
+      result: result,
+    );
+  }
+
   // Pop to first route for all navigators
+  void popAppBarToRoot() {
+    _appBarNavigatorKey.currentState?.popUntil((final route) => route.isFirst);
+  }
+
+  void popDrawerToRoot() {
+    _drawerNavigatorKey.currentState?.popUntil((final route) => route.isFirst);
+  }
+
+  void popMainToRoot() {
+    _mainNavigatorKey.currentState?.popUntil((final route) => route.isFirst);
+  }
+
+  void popSidePanelToRoot() {
+    _sidePanelNavigatorKey.currentState?.popUntil((final route) => route.isFirst);
+  }
 
   void popAllNavigatorsToRoot() {
-    _appBarNavigatorKey.currentState?.popUntil((final route) => route.isFirst);
-    _drawerNavigatorKey.currentState?.popUntil((final route) => route.isFirst);
-    _mainNavigatorKey.currentState?.popUntil((final route) => route.isFirst);
-    _rightPanelNavigatorKey.currentState?.popUntil((final route) => route.isFirst);
+    popAppBarToRoot();
+    popDrawerToRoot();
+    popMainToRoot();
+    popSidePanelToRoot();
   }
 
   // Getters for canPop on each navigator
@@ -183,5 +229,29 @@ class BeAppController extends BePageController<void> {
 
   bool get canPopMain => _mainNavigatorKey.currentState?.canPop() ?? false;
 
-  bool get canPopRightPanel => _rightPanelNavigatorKey.currentState?.canPop() ?? false;
+  bool get canPopSidePanel => _sidePanelNavigatorKey.currentState?.canPop() ?? false;
+
+  // ------------ reorder panels --------------
+  final RxList<PanelType> panelOrder =
+      <PanelType>[PanelType.drawer, PanelType.main, PanelType.side].obs;
+  set panelOrder(final List<PanelType> order) {
+    panelOrder.value = order;
+  }
+
+  /// Reorder panels by moving panel at [oldIndex] to [newIndex]
+  void reorderPanel(final int oldIndex, final int newIndex) {
+    if (oldIndex < 0 || oldIndex >= panelOrder.length) return;
+    if (newIndex < 0 || newIndex >= panelOrder.length) return;
+    final panel = panelOrder.removeAt(oldIndex);
+    panelOrder.insert(newIndex, panel);
+  }
+
+  /// You can also reorder by moving a specific PanelType to a new index
+  void movePanel(final PanelType panel, final int newIndex) {
+    final oldIndex = panelOrder.indexOf(panel);
+    if (oldIndex == -1 || newIndex < 0 || newIndex >= panelOrder.length) return;
+    panelOrder
+      ..removeAt(oldIndex)
+      ..insert(newIndex, panel);
+  }
 }

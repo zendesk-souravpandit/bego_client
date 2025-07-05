@@ -6,38 +6,42 @@ import 'package:beui/layout.dart';
 import 'package:beui/theme.dart';
 import 'package:flutter/widgets.dart';
 
-class BeRightSidePanel extends GetView<BeAppController> {
-  const BeRightSidePanel({super.key});
+class BeSidePanel extends GetView<BeAppController> {
+  const BeSidePanel({super.key});
 
   @override
   StateWidget<void> build(final BuildContext context) {
     final BeAppRouteDelegate appDelegate = Get.find<BeAppRouteDelegate>();
-    return RightSidePanel<void>(
+    return SidePanelContent<void>(
       controller: controller,
-      rightPanelRouteFactory: appDelegate.rightPanelRouteFactory,
+      sidePanelRouteFactory: appDelegate.sidePanelRouteFactory,
     );
   }
 }
 
-class RightSidePanel<T> extends StateWidget<T> {
-  const RightSidePanel({super.key, required this.controller, required this.rightPanelRouteFactory});
+class SidePanelContent<T> extends StateWidget<T> {
+  const SidePanelContent({
+    super.key,
+    required this.controller,
+    required this.sidePanelRouteFactory,
+  });
   final BeAppController controller;
 
-  final RouteFactory? rightPanelRouteFactory;
+  final RouteFactory? sidePanelRouteFactory;
   @override
   Widget build(final BuildContext context) {
     final BeBreakpoint breakpoint = BeTheme.of(context).breakpoint;
     return Obx(
       () => Container(
-        width: controller.rightPanelWidth.value.getWidth(breakpoint),
+        width: controller.sidePanelWidth.value.getWidth(breakpoint),
         decoration: BoxDecoration(
           color: BeColors.gray100,
           border: Border(left: BorderSide(color: BeTheme.of(context).colors.disabled, width: 0.5)),
         ),
         child: Navigator(
-          key: controller.rightPanelNavigatorKey,
-          initialRoute: controller.rightPanelRouteName.value,
-          onGenerateRoute: rightPanelRouteFactory,
+          key: controller.sidePanelNavigatorKey,
+          initialRoute: controller.sidePanelRouteName.value,
+          onGenerateRoute: sidePanelRouteFactory,
         ),
       ),
     );

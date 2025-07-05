@@ -2,7 +2,7 @@ import 'package:becomponent/src/app/be_app.dart';
 import 'package:becomponent/src/app/panel/app_bar_panel.dart';
 import 'package:becomponent/src/app/panel/drawer_bar_panel.dart';
 import 'package:becomponent/src/app/panel/main_content_panel.dart';
-import 'package:becomponent/src/app/panel/right_side_panel.dart';
+import 'package:becomponent/src/app/panel/side_panel.dart';
 import 'package:becomponent/src/app/routes/be_page_routes.dart';
 import 'package:becomponent/src/page/components/unknown_widget.dart';
 import 'package:becore/getx.dart';
@@ -52,7 +52,7 @@ abstract class BeAppRouteDelegate {
   GetDelegate createDelegate(
     final BeDrawerPanel drawerPanel,
     final BeMainContentPanel mainPanel,
-    final BeRightSidePanel rightPanel,
+    final BeSidePanel sidePanel,
     final BeAppBarPanel appBarPanel,
   ) {
     return GetDelegate(
@@ -67,7 +67,7 @@ abstract class BeAppRouteDelegate {
                 appBarPanel: appBarPanel,
                 drawerPanel: drawerPanel,
                 mainPanel: mainPanel,
-                rightPanel: rightPanel,
+                sidePanel: sidePanel,
               ),
           middlewares: mainMiddlewares,
           children: mainRoutes,
@@ -85,11 +85,11 @@ abstract class BeAppRouteDelegate {
 
   String get drawerRoutePath => '/';
 
-  String get rightPanelRoutePath => '/';
+  String get sidePanelRoutePath => '/';
 
   RouteFactory? appBarRouteFactory;
   RouteFactory? drawerRouteFactory;
-  RouteFactory? rightPanelRouteFactory;
+  RouteFactory? sidePanelRouteFactory;
 
   GetPage<BePageData> get unknownRoute =>
       GetPage<BePageData>(name: '/not-found', title: 'Not Found', page: UnknownWidget.new);
