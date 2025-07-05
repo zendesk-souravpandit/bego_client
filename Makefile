@@ -2,6 +2,13 @@
 
 mlint-sync:
 	melos run sync-lint-rules
+
+flutter-pub-upgrade:
+    melos exec --flutter -- "flutter pub upgrade"
+
+dart-pub-upgrade:	
+	melos exec -- "dart pub upgrade"
+
 mlint:
 	melos run lint	
 
@@ -29,4 +36,7 @@ proto-gen:
 	buf generate && \
     cd services/beservice && find protos -name "*.proto" | xargs protoc  --dart_out="generate_kythe_info,grpc:lib/src/"  -I=protos && \
     find protos -name "*.proto" | xargs protoc  --dart_out="generate_kythe_info,:lib/src/"  -I=protos
+
+
+
 .PHONY: build-bego	

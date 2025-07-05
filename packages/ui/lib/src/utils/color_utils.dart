@@ -1,4 +1,7 @@
+import 'dart:math' show Random;
+
 import 'package:flutter/material.dart';
+import 'package:material_color_utilities/blend/blend.dart';
 
 enum ColorSwatchLevel {
   shade50,
@@ -38,8 +41,8 @@ const darkModeValues = {
   ColorSwatchLevel.shade900: 0.95,
 };
 
-class ColorUtils {
-  const ColorUtils._();
+class BeColorUtils {
+  const BeColorUtils._();
 
   static Map<int, Color> tonalPalette(final Color baseColor, {final bool isDark = false}) {
     final hsl = HSLColor.fromColor(baseColor);
@@ -110,6 +113,38 @@ class ColorUtils {
 
   /// Returns true if the color's brightness is [Brightness.dark], else false.
   bool isDark(final Color color) => ThemeData.estimateBrightnessForColor(color) == Brightness.dark;
+
+  /// Harmonize (blend) the [targetColor] with the [sourceColor]
+  static Color harmonize(final Color targetColor, final Color sourceColor) {
+    return Color(Blend.harmonize(targetColor.toARGB32(), sourceColor.toARGB32()));
+  }
+
+  /// Return [blend] harmonized color if [shouldBlend] is true, else original.
+  static Color customColor(final CustomColor custom, final Color sourceColor, {final bool? forceBlend}) {
+    final blend = forceBlend ?? custom.blend;
+    if (blend) {
+      return harmonize(custom.color, sourceColor);
+    } else {
+      return custom.color;
+    }
+  }
+
+  /// Get a source color optionally harmonized with a target
+  static Color sourceOrBlend(final Color sourceColor, final Color? target) {
+    if (target == null) return sourceColor;
+    return harmonize(target, sourceColor);
+  }
+
+  /// Generate a ColorScheme from a seed color and brightness
+  static ColorScheme colorScheme(final Brightness brightness, final Color sourceColor, {final Color? targetColor}) {
+    final seed = targetColor == null ? sourceColor : harmonize(targetColor, sourceColor);
+    return ColorScheme.fromSeed(seedColor: seed, brightness: brightness);
+  }
+
+  /// Generates a truly random opaque color (ARGB)
+  static Color randomColor() {
+    return Color(Random().nextInt(0xFFFFFFFF)).withAlpha(0xFF);
+  }
 }
 
 extension ColorExtension on Color {
@@ -159,4 +194,15 @@ extension ColorExtension on Color {
     }
     return Color.alphaBlend(input.withAlpha(alpha), this);
   }
+}
+
+/// Represents a customizable color possibly requiring harmonization/blending
+class CustomColor {
+  const CustomColor({required this.name, required this.color, this.blend = true});
+
+  final String name;
+  final Color color;
+  final bool blend;
+
+  Color value(final Color sourceColor) => BeColorUtils.customColor(this, sourceColor);
 }
