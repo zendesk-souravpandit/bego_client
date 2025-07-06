@@ -78,6 +78,19 @@
 /// ```
 library becomponent.component;
 
+export './src/page/components/be_state_widgets.dart';
+export './src/page/components/connection_lost_widget.dart';
+export './src/page/components/empty_widget.dart';
+export './src/page/components/loading_page_widget.dart';
+export './src/page/components/no_result_found_widget.dart';
+export './src/page/components/unauthorized_widget.dart';
+export './src/page/components/unknown_widget.dart';
+
 export './src/widgets/state/be_reducer.dart';
 export './src/widgets/state/be_state_action.dart';
 export './src/widgets/state/be_state_widget.dart';
+
+export './src/app/panel/app_bar_panel.dart';
+export './src/app/panel/drawer_bar_panel.dart';
+export './src/app/panel/main_content_panel.dart';
+export './src/app/panel/side_panel.dart';

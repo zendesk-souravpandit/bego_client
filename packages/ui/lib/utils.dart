@@ -1,5 +1,7 @@
 library beui.utils;
 
+export 'package:material_color_utilities/material_color_utilities.dart';
+
 export './src/utils/color_utils.dart';
 export './src/utils/responsive_utils.dart';
 export './src/utils/text_utils.dart';

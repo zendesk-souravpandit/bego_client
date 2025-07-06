@@ -4,7 +4,7 @@ class BePanelConstants {
   static const String appBarPanel = 'be_app_bar_panel';
   static const String drawerPanel = 'be_drawer_panel';
   static const String mainPanel = 'be_main_panel';
-  static const String rightPanel = 'be_right_panel';
+  static const String sidePanel = 'be_side_panel';
 }
 
 //   const BeResponsivePoints({this.sm = 640, this.md = 768, this.lg = 1024, this.xl = 1280, this.xl2 = 1536});
@@ -35,8 +35,8 @@ class NavbarPanelWidth {
   };
 }
 
-class RightSidePanelWidth {
-  const RightSidePanelWidth({
+class SidePanelWidth {
+  const SidePanelWidth({
     this.xs = 0.0,
     this.sm = 0.0,
     this.md = 250.0,

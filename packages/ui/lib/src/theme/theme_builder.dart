@@ -293,7 +293,7 @@ DropdownMenuThemeData _buildDropdownMenuTheme(final BeThemeData betheme) {
 }
 
 ElevatedButtonThemeData _buildElevatedButtonTheme(final BeThemeData betheme) {
-  final swPrimary = ColorUtils.createColorSwatch(betheme.colors.primary);
+  final swPrimary = BeColorUtils.createColorSwatch(betheme.colors.primary);
 
   return ElevatedButtonThemeData(
     style: ButtonStyle(
@@ -390,7 +390,7 @@ ExpansionTileThemeData _buildExpansionTileTheme(final ColorScheme colorScheme) {
 }
 
 FilledButtonThemeData _buildFilledButtonTheme(final BeThemeData betheme) {
-  final swPrimary = ColorUtils.createColorSwatch(betheme.colors.primary);
+  final swPrimary = BeColorUtils.createColorSwatch(betheme.colors.primary);
   return FilledButtonThemeData(
     style: ButtonStyle(
       backgroundColor: WidgetStateProperty.resolveWith((final states) {
@@ -441,7 +441,7 @@ FilledButtonThemeData _buildFilledButtonTheme(final BeThemeData betheme) {
 }
 
 FloatingActionButtonThemeData _buildFloatingActionButtonTheme(final BeThemeData betheme) {
-  final swPrimary = ColorUtils.createColorSwatch(betheme.colors.primary);
+  final swPrimary = BeColorUtils.createColorSwatch(betheme.colors.primary);
   return FloatingActionButtonThemeData(
     backgroundColor: swPrimary,
     foregroundColor: swPrimary.shade50,
@@ -462,7 +462,7 @@ FloatingActionButtonThemeData _buildFloatingActionButtonTheme(final BeThemeData 
 }
 
 IconButtonThemeData _buildIconButtonTheme(final BeThemeData betheme) {
-  final swPrimary = ColorUtils.createColorSwatch(betheme.colors.primary);
+  final swPrimary = BeColorUtils.createColorSwatch(betheme.colors.primary);
   return IconButtonThemeData(
     style: ButtonStyle(
       foregroundColor: WidgetStateProperty.resolveWith((final states) {
@@ -491,7 +491,7 @@ IconButtonThemeData _buildIconButtonTheme(final BeThemeData betheme) {
 }
 
 InputDecorationTheme _buildInputDecorationTheme(final BeThemeData betheme) {
-  final colors = ColorUtils.createColorSwatch(betheme.colors.formFillColor);
+  final colors = BeColorUtils.createColorSwatch(betheme.colors.formFillColor);
   return InputDecorationTheme(
     filled: true,
     fillColor: betheme.colors.formFillColor,
@@ -588,7 +588,7 @@ NavigationBarThemeData _buildNavigationBarTheme(final ColorScheme colorScheme) {
 }
 
 OutlinedButtonThemeData _buildOutlinedButtonTheme(final BeThemeData betheme) {
-  final swPrimary = ColorUtils.createColorSwatch(betheme.colors.primary);
+  final swPrimary = BeColorUtils.createColorSwatch(betheme.colors.primary);
   return OutlinedButtonThemeData(
     style: ButtonStyle(
       backgroundColor: const WidgetStatePropertyAll(BeColors.transparent),
@@ -808,7 +808,7 @@ TabBarThemeData _buildTabBarTheme(final ColorScheme colorScheme) {
 
 // ========== Text Button Theme ==========
 TextButtonThemeData _buildTextButtonTheme(final BeThemeData betheme) {
-  final swPrimary = ColorUtils.createColorSwatch(betheme.colors.primary);
+  final swPrimary = BeColorUtils.createColorSwatch(betheme.colors.primary);
 
   return TextButtonThemeData(
     style: ButtonStyle(
@@ -1235,7 +1235,7 @@ SearchBarThemeData _buildSearchBarTheme(final ColorScheme colorScheme) {
 
 // ========== Segmented Button Theme ==========
 SegmentedButtonThemeData _buildSegmentedButtonTheme(final BeThemeData betheme) {
-  final swPrimary = ColorUtils.createColorSwatch(betheme.colors.primary);
+  final swPrimary = BeColorUtils.createColorSwatch(betheme.colors.primary);
   return SegmentedButtonThemeData(
     style: ButtonStyle(
       backgroundColor: WidgetStateProperty.resolveWith((final states) {

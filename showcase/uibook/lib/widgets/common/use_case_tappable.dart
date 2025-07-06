@@ -12,7 +12,7 @@ Widget useCaseTappableAnimation(final BuildContext context) => BeTappable.animat
           color:
               data.hovered
                   ? context.betheme.colors.primary
-                  : ColorUtils.createColorSwatchLevel(
+                  : BeColorUtils.createColorSwatchLevel(
                     context.betheme.colors.primary,
                     isDarkMode: context.betheme.colors.isDark,
                     level: ColorSwatchLevel.shade200,
