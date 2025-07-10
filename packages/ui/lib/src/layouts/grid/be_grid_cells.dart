@@ -2,27 +2,27 @@ import 'package:flutter/foundation.dart';
 
 /// Non-modifiable class that store information about grid: rows and columns
 /// count, size information.
-class GridPadCells {
-  GridPadCells.sizes({
-    required final Iterable<GridPadCellSize> rowSizes,
-    required final Iterable<GridPadCellSize> columnSizes,
-  }) : rowSizes = List<GridPadCellSize>.unmodifiable(rowSizes),
-       columnSizes = List<GridPadCellSize>.unmodifiable(columnSizes),
+class BeGridCells {
+  BeGridCells.sizes({
+    required final Iterable<BeGridCellSize> rowSizes,
+    required final Iterable<BeGridCellSize> columnSizes,
+  }) : rowSizes = List<BeGridCellSize>.unmodifiable(rowSizes),
+       columnSizes = List<BeGridCellSize>.unmodifiable(columnSizes),
        rowsTotalSize = rowSizes.calculateTotalSize(),
        columnsTotalSize = columnSizes.calculateTotalSize();
 
   /// Creating a grid with [Weight] sizes where [Weight.size] equal to 1.
-  GridPadCells.gridSize({required final int rowCount, required final int columnCount})
+  BeGridCells.gridSize({required final int rowCount, required final int columnCount})
     : this.sizes(
         rowSizes: WeightExtension.weightSame(rowCount, 1),
         columnSizes: WeightExtension.weightSame(columnCount, 1),
       );
 
   /// Contains information about size of each row.
-  final List<GridPadCellSize> rowSizes;
+  final List<BeGridCellSize> rowSizes;
 
   /// Contains information about size of each column.
-  final List<GridPadCellSize> columnSizes;
+  final List<BeGridCellSize> columnSizes;
 
   /// Calculated total size of all rows.
   final TotalSize rowsTotalSize;
@@ -39,7 +39,7 @@ class GridPadCells {
   @override
   bool operator ==(final Object other) =>
       identical(this, other) ||
-      other is GridPadCells &&
+      other is BeGridCells &&
           runtimeType == other.runtimeType &&
           listEquals(rowSizes, other.rowSizes) &&
           listEquals(columnSizes, other.columnSizes);
@@ -48,43 +48,43 @@ class GridPadCells {
   int get hashCode => Object.hashAll(rowSizes) ^ Object.hashAll(columnSizes);
 }
 
-class GridPadCellsBuilder {
-  GridPadCellsBuilder({required final int rowCount, required final int columnCount})
+class BeGridCellsBuilder {
+  BeGridCellsBuilder({required final int rowCount, required final int columnCount})
     : _rowSizes = WeightExtension.weightSame(rowCount, 1),
       _columnSizes = WeightExtension.weightSame(columnCount, 1);
 
   /// List of row sizes.
-  final List<GridPadCellSize> _rowSizes;
+  final List<BeGridCellSize> _rowSizes;
 
   /// List of column sizes.
-  final List<GridPadCellSize> _columnSizes;
+  final List<BeGridCellSize> _columnSizes;
 
   /// Set [size] for specific row [index].
-  GridPadCellsBuilder rowSize(final int index, final GridPadCellSize size) {
+  BeGridCellsBuilder rowSize(final int index, final BeGridCellSize size) {
     _rowSizes[index] = size;
     return this;
   }
 
   /// Set [size] for all rows.
-  GridPadCellsBuilder rowsSize(final GridPadCellSize size) {
+  BeGridCellsBuilder rowsSize(final BeGridCellSize size) {
     _rowSizes.fillRange(0, _rowSizes.length, size);
     return this;
   }
 
   /// Set [size] for specific column [index].
-  GridPadCellsBuilder columnSize(final int index, final GridPadCellSize size) {
+  BeGridCellsBuilder columnSize(final int index, final BeGridCellSize size) {
     _columnSizes[index] = size;
     return this;
   }
 
   /// Set [size] for all columns.
-  GridPadCellsBuilder columnsSize(final GridPadCellSize size) {
+  BeGridCellsBuilder columnsSize(final BeGridCellSize size) {
     _columnSizes.fillRange(0, _columnSizes.length, size);
     return this;
   }
 
-  GridPadCells build() {
-    return GridPadCells.sizes(rowSizes: _rowSizes, columnSizes: _columnSizes);
+  BeGridCells build() {
+    return BeGridCells.sizes(rowSizes: _rowSizes, columnSizes: _columnSizes);
   }
 }
 
@@ -112,7 +112,7 @@ class TotalSize {
 }
 
 @protected
-extension GridPadCellSizeExtension on Iterable<GridPadCellSize> {
+extension GridPadCellSizeExtension on Iterable<BeGridCellSize> {
   /// Calculate the total size for the defined cell sizes list.
   ///
   /// Throws an [ArgumentError] if any item in the collection
@@ -135,10 +135,10 @@ extension GridPadCellSizeExtension on Iterable<GridPadCellSize> {
 }
 
 /// Class describes grid cell size.
-sealed class GridPadCellSize {}
+sealed class BeGridCellSize {}
 
 /// Fixed grid cell size.
-class Fixed implements GridPadCellSize {
+class Fixed implements BeGridCellSize {
   const Fixed(this.size) : assert(size > 0);
 
   /// Absolute size, should be greater than 0.
@@ -153,7 +153,7 @@ class Fixed implements GridPadCellSize {
 }
 
 /// Weight grid cell size.
-class Weight implements GridPadCellSize {
+class Weight implements BeGridCellSize {
   const Weight(this.size) : assert(size > 0);
 
   /// Size, should be greater than 0.
@@ -169,12 +169,12 @@ class Weight implements GridPadCellSize {
 
 extension FixedExtension on Fixed {
   /// Create a list with length [count] of fixed cell sizes with size [size].
-  static List<GridPadCellSize> fixedSame(final int count, final double size) {
+  static List<BeGridCellSize> fixedSame(final int count, final double size) {
     return List.generate(count, (final index) => size.fx());
   }
 
   /// Create a list of fixed cell sizes with passed fixed [sizes].
-  static List<GridPadCellSize> fixedSizes(final List<double> sizes) {
+  static List<BeGridCellSize> fixedSizes(final List<double> sizes) {
     return sizes.map((final size) => size.fx()).toList();
   }
 }
@@ -182,12 +182,12 @@ extension FixedExtension on Fixed {
 extension WeightExtension on Weight {
   /// Create a list with length [count] of weight cell sizes with
   /// weight size [size].
-  static List<GridPadCellSize> weightSame(final int count, final double size) {
+  static List<BeGridCellSize> weightSame(final int count, final double size) {
     return List.generate(count, (final index) => size.wt());
   }
 
   /// Create a list of weight cell sizes with passed weight [sizes].
-  static List<GridPadCellSize> weightSizes(final List<double> sizes) {
+  static List<BeGridCellSize> weightSizes(final List<double> sizes) {
     return sizes.map((final size) => size.wt()).toList();
   }
 }

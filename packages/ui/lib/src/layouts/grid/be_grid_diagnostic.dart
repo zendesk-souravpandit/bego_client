@@ -2,13 +2,13 @@
 ///
 /// Default implementation is `null` and doing nothing, to handle need
 /// to set custom [skippingItemCallback]
-class GridPadDiagnosticLogger {
-  factory GridPadDiagnosticLogger() {
+class BeGridDiagnosticLogger {
+  factory BeGridDiagnosticLogger() {
     return _instance;
   }
 
-  GridPadDiagnosticLogger._internal();
-  static final GridPadDiagnosticLogger _instance = GridPadDiagnosticLogger._internal();
+  BeGridDiagnosticLogger._internal();
+  static final BeGridDiagnosticLogger _instance = BeGridDiagnosticLogger._internal();
 
   /// Called when item has been skipped due to out the grid bounds.
   SkippingItemCallback? skippingItemCallback;

@@ -1,6 +1,6 @@
 import 'package:becore/collections.dart';
-import 'package:beui/src/layouts/grid/grid_pad_cells.dart';
-import 'package:beui/src/layouts/grid/grid_pad_placement.dart';
+import 'package:beui/src/layouts/grid/be_grid_cells.dart';
+import 'package:beui/src/layouts/grid/be_grid_placement.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -10,8 +10,8 @@ import 'package:flutter/widgets.dart';
 /// With this widget can be specified:
 /// - location in a grid ([row] and [column] properties)
 /// - span size ([rowSpan] and [columnSpan] properties)
-class Cell extends ProxyWidget {
-  const Cell({
+class BeCell extends ProxyWidget {
+  const BeCell({
     super.key,
     required this.row,
     required this.column,
@@ -22,7 +22,7 @@ class Cell extends ProxyWidget {
        assert(rowSpan > 0),
        assert(columnSpan > 0);
 
-  const Cell.implicit({super.key, this.rowSpan = 1, this.columnSpan = 1, required super.child})
+  const BeCell.implicit({super.key, this.rowSpan = 1, this.columnSpan = 1, required super.child})
     : _implicitly = true,
       row = 0,
       column = 0,
@@ -42,19 +42,19 @@ class Cell extends ProxyWidget {
 
 extension CellExtension on Widget {
   /// Wrap the Widget in a Cell
-  Cell cell({
+  BeCell cell({
     final Key? key,
     required final int row,
     required final int column,
     final int rowSpan = 1,
     final int columnSpan = 1,
   }) {
-    return Cell(key: key, row: row, column: column, rowSpan: rowSpan, columnSpan: columnSpan, child: this);
+    return BeCell(key: key, row: row, column: column, rowSpan: rowSpan, columnSpan: columnSpan, child: this);
   }
 
   /// Wrap the Widget in a implicit Cell
-  Cell implicitCell({final Key? key, final int rowSpan = 1, final int columnSpan = 1}) {
-    return Cell.implicit(key: key, rowSpan: rowSpan, columnSpan: columnSpan, child: this);
+  BeCell implicitCell({final Key? key, final int rowSpan = 1, final int columnSpan = 1}) {
+    return BeCell.implicit(key: key, rowSpan: rowSpan, columnSpan: columnSpan, child: this);
   }
 }
 
@@ -67,7 +67,7 @@ class _CellElement extends ProxyElement {
 
 class _GridPadDelegate extends MultiChildLayoutDelegate {
   _GridPadDelegate(this.cells, this.content, this.direction);
-  final GridPadCells cells;
+  final BeGridCells cells;
   final List<GridPadContent> content;
   final TextDirection direction;
 
@@ -102,7 +102,7 @@ class _GridPadDelegate extends MultiChildLayoutDelegate {
         cells != oldDelegate.cells;
   }
 
-  List<List<_CellPlaceInfo>> calculateCellPlaces(final GridPadCells cells, final double width, final double height) {
+  List<List<_CellPlaceInfo>> calculateCellPlaces(final BeGridCells cells, final double width, final double height) {
     final cellWidths = calculateSizesForDimension(width, cells.columnSizes, cells.columnsTotalSize);
     final cellHeights = calculateSizesForDimension(height, cells.rowSizes, cells.rowsTotalSize);
     double y = 0;
@@ -120,7 +120,7 @@ class _GridPadDelegate extends MultiChildLayoutDelegate {
 
   List<double> calculateSizesForDimension(
     final double availableSize,
-    final List<GridPadCellSize> cellSizes,
+    final List<BeGridCellSize> cellSizes,
     final TotalSize totalSize,
   ) {
     final availableWeight = availableSize - totalSize.fixed;
@@ -142,23 +142,23 @@ class _GridPadDelegate extends MultiChildLayoutDelegate {
 /// according [placementPolicy].
 ///
 /// To specify an exact location or span size other than 1, the child
-/// should be wrapped with the [Cell] widget.
+/// should be wrapped with the [BeCell] widget.
 ///
 /// **Widget have to be limited on both sides (width and height) otherwise an
 /// exception will be thrown.**
-class GridPad extends StatelessWidget {
-  GridPad({
+class BeGridView extends StatelessWidget {
+  BeGridView({
     super.key,
     required this.gridPadCells,
     required final List<Widget> children,
-    this.placementPolicy = GridPadPlacementPolicy.defaultPolicy,
+    this.placementPolicy = BeGridPlacementPolicy.defaultPolicy,
   }) : _placementStrategy = GridPlacementStrategy(gridPadCells, placementPolicy) {
     for (final contentCell in children) {
-      final Cell cell;
-      if (contentCell is Cell) {
+      final BeCell cell;
+      if (contentCell is BeCell) {
         cell = contentCell;
       } else {
-        cell = Cell.implicit(child: contentCell);
+        cell = BeCell.implicit(child: contentCell);
       }
       if (cell._implicitly) {
         _placementStrategy.placeImplicitly(rowSpan: cell.rowSpan, columnSpan: cell.columnSpan, content: cell.child);
@@ -174,9 +174,9 @@ class GridPad extends StatelessWidget {
     }
     _content.addAll(_placementStrategy.content);
   }
-  final GridPadCells gridPadCells;
+  final BeGridCells gridPadCells;
   final List<GridPadContent> _content = [];
-  final GridPadPlacementPolicy placementPolicy;
+  final BeGridPlacementPolicy placementPolicy;
   final PlacementStrategy _placementStrategy;
 
   @override
