@@ -1,9 +1,9 @@
 // ignore_for_file: lines_longer_than_80_chars
 
-import 'package:beui/foundation.dart';
 import 'package:beui/src/layouts/portal/portal.dart';
 import 'package:beui/src/layouts/portal/portal_shift.dart';
 import 'package:beui/src/layouts/rendering.dart' show Alignments;
+import 'package:beui/src/widgets/foundation/be_tappable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -11,7 +11,10 @@ import 'package:flutter/services.dart';
 /// A controller that controls whether a [BePopover] is shown or hidden.
 final class BePopoverController extends ChangeNotifier {
   /// Creates a [BePopoverController] with the given [vsync] and animation [animationDuration].
-  BePopoverController({required final TickerProvider vsync, final Duration animationDuration = const Duration(milliseconds: 100)}) {
+  BePopoverController({
+    required final TickerProvider vsync,
+    final Duration animationDuration = const Duration(milliseconds: 100),
+  }) {
     _animation = AnimationController(vsync: vsync, duration: animationDuration);
     _fade = _fadeTween.animate(_animation);
     _scale = _scaleTween.animate(_animation);
