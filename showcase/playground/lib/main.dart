@@ -125,10 +125,11 @@ class DashboardView extends StatelessWidget {
   Widget build(final BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Dashboard')),
-      body: Column(
+      body: ListView(
         children: [
-          const SizedBox(height: 20),
           const Text('Dashboard View is working', style: TextStyle(fontSize: 20)),
+          // const GoogleLogoWidget(size: 32),
+          const SizedBox(height: 20),
           const Center(child: Text('Dashboard Content')),
           const SizedBox(height: 20),
           ElevatedButton(
