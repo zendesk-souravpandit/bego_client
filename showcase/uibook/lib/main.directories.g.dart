@@ -35,13 +35,18 @@ import 'package:uibook/widgets/overlay/use_case_be_responsive_dialog.dart'
     as _i25;
 import 'package:uibook/widgets/overlay/use_case_notification.dart' as _i22;
 import 'package:uibook/widgets/overlay/use_case_popover.dart' as _i24;
-import 'package:uibook/widgets/text/use_case_be_text.dart' as _i26;
-import 'package:uibook/widgets/text/use_case_be_text_tagged.dart' as _i28;
+import 'package:uibook/widgets/text/use_case_be_text.dart' as _i27;
+import 'package:uibook/widgets/text/use_case_be_text_comprehensive.dart'
+    as _i26;
+import 'package:uibook/widgets/text/use_case_be_text_tagged.dart' as _i29;
 import 'package:uibook/widgets/text/use_case_text_input.dart' as _i10;
-import 'package:uibook/widgets/text/use_case_typography.dart' as _i27;
+import 'package:uibook/widgets/text/use_case_typography.dart' as _i28;
 import 'package:uibook/widgets/use_case_theme.dart' as _i5;
+import 'package:uibook/widgets/utils/use_case_be_color_utils.dart' as _i30;
 import 'package:uibook/widgets/utils/use_case_be_responsive_visibility.dart'
-    as _i29;
+    as _i31;
+import 'package:uibook/widgets/utils/use_case_color_extension.dart' as _i32;
+import 'package:uibook/widgets/utils/use_case_custom_color.dart' as _i33;
 import 'package:widgetbook/widgetbook.dart' as _i1;
 
 final directories = <_i1.WidgetbookNode>[
@@ -287,12 +292,24 @@ final directories = <_i1.WidgetbookNode>[
             name: 'BeText',
             useCases: [
               _i1.WidgetbookUseCase(
+                name: 'BeText - Custom Styling',
+                builder: _i26.beTextCustomStylingUseCase,
+              ),
+              _i1.WidgetbookUseCase(
+                name: 'BeText - Practical Examples',
+                builder: _i26.beTextPracticalUseCase,
+              ),
+              _i1.WidgetbookUseCase(
+                name: 'BeText - Typography Showcase',
+                builder: _i26.beTextTypographyUseCase,
+              ),
+              _i1.WidgetbookUseCase(
                 name: 'BeText Variants',
-                builder: _i26.useCaseBeText,
+                builder: _i27.useCaseBeText,
               ),
               _i1.WidgetbookUseCase(
                 name: 'Typography',
-                builder: _i27.displayTypographyUseCase,
+                builder: _i28.displayTypographyUseCase,
               ),
             ],
           ),
@@ -300,7 +317,7 @@ final directories = <_i1.WidgetbookNode>[
             name: 'BeTextTagged',
             useCase: _i1.WidgetbookUseCase(
               name: 'BeTextTagged',
-              builder: _i28.useCaseBeTextTagged,
+              builder: _i29.useCaseBeTextTagged,
             ),
           ),
         ],
@@ -308,11 +325,42 @@ final directories = <_i1.WidgetbookNode>[
       _i1.WidgetbookFolder(
         name: 'utils',
         children: [
+          _i1.WidgetbookComponent(
+            name: 'BeColorUtils',
+            useCases: [
+              _i1.WidgetbookUseCase(
+                name: 'BeColorUtils - Color Harmonization & Blending',
+                builder: _i30.colorHarmonizationUseCase,
+              ),
+              _i1.WidgetbookUseCase(
+                name: 'BeColorUtils - Color Swatch Generation',
+                builder: _i30.colorSwatchUseCase,
+              ),
+              _i1.WidgetbookUseCase(
+                name: 'BeColorUtils - Random Colors & Utilities',
+                builder: _i30.colorUtilitiesUseCase,
+              ),
+            ],
+          ),
           _i1.WidgetbookLeafComponent(
             name: 'BeResponsiveVisibility',
             useCase: _i1.WidgetbookUseCase(
               name: 'BeResponsiveVisibility',
-              builder: _i29.useCaseBeResponsiveVisibility,
+              builder: _i31.useCaseBeResponsiveVisibility,
+            ),
+          ),
+          _i1.WidgetbookLeafComponent(
+            name: 'Color',
+            useCase: _i1.WidgetbookUseCase(
+              name: 'Color Extensions - Blend Methods',
+              builder: _i32.colorExtensionUseCase,
+            ),
+          ),
+          _i1.WidgetbookLeafComponent(
+            name: 'CustomColor',
+            useCase: _i1.WidgetbookUseCase(
+              name: 'CustomColor - Theme Integration',
+              builder: _i33.customColorUseCase,
             ),
           ),
         ],
