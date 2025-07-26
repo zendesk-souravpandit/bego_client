@@ -1,13 +1,13 @@
 import 'package:beui/layout.dart';
 import 'package:flutter/material.dart';
-import 'package:widgetbook/widgetbook.dart';
+// import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 @widgetbook.UseCase(name: 'BeSkeleton', path: 'widget/loading', type: BeSkeleton)
 Widget useCaseBeSkeleton(final BuildContext context) {
-  final enabled = context.knobs.boolean(label: 'Enabled', initialValue: true);
-  final shimmerColor = context.knobs.colorOrNull(label: 'Shimmer Color');
-  final highlightColor = context.knobs.colorOrNull(label: 'Highlight Color');
+  // final enabled = context.knobs.boolean(label: 'Enabled', initialValue: true);
+  // final shimmerColor = context.knobs.colorOrNull(label: 'Shimmer Color');
+  // final highlightColor = context.knobs.colorOrNull(label: 'Highlight Color');
 
   return Padding(
     padding: const EdgeInsets.all(16.0),
