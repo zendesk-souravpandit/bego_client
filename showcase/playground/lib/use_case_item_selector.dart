@@ -20,7 +20,7 @@ class DropdownExample extends HookWidget {
     final formKey = GlobalKey<FormState>();
     return Scaffold(
       appBar: AppBar(title: const Text('Generic Dropdown Example')),
-      body: Form(
+      body: FormBuilder(
         key: formKey,
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -28,6 +28,7 @@ class DropdownExample extends HookWidget {
             children: [
               // Example 1: Using enum with custom display strings
               BeItemSelector<User>(
+                id: 'user_selector',
                 value: selectedFruit.value,
                 items: items,
                 itemToString: (final user) => user.display,
@@ -43,6 +44,20 @@ class DropdownExample extends HookWidget {
                   // print(selectedFruit.value?.display.toString());
                   print(value?.display.toString());
                 },
+              ),
+              BeFormField<String>(
+                id: 'email',
+                title: 'Email Address',
+                helperText: 'We\'ll never share your email',
+                valueTransformer: (final value) => value?.toLowerCase(),
+                validator: (final value) => value?.isEmpty ?? true ? 'Required' : null,
+                onChanged: (final value) => print('Email: $value'),
+                fieldBuilder:
+                    (final field) => TextFormField(
+                      decoration: const InputDecoration(border: OutlineInputBorder()),
+                      onChanged: field.didChange,
+                      initialValue: field.value,
+                    ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,

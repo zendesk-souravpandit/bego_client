@@ -1,31 +1,35 @@
-import 'package:beui/src/widgets/form/be_enable.dart';
-import 'package:beui/text.dart';
+import 'package:beui/src/widgets/form/form_builder_field.dart';
 import 'package:flutter/material.dart';
 
 /// A customizable form field wrapper that provides consistent layout
-/// and styling
-/// for form fields with labels, helper text, and error messages.
+/// and styling for form fields with labels, helper text, and error messages.
 ///
 /// Features:
 /// - Flexible layout with start/end widgets
 /// - Customizable title and helper sections
 /// - Built-in validation handling
 /// - Consistent error display
+/// - Full integration with FormBuilder system
+/// - Advanced state management (dirty, touched, focus)
 
-/// A customizable form field wrapper that provides consistent
-/// layout and styling
-/// for form fields with labels, helper text, and error messages.
-class BeFormField<T> extends FormField<T> {
+/// A customizable form field wrapper that extends FormBuilderField
+/// to provide consistent layout and styling for form fields with labels,
+/// helper text, and error messages.
+class BeFormField<T> extends FormBuilderField<T> {
   BeFormField({
     super.key,
-    required this.build,
+    required super.id,
+    required this.fieldBuilder,
     super.initialValue,
     super.onSaved,
     super.validator,
     super.autovalidateMode = AutovalidateMode.disabled,
     super.enabled = true,
     super.restorationId,
-    this.onChanged,
+    super.valueTransformer,
+    super.onChanged,
+    super.onReset,
+    super.focusNode,
     this.shouldValidate = true,
     this.title,
     this.titleStyle,
@@ -41,64 +45,88 @@ class BeFormField<T> extends FormField<T> {
     this.gap = 8.0,
   }) : super(
          builder: (final field) {
-           onChanged?.call(field.value);
-           return BeEnabled(
-             enabled: enabled,
-             child: _BeFormFieldLayout(
-               startEndAxisAlignment: startEndAxisAlignment,
-               startWidgets: startWidgets,
-               endWidgets: endWidgets,
-               children: [
-                 if (title != null || trailingTitleWidgets.isNotEmpty)
-                   _BeFormTitleSection(title: title, titleStyle: titleStyle, trailingWidgets: trailingTitleWidgets),
-                 SizedBox(height: spacing),
-                 build(field),
-                 if (helperText != null || trailingHelperWidgets.isNotEmpty)
-                   Padding(
-                     padding: EdgeInsets.only(top: spacing),
-                     child: _BeFormHelperSection(
-                       helperText: helperText,
-                       helperStyle: helperStyle,
-                       trailingWidgets: trailingHelperWidgets,
-                     ),
+           return _BeFormFieldLayout(
+             startEndAxisAlignment: startEndAxisAlignment,
+             startWidgets: startWidgets,
+             endWidgets: endWidgets,
+             children: [
+               if (title != null || trailingTitleWidgets.isNotEmpty)
+                 _BeFormTitleSection(title: title, titleStyle: titleStyle, trailingWidgets: trailingTitleWidgets),
+               SizedBox(height: spacing),
+               fieldBuilder(field as BeFormFieldState<T>),
+               if (helperText != null || trailingHelperWidgets.isNotEmpty)
+                 Padding(
+                   padding: EdgeInsets.only(top: spacing),
+                   child: _BeFormHelperSection(
+                     helperText: helperText,
+                     helperStyle: helperStyle,
+                     trailingWidgets: trailingHelperWidgets,
                    ),
-                 if (shouldValidate && field.hasError)
-                   Padding(
-                     padding: EdgeInsets.only(top: spacing / 2),
-                     child: _BeFormErrorText(errorText: field.errorText!, errorStyle: errorStyle),
-                   ),
-               ],
-             ),
+                 ),
+               if (shouldValidate && field.hasError)
+                 Padding(
+                   padding: EdgeInsets.only(top: spacing / 2),
+                   child: _BeFormErrorText(errorText: field.errorText!, errorStyle: errorStyle),
+                 ),
+             ],
            );
          },
        );
 
-  final Widget Function(FormFieldState<T> field) build;
+  /// The builder function that creates the actual form field widget
+  final Widget Function(FormBuilderFieldState<FormBuilderField<T>, T> field) fieldBuilder;
 
-  final ValueChanged<T?>? onChanged;
+  /// Whether to show validation errors
   final bool shouldValidate;
+
+  /// The title text displayed above the field
   final String? title;
+
+  /// Style for the title text
   final TextStyle? titleStyle;
+
+  /// Helper text displayed below the field
   final String? helperText;
+
+  /// Style for the helper text
   final TextStyle? helperStyle;
+
+  /// Widgets displayed after the title
   final List<Widget> trailingTitleWidgets;
+
+  /// Widgets displayed after the helper text
   final List<Widget> trailingHelperWidgets;
+
+  /// Widgets displayed at the start of the field
   final List<Widget> startWidgets;
+
+  /// Widgets displayed at the end of the field
   final List<Widget> endWidgets;
+
+  /// Spacing between field elements
   final double spacing;
+
+  /// Gap between field sections
   final double gap;
+
+  /// Cross axis alignment for start/end widgets
   final CrossAxisAlignment startEndAxisAlignment;
+
+  /// Style for error text
   final TextStyle? errorStyle;
 
   @override
-  FormFieldState<T> createState() => BeFormFieldState<T>();
+  FormBuilderFieldState<FormBuilderField<T>, T> createState() => BeFormFieldState<T>();
 }
 
-// class _BeFormFieldState<T> extends FormFieldState<T> {
-//   @override
-//   BeFormField<T> get widget => super.widget as BeFormField<T>;
-// }
+/// Custom state class that extends FormBuilderFieldState to provide
+/// access to all FormBuilder features while maintaining custom styling
+class BeFormFieldState<T> extends FormBuilderFieldState<FormBuilderField<T>, T> {
+  @override
+  BeFormField<T> get widget => super.widget as BeFormField<T>;
+}
 
+/// Layout widget that arranges start widgets, main content, and end widgets
 class _BeFormFieldLayout extends StatelessWidget {
   const _BeFormFieldLayout({
     required this.startWidgets,
@@ -111,6 +139,7 @@ class _BeFormFieldLayout extends StatelessWidget {
   final List<Widget> endWidgets;
   final List<Widget> children;
   final CrossAxisAlignment startEndAxisAlignment;
+
   @override
   Widget build(final BuildContext context) {
     return Row(
@@ -130,6 +159,7 @@ class _BeFormFieldLayout extends StatelessWidget {
   }
 }
 
+/// Widget that displays the title section with optional trailing widgets
 class _BeFormTitleSection extends StatelessWidget {
   const _BeFormTitleSection({this.title, this.titleStyle, this.trailingWidgets = const []});
 
@@ -143,9 +173,9 @@ class _BeFormTitleSection extends StatelessWidget {
       children: [
         if (title != null)
           Expanded(
-            child: BeText(
+            child: Text(
               title!,
-              maxLine: 1,
+              maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: titleStyle ?? const TextStyle(fontWeight: FontWeight.w600, fontSize: 12),
             ),
@@ -156,6 +186,7 @@ class _BeFormTitleSection extends StatelessWidget {
   }
 }
 
+/// Widget that displays the helper section with optional trailing widgets
 class _BeFormHelperSection extends StatelessWidget {
   const _BeFormHelperSection({this.helperText, this.helperStyle, this.trailingWidgets = const []});
 
@@ -169,9 +200,9 @@ class _BeFormHelperSection extends StatelessWidget {
       children: [
         if (helperText != null)
           Expanded(
-            child: BeText(
-              helperText,
-              maxLine: 1,
+            child: Text(
+              helperText!,
+              maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: helperStyle ?? const TextStyle(fontWeight: FontWeight.w500, fontSize: 14, color: Colors.grey),
             ),
@@ -182,6 +213,7 @@ class _BeFormHelperSection extends StatelessWidget {
   }
 }
 
+/// Widget that displays error text with proper styling
 class _BeFormErrorText extends StatelessWidget {
   const _BeFormErrorText({required this.errorText, this.errorStyle});
 
@@ -192,8 +224,6 @@ class _BeFormErrorText extends StatelessWidget {
   Widget build(final BuildContext context) {
     final theme = Theme.of(context);
 
-    return BeText(errorText, style: errorStyle ?? TextStyle(color: theme.colorScheme.error, fontSize: 12));
+    return Text(errorText, style: errorStyle ?? TextStyle(color: theme.colorScheme.error, fontSize: 12));
   }
 }
-
-class BeFormFieldState<T> extends FormFieldState<T> {}

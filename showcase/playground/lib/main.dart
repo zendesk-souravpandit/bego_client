@@ -4,6 +4,7 @@ import 'package:becore/getx.dart';
 import 'package:beui/mulitchild.dart';
 import 'package:beui/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:playground/use_case_item_selector.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,7 +26,7 @@ class BeAppDelegate extends BeAppRouteDelegate {
 
   @override
   List<BeMainPage<dynamic>> get mainRoutes => [
-    BeMainPage(name: '/home', page: () => const DashboardView()),
+    BeMainPage(name: '/home', page: DropdownExample.new),
     BeMainPage(name: '/profile', page: () => const ProfileView(), title: 'Profile', transition: Transition.size),
     BeMainPage(
       name: '/products',
