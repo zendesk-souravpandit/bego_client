@@ -89,6 +89,7 @@ class BePopover extends StatefulWidget {
     this.shift = FPortalShift.flip,
     this.hideOnTapOutside = BeHidePopoverRegion.anywhere,
     this.directionPadding = false,
+    this.isChildWidth = false,
     this.semanticLabel,
     this.autofocus = false,
     this.focusNode,
@@ -120,6 +121,7 @@ class BePopover extends StatefulWidget {
     this.shift = FPortalShift.flip,
     this.hideOnTapOutside = BeHidePopoverRegion.excludeTarget,
     this.directionPadding = false,
+    this.isChildWidth = false,
     this.autofocus = false,
     this.focusNode,
     this.decoration,
@@ -183,6 +185,13 @@ class BePopover extends StatefulWidget {
   /// {@endtemplate}
   final bool directionPadding;
 
+  /// {@template forui.widgets.BePopover.isChildWidth}
+  /// True if the popover should match the width of the child widget. Defaults to false.
+  ///
+  /// When enabled, the popover content will be constrained to have the same width as the child widget.
+  /// {@endtemplate}
+  final bool isChildWidth;
+
   /// {@macro forui.foundation.doc_templates.autofocus}
   final bool autofocus;
 
@@ -216,6 +225,7 @@ class BePopover extends StatefulWidget {
       ..add(ObjectFlagProperty.has('shift', shift))
       ..add(EnumProperty('hideOnTapOutside', hideOnTapOutside))
       ..add(FlagProperty('directionPadding', value: directionPadding, ifTrue: 'directionPadding'))
+      ..add(FlagProperty('isChildWidth', value: isChildWidth, ifTrue: 'isChildWidth'))
       ..add(StringProperty('semanticLabel', semanticLabel))
       ..add(FlagProperty('autofocus', value: autofocus, ifTrue: 'autofocus'))
       ..add(DiagnosticsProperty('focusNode', focusNode))
@@ -227,6 +237,7 @@ class BePopover extends StatefulWidget {
 class _State extends State<BePopover> with SingleTickerProviderStateMixin {
   final Key _group = UniqueKey();
   late BePopoverController _controller;
+  double? _childWidth;
 
   @override
   void initState() {
@@ -258,6 +269,22 @@ class _State extends State<BePopover> with SingleTickerProviderStateMixin {
 
     if (widget.hideOnTapOutside == BeHidePopoverRegion.excludeTarget) {
       child = TapRegion(groupId: _group, onTapOutside: (_) => _controller.hide(), child: child);
+    }
+
+    // If isChildWidth is enabled, wrap the child to measure its width
+    if (widget.isChildWidth) {
+      child = _ChildMeasurer(
+        onSizeChanged: (final Size size) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            if (mounted) {
+              setState(() {
+                _childWidth = size.width;
+              });
+            }
+          });
+        },
+        child: child,
+      );
     }
 
     return FPortal(
@@ -295,7 +322,17 @@ class _State extends State<BePopover> with SingleTickerProviderStateMixin {
                           onTapOutside:
                               widget.hideOnTapOutside == BeHidePopoverRegion.none ? null : (_) => _controller.hide(),
 
-                          child: widget.popoverBuilder(context, widget.decoration ?? _popoverDecoration, null),
+                          child:
+                              widget.isChildWidth && _childWidth != null
+                                  ? ConstrainedBox(
+                                    constraints: BoxConstraints(maxWidth: _childWidth!),
+                                    child: widget.popoverBuilder(
+                                      context,
+                                      widget.decoration ?? _popoverDecoration,
+                                      null,
+                                    ),
+                                  )
+                                  : widget.popoverBuilder(context, widget.decoration ?? _popoverDecoration, null),
                         ),
                       ),
                     ),
@@ -382,6 +419,36 @@ class _State extends State<BePopover> with SingleTickerProviderStateMixin {
     }
 
     return false;
+  }
+}
+
+/// A widget that measures its child and calls a callback when the size changes.
+class _ChildMeasurer extends StatefulWidget {
+  const _ChildMeasurer({required this.onSizeChanged, required this.child});
+
+  final ValueChanged<Size> onSizeChanged;
+  final Widget child;
+
+  @override
+  State<_ChildMeasurer> createState() => _ChildMeasurerState();
+}
+
+class _ChildMeasurerState extends State<_ChildMeasurer> {
+  @override
+  Widget build(final BuildContext context) {
+    return LayoutBuilder(
+      builder: (final context, final constraints) {
+        // Schedule a callback to notify about size after layout
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          final renderBox = context.findRenderObject() as RenderBox?;
+          if (renderBox != null && renderBox.hasSize) {
+            widget.onSizeChanged(renderBox.size);
+          }
+        });
+
+        return widget.child;
+      },
+    );
   }
 }
 

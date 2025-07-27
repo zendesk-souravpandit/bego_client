@@ -47,6 +47,7 @@ Widget useCaseBePopover(final BuildContext context) {
 
   final autofocus = context.knobs.boolean(label: 'Auto Focus', initialValue: false);
   final directionPadding = context.knobs.boolean(label: 'Direction Padding', initialValue: false);
+  final isChildWidth = context.knobs.boolean(label: 'Match Child Width', initialValue: false);
 
   return Scaffold(
     body: SingleChildScrollView(
@@ -95,6 +96,7 @@ Widget useCaseBePopover(final BuildContext context) {
                 hideOnTapOutside: hideOnTapOutside,
                 autofocus: autofocus,
                 directionPadding: directionPadding,
+                isChildWidth: isChildWidth,
                 popoverBuilder:
                     (final context, final decoration, final child) => _buildSimplePopover('Simple Tooltip', Icons.info),
                 child: ElevatedButton.icon(
@@ -134,6 +136,7 @@ Widget useCaseBePopover(final BuildContext context) {
                 hideOnTapOutside: hideOnTapOutside,
                 autofocus: autofocus,
                 directionPadding: directionPadding,
+                isChildWidth: isChildWidth,
                 popoverBuilder: (final context, final decoration, final child) => _buildFormPopover(),
                 child: ElevatedButton.icon(
                   onPressed: () {
@@ -164,6 +167,7 @@ Widget useCaseBePopover(final BuildContext context) {
             hideOnTapOutside: hideOnTapOutside,
             autofocus: autofocus,
             directionPadding: directionPadding,
+            isChildWidth: isChildWidth,
           ),
 
           const SizedBox(height: 40),
@@ -433,6 +437,7 @@ class _ManualPopoverExample extends StatefulWidget {
     required this.hideOnTapOutside,
     required this.autofocus,
     required this.directionPadding,
+    required this.isChildWidth,
   });
 
   final AlignmentGeometry popoverAnchor;
@@ -440,6 +445,7 @@ class _ManualPopoverExample extends StatefulWidget {
   final BeHidePopoverRegion hideOnTapOutside;
   final bool autofocus;
   final bool directionPadding;
+  final bool isChildWidth;
 
   @override
   State<_ManualPopoverExample> createState() => _ManualPopoverExampleState();
@@ -484,6 +490,7 @@ class _ManualPopoverExampleState extends State<_ManualPopoverExample> with Ticke
           hideOnTapOutside: widget.hideOnTapOutside,
           autofocus: widget.autofocus,
           directionPadding: widget.directionPadding,
+          isChildWidth: widget.isChildWidth,
           // decoration: BeBoxDecoration(),
           popoverBuilder:
               (final context, final decoration, final child) => Container(

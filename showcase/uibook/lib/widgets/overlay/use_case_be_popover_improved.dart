@@ -1,4 +1,6 @@
+import 'package:beui/decoration.dart';
 import 'package:beui/overlay.dart';
+import 'package:beui/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
@@ -47,6 +49,7 @@ Widget useCaseBePopoverImproved(final BuildContext context) {
 
   final autofocus = context.knobs.boolean(label: 'Auto Focus', initialValue: false);
   final directionPadding = context.knobs.boolean(label: 'Direction Padding', initialValue: false);
+  final isChildWidth = context.knobs.boolean(label: 'Match Child Width', initialValue: false);
 
   return _BePopoverImprovedWidget(
     popoverAnchor: popoverAnchor,
@@ -54,6 +57,7 @@ Widget useCaseBePopoverImproved(final BuildContext context) {
     hideOnTapOutside: hideOnTapOutside,
     autofocus: autofocus,
     directionPadding: directionPadding,
+    isChildWidth: isChildWidth,
   );
 }
 
@@ -64,6 +68,7 @@ class _BePopoverImprovedWidget extends StatefulWidget {
     required this.hideOnTapOutside,
     required this.autofocus,
     required this.directionPadding,
+    required this.isChildWidth,
   });
 
   final AlignmentGeometry popoverAnchor;
@@ -71,6 +76,7 @@ class _BePopoverImprovedWidget extends StatefulWidget {
   final BeHidePopoverRegion hideOnTapOutside;
   final bool autofocus;
   final bool directionPadding;
+  final bool isChildWidth;
 
   @override
   State<_BePopoverImprovedWidget> createState() => _BePopoverImprovedWidgetState();
@@ -161,6 +167,7 @@ class _BePopoverImprovedWidgetState extends State<_BePopoverImprovedWidget> with
                   hideOnTapOutside: widget.hideOnTapOutside,
                   autofocus: widget.autofocus,
                   directionPadding: widget.directionPadding,
+                  isChildWidth: widget.isChildWidth,
                   popoverBuilder:
                       (final context, final decoration, final child) => _buildStatusPopover(
                         'Tooltip Active!',
@@ -178,6 +185,7 @@ class _BePopoverImprovedWidgetState extends State<_BePopoverImprovedWidget> with
                   hideOnTapOutside: widget.hideOnTapOutside,
                   autofocus: widget.autofocus,
                   directionPadding: widget.directionPadding,
+                  isChildWidth: widget.isChildWidth,
                   popoverBuilder: (final context, final decoration, final child) => _buildMenuPopover(),
                   child: _buildDemoButton('Show Menu', Icons.menu, Colors.orange),
                 ),
@@ -190,6 +198,7 @@ class _BePopoverImprovedWidgetState extends State<_BePopoverImprovedWidget> with
                   hideOnTapOutside: widget.hideOnTapOutside,
                   autofocus: widget.autofocus,
                   directionPadding: widget.directionPadding,
+                  isChildWidth: widget.isChildWidth,
                   popoverBuilder:
                       (final context, final decoration, final child) => _buildFormPopover(_formPopoverController),
                   child: _buildDemoButton('Quick Edit', Icons.edit, Colors.green),
@@ -210,22 +219,26 @@ class _BePopoverImprovedWidgetState extends State<_BePopoverImprovedWidget> with
               childAnchor: widget.childAnchor,
               hideOnTapOutside: widget.hideOnTapOutside,
               autofocus: widget.autofocus,
+              isChildWidth: true,
               directionPadding: widget.directionPadding,
               popoverBuilder:
                   (final context, final decoration, final child) => _buildInfoPopover(_infoPopoverController),
-              child: Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(Icons.info, color: Colors.blue.shade600),
-                      const SizedBox(width: 12),
-                      const Text('Click this card for more info'),
-                      const SizedBox(width: 8),
-                      Icon(Icons.arrow_drop_down, color: Colors.grey.shade600),
-                    ],
-                  ),
+              child: Container(
+                padding: px12 + py16,
+                decoration: BoxDecoration(
+                  border: Border.all(color: BeColors.gray, width: 0.3),
+                  borderRadius: const BorderRadius.all(Radius.elliptical(12, 16)),
+                ),
+                // color: Colors.green,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.info, color: Colors.blue.shade600),
+                    const SizedBox(width: 12),
+                    const Text('Click this card for more info'),
+                    const SizedBox(width: 8),
+                    Icon(Icons.arrow_drop_down, color: Colors.grey.shade600),
+                  ],
                 ),
               ),
             ),
