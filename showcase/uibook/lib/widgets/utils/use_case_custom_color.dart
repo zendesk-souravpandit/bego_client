@@ -109,7 +109,7 @@ Widget _buildCustomColorDemo(final Color sourceColor, final Color customColorVal
                       ),
                     ),
                     const SizedBox(width: 8),
-                    Text('#${customColor.color.value.toRadixString(16).substring(2).toUpperCase()}'),
+                    Text('#${customColor.color.toARGB32().toRadixString(16).substring(2).toUpperCase()}'),
                   ],
                 ),
               ],
@@ -270,7 +270,7 @@ Widget _buildThemeSystemExample(final Color sourceColor) {
                         ),
                         const SizedBox(height: 4),
                         Text(
-                          '#${resultColor.value.toRadixString(16).substring(2).toUpperCase()}',
+                          '#${resultColor.toARGB32().toRadixString(16).substring(2).toUpperCase()}',
                           style: TextStyle(
                             color:
                                 ThemeData.estimateBrightnessForColor(resultColor) == Brightness.dark
@@ -354,7 +354,7 @@ Widget _buildCustomColorPalette(final Color sourceColor) {
                             ),
                             const SizedBox(height: 4),
                             Text(
-                              '#${variation.$2.value.toRadixString(16).substring(2, 8).toUpperCase()}',
+                              '#${variation.$2.toARGB32().toRadixString(16).substring(2, 8).toUpperCase()}',
                               style: TextStyle(
                                 color:
                                     ThemeData.estimateBrightnessForColor(variation.$2) == Brightness.dark
@@ -488,7 +488,7 @@ Widget _buildColorCard(final String label, final Color color) {
         ),
         const SizedBox(height: 4),
         Text(
-          '#${color.value.toRadixString(16).substring(2).toUpperCase()}',
+          '#${color.toARGB32().toRadixString(16).substring(2).toUpperCase()}',
           style: TextStyle(color: textColor, fontSize: 9),
         ),
       ],

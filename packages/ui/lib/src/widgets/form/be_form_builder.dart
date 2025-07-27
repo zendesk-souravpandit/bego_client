@@ -1,12 +1,15 @@
-import 'package:beui/src/widgets/form/form_builder_field.dart';
+// ignore_for_file: strict_raw_type
+
+import 'package:beui/src/widgets/form/be_form_builder_field.dart';
+import 'package:beui/src/widgets/form/extensions/auto_validate_extension.dart';
 import 'package:flutter/widgets.dart';
 
 /// A container for form fields.
-class FormBuilder extends StatefulWidget {
+class BeFormBuilder extends StatefulWidget {
   /// Creates a container for form fields.
   ///
   /// The [child] argument must not be null.
-  const FormBuilder({
+  const BeFormBuilder({
     super.key,
     required this.child,
     this.onChanged,
@@ -26,35 +29,9 @@ class FormBuilder extends StatefulWidget {
   final VoidCallback? onChanged;
 
   /// {@macro flutter.widgets.navigator.onPopInvokedWithResult}
-  ///
-  /// {@tool dartpad}
-  /// This sample demonstrates how to use this parameter to show a confirmation
-  /// dialog when a navigation pop would cause form data to be lost.
-  ///
-  /// ** See code in examples/api/lib/widgets/form/form.1.dart **
-  /// {@end-tool}
-  ///
-  /// See also:
-  ///
-  ///  * [canPop], which also comes from [PopScope] and is often used in
-  ///    conjunction with this parameter.
-  ///  * [PopScope.onPopInvokedWithResult], which is what [Form] delegates to internally.
   final PopInvokedWithResultCallback<Object?>? onPopInvokedWithResult;
 
   /// {@macro flutter.widgets.PopScope.canPop}
-  ///
-  /// {@tool dartpad}
-  /// This sample demonstrates how to use this parameter to show a confirmation
-  /// dialog when a navigation pop would cause form data to be lost.
-  ///
-  /// ** See code in examples/api/lib/widgets/form/form.1.dart **
-  /// {@end-tool}
-  ///
-  /// See also:
-  ///
-  ///  * [onPopInvoked], which also comes from [PopScope] and is often used in
-  ///    conjunction with this parameter.
-  ///  * [PopScope.canPop], which is what [Form] delegates to internally.
   final bool? canPop;
 
   /// The widget below this widget in the tree.
@@ -102,25 +79,25 @@ class FormBuilder extends StatefulWidget {
   /// Defaults to `false`.
   ///
   /// When set to `true`, the form builder will not keep the internal values
-  /// from disposed [FormBuilderField]s. This is useful for dynamic forms where
+  /// from disposed [BeFormBuilderField]s. This is useful for dynamic forms where
   /// fields are registered and unregistered due to state change.
   ///
   /// This setting will have no effect when registering a field with the same
   /// name as the unregistered one.
   final bool clearValueOnUnregister;
 
-  static FormBuilderState? of(final BuildContext context) => context.findAncestorStateOfType<FormBuilderState>();
+  static BeFormBuilderState? of(final BuildContext context) => context.findAncestorStateOfType<BeFormBuilderState>();
 
   @override
-  FormBuilderState createState() => FormBuilderState();
+  BeFormBuilderState createState() => BeFormBuilderState();
 }
 
 /// A type alias for a map of form fields.
-typedef FormBuilderFields = Map<String, FormBuilderFieldState<FormBuilderField<dynamic>, dynamic>>;
+typedef BeFormBuilderFields = Map<String, BeFormBuilderFieldState<BeFormBuilderField<dynamic>, dynamic>>;
 
-class FormBuilderState extends State<FormBuilder> {
+class BeFormBuilderState extends State<BeFormBuilder> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final FormBuilderFields _fields = {};
+  final BeFormBuilderFields _fields = {};
   final Map<String, dynamic> _instantValue = {};
   final Map<String, dynamic> _savedValue = {};
   // Because dart type system will not accept ValueTransformer<dynamic>
@@ -158,7 +135,7 @@ class FormBuilderState extends State<FormBuilder> {
   Map<String, dynamic> get initialValue => widget.initialValue;
 
   /// Get all fields of form.
-  FormBuilderFields get fields => _fields;
+  BeFormBuilderFields get fields => _fields;
 
   /// Get all fields values of form.
   Map<String, dynamic> get instantValue => Map<String, dynamic>.unmodifiable(
@@ -184,7 +161,9 @@ class FormBuilderState extends State<FormBuilder> {
   }
 
   T? getRawValue<T>(final String name, {final bool fromSaved = false}) {
-    return ((fromSaved ? _savedValue[name] : _instantValue[name]) ?? initialValue[name]) as T?;
+    // ignore: avoid_dynamic_calls, implicit_dynamic_map_literal
+    final dynamic value = (fromSaved ? _savedValue[name] : _instantValue[name]) ?? initialValue[name];
+    return value is T ? value : null;
   }
 
   /// Get a field value by name
@@ -199,7 +178,7 @@ class FormBuilderState extends State<FormBuilder> {
   }
 
   /// Register a field on form
-  void registerField(final String name, final FormBuilderFieldState<FormBuilderField<dynamic>, dynamic> field) {
+  void registerField(final String name, final BeFormBuilderFieldState field) {
     // Each field must have a unique name.  Ideally we could simply:
     //   assert(!_fields.containsKey(name));
     // However, Flutter will delay dispose of deactivated fields, so if a
@@ -228,7 +207,7 @@ class FormBuilderState extends State<FormBuilder> {
   }
 
   /// Unregister a field on form
-  void unregisterField(final String name, final FormBuilderFieldState<FormBuilderField<dynamic>, dynamic> field) {
+  void unregisterField(final String name, final BeFormBuilderFieldState field) {
     assert(
       _fields.containsKey(name),
       'Failed to unregister a field. Make sure that all field names in a form are unique.',
@@ -313,7 +292,7 @@ class FormBuilderState extends State<FormBuilder> {
     return validate(focusOnInvalid: focusOnInvalid, autoScrollWhenFocusOnInvalid: autoScrollWhenFocusOnInvalid);
   }
 
-  /// Reset form to `initialValue` set on FormBuilder or on each field.
+  /// Reset form to `initialValue` set on BeFormBuilder or on each field.
   void reset() {
     _formKey.currentState?.reset();
   }
@@ -331,7 +310,7 @@ class FormBuilderState extends State<FormBuilder> {
   @override
   void initState() {
     // Verify if need auto validate form
-    if (enabled && (widget.autovalidateMode == AutovalidateMode.always)) {
+    if (enabled && (widget.autovalidateMode?.isAlways ?? false)) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         // No focus on invalid, like default behavior on Flutter base Form
         validate(focusOnInvalid: false);
@@ -348,19 +327,20 @@ class FormBuilderState extends State<FormBuilder> {
       onPopInvokedWithResult: widget.onPopInvokedWithResult,
       canPop: widget.canPop,
       // `onChanged` is called during setInternalFieldValue else will be called early
-      child: _FormBuilderScope(formState: this, child: FocusTraversalGroup(child: widget.child)),
+      child: _BeFormBuilderScope(formState: this, child: FocusTraversalGroup(child: widget.child)),
     );
   }
 }
 
-class _FormBuilderScope extends InheritedWidget {
-  const _FormBuilderScope({required super.child, required final FormBuilderState formState}) : _formState = formState;
+class _BeFormBuilderScope extends InheritedWidget {
+  const _BeFormBuilderScope({required super.child, required final BeFormBuilderState formState})
+    : _formState = formState;
 
-  final FormBuilderState _formState;
+  final BeFormBuilderState _formState;
 
-  /// The [Form] associated with this widget.
-  FormBuilder get form => _formState.widget;
+  /// The [BeFormBuilder] associated with this widget.
+  BeFormBuilder get form => _formState.widget;
 
   @override
-  bool updateShouldNotify(final _FormBuilderScope oldWidget) => oldWidget._formState != _formState;
+  bool updateShouldNotify(final _BeFormBuilderScope oldWidget) => oldWidget._formState != _formState;
 }

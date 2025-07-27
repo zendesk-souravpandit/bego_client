@@ -31,7 +31,9 @@ Widget useCaseBeBounceTap(final BuildContext context) {
               decoration: BoxDecoration(
                 color: Colors.blue,
                 borderRadius: BorderRadius.circular(12),
-                boxShadow: [BoxShadow(color: Colors.blue.withOpacity(0.3), blurRadius: 8, offset: const Offset(0, 4))],
+                boxShadow: [
+                  BoxShadow(color: Colors.blue.withValues(alpha: 0.3 * 255), blurRadius: 8, offset: const Offset(0, 4)),
+                ],
               ),
               child: const Text(
                 'Bounce Button',
@@ -104,7 +106,11 @@ Widget useCaseBeBounceTap(final BuildContext context) {
                     borderRadius: BorderRadius.circular(8),
                     border: Border.all(color: Colors.green, width: 2),
                     boxShadow: [
-                      BoxShadow(color: Colors.green.withOpacity(0.2), blurRadius: 4, offset: const Offset(0, 2)),
+                      BoxShadow(
+                        color: Colors.green.withValues(alpha: 0.2 * 255),
+                        blurRadius: 4,
+                        offset: const Offset(0, 2),
+                      ),
                     ],
                   ),
                   child: const Column(

@@ -697,10 +697,11 @@ Widget _buildReferenceItem(final String property, final String description) {
 }
 
 String _generateStyleCode(final String text, final TextStyle style) {
-  final buffer = StringBuffer();
-  buffer.writeln('BeText(');
-  buffer.writeln('  \'$text\',');
-  buffer.writeln('  style: TextStyle(');
+  final buffer =
+      StringBuffer()
+        ..writeln('BeText(')
+        ..writeln('  \'$text\',')
+        ..writeln('  style: TextStyle(');
 
   if (style.fontSize != null) {
     buffer.writeln('    fontSize: ${style.fontSize},');
@@ -724,8 +725,9 @@ String _generateStyleCode(final String text, final TextStyle style) {
     buffer.writeln('    backgroundColor: ${_colorToString(style.backgroundColor!)},');
   }
 
-  buffer.writeln('  ),');
-  buffer.writeln(')');
+  buffer
+    ..writeln('  ),')
+    ..writeln(')');
 
   return buffer.toString();
 }
@@ -736,5 +738,5 @@ String _colorToString(final Color color) {
   if (color == Colors.red) return 'Colors.red';
   if (color == Colors.blue) return 'Colors.blue';
   if (color == Colors.green) return 'Colors.green';
-  return 'Color(0x${color.value.toRadixString(16).padLeft(8, '0').toUpperCase()})';
+  return 'Color(0x${color.toARGB32().toRadixString(16).padLeft(8, '0').toUpperCase()})';
 }

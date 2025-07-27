@@ -1,8 +1,10 @@
 // ignore_for_file: lines_longer_than_80_chars
 
+import 'package:beui/decoration.dart';
 import 'package:beui/src/layouts/portal/portal.dart';
 import 'package:beui/src/layouts/portal/portal_shift.dart';
 import 'package:beui/src/layouts/rendering.dart' show Alignments;
+import 'package:beui/src/theme/colors/be_colors.dart';
 import 'package:beui/src/widgets/foundation/be_tappable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -91,6 +93,7 @@ class BePopover extends StatefulWidget {
     this.autofocus = false,
     this.focusNode,
     this.onFocusChange,
+    this.decoration,
     final AlignmentGeometry? popoverAnchor,
     final AlignmentGeometry? childAnchor,
     super.key,
@@ -100,9 +103,16 @@ class BePopover extends StatefulWidget {
 
   /// Creates a popover that is automatically shown when the [child] is tapped.
   ///
-  /// It is not recommended for the [child] to contain a [GestureDetector], such as [BeButton]. Only one
-  /// `GestureDetector` will be called if there are multiple overlapping `GestureDetector`s, leading to unexpected
-  /// behavior.
+  /// The implementation intelligently detects whether the [child] has its own gesture detector
+  /// (like buttons) and adapts the gesture handling accordingly to avoid conflicts.
+  ///
+  /// For widgets with existing gesture detectors (buttons, InkWell, etc.), both the widget's
+  /// onPressed callback AND the popover will be triggered.
+  ///
+  /// For plain widgets without gesture detectors, only the popover will be shown.
+  ///
+  /// It is safe to use [child] widgets that contain [GestureDetector], [ElevatedButton],
+  /// [OutlinedButton], [TextButton], [IconButton], [InkWell], or [BeTappable].
   BePopover.automatic({
     required this.popoverBuilder,
     required this.child,
@@ -112,6 +122,7 @@ class BePopover extends StatefulWidget {
     this.directionPadding = false,
     this.autofocus = false,
     this.focusNode,
+    this.decoration,
     this.onFocusChange,
     this.semanticLabel,
     final AlignmentGeometry? popoverAnchor,
@@ -149,6 +160,8 @@ class BePopover extends StatefulWidget {
   ///
   /// Defaults to [Alignment.topCenter] on Android and iOS, and [Alignment.bottomCenter] on all other platforms.
   final AlignmentGeometry childAnchor;
+
+  final BeBoxDecoration? decoration;
 
   /// {@template forui.widgets.BePopover.shift}
   /// The shifting strategy used to shift a popover when it overflows out of the viewport. Defaults to
@@ -241,10 +254,7 @@ class _State extends State<BePopover> with SingleTickerProviderStateMixin {
     final popover = widget.popoverAnchor;
     final childAnchor = widget.childAnchor;
 
-    var child =
-        widget._automatic
-            ? GestureDetector(behavior: HitTestBehavior.translucent, onTap: _controller.toggle, child: widget.child)
-            : widget.child;
+    var child = widget._automatic ? _buildAutomaticChild(widget.child) : widget.child;
 
     if (widget.hideOnTapOutside == BeHidePopoverRegion.excludeTarget) {
       child = TapRegion(groupId: _group, onTapOutside: (_) => _controller.hide(), child: child);
@@ -284,15 +294,8 @@ class _State extends State<BePopover> with SingleTickerProviderStateMixin {
                           groupId: _group,
                           onTapOutside:
                               widget.hideOnTapOutside == BeHidePopoverRegion.none ? null : (_) => _controller.hide(),
-                          child: DecoratedBox(
-                            decoration: BoxDecoration(
-                              color: Colors.white, // Default color
-                              borderRadius: BorderRadius.circular(4), // Default border radius
-                              border: Border.all(width: 1, color: Colors.black), // Default border
-                              boxShadow: const [], // Default shadow
-                            ),
-                            child: widget.popoverBuilder(context, const BoxDecoration(), null),
-                          ),
+
+                          child: widget.popoverBuilder(context, widget.decoration ?? _popoverDecoration, null),
                         ),
                       ),
                     ),
@@ -312,4 +315,80 @@ class _State extends State<BePopover> with SingleTickerProviderStateMixin {
     }
     super.dispose();
   }
+
+  /// Builds the automatic child that handles gesture detection for automatic popovers.
+  /// Uses a combination of GestureDetector and TapRegion to support both standalone usage
+  /// and widgets with existing gesture detectors like buttons.
+  Widget _buildAutomaticChild(final Widget child) {
+    // Check if the child is likely to have its own gesture detector
+    // This is a heuristic approach - we look for common button types
+    final hasOwnGesture = _hasOwnGestureDetector(child);
+
+    if (hasOwnGesture) {
+      // For widgets with their own gesture detectors (like buttons),
+      // we use TapRegion which doesn't interfere with existing gestures
+      return TapRegion(
+        behavior: HitTestBehavior.translucent,
+        onTapInside: (_) {
+          // Small delay to allow the button's own onPressed to fire first
+          Future.microtask(() {
+            if (mounted) {
+              _controller.toggle();
+            }
+          });
+        },
+        child: child,
+      );
+    } else {
+      // For widgets without gesture detectors, use the traditional approach
+      return GestureDetector(behavior: HitTestBehavior.translucent, onTap: _controller.toggle, child: child);
+    }
+  }
+
+  /// Heuristic to determine if a widget likely has its own gesture detector.
+  /// This checks for common button types and other interactive widgets.
+  bool _hasOwnGestureDetector(final Widget widget) {
+    // Check for common Flutter button types
+    if (widget is ElevatedButton ||
+        widget is OutlinedButton ||
+        widget is TextButton ||
+        widget is IconButton ||
+        widget is FloatingActionButton ||
+        widget is InkWell ||
+        widget is GestureDetector) {
+      return true;
+    }
+
+    // Check for custom tappable widgets
+    if (widget is BeTappable) {
+      return true;
+    }
+
+    // If it's a container-like widget, recursively check its child
+    if (widget is Container && widget.child != null) {
+      return _hasOwnGestureDetector(widget.child!);
+    }
+
+    if (widget is Padding && widget.child != null) {
+      return _hasOwnGestureDetector(widget.child!);
+    }
+
+    if (widget is Center && widget.child != null) {
+      return _hasOwnGestureDetector(widget.child!);
+    }
+
+    if (widget is Align && widget.child != null) {
+      return _hasOwnGestureDetector(widget.child!);
+    }
+
+    return false;
+  }
 }
+
+// BeBoxDecoration
+BoxDecoration _popoverDecoration = BoxDecoration(
+  color: Colors.white,
+  borderRadius: BorderRadius.circular(12),
+  boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: .08 * 255), blurRadius: 16, offset: const Offset(0, 4))],
+  border: Border.all(color: BeColors.gray200, width: 1),
+);

@@ -1,6 +1,6 @@
 import 'package:becomponent/app.dart';
 import 'package:becore/getx.dart';
-import 'package:becore/modal.dart';
+import 'package:becore/model.dart';
 import 'package:beui/be_icons.dart';
 import 'package:beui/decoration.dart';
 import 'package:beui/text.dart';

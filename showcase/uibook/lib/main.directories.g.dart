@@ -13,6 +13,7 @@
 import 'package:uibook/decoration/use_case_be_boxdecoration.dart' as _i2;
 import 'package:uibook/decoration/use_case_be_icon_shape_decoration.dart'
     as _i3;
+import 'package:uibook/use_case_be_form_comprehensive.dart' as _i35;
 import 'package:uibook/widgets/animations/use_case_open_container.dart' as _i11;
 import 'package:uibook/widgets/buttons/use_case_button.dart' as _i9;
 import 'package:uibook/widgets/buttons/use_case_icon_text_button.dart' as _i7;
@@ -31,22 +32,24 @@ import 'package:uibook/widgets/loading/use_case_be_skeleton.dart' as _i20;
 import 'package:uibook/widgets/multichild/use_case_be_badge.dart' as _i4;
 import 'package:uibook/widgets/multichild/use_case_be_label.dart' as _i21;
 import 'package:uibook/widgets/overlay/use_case_be_popover.dart' as _i23;
+import 'package:uibook/widgets/overlay/use_case_be_popover_improved.dart'
+    as _i24;
 import 'package:uibook/widgets/overlay/use_case_be_responsive_dialog.dart'
-    as _i25;
-import 'package:uibook/widgets/overlay/use_case_notification.dart' as _i22;
-import 'package:uibook/widgets/overlay/use_case_popover.dart' as _i24;
-import 'package:uibook/widgets/text/use_case_be_text.dart' as _i27;
-import 'package:uibook/widgets/text/use_case_be_text_comprehensive.dart'
     as _i26;
-import 'package:uibook/widgets/text/use_case_be_text_tagged.dart' as _i29;
+import 'package:uibook/widgets/overlay/use_case_notification.dart' as _i22;
+import 'package:uibook/widgets/overlay/use_case_popover.dart' as _i25;
+import 'package:uibook/widgets/text/use_case_be_text.dart' as _i28;
+import 'package:uibook/widgets/text/use_case_be_text_comprehensive.dart'
+    as _i27;
+import 'package:uibook/widgets/text/use_case_be_text_tagged.dart' as _i30;
 import 'package:uibook/widgets/text/use_case_text_input.dart' as _i10;
-import 'package:uibook/widgets/text/use_case_typography.dart' as _i28;
+import 'package:uibook/widgets/text/use_case_typography.dart' as _i29;
 import 'package:uibook/widgets/use_case_theme.dart' as _i5;
-import 'package:uibook/widgets/utils/use_case_be_color_utils.dart' as _i30;
+import 'package:uibook/widgets/utils/use_case_be_color_utils.dart' as _i31;
 import 'package:uibook/widgets/utils/use_case_be_responsive_visibility.dart'
-    as _i31;
-import 'package:uibook/widgets/utils/use_case_color_extension.dart' as _i32;
-import 'package:uibook/widgets/utils/use_case_custom_color.dart' as _i33;
+    as _i32;
+import 'package:uibook/widgets/utils/use_case_color_extension.dart' as _i33;
+import 'package:uibook/widgets/utils/use_case_custom_color.dart' as _i34;
 import 'package:widgetbook/widgetbook.dart' as _i1;
 
 final directories = <_i1.WidgetbookNode>[
@@ -271,8 +274,12 @@ final directories = <_i1.WidgetbookNode>[
                 builder: _i23.useCaseBePopover,
               ),
               _i1.WidgetbookUseCase(
+                name: 'BePopover - Improved',
+                builder: _i24.useCaseBePopoverImproved,
+              ),
+              _i1.WidgetbookUseCase(
                 name: 'BePopover UI',
-                builder: _i24.useCasePopover,
+                builder: _i25.useCasePopover,
               ),
             ],
           ),
@@ -280,7 +287,7 @@ final directories = <_i1.WidgetbookNode>[
             name: 'Widget',
             useCase: _i1.WidgetbookUseCase(
               name: 'BeResponsiveDialog',
-              builder: _i25.useCaseBeResponsiveDialog,
+              builder: _i26.useCaseBeResponsiveDialog,
             ),
           ),
         ],
@@ -293,23 +300,23 @@ final directories = <_i1.WidgetbookNode>[
             useCases: [
               _i1.WidgetbookUseCase(
                 name: 'BeText - Custom Styling',
-                builder: _i26.beTextCustomStylingUseCase,
+                builder: _i27.beTextCustomStylingUseCase,
               ),
               _i1.WidgetbookUseCase(
                 name: 'BeText - Practical Examples',
-                builder: _i26.beTextPracticalUseCase,
+                builder: _i27.beTextPracticalUseCase,
               ),
               _i1.WidgetbookUseCase(
                 name: 'BeText - Typography Showcase',
-                builder: _i26.beTextTypographyUseCase,
+                builder: _i27.beTextTypographyUseCase,
               ),
               _i1.WidgetbookUseCase(
                 name: 'BeText Variants',
-                builder: _i27.useCaseBeText,
+                builder: _i28.useCaseBeText,
               ),
               _i1.WidgetbookUseCase(
                 name: 'Typography',
-                builder: _i28.displayTypographyUseCase,
+                builder: _i29.displayTypographyUseCase,
               ),
             ],
           ),
@@ -317,7 +324,7 @@ final directories = <_i1.WidgetbookNode>[
             name: 'BeTextTagged',
             useCase: _i1.WidgetbookUseCase(
               name: 'BeTextTagged',
-              builder: _i29.useCaseBeTextTagged,
+              builder: _i30.useCaseBeTextTagged,
             ),
           ),
         ],
@@ -330,15 +337,15 @@ final directories = <_i1.WidgetbookNode>[
             useCases: [
               _i1.WidgetbookUseCase(
                 name: 'BeColorUtils - Color Harmonization & Blending',
-                builder: _i30.colorHarmonizationUseCase,
+                builder: _i31.colorHarmonizationUseCase,
               ),
               _i1.WidgetbookUseCase(
                 name: 'BeColorUtils - Color Swatch Generation',
-                builder: _i30.colorSwatchUseCase,
+                builder: _i31.colorSwatchUseCase,
               ),
               _i1.WidgetbookUseCase(
                 name: 'BeColorUtils - Random Colors & Utilities',
-                builder: _i30.colorUtilitiesUseCase,
+                builder: _i31.colorUtilitiesUseCase,
               ),
             ],
           ),
@@ -346,22 +353,53 @@ final directories = <_i1.WidgetbookNode>[
             name: 'BeResponsiveVisibility',
             useCase: _i1.WidgetbookUseCase(
               name: 'BeResponsiveVisibility',
-              builder: _i31.useCaseBeResponsiveVisibility,
+              builder: _i32.useCaseBeResponsiveVisibility,
             ),
           ),
           _i1.WidgetbookLeafComponent(
             name: 'Color',
             useCase: _i1.WidgetbookUseCase(
               name: 'Color Extensions - Blend Methods',
-              builder: _i32.colorExtensionUseCase,
+              builder: _i33.colorExtensionUseCase,
             ),
           ),
           _i1.WidgetbookLeafComponent(
             name: 'CustomColor',
             useCase: _i1.WidgetbookUseCase(
               name: 'CustomColor - Theme Integration',
-              builder: _i33.customColorUseCase,
+              builder: _i34.customColorUseCase,
             ),
+          ),
+        ],
+      ),
+    ],
+  ),
+  _i1.WidgetbookFolder(
+    name: 'widgets',
+    children: [
+      _i1.WidgetbookFolder(
+        name: 'form',
+        children: [
+          _i1.WidgetbookComponent(
+            name: 'BeFormBuilder',
+            useCases: [
+              _i1.WidgetbookUseCase(
+                name: 'Basic Form Fields',
+                builder: _i35.basicFormFieldsUseCase,
+              ),
+              _i1.WidgetbookUseCase(
+                name: 'Complex Form Example',
+                builder: _i35.complexFormExampleUseCase,
+              ),
+              _i1.WidgetbookUseCase(
+                name: 'Selection Components',
+                builder: _i35.selectionComponentsUseCase,
+              ),
+              _i1.WidgetbookUseCase(
+                name: 'Sliders and Date Pickers',
+                builder: _i35.slidersAndDatePickersUseCase,
+              ),
+            ],
           ),
         ],
       ),

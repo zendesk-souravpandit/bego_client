@@ -55,10 +55,34 @@ Widget useCaseBePopover(final BuildContext context) {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text('BePopover Examples:', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-          const SizedBox(height: 32),
+          const SizedBox(height: 8),
+          Container(
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: Colors.blue.shade50,
+              borderRadius: BorderRadius.circular(8),
+              border: Border.all(color: Colors.blue.shade200),
+            ),
+            child: Row(
+              children: [
+                Icon(Icons.info_outline, color: Colors.blue.shade700, size: 20),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    'Tap the buttons below to see popovers in action. Both the button action AND popover will trigger! Use the knobs on the right to adjust positioning and behavior.',
+                    style: TextStyle(color: Colors.blue.shade700, fontSize: 13),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 24),
 
           const Text('Automatic Popovers:', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-          const Text('These popovers show automatically when tapped', style: TextStyle(color: Colors.grey)),
+          const Text(
+            'These popovers show automatically when tapped. Buttons will execute BOTH their action AND show the popover!',
+            style: TextStyle(color: Colors.grey),
+          ),
           const SizedBox(height: 16),
 
           Wrap(
@@ -73,7 +97,16 @@ Widget useCaseBePopover(final BuildContext context) {
                 directionPadding: directionPadding,
                 popoverBuilder:
                     (final context, final decoration, final child) => _buildSimplePopover('Simple Tooltip', Icons.info),
-                child: ElevatedButton(onPressed: () {}, child: const Text('Simple Tooltip')),
+                child: ElevatedButton.icon(
+                  onPressed: () {
+                    ScaffoldMessenger.of(
+                      context,
+                    ).showSnackBar(const SnackBar(content: Text('Simple Tooltip button pressed!')));
+                  },
+                  icon: const Icon(Icons.info_outline),
+                  label: const Text('Simple Tooltip'),
+                  style: ElevatedButton.styleFrom(padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12)),
+                ),
               ),
 
               BePopover.automatic(
@@ -84,9 +117,14 @@ Widget useCaseBePopover(final BuildContext context) {
                 directionPadding: directionPadding,
                 popoverBuilder: (final context, final decoration, final child) => _buildMenuPopover(),
                 child: OutlinedButton.icon(
-                  onPressed: () {},
+                  onPressed: () {
+                    ScaffoldMessenger.of(
+                      context,
+                    ).showSnackBar(const SnackBar(content: Text('Context Menu button pressed!')));
+                  },
                   icon: const Icon(Icons.more_vert),
-                  label: const Text('Menu'),
+                  label: const Text('Context Menu'),
+                  style: OutlinedButton.styleFrom(padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12)),
                 ),
               ),
 
@@ -98,9 +136,18 @@ Widget useCaseBePopover(final BuildContext context) {
                 directionPadding: directionPadding,
                 popoverBuilder: (final context, final decoration, final child) => _buildFormPopover(),
                 child: ElevatedButton.icon(
-                  onPressed: () {},
+                  onPressed: () {
+                    ScaffoldMessenger.of(
+                      context,
+                    ).showSnackBar(const SnackBar(content: Text('Edit Profile button pressed!')));
+                  },
                   icon: const Icon(Icons.edit),
                   label: const Text('Edit Profile'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.green,
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  ),
                 ),
               ),
             ],
@@ -257,9 +304,24 @@ Widget _buildSimplePopover(final String title, final IconData icon) {
     decoration: BoxDecoration(
       color: Colors.white,
       borderRadius: BorderRadius.circular(8),
-      boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 8, offset: const Offset(0, 2))],
+      border: Border.all(color: Colors.grey.shade300),
+      boxShadow: [
+        BoxShadow(
+          color: Colors.black.withValues(alpha: 0.15 * 255),
+          blurRadius: 12,
+          offset: const Offset(0, 4),
+          spreadRadius: 1,
+        ),
+      ],
     ),
-    child: Row(mainAxisSize: MainAxisSize.min, children: [Icon(icon, size: 20), const SizedBox(width: 8), Text(title)]),
+    child: Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Icon(icon, size: 20, color: Colors.blue.shade600),
+        const SizedBox(width: 8),
+        Text(title, style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 14)),
+      ],
+    ),
   );
 }
 
@@ -269,7 +331,15 @@ Widget _buildMenuPopover() {
     decoration: BoxDecoration(
       color: Colors.white,
       borderRadius: BorderRadius.circular(8),
-      boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 8, offset: const Offset(0, 2))],
+      border: Border.all(color: Colors.grey.shade300),
+      boxShadow: [
+        BoxShadow(
+          color: Colors.black.withValues(alpha: 0.15 * 255),
+          blurRadius: 12,
+          offset: const Offset(0, 4),
+          spreadRadius: 1,
+        ),
+      ],
     ),
     child: Column(
       mainAxisSize: MainAxisSize.min,
@@ -309,7 +379,15 @@ Widget _buildFormPopover() {
     decoration: BoxDecoration(
       color: Colors.white,
       borderRadius: BorderRadius.circular(12),
-      boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 12, offset: const Offset(0, 4))],
+      border: Border.all(color: Colors.grey.shade300),
+      boxShadow: [
+        BoxShadow(
+          color: Colors.black.withValues(alpha: 0.15 * 255),
+          blurRadius: 16,
+          offset: const Offset(0, 6),
+          spreadRadius: 2,
+        ),
+      ],
     ),
     child: Column(
       mainAxisSize: MainAxisSize.min,
@@ -406,17 +484,11 @@ class _ManualPopoverExampleState extends State<_ManualPopoverExample> with Ticke
           hideOnTapOutside: widget.hideOnTapOutside,
           autofocus: widget.autofocus,
           directionPadding: widget.directionPadding,
+          // decoration: BeBoxDecoration(),
           popoverBuilder:
               (final context, final decoration, final child) => Container(
                 padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: Colors.amber.shade50,
-                  borderRadius: BorderRadius.circular(8),
-                  border: Border.all(color: Colors.amber.shade200),
-                  boxShadow: [
-                    BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 8, offset: const Offset(0, 2)),
-                  ],
-                ),
+                decoration: decoration,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [

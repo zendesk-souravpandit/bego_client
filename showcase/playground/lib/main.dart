@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:becomponent/app.dart';
 import 'package:becomponent/services.dart';
 import 'package:becore/getx.dart';

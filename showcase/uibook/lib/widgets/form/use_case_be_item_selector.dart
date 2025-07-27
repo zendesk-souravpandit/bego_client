@@ -1,4 +1,4 @@
-import 'package:becore/modal.dart';
+import 'package:becore/model.dart';
 import 'package:beui/from.dart';
 import 'package:flutter/material.dart';
 import 'package:widgetbook/widgetbook.dart';

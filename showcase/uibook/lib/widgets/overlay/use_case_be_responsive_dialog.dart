@@ -1,5 +1,5 @@
+import 'package:beui/decoration.dart';
 import 'package:beui/overlay.dart';
-import 'package:beui/src/decoration/be_breakpoint_radius.dart';
 import 'package:flutter/material.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;

@@ -1,5 +1,5 @@
 import 'package:becore/hooks.dart';
-import 'package:becore/modal.dart';
+import 'package:becore/model.dart';
 import 'package:beui/from.dart';
 import 'package:beui/text.dart';
 import 'package:flutter/material.dart';
@@ -36,13 +36,13 @@ class DropdownExample extends HookWidget {
                 label: 'Fruits',
                 startEndAxisAlignment: CrossAxisAlignment.center,
                 onSaved: (final newValue) {
-                  print('Save Dropdown value');
+                  debugPrint('Save Dropdown value');
                 },
                 validator: (final value) => 'Error Form',
                 onChanged: (final value) {
                   // selectedFruit.value = value;
                   // print(selectedFruit.value?.display.toString());
-                  print(value?.display.toString());
+                  debugPrint(value?.display.toString());
                 },
               ),
               BeFormField<String>(
@@ -51,7 +51,7 @@ class DropdownExample extends HookWidget {
                 helperText: 'We\'ll never share your email',
                 valueTransformer: (final value) => value?.toLowerCase(),
                 validator: (final value) => value?.isEmpty ?? true ? 'Required' : null,
-                onChanged: (final value) => print('Email: $value'),
+                onChanged: (final value) => debugPrint('Email: $value'),
                 fieldBuilder:
                     (final field) => TextFormField(
                       decoration: const InputDecoration(border: OutlineInputBorder()),

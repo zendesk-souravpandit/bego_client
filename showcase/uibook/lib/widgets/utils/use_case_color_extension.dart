@@ -389,7 +389,7 @@ Widget _buildColorSwatch(final String label, final Color color) {
         ),
         const SizedBox(height: 4),
         Text(
-          '#${color.value.toRadixString(16).substring(2).toUpperCase()}',
+          '#${color.toARGB32().toRadixString(16).substring(2).toUpperCase()}',
           style: TextStyle(color: textColor, fontSize: 10),
         ),
       ],
@@ -417,7 +417,7 @@ Widget _buildSmallColorSwatch(final String label, final Color color) {
         ),
         const SizedBox(height: 2),
         Text(
-          '#${color.value.toRadixString(16).substring(2, 8).toUpperCase()}',
+          '#${color.toARGB32().toRadixString(16).substring(2, 8).toUpperCase()}',
           style: TextStyle(color: textColor, fontSize: 8),
         ),
       ],

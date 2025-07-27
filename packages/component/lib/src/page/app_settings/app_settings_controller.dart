@@ -2,7 +2,8 @@ import 'package:becomponent/app.dart';
 import 'package:becomponent/src/page/be_page_controller.dart';
 import 'package:becomponent/src/state/app_state.dart';
 import 'package:becore/getx.dart';
-import 'package:becore/modal.dart';
+import 'package:becore/model.dart';
+import 'package:flutter/foundation.dart' show debugPrint;
 import 'package:flutter/material.dart' show ThemeMode;
 
 class AppSettingsController extends BePageController<AppState> {
@@ -43,7 +44,7 @@ class AppSettingsController extends BePageController<AppState> {
       // TODO: Handle state change logic here
       // Save when state changes, for example
       // saveStateToStorage(newState);
-      print('AppState changed: ${newState.toJson()}');
+      debugPrint('AppState changed: ${newState.toJson()}');
     });
   }
 
@@ -65,7 +66,7 @@ class AppSettingsController extends BePageController<AppState> {
   }
 
   void updateAppLocale(final KeyValueSS? locale) {
-    print(locale?.toJson());
+    debugPrint(locale?.toJson().toString());
     _state.value = _state.value.copyWith(locale: locale);
   }
 

@@ -1,5 +1,5 @@
 import 'package:becore/hooks.dart';
-import 'package:becore/modal.dart';
+import 'package:becore/model.dart';
 import 'package:beui/be_icons.dart';
 import 'package:beui/from.dart';
 import 'package:beui/text.dart';

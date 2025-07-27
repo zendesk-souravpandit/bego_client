@@ -110,7 +110,7 @@ Widget _buildMaterialColorSwatchDemo(final Color baseColor, final bool isDarkMod
                       children: [
                         Text('$shade', style: TextStyle(color: textColor, fontWeight: FontWeight.bold, fontSize: 12)),
                         Text(
-                          '#${color.value.toRadixString(16).substring(2).toUpperCase()}',
+                          '#${color.toARGB32().toRadixString(16).substring(2).toUpperCase()}',
                           style: TextStyle(color: textColor, fontSize: 8),
                         ),
                       ],
@@ -163,7 +163,7 @@ Widget _buildColorSwatchLevelsDemo(final Color baseColor, final bool isDarkMode)
                       children: [
                         Text(level.name, style: TextStyle(color: textColor, fontWeight: FontWeight.bold, fontSize: 10)),
                         Text(
-                          '#${color.value.toRadixString(16).substring(2).toUpperCase()}',
+                          '#${color.toARGB32().toRadixString(16).substring(2).toUpperCase()}',
                           style: TextStyle(color: textColor, fontSize: 8),
                         ),
                       ],
@@ -217,7 +217,7 @@ Widget _buildTonalPaletteDemo(final Color baseColor, final bool isDarkMode) {
                       children: [
                         Text('$key', style: TextStyle(color: textColor, fontWeight: FontWeight.bold, fontSize: 11)),
                         Text(
-                          '#${color.value.toRadixString(16).substring(2, 8).toUpperCase()}',
+                          '#${color.toARGB32().toRadixString(16).substring(2, 8).toUpperCase()}',
                           style: TextStyle(color: textColor, fontSize: 7),
                         ),
                       ],
@@ -532,7 +532,7 @@ Widget _buildColorCard(final String label, final Color color) {
         ),
         const SizedBox(height: 4),
         Text(
-          '#${color.value.toRadixString(16).substring(2).toUpperCase()}',
+          '#${color.toARGB32().toRadixString(16).substring(2).toUpperCase()}',
           style: TextStyle(color: textColor, fontSize: 10),
         ),
       ],
@@ -654,7 +654,7 @@ Widget _buildRandomColorDemo() {
                     ),
                     child: Center(
                       child: Text(
-                        '#${color.value.toRadixString(16).substring(2, 8).toUpperCase()}',
+                        '#${color.toARGB32().toRadixString(16).substring(2, 8).toUpperCase()}',
                         style: TextStyle(
                           color:
                               ThemeData.estimateBrightnessForColor(color) == Brightness.dark
@@ -826,7 +826,7 @@ Widget _buildUtilityFunctionsDemo() {
                   Expanded(
                     flex: 2,
                     child: Text(
-                      '#${color.value.toRadixString(16).substring(2).toUpperCase()}',
+                      '#${color.toARGB32().toRadixString(16).substring(2).toUpperCase()}',
                       style: TextStyle(
                         color: brightness == Brightness.dark ? Colors.white : Colors.black,
                         fontWeight: FontWeight.bold,

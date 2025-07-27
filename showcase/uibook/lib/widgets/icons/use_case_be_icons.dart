@@ -1,6 +1,7 @@
 import 'package:beui/be_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:uibook/widgets/icons/icons_list.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
@@ -12,67 +13,7 @@ Widget useCaseBeIcons(final BuildContext context) {
 
   final searchText = context.knobs.string(label: 'Search Icons', initialValue: '');
 
-  // Sample of commonly used BeIcons (using verified icon names from the font)
-  final commonIcons = <String, IconData>{
-    'home': BeIcons.icon_home,
-    'user': BeIcons.icon_user,
-    'profile': BeIcons.icon_profile,
-    'settings': BeIcons.icon_settings,
-    'search': BeIcons.icon_search,
-    'message': BeIcons.icon_message,
-    'phone': BeIcons.icon_phone,
-    'email': BeIcons.icon_email_1,
-    'calendar': BeIcons.icon_calendar_1,
-    'camera': BeIcons.icon_camera,
-    'music': BeIcons.icon_music,
-    'play': BeIcons.icon_play,
-    'volume': BeIcons.icon_volume,
-    'heart': BeIcons.icon_heart,
-    'star': BeIcons.icon_star,
-    'bookmark': BeIcons.icon_bookmark,
-    'like': BeIcons.icon_like,
-    'share': BeIcons.icon_share,
-    'file': BeIcons.icon_file,
-    'folder': BeIcons.icon_folder,
-    'document': BeIcons.icon_file_document,
-    'lock': BeIcons.icon_lock,
-    'key': BeIcons.icon_key,
-    'globe': BeIcons.icon_globe,
-    'signal': BeIcons.icon_signal,
-    'battery': BeIcons.icon_battery,
-    'sun': BeIcons.icon_sun,
-    'moon': BeIcons.icon_moon,
-    'cloud': BeIcons.icon_cloud_1,
-    'weather': BeIcons.icon_weather_app,
-    'shopping_cart': BeIcons.icon_shopping_cart,
-    'shopping_bag': BeIcons.icon_shopping_bag,
-    'gift': BeIcons.icon_gift,
-    'money': BeIcons.icon_money,
-    'bank': BeIcons.icon_bank,
-    'time': BeIcons.icon_time,
-    'timer': BeIcons.icon_timer,
-    'clock': BeIcons.icon_clock,
-    'alarm': BeIcons.icon_alarm,
-    'notifications': BeIcons.icon_notifications,
-    'photoscan': BeIcons.icon_photoscan,
-    'video': BeIcons.icon_video_calling_app,
-    'pause': BeIcons.icon_play_pause,
-    'stop': BeIcons.icon_play_stop,
-    'copy': BeIcons.icon_copy,
-    'cut': BeIcons.icon_cut,
-    'undo': BeIcons.icon_undo,
-    'redo': BeIcons.icon_redo,
-    'printer': BeIcons.icon_printer,
-    'security': BeIcons.icon_shield,
-    'maps': BeIcons.icon_maps,
-    'compass': BeIcons.icon_compass,
-    'worldwide': BeIcons.icon_worldwide,
-    'info': BeIcons.icon_info,
-    'edition': BeIcons.icon_edition,
-    'save_money': BeIcons.icon_save_money,
-    'printing': BeIcons.icon_printing,
-  };
-
+  final Map<String, IconData> commonIcons = {for (final e in begoIcons) e.name: e.data};
   // Filter icons based on search
   final filteredIcons =
       searchText.isEmpty
@@ -225,6 +166,7 @@ Widget _buildIconCard(
     },
     borderRadius: BorderRadius.circular(8),
     child: Container(
+      alignment: Alignment.center,
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
         border: Border.all(color: Colors.grey.shade300),
@@ -232,8 +174,10 @@ Widget _buildIconCard(
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisSize: MainAxisSize.max,
         children: [
-          Icon(iconData, size: size, color: color),
+          Expanded(child: Icon(iconData, size: size, color: color)),
           const SizedBox(height: 4),
           Expanded(
             child: Text(

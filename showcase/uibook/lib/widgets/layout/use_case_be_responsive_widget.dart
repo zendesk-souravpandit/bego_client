@@ -259,19 +259,19 @@ Widget _buildContentCard(final String title, final Color color, final IconData i
     width: double.infinity,
     padding: const EdgeInsets.all(16),
     decoration: BoxDecoration(
-      color: color.withOpacity(0.1),
+      color: color.withValues(alpha: 0.1 * 255),
       borderRadius: BorderRadius.circular(8),
-      border: Border.all(color: color.withOpacity(0.3)),
+      border: Border.all(color: color.withValues(alpha: 0.3 * 255)),
     ),
     child: Column(
       children: [
         Icon(icon, size: 32, color: color),
         const SizedBox(height: 8),
-        Text(title, style: TextStyle(fontWeight: FontWeight.bold, color: color.withOpacity(0.8))),
+        Text(title, style: TextStyle(fontWeight: FontWeight.bold, color: color.withValues(alpha: 0.8 * 255))),
         const SizedBox(height: 4),
         Text(
           'This is responsive content that adapts to different screen sizes.',
-          style: TextStyle(fontSize: 12, color: color.withOpacity(0.6)),
+          style: TextStyle(fontSize: 12, color: color.withValues(alpha: 0.6 * 255)),
           textAlign: TextAlign.center,
         ),
       ],
