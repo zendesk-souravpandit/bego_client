@@ -10,7 +10,8 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:uibook/decoration/use_case_be_boxdecoration.dart' as _i2;
+import 'package:uibook/decoration/use_case_be_boxdecoration_showcase.dart'
+    as _i2;
 import 'package:uibook/decoration/use_case_be_icon_shape_decoration.dart'
     as _i3;
 import 'package:uibook/use_case_be_form_comprehensive.dart' as _i35;
@@ -59,15 +60,15 @@ final directories = <_i1.WidgetbookNode>[
       _i1.WidgetbookLeafComponent(
         name: 'BeBoxDecoration',
         useCase: _i1.WidgetbookUseCase(
-          name: 'Decoration',
-          builder: _i2.useCaseBeBoxDecoration,
+          name: 'BeBoxDecoration',
+          builder: _i2.useCaseBeBoxDecorationShowcase,
         ),
       ),
       _i1.WidgetbookLeafComponent(
         name: 'BeIconShapeBorder',
         useCase: _i1.WidgetbookUseCase(
-          name: 'BeIconShapeBorder',
-          builder: _i3.useCaseBeIcon,
+          name: 'BeIconShapeBorder Showcase',
+          builder: _i3.useCaseBeIconShapeBorderShowcase,
         ),
       ),
     ],
