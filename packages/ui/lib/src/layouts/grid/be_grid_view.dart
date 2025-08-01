@@ -83,7 +83,10 @@ class _GridPadDelegate extends MultiChildLayoutDelegate {
       for (var row = item.top; row <= item.bottom; row++) {
         maxHeight += cellPlaces[row][item.left].height;
       }
-      layoutChild(index, BoxConstraints(maxHeight: maxHeight, maxWidth: maxWidth));
+      // Ensure constraints are not negative
+      final constrainedMaxWidth = maxWidth.clamp(0.0, double.infinity);
+      final constrainedMaxHeight = maxHeight.clamp(0.0, double.infinity);
+      layoutChild(index, BoxConstraints(maxHeight: constrainedMaxHeight, maxWidth: constrainedMaxWidth));
       final cellPlace = cellPlaces[item.top][item.left];
       if (direction == TextDirection.ltr) {
         positionChild(index, Offset(cellPlace.x, cellPlace.y));
@@ -123,13 +126,15 @@ class _GridPadDelegate extends MultiChildLayoutDelegate {
     final List<BeGridCellSize> cellSizes,
     final TotalSize totalSize,
   ) {
-    final availableWeight = availableSize - totalSize.fixed;
+    final availableWeight = (availableSize - totalSize.fixed).clamp(0.0, double.infinity);
     return cellSizes.map((final cellSize) {
       switch (cellSize) {
         case Fixed():
-          return cellSize.size;
+          return cellSize.size.clamp(0.0, double.infinity);
         case Weight():
-          return availableWeight * cellSize.size / totalSize.weight;
+          return totalSize.weight > 0
+              ? (availableWeight * cellSize.size / totalSize.weight).clamp(0.0, double.infinity)
+              : 0.0;
       }
     }).toList();
   }
