@@ -103,7 +103,7 @@ Widget useCaseBeSizeAware(final BuildContext context) {
                     itemBuilder:
                         (final context, final index) => Container(
                           decoration: BoxDecoration(
-                            color: Colors.green.withOpacity(0.7),
+                            color: Colors.green.withValues(alpha: 0.7 * 255),
                             borderRadius: BorderRadius.circular(4),
                           ),
                           child: Center(
@@ -208,7 +208,7 @@ Widget useCaseBeSizeAware(final BuildContext context) {
                       gradient: LinearGradient(
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
-                        colors: [Colors.transparent, Colors.black.withOpacity(0.7)],
+                        colors: [Colors.transparent, Colors.black.withValues(alpha: 0.7 * 255)],
                       ),
                     ),
                     child: Align(
@@ -442,7 +442,7 @@ class _ChartPainter extends CustomPainter {
 
     final fillPaint =
         Paint()
-          ..color = Colors.orange.withOpacity(0.3)
+          ..color = Colors.orange.withValues(alpha: 0.3 * 255)
           ..style = PaintingStyle.fill;
 
     // Create a simple area chart that scales with container size
@@ -450,10 +450,10 @@ class _ChartPainter extends CustomPainter {
     final stepX = size.width / (data.length - 1);
 
     final path = Path();
-    final fillPath = Path();
-
-    // Start from bottom left for fill
-    fillPath.moveTo(0, size.height);
+    final fillPath =
+        Path()
+          // Start from bottom left for fill
+          ..moveTo(0, size.height);
 
     for (int i = 0; i < data.length; i++) {
       final x = i * stepX;
@@ -469,12 +469,14 @@ class _ChartPainter extends CustomPainter {
     }
 
     // Complete the fill path
-    fillPath.lineTo(size.width, size.height);
-    fillPath.close();
+    fillPath
+      ..lineTo(size.width, size.height)
+      ..close();
 
     // Draw fill first, then stroke
-    canvas.drawPath(fillPath, fillPaint);
-    canvas.drawPath(path, paint);
+    canvas
+      ..drawPath(fillPath, fillPaint)
+      ..drawPath(path, paint);
 
     // Draw data points
     final pointPaint =

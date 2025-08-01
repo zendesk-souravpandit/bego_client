@@ -19,7 +19,9 @@ Widget useCaseBeMultiBadge(final BuildContext context) {
         decoration: BoxDecoration(
           color: _getBadgeColor(index),
           borderRadius: BorderRadius.circular(rounded ? 12 : 4),
-          boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 2, offset: const Offset(0, 1))],
+          boxShadow: [
+            BoxShadow(color: Colors.black.withValues(alpha: 0.2 * 255), blurRadius: 2, offset: const Offset(0, 1)),
+          ],
         ),
         child: _getBadgeContent(index),
       ),
@@ -181,7 +183,7 @@ Widget _buildExampleCard(final String title, final Color color) {
     width: 120,
     height: 80,
     decoration: BoxDecoration(
-      color: color.withOpacity(0.1),
+      color: color.withValues(alpha: 0.1 * 255),
       border: Border.all(color: color),
       borderRadius: BorderRadius.circular(8),
     ),
@@ -201,7 +203,9 @@ Widget _buildBadge(final String text, final Color color, {final bool isCircle = 
     decoration: BoxDecoration(
       color: color,
       borderRadius: BorderRadius.circular(isCircle ? 12 : 4),
-      boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 2, offset: const Offset(0, 1))],
+      boxShadow: [
+        BoxShadow(color: Colors.black.withValues(alpha: 0.2 * 255), blurRadius: 2, offset: const Offset(0, 1)),
+      ],
     ),
     child: Text(text, style: const TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold)),
   );
@@ -234,7 +238,9 @@ Widget _buildProductCard() {
     decoration: BoxDecoration(
       color: Colors.white,
       borderRadius: BorderRadius.circular(8),
-      boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 4, offset: const Offset(0, 2))],
+      boxShadow: [
+        BoxShadow(color: Colors.black.withValues(alpha: 0.1 * 255), blurRadius: 4, offset: const Offset(0, 2)),
+      ],
     ),
     child: Column(
       children: [
@@ -273,7 +279,7 @@ Widget _buildIconContainer(final IconData icon, final Color color) {
     width: 50,
     height: 50,
     decoration: BoxDecoration(
-      color: color.withOpacity(0.1),
+      color: color.withValues(alpha: 0.1 * 255),
       border: Border.all(color: color),
       borderRadius: BorderRadius.circular(8),
     ),
@@ -288,7 +294,9 @@ Widget _buildDocumentCard() {
     decoration: BoxDecoration(
       color: Colors.white,
       borderRadius: BorderRadius.circular(8),
-      boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 4, offset: const Offset(0, 2))],
+      boxShadow: [
+        BoxShadow(color: Colors.black.withValues(alpha: 0.1 * 255), blurRadius: 4, offset: const Offset(0, 2)),
+      ],
     ),
     child: const Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -320,7 +328,9 @@ Widget _buildChatCard() {
     decoration: BoxDecoration(
       color: Colors.white,
       borderRadius: BorderRadius.circular(8),
-      boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 4, offset: const Offset(0, 2))],
+      boxShadow: [
+        BoxShadow(color: Colors.black.withValues(alpha: 0.1 * 255), blurRadius: 4, offset: const Offset(0, 2)),
+      ],
     ),
     child: const Row(
       children: [

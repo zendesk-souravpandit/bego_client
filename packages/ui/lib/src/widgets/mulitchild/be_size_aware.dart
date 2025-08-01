@@ -52,8 +52,9 @@ class BeSizeAware extends StatefulWidget {
   @override
   void debugFillProperties(final DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty<BoxConstraints?>('constraints', constraints));
-    properties.add(DiagnosticsProperty<bool>('hasOnSizeChanged', onSizeChanged != null));
+    properties
+      ..add(DiagnosticsProperty<BoxConstraints?>('constraints', constraints))
+      ..add(DiagnosticsProperty<bool>('hasOnSizeChanged', onSizeChanged != null));
   }
 }
 

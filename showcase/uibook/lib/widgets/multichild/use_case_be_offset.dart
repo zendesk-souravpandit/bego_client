@@ -67,7 +67,7 @@ Widget useCaseBeOffset(final BuildContext context) {
                                 borderRadius: BorderRadius.circular(4),
                                 boxShadow: [
                                   BoxShadow(
-                                    color: Colors.black.withOpacity(0.2),
+                                    color: Colors.black.withValues(alpha: 0.2 * 255),
                                     blurRadius: 4,
                                     offset: const Offset(0, 2),
                                   ),
@@ -173,7 +173,7 @@ Widget useCaseBeOffset(final BuildContext context) {
                     width: 60,
                     height: 60,
                     decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(0.2),
+                      color: Colors.black.withValues(alpha: 0.2 * 255),
                       borderRadius: BorderRadius.circular(8),
                     ),
                   ),
@@ -212,7 +212,7 @@ Widget useCaseBeOffset(final BuildContext context) {
                     width: 80,
                     height: 50,
                     decoration: BoxDecoration(
-                      color: Colors.orange.withOpacity(0.5),
+                      color: Colors.orange.withValues(alpha: 0.5 * 255),
                       borderRadius: BorderRadius.circular(8),
                       border: Border.all(color: Colors.orange, style: BorderStyle.solid),
                     ),
@@ -247,7 +247,11 @@ Widget useCaseBeOffset(final BuildContext context) {
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(4),
                         boxShadow: [
-                          BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 8, offset: const Offset(0, 2)),
+                          BoxShadow(
+                            color: Colors.black.withValues(alpha: 0.1 * 255),
+                            blurRadius: 8,
+                            offset: const Offset(0, 2),
+                          ),
                         ],
                       ),
                       child: const Column(
@@ -315,7 +319,7 @@ Widget useCaseBeOffset(final BuildContext context) {
                     child: Container(
                       padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
                       decoration: BoxDecoration(
-                        color: Colors.black.withOpacity(0.7),
+                        color: Colors.black.withValues(alpha: 0.7 * 255),
                         borderRadius: BorderRadius.circular(2),
                       ),
                       child: const Text('© Logo', style: TextStyle(color: Colors.white, fontSize: 8)),

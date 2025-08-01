@@ -18,7 +18,9 @@ Widget useCaseBeMultiLabel(final BuildContext context) {
         decoration: BoxDecoration(
           color: _getLabelColor(index),
           borderRadius: BorderRadius.circular(4),
-          boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 2, offset: const Offset(0, 1))],
+          boxShadow: [
+            BoxShadow(color: Colors.black.withValues(alpha: 0.1 * 255), blurRadius: 2, offset: const Offset(0, 1)),
+          ],
         ),
         child: _getLabelContent(index),
       ),
@@ -260,7 +262,7 @@ Widget _buildExampleCard(final String title, final Color color) {
     width: 140,
     height: 90,
     decoration: BoxDecoration(
-      color: color.withOpacity(0.1),
+      color: color.withValues(alpha: 0.1 * 255),
       border: Border.all(color: color),
       borderRadius: BorderRadius.circular(8),
     ),
@@ -280,7 +282,9 @@ Widget _buildLabel(final String text, final Color color) {
     decoration: BoxDecoration(
       color: color,
       borderRadius: BorderRadius.circular(4),
-      boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 2, offset: const Offset(0, 1))],
+      boxShadow: [
+        BoxShadow(color: Colors.black.withValues(alpha: 0.2 * 255), blurRadius: 2, offset: const Offset(0, 1)),
+      ],
     ),
     child: Text(text, style: const TextStyle(color: Colors.white, fontSize: 8, fontWeight: FontWeight.bold)),
   );
@@ -325,7 +329,7 @@ Widget _buildWatermark(final String text) {
     padding: const EdgeInsets.all(8),
     child: Text(
       text,
-      style: TextStyle(color: Colors.black.withOpacity(0.1), fontSize: 16, fontWeight: FontWeight.bold),
+      style: TextStyle(color: Colors.black.withValues(alpha: 0.1 * 255), fontSize: 16, fontWeight: FontWeight.bold),
     ),
   );
 }
@@ -368,7 +372,9 @@ Widget _buildProductCard() {
     decoration: BoxDecoration(
       color: Colors.white,
       borderRadius: BorderRadius.circular(8),
-      boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 4, offset: const Offset(0, 2))],
+      boxShadow: [
+        BoxShadow(color: Colors.black.withValues(alpha: 0.1 * 255), blurRadius: 4, offset: const Offset(0, 2)),
+      ],
     ),
     child: Column(
       children: [
@@ -402,7 +408,9 @@ Widget _buildProfileCard() {
     decoration: BoxDecoration(
       color: Colors.white,
       borderRadius: BorderRadius.circular(8),
-      boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 4, offset: const Offset(0, 2))],
+      boxShadow: [
+        BoxShadow(color: Colors.black.withValues(alpha: 0.1 * 255), blurRadius: 4, offset: const Offset(0, 2)),
+      ],
     ),
     child: const Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -423,7 +431,9 @@ Widget _buildDocumentCard() {
     decoration: BoxDecoration(
       color: Colors.white,
       borderRadius: BorderRadius.circular(8),
-      boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 4, offset: const Offset(0, 2))],
+      boxShadow: [
+        BoxShadow(color: Colors.black.withValues(alpha: 0.1 * 255), blurRadius: 4, offset: const Offset(0, 2)),
+      ],
     ),
     child: const Column(
       mainAxisAlignment: MainAxisAlignment.center,
