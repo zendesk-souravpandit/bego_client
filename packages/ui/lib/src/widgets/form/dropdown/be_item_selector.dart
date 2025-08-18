@@ -95,7 +95,7 @@ class BeItemSelector<T extends KeyValuePair> extends HookWidget {
       fieldBuilder: (final field) {
         final state = field as BeFormFieldState<T>;
         return DropdownButtonFormField<T>(
-          value: state.value,
+          initialValue: state.value,
           hint: BeText.bodyMedium(hint),
           borderRadius: borderRadius,
           onChanged: state.didChange,

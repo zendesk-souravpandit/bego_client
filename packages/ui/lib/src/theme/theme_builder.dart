@@ -1046,8 +1046,8 @@ IconThemeData _buildIconTheme(final ColorScheme colorScheme) {
 }
 
 // ========== Bottom App Bar Theme ==========
-BottomAppBarTheme _buildBottomAppBarTheme(final ColorScheme colorScheme) {
-  return BottomAppBarTheme(
+BottomAppBarThemeData _buildBottomAppBarTheme(final ColorScheme colorScheme) {
+  return BottomAppBarThemeData(
     color: colorScheme.surface,
     elevation: 4,
     shadowColor: colorScheme.shadow,

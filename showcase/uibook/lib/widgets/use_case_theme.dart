@@ -303,7 +303,8 @@ class _ThemeDemoPageState extends State<ThemeDemoPage> with SingleTickerProvider
         onPressed:
             () => showModalBottomSheet<void>(
               context: context,
-              builder: (final context) => const Padding(padding: EdgeInsets.all(16), child: Text('Bottom Sheet Content')),
+              builder:
+                  (final context) => const Padding(padding: EdgeInsets.all(16), child: Text('Bottom Sheet Content')),
             ),
       ),
     ],

@@ -4,7 +4,6 @@ import 'package:beui/src/widgets/foundation/be_tappable.style.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:meta/meta.dart';
 
 extension BeTouch on Never {
   /// The platforms that use touch as the primary input. It isn't 100% accurate as there are hybrid devices that use

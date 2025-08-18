@@ -341,10 +341,9 @@ Widget beTextCustomStylingUseCase(final BuildContext context) {
   );
   final letterSpacing = context.knobs.double.slider(label: 'Letter Spacing', initialValue: 0, min: -2, max: 4);
   final lineHeight = context.knobs.double.slider(label: 'Line Height', initialValue: 1.4, min: 1, max: 3);
-  final decoration = context.knobs.list<TextDecoration>(
+  final decoration = context.knobs.object.dropdown(
     label: 'Text Decoration',
     options: [TextDecoration.none, TextDecoration.underline, TextDecoration.overline, TextDecoration.lineThrough],
-    initialOption: TextDecoration.none,
   );
   final color = context.knobs.color(label: 'Text Color', initialValue: Colors.black);
   final backgroundColor = context.knobs.colorOrNull(label: 'Background Color');
