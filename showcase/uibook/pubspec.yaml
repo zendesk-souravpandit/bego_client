@@ -11,6 +11,8 @@ dependencies:
     path: ../../packages/component
   beui:
     path: ../../packages/ui
+  becore:
+    path: ../../packages/core
   flutter:
     sdk: flutter
   path: ^1.9.1

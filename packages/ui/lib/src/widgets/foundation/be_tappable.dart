@@ -4,9 +4,7 @@ import 'package:beui/src/widgets/foundation/be_tappable.style.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:meta/meta.dart';
 
-@internal
 extension BeTouch on Never {
   /// The platforms that use touch as the primary input. It isn't 100% accurate as there are hybrid devices that use
   /// both touch and keyboard/mouse input, i.e., Windows Surface laptops.
@@ -79,7 +77,7 @@ class BeTappable extends StatefulWidget {
     final ValueWidgetBuilder<BeTappableData>? builder,
     final Widget? child,
     final Key? key,
-  }) = AnimatedBeTapable;
+  }) = AnimatedBeTappable;
   static Widget _builder(BuildContext _, BeTappableData _, final Widget? child) => child!;
 
   /// The style used when the tappable is focused. This tappable will not be outlined if null.
@@ -266,8 +264,8 @@ class _BeTappableState<T extends BeTappable> extends State<T> {
 }
 
 @internal
-class AnimatedBeTapable extends BeTappable {
-  const AnimatedBeTapable({
+class AnimatedBeTappable extends BeTappable {
+  const AnimatedBeTappable({
     this.animationTween,
     super.focusedOutlineStyle,
     super.semanticLabel,
@@ -288,7 +286,7 @@ class AnimatedBeTapable extends BeTappable {
   final Tween<double>? animationTween;
 
   @override
-  State<BeTappable> createState() => AnimatedBeTapableState();
+  State<BeTappable> createState() => AnimatedBeTappableState();
 
   @override
   void debugFillProperties(final DiagnosticPropertiesBuilder properties) {
@@ -298,7 +296,7 @@ class AnimatedBeTapable extends BeTappable {
 }
 
 @internal
-class AnimatedBeTapableState extends _BeTappableState<AnimatedBeTapable> with SingleTickerProviderStateMixin {
+class AnimatedBeTappableState extends _BeTappableState<AnimatedBeTappable> with SingleTickerProviderStateMixin {
   late final AnimationController controller;
   late Animation<double> animation;
 
@@ -310,7 +308,7 @@ class AnimatedBeTapableState extends _BeTappableState<AnimatedBeTapable> with Si
   }
 
   @override
-  void didUpdateWidget(covariant final AnimatedBeTapable old) {
+  void didUpdateWidget(covariant final AnimatedBeTappable old) {
     super.didUpdateWidget(old);
     if (widget.animationTween != old.animationTween) {
       animation = (widget.animationTween ?? Tween(begin: 1.0, end: 0.97)).animate(controller);

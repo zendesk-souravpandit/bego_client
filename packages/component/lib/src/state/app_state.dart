@@ -1,5 +1,5 @@
 import 'package:becomponent/src/app/app_info.dart';
-import 'package:becore/modal.dart';
+import 'package:becore/model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'app_state.freezed.dart';

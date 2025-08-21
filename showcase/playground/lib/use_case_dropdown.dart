@@ -53,7 +53,7 @@ class _DropdownMenuShowcaseState extends State<DropdownMenuShowcase> {
             _buildSectionTitle('2. Outlined DropdownButtonFormField'),
             _buildExampleCard(
               child: DropdownButtonFormField<String>(
-                value: _outlinedDropdownValue,
+                initialValue: _outlinedDropdownValue,
 
                 decoration: const InputDecoration(
                   // labelText: 'Choose item',
@@ -76,7 +76,7 @@ class _DropdownMenuShowcaseState extends State<DropdownMenuShowcase> {
             _buildSectionTitle('3. Filled DropdownButtonFormField'),
             _buildExampleCard(
               child: DropdownButtonFormField<String>(
-                value: _filledDropdownValue,
+                initialValue: _filledDropdownValue,
                 // decoration: const InputDecoration(
                 //   labelText: 'Select option',
                 //   filled: true,
@@ -121,7 +121,7 @@ class _DropdownMenuShowcaseState extends State<DropdownMenuShowcase> {
             _buildSectionTitle('5. Disabled Dropdown'),
             _buildExampleCard(
               child: DropdownButtonFormField<String>(
-                value: null,
+                initialValue: null,
                 hint: const Text('Disabled dropdown'),
                 items: const [
                   DropdownMenuItem(value: 'x', child: Text('Option X')),
@@ -165,10 +165,7 @@ class _DropdownMenuShowcaseState extends State<DropdownMenuShowcase> {
               child: MenuAnchor(
                 style: const MenuStyle(padding: WidgetStatePropertyAll(p0)),
                 builder: (final BuildContext context, final MenuController controller, final Widget? child) {
-                  return FilledButton(
-                    onPressed: controller.open,
-                    child: const Text('Open Menu'),
-                  );
+                  return FilledButton(onPressed: controller.open, child: const Text('Open Menu'));
                 },
                 menuChildren: [
                   MenuItemButton(child: const Text('Copy'), onPressed: () => _showSnackbar(context, 'Copied!')),

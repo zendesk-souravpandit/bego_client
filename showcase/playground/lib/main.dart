@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:becomponent/app.dart';
 import 'package:becomponent/services.dart';
 import 'package:becore/getx.dart';
@@ -25,7 +27,7 @@ class BeAppDelegate extends BeAppRouteDelegate {
 
   @override
   List<BeMainPage<dynamic>> get mainRoutes => [
-    BeMainPage(name: '/home', page: () => const DashboardView()),
+    BeMainPage(name: '/home', page: DashboardView.new),
     BeMainPage(name: '/profile', page: () => const ProfileView(), title: 'Profile', transition: Transition.size),
     BeMainPage(
       name: '/products',
@@ -125,10 +127,11 @@ class DashboardView extends StatelessWidget {
   Widget build(final BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Dashboard')),
-      body: Column(
+      body: ListView(
         children: [
-          const SizedBox(height: 20),
           const Text('Dashboard View is working', style: TextStyle(fontSize: 20)),
+          // const GoogleLogoWidget(size: 32),
+          const SizedBox(height: 20),
           const Center(child: Text('Dashboard Content')),
           const SizedBox(height: 20),
           ElevatedButton(

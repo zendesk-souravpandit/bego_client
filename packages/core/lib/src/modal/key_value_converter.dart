@@ -1,4 +1,4 @@
-import 'package:becore/modal.dart';
+import 'package:becore/model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 class KeyValueSSConverter implements JsonConverter<KeyValueSS?, Map<String, String>?> {

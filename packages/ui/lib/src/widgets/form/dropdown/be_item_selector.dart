@@ -1,5 +1,5 @@
 import 'package:becore/hooks.dart';
-import 'package:becore/modal.dart';
+import 'package:becore/model.dart';
 import 'package:beui/be_icons.dart';
 import 'package:beui/from.dart';
 import 'package:beui/text.dart';
@@ -9,6 +9,7 @@ class BeItemSelector<T extends KeyValuePair> extends HookWidget {
   const BeItemSelector({
     super.key,
     required this.items,
+    required this.id,
     this.onChanged,
     this.value,
     this.itemToString,
@@ -26,7 +27,7 @@ class BeItemSelector<T extends KeyValuePair> extends HookWidget {
     this.iconSize = 20,
     this.borderRadius = const BorderRadius.all(Radius.circular(12)),
     this.elevation = 4,
-    this.contentPadding = const EdgeInsets.only(right: 8),
+    this.contentPadding = const EdgeInsets.symmetric(horizontal: 8),
     this.dropdownColor,
     this.disabledHint,
     this.style,
@@ -40,6 +41,7 @@ class BeItemSelector<T extends KeyValuePair> extends HookWidget {
   });
 
   final T? value;
+  final String id;
   final List<T> items;
   final String Function(T)? itemToString;
   final Widget Function(T)? itemBuilder;
@@ -77,7 +79,7 @@ class BeItemSelector<T extends KeyValuePair> extends HookWidget {
     }
 
     return BeFormField<T>(
-      // enabled: false,
+      id: id,
       initialValue: value,
       shouldValidate: validator != null,
       onChanged: onChanged,
@@ -90,10 +92,10 @@ class BeItemSelector<T extends KeyValuePair> extends HookWidget {
       trailingTitleWidgets: trailingTitleWidgets,
       startEndAxisAlignment: startEndAxisAlignment,
 
-      build: (final field) {
+      fieldBuilder: (final field) {
         final state = field as BeFormFieldState<T>;
         return DropdownButtonFormField<T>(
-          value: state.value,
+          initialValue: state.value,
           hint: BeText.bodyMedium(hint),
           borderRadius: borderRadius,
           onChanged: state.didChange,
@@ -101,6 +103,7 @@ class BeItemSelector<T extends KeyValuePair> extends HookWidget {
           dropdownColor: dropdownColor,
           disabledHint: disabledHint,
           style: style,
+          padding: contentPadding,
           selectedItemBuilder: selectedItemBuilder,
           menuMaxHeight: menuMaxHeight,
           alignment: alignment,
