@@ -3,50 +3,28 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-/// A Bootstrap-inspired grid row widget that arranges children in a 12-column layout system.
-///
-/// This widget provides responsive layout capabilities similar to Bootstrap's row system.
-/// Children are automatically arranged based on their column specifications.
-///
-/// Example usage:
-/// ```dart
-/// BeRow(
-///   children: [
-///     BeColumn(xs: 12, md: 6, child: Text('Column 1')),
-///     BeColumn(xs: 12, md: 6, child: Text('Column 2')),
-///   ],
-/// )
-/// ```
 class BeRow extends MultiChildRenderObjectWidget {
-  /// Creates a grid row with the given children.
   const BeRow({
     super.key,
     required super.children,
     this.mainAxisAlignment = MainAxisAlignment.start,
     this.crossAxisAlignment = CrossAxisAlignment.start,
     this.mainAxisSize = MainAxisSize.max,
-    this.spacing = 0.0,
-    this.runSpacing = 0.0,
+    this.spacing = 16.0,
+    this.runSpacing = 16.0,
     this.padding = EdgeInsets.zero,
+    this.debugGrid = false,
+    this.debugGridColor = Colors.red,
   });
 
-  /// How the children should be placed along the main axis.
   final MainAxisAlignment mainAxisAlignment;
-
-  /// How the children should be aligned along the cross axis.
   final CrossAxisAlignment crossAxisAlignment;
-
-  /// How much space should be occupied in the main axis.
   final MainAxisSize mainAxisSize;
-
-  /// The horizontal spacing between columns.
   final double spacing;
-
-  /// The vertical spacing between rows when wrapping occurs.
   final double runSpacing;
-
-  /// Padding around the entire row.
   final EdgeInsets padding;
+  final bool debugGrid;
+  final Color debugGridColor;
 
   @override
   RenderObject createRenderObject(final BuildContext context) {
@@ -57,6 +35,8 @@ class BeRow extends MultiChildRenderObjectWidget {
       spacing: spacing,
       runSpacing: runSpacing,
       padding: padding,
+      debugGrid: debugGrid,
+      debugGridColor: debugGridColor,
     );
   }
 
@@ -68,14 +48,16 @@ class BeRow extends MultiChildRenderObjectWidget {
       ..mainAxisSize = mainAxisSize
       ..spacing = spacing
       ..runSpacing = runSpacing
-      ..padding = padding;
+      ..padding = padding
+      ..debugGrid = debugGrid
+      ..debugGridColor = debugGridColor;
   }
 }
 
 class _RenderBeRow extends RenderBox
     with
-        ContainerRenderObjectMixin<RenderBox, MultiChildLayoutParentData>,
-        RenderBoxContainerDefaultsMixin<RenderBox, MultiChildLayoutParentData> {
+        ContainerRenderObjectMixin<RenderBox, BeRowParentData>,
+        RenderBoxContainerDefaultsMixin<RenderBox, BeRowParentData> {
   _RenderBeRow({
     required final MainAxisAlignment mainAxisAlignment,
     required final CrossAxisAlignment crossAxisAlignment,
@@ -83,12 +65,16 @@ class _RenderBeRow extends RenderBox
     required final double spacing,
     required final double runSpacing,
     required final EdgeInsets padding,
+    required final bool debugGrid,
+    required final Color debugGridColor,
   }) : _mainAxisAlignment = mainAxisAlignment,
        _crossAxisAlignment = crossAxisAlignment,
        _mainAxisSize = mainAxisSize,
        _spacing = spacing,
        _runSpacing = runSpacing,
-       _padding = padding;
+       _padding = padding,
+       _debugGrid = debugGrid,
+       _debugGridColor = debugGridColor;
 
   MainAxisAlignment _mainAxisAlignment;
   CrossAxisAlignment _crossAxisAlignment;
@@ -96,8 +82,9 @@ class _RenderBeRow extends RenderBox
   double _spacing;
   double _runSpacing;
   EdgeInsets _padding;
+  bool _debugGrid;
+  Color _debugGridColor;
 
-  // Getters and setters
   MainAxisAlignment get mainAxisAlignment => _mainAxisAlignment;
   set mainAxisAlignment(final MainAxisAlignment value) {
     if (_mainAxisAlignment != value) {
@@ -146,10 +133,26 @@ class _RenderBeRow extends RenderBox
     }
   }
 
+  bool get debugGrid => _debugGrid;
+  set debugGrid(final bool value) {
+    if (_debugGrid != value) {
+      _debugGrid = value;
+      markNeedsPaint();
+    }
+  }
+
+  Color get debugGridColor => _debugGridColor;
+  set debugGridColor(final Color value) {
+    if (_debugGridColor != value) {
+      _debugGridColor = value;
+      markNeedsPaint();
+    }
+  }
+
   @override
   void setupParentData(final RenderBox child) {
-    if (child.parentData is! MultiChildLayoutParentData) {
-      child.parentData = MultiChildLayoutParentData();
+    if (child.parentData is! BeRowParentData) {
+      child.parentData = BeRowParentData();
     }
   }
 
@@ -159,95 +162,30 @@ class _RenderBeRow extends RenderBox
     final availableHeight = constraints.maxHeight - padding.vertical;
 
     if (childCount == 0) {
-      size = constraints.constrain(
-        Size(_mainAxisSize == MainAxisSize.max ? constraints.maxWidth : padding.horizontal, padding.vertical),
-      );
+      size = _computeEmptySize();
       return;
     }
 
-    final children = <RenderBox>[];
-    final columnSpecs = <_ColumnSpec>[];
-    final visibleChildren = <RenderBox>[];
-    final visibleColumnSpecs = <_ColumnSpec>[];
-
-    // Gather all children and their column specifications
-    RenderBox? child = firstChild;
-    while (child != null) {
-      children.add(child);
-      final spec = _getColumnSpec(child);
-      columnSpecs.add(spec);
-      
-      // Only include children that are not hidden (have columns > 0)
-      if (spec.columns > 0) {
-        visibleChildren.add(child);
-        visibleColumnSpecs.add(spec);
-      }
-      
-      final childParentData = child.parentData! as MultiChildLayoutParentData;
-      child = childParentData.nextSibling;
-    }
-
-    // Handle hidden children by laying them out with zero size
-    for (int i = 0; i < children.length; i++) {
-      final child = children[i];
-      final spec = columnSpecs[i];
-      
-      if (spec.columns == 0) {
-        // Layout hidden children with zero constraints
-        child.layout(const BoxConstraints.tightFor(width: 0, height: 0), parentUsesSize: true);
-        final childParentData = child.parentData! as MultiChildLayoutParentData;
-        childParentData.offset = Offset.zero;
-      }
-    }
-
-    // If no visible children, just return with padding size
+    final visibleChildren = _getVisibleChildren();
     if (visibleChildren.isEmpty) {
-      size = constraints.constrain(
-        Size(_mainAxisSize == MainAxisSize.max ? constraints.maxWidth : padding.horizontal, padding.vertical),
-      );
+      size = _computeEmptySize();
       return;
     }
 
-    // Calculate layout based on 12-column grid using only visible children
     final columnWidth = (availableWidth - (_spacing * 11)) / 12;
-    final List<List<int>> rows = _calculateRowLayout(visibleColumnSpecs);
+    final rows = _calculateRowLayout(visibleChildren);
 
     double currentY = padding.top;
-    double maxWidth = 0.0;
+    double maxWidth = padding.horizontal;
 
-    for (final rowIndices in rows) {
-      double currentX = padding.left;
-      double maxRowHeight = 0.0;
+    for (final row in rows) {
+      final rowLayout = _layoutRow(row, columnWidth, availableHeight - currentY + padding.top);
+      _positionRow(row, rowLayout, currentY);
 
-      for (final index in rowIndices) {
-        final child = visibleChildren[index];
-        final spec = visibleColumnSpecs[index];
-        final childWidth = (columnWidth * spec.columns) + (_spacing * (spec.columns - 1));
-
-        // Layout the child
-        child.layout(
-          BoxConstraints(
-            minWidth: 0,
-            maxWidth: childWidth,
-            minHeight: 0,
-            maxHeight: availableHeight - currentY + padding.top,
-          ),
-          parentUsesSize: true,
-        );
-
-        // Position the child
-        final childParentData = child.parentData! as MultiChildLayoutParentData;
-        childParentData.offset = Offset(currentX, currentY);
-
-        currentX += childWidth + _spacing;
-        maxRowHeight = max(maxRowHeight, child.size.height);
-      }
-
-      maxWidth = max(maxWidth, currentX - _spacing + padding.right);
-      currentY += maxRowHeight + _runSpacing;
+      currentY += rowLayout.height + _runSpacing;
+      maxWidth = max(maxWidth, rowLayout.width + padding.horizontal);
     }
 
-    // Remove the last runSpacing
     if (rows.isNotEmpty) {
       currentY -= _runSpacing;
     }
@@ -257,40 +195,48 @@ class _RenderBeRow extends RenderBox
     );
   }
 
-  _ColumnSpec _getColumnSpec(final RenderBox child) {
-    // Try to get column specification from the child
-    // This would typically come from a BeColumn widget
-    if (child is RenderBeColumn) {
-      return _ColumnSpec(columns: child.getColumnCount(constraints.maxWidth));
-    }
-
-    // Default to full width if no specification found
-    return const _ColumnSpec(columns: 12);
+  Size _computeEmptySize() {
+    return constraints.constrain(
+      Size(_mainAxisSize == MainAxisSize.max ? constraints.maxWidth : padding.horizontal, padding.vertical),
+    );
   }
 
-  List<List<int>> _calculateRowLayout(final List<_ColumnSpec> specs) {
-    final rows = <List<int>>[];
-    List<int> currentRow = [];
+  List<RenderBox> _getVisibleChildren() {
+    final visibleChildren = <RenderBox>[];
+    var child = firstChild;
+
+    while (child != null) {
+      if (child is RenderBeColumn && !child.isHidden(constraints.maxWidth)) {
+        visibleChildren.add(child);
+      } else {
+        child.layout(const BoxConstraints(), parentUsesSize: true);
+      }
+
+      final parentData = child.parentData! as BeRowParentData;
+      child = parentData.nextSibling;
+    }
+
+    return visibleChildren;
+  }
+
+  List<List<RenderBox>> _calculateRowLayout(final List<RenderBox> children) {
+    final rows = <List<RenderBox>>[];
+    List<RenderBox> currentRow = [];
     int currentRowWidth = 0;
 
-    for (int i = 0; i < specs.length; i++) {
-      final spec = specs[i];
+    for (final child in children) {
+      final columns = (child as RenderBeColumn).getColumnCount(constraints.maxWidth);
 
-      if (currentRowWidth + spec.columns <= 12) {
-        // Fits in current row
-        currentRow.add(i);
-        currentRowWidth += spec.columns;
+      if (currentRowWidth + columns <= 12) {
+        currentRow.add(child);
+        currentRowWidth += columns;
       } else {
-        // Start new row
-        if (currentRow.isNotEmpty) {
-          rows.add(currentRow);
-        }
-        currentRow = [i];
-        currentRowWidth = spec.columns;
+        rows.add(currentRow);
+        currentRow = [child];
+        currentRowWidth = columns;
       }
     }
 
-    // Add the last row if not empty
     if (currentRow.isNotEmpty) {
       rows.add(currentRow);
     }
@@ -298,18 +244,59 @@ class _RenderBeRow extends RenderBox
     return rows;
   }
 
+  _RowLayout _layoutRow(final List<RenderBox> row, final double columnWidth, final double maxHeight) {
+    double totalWidth = padding.left;
+    double maxHeightInRow = 0.0;
+    final offsets = <Offset>[];
+
+    for (final child in row) {
+      final columns = (child as RenderBeColumn).getColumnCount(constraints.maxWidth);
+      final childWidth = (columnWidth * columns) + (_spacing * (columns - 1));
+
+      child.layout(
+        BoxConstraints(minWidth: 0, maxWidth: childWidth, minHeight: 0, maxHeight: maxHeight),
+        parentUsesSize: true,
+      );
+
+      totalWidth += childWidth + (child != row.last ? _spacing : 0);
+      maxHeightInRow = max(maxHeightInRow, child.size.height);
+      offsets.add(Offset(totalWidth - childWidth - padding.left, 0));
+    }
+
+    return _RowLayout(width: totalWidth + padding.right, height: maxHeightInRow, offsets: offsets);
+  }
+
+  void _positionRow(final List<RenderBox> row, final _RowLayout layout, final double y) {
+    for (int i = 0; i < row.length; i++) {
+      final child = row[i];
+      final parentData = child.parentData! as BeRowParentData;
+      parentData.offset = Offset(layout.offsets[i].dx, y);
+    }
+  }
+
   @override
   void paint(final PaintingContext context, final Offset offset) {
-    RenderBox? child = firstChild;
-    while (child != null) {
-      final spec = _getColumnSpec(child);
-      // Only paint children that are not hidden
-      if (spec.columns > 0) {
-        final childParentData = child.parentData! as MultiChildLayoutParentData;
-        context.paintChild(child, childParentData.offset + offset);
-      }
-      final childParentData = child.parentData! as MultiChildLayoutParentData;
-      child = childParentData.nextSibling;
+    defaultPaint(context, offset);
+
+    if (_debugGrid) {
+      _paintDebugGrid(context, offset);
+    }
+  }
+
+  void _paintDebugGrid(final PaintingContext context, final Offset offset) {
+    final columnWidth = (size.width - padding.horizontal - (_spacing * 11)) / 12;
+    final paint =
+        Paint()
+          ..color = _debugGridColor.withOpacity(0.3)
+          ..strokeWidth = 1;
+
+    for (int i = 0; i <= 12; i++) {
+      final x = padding.left + (columnWidth * i) + (_spacing * i);
+      context.canvas.drawLine(
+        Offset(x + offset.dx, padding.top + offset.dy),
+        Offset(x + offset.dx, size.height - padding.bottom + offset.dy),
+        paint,
+      );
     }
   }
 
@@ -319,33 +306,30 @@ class _RenderBeRow extends RenderBox
   }
 
   @override
-  double computeMinIntrinsicWidth(final double height) {
-    return padding.horizontal;
-  }
+  double computeMinIntrinsicWidth(final double height) => padding.horizontal;
 
   @override
-  double computeMaxIntrinsicWidth(final double height) {
-    return double.infinity;
-  }
+  double computeMaxIntrinsicWidth(final double height) => constraints.maxWidth;
 
   @override
-  double computeMinIntrinsicHeight(final double width) {
-    return padding.vertical;
-  }
+  double computeMinIntrinsicHeight(final double width) => padding.vertical;
 
   @override
-  double computeMaxIntrinsicHeight(final double width) {
-    return double.infinity;
-  }
+  double computeMaxIntrinsicHeight(final double width) => constraints.maxHeight;
 }
 
-class _ColumnSpec {
-  const _ColumnSpec({required this.columns});
-  final int columns;
+class _RowLayout {
+  _RowLayout({required this.width, required this.height, required this.offsets});
+  final double width;
+  final double height;
+  final List<Offset> offsets;
 }
 
-// Mixin for RenderBeColumn to provide column count information
 mixin RenderBeColumn on RenderBox {
   int getColumnCount(final double screenWidth);
   bool isHidden(final double screenWidth) => getColumnCount(screenWidth) == 0;
+}
+
+class BeRowParentData extends MultiChildLayoutParentData {
+  // Additional parent data if needed
 }
