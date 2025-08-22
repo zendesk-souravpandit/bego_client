@@ -52,8 +52,6 @@ import 'package:uibook/widgets/multichild/use_case_be_container.dart'
     as _uibook_widgets_multichild_use_case_be_container;
 import 'package:uibook/widgets/multichild/use_case_be_grid.dart'
     as _uibook_widgets_multichild_use_case_be_grid;
-import 'package:uibook/widgets/multichild/use_case_be_grid_responsive.dart'
-    as _uibook_widgets_multichild_use_case_be_grid_responsive;
 import 'package:uibook/widgets/multichild/use_case_be_label.dart'
     as _uibook_widgets_multichild_use_case_be_label;
 import 'package:uibook/widgets/multichild/use_case_be_multi_badge.dart'
@@ -332,15 +330,6 @@ final directories = <_widgetbook.WidgetbookNode>[
               builder:
                   _uibook_widgets_multichild_use_case_be_container
                       .useCaseBeContainer,
-            ),
-          ),
-          _widgetbook.WidgetbookLeafComponent(
-            name: 'BeGridResponsive',
-            useCase: _widgetbook.WidgetbookUseCase(
-              name: 'BeGridResponsive',
-              builder:
-                  _uibook_widgets_multichild_use_case_be_grid_responsive
-                      .useCaseBeGridResponsive,
             ),
           ),
           _widgetbook.WidgetbookLeafComponent(

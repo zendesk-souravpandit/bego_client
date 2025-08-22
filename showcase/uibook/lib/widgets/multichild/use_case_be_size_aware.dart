@@ -36,7 +36,7 @@ Widget useCaseBeSizeAware(final BuildContext context) {
                     child: BeSizeAware(
                       constraints: enableConstraints ? BoxConstraints(maxWidth: maxWidth, maxHeight: maxHeight) : null,
                       builder:
-                          (final size) => Container(
+                          (final data) => Container(
                             width: double.infinity,
                             height: double.infinity,
                             decoration: BoxDecoration(
@@ -58,12 +58,16 @@ Widget useCaseBeSizeAware(final BuildContext context) {
                                     style: TextStyle(color: Colors.blue.shade700, fontWeight: FontWeight.bold),
                                   ),
                                   Text(
-                                    '${size.width.toInt()} × ${size.height.toInt()}',
+                                    '${data.width.toInt()} × ${data.height.toInt()}',
                                     style: TextStyle(
                                       color: Colors.blue.shade600,
                                       fontSize: 16,
                                       fontWeight: FontWeight.w500,
                                     ),
+                                  ),
+                                  Text(
+                                    'Aspect: ${data.aspectRatio.toStringAsFixed(2)} ${data.isLandscape ? '🌄' : '📱'}',
+                                    style: TextStyle(color: Colors.blue.shade800, fontSize: 12),
                                   ),
                                 ],
                               ),
@@ -90,8 +94,8 @@ Widget useCaseBeSizeAware(final BuildContext context) {
             SizedBox(
               height: 120,
               child: BeSizeAware(
-                builder: (final size) {
-                  final columns = (size.width / 80).floor().clamp(1, 6);
+                builder: (final data) {
+                  final columns = (data.width / 80).floor().clamp(1, 6);
                   return GridView.builder(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: columns,
@@ -103,7 +107,7 @@ Widget useCaseBeSizeAware(final BuildContext context) {
                     itemBuilder:
                         (final context, final index) => Container(
                           decoration: BoxDecoration(
-                            color: Colors.green.withValues(alpha: 0.7 * 255),
+                            color: Colors.green.withOpacity(0.7),
                             borderRadius: BorderRadius.circular(4),
                           ),
                           child: Center(
@@ -131,8 +135,8 @@ Widget useCaseBeSizeAware(final BuildContext context) {
                 borderRadius: BorderRadius.circular(8),
               ),
               child: BeSizeAware(
-                builder: (final size) {
-                  final fontSize = (size.width / 10).clamp(12.0, 24.0);
+                builder: (final data) {
+                  final fontSize = data.responsiveMin(0.15).clamp(12.0, 24.0);
                   return Center(
                     child: Text(
                       'Responsive Text',
@@ -155,7 +159,9 @@ Widget useCaseBeSizeAware(final BuildContext context) {
                 border: Border.all(color: Colors.orange.shade200),
                 borderRadius: BorderRadius.circular(8),
               ),
-              child: BeSizeAware(builder: (final Size size) => CustomPaint(painter: _ChartPainter(size), size: size)),
+              child: BeSizeAware(
+                builder: (final data) => CustomPaint(painter: _ChartPainter(data.size), size: data.size),
+              ),
             ),
           ),
 
@@ -171,8 +177,8 @@ Widget useCaseBeSizeAware(final BuildContext context) {
                 borderRadius: BorderRadius.circular(8),
               ),
               child: BeSizeAware(
-                builder: (final Size size) {
-                  final isWide = size.width > 200;
+                builder: (final data) {
+                  final isWide = data.isWiderThan(200);
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
                     child:
@@ -195,20 +201,20 @@ Widget useCaseBeSizeAware(final BuildContext context) {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
                 image: const DecorationImage(
-                  image: NetworkImage('https://picsum.photos/${300}/${200}?random=1'),
+                  image: NetworkImage('https://picsum.photos/300/200?random=1'),
                   fit: BoxFit.cover,
                 ),
               ),
               child: BeSizeAware(
-                builder: (final Size size) {
-                  final showFullInfo = size.width > 150;
+                builder: (final data) {
+                  final showFullInfo = data.isWiderThan(150);
                   return Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
                       gradient: LinearGradient(
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
-                        colors: [Colors.transparent, Colors.black.withValues(alpha: 0.7 * 255)],
+                        colors: [Colors.transparent, Colors.black.withOpacity(0.7)],
                       ),
                     ),
                     child: Align(
@@ -252,20 +258,13 @@ Widget useCaseBeSizeAware(final BuildContext context) {
                 borderRadius: BorderRadius.circular(8),
               ),
               child: BeSizeAware(
-                builder: (final Size size) {
-                  final isCompact = size.width < 180;
+                builder: (final data) {
+                  final isCompact = data.isWiderThan(180);
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
                     child:
                         isCompact
-                            ? const Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(Icons.person, color: Colors.indigo),
-                                Text('User', style: TextStyle(fontSize: 10)),
-                              ],
-                            )
-                            : const Row(
+                            ? const Row(
                               children: [
                                 Icon(Icons.person, color: Colors.indigo),
                                 SizedBox(width: 8),
@@ -279,6 +278,13 @@ Widget useCaseBeSizeAware(final BuildContext context) {
                                     ],
                                   ),
                                 ),
+                              ],
+                            )
+                            : const Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(Icons.person, color: Colors.indigo),
+                                Text('User', style: TextStyle(fontSize: 10)),
                               ],
                             ),
                   );
@@ -299,9 +305,9 @@ Widget useCaseBeSizeAware(final BuildContext context) {
                 borderRadius: BorderRadius.circular(8),
               ),
               child: BeSizeAware(
-                builder: (final Size size) {
+                builder: (final data) {
                   const progress = 0.7; // 70% progress
-                  final showPercentage = size.width > 100;
+                  final showPercentage = data.isWiderThan(100);
 
                   return Padding(
                     padding: const EdgeInsets.all(12.0),
@@ -337,6 +343,49 @@ Widget useCaseBeSizeAware(final BuildContext context) {
             ),
           ),
 
+          // New example using aspect ratio
+          _buildExampleCard(
+            'Aspect Ratio Aware',
+            'Layout changes based on container aspect ratio',
+            Colors.pink,
+            Container(
+              height: 100,
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.pink.shade200),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: BeSizeAware(
+                builder: (final data) {
+                  return Container(
+                    padding: const EdgeInsets.all(8),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          data.isSquare
+                              ? 'Square!'
+                              : data.isLandscape
+                              ? 'Landscape'
+                              : 'Portrait',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.pink,
+                            fontSize: data.responsiveMin(0.1),
+                          ),
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          'Ratio: ${data.aspectRatio.toStringAsFixed(2)}',
+                          style: TextStyle(color: Colors.pink.shade700, fontSize: data.responsiveMin(0.06)),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
+
           const SizedBox(height: 24),
           const Text('Use Cases:', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
           const SizedBox(height: 8),
@@ -348,7 +397,8 @@ Widget useCaseBeSizeAware(final BuildContext context) {
             '• Image overlays that show different content based on size\n'
             '• Card layouts that adapt their information density\n'
             '• Progress indicators that change presentation style\n'
-            '• Navigation elements that collapse/expand based on space',
+            '• Navigation elements that collapse/expand based on space\n'
+            '• Aspect ratio aware layouts',
             style: TextStyle(color: Colors.grey),
           ),
 
@@ -361,7 +411,8 @@ Widget useCaseBeSizeAware(final BuildContext context) {
             '• Enables container-query-like behavior\n'
             '• Perfect for reusable components\n'
             '• Simplifies responsive design implementation\n'
-            '• Provides fine-grained control over layout adaptation',
+            '• Provides fine-grained control over layout adaptation\n'
+            '• Rich utility methods for responsive calculations',
             style: TextStyle(color: Colors.grey),
           ),
         ],
@@ -442,7 +493,7 @@ class _ChartPainter extends CustomPainter {
 
     final fillPaint =
         Paint()
-          ..color = Colors.orange.withValues(alpha: 0.3 * 255)
+          ..color = Colors.orange.withOpacity(0.3)
           ..style = PaintingStyle.fill;
 
     // Create a simple area chart that scales with container size

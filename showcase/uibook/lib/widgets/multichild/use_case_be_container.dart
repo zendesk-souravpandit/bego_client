@@ -1,3 +1,4 @@
+import 'package:beui/layout.dart';
 import 'package:beui/mulitchild.dart';
 import 'package:flutter/material.dart';
 import 'package:widgetbook/widgetbook.dart';
@@ -115,7 +116,7 @@ Widget _buildContainerInfo(final bool fluid, final double customPadding, final d
           LayoutBuilder(
             builder: (final context, final constraints) {
               final width = constraints.maxWidth;
-              final breakpoint = BeGridBreakpoints.getBreakpoint(width);
+              final breakpoint = calculateBreakpoint(width);
               final color = _getBreakpointColor(breakpoint.name);
 
               return Column(
