@@ -135,7 +135,7 @@ Widget _buildBreakpointInfoCard() {
               return Container(
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
-                  color: color.withValues(alpha: 255 * 0.1),
+                  color: color.withValues(alpha: 0.1),
                   border: Border.all(color: color),
                   borderRadius: BorderRadius.circular(8),
                 ),
@@ -153,7 +153,7 @@ Widget _buildBreakpointInfoCard() {
                           ),
                           Text(
                             _getBreakpointDescription(breakpoint.name),
-                            style: TextStyle(color: color.withValues(alpha: 255 * 0.8)),
+                            style: TextStyle(color: color.withValues(alpha: 0.8)),
                           ),
                         ],
                       ),
@@ -199,15 +199,15 @@ Widget _buildBreakpointChip(final String name, final String size, final String d
   return Container(
     padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
     decoration: BoxDecoration(
-      color: color.withValues(alpha: 255 * 0.1),
+      color: color.withValues(alpha: 0.1),
       borderRadius: BorderRadius.circular(4),
-      border: Border.all(color: color.withValues(alpha: 255 * 0.3)),
+      border: Border.all(color: color.withValues(alpha: 0.3)),
     ),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(name.toUpperCase(), style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: color)),
-        Text(size, style: TextStyle(fontSize: 9, color: color.withValues(alpha: 255 * 0.8))),
+        Text(size, style: TextStyle(fontSize: 9, color: color.withValues(alpha: 0.8))),
       ],
     ),
   );
@@ -462,9 +462,9 @@ Widget _buildConfigItem(final String label, final String value, final Color colo
   return Container(
     padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
     decoration: BoxDecoration(
-      color: color.withValues(alpha: 255 * 0.1),
+      color: color.withValues(alpha: 0.1),
       borderRadius: BorderRadius.circular(4),
-      border: Border.all(color: color.withValues(alpha: 255 * 0.3)),
+      border: Border.all(color: color.withValues(alpha: 0.3)),
     ),
     child: Text('$label: $value', style: TextStyle(fontSize: 11, color: color, fontWeight: FontWeight.w600)),
   );
@@ -560,9 +560,8 @@ Widget _buildResponsiveColumnCard(
   return Container(
     constraints: const BoxConstraints(minHeight: 100),
     decoration: BoxDecoration(
-      color: color.withValues(alpha: 255 * 0.1),
-      border:
-          showGridLines ? Border.all(color: color, width: 2) : Border.all(color: color.withValues(alpha: 255 * 0.3)),
+      color: color.withValues(alpha: 0.1),
+      border: showGridLines ? Border.all(color: color, width: 2) : Border.all(color: color.withValues(alpha: 0.3)),
       borderRadius: BorderRadius.circular(8),
     ),
     child: Material(
@@ -584,15 +583,15 @@ Widget _buildResponsiveColumnCard(
             const SizedBox(height: 8),
             Text(
               breakpoints,
-              style: TextStyle(color: color.withValues(alpha: 255 * 0.8), fontSize: 11, fontFamily: 'monospace'),
+              style: TextStyle(color: color.withValues(alpha: 0.8), fontSize: 11, fontFamily: 'monospace'),
             ),
             if (offset > 0) ...[
               const SizedBox(height: 4),
-              Text('Offset: $offset', style: TextStyle(color: color.withValues(alpha: 255 * 0.8), fontSize: 11)),
+              Text('Offset: $offset', style: TextStyle(color: color.withValues(alpha: 0.8), fontSize: 11)),
             ],
             if (order > 1) ...[
               const SizedBox(height: 4),
-              Text('Order: $order', style: TextStyle(color: color.withValues(alpha: 255 * 0.8), fontSize: 11)),
+              Text('Order: $order', style: TextStyle(color: color.withValues(alpha: 0.8), fontSize: 11)),
             ],
           ],
         ),
@@ -608,15 +607,15 @@ Widget _buildColumnCard(final String title, final String subtitle, final Color c
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        color: color.withValues(alpha: 255 * 0.05),
-        border: Border.all(color: color.withValues(alpha: 255 * 0.2)),
+        color: color.withValues(alpha: 0.05),
+        border: Border.all(color: color.withValues(alpha: 0.2)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(title, style: TextStyle(color: color, fontWeight: FontWeight.bold, fontSize: 16)),
           const SizedBox(height: 4),
-          Text(subtitle, style: TextStyle(color: color.withValues(alpha: 255 * 0.7), fontSize: 12)),
+          Text(subtitle, style: TextStyle(color: color.withValues(alpha: 0.7), fontSize: 12)),
         ],
       ),
     ),
@@ -631,7 +630,7 @@ Widget _buildShowcaseCard(final String title, final String responsive, final Col
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         gradient: LinearGradient(
-          colors: [color.withValues(alpha: 255 * 0.1), color.withValues(alpha: 255 * 0.05)],
+          colors: [color.withValues(alpha: 0.1), color.withValues(alpha: 0.05)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
@@ -645,7 +644,7 @@ Widget _buildShowcaseCard(final String title, final String responsive, final Col
           const SizedBox(height: 4),
           Text(
             responsive,
-            style: TextStyle(color: color.withValues(alpha: 255 * 0.7), fontSize: 10, fontFamily: 'monospace'),
+            style: TextStyle(color: color.withValues(alpha: 0.7), fontSize: 10, fontFamily: 'monospace'),
           ),
         ],
       ),
@@ -660,8 +659,8 @@ Widget _buildOffsetCard(final String title, final String offsetInfo, final Color
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        color: color.withValues(alpha: 255 * 0.1),
-        border: Border.all(color: color.withValues(alpha: 255 * 0.3)),
+        color: color.withValues(alpha: 0.1),
+        border: Border.all(color: color.withValues(alpha: 0.3)),
       ),
       child: Column(
         children: [
@@ -669,7 +668,7 @@ Widget _buildOffsetCard(final String title, final String offsetInfo, final Color
           const SizedBox(height: 8),
           Text(title, style: TextStyle(color: color, fontWeight: FontWeight.bold)),
           const SizedBox(height: 4),
-          Text(offsetInfo, style: TextStyle(color: color.withValues(alpha: 255 * 0.7), fontSize: 12)),
+          Text(offsetInfo, style: TextStyle(color: color.withValues(alpha: 0.7), fontSize: 12)),
         ],
       ),
     ),
@@ -683,8 +682,8 @@ Widget _buildOrderCard(final String title, final String orderInfo, final Color c
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        color: color.withValues(alpha: 255 * 0.1),
-        border: Border.all(color: color.withValues(alpha: 255 * 0.3)),
+        color: color.withValues(alpha: 0.1),
+        border: Border.all(color: color.withValues(alpha: 0.3)),
       ),
       child: Column(
         children: [
@@ -692,7 +691,7 @@ Widget _buildOrderCard(final String title, final String orderInfo, final Color c
           const SizedBox(height: 8),
           Text(title, style: TextStyle(color: color, fontWeight: FontWeight.bold)),
           const SizedBox(height: 4),
-          Text(orderInfo, style: TextStyle(color: color.withValues(alpha: 255 * 0.7), fontSize: 12)),
+          Text(orderInfo, style: TextStyle(color: color.withValues(alpha: 0.7), fontSize: 12)),
         ],
       ),
     ),
@@ -712,8 +711,8 @@ Widget _buildRealWorldCard(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        color: color.withValues(alpha: 255 * 0.05),
-        border: Border.all(color: color.withValues(alpha: 255 * 0.2)),
+        color: color.withValues(alpha: 0.05),
+        border: Border.all(color: color.withValues(alpha: 0.2)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -726,7 +725,7 @@ Widget _buildRealWorldCard(
             ],
           ),
           const SizedBox(height: 8),
-          Text(description, style: TextStyle(color: color.withValues(alpha: 255 * 0.7), fontSize: 12)),
+          Text(description, style: TextStyle(color: color.withValues(alpha: 0.7), fontSize: 12)),
         ],
       ),
     ),
