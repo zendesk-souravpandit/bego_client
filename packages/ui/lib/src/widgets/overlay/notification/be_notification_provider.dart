@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:beui/decoration.dart';
@@ -32,27 +33,21 @@ class _BeNotificationsProviderState extends State<BeNotificationsProvider> imple
   final List<Widget> _notifications = [];
   final List<Widget> _queue = [];
   final GlobalKey<AnimatedListState> _listKey = GlobalKey();
+  final Map<Key, Timer> _timers = {};
 
   @override
   void show(final Widget notification, {final Key? key, final Duration? dissmissDuration}) {
     final notificationKey = key ?? UniqueKey();
     final duration = dissmissDuration ?? widget.autoDismissDuration;
 
-    final wrappedNotification = KeyedSubtree(
-      key: notificationKey,
-      child: _NotificationWrapper(
-        key: notificationKey,
-        notification: notification,
-        manager: this,
-        dismissDuration: duration,
-      ),
-    );
+    final wrappedNotification = KeyedSubtree(key: notificationKey, child: notification);
     final notificationKeys = _notifications.map((final w) => w.key);
     if (notificationKeys.contains(notificationKey)) {
       // If the notification is already in the list, remove it first
-      _removeNotification(wrappedNotification);
+      final existingNotification = _notifications.firstWhere((final n) => n.key == notificationKey);
+      _removeNotification(existingNotification);
       debugPrint(
-        'Notification with key $notificationKey already exists.'
+        'Notification with key $notificationKey already exists. '
         'Removing it first.',
       );
     }
@@ -69,15 +64,22 @@ class _BeNotificationsProviderState extends State<BeNotificationsProvider> imple
     try {
       final notification = _notifications.firstWhere((final n) => (n as KeyedSubtree).key == key);
       _removeNotification(notification);
-    } catch (e) {
-      // Notification not found
+    } on StateError {
+      // Notification not found - using StateError instead of generic catch
       debugPrint('Notification with key $key not found');
     }
   }
 
   @override
-  void dismissAll() {
+  void dismiss() {
     if (_notifications.isEmpty) return;
+
+    // Cancel all timers and clear the map
+    for (final timer in _timers.values) {
+      timer.cancel();
+    }
+    _timers.clear();
+
     _notifications.forEach(_removeNotification);
     _queue.clear();
   }
@@ -89,7 +91,7 @@ class _BeNotificationsProviderState extends State<BeNotificationsProvider> imple
         .where((final notification) {
           if (notification is KeyedSubtree) {
             final child = notification.child;
-            return child is _NotificationWrapper && child.notification.runtimeType == type;
+            return child.runtimeType == type;
           }
           return false;
         })
@@ -97,23 +99,37 @@ class _BeNotificationsProviderState extends State<BeNotificationsProvider> imple
         .forEach(_removeNotification);
   }
 
-  void _addNotification(final Widget notification, {final int index = 0, final Key? key, final Duration? dissmissDuration}) {
+  void _addNotification(
+    final Widget notification, {
+    final int index = 0,
+    final Key? key,
+    final Duration? dissmissDuration,
+  }) {
     _notifications.insert(index, notification);
     _listKey.currentState?.insertItem(index, duration: widget.animationDuration);
-    // Set the key to null if it is not provided set to autoDismiss
-    if (key == null) {
-      Future<void>.delayed(dissmissDuration ?? widget.autoDismissDuration, () {
-        if (_notifications.contains(notification)) {
-          _removeNotification(notification);
-        }
-      });
-    }
+
+    // Schedule auto-dismiss timer
+    final notificationKey = notification.key!;
+    final timer = Timer(dissmissDuration ?? widget.autoDismissDuration, () {
+      if (_notifications.any((final n) => n.key == notificationKey)) {
+        _removeNotification(notification);
+      }
+    });
+    _timers[notificationKey] = timer;
   }
 
   void _removeNotification(final Widget notification) {
     final index = _notifications.indexOf(notification);
     if (index != -1) {
       _notifications.removeAt(index);
+
+      // Cancel and remove the timer
+      final notificationKey = notification.key;
+      if (notificationKey != null) {
+        _timers[notificationKey]?.cancel();
+        _timers.remove(notificationKey);
+      }
+
       _listKey.currentState?.removeItem(
         index,
         (final context, final animation) => _buildRemovedNotification(animation, notification),
@@ -125,7 +141,8 @@ class _BeNotificationsProviderState extends State<BeNotificationsProvider> imple
 
   void _handleNotificationDismiss() {
     if (_queue.isNotEmpty && _notifications.length < widget.maxVisible) {
-      _addNotification(_queue.removeAt(0));
+      final nextNotification = _queue.removeAt(0);
+      _addNotification(nextNotification);
     }
   }
 
@@ -133,9 +150,19 @@ class _BeNotificationsProviderState extends State<BeNotificationsProvider> imple
     return _AnimatedNotification(
       animation: animation,
       notification: notification,
-      isOutgoing: false,
+      isOutgoing: true, // Should be true for leaving notifications
       slideTween: widget.position.slideTween,
     );
+  }
+
+  @override
+  void dispose() {
+    // Cancel all timers to prevent memory leaks
+    for (final timer in _timers.values) {
+      timer.cancel();
+    }
+    _timers.clear();
+    super.dispose();
   }
 
   @override
@@ -177,38 +204,13 @@ class _BeNotificationsProviderState extends State<BeNotificationsProvider> imple
   }
 }
 
-class _NotificationWrapper extends StatefulWidget {
-  const _NotificationWrapper({
-    super.key,
-    required this.notification,
-    required this.manager,
-    required this.dismissDuration,
-  });
-
-  final Widget notification;
-  final BeNotificationManager manager;
-  final Duration dismissDuration;
-
-  @override
-  State<_NotificationWrapper> createState() => _NotificationWrapperState();
-}
-
-class _NotificationWrapperState extends State<_NotificationWrapper> {
-  @override
-  Widget build(final BuildContext context) {
-    return widget.notification;
-  }
-}
-
 abstract class BeNotificationManager {
   static BeNotificationManager of(final BuildContext context) =>
       context.dependOnInheritedWidgetOfExactType<_BeNotificationData>()!.manager;
 
-  BeNotificationsProvider get widget;
-
   void show(final Widget notification, {final Key? key, final Duration? dissmissDuration});
   void dismissByKey(final Key key);
-  void dismissAll();
+  void dismiss();
   void dismissAllOfType(final Type type);
 }
 
@@ -272,7 +274,8 @@ class _AnimatedNotification extends StatelessWidget {
 }
 
 class _NoClipSizeTransition extends AnimatedWidget {
-  const _NoClipSizeTransition({required final Animation<double> sizeFactor, this.child}) : super(listenable: sizeFactor);
+  const _NoClipSizeTransition({required final Animation<double> sizeFactor, this.child})
+    : super(listenable: sizeFactor);
 
   final Widget? child;
 

@@ -1,5 +1,5 @@
+import 'package:beui/be_icons.dart';
 import 'package:beui/overlay.dart';
-import 'package:beui/text.dart';
 import 'package:flutter/material.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
@@ -15,6 +15,7 @@ class BeNotificationProviderDemo extends StatefulWidget {
 
 class _BeNotificationProviderDemoState extends State<BeNotificationProviderDemo> with SingleTickerProviderStateMixin {
   late final BePopoverController controller = BePopoverController(vsync: this);
+  int _notificationCounter = 0;
 
   @override
   Widget build(final BuildContext context) {
@@ -24,11 +25,37 @@ class _BeNotificationProviderDemoState extends State<BeNotificationProviderDemo>
       children: [
         ElevatedButton(
           onPressed: () {
-            BeNotificationManager.of(
-              context,
-            ).show(const Card(color: Colors.red, child: BeText('This is a notification')));
+            final notificationKey = ValueKey('notification_${++_notificationCounter}');
+            BeNotificationManager.of(context).show(
+              ListTile(
+                title: const Text('This is a notification'),
+                subtitle: const Text('This is a notification subtitle'),
+                leading: const Icon(BeIcons.icon_abstract),
+                trailing: IconButton(
+                  onPressed: () {
+                    BeNotificationManager.of(context).dismissByKey(notificationKey);
+                  },
+                  icon: const Icon(BeIcons.icon_close),
+                ),
+              ),
+              key: notificationKey,
+            );
           },
           child: const Text('Show Notification'),
+        ),
+        const SizedBox(height: 16),
+        ElevatedButton(
+          onPressed: () {
+            BeNotificationManager.of(context).dismiss();
+          },
+          child: const Text('Dismiss All Notifications'),
+        ),
+        const SizedBox(height: 16),
+        ElevatedButton(
+          onPressed: () {
+            BeNotificationManager.of(context).dismissAllOfType(ListTile);
+          },
+          child: const Text('Dismiss All ListTile Notifications'),
         ),
       ],
     );
