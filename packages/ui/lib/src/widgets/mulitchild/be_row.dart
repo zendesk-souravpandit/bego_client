@@ -172,18 +172,20 @@ class _RenderBeRow extends RenderBox
       return;
     }
 
-    final columnWidth = (availableWidth - (_spacing * 11)) / 12;
+    // Calculate column width considering spacing between 12 columns
+    final totalSpacingWidth = _spacing * 11; // 11 gaps between 12 columns
+    final columnWidth = (availableWidth - totalSpacingWidth) / 12;
     final rows = _calculateRowLayout(visibleChildren);
 
     double currentY = padding.top;
-    double maxWidth = padding.horizontal;
+    double maxWidth = 0.0;
 
     for (final row in rows) {
       final rowLayout = _layoutRow(row, columnWidth, availableHeight - currentY + padding.top);
       _positionRow(row, rowLayout, currentY);
 
       currentY += rowLayout.height + _runSpacing;
-      maxWidth = max(maxWidth, rowLayout.width + padding.horizontal);
+      maxWidth = max(maxWidth, rowLayout.width);
     }
 
     if (rows.isNotEmpty) {
@@ -245,12 +247,15 @@ class _RenderBeRow extends RenderBox
   }
 
   _RowLayout _layoutRow(final List<RenderBox> row, final double columnWidth, final double maxHeight) {
-    double totalWidth = padding.left;
+    double currentX = 0.0; // Start from 0, padding will be added in positioning
     double maxHeightInRow = 0.0;
     final offsets = <Offset>[];
 
-    for (final child in row) {
+    for (int i = 0; i < row.length; i++) {
+      final child = row[i];
       final columns = (child as RenderBeColumn).getColumnCount(constraints.maxWidth);
+      // For a child spanning multiple columns, include the spacing that would be between those columns
+      // For example: 3 columns = 3 * columnWidth + 2 * spacing (gaps between the 3 columns)
       final childWidth = (columnWidth * columns) + (_spacing * (columns - 1));
 
       child.layout(
@@ -258,19 +263,26 @@ class _RenderBeRow extends RenderBox
         parentUsesSize: true,
       );
 
-      totalWidth += childWidth + (child != row.last ? _spacing : 0);
+      offsets.add(Offset(currentX, 0));
+      currentX += childWidth;
+
+      // Add spacing between child elements (but not after the last child)
+      if (i < row.length - 1) {
+        currentX += _spacing;
+      }
+
       maxHeightInRow = max(maxHeightInRow, child.size.height);
-      offsets.add(Offset(totalWidth - childWidth - padding.left, 0));
     }
 
-    return _RowLayout(width: totalWidth + padding.right, height: maxHeightInRow, offsets: offsets);
+    return _RowLayout(width: currentX + padding.horizontal, height: maxHeightInRow, offsets: offsets);
   }
 
   void _positionRow(final List<RenderBox> row, final _RowLayout layout, final double y) {
     for (int i = 0; i < row.length; i++) {
       final child = row[i];
       final parentData = child.parentData! as BeRowParentData;
-      parentData.offset = Offset(layout.offsets[i].dx, y);
+      // Add padding.left to position correctly within the container
+      parentData.offset = Offset(layout.offsets[i].dx + padding.left, y);
     }
   }
 
@@ -284,10 +296,11 @@ class _RenderBeRow extends RenderBox
   }
 
   void _paintDebugGrid(final PaintingContext context, final Offset offset) {
-    final columnWidth = (size.width - padding.horizontal - (_spacing * 11)) / 12;
+    final totalSpacingWidth = _spacing * 11; // 11 gaps between 12 columns
+    final columnWidth = (size.width - padding.horizontal - totalSpacingWidth) / 12;
     final paint =
         Paint()
-          ..color = _debugGridColor.withOpacity(0.3)
+          ..color = _debugGridColor.withValues(alpha: 0.3)
           ..strokeWidth = 1;
 
     for (int i = 0; i <= 12; i++) {

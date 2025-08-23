@@ -125,7 +125,7 @@ Widget _buildContainerInfo(final bool fluid, final double customPadding, final d
                   Container(
                     padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
-                      color: color.withValues(alpha: 255 * 0.1),
+                      color: color.withValues(alpha: 0.1),
                       border: Border.all(color: color),
                       borderRadius: BorderRadius.circular(8),
                     ),
@@ -143,7 +143,7 @@ Widget _buildContainerInfo(final bool fluid, final double customPadding, final d
                               ),
                               Text(
                                 _getBreakpointDescription(breakpoint.name),
-                                style: TextStyle(color: color.withValues(alpha: 255 * 0.8)),
+                                style: TextStyle(color: color.withValues(alpha: 0.8)),
                               ),
                             ],
                           ),
@@ -546,7 +546,7 @@ Widget _buildContainerExample(final String title, final bool fluid, final double
           child: Container(
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: (fluid ? Colors.blue : Colors.green).withValues(alpha: 255 * 0.1),
+              color: (fluid ? Colors.blue : Colors.green).withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(6),
             ),
             child: Text('${fluid ? 'Fluid' : 'Fixed'} container content'),
@@ -579,15 +579,15 @@ Widget _buildContentCard(final String title, final String subtitle, final Color 
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        color: color.withValues(alpha: 255 * 0.05),
-        border: Border.all(color: color.withValues(alpha: 255 * 0.2)),
+        color: color.withValues(alpha: 0.05),
+        border: Border.all(color: color.withValues(alpha: 0.2)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(title, style: TextStyle(color: color, fontWeight: FontWeight.bold, fontSize: 16)),
           const SizedBox(height: 4),
-          Text(subtitle, style: TextStyle(color: color.withValues(alpha: 255 * 0.7), fontSize: 12)),
+          Text(subtitle, style: TextStyle(color: color.withValues(alpha: 0.7), fontSize: 12)),
         ],
       ),
     ),
@@ -607,8 +607,8 @@ Widget _buildShowcaseCard(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        color: color.withValues(alpha: 255 * 0.05),
-        border: Border.all(color: color.withValues(alpha: 255 * 0.2)),
+        color: color.withValues(alpha: 0.05),
+        border: Border.all(color: color.withValues(alpha: 0.2)),
       ),
       child: Column(
         children: [
@@ -618,7 +618,7 @@ Widget _buildShowcaseCard(
           const SizedBox(height: 8),
           Text(
             description,
-            style: TextStyle(color: color.withValues(alpha: 255 * 0.7), fontSize: 12),
+            style: TextStyle(color: color.withValues(alpha: 0.7), fontSize: 12),
             textAlign: TextAlign.center,
           ),
         ],
@@ -669,15 +669,15 @@ Widget _buildComparisonCard(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        color: color.withValues(alpha: 255 * 0.05),
-        border: Border.all(color: color.withValues(alpha: 255 * 0.2)),
+        color: color.withValues(alpha: 0.05),
+        border: Border.all(color: color.withValues(alpha: 0.2)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(title, style: TextStyle(color: color, fontWeight: FontWeight.bold, fontSize: 16)),
           const SizedBox(height: 4),
-          Text(subtitle, style: TextStyle(color: color.withValues(alpha: 255 * 0.7), fontSize: 12)),
+          Text(subtitle, style: TextStyle(color: color.withValues(alpha: 0.7), fontSize: 12)),
           const SizedBox(height: 12),
           ...features.map(
             (final feature) => Padding(
@@ -686,9 +686,7 @@ Widget _buildComparisonCard(
                 children: [
                   Icon(Icons.check_circle, color: color, size: 16),
                   const SizedBox(width: 8),
-                  Expanded(
-                    child: Text(feature, style: TextStyle(fontSize: 12, color: color.withValues(alpha: 255 * 0.8))),
-                  ),
+                  Expanded(child: Text(feature, style: TextStyle(fontSize: 12, color: color.withValues(alpha: 0.8)))),
                 ],
               ),
             ),
@@ -703,9 +701,9 @@ Widget _buildInfoChip(final String label, final String value, final Color color)
   return Container(
     padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
     decoration: BoxDecoration(
-      color: color.withValues(alpha: 255 * 0.1),
+      color: color.withValues(alpha: 0.1),
       borderRadius: BorderRadius.circular(4),
-      border: Border.all(color: color.withValues(alpha: 255 * 0.3)),
+      border: Border.all(color: color.withValues(alpha: 0.3)),
     ),
     child: Text('$label: $value', style: TextStyle(fontSize: 11, color: color, fontWeight: FontWeight.w600)),
   );

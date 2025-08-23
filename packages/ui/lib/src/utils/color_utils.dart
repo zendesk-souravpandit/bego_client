@@ -168,7 +168,7 @@ extension ColorExtension on Color {
     if (amount >= 100) {
       return input;
     }
-    return Color.alphaBlend(input.withAlpha(255 * amount ~/ 100), this);
+    return Color.alphaBlend(input.withAlpha(amount ~/ 100), this);
   }
 
   /// Blend in the given input Color with an alpha value.

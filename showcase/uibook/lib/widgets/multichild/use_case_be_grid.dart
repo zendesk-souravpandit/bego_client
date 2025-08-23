@@ -6,135 +6,266 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 @widgetbook.UseCase(name: 'BeGrid', path: 'widget/multichild', type: BeRow)
 Widget useCaseBeGrid(final BuildContext context) {
-  // Grid Layout Controls
-  final spacing = context.knobs.double.slider(label: 'Column Spacing', initialValue: 16, min: 0, max: 48);
-  final runSpacing = context.knobs.double.slider(label: 'Row Spacing', initialValue: 16, min: 0, max: 48);
-
-  // Container Controls
-  final containerFluid = context.knobs.boolean(label: 'Fluid Container', initialValue: false);
-  final customPadding = context.knobs.double.slider(label: 'Container Padding', initialValue: 16, min: 0, max: 48);
-
-  // Column Controls for Interactive Example
-  final col1XS = context.knobs.int.slider(label: 'Column 1 - XS', initialValue: 12, min: 0, max: 12);
-  final col1SM = context.knobs.int.slider(label: 'Column 1 - SM', initialValue: 6, min: 0, max: 12);
-  final col1MD = context.knobs.int.slider(label: 'Column 1 - MD', initialValue: 4, min: 0, max: 12);
-  final col1LG = context.knobs.int.slider(label: 'Column 1 - LG', initialValue: 3, min: 0, max: 12);
-
-  final col2XS = context.knobs.int.slider(label: 'Column 2 - XS', initialValue: 12, min: 0, max: 12);
-  final col2SM = context.knobs.int.slider(label: 'Column 2 - SM', initialValue: 6, min: 0, max: 12);
-  final col2MD = context.knobs.int.slider(label: 'Column 2 - MD', initialValue: 4, min: 0, max: 12);
-  final col2LG = context.knobs.int.slider(label: 'Column 2 - LG', initialValue: 3, min: 0, max: 12);
-
-  final col3XS = context.knobs.int.slider(label: 'Column 3 - XS', initialValue: 12, min: 0, max: 12);
-  final col3SM = context.knobs.int.slider(label: 'Column 3 - SM', initialValue: 12, min: 0, max: 12);
-  final col3MD = context.knobs.int.slider(label: 'Column 3 - MD', initialValue: 4, min: 0, max: 12);
-  final col3LG = context.knobs.int.slider(label: 'Column 3 - LG', initialValue: 3, min: 0, max: 12);
-
-  // Row Alignment Controls
-  final mainAxisAlignment = context.knobs.list(
-    label: 'Main Axis Alignment',
-    options: MainAxisAlignment.values,
-    labelBuilder: (final value) => value.toString().split('.').last,
-  );
-
-  final crossAxisAlignment = context.knobs.list(
-    label: 'Cross Axis Alignment',
-    options: CrossAxisAlignment.values,
-    labelBuilder: (final value) => value.toString().split('.').last,
-  );
-
-  // Demo Type
-  final demoType = context.knobs.list(
-    label: 'Demo Scenario',
-    options: ['Interactive Demo', 'E-commerce Cards', 'Dashboard Layout', 'Blog Layout', 'Form Layout', 'Gallery Grid'],
-  );
-
-  // Visual Options
-  final showBreakpoints = context.knobs.boolean(label: 'Show Breakpoint Info', initialValue: true);
-  final showGridLines = context.knobs.boolean(label: 'Show Grid Guidelines', initialValue: false);
-  final cardElevation = context.knobs.double.slider(label: 'Card Elevation', initialValue: 2, min: 0, max: 8);
-
-  return Padding(
-    padding: const EdgeInsets.all(16.0),
-    child: SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Header with current demo info
-          _buildHeader(demoType),
-          const SizedBox(height: 24),
-
-          // Interactive Breakpoint Info
-          if (showBreakpoints) ...[_buildBreakpointInfo(), const SizedBox(height: 24)],
-
-          // Main Interactive Demo
-          _buildInteractiveDemo(
-            spacing: spacing,
-            runSpacing: runSpacing,
-            containerFluid: containerFluid,
-            customPadding: customPadding,
-            mainAxisAlignment: mainAxisAlignment,
-            crossAxisAlignment: crossAxisAlignment,
-            showGridLines: showGridLines,
-            cardElevation: cardElevation,
-            col1XS: col1XS,
-            col1SM: col1SM,
-            col1MD: col1MD,
-            col1LG: col1LG,
-            col2XS: col2XS,
-            col2SM: col2SM,
-            col2MD: col2MD,
-            col2LG: col2LG,
-            col3XS: col3XS,
-            col3SM: col3SM,
-            col3MD: col3MD,
-            col3LG: col3LG,
-          ),
-
-          const SizedBox(height: 32),
-
-          // Realistic Scenario Demos
-          _buildScenarioDemo(demoType, spacing, runSpacing, cardElevation),
-
-          const SizedBox(height: 32),
-
-          // Property Showcase
-          _buildPropertyShowcase(spacing, cardElevation),
-        ],
-      ),
-    ),
-  );
+  return const BeGridDemo();
 }
 
-// New builder functions
-Widget _buildHeader(final String demoType) {
-  return Card(
-    elevation: 1,
-    child: Padding(
-      padding: const EdgeInsets.all(20.0),
-      child: Row(
-        children: [
-          Icon(_getDemoIcon(demoType), size: 32, color: Colors.blue),
-          const SizedBox(width: 16),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text('BeGrid System Demo', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-                const SizedBox(height: 4),
-                Text('Current Scenario: $demoType', style: TextStyle(fontSize: 16, color: Colors.grey[600])),
-                const SizedBox(height: 8),
-                const Text(
-                  'Adjust controls in the sidebar to see real-time changes in layout behavior',
-                  style: TextStyle(fontSize: 14),
-                ),
-              ],
+class BeGridDemo extends StatefulWidget {
+  const BeGridDemo({super.key});
+
+  @override
+  State<BeGridDemo> createState() => _BeGridDemoState();
+}
+
+class _BeGridDemoState extends State<BeGridDemo> {
+  final ScrollController _scrollController = ScrollController();
+
+  // State variables to reduce rebuilds
+  double _spacing = 16;
+  double _runSpacing = 16;
+  bool _containerFluid = false;
+  final double _customPadding = 16;
+  final MainAxisAlignment _mainAxisAlignment = MainAxisAlignment.start;
+  final CrossAxisAlignment _crossAxisAlignment = CrossAxisAlignment.start;
+  String _demoType = 'Interactive Demo';
+  bool _showBreakpoints = true;
+  final bool _showGridLines = false;
+  double _cardElevation = 2;
+
+  // Column sizes
+  int _col1XS = 12, _col1SM = 6, _col1MD = 4, _col1LG = 3;
+  int _col2XS = 12, _col2SM = 6, _col2MD = 4, _col2LG = 3;
+  int _col3XS = 12, _col3SM = 12, _col3MD = 4, _col3LG = 3;
+
+  @override
+  Widget build(final BuildContext context) {
+    // Only get knobs once to avoid excessive rebuilds
+    _spacing = context.knobs.double.slider(label: 'Column Spacing', initialValue: _spacing, min: 0, max: 48);
+    _runSpacing = context.knobs.double.slider(label: 'Row Spacing', initialValue: _runSpacing, min: 0, max: 48);
+    _containerFluid = context.knobs.boolean(label: 'Fluid Container', initialValue: _containerFluid);
+    _demoType = context.knobs.list(
+      label: 'Demo Scenario',
+      options: [
+        'Interactive Demo',
+        'E-commerce Cards',
+        'Dashboard Layout',
+        'Blog Layout',
+        'Form Layout',
+        'Gallery Grid',
+      ],
+      initialOption: _demoType,
+    );
+    _showBreakpoints = context.knobs.boolean(label: 'Show Breakpoint Info', initialValue: _showBreakpoints);
+    _cardElevation = context.knobs.double.slider(label: 'Card Elevation', initialValue: _cardElevation, min: 0, max: 8);
+
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: SingleChildScrollView(
+        key: const PageStorageKey('grid_demo_scroll'),
+        controller: _scrollController,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Memoized header
+            _HeaderWidget(key: ValueKey('header_$_demoType'), demoType: _demoType),
+            const SizedBox(height: 24),
+
+            // Conditional breakpoint info
+            if (_showBreakpoints) ...[
+              const _BreakpointInfoWidget(key: ValueKey('breakpoint_info')),
+              const SizedBox(height: 24),
+            ],
+
+            // Optimized interactive demo
+            _InteractiveDemoWidget(
+              key: ValueKey('interactive_${_spacing}_${_runSpacing}_$_cardElevation'),
+              spacing: _spacing,
+              runSpacing: _runSpacing,
+              containerFluid: _containerFluid,
+              customPadding: _customPadding,
+              mainAxisAlignment: _mainAxisAlignment,
+              crossAxisAlignment: _crossAxisAlignment,
+              showGridLines: _showGridLines,
+              cardElevation: _cardElevation,
+              col1XS: _col1XS,
+              col1SM: _col1SM,
+              col1MD: _col1MD,
+              col1LG: _col1LG,
+              col2XS: _col2XS,
+              col2SM: _col2SM,
+              col2MD: _col2MD,
+              col2LG: _col2LG,
+              col3XS: _col3XS,
+              col3SM: _col3SM,
+              col3MD: _col3MD,
+              col3LG: _col3LG,
             ),
-          ),
-        ],
+
+            const SizedBox(height: 32),
+
+            // Scenario demo widget
+            _ScenarioDemoWidget(
+              key: ValueKey('scenario_${_demoType}_${_spacing}_$_cardElevation'),
+              demoType: _demoType,
+              spacing: _spacing,
+              runSpacing: _runSpacing,
+              cardElevation: _cardElevation,
+            ),
+
+            const SizedBox(height: 32),
+
+            // Property showcase widget
+            _PropertyShowcaseWidget(
+              key: ValueKey('property_${_spacing}_$_cardElevation'),
+              spacing: _spacing,
+              cardElevation: _cardElevation,
+            ),
+          ],
+        ),
       ),
-    ),
-  );
+    );
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+}
+
+// Separate stateless widgets to prevent unnecessary rebuilds
+class _HeaderWidget extends StatelessWidget {
+  const _HeaderWidget({super.key, required this.demoType});
+
+  final String demoType;
+
+  @override
+  Widget build(final BuildContext context) {
+    return Card(
+      elevation: 1,
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Row(
+          children: [
+            Icon(_getDemoIcon(demoType), size: 32, color: Colors.blue),
+            const SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text('BeGrid System Demo', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+                  const SizedBox(height: 4),
+                  Text('Current Scenario: $demoType', style: TextStyle(fontSize: 16, color: Colors.grey[600])),
+                  const SizedBox(height: 8),
+                  const Text(
+                    'Adjust controls in the sidebar to see real-time changes in layout behavior',
+                    style: TextStyle(fontSize: 14),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _BreakpointInfoWidget extends StatelessWidget {
+  const _BreakpointInfoWidget({super.key});
+
+  @override
+  Widget build(final BuildContext context) {
+    return _buildBreakpointInfo();
+  }
+}
+
+class _InteractiveDemoWidget extends StatelessWidget {
+  const _InteractiveDemoWidget({
+    super.key,
+    required this.spacing,
+    required this.runSpacing,
+    required this.containerFluid,
+    required this.customPadding,
+    required this.mainAxisAlignment,
+    required this.crossAxisAlignment,
+    required this.showGridLines,
+    required this.cardElevation,
+    required this.col1XS,
+    required this.col1SM,
+    required this.col1MD,
+    required this.col1LG,
+    required this.col2XS,
+    required this.col2SM,
+    required this.col2MD,
+    required this.col2LG,
+    required this.col3XS,
+    required this.col3SM,
+    required this.col3MD,
+    required this.col3LG,
+  });
+
+  final double spacing, runSpacing, customPadding, cardElevation;
+  final bool containerFluid, showGridLines;
+  final MainAxisAlignment mainAxisAlignment;
+  final CrossAxisAlignment crossAxisAlignment;
+  final int col1XS, col1SM, col1MD, col1LG;
+  final int col2XS, col2SM, col2MD, col2LG;
+  final int col3XS, col3SM, col3MD, col3LG;
+
+  @override
+  Widget build(final BuildContext context) {
+    return _buildInteractiveDemo(
+      spacing: spacing,
+      runSpacing: runSpacing,
+      containerFluid: containerFluid,
+      customPadding: customPadding,
+      mainAxisAlignment: mainAxisAlignment,
+      crossAxisAlignment: crossAxisAlignment,
+      showGridLines: showGridLines,
+      cardElevation: cardElevation,
+      col1XS: col1XS,
+      col1SM: col1SM,
+      col1MD: col1MD,
+      col1LG: col1LG,
+      col2XS: col2XS,
+      col2SM: col2SM,
+      col2MD: col2MD,
+      col2LG: col2LG,
+      col3XS: col3XS,
+      col3SM: col3SM,
+      col3MD: col3MD,
+      col3LG: col3LG,
+    );
+  }
+}
+
+class _ScenarioDemoWidget extends StatelessWidget {
+  const _ScenarioDemoWidget({
+    super.key,
+    required this.demoType,
+    required this.spacing,
+    required this.runSpacing,
+    required this.cardElevation,
+  });
+
+  final String demoType;
+  final double spacing, runSpacing, cardElevation;
+
+  @override
+  Widget build(final BuildContext context) {
+    return _buildScenarioDemo(demoType, spacing, runSpacing, cardElevation);
+  }
+}
+
+class _PropertyShowcaseWidget extends StatelessWidget {
+  const _PropertyShowcaseWidget({super.key, required this.spacing, required this.cardElevation});
+
+  final double spacing, cardElevation;
+
+  @override
+  Widget build(final BuildContext context) {
+    return _buildPropertyShowcase(spacing, cardElevation);
+  }
 }
 
 Widget _buildInteractiveDemo({
@@ -428,36 +559,6 @@ Widget _buildProductCard(final String name, final String price, final Color colo
         const SizedBox(height: 4),
         Text(price, style: TextStyle(color: color, fontWeight: FontWeight.bold, fontSize: 16)),
       ],
-    ),
-  );
-}
-
-Widget _buildFeatureCard(final String title, final String subtitle, final IconData icon) {
-  return Container(
-    padding: const EdgeInsets.all(16),
-    decoration: BoxDecoration(
-      color: Colors.grey.shade50,
-      borderRadius: BorderRadius.circular(12),
-      border: Border.all(color: Colors.grey.shade300),
-    ),
-    child: Column(
-      children: [
-        Icon(icon, size: 32, color: Colors.blue),
-        const SizedBox(height: 12),
-        Text(title, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16), textAlign: TextAlign.center),
-        const SizedBox(height: 4),
-        Text(subtitle, style: TextStyle(color: Colors.grey.shade600, fontSize: 12), textAlign: TextAlign.center),
-      ],
-    ),
-  );
-}
-
-Widget _buildMiniCard(final String text, final Color color) {
-  return Container(
-    height: 40,
-    decoration: BoxDecoration(color: color, borderRadius: BorderRadius.circular(6)),
-    child: Center(
-      child: Text(text, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 12)),
     ),
   );
 }

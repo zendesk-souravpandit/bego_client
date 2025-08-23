@@ -397,8 +397,8 @@ Widget _buildBasicCard(
   return Container(
     constraints: const BoxConstraints(minHeight: 80),
     decoration: BoxDecoration(
-      color: color.withValues(alpha: 255 * 0.1),
-      border: showBorders ? Border.all(color: color, width: 2) : Border.all(color: color.withValues(alpha: 255 * 0.3)),
+      color: color.withValues(alpha: 0.1),
+      border: showBorders ? Border.all(color: color, width: 2) : Border.all(color: color.withValues(alpha: 0.3)),
       borderRadius: BorderRadius.circular(8),
     ),
     child: Material(
@@ -412,7 +412,7 @@ Widget _buildBasicCard(
           children: [
             Text(title, style: TextStyle(color: color, fontWeight: FontWeight.bold, fontSize: 16)),
             const SizedBox(height: 4),
-            Text(subtitle, style: TextStyle(color: color.withValues(alpha: 255 * 0.8), fontSize: 12)),
+            Text(subtitle, style: TextStyle(color: color.withValues(alpha: 0.8), fontSize: 12)),
           ],
         ),
       ),
@@ -428,7 +428,7 @@ Widget _buildResponsiveCard(final String title, final String breakpoints, final 
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         gradient: LinearGradient(
-          colors: [color.withValues(alpha: 255 * 0.1), color.withValues(alpha: 255 * 0.05)],
+          colors: [color.withValues(alpha: 0.1), color.withValues(alpha: 0.05)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
@@ -442,7 +442,7 @@ Widget _buildResponsiveCard(final String title, final String breakpoints, final 
           const SizedBox(height: 4),
           Text(
             breakpoints,
-            style: TextStyle(color: color.withValues(alpha: 255 * 0.7), fontSize: 12, fontFamily: 'monospace'),
+            style: TextStyle(color: color.withValues(alpha: 0.7), fontSize: 12, fontFamily: 'monospace'),
           ),
         ],
       ),
@@ -493,8 +493,8 @@ Widget _buildStatCard(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        color: color.withValues(alpha: 255 * 0.05),
-        border: Border.all(color: color.withValues(alpha: 255 * 0.2)),
+        color: color.withValues(alpha: 0.05),
+        border: Border.all(color: color.withValues(alpha: 0.2)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -503,7 +503,7 @@ Widget _buildStatCard(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Icon(icon, color: color, size: 24),
-              Text(title, style: TextStyle(color: color.withValues(alpha: 255 * 0.8), fontSize: 12)),
+              Text(title, style: TextStyle(color: color.withValues(alpha: 0.8), fontSize: 12)),
             ],
           ),
           const SizedBox(height: 12),
@@ -560,9 +560,9 @@ Widget _buildConfigChip(final String label, final String value, final Color colo
   return Container(
     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
     decoration: BoxDecoration(
-      color: color.withValues(alpha: 255 * 0.1),
+      color: color.withValues(alpha: 0.1),
       borderRadius: BorderRadius.circular(16),
-      border: Border.all(color: color.withValues(alpha: 255 * 0.3)),
+      border: Border.all(color: color.withValues(alpha: 0.3)),
     ),
     child: Text('$label: $value', style: TextStyle(fontSize: 12, color: color, fontWeight: FontWeight.w600)),
   );
