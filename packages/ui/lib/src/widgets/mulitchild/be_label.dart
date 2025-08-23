@@ -65,28 +65,34 @@ class _BeLabelRenderObject extends RenderBox
 
   BeLabelPosition _position;
   set position(final BeLabelPosition position) {
-    _position = position;
-    markNeedsPaint();
+    if (_position != position) {
+      _position = position;
+      markNeedsLayout();
+    }
   }
 
   Offset _offset;
   set offset(final Offset value) {
-    _offset = value;
-    markNeedsPaint();
+    if (_offset != value) {
+      _offset = value;
+      markNeedsLayout();
+    }
   }
 
   bool _childSized;
   set childSized(final bool value) {
-    _childSized = value;
-    markNeedsLayout();
-    markNeedsPaint();
+    if (_childSized != value) {
+      _childSized = value;
+      markNeedsLayout();
+    }
   }
 
   bool _innerLabel;
   set innerLabel(final bool value) {
-    _innerLabel = value;
-    markNeedsLayout();
-    markNeedsPaint();
+    if (_innerLabel != value) {
+      _innerLabel = value;
+      markNeedsLayout();
+    }
   }
 
   @override
@@ -96,40 +102,56 @@ class _BeLabelRenderObject extends RenderBox
 
   @override
   bool hitTest(final BoxHitTestResult result, {required final Offset position}) {
-    final labelParentData = lastChild!.parentData! as _BeLabelChildParentData;
-    final labelPosition = Offset(position.dx - labelParentData.offset.dx, position.dy - labelParentData.offset.dy);
-    if (lastChild!.size.contains(labelPosition)) {
-      if (hitTestChildren(result, position: position) || hitTestSelf(position)) {
+    // Test label first since it's visually on top
+    final label = lastChild!;
+    final labelParentData = label.parentData! as _BeLabelChildParentData;
+    final labelLocalPosition = position - labelParentData.offset;
+
+    if (label.size.contains(labelLocalPosition)) {
+      if (label.hitTest(result, position: labelLocalPosition)) {
         result.add(BoxHitTestEntry(this, position));
         return true;
       }
     }
 
-    if (size.contains(position)) {
-      if (hitTestChildren(result, position: position) || hitTestSelf(position)) {
+    // Then test the main child
+    final child = firstChild!;
+    final childParentData = child.parentData! as _BeLabelChildParentData;
+    final childLocalPosition = position - childParentData.offset;
+
+    if (child.size.contains(childLocalPosition)) {
+      if (child.hitTest(result, position: childLocalPosition)) {
         result.add(BoxHitTestEntry(this, position));
         return true;
       }
     }
+
     return false;
   }
 
   @override
   void performLayout() {
-    final child = firstChild;
-    final badge = lastChild;
-    child!.layout(constraints, parentUsesSize: true);
+    final child = firstChild!;
+    final label = lastChild!;
 
+    // Layout the main child
+    child.layout(constraints, parentUsesSize: true);
     size = child.size;
 
-    badge!.layout(_childSized ? BoxConstraints.loose(size) : const BoxConstraints(), parentUsesSize: true);
+    // Layout the label with appropriate constraints
+    if (_childSized) {
+      label.layout(BoxConstraints.loose(size), parentUsesSize: true);
+    } else {
+      label.layout(constraints, parentUsesSize: true);
+    }
 
-    final badgeParentData = badge.parentData! as _BeLabelChildParentData;
+    // Calculate and set label offset
+    final labelParentData = label.parentData! as _BeLabelChildParentData;
     final labelOffset =
         _innerLabel
-            ? _getInnerLabelOffset(badge.size.width, badge.size.height)
-            : _getOffset(badge.size.width, badge.size.height);
-    badgeParentData.offset = labelOffset;
+            ? _getInnerLabelOffset(label.size.width, label.size.height)
+            : _getOffset(label.size.width, label.size.height);
+    labelParentData.offset = labelOffset;
   }
 
   @override
@@ -161,7 +183,7 @@ class _BeLabelRenderObject extends RenderBox
     final (double x, double y) = switch (_position) {
       BeLabelPosition.topLeft => (0, 0),
       BeLabelPosition.leftTop => (0, 0),
-      BeLabelPosition.topCenter => (size.width / 2, -0),
+      BeLabelPosition.topCenter => ((size.width - labelWidth) / 2, 0),
       BeLabelPosition.topRight => (size.width - labelWidth, 0),
       BeLabelPosition.rightTop => (size.width - labelWidth, 0),
       BeLabelPosition.bottomRight => (size.width - labelWidth, size.height - labelHeight),
@@ -169,17 +191,13 @@ class _BeLabelRenderObject extends RenderBox
       BeLabelPosition.rightCenter => (size.width - labelWidth, (size.height - labelHeight) / 2),
       BeLabelPosition.bottomCenter => ((size.width - labelWidth) / 2, size.height - labelHeight),
       BeLabelPosition.bottomLeft => (0, size.height - labelHeight),
-      BeLabelPosition.leftBottom => (-0, size.height - labelHeight),
-      BeLabelPosition.leftCenter => (-0, (size.height - labelHeight) / 2),
+      BeLabelPosition.leftBottom => (0, size.height - labelHeight),
+      BeLabelPosition.leftCenter => (0, (size.height - labelHeight) / 2),
       BeLabelPosition.center => ((size.width - labelWidth) / 2, (size.height - labelHeight) / 2),
     };
 
     return Offset(x + _offset.dx, y + _offset.dy);
   }
-
-  @override
-  bool hitTestChildren(final BoxHitTestResult result, {required final Offset position}) =>
-      defaultHitTestChildren(result, position: position);
 }
 
 class _BeLabelChildParentData extends ContainerBoxParentData<RenderBox> with ContainerParentDataMixin<RenderBox> {}
