@@ -34,15 +34,15 @@ class WidgetbookApp extends StatelessWidget {
     // themeMode: ThemeMode.system,
     directories: directories,
     addons: <WidgetbookAddon>[
-      DeviceFrameAddon(
-        devices: [
-          Devices.ios.iPhone13,
-          Devices.ios.iPadAir4,
-          Devices.ios.iPad12InchesGen4,
-          Devices.windows.laptop,
-          Devices.android.mediumPhone,
-        ],
-      ),
+      ViewportAddon([
+        Viewports.none,
+        IosViewports.iPhone12ProMax,
+        AndroidViewports.samsungGalaxyNote20,
+        IosViewports.iPad,
+        LinuxViewports.desktop,
+        MacosViewports.desktop,
+        WindowsViewports.desktop,
+      ]),
       InspectorAddon(),
 
       ThemeAddon<ThemeData>(
