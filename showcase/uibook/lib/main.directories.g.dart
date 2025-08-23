@@ -44,6 +44,8 @@ import 'package:uibook/widgets/layout/use_case_be_responsive_widget.dart'
     as _uibook_widgets_layout_use_case_be_responsive_widget;
 import 'package:uibook/widgets/loading/use_case_be_skeleton.dart'
     as _uibook_widgets_loading_use_case_be_skeleton;
+import 'package:uibook/widgets/loading/use_case_conectivity_service.dart'
+    as _uibook_widgets_loading_use_case_conectivity_service;
 import 'package:uibook/widgets/multichild/use_case_be_badge.dart'
     as _uibook_widgets_multichild_use_case_be_badge;
 import 'package:uibook/widgets/multichild/use_case_be_column.dart'
@@ -165,6 +167,20 @@ final directories = <_widgetbook.WidgetbookNode>[
           name: 'Icons',
           builder: _uibook_widgets_icons_use_case_icons.useCaseBeIconsList,
         ),
+      ),
+      _widgetbook.WidgetbookFolder(
+        name: 'ConnectivityService',
+        children: [
+          _widgetbook.WidgetbookLeafComponent(
+            name: 'ConnectivityService',
+            useCase: _widgetbook.WidgetbookUseCase(
+              name: 'ConnectivityService',
+              builder:
+                  _uibook_widgets_loading_use_case_conectivity_service
+                      .useCaseBeSkeleton,
+            ),
+          ),
+        ],
       ),
       _widgetbook.WidgetbookLeafComponent(
         name: 'ElevatedButton',
