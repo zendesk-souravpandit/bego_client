@@ -178,9 +178,9 @@ class _BeNotificationPlaygroundDemoState extends State<BeNotificationPlaygroundD
           padding: const EdgeInsets.all(16),
           margin: const EdgeInsets.symmetric(horizontal: 16),
           decoration: BoxDecoration(
-            color: widget.iconColor.withValues(alpha: 0.1 * 255),
+            color: widget.iconColor.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(8),
-            border: Border.all(color: widget.iconColor.withValues(alpha: 0.3 * 255)),
+            border: Border.all(color: widget.iconColor.withValues(alpha: 0.3)),
           ),
           child: Row(
             children: [
@@ -302,7 +302,7 @@ class _BeNotificationPlaygroundDemoState extends State<BeNotificationPlaygroundD
                     ),
                     OutlinedButton.icon(
                       onPressed: () {
-                        BeNotificationManager.of(context).dismissAll();
+                        BeNotificationManager.of(context).dismiss();
                       },
                       icon: const Icon(Icons.clear_all),
                       label: const Text('Dismiss '),
