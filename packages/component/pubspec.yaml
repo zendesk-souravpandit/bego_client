@@ -15,6 +15,7 @@ dependencies:
     path: ../core
   beui:
     path: ../ui
+  connectivity_plus: ^6.1.5
   device_info_plus: ^11.3.3
   flutter:
     sdk: flutter

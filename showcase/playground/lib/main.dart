@@ -6,6 +6,7 @@ import 'package:becore/getx.dart';
 import 'package:beui/mulitchild.dart';
 import 'package:beui/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:playground/conectivity/conectivity_demo_widget.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -129,6 +130,8 @@ class DashboardView extends StatelessWidget {
       appBar: AppBar(title: const Text('Dashboard')),
       body: ListView(
         children: [
+          const ConnectivityShowcaseWidget(),
+          const SizedBox(height: 20),
           const Text('Dashboard View is working', style: TextStyle(fontSize: 20)),
           // const GoogleLogoWidget(size: 32),
           const SizedBox(height: 20),

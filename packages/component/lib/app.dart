@@ -14,4 +14,4 @@ export 'src/page/app_settings/app_settings.page.dart';
 export 'src/page/app_settings/app_settings_controller.dart';
 export 'src/page/app_settings/components/locale_picker.dart';
 
-export 'src/services/storage.dart';
+export 'src/services/storage_service.dart';
