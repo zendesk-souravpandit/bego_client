@@ -39,6 +39,7 @@ class _BeNotificationProviderDemoState extends State<BeNotificationProviderDemo>
                 ),
               ),
               key: notificationKey,
+              position: BeNotificationPosition.center,
             );
           },
           child: const Text('Show Notification'),
