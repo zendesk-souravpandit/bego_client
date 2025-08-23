@@ -11,7 +11,7 @@ class BeNotificationsProvider extends StatefulWidget {
     super.key,
     required this.child,
     this.maxVisible = 5,
-    this.position = BeNotificationPosition.topRight,
+    this.position = BeNotifyPosition.topRight,
     this.animationDuration = const Duration(milliseconds: 500),
     this.leavingAnimationDuration = const Duration(milliseconds: 300),
     this.autoDismissDuration = const Duration(seconds: 5),
@@ -19,7 +19,7 @@ class BeNotificationsProvider extends StatefulWidget {
   });
 
   final Widget child;
-  final BeNotificationPosition position;
+  final BeNotifyPosition position;
   final int maxVisible;
   final Duration animationDuration;
   final Duration leavingAnimationDuration;
@@ -40,7 +40,7 @@ class _BeNotificationsProviderState extends State<BeNotificationsProvider> imple
     final Widget notification, {
     final Key? key,
     final Duration? dissmissDuration,
-    final BeNotificationPosition? position,
+    final BeNotifyPosition? position,
     final bool wrapInContainer = true,
   }) {
     final notificationKey = key ?? UniqueKey();
@@ -165,7 +165,7 @@ class _BeNotificationsProviderState extends State<BeNotificationsProvider> imple
 
   _AnimatedNotification _buildRemovedNotification(final Animation<double> animation, final Widget notification) {
     // Extract position from notification if available
-    BeNotificationPosition position = widget.position;
+    BeNotifyPosition position = widget.position;
     if (notification is KeyedSubtree && notification.child is _NotificationContainer) {
       final container = notification.child as _NotificationContainer;
       position = container.position;
@@ -216,7 +216,7 @@ class _BeNotificationsProviderState extends State<BeNotificationsProvider> imple
                     final notification = _notifications[index];
 
                     // Extract position from notification if available
-                    BeNotificationPosition position = widget.position;
+                    BeNotifyPosition position = widget.position;
                     if (notification is KeyedSubtree && notification.child is _NotificationContainer) {
                       final container = notification.child as _NotificationContainer;
                       position = container.position;
@@ -236,13 +236,28 @@ class _BeNotificationsProviderState extends State<BeNotificationsProvider> imple
       ),
     );
   }
+
+  @override
+  void dismissAll() {
+    if (_notifications.isEmpty) return;
+
+    // Cancel all timers and clear the map
+    for (final timer in _timers.values) {
+      timer.cancel();
+    }
+    _timers.clear();
+
+    // Create a copy of the notifications list to avoid modification during iteration
+    List<Widget>.from(_notifications).forEach(_removeNotification);
+    _queue.clear();
+  }
 }
 
 class _NotificationContainer extends StatelessWidget {
   const _NotificationContainer({required this.notification, required this.position, this.wrapInContainer = true});
 
   final Widget notification;
-  final BeNotificationPosition position;
+  final BeNotifyPosition position;
   final bool wrapInContainer;
 
   @override
@@ -259,11 +274,12 @@ abstract class BeNotificationManager {
     final Widget notification, {
     final Key? key,
     final Duration? dissmissDuration,
-    final BeNotificationPosition? position,
+    final BeNotifyPosition? position,
     final bool wrapInContainer = true,
   });
   void dismissByKey(final Key key);
   void dismiss();
+  void dismissAll();
   void dismissAllOfType(final Type type);
 }
 
@@ -361,7 +377,7 @@ class _NoClipSizeTransition extends AnimatedWidget {
       Align(alignment: AlignmentDirectional.centerStart, heightFactor: math.max(sizeFactor.value, 0.0), child: child);
 }
 
-enum BeNotificationPosition {
+enum BeNotifyPosition {
   topLeft,
   topCenter,
   topRight,
@@ -373,106 +389,106 @@ enum BeNotificationPosition {
   bottomRight,
 }
 
-extension on BeNotificationPosition {
+extension on BeNotifyPosition {
   double? left(final bool isCompact) {
     switch (this) {
-      case BeNotificationPosition.bottomLeft:
-      case BeNotificationPosition.topLeft:
-      case BeNotificationPosition.centerLeft:
+      case BeNotifyPosition.bottomLeft:
+      case BeNotifyPosition.topLeft:
+      case BeNotifyPosition.centerLeft:
         return isCompact ? 0 : 8;
-      case BeNotificationPosition.topCenter:
-      case BeNotificationPosition.center:
-      case BeNotificationPosition.bottomCenter:
+      case BeNotifyPosition.topCenter:
+      case BeNotifyPosition.center:
+      case BeNotifyPosition.bottomCenter:
         return null; // Will be centered
-      case BeNotificationPosition.topRight:
-      case BeNotificationPosition.centerRight:
-      case BeNotificationPosition.bottomRight:
+      case BeNotifyPosition.topRight:
+      case BeNotifyPosition.centerRight:
+      case BeNotifyPosition.bottomRight:
         return null;
     }
   }
 
   double? top(final bool isCompact) {
     switch (this) {
-      case BeNotificationPosition.topLeft:
-      case BeNotificationPosition.topCenter:
-      case BeNotificationPosition.topRight:
+      case BeNotifyPosition.topLeft:
+      case BeNotifyPosition.topCenter:
+      case BeNotifyPosition.topRight:
         return isCompact ? 0 : 8;
-      case BeNotificationPosition.centerLeft:
-      case BeNotificationPosition.center:
-      case BeNotificationPosition.centerRight:
+      case BeNotifyPosition.centerLeft:
+      case BeNotifyPosition.center:
+      case BeNotifyPosition.centerRight:
         return null; // Will be centered
-      case BeNotificationPosition.bottomLeft:
-      case BeNotificationPosition.bottomCenter:
-      case BeNotificationPosition.bottomRight:
+      case BeNotifyPosition.bottomLeft:
+      case BeNotifyPosition.bottomCenter:
+      case BeNotifyPosition.bottomRight:
         return null;
     }
   }
 
   double? right(final bool isCompact) {
     switch (this) {
-      case BeNotificationPosition.bottomRight:
-      case BeNotificationPosition.topRight:
-      case BeNotificationPosition.centerRight:
+      case BeNotifyPosition.bottomRight:
+      case BeNotifyPosition.topRight:
+      case BeNotifyPosition.centerRight:
         return isCompact ? 0 : 8;
-      case BeNotificationPosition.topCenter:
-      case BeNotificationPosition.center:
-      case BeNotificationPosition.bottomCenter:
+      case BeNotifyPosition.topCenter:
+      case BeNotifyPosition.center:
+      case BeNotifyPosition.bottomCenter:
         return null; // Will be centered
-      case BeNotificationPosition.topLeft:
-      case BeNotificationPosition.centerLeft:
-      case BeNotificationPosition.bottomLeft:
+      case BeNotifyPosition.topLeft:
+      case BeNotifyPosition.centerLeft:
+      case BeNotifyPosition.bottomLeft:
         return null;
     }
   }
 
   double? bottom(final bool isCompact) {
     switch (this) {
-      case BeNotificationPosition.topLeft:
-      case BeNotificationPosition.topCenter:
-      case BeNotificationPosition.topRight:
+      case BeNotifyPosition.topLeft:
+      case BeNotifyPosition.topCenter:
+      case BeNotifyPosition.topRight:
         return null;
-      case BeNotificationPosition.centerLeft:
-      case BeNotificationPosition.center:
-      case BeNotificationPosition.centerRight:
+      case BeNotifyPosition.centerLeft:
+      case BeNotifyPosition.center:
+      case BeNotifyPosition.centerRight:
         return null; // Will be centered
-      case BeNotificationPosition.bottomLeft:
-      case BeNotificationPosition.bottomCenter:
-      case BeNotificationPosition.bottomRight:
+      case BeNotifyPosition.bottomLeft:
+      case BeNotifyPosition.bottomCenter:
+      case BeNotifyPosition.bottomRight:
         return isCompact ? 0 : 8;
     }
   }
 
   Tween<Offset> get slideTween {
     switch (this) {
-      case BeNotificationPosition.topLeft:
-      case BeNotificationPosition.centerLeft:
-      case BeNotificationPosition.bottomLeft:
+      case BeNotifyPosition.topLeft:
+      case BeNotifyPosition.centerLeft:
+      case BeNotifyPosition.bottomLeft:
         return Tween<Offset>(begin: const Offset(-1.0, 0.0), end: Offset.zero);
-      case BeNotificationPosition.topRight:
-      case BeNotificationPosition.centerRight:
-      case BeNotificationPosition.bottomRight:
+      case BeNotifyPosition.topRight:
+      case BeNotifyPosition.centerRight:
+      case BeNotifyPosition.bottomRight:
         return Tween<Offset>(begin: const Offset(1.0, 0.0), end: Offset.zero);
-      case BeNotificationPosition.topCenter:
+      case BeNotifyPosition.topCenter:
         return Tween<Offset>(begin: const Offset(0.0, -1.0), end: Offset.zero);
-      case BeNotificationPosition.bottomCenter:
+      case BeNotifyPosition.bottomCenter:
         return Tween<Offset>(begin: const Offset(0.0, 1.0), end: Offset.zero);
-      case BeNotificationPosition.center:
+      case BeNotifyPosition.center:
         return Tween<Offset>(begin: const Offset(0.0, 0.0), end: Offset.zero); // Fade in from center
     }
   }
 
   bool get reverse {
     switch (this) {
-      case BeNotificationPosition.topLeft:
-      case BeNotificationPosition.topCenter:
-      case BeNotificationPosition.topRight:
-      case BeNotificationPosition.centerLeft:
-      case BeNotificationPosition.center:
-      case BeNotificationPosition.centerRight:
+      case BeNotifyPosition.topLeft:
+      case BeNotifyPosition.topCenter:
+      case BeNotifyPosition.topRight:
+      case BeNotifyPosition.centerLeft:
+      case BeNotifyPosition.center:
+      case BeNotifyPosition.centerRight:
         return false;
-      case BeNotificationPosition.bottomLeft:
-      case BeNotificationPosition.bottomCenter:
-      case BeNotificationPosition.bottomRight:
+      case BeNotifyPosition.bottomLeft:
+      case BeNotifyPosition.bottomCenter:
+      case BeNotifyPosition.bottomRight:
         return true;
     }
   }

@@ -39,7 +39,7 @@ class _BeNotificationProviderDemoState extends State<BeNotificationProviderDemo>
                 ),
               ),
               key: notificationKey,
-              position: BeNotificationPosition.center,
+              position: BeNotifyPosition.bottomCenter,
             );
           },
           child: const Text('Show Notification'),
@@ -47,7 +47,7 @@ class _BeNotificationProviderDemoState extends State<BeNotificationProviderDemo>
         const SizedBox(height: 16),
         ElevatedButton(
           onPressed: () {
-            BeNotificationManager.of(context).dismiss();
+            BeNotificationManager.of(context).dismissAll();
           },
           child: const Text('Dismiss All Notifications'),
         ),
