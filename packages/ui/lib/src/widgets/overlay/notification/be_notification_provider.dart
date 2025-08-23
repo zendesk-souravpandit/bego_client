@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:beui/decoration.dart';
-import 'package:beui/layout.dart';
 import 'package:beui/theme.dart';
 import 'package:flutter/material.dart';
 
@@ -30,10 +29,17 @@ class BeNotificationsProvider extends StatefulWidget {
   State<BeNotificationsProvider> createState() => _BeNotificationsProviderState();
 }
 
-class _BeNotificationsProviderState extends State<BeNotificationsProvider> implements BeNotificationManager {
+class _BeNotificationsProviderState extends State<BeNotificationsProvider>
+    with TickerProviderStateMixin
+    implements BeNotificationManager {
   final List<Widget> _notifications = [];
   final List<Widget> _queue = [];
   final Map<Key, Timer> _timers = {};
+  final Map<Key, AnimationController> _animationControllers = {};
+
+  // Cache position groups to avoid recalculation
+  Map<BeNotifyPosition, List<int>>? _cachedPositionGroups;
+  bool _needsPositionGroupUpdate = true;
 
   @override
   void show(
@@ -110,9 +116,18 @@ class _BeNotificationsProviderState extends State<BeNotificationsProvider> imple
 
   void _addNotification(final Widget notification, {final int index = 0, final Duration? dissmissDuration}) {
     _notifications.insert(index, notification);
+    _needsPositionGroupUpdate = true;
+
+    // Create animation controller for smooth animations
+    final notificationKey = notification.key!;
+    final controller = AnimationController(duration: widget.animationDuration, vsync: this);
+    _animationControllers[notificationKey] = controller;
+
     setState(() {});
 
-    final notificationKey = notification.key!;
+    // Start enter animation
+    controller.forward();
+
     _timers[notificationKey] = Timer(dissmissDuration ?? widget.autoDismissDuration, () {
       if (_notifications.any((final n) => n.key == notificationKey)) {
         _removeNotification(notification);
@@ -124,16 +139,34 @@ class _BeNotificationsProviderState extends State<BeNotificationsProvider> imple
     final index = _notifications.indexOf(notification);
     if (index == -1) return;
 
-    _notifications.removeAt(index);
-
     final notificationKey = notification.key;
     if (notificationKey != null) {
+      // Cancel timer
       _timers[notificationKey]?.cancel();
       _timers.remove(notificationKey);
-    }
 
-    setState(() {});
-    _handleNotificationDismiss();
+      // Animate out then remove
+      final controller = _animationControllers[notificationKey];
+      if (controller != null && mounted) {
+        controller.reverse().then((_) {
+          if (mounted && _notifications.contains(notification)) {
+            setState(() {
+              _notifications.remove(notification);
+              _needsPositionGroupUpdate = true;
+            });
+            _animationControllers.remove(notificationKey);
+            controller.dispose();
+            _handleNotificationDismiss();
+          }
+        });
+      } else {
+        // Fallback immediate removal
+        _notifications.removeAt(index);
+        _needsPositionGroupUpdate = true;
+        setState(() {});
+        _handleNotificationDismiss();
+      }
+    }
   }
 
   void _handleNotificationDismiss() {
@@ -149,24 +182,44 @@ class _BeNotificationsProviderState extends State<BeNotificationsProvider> imple
       timer.cancel();
     }
     _timers.clear();
+
+    // Dispose animation controllers
+    for (final controller in _animationControllers.values) {
+      controller.dispose();
+    }
+    _animationControllers.clear();
+
     super.dispose();
+  }
+
+  Map<BeNotifyPosition, List<int>> _getPositionGroups() {
+    if (_needsPositionGroupUpdate || _cachedPositionGroups == null) {
+      final groups = <BeNotifyPosition, List<int>>{};
+
+      for (int i = 0; i < _notifications.length; i++) {
+        final notification = _notifications[i];
+        BeNotifyPosition position = widget.position;
+
+        if (notification is KeyedSubtree && notification.child is _NotificationContainer) {
+          final container = notification.child as _NotificationContainer;
+          position = container.position;
+        }
+
+        groups.putIfAbsent(position, () => []).add(i);
+      }
+
+      _cachedPositionGroups = groups;
+      _needsPositionGroupUpdate = false;
+    }
+
+    return _cachedPositionGroups!;
   }
 
   @override
   Widget build(final BuildContext context) {
-    final isCompact = betheme.breakpoint == BeBreakpoint.xs || betheme.breakpoint == BeBreakpoint.sm;
     final notificationConstraints = widget.constraints ?? const BoxConstraints(maxWidth: 400);
 
-    // Group notifications by their position
-    final Map<BeNotifyPosition, List<int>> notificationsByPosition = {};
-    for (var i = 0; i < _notifications.length; i++) {
-      final notification = _notifications[i];
-      var position = widget.position;
-      if (notification is KeyedSubtree && notification.child is _NotificationContainer) {
-        position = (notification.child as _NotificationContainer).position;
-      }
-      notificationsByPosition.putIfAbsent(position, () => []).add(i);
-    }
+    final notificationsByPosition = _getPositionGroups();
 
     return _BeNotificationData(
       this,
@@ -198,8 +251,8 @@ class _BeNotificationsProviderState extends State<BeNotificationsProvider> imple
 
               final topOrBottom = (position == BeNotifyPosition.topCenter) ? true : false;
               return Positioned(
-                top: topOrBottom ? (isCompact ? 0 : 8) : null,
-                bottom: topOrBottom ? null : (isCompact ? 0 : 8),
+                top: topOrBottom ? 8 : null,
+                bottom: topOrBottom ? null : 8,
                 left: 0,
                 right: 0,
                 child: Material(color: Colors.transparent, child: Center(child: child)),
@@ -217,8 +270,8 @@ class _BeNotificationsProviderState extends State<BeNotificationsProvider> imple
               );
 
               return Positioned(
-                left: position == BeNotifyPosition.leftCenter ? (isCompact ? 0 : 8) : null,
-                right: position == BeNotifyPosition.rightCenter ? (isCompact ? 0 : 8) : null,
+                left: position == BeNotifyPosition.leftCenter ? 8 : null,
+                right: position == BeNotifyPosition.rightCenter ? 8 : null,
                 top: 0,
                 bottom: 0,
                 child: Material(color: Colors.transparent, child: Center(child: child)),
@@ -227,10 +280,10 @@ class _BeNotificationsProviderState extends State<BeNotificationsProvider> imple
 
             // Default positioning for other positions
             return Positioned(
-              left: position.left(isCompact),
-              top: position.top(isCompact),
-              right: position.right(isCompact),
-              bottom: position.bottom(isCompact),
+              left: position.left(),
+              top: position.top(),
+              right: position.right(),
+              bottom: position.bottom(),
               child: Material(
                 color: Colors.transparent,
                 child: Container(
@@ -253,17 +306,29 @@ class _BeNotificationsProviderState extends State<BeNotificationsProvider> imple
 
   Widget _buildNotificationItem(final int index, final BeNotifyPosition position) {
     final notification = _notifications[index];
+    final notificationKey = notification.key;
 
-    return TweenAnimationBuilder<double>(
-      duration: widget.animationDuration,
-      tween: Tween(begin: 0.0, end: 1.0),
-      builder: (final context, final value, final child) {
-        return _AnimatedNotification(
-          animation: AlwaysStoppedAnimation(value),
-          notification: notification,
-          slideTween: position.slideTween,
-        );
-      },
+    // Use proper animation controller instead of TweenAnimationBuilder
+    if (notificationKey != null && _animationControllers.containsKey(notificationKey)) {
+      final controller = _animationControllers[notificationKey]!;
+
+      return AnimatedBuilder(
+        animation: controller,
+        builder: (final context, final child) {
+          return _AnimatedNotification(
+            animation: controller,
+            notification: notification,
+            slideTween: position.slideTween,
+          );
+        },
+      );
+    }
+
+    // Fallback for notifications without controllers
+    return _AnimatedNotification(
+      animation: const AlwaysStoppedAnimation(1.0),
+      notification: notification,
+      slideTween: position.slideTween,
     );
   }
 
@@ -276,8 +341,19 @@ class _BeNotificationsProviderState extends State<BeNotificationsProvider> imple
     }
     _timers.clear();
 
-    // Copy list to safely remove during iteration
-    List<Widget>.from(_notifications).forEach(_removeNotification);
+    // Dispose all animation controllers
+    for (final controller in _animationControllers.values) {
+      controller.dispose();
+    }
+    _animationControllers.clear();
+
+    // Clear notifications and update state
+    _notifications.clear();
+    _needsPositionGroupUpdate = true;
+
+    setState(() {});
+
+    // Clear queue as well
     _queue.clear();
   }
 }
@@ -330,7 +406,6 @@ class _AnimatedNotification extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final theme = betheme(context);
-    final isCompact = theme.breakpoint == BeBreakpoint.xs || theme.breakpoint == BeBreakpoint.sm;
 
     bool wrapInContainer = true;
     Widget actualNotification = notification;
@@ -354,7 +429,7 @@ class _AnimatedNotification extends StatelessWidget {
         padding: p8,
         decoration: BeBoxDecoration(
           color: theme.colors.background,
-          borderRadius: isCompact ? null : const BorderRadius.all(Radius.circular(8)),
+          borderRadius: const BorderRadius.all(Radius.circular(8)),
           boxShadow: const [
             BeBoxShadow(color: Color.fromRGBO(0, 0, 0, 0.1), offset: Offset(-5, 5), blurRadius: 10, spreadRadius: 1),
           ],
@@ -420,14 +495,14 @@ extension on BeNotifyPosition {
     }
   }
 
-  double? left(final bool isCompact) {
+  double? left() {
     switch (this) {
       case BeNotifyPosition.topLeft:
       case BeNotifyPosition.bottomLeft:
       case BeNotifyPosition.leftTop:
       case BeNotifyPosition.leftCenter:
       case BeNotifyPosition.leftBottom:
-        return isCompact ? 0 : 8;
+        return 8;
       case BeNotifyPosition.topCenter:
       case BeNotifyPosition.bottomCenter:
       case BeNotifyPosition.center:
@@ -437,14 +512,14 @@ extension on BeNotifyPosition {
     }
   }
 
-  double? top(final bool isCompact) {
+  double? top() {
     switch (this) {
       case BeNotifyPosition.topLeft:
       case BeNotifyPosition.topCenter:
       case BeNotifyPosition.topRight:
       case BeNotifyPosition.rightTop:
       case BeNotifyPosition.leftTop:
-        return isCompact ? 0 : 8;
+        return 8;
       case BeNotifyPosition.rightCenter:
       case BeNotifyPosition.leftCenter:
       case BeNotifyPosition.center:
@@ -454,14 +529,14 @@ extension on BeNotifyPosition {
     }
   }
 
-  double? right(final bool isCompact) {
+  double? right() {
     switch (this) {
       case BeNotifyPosition.topRight:
       case BeNotifyPosition.bottomRight:
       case BeNotifyPosition.rightTop:
       case BeNotifyPosition.rightCenter:
       case BeNotifyPosition.rightBottom:
-        return isCompact ? 0 : 8;
+        return 8;
       case BeNotifyPosition.topCenter:
       case BeNotifyPosition.bottomCenter:
       case BeNotifyPosition.center:
@@ -471,14 +546,14 @@ extension on BeNotifyPosition {
     }
   }
 
-  double? bottom(final bool isCompact) {
+  double? bottom() {
     switch (this) {
       case BeNotifyPosition.bottomLeft:
       case BeNotifyPosition.bottomCenter:
       case BeNotifyPosition.bottomRight:
       case BeNotifyPosition.rightBottom:
       case BeNotifyPosition.leftBottom:
-        return isCompact ? 0 : 8;
+        return 8;
       default:
         return null;
     }
