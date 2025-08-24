@@ -52,6 +52,8 @@ import 'package:uibook/widgets/multichild/use_case_be_column.dart'
     as _uibook_widgets_multichild_use_case_be_column;
 import 'package:uibook/widgets/multichild/use_case_be_container.dart'
     as _uibook_widgets_multichild_use_case_be_container;
+import 'package:uibook/widgets/multichild/use_case_be_delayed_child.dart'
+    as _uibook_widgets_multichild_use_case_be_delayed_child;
 import 'package:uibook/widgets/multichild/use_case_be_grid.dart'
     as _uibook_widgets_multichild_use_case_be_grid;
 import 'package:uibook/widgets/multichild/use_case_be_label.dart'
@@ -68,6 +70,8 @@ import 'package:uibook/widgets/multichild/use_case_be_size_aware.dart'
     as _uibook_widgets_multichild_use_case_be_size_aware;
 import 'package:uibook/widgets/multichild/use_case_be_text_more.dart'
     as _uibook_widgets_multichild_use_case_be_text_more;
+import 'package:uibook/widgets/multichild/use_case_be_wrap.dart'
+    as _uibook_widgets_multichild_use_case_be_wrap;
 import 'package:uibook/widgets/overlay/use_case_be_popover.dart'
     as _uibook_widgets_overlay_use_case_be_popover;
 import 'package:uibook/widgets/overlay/use_case_be_popover_improved.dart'
@@ -349,6 +353,15 @@ final directories = <_widgetbook.WidgetbookNode>[
             ),
           ),
           _widgetbook.WidgetbookLeafComponent(
+            name: 'BeDrawOver',
+            useCase: _widgetbook.WidgetbookUseCase(
+              name: 'BeDelayedChild',
+              builder:
+                  _uibook_widgets_multichild_use_case_be_delayed_child
+                      .useCaseBeDelayedChild,
+            ),
+          ),
+          _widgetbook.WidgetbookLeafComponent(
             name: 'BeLabel',
             useCase: _widgetbook.WidgetbookUseCase(
               name: 'BeLabel',
@@ -413,6 +426,14 @@ final directories = <_widgetbook.WidgetbookNode>[
               builder:
                   _uibook_widgets_multichild_use_case_be_text_more
                       .useCaseBeTextMore,
+            ),
+          ),
+          _widgetbook.WidgetbookLeafComponent(
+            name: 'BeWrap',
+            useCase: _widgetbook.WidgetbookUseCase(
+              name: 'BeWrap',
+              builder:
+                  _uibook_widgets_multichild_use_case_be_wrap.useCaseBeWrap,
             ),
           ),
         ],

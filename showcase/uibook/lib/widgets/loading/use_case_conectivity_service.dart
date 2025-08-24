@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:becomponent/services.dart';
 import 'package:becore/getx.dart';
+import 'package:beui/be_icons.dart';
 import 'package:flutter/material.dart';
 
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
@@ -111,7 +112,7 @@ class _ConnectivityServiceUseCaseState extends State<ConnectivityServiceUseCase>
           children: [
             Row(
               children: [
-                const Icon(Icons.signal_wifi_4_bar, color: Colors.blue),
+                const Icon(BeIcons.icon_fi_rr_wifi_alt, color: Colors.blue),
                 const SizedBox(width: 8),
                 Text(
                   'Current Status',
