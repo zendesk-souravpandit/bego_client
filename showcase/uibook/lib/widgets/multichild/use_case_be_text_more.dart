@@ -14,9 +14,9 @@ Widget useCaseBeTextMore(final BuildContext context) {
   final linkColor = context.knobs.color(label: 'Link Color', initialValue: Theme.of(context).colorScheme.primary);
   final trimMode = context.knobs.object.dropdown<TrimMode>(
     label: 'Trim Mode',
-    options: [TrimMode.Length, TrimMode.Line],
-    labelBuilder: (final TrimMode mode) => mode == TrimMode.Length ? 'Length' : 'Line',
-    initialOption: TrimMode.Length,
+    options: [TrimMode.length, TrimMode.line],
+    labelBuilder: (final TrimMode mode) => mode == TrimMode.length ? 'Length' : 'Line',
+    initialOption: TrimMode.length,
   );
 
   return Padding(
@@ -79,7 +79,7 @@ Widget useCaseBeTextMore(final BuildContext context) {
                   'Perfect for travel, work, or leisure. Features include 30-hour battery life, quick charge capability, '
                   'premium materials, and intuitive touch controls. Compatible with all devices via Bluetooth 5.0. '
                   'Includes carrying case, charging cable, and audio cable for wired use.',
-              trimMode: TrimMode.Line,
+              trimMode: TrimMode.line,
               trimLines: 2,
               style: TextStyle(fontSize: 13, color: Theme.of(context).colorScheme.onSurface),
               trimCollapsedText: 'Read more',
@@ -99,7 +99,7 @@ Widget useCaseBeTextMore(final BuildContext context) {
                   'the effects of global warming. Recent breakthroughs in renewable energy, carbon capture, '
                   'and sustainable agriculture offer hope for a more sustainable future. However, immediate action '
                   'is required from governments, businesses, and individuals to implement these solutions at scale.',
-              trimMode: TrimMode.Line,
+              trimMode: TrimMode.line,
               trimLines: 3,
               style: TextStyle(fontSize: 14, height: 1.4, color: Theme.of(context).colorScheme.onSurface),
               moreStyle: const TextStyle(color: Colors.green, fontWeight: FontWeight.w600),
@@ -120,7 +120,7 @@ Widget useCaseBeTextMore(final BuildContext context) {
                   'The build quality is excellent, the customer service is responsive, and the features work exactly as advertised. '
                   'I would definitely recommend this to anyone looking for a reliable solution. The setup was easy, '
                   'the documentation is clear, and the performance has been consistently excellent. Worth every penny!',
-              trimMode: TrimMode.Line,
+              trimMode: TrimMode.line,
               trimLines: 2,
               style: TextStyle(
                 fontSize: 13,
@@ -145,7 +145,7 @@ Widget useCaseBeTextMore(final BuildContext context) {
                   'and the weather was perfect throughout the entire journey. Met some incredible people along the way '
                   'and learned so much about the local flora and fauna. Can\'t wait to plan the next adventure! '
                   'Special thanks to our guide for making this experience unforgettable. #hiking #adventure #nature #mountains',
-              trimMode: TrimMode.Line,
+              trimMode: TrimMode.line,
               trimLines: 2,
               style: TextStyle(fontSize: 14, color: Theme.of(context).colorScheme.onSurface),
               moreStyle: const TextStyle(color: Colors.purple, fontWeight: FontWeight.bold),
@@ -167,7 +167,7 @@ Widget useCaseBeTextMore(final BuildContext context) {
                   'that could revolutionize data processing and encryption. This development has significant '
                   'implications for cybersecurity, artificial intelligence, and scientific computing. '
                   'Industry experts predict this could lead to commercial applications within the next decade.',
-              trimMode: TrimMode.Line,
+              trimMode: TrimMode.line,
               trimLines: 3,
               style: TextStyle(
                 fontSize: 13,
@@ -193,7 +193,7 @@ Widget useCaseBeTextMore(final BuildContext context) {
                   '4) Click the link and follow the instructions 5) Create a new strong password using at least 8 characters '
                   'including uppercase, lowercase, numbers, and special characters. If you continue to experience issues, '
                   'please contact our support team for further assistance.',
-              trimMode: TrimMode.Line,
+              trimMode: TrimMode.line,
               trimLines: 3,
               style: TextStyle(fontSize: 13, color: Theme.of(context).colorScheme.onSurface),
               moreStyle: const TextStyle(color: Colors.teal, fontWeight: FontWeight.w600),
@@ -215,7 +215,7 @@ Widget useCaseBeTextMore(final BuildContext context) {
                   'Expertise in React, Node.js, Python, and cloud technologies. Currently working on '
                   'machine learning applications and contributing to open-source projects. '
                   'Love hiking, photography, and exploring new technologies in my free time.',
-              trimMode: TrimMode.Line,
+              trimMode: TrimMode.line,
               trimLines: 2,
               style: TextStyle(fontSize: 13, color: Theme.of(context).colorScheme.onSurface),
               moreStyle: const TextStyle(color: Colors.indigo, fontWeight: FontWeight.w500),
@@ -242,7 +242,7 @@ Widget useCaseBeTextMore(final BuildContext context) {
                   'This example demonstrates character-based trimming. The text will be cut off at exactly 120 characters '
                   'regardless of word boundaries or line breaks. This mode is useful when you need precise character limits '
                   'for consistency across different screen sizes and font configurations.',
-              trimMode: TrimMode.Length,
+              trimMode: TrimMode.length,
               trimLength: 120,
               style: TextStyle(fontSize: 13, color: Theme.of(context).colorScheme.onSurface),
               moreStyle: const TextStyle(color: Colors.deepOrange, fontWeight: FontWeight.bold),
