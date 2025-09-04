@@ -24,7 +24,8 @@
     "pbjson",
     "pubspec",
     "Superellipse",
-    "uibook"
+    "uibook",
+    "Viewports"
   ],
   "ignorePaths": [
     "**/pubspec.yaml",

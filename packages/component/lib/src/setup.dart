@@ -3,6 +3,7 @@ import 'package:becomponent/src/app/be_app_controller.dart';
 import 'package:becomponent/src/app/locale_controller.dart';
 import 'package:becomponent/src/app/routes/be_app_route_delegates.dart';
 import 'package:becomponent/src/app/theme_controller.dart';
+import 'package:becomponent/src/page/app_settings/app_connectivity_controller.dart';
 import 'package:becomponent/src/page/app_settings/app_settings_controller.dart';
 import 'package:becore/event.dart';
 import 'package:becore/getx.dart';
@@ -27,6 +28,7 @@ Future<bool> initBeApp({
     ..lazyPut<AppThemeController>(AppThemeController.new, permanent: true)
     ..lazyPut<AppLocaleController>(AppLocaleController.new, permanent: true)
     ..lazyPut<AppSettingsController>(AppSettingsController.new, permanent: true)
+    ..lazyPut<AppConnectivityController>(AppConnectivityController.new, permanent: true)
     ..lazyPut<BeAppController>(() => BeAppController(appDelegate: routerDelegate), permanent: true)
     ..lazyPut<BeEventBus>(() => BeEventBus.instance, permanent: true);
 

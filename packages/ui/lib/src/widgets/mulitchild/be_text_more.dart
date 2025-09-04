@@ -5,7 +5,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-enum TrimMode { Length, Line }
+enum TrimMode { length, line }
 
 const String _kEllipsis = '\u2026';
 
@@ -36,7 +36,7 @@ class BeTextMore extends LeafRenderObjectWidget {
     this.colorClickableText,
     this.trimLength = 240,
     this.trimLines = 2,
-    this.trimMode = TrimMode.Length,
+    this.trimMode = TrimMode.length,
     this.moreStyle,
     this.lessStyle,
     this.delimiter = '$_kEllipsis ',
@@ -70,7 +70,7 @@ class BeTextMore extends LeafRenderObjectWidget {
     this.colorClickableText,
     this.trimLength = 240,
     this.trimLines = 2,
-    this.trimMode = TrimMode.Length,
+    this.trimMode = TrimMode.length,
     this.moreStyle,
     this.lessStyle,
     this.delimiter = '$_kEllipsis ',
@@ -268,7 +268,7 @@ class RenderExpandableText extends RenderBox {
     final Color? colorClickableText,
     final int trimLength = 240,
     final int trimLines = 2,
-    final TrimMode trimMode = TrimMode.Length,
+    final TrimMode trimMode = TrimMode.length,
     final TextStyle? moreStyle,
     final TextStyle? lessStyle,
     final String delimiter = '$_kEllipsis ',
@@ -997,7 +997,7 @@ class RenderExpandableText extends RenderBox {
     testPainter.layout(maxWidth: maxWidth);
 
     bool needsTrimming = false;
-    if (_trimMode == TrimMode.Line) {
+    if (_trimMode == TrimMode.line) {
       needsTrimming = testPainter.didExceedMaxLines;
     } else {
       final plainText = _effectiveTextSpan.toPlainText();
@@ -1020,7 +1020,7 @@ class RenderExpandableText extends RenderBox {
 
       // Build trimmed content
       TextSpan trimmedSpan;
-      if (_trimMode == TrimMode.Length) {
+      if (_trimMode == TrimMode.length) {
         final dataSpan = _getDataSpan();
         final trimResult = _trimTextSpan(
           textSpan: dataSpan,
