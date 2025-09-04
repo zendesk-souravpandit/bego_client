@@ -318,7 +318,7 @@ class _RenderBeWrap extends RenderBox
   void _paintDebugGrid(final PaintingContext context, final Offset offset) {
     final Paint paint =
         Paint()
-          ..color = debugGridColor.withOpacity(0.25)
+          ..color = debugGridColor.withValues(alpha: 0.25)
           ..strokeWidth = 1
           ..style = PaintingStyle.stroke;
 

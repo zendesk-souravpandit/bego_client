@@ -10,7 +10,7 @@ Widget useCaseBeWrap(final BuildContext context) {
   final spacing = context.knobs.double.slider(label: 'Spacing', initialValue: 8, min: -32, max: 32);
   final runSpacing = context.knobs.double.slider(label: 'Run Spacing', initialValue: 8, min: -32, max: 32);
 
-  final alignment = context.knobs.list(
+  final alignment = context.knobs.object.dropdown(
     label: 'Alignment',
     options: WrapAlignment.values,
     labelBuilder: (final value) => value.toString().split('.').last,

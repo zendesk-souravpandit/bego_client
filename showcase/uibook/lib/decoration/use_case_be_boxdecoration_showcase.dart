@@ -8,7 +8,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 @widgetbook.UseCase(name: 'BeBoxDecoration', path: 'decoration', type: BeBoxDecoration)
 Widget useCaseBeBoxDecorationShowcase(final BuildContext context) {
-  final selectedDemo = context.knobs.list(
+  final selectedDemo = context.knobs.object.dropdown(
     label: 'Demo Type',
     options: [
       const KnobOption(label: 'Feature Cards Grid', value: 'grid'),
@@ -44,7 +44,7 @@ Widget useCaseBeBoxDecorationShowcase(final BuildContext context) {
 
 // Interactive Playground - Original functionality enhanced
 Widget _buildInteractivePlayground(final BuildContext context) {
-  final cardColor = context.knobs.list(
+  final cardColor = context.knobs.object.dropdown(
     label: 'Card Color',
     options: [
       const KnobOption(label: 'White', value: Colors.white),
@@ -56,7 +56,7 @@ Widget _buildInteractivePlayground(final BuildContext context) {
     labelBuilder: (final value) => value.label,
   );
 
-  final shadowColor = context.knobs.list(
+  final shadowColor = context.knobs.object.dropdown(
     label: 'Shadow Color',
     options: [
       const KnobOption(label: 'Grey', value: Colors.grey),

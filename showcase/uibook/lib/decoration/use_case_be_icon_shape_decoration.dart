@@ -9,7 +9,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 @widgetbook.UseCase(name: 'BeIconShapeBorder Showcase', path: 'decoration', type: BeIconShapeBorder)
 Widget useCaseBeIconShapeBorderShowcase(final BuildContext context) {
-  final selectedDemo = context.knobs.list(
+  final selectedDemo = context.knobs.object.dropdown(
     label: 'Demo Type',
     options: [
       const KnobOption(label: 'Alignment Gallery', value: 'alignment'),
@@ -45,7 +45,7 @@ Widget useCaseBeIconShapeBorderShowcase(final BuildContext context) {
 
 // Interactive Playground - Full customization
 Widget _buildInteractivePlayground(final BuildContext context) {
-  final selectedIcon = context.knobs.list(
+  final selectedIcon = context.knobs.object.dropdown(
     label: 'Icon',
     options: [
       const KnobOption(label: 'File Add', value: BeIcons.icon_file_add),
@@ -60,7 +60,7 @@ Widget _buildInteractivePlayground(final BuildContext context) {
     labelBuilder: (final value) => value.label,
   );
 
-  final alignment = context.knobs.list(
+  final alignment = context.knobs.object.dropdown(
     label: 'Icon Alignment',
     options: [
       const KnobOption(label: 'Top Left', value: BeIconAlignment.topLeft),
@@ -76,7 +76,7 @@ Widget _buildInteractivePlayground(final BuildContext context) {
     labelBuilder: (final value) => value.label,
   );
 
-  final borderColor = context.knobs.list(
+  final borderColor = context.knobs.object.dropdown(
     label: 'Border Color',
     options: [
       const KnobOption(label: 'Primary', value: BeColors.primary),
@@ -90,7 +90,7 @@ Widget _buildInteractivePlayground(final BuildContext context) {
     labelBuilder: (final value) => value.label,
   );
 
-  final iconColor = context.knobs.list(
+  final iconColor = context.knobs.object.dropdown(
     label: 'Icon Color',
     options: [
       const KnobOption(label: 'Same as Border', value: null),

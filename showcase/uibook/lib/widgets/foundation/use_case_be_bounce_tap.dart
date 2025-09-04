@@ -5,7 +5,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 @widgetbook.UseCase(name: 'BeBounceTap', path: 'widget/foundation', type: BeBounceTap)
 Widget useCaseBeBounceTap(final BuildContext context) {
-  final tapIntensity = context.knobs.list<BounceTapIntensity>(
+  final tapIntensity = context.knobs.object.dropdown<BounceTapIntensity>(
     label: 'Tap Intensity',
     options: BounceTapIntensity.values,
     initialOption: BounceTapIntensity.weak,

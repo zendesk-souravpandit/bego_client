@@ -9,19 +9,19 @@ Widget useCaseBeRow(final BuildContext context) {
   final spacing = context.knobs.double.slider(label: 'Column Spacing', initialValue: 16, min: 0, max: 48);
   final runSpacing = context.knobs.double.slider(label: 'Row Spacing', initialValue: 16, min: 0, max: 48);
 
-  final mainAxisAlignment = context.knobs.list(
+  final mainAxisAlignment = context.knobs.object.dropdown(
     label: 'Main Axis Alignment',
     options: MainAxisAlignment.values,
     labelBuilder: (final value) => value.toString().split('.').last,
   );
 
-  final crossAxisAlignment = context.knobs.list(
+  final crossAxisAlignment = context.knobs.object.dropdown(
     label: 'Cross Axis Alignment',
     options: CrossAxisAlignment.values,
     labelBuilder: (final value) => value.toString().split('.').last,
   );
 
-  final mainAxisSize = context.knobs.list(
+  final mainAxisSize = context.knobs.object.dropdown(
     label: 'Main Axis Size',
     options: MainAxisSize.values,
     labelBuilder: (final value) => value.toString().split('.').last,
@@ -37,7 +37,7 @@ Widget useCaseBeRow(final BuildContext context) {
   final paddingValue = context.knobs.double.slider(label: 'Row Padding', initialValue: 16, min: 0, max: 32);
 
   // Demo Type
-  final demoType = context.knobs.list(
+  final demoType = context.knobs.object.dropdown(
     label: 'Demo Type',
     options: ['Basic Layout', 'Responsive Cards', 'Form Fields', 'Statistics', 'Navigation Items', 'Image Gallery'],
   );

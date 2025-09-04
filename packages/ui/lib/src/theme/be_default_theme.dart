@@ -86,7 +86,7 @@
 //     return BeRoundedRectangleBorder(
 //       side: side.scale(t),
 //       borderRadius: borderRadius * t,
-//       backgroundColor: backgroundColor?.withOpacity(t),
+//       backgroundColor: backgroundColor?.withValues(alpha:t),
 //       shadows: shadows?.map((s) => s.scale(t)).toList(),
 //       clipShadow: clipShadow,
 //     );
@@ -167,7 +167,7 @@
 
 //   BeBoxShadow scale(double factor) {
 //     return BeBoxShadow(
-//       color: color.withOpacity(color.opacity * factor),
+//       color: color.withValues(alpha:color.opacity * factor),
 //       offset: offset * factor,
 //       blurRadius: blurRadius * factor,
 //       spreadRadius: spreadRadius * factor,

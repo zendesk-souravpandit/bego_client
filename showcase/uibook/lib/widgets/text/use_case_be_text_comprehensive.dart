@@ -11,9 +11,9 @@ Widget beTextTypographyUseCase(final BuildContext context) {
   );
   final color = context.knobs.colorOrNull(label: 'Text Color');
   final maxLines = context.knobs.intOrNull.input(label: 'Max Lines');
-  final alignment = context.knobs.listOrNull<TextAlign>(label: 'Text Alignment', options: TextAlign.values);
+  final alignment = context.knobs.objectOrNull.dropdown<TextAlign>(label: 'Text Alignment', options: TextAlign.values);
   final showPadding = context.knobs.boolean(label: 'Show Padding', initialValue: false);
-  final overflow = context.knobs.list<TextOverflow>(
+  final overflow = context.knobs.object.dropdown<TextOverflow>(
     label: 'Text Overflow',
     options: TextOverflow.values,
     initialOption: TextOverflow.ellipsis,
@@ -324,7 +324,7 @@ Widget beTextPracticalUseCase(final BuildContext context) {
 Widget beTextCustomStylingUseCase(final BuildContext context) {
   final text = context.knobs.string(label: 'Text Content', initialValue: 'Custom styled text');
   final fontSize = context.knobs.double.slider(label: 'Font Size', initialValue: 16, min: 8, max: 64);
-  final fontWeight = context.knobs.list<FontWeight>(
+  final fontWeight = context.knobs.object.dropdown<FontWeight>(
     label: 'Font Weight',
     options: [
       FontWeight.w100,
