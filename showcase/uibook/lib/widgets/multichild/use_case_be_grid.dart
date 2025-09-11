@@ -32,9 +32,9 @@ class _BeGridDemoState extends State<BeGridDemo> {
   double _cardElevation = 2;
 
   // Column sizes
-  int _col1XS = 12, _col1SM = 6, _col1MD = 4, _col1LG = 3;
-  int _col2XS = 12, _col2SM = 6, _col2MD = 4, _col2LG = 3;
-  int _col3XS = 12, _col3SM = 12, _col3MD = 4, _col3LG = 3;
+  final int _col1XS = 12, _col1SM = 6, _col1MD = 4, _col1LG = 3;
+  final int _col2XS = 12, _col2SM = 6, _col2MD = 4, _col2LG = 3;
+  final int _col3XS = 12, _col3SM = 12, _col3MD = 4, _col3LG = 3;
 
   @override
   Widget build(final BuildContext context) {

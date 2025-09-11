@@ -97,8 +97,8 @@ class _BeNotificationsProviderState extends State<BeNotificationsProvider>
   void dismissAllOfType(final Type type) {
     if (_notifications.isEmpty) return;
 
-    final notificationsToRemove =
-        _notifications.where((final notification) {
+    _notifications
+        .where((final notification) {
           if (notification is KeyedSubtree) {
             final child = notification.child;
             if (child is _NotificationContainer) {
@@ -107,11 +107,9 @@ class _BeNotificationsProviderState extends State<BeNotificationsProvider>
             return child.runtimeType == type;
           }
           return false;
-        }).toList();
-
-    for (final n in notificationsToRemove) {
-      _removeNotification(n);
-    }
+        })
+        .toList()
+        .forEach(_removeNotification);
   }
 
   void _addNotification(final Widget notification, {final int index = 0, final Duration? dissmissDuration}) {

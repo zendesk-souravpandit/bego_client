@@ -26,24 +26,28 @@ quisque ultrices condimentum mauris a diam.''';
 final stubDate = DateTime(2012, 4, 3);
 
 extension KnobsBuilderExt on KnobsBuilder {
-  int get widgetSizeKnob =>
-      list(label: 'Size', options: [12, 16, 24, 32, 48, 64, 96, 128], labelBuilder: (final value) => value.toString());
+  int get widgetSizeKnob => object.dropdown(
+    label: 'Size',
+    options: [12, 16, 24, 32, 48, 64, 96, 128],
+    labelBuilder: (final value) => value.toString(),
+  );
 
-  IconDetails beIconKnob({final String label = 'Icon'}) => list(
+  IconDetails beIconKnob({final String label = 'Icon'}) => object.dropdown(
     label: label,
     options: exampleIcons,
     initialOption: const IconDetails(BeIcons.icon_ychee, 'icon_ychee'),
     labelBuilder: (final value) => value.name,
   );
 
-  IconDetails? beIconOrNullKnob({final String label = 'Icon'}) => listOrNull(
+  IconDetails? beIconOrNullKnob({final String label = 'Icon'}) => object.dropdown(
     label: label,
     options: exampleIcons,
     initialOption: const IconDetails(BeIcons.icon_ychee, 'icon_ychee'),
     labelBuilder: (final value) => value?.name ?? 'None',
   );
 
-  AlignmentGeometry alignmentKnob({final String label = 'Alignment'}) => list(label: label, options: alignments);
+  AlignmentGeometry alignmentKnob({final String label = 'Alignment'}) =>
+      object.dropdown(label: label, options: alignments);
 
   bool get isEnabledKnob => boolean(label: 'Enabled', initialValue: true);
 }
