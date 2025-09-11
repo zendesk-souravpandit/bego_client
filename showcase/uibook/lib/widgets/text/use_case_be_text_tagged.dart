@@ -7,7 +7,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 @widgetbook.UseCase(name: 'BeTextTagged', path: 'widget/text', type: BeTextTagged)
 Widget useCaseBeTextTagged(final BuildContext context) {
   final label = context.knobs.string(label: 'Tag Label', initialValue: 'New');
-  final position = context.knobs.list<BeBadgePosition>(label: 'Position', options: BeBadgePosition.values);
+  final position = context.knobs.object.dropdown<BeBadgePosition>(label: 'Position', options: BeBadgePosition.values);
   final tagColor = context.knobs.color(label: 'Tag Color', initialValue: Colors.red);
   final tagBackground = context.knobs.colorOrNull(label: 'Tag Background');
   final text = context.knobs.string(label: 'Text Content', initialValue: 'Sample Text with Tag');

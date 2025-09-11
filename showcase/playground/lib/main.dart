@@ -399,7 +399,7 @@ class _RouteItem {
 //                 cursor: SystemMouseCursors.resizeColumn,
 //                 child: Container(
 //                   width: 8,
-//                   color: isDraggingLeft ? Colors.blue.withOpacity(0.5) : Colors.transparent,
+//                   color: isDraggingLeft ? Colors.blue.withValues(alpha:0.5) : Colors.transparent,
 //                   child: Center(child: Container(width: 2, height: 40, color: Colors.grey)),
 //                 ),
 //               ),
@@ -432,7 +432,7 @@ class _RouteItem {
 //                 cursor: SystemMouseCursors.resizeColumn,
 //                 child: Container(
 //                   width: 8,
-//                   color: isDraggingRight ? Colors.green.withOpacity(0.5) : Colors.transparent,
+//                   color: isDraggingRight ? Colors.green.withValues(alpha:0.5) : Colors.transparent,
 //                   child: Center(child: Container(width: 2, height: 40, color: Colors.grey)),
 //                 ),
 //               ),

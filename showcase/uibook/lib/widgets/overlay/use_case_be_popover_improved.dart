@@ -7,7 +7,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 @widgetbook.UseCase(name: 'BePopover - Improved', path: 'widget/overlay', type: BePopover)
 Widget useCaseBePopoverImproved(final BuildContext context) {
-  final popoverAnchor = context.knobs.list(
+  final popoverAnchor = context.knobs.object.dropdown(
     label: 'Popover Anchor',
     options: [
       Alignment.topCenter,
@@ -24,7 +24,7 @@ Widget useCaseBePopoverImproved(final BuildContext context) {
     labelBuilder: (final value) => value.toString().replaceFirst('Alignment.', ''),
   );
 
-  final childAnchor = context.knobs.list(
+  final childAnchor = context.knobs.object.dropdown(
     label: 'Child Anchor',
     options: [
       Alignment.topCenter,
@@ -41,7 +41,7 @@ Widget useCaseBePopoverImproved(final BuildContext context) {
     labelBuilder: (final value) => value.toString().replaceFirst('Alignment.', ''),
   );
 
-  final hideOnTapOutside = context.knobs.list(
+  final hideOnTapOutside = context.knobs.object.dropdown(
     label: 'Hide on Tap Outside',
     options: BeHidePopoverRegion.values,
     initialOption: BeHidePopoverRegion.anywhere,

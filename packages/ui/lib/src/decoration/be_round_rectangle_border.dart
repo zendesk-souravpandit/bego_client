@@ -24,7 +24,7 @@ import 'package:flutter/material.dart';
 //           ..imageFilter = ImageFilter.blur(sigmaX: blurSigma, sigmaY: blurSigma)
 //           ..color = Colors.transparent,
 //       )
-//       ..drawRRect(rRect, Paint()..color = Colors.white.withOpacity(0.2));
+//       ..drawRRect(rRect, Paint()..color = Colors.white.withValues(alpha:0.2));
 
 //     if (side != BorderSide.none) {
 //       final borderPaint = side.toPaint();

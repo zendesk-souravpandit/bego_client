@@ -10,7 +10,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 @widgetbook.UseCase(name: 'BeNotificationProvider', path: 'widget/overlay', type: BeNotificationsProvider)
 Widget useCaseBeNotificationProvider(final BuildContext context) {
   // Interactive knobs for customizing notifications
-  final notificationPosition = context.knobs.list(
+  final notificationPosition = context.knobs.object.dropdown(
     label: 'Notification Position',
     options:
         BeNotifyPosition.values.map((final option) {
@@ -19,7 +19,7 @@ Widget useCaseBeNotificationProvider(final BuildContext context) {
     labelBuilder: (final value) => value.label,
   );
 
-  final notificationIcon = context.knobs.list(
+  final notificationIcon = context.knobs.object.dropdown(
     label: 'Notification Icon',
     options: [
       const KnobOption(label: 'Abstract', value: BeIcons.icon_abstract),
@@ -32,7 +32,7 @@ Widget useCaseBeNotificationProvider(final BuildContext context) {
     labelBuilder: (final value) => value.label,
   );
 
-  final iconColor = context.knobs.list(
+  final iconColor = context.knobs.object.dropdown(
     label: 'Icon Color',
     options: [
       const KnobOption(label: 'Primary', value: BeColors.primary),
@@ -55,7 +55,7 @@ Widget useCaseBeNotificationProvider(final BuildContext context) {
 
   final showCloseButton = context.knobs.boolean(label: 'Default Card', initialValue: true);
 
-  final notificationType = context.knobs.list(
+  final notificationType = context.knobs.object.dropdown(
     label: 'Notification Type',
     options: [
       const KnobOption(label: 'ListTile', value: 'listtile'),

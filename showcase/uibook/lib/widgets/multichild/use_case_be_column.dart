@@ -23,7 +23,7 @@ Widget useCaseBeColumn(final BuildContext context) {
   final showGridLines = context.knobs.boolean(label: 'Show Grid Lines', initialValue: true);
 
   // Demo Type
-  final demoType = context.knobs.list(
+  final demoType = context.knobs.object.dropdown(
     label: 'Demo Type',
     options: [
       'Single Column',

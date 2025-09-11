@@ -8,7 +8,7 @@ Widget useCaseBeSizeAware(final BuildContext context) {
   final maxWidth = context.knobs.double.slider(label: 'Max Width', initialValue: 300, min: 100, max: 500);
   final maxHeight = context.knobs.double.slider(label: 'Max Height', initialValue: 200, min: 100, max: 300);
   final enableConstraints = context.knobs.boolean(label: 'Enable Custom Constraints', initialValue: true);
-  final selectedScenario = context.knobs.list(
+  final selectedScenario = context.knobs.object.dropdown(
     label: 'Real-World Scenario',
     options: [
       'E-commerce Product Card',
@@ -131,7 +131,7 @@ Widget useCaseBeSizeAware(final BuildContext context) {
                     itemBuilder:
                         (final context, final index) => Container(
                           decoration: BoxDecoration(
-                            color: Colors.green.withOpacity(0.7),
+                            color: Colors.green.withValues(alpha: 0.7),
                             borderRadius: BorderRadius.circular(4),
                           ),
                           child: Center(
@@ -238,7 +238,7 @@ Widget useCaseBeSizeAware(final BuildContext context) {
                       gradient: LinearGradient(
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
-                        colors: [Colors.transparent, Colors.black.withOpacity(0.7)],
+                        colors: [Colors.transparent, Colors.black.withValues(alpha: 0.7)],
                       ),
                     ),
                     child: Align(
@@ -1119,7 +1119,7 @@ class _DashboardChartPainter extends CustomPainter {
 
     final fillPaint =
         Paint()
-          ..color = Colors.indigo.withOpacity(0.1)
+          ..color = Colors.indigo.withValues(alpha: 0.1)
           ..style = PaintingStyle.fill;
 
     final data = [0.3, 0.6, 0.4, 0.8, 0.5, 0.9, 0.7];
@@ -1238,7 +1238,7 @@ class _ChartPainter extends CustomPainter {
 
     final fillPaint =
         Paint()
-          ..color = Colors.orange.withOpacity(0.3)
+          ..color = Colors.orange.withValues(alpha: 0.3)
           ..style = PaintingStyle.fill;
 
     // Create a simple area chart that scales with container size

@@ -42,7 +42,7 @@ class _BeGridDemoState extends State<BeGridDemo> {
     _spacing = context.knobs.double.slider(label: 'Column Spacing', initialValue: _spacing, min: 0, max: 48);
     _runSpacing = context.knobs.double.slider(label: 'Row Spacing', initialValue: _runSpacing, min: 0, max: 48);
     _containerFluid = context.knobs.boolean(label: 'Fluid Container', initialValue: _containerFluid);
-    _demoType = context.knobs.list(
+    _demoType = context.knobs.object.dropdown(
       label: 'Demo Scenario',
       options: [
         'Interactive Demo',

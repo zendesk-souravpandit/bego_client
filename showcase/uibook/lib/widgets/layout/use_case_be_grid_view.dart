@@ -9,13 +9,13 @@ Widget useCaseBeGridView(final BuildContext context) {
 
   final columnCount = context.knobs.int.slider(label: 'Column Count', initialValue: 3, min: 2, max: 6);
 
-  final gridType = context.knobs.list(
+  final gridType = context.knobs.object.dropdown(
     label: 'Grid Type',
     options: ['Equal Weights', 'Mixed Sizes', 'Fixed Sizes', 'Custom Builder'],
     initialOption: 'Equal Weights',
   );
 
-  final placementPolicyType = context.knobs.list(
+  final placementPolicyType = context.knobs.object.dropdown(
     label: 'Placement Policy',
     options: ['Default', 'Horizontal StartEnd', 'Horizontal EndStart', 'Vertical TopBottom', 'Vertical BottomTop'],
     initialOption: 'Default',

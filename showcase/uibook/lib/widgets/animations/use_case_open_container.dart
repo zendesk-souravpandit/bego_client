@@ -20,7 +20,7 @@ Widget useCaseOpenContainer(final BuildContext context) {
 
   final tappable = context.knobs.boolean(label: 'Tappable', initialValue: true);
 
-  final transitionType = context.knobs.list(
+  final transitionType = context.knobs.object.dropdown(
     label: 'Transition Type',
     options: ContainerTransitionType.values,
     initialOption: ContainerTransitionType.fade,

@@ -7,7 +7,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 @widgetbook.UseCase(name: 'BeLabel', path: 'widget/multichild', type: BeLabel)
 Widget useCaseBeLabel(final BuildContext context) {
   final labelText = context.knobs.string(label: 'Label Text', initialValue: 'NEW');
-  final position = context.knobs.list<BeLabelPosition>(label: 'Position', options: BeLabelPosition.values);
+  final position = context.knobs.object.dropdown<BeLabelPosition>(label: 'Position', options: BeLabelPosition.values);
   final labelColor = context.knobs.color(label: 'Label Color', initialValue: Colors.white);
   final backgroundColor = context.knobs.color(label: 'Background Color', initialValue: Colors.red);
   final childSized = context.knobs.boolean(label: 'Child Sized');

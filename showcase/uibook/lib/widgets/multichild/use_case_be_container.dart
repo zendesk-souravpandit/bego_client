@@ -24,13 +24,13 @@ Widget useCaseBeContainer(final BuildContext context) {
   // Appearance
   final showBorder = context.knobs.boolean(label: 'Show Container Border', initialValue: true);
   final cardElevation = context.knobs.double.slider(label: 'Card Elevation', initialValue: 2, min: 0, max: 8);
-  final backgroundColor = context.knobs.list(
+  final backgroundColor = context.knobs.object.dropdown(
     label: 'Background Color',
     options: ['None', 'Light Gray', 'Light Blue', 'Light Green'],
   );
 
   // Demo Type
-  final demoType = context.knobs.list(
+  final demoType = context.knobs.object.dropdown(
     label: 'Demo Type',
     options: ['Basic Container', 'Responsive Showcase', 'Nested Containers', 'Real World Layout', 'Comparison View'],
   );
