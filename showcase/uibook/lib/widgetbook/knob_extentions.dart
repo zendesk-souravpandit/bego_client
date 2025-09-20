@@ -39,11 +39,11 @@ extension KnobsBuilderExt on KnobsBuilder {
     labelBuilder: (final value) => value.name,
   );
 
-  IconDetails? beIconOrNullKnob({final String label = 'Icon'}) => object.dropdown(
+  IconDetails? beIconOrNullKnob({final String label = 'Icon'}) => objectOrNull.dropdown(
     label: label,
     options: exampleIcons,
     initialOption: const IconDetails(BeIcons.icon_ychee, 'icon_ychee'),
-    labelBuilder: (final value) => value?.name ?? 'None',
+    labelBuilder: (final value) => value.name,
   );
 
   AlignmentGeometry alignmentKnob({final String label = 'Alignment'}) =>

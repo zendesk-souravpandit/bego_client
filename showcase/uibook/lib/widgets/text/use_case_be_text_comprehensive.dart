@@ -11,7 +11,7 @@ Widget beTextTypographyUseCase(final BuildContext context) {
   );
   final color = context.knobs.colorOrNull(label: 'Text Color');
   final maxLines = context.knobs.intOrNull.input(label: 'Max Lines');
-  final alignment = context.knobs.object.dropdown<TextAlign>(label: 'Text Alignment', options: TextAlign.values);
+  final alignment = context.knobs.objectOrNull.dropdown<TextAlign>(label: 'Text Alignment', options: TextAlign.values);
   final showPadding = context.knobs.boolean(label: 'Show Padding', initialValue: false);
   final overflow = context.knobs.object.dropdown<TextOverflow>(
     label: 'Text Overflow',

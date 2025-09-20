@@ -8,7 +8,7 @@ Widget useCaseBeText(final BuildContext context) {
   final textContent = context.knobs.string(label: 'Text Content', initialValue: 'Sample Text');
   final color = context.knobs.colorOrNull(label: 'Color');
   final maxLines = context.knobs.intOrNull.input(label: 'Max Lines');
-  final align = context.knobs.object.dropdown<TextAlign>(label: 'Text Align', options: TextAlign.values);
+  final align = context.knobs.objectOrNull.dropdown<TextAlign>(label: 'Text Align', options: TextAlign.values);
 
   return Padding(
     padding: const EdgeInsets.all(16.0),

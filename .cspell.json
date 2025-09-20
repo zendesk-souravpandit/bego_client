@@ -24,7 +24,10 @@
     "pbjson",
     "pubspec",
     "Superellipse",
+<<<<<<< HEAD
     "Textspan",
+=======
+>>>>>>> upstream/main
     "uibook",
     "Viewports"
   ],
