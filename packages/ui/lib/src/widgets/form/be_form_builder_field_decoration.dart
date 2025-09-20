@@ -16,7 +16,7 @@ class BeFormBuilderFieldDecoration<T> extends BeFormBuilderField<T> {
     required super.name,
     super.valueTransformer,
     super.onChanged,
-    super.onReset,
+    super.onFormReset,
     super.focusNode,
     super.errorBuilder,
     required super.builder,

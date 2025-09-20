@@ -19,7 +19,7 @@ class BeFormBuilderCheckboxGroup<T> extends BeFormBuilderFieldDecoration<List<T>
     super.enabled,
     super.onSaved,
     super.autovalidateMode = AutovalidateMode.disabled,
-    super.onReset,
+    super.onFormReset,
     super.focusNode,
     super.restorationId,
     super.errorBuilder,

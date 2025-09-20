@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -280,9 +282,9 @@ class _RenderBeRow extends RenderBox
   void _positionRow(final List<RenderBox> row, final _RowLayout layout, final double y) {
     for (int i = 0; i < row.length; i++) {
       final child = row[i];
-      final parentData = child.parentData! as BeRowParentData;
-      // Add padding.left to position correctly within the container
-      parentData.offset = Offset(layout.offsets[i].dx + padding.left, y);
+      (child.parentData! as BeRowParentData)
+          // Add padding.left to position correctly within the container
+          .offset = Offset(layout.offsets[i].dx + padding.left, y);
     }
   }
 

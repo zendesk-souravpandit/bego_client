@@ -15,7 +15,7 @@ class BeFormBuilderDateRangePicker extends BeFormBuilderFieldDecoration<DateTime
     super.enabled,
     super.onSaved,
     super.autovalidateMode = AutovalidateMode.disabled,
-    super.onReset,
+    super.onFormReset,
     super.focusNode,
     super.restorationId,
     super.errorBuilder,

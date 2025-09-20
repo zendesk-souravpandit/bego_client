@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:beui/src/screen/be_breakpoint.dart';
 import 'package:beui/src/widgets/mulitchild/be_row.dart';
 import 'package:flutter/material.dart';

@@ -807,8 +807,7 @@ class RenderExpandableText extends RenderBox {
       strutStyle: _strutStyle,
       textWidthBasis: _textWidthBasis ?? TextWidthBasis.parent,
       textHeightBehavior: _textHeightBehavior,
-    );
-    testPainter.layout(maxWidth: maxWidth);
+    )..layout(maxWidth: maxWidth);
 
     if (!testPainter.didExceedMaxLines) {
       // Text fits within the maxLines, no trimming needed
@@ -841,8 +840,7 @@ class RenderExpandableText extends RenderBox {
         strutStyle: _strutStyle,
         textWidthBasis: _textWidthBasis ?? TextWidthBasis.parent,
         textHeightBehavior: _textHeightBehavior,
-      );
-      cutoffPainter.layout(maxWidth: maxWidth);
+      )..layout(maxWidth: maxWidth);
 
       if (!cutoffPainter.didExceedMaxLines) {
         bestCutoff = mid;
@@ -993,8 +991,7 @@ class RenderExpandableText extends RenderBox {
       strutStyle: _strutStyle,
       textWidthBasis: _textWidthBasis ?? TextWidthBasis.parent,
       textHeightBehavior: _textHeightBehavior,
-    );
-    testPainter.layout(maxWidth: maxWidth);
+    )..layout(maxWidth: maxWidth);
 
     bool needsTrimming = false;
     if (_trimMode == TrimMode.line) {

@@ -28,7 +28,7 @@ class BeFormField<T> extends FormBuilderField<T> {
     super.restorationId,
     super.valueTransformer,
     super.onChanged,
-    super.onReset,
+    super.onFormReset,
     super.focusNode,
     this.shouldValidate = true,
     this.title,

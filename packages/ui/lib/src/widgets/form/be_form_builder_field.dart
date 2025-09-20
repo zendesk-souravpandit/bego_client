@@ -26,7 +26,7 @@ class BeFormBuilderField<T> extends FormField<T> {
     required this.name,
     this.valueTransformer,
     this.onChanged,
-    this.onReset,
+    this.onFormReset,
     this.focusNode,
   });
 
@@ -55,8 +55,10 @@ class BeFormBuilderField<T> extends FormField<T> {
   final ValueChanged<T?>? onChanged;
 
   /// Called when the field value is reset.
+  final VoidCallback? onFormReset;
+
   @override
-  final VoidCallback? onReset;
+  VoidCallback? get onReset => onFormReset;
 
   /// {@macro flutter.widgets.Focus.focusNode}
   final FocusNode? focusNode;

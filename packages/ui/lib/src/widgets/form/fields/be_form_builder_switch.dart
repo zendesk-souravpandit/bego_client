@@ -15,7 +15,7 @@ class BeFormBuilderSwitch extends BeFormBuilderFieldDecoration<bool> {
     super.enabled,
     super.onSaved,
     super.autovalidateMode = AutovalidateMode.disabled,
-    super.onReset,
+    super.onFormReset,
     super.focusNode,
     super.restorationId,
     super.errorBuilder,
