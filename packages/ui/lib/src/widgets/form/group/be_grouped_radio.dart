@@ -83,51 +83,62 @@ class BeGroupedRadio<T> extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final List<Widget> radioButtons = [];
+    return RadioGroup<T>(
+      groupValue: value,
+      onChanged: onChanged,
+      child: Builder(
+        builder: (final BuildContext context) {
+          final List<Widget> radioButtons = [];
 
-    for (int i = 0; i < options.length; i++) {
-      final option = options[i];
-      final isDisabled = disabled?.contains(option.value) ?? false;
+          for (int i = 0; i < options.length; i++) {
+            final option = options[i];
+            final isDisabled = disabled?.contains(option.value) ?? false;
 
-      final radioButton = RadioListTile<T>(
-        title: option,
-        value: option.value,
-        groupValue: value,
-        onChanged: isDisabled ? null : onChanged,
-        controlAffinity:
-            controlAffinity == BeControlAffinity.leading
-                ? ListTileControlAffinity.leading
-                : ListTileControlAffinity.trailing,
-        visualDensity: visualDensity,
-        materialTapTargetSize: materialTapTargetSize,
-      );
+            final radio = Radio<T>(
+              value: option.value,
+              toggleable: false,
+              // groupValue and onChanged are managed by RadioGroup ancestor
+            );
 
-      radioButtons.add(radioButton);
+            final listTile = ListTile(
+              title: option,
+              leading: controlAffinity == BeControlAffinity.leading ? radio : null,
+              trailing: controlAffinity == BeControlAffinity.trailing ? radio : null,
+              enabled: !isDisabled,
+              visualDensity: visualDensity,
+              // materialTapTargetSize is not a property of ListTile, so skip
+              onTap: isDisabled ? null : () => onChanged(option.value),
+            );
 
-      if (separator != null && i < options.length - 1) {
-        radioButtons.add(separator!);
-      }
-    }
+            radioButtons.add(listTile);
 
-    switch (orientation) {
-      case BeOptionsOrientation.horizontal:
-        return Row(children: radioButtons);
-      case BeOptionsOrientation.vertical:
-        return Column(children: radioButtons);
-      case BeOptionsOrientation.wrap:
-        return Wrap(
-          direction: wrapDirection,
-          alignment: wrapAlignment,
-          spacing: wrapSpacing,
-          runAlignment: wrapRunAlignment,
-          runSpacing: wrapRunSpacing,
-          crossAxisAlignment: wrapCrossAxisAlignment,
-          textDirection: wrapTextDirection,
-          verticalDirection: wrapVerticalDirection,
-          children: radioButtons,
-        );
-      default:
-        return Wrap(children: radioButtons);
-    }
+            if (separator != null && i < options.length - 1) {
+              radioButtons.add(separator!);
+            }
+          }
+
+          switch (orientation) {
+            case BeOptionsOrientation.horizontal:
+              return Row(children: radioButtons);
+            case BeOptionsOrientation.vertical:
+              return Column(children: radioButtons);
+            case BeOptionsOrientation.wrap:
+              return Wrap(
+                direction: wrapDirection,
+                alignment: wrapAlignment,
+                spacing: wrapSpacing,
+                runAlignment: wrapRunAlignment,
+                runSpacing: wrapRunSpacing,
+                crossAxisAlignment: wrapCrossAxisAlignment,
+                textDirection: wrapTextDirection,
+                verticalDirection: wrapVerticalDirection,
+                children: radioButtons,
+              );
+            default:
+              return Wrap(children: radioButtons);
+          }
+        },
+      ),
+    );
   }
 }

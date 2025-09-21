@@ -297,8 +297,7 @@ class _RenderBeWrap extends RenderBox
       double mainAxisOffset = direction == Axis.horizontal ? padding.left : padding.top;
 
       for (final RenderBox child in run.children) {
-        final BeWrapParentData childParentData = child.parentData! as BeWrapParentData;
-        childParentData.offset = Offset(mainAxisOffset, crossAxisOffset);
+        (child.parentData! as BeWrapParentData).offset = Offset(mainAxisOffset, crossAxisOffset);
         mainAxisOffset += direction == Axis.horizontal ? child.size.width + spacing : child.size.height + spacing;
       }
 

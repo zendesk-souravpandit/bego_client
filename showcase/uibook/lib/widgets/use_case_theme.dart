@@ -128,19 +128,16 @@ class _ThemeDemoPageState extends State<ThemeDemoPage> with SingleTickerProvider
 
   Widget _buildSelectionControls() => Column(
     children: [
-      Row(
-        children: [
-          Switch(value: _switchValue, onChanged: (final v) => setState(() => _switchValue = v)),
-          Checkbox(value: _checkboxValue, onChanged: (final v) => setState(() => _checkboxValue = v ?? false)),
-          ...List.generate(
-            2,
-            (final index) => Radio<int>(
-              value: index,
-              groupValue: _radioValue,
-              onChanged: (final v) => setState(() => _radioValue = v ?? 0),
-            ),
-          ),
-        ],
+      RadioGroup<int>(
+        groupValue: _radioValue,
+        onChanged: (final v) => setState(() => _radioValue = v ?? 0),
+        child: Row(
+          children: [
+            Switch(value: _switchValue, onChanged: (final v) => setState(() => _switchValue = v)),
+            Checkbox(value: _checkboxValue, onChanged: (final v) => setState(() => _checkboxValue = v ?? false)),
+            ...List.generate(2, (final index) => Radio<int>(value: index)),
+          ],
+        ),
       ),
       Slider(value: _sliderValue, onChanged: (final v) => setState(() => _sliderValue = v)),
       ToggleButtons(

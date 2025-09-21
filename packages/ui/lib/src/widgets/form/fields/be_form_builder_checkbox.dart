@@ -14,7 +14,7 @@ class BeFormBuilderCheckbox extends BeFormBuilderField<bool> {
     super.enabled = true,
     super.onSaved,
     super.autovalidateMode = AutovalidateMode.disabled,
-    super.onReset,
+    super.onFormReset,
     super.focusNode,
     super.restorationId,
     this.title,

@@ -50,8 +50,7 @@ class _BeMultiLabelRenderObject extends RenderBox
 
   @override
   void performLayout() {
-    final child = firstChild!;
-    child.layout(constraints, parentUsesSize: true);
+    final child = firstChild!..layout(constraints, parentUsesSize: true);
     size = child.size;
 
     // Layout all badge children
@@ -59,8 +58,7 @@ class _BeMultiLabelRenderObject extends RenderBox
     for (final c in children) {
       if (c == firstChild) continue;
 
-      final badge = c;
-      badge.layout(const BoxConstraints(), parentUsesSize: true);
+      final badge = c..layout(const BoxConstraints(), parentUsesSize: true);
 
       final badgeParentData = badge.parentData! as _BeMultiBadgeParentData;
       final badgeRenderBox = badge as _BadgeRenderBox;

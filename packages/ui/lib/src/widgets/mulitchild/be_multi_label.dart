@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 /// Custom Flutter widget for rendering a badge on another widget </br>
-/// [child] of Widget Type. badge widget respects child widget dimention
+/// [child] of Widget Type. badge widget respects child widget dimension
 /// [labels] of Widget Type. badge widget respects child
 class BeMultiLabel extends MultiChildRenderObjectWidget {
   BeMultiLabel({required this.child, required this.labels, super.key}) : super(children: [child, ...labels]);
@@ -30,8 +30,7 @@ class _BeMultiLabelRenderObject extends RenderBox
 
   @override
   void performLayout() {
-    final child = firstChild!;
-    child.layout(constraints, parentUsesSize: true);
+    final child = firstChild!..layout(constraints, parentUsesSize: true);
     size = child.size;
 
     // Layout all label children
@@ -39,8 +38,7 @@ class _BeMultiLabelRenderObject extends RenderBox
     for (final c in children) {
       if (c == firstChild) continue;
 
-      final label = c;
-      label.layout(const BoxConstraints(), parentUsesSize: true);
+      final label = c..layout(const BoxConstraints(), parentUsesSize: true);
 
       final labelParentData = label.parentData! as _BeMultiLabelParentData;
       final labelRenderBox = label as _LabelRenderBox;
@@ -121,7 +119,7 @@ class _BeMultiLabelParentData extends ContainerBoxParentData<RenderBox> with Con
 
 // ==========================================================================
 /// Custom Flutter widget for rendering a badge on another widget </br>
-/// [child] of Widget Type. badge widget respects child widget dimention
+/// [child] of Widget Type. badge widget respects child widget dimension
 /// [offset] translate widget to offset based on [Offset] default is [Offset.zero]
 /// [position] set alignment position of badge
 class BeLabelChild extends SingleChildRenderObjectWidget {

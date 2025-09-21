@@ -91,17 +91,21 @@ Widget useCaseBeDisableWrapper(final BuildContext context) {
             disabled: disabled,
             lightModeOpacity: lightModeOpacity,
             darkModeOpacity: darkModeOpacity,
-            child: Row(
-              children: [
-                Checkbox(value: true, onChanged: (_) {}),
-                const Text('Checkbox'),
-                const SizedBox(width: 20),
-                Switch(value: true, onChanged: (_) {}),
-                const Text('Switch'),
-                const SizedBox(width: 20),
-                Radio(value: 1, groupValue: 1, onChanged: (_) {}),
-                const Text('Radio'),
-              ],
+            child: RadioGroup<int>(
+              groupValue: 1,
+              onChanged: (_) {},
+              child: Row(
+                children: [
+                  Checkbox(value: true, onChanged: (_) {}),
+                  const Text('Checkbox'),
+                  const SizedBox(width: 20),
+                  Switch(value: true, onChanged: (_) {}),
+                  const Text('Switch'),
+                  const SizedBox(width: 20),
+                  const Radio<int>(value: 1),
+                  const Text('Radio'),
+                ],
+              ),
             ),
           ),
 

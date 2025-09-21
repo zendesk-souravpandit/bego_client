@@ -16,7 +16,7 @@ class BeFormBuilderDropdown<T> extends BeFormBuilderField<T> {
     super.enabled = true,
     super.onSaved,
     super.autovalidateMode = AutovalidateMode.disabled,
-    super.onReset,
+    super.onFormReset,
     super.focusNode,
     super.restorationId,
     required this.items,
