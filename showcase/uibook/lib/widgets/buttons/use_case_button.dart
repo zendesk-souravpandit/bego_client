@@ -112,18 +112,21 @@ Widget useCaseButtons(final BuildContext context) => Padding(
   ),
 );
 
-Widget _buildButtonSection({required final BuildContext context, required final String title, required final List<Widget> buttons}) =>
-    Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 16),
-          child: Text(title, style: Theme.of(context).textTheme.titleLarge),
-        ),
-        Wrap(spacing: 16, runSpacing: 16, children: buttons),
-        const SizedBox(height: 32),
-      ],
-    );
+Widget _buildButtonSection({
+  required final BuildContext context,
+  required final String title,
+  required final List<Widget> buttons,
+}) => Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    Padding(
+      padding: const EdgeInsets.symmetric(vertical: 16),
+      child: Text(title, style: Theme.of(context).textTheme.titleLarge),
+    ),
+    Wrap(spacing: 16, runSpacing: 16, children: buttons),
+    const SizedBox(height: 32),
+  ],
+);
 
 ButtonStyle _buttonStyle(final BuildContext context, {final ButtonSize size = ButtonSize.medium}) {
   final padding = switch (size) {

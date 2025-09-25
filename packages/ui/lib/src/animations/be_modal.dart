@@ -123,7 +123,11 @@ class _ModalRoute<T> extends PopupRoute<T> {
   final _ModalTransitionBuilder _transitionBuilder;
 
   @override
-  Widget buildPage(final BuildContext context, final Animation<double> animation, final Animation<double> secondaryAnimation) {
+  Widget buildPage(
+    final BuildContext context,
+    final Animation<double> animation,
+    final Animation<double> secondaryAnimation,
+  ) {
     final theme = Theme.of(context);
     return Semantics(
       scopesRoute: true,

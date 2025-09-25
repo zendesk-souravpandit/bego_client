@@ -49,7 +49,8 @@ class BePageStatusWidgetResolver<C> {
     final status = ctr.status;
     return switch (status) {
       LoadingStatus<dynamic>() =>
-        loadingBuilder?.call(context, controller) ?? const Center(child: CircularProgressIndicator()),
+        loadingBuilder?.call(context, controller) ??
+            const Center(child: CircularProgressIndicator()),
       ErrorStatus<dynamic, Object>(data: final _, error: final error) =>
         errorBuilder?.call(context, controller) ?? Center(child: Text('Error: $error')),
       EmptyStatus<dynamic>() => emptyBuilder?.call(context, controller) ?? emptyWidget,

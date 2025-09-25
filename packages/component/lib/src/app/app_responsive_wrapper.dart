@@ -1,7 +1,8 @@
 import 'package:becomponent/src/app/theme_controller.dart';
 import 'package:becore/getx.dart';
 import 'package:beui/layout.dart';
-import 'package:flutter/material.dart' show StatelessWidget, Widget, LayoutBuilder, BuildContext, WidgetsBinding;
+import 'package:flutter/material.dart'
+    show StatelessWidget, Widget, LayoutBuilder, BuildContext, WidgetsBinding;
 
 class AppResponsiveWrapper extends StatelessWidget {
   const AppResponsiveWrapper({super.key, required this.child, required this.responsivePoints});

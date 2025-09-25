@@ -626,7 +626,11 @@ class _OpenContainerRoute<T> extends ModalRoute<T> {
   }
 
   @override
-  Widget buildPage(final BuildContext context, final Animation<double> animation, final Animation<double> secondaryAnimation) => Align(
+  Widget buildPage(
+    final BuildContext context,
+    final Animation<double> animation,
+    final Animation<double> secondaryAnimation,
+  ) => Align(
     alignment: Alignment.topLeft,
     child: AnimatedBuilder(
       animation: animation,

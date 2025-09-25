@@ -3,7 +3,13 @@ import 'package:becore/hooks.dart';
 import 'package:flutter/material.dart';
 
 class BeStateContext<S, A extends BeStateAction> extends InheritedWidget {
-  const BeStateContext({super.key, required this.state, required this.dispatch, required super.child, this.debugLabel});
+  const BeStateContext({
+    super.key,
+    required this.state,
+    required this.dispatch,
+    required super.child,
+    this.debugLabel,
+  });
 
   final S state;
   final void Function(A action) dispatch;
@@ -14,7 +20,10 @@ class BeStateContext<S, A extends BeStateAction> extends InheritedWidget {
     return oldWidget.state != state;
   }
 
-  static BeStateContext<S, A>? of<S, A extends BeStateAction>(final BuildContext context, {final bool listen = true}) {
+  static BeStateContext<S, A>? of<S, A extends BeStateAction>(
+    final BuildContext context, {
+    final bool listen = true,
+  }) {
     return listen
         ? context.dependOnInheritedWidgetOfExactType<BeStateContext<S, A>>()
         : context.getInheritedWidgetOfExactType<BeStateContext<S, A>>();

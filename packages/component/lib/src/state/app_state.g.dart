@@ -9,9 +9,7 @@ part of 'app_state.dart';
 _AppState _$AppStateFromJson(Map<String, dynamic> json) => _AppState(
   appInfo: AppInfo.fromJson(json['appInfo'] as Map<String, dynamic>),
   deviceId: json['deviceId'] as String?,
-  locale: const KeyValueSSConverter().fromJson(
-    json['locale'] as Map<String, String>?,
-  ),
+  locale: const KeyValueSSConverter().fromJson(json['locale'] as Map<String, String>?),
   theme: json['theme'] as String?,
 );
 
