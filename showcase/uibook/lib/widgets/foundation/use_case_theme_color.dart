@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
+
+@widgetbook.UseCase(name: 'ColorScheme', path: 'widget/foundation', type: ColorScheme)
+Widget useCaseBeTappable(final BuildContext context) {
+  return const ColorSchemeDisplay();
+}
 
 class ColorSchemeDisplay extends StatelessWidget {
   const ColorSchemeDisplay({super.key});

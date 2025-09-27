@@ -1,6 +1,10 @@
 import 'package:beui/overlay.dart';
 import 'package:beui/text.dart';
 import 'package:flutter/material.dart';
+import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
+
+@widgetbook.UseCase(name: 'Responsive Dialog', path: 'widget/overlay', type: Dialog)
+Widget useCasePopover(final BuildContext context) => const ResponsiveDialogDemo();
 
 class ResponsiveDialogDemo extends StatelessWidget {
   const ResponsiveDialogDemo({super.key});
