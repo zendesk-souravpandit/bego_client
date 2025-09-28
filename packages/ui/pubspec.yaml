@@ -1,7 +1,7 @@
 name: beui
-description: "A new Flutter package project."
+description: "A comprehensive Flutter UI design system with automatic responsive breakpoints, modern theming, and professional components."
 version: 0.0.1
-homepage: none
+homepage: https://github.com/zendesk-souravpandit/bego_client
 publish_to: none
 
 environment:

@@ -1,4 +1,3 @@
-import 'package:beui/layout.dart';
 import 'package:beui/overlay.dart';
 import 'package:beui/theme.dart';
 import 'package:flutter/material.dart';
@@ -11,18 +10,8 @@ void main() {
 }
 
 final themeList = [
-  WidgetbookTheme(
-    name: 'Light',
-    data: BeTheme.buildThemeData(
-      betheme: BeThemeData(breakpoint: BeBreakpoint.md, themeMode: ThemeMode.light, colors: const BeColorsLight()),
-    ),
-  ),
-  WidgetbookTheme(
-    name: 'Dark',
-    data: BeTheme.buildThemeData(
-      betheme: BeThemeData(breakpoint: BeBreakpoint.md, themeMode: ThemeMode.dark, colors: const BeColorsDark()),
-    ),
-  ),
+  WidgetbookTheme(name: 'Light', data: BeTheme.buildThemeData(betheme: BeThemeData(colors: const BeColorsLight()))),
+  WidgetbookTheme(name: 'Dark', data: BeTheme.buildThemeData(betheme: BeThemeData(colors: const BeColorsDark()))),
 ];
 
 @widgetbook.App()
@@ -39,8 +28,6 @@ class WidgetbookApp extends StatelessWidget {
         IosViewports.iPhone12ProMax,
         AndroidViewports.samsungGalaxyNote20,
         IosViewports.iPad,
-        LinuxViewports.desktop,
-        MacosViewports.desktop,
         WindowsViewports.desktop,
       ]),
       InspectorAddon(),
@@ -67,15 +54,16 @@ class _OptimizedThemeWrapper extends StatelessWidget {
     return LayoutBuilder(
       builder: (final context, final constraints) {
         final themeMode = theme.brightness == Brightness.dark ? ThemeMode.dark : ThemeMode.light;
-        final breakpoint = calculateBreakpoint(constraints.maxWidth, const BeResponsivePoints());
+        // final breakpoint = calculateBreakpoint(constraints.maxWidth, const BeResponsivePoints());
         final colors = themeMode == ThemeMode.light ? const BeColorsLight() : const BeColorsDark();
-        final betheme = BeThemeData(breakpoint: breakpoint, colors: colors, themeMode: themeMode);
+        final betheme = BeThemeData(colors: colors);
 
         // Memoize theme data to prevent unnecessary recalculations
         final themeData = BeTheme.buildThemeData(betheme: betheme);
 
         return BeTheme(
-          betheme: betheme,
+          // betheme: colors,
+          colors: colors,
           child: BeNotificationsProvider(
             child: Theme(data: themeData, child: Scaffold(body: RepaintBoundary(child: child))),
           ),

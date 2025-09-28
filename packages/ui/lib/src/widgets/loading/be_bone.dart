@@ -174,7 +174,7 @@ class _BoneState extends State<_Bone> {
     final offsetWithinShimmer = shimmer.getDescendantOffset(descendant: renderObject);
 
     final shader = shimmer
-        .gradient(slidePercent: shimmer.shimmerValue)
+        .gradient(context: context, slidePercent: shimmer.shimmerValue)
         .createShader(
           Rect.fromLTWH(-offsetWithinShimmer.dx, -offsetWithinShimmer.dy, shimmer.size.width, shimmer.size.height),
         );

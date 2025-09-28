@@ -14,8 +14,6 @@ import 'package:uibook/decoration/use_case_be_boxdecoration_showcase.dart'
     as _uibook_decoration_use_case_be_boxdecoration_showcase;
 import 'package:uibook/decoration/use_case_be_icon_shape_decoration.dart'
     as _uibook_decoration_use_case_be_icon_shape_decoration;
-import 'package:uibook/use_case_be_form_comprehensive.dart'
-    as _uibook_use_case_be_form_comprehensive;
 import 'package:uibook/widgets/animations/use_case_open_container.dart'
     as _uibook_widgets_animations_use_case_open_container;
 import 'package:uibook/widgets/buttons/use_case_button.dart'
@@ -26,14 +24,22 @@ import 'package:uibook/widgets/common/use_case_be_disable_wrapper.dart'
     as _uibook_widgets_common_use_case_be_disable_wrapper;
 import 'package:uibook/widgets/common/use_case_tappable.dart'
     as _uibook_widgets_common_use_case_tappable;
+import 'package:uibook/widgets/form/use_case_be_form_comprehensive.dart'
+    as _uibook_widgets_form_use_case_be_form_comprehensive;
 import 'package:uibook/widgets/form/use_case_be_form_field.dart'
     as _uibook_widgets_form_use_case_be_form_field;
 import 'package:uibook/widgets/form/use_case_be_item_selector.dart'
     as _uibook_widgets_form_use_case_be_item_selector;
+import 'package:uibook/widgets/form/use_case_be_selector_combobox.dart'
+    as _uibook_widgets_form_use_case_be_selector_combobox;
+import 'package:uibook/widgets/form/use_case_be_selector_scenarios.dart'
+    as _uibook_widgets_form_use_case_be_selector_scenarios;
 import 'package:uibook/widgets/foundation/use_case_be_bounce_tap.dart'
     as _uibook_widgets_foundation_use_case_be_bounce_tap;
 import 'package:uibook/widgets/foundation/use_case_be_tappable.dart'
     as _uibook_widgets_foundation_use_case_be_tappable;
+import 'package:uibook/widgets/foundation/use_case_theme_color.dart'
+    as _uibook_widgets_foundation_use_case_theme_color;
 import 'package:uibook/widgets/icons/use_case_be_icons.dart'
     as _uibook_widgets_icons_use_case_be_icons;
 import 'package:uibook/widgets/icons/use_case_icons.dart'
@@ -82,6 +88,8 @@ import 'package:uibook/widgets/overlay/use_case_notification.dart'
     as _uibook_widgets_overlay_use_case_notification;
 import 'package:uibook/widgets/overlay/use_case_popover.dart'
     as _uibook_widgets_overlay_use_case_popover;
+import 'package:uibook/widgets/overlay/use_case_responsive_dialog.dart'
+    as _uibook_widgets_overlay_use_case_responsive_dialog;
 import 'package:uibook/widgets/text/use_case_be_text.dart'
     as _uibook_widgets_text_use_case_be_text;
 import 'package:uibook/widgets/text/use_case_be_text_comprehensive.dart'
@@ -269,6 +277,15 @@ final directories = <_widgetbook.WidgetbookNode>[
               name: 'BeTappable',
               builder:
                   _uibook_widgets_foundation_use_case_be_tappable
+                      .useCaseBeTappable,
+            ),
+          ),
+          _widgetbook.WidgetbookLeafComponent(
+            name: 'ColorScheme',
+            useCase: _widgetbook.WidgetbookUseCase(
+              name: 'ColorScheme',
+              builder:
+                  _uibook_widgets_foundation_use_case_theme_color
                       .useCaseBeTappable,
             ),
           ),
@@ -473,6 +490,15 @@ final directories = <_widgetbook.WidgetbookNode>[
             ],
           ),
           _widgetbook.WidgetbookLeafComponent(
+            name: 'Dialog',
+            useCase: _widgetbook.WidgetbookUseCase(
+              name: 'Responsive Dialog',
+              builder:
+                  _uibook_widgets_overlay_use_case_responsive_dialog
+                      .useCasePopover,
+            ),
+          ),
+          _widgetbook.WidgetbookLeafComponent(
             name: 'Widget',
             useCase: _widgetbook.WidgetbookUseCase(
               name: 'BeResponsiveDialog',
@@ -599,26 +625,96 @@ final directories = <_widgetbook.WidgetbookNode>[
               _widgetbook.WidgetbookUseCase(
                 name: 'Basic Form Fields',
                 builder:
-                    _uibook_use_case_be_form_comprehensive
+                    _uibook_widgets_form_use_case_be_form_comprehensive
                         .basicFormFieldsUseCase,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Complex Form Example',
                 builder:
-                    _uibook_use_case_be_form_comprehensive
+                    _uibook_widgets_form_use_case_be_form_comprehensive
                         .complexFormExampleUseCase,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Selection Components',
                 builder:
-                    _uibook_use_case_be_form_comprehensive
+                    _uibook_widgets_form_use_case_be_form_comprehensive
                         .selectionComponentsUseCase,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Sliders and Date Pickers',
                 builder:
-                    _uibook_use_case_be_form_comprehensive
+                    _uibook_widgets_form_use_case_be_form_comprehensive
                         .slidersAndDatePickersUseCase,
+              ),
+            ],
+          ),
+        ],
+      ),
+      _widgetbook.WidgetbookFolder(
+        name: 'selector',
+        children: [
+          _widgetbook.WidgetbookComponent(
+            name: 'BeSelectorCombobox',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'API Integration Loading',
+                builder:
+                    _uibook_widgets_form_use_case_be_selector_combobox
+                        .apiIntegrationLoading,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Custom Rendering',
+                builder:
+                    _uibook_widgets_form_use_case_be_selector_combobox
+                        .customRendering,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'E-commerce Filters',
+                builder:
+                    _uibook_widgets_form_use_case_be_selector_scenarios
+                        .ecommerceFilters,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Form Integration',
+                builder:
+                    _uibook_widgets_form_use_case_be_selector_combobox
+                        .formIntegration,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Grouped Options',
+                builder:
+                    _uibook_widgets_form_use_case_be_selector_combobox
+                        .groupedOptions,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Issue Tracker Form',
+                builder:
+                    _uibook_widgets_form_use_case_be_selector_scenarios
+                        .issueTrackerForm,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Multi Select with Tags',
+                builder:
+                    _uibook_widgets_form_use_case_be_selector_combobox
+                        .multiSelectWithTags,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Single Select Basic',
+                builder:
+                    _uibook_widgets_form_use_case_be_selector_combobox
+                        .singleSelectBasic,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'User Registration Form',
+                builder:
+                    _uibook_widgets_form_use_case_be_selector_scenarios
+                        .userRegistrationForm,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Validation Error',
+                builder:
+                    _uibook_widgets_form_use_case_be_selector_combobox
+                        .withValidationError,
               ),
             ],
           ),

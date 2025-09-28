@@ -61,7 +61,7 @@ class BeThemeData extends ThemeExtension<BeThemeData> {
   }
 
   /// Create responsive theme based on screen width and brightness
-  static ThemeData responsive(final double screenWidth, {final bool isDark = false, final BeColor? colors}) {
+  static ThemeData responsive(final double screenWidth, {final bool isDark = false, required final BeColor colors}) {
     return isDark ? dark(colors: colors, screenWidth: screenWidth) : light(colors: colors, screenWidth: screenWidth);
   }
 

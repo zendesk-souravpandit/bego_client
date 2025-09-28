@@ -3,7 +3,6 @@
 import 'package:beui/src/decoration/be_edge_insets.dart';
 import 'package:beui/src/decoration/be_round_rectangle_border.dart';
 import 'package:beui/src/extensions/be_double_ext.dart';
-import 'package:beui/src/theme/colors/be_color_schema.dart';
 import 'package:beui/theme.dart';
 import 'package:beui/ui.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +10,7 @@ import 'package:flutter/material.dart';
 ThemeData buildTheme({required final BeThemeData betheme, final bool useMaterial3 = true}) {
   final isDark = betheme.colors.isDark;
   final brightness = isDark ? Brightness.dark : Brightness.light;
-  final colorScheme = isDark ? BeColorSchemeDark.darkScheme : BeColorSchemeLight.lightScheme;
+  final colorScheme = _buildColorScheme(betheme.colors);
   final bestyle = betheme.style;
 
   return ThemeData(
@@ -26,14 +25,14 @@ ThemeData buildTheme({required final BeThemeData betheme, final bool useMaterial
     textTheme: _buildTextTheme(bestyle),
 
     // Component themes
-    appBarTheme: _buildAppBarTheme(colorScheme),
-    badgeTheme: _buildBadgeTheme(colorScheme),
+    appBarTheme: _buildAppBarTheme(betheme),
+    badgeTheme: _buildBadgeTheme(betheme),
     buttonTheme: _buildButtonTheme(betheme),
     cardTheme: _buildCardTheme(betheme),
-    checkboxTheme: _buildCheckboxTheme(colorScheme),
-    chipTheme: _buildChipTheme(colorScheme),
-    dialogTheme: _buildDialogTheme(colorScheme),
-    dividerTheme: _buildDividerTheme(colorScheme),
+    checkboxTheme: _buildCheckboxTheme(betheme),
+    chipTheme: _buildChipTheme(betheme),
+    dialogTheme: _buildDialogTheme(betheme),
+    dividerTheme: _buildDividerTheme(betheme),
 
     dropdownMenuTheme: _buildDropdownMenuTheme(betheme),
 
@@ -44,109 +43,152 @@ ThemeData buildTheme({required final BeThemeData betheme, final bool useMaterial
     iconButtonTheme: _buildIconButtonTheme(betheme),
     floatingActionButtonTheme: _buildFloatingActionButtonTheme(betheme),
     segmentedButtonTheme: _buildSegmentedButtonTheme(betheme),
-    toggleButtonsTheme: _buildToggleButtonsTheme(colorScheme),
+    toggleButtonsTheme: _buildToggleButtonsTheme(betheme),
     inputDecorationTheme: _buildInputDecorationTheme(betheme),
-    expansionTileTheme: _buildExpansionTileTheme(colorScheme),
-    listTileTheme: _buildListTileTheme(colorScheme),
-    navigationBarTheme: _buildNavigationBarTheme(colorScheme),
-    popupMenuTheme: _buildPopupMenuTheme(colorScheme),
-    progressIndicatorTheme: _buildProgressIndicatorTheme(colorScheme),
-    radioTheme: _buildRadioTheme(colorScheme),
-    sliderTheme: _buildSliderTheme(colorScheme),
-    snackBarTheme: _buildSnackBarTheme(colorScheme),
-    switchTheme: _buildSwitchTheme(colorScheme),
-    tabBarTheme: _buildTabBarTheme(colorScheme),
-    textSelectionTheme: _buildTextSelectionTheme(colorScheme),
-    timePickerTheme: _buildTimePickerTheme(colorScheme),
-    tooltipTheme: _buildTooltipTheme(colorScheme),
-    actionIconTheme: _buildActionIconTheme(colorScheme),
-    dataTableTheme: _buildDataTableTheme(colorScheme),
-    bottomSheetTheme: _buildBottomSheetTheme(colorScheme),
-    bottomNavigationBarTheme: _buildBottomNavigationBarTheme(colorScheme),
-    datePickerTheme: _buildDatePickerTheme(betheme, colorScheme),
-    drawerTheme: _buildDrawerTheme(colorScheme),
-    iconTheme: _buildIconTheme(colorScheme),
-    bottomAppBarTheme: _buildBottomAppBarTheme(colorScheme),
-    bannerTheme: _buildBannerTheme(colorScheme),
-    menuBarTheme: _buildMenuBarTheme(colorScheme),
-    menuButtonTheme: _buildMenuButtonTheme(colorScheme),
-    navigationRailTheme: _buildNavigationRailTheme(colorScheme),
+    expansionTileTheme: _buildExpansionTileTheme(betheme),
+    listTileTheme: _buildListTileTheme(betheme),
+    navigationBarTheme: _buildNavigationBarTheme(betheme),
+    popupMenuTheme: _buildPopupMenuTheme(betheme),
+    progressIndicatorTheme: _buildProgressIndicatorTheme(betheme),
+    radioTheme: _buildRadioTheme(betheme),
+    sliderTheme: _buildSliderTheme(betheme),
+    snackBarTheme: _buildSnackBarTheme(betheme),
+    switchTheme: _buildSwitchTheme(betheme),
+    tabBarTheme: _buildTabBarTheme(betheme),
+    textSelectionTheme: _buildTextSelectionTheme(betheme),
+    timePickerTheme: _buildTimePickerTheme(betheme),
+    tooltipTheme: _buildTooltipTheme(betheme),
+    actionIconTheme: _buildActionIconTheme(betheme),
+    dataTableTheme: _buildDataTableTheme(betheme),
+    bottomSheetTheme: _buildBottomSheetTheme(betheme),
+    bottomNavigationBarTheme: _buildBottomNavigationBarTheme(betheme),
+    datePickerTheme: _buildDatePickerTheme(betheme),
+    drawerTheme: _buildDrawerTheme(betheme),
+    iconTheme: _buildIconTheme(betheme),
+    bottomAppBarTheme: _buildBottomAppBarTheme(betheme),
+    bannerTheme: _buildBannerTheme(betheme),
+    menuBarTheme: _buildMenuBarTheme(betheme),
+    menuButtonTheme: _buildMenuButtonTheme(betheme),
+    navigationRailTheme: _buildNavigationRailTheme(betheme),
     pageTransitionsTheme: _buildPageTransitionsTheme(),
-    scrollbarTheme: _buildScrollbarTheme(colorScheme),
-    navigationDrawerTheme: _buildNavigationDrawerTheme(colorScheme),
-    menuTheme: _buildMenuTheme(colorScheme),
-    primaryIconTheme: _buildPrimaryIconTheme(colorScheme),
-    searchBarTheme: _buildSearchBarTheme(colorScheme),
-    primaryTextTheme: _buildPrimaryTextTheme(colorScheme),
+    scrollbarTheme: _buildScrollbarTheme(betheme),
+    navigationDrawerTheme: _buildNavigationDrawerTheme(betheme),
+    menuTheme: _buildMenuTheme(betheme),
+    primaryIconTheme: _buildPrimaryIconTheme(betheme),
+    searchBarTheme: _buildSearchBarTheme(betheme),
+    primaryTextTheme: _buildPrimaryTextTheme(betheme),
     extensions: [betheme],
 
     // searchViewTheme: _buildSearchViewTheme(colorScheme),
   );
 }
 
-// // ========== Color Scheme ==========
-// ColorScheme _buildColorScheme(Brightness brightness) {
-//   return ColorScheme.fromSeed(
-//     seedColor: const Color(0xFF6750A4), // M3 baseline purple
-//     brightness: brightness,
-//     // Customize all colors:
-//     primary: const Color(0xFF6750A4),
-//     onPrimary: const Color(0xFFFFFFFF),
-//     primaryContainer: const Color(0xFFEADDFF),
-//     onPrimaryContainer: const Color(0xFF21005D),
-//     secondary: const Color(0xFF625B71),
-//     onSecondary: const Color(0xFFFFFFFF),
-//     secondaryContainer: const Color(0xFFE8DEF8),
-//     onSecondaryContainer: const Color(0xFF1D192B),
-//     tertiary: const Color(0xFF7D5260),
-//     onTertiary: const Color(0xFFFFFFFF),
-//     tertiaryContainer: const Color(0xFFFFD8E4),
-//     onTertiaryContainer: const Color(0xFF31111D),
-//     error: const Color(0xFFB3261E),
-//     onError: const Color(0xFFFFFFFF),
-//     errorContainer: const Color(0xFFF9DEDC),
-//     onErrorContainer: const Color(0xFF410E0B),
-//     outline: const Color(0xFF79747E),
-//     background: const Color(0xFFFFFBFE),
-//     onBackground: const Color(0xFF1C1B1F),
-//     surface: const Color(0xFFFFFBFE),
-//     onSurface: const Color(0xFF1C1B1F),
-//     surfaceVariant: const Color(0xFFE7E0EC),
-//     onSurfaceVariant: const Color(0xFF49454F),
-//     inverseSurface: const Color(0xFF313033),
-//     onInverseSurface: const Color(0xFFF4EFF4),
-//     inversePrimary: const Color(0xFFD0BCFF),
-//     shadow: const Color(0xFF000000),
-//     surfaceTint: const Color(0xFF6750A4),
-//   );
-// }
+// ========== Color Scheme ==========
+ColorScheme _buildColorScheme(final BeColor colors) {
+  return ColorScheme(
+    brightness: colors.isDark ? Brightness.dark : Brightness.light,
 
-// ========== Component Themes ==========
+    // Primary color system from sophisticated palette
+    primary: colors.primary,
+    onPrimary: colors.onPrimary,
+    primaryContainer: colors.primaryContainer,
+    onPrimaryContainer: colors.onPrimaryContainer,
+    primaryFixed: colors.primaryFixed,
+    onPrimaryFixed: colors.onPrimaryFixed,
+    primaryFixedDim: colors.primaryFixedDim,
+    onPrimaryFixedVariant: colors.onPrimaryFixedVariant,
 
-AppBarTheme _buildAppBarTheme(final ColorScheme colorScheme) {
-  return AppBarTheme(
-    backgroundColor: colorScheme.surface,
-    foregroundColor: Colors.transparent,
-    elevation: 0,
-    actionsPadding: p0,
-    scrolledUnderElevation: 2,
-    centerTitle: false,
-    titleTextStyle: TextStyle(fontSize: 22, fontWeight: FontWeight.w500, color: colorScheme.onSurface),
-    surfaceTintColor: Colors.transparent,
-    shadowColor: Colors.blueGrey.withAlpha(100),
-    iconTheme: IconThemeData(color: colorScheme.onSurface, size: 24),
-    actionsIconTheme: IconThemeData(color: colorScheme.onSurface, size: 24),
+    // Secondary color system
+    secondary: colors.secondary,
+    onSecondary: colors.onSecondary,
+    secondaryContainer: colors.secondaryContainer,
+    onSecondaryContainer: colors.onSecondaryContainer,
+    secondaryFixed: colors.secondaryContainer, // Use container as fixed
+    onSecondaryFixed: colors.onSecondaryContainer,
+    secondaryFixedDim: colors.secondary,
+    onSecondaryFixedVariant: colors.onSecondary,
+
+    // Tertiary color system
+    tertiary: colors.tertiary,
+    onTertiary: colors.onTertiary,
+    tertiaryContainer: colors.tertiaryContainer,
+    onTertiaryContainer: colors.onTertiaryContainer,
+    tertiaryFixed: colors.tertiaryContainer,
+    onTertiaryFixed: colors.onTertiaryContainer,
+    tertiaryFixedDim: colors.tertiary,
+    onTertiaryFixedVariant: colors.onTertiary,
+
+    // Error system
+    error: colors.error,
+    onError: colors.onError,
+    errorContainer: colors.errorContainer,
+    onErrorContainer: colors.onErrorContainer,
+
+    // Surface system from sophisticated neutrals
+    surface: colors.surface,
+    onSurface: colors.onSurface,
+    surfaceDim: colors.surfaceDim,
+    surfaceBright: colors.surfaceBright,
+    surfaceContainerLowest: colors.surfaceContainerLowest,
+    surfaceContainerLow: colors.surfaceContainerLow,
+    surfaceContainer: colors.surfaceContainer,
+    surfaceContainerHigh: colors.surfaceContainerHigh,
+    surfaceContainerHighest: colors.surfaceContainerHighest,
+    onSurfaceVariant: colors.onSurfaceVariant,
+
+    // Outline system
+    outline: colors.outline,
+    outlineVariant: colors.outlineVariant,
+
+    // Shadow and scrim
+    shadow: colors.isDark ? const Color(0xFF000000) : const Color(0xFF000000),
+    scrim: colors.isDark ? const Color(0xFF000000) : const Color(0xFF000000),
+
+    // Inverse colors for contrast
+    inverseSurface: colors.isDark ? colors.surfaceContainerHighest : colors.neutral10,
+    onInverseSurface: colors.isDark ? colors.neutral10 : colors.surfaceContainerHighest,
+    inversePrimary: colors.isDark ? colors.primaryLight : colors.primaryDark,
+
+    // Surface tint
+    surfaceTint: colors.primary,
   );
 }
 
-BadgeThemeData _buildBadgeTheme(final ColorScheme colorScheme) {
+// ========== Component Themes ==========
+
+AppBarTheme _buildAppBarTheme(final BeThemeData betheme) {
+  final adaptiveStyle = betheme.style.adaptiveStyle;
+  final colors = betheme.colors;
+
+  return AppBarTheme(
+    backgroundColor: colors.surface,
+    foregroundColor: Colors.transparent,
+    elevation: 0,
+    actionsPadding: EdgeInsets.symmetric(horizontal: adaptiveStyle.buttonMediumPaddingHorizontal),
+    scrolledUnderElevation: 2,
+    centerTitle: false,
+    titleTextStyle: TextStyle(
+      fontSize: adaptiveStyle.titleLargeTextSize,
+      fontWeight: FontWeight.w500,
+      color: colors.onSurface,
+    ),
+    surfaceTintColor: Colors.transparent,
+    shadowColor: Colors.black.withAlpha(100),
+    iconTheme: IconThemeData(color: colors.onSurface, size: 24),
+    actionsIconTheme: IconThemeData(color: colors.onSurface, size: 24),
+  );
+}
+
+BadgeThemeData _buildBadgeTheme(final BeThemeData betheme) {
+  final colors = betheme.colors;
+
   return BadgeThemeData(
-    backgroundColor: colorScheme.error,
-    textColor: colorScheme.onError,
+    backgroundColor: colors.error,
+    textColor: colors.onError,
     alignment: Alignment.topRight,
     offset: const Offset(12, -12),
     padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-    textStyle: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: colorScheme.onError),
+    textStyle: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: colors.onError),
     smallSize: 6,
     largeSize: 16,
   );
@@ -180,37 +222,41 @@ CardThemeData _buildCardTheme(final BeThemeData betheme) {
   );
 }
 
-CheckboxThemeData _buildCheckboxTheme(final ColorScheme colorScheme) {
+CheckboxThemeData _buildCheckboxTheme(final BeThemeData betheme) {
+  final colors = betheme.colors;
+
   return CheckboxThemeData(
     fillColor: WidgetStateProperty.resolveWith<Color>((final states) {
       if (states.contains(WidgetState.selected)) {
-        return colorScheme.primary;
+        return colors.primary;
       }
       return Colors.transparent;
     }),
-    checkColor: WidgetStateProperty.all(colorScheme.onPrimary),
-    side: BorderSide(color: colorScheme.outline, width: 2),
+    checkColor: WidgetStateProperty.all(colors.onPrimary),
+    side: BorderSide(color: colors.outline, width: 2),
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
     splashRadius: 16,
     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
   );
 }
 
-ChipThemeData _buildChipTheme(final ColorScheme colorScheme) {
+ChipThemeData _buildChipTheme(final BeThemeData betheme) {
+  final colors = betheme.colors;
+
   return ChipThemeData(
-    backgroundColor: colorScheme.surfaceContainerHighest,
-    deleteIconColor: colorScheme.onSurfaceVariant,
-    disabledColor: colorScheme.onSurface.withAlpha(0.12.toAlpha()),
-    selectedColor: colorScheme.primary,
-    secondarySelectedColor: colorScheme.secondary,
-    shadowColor: colorScheme.shadow,
-    selectedShadowColor: colorScheme.shadow,
+    backgroundColor: colors.surfaceContainerHighest,
+    deleteIconColor: colors.onSurfaceVariant,
+    disabledColor: colors.onSurface.withAlpha(0.12.toAlpha()),
+    selectedColor: colors.primary,
+    secondarySelectedColor: colors.secondary,
+    shadowColor: Colors.black,
+    selectedShadowColor: Colors.black,
     showCheckmark: true,
-    checkmarkColor: colorScheme.onPrimary,
+    checkmarkColor: colors.onPrimary,
     labelPadding: const EdgeInsets.symmetric(horizontal: 8),
-    labelStyle: TextStyle(color: colorScheme.onSurface, fontSize: 12),
-    secondaryLabelStyle: TextStyle(color: colorScheme.onPrimary, fontSize: 12),
-    brightness: colorScheme.brightness,
+    labelStyle: TextStyle(color: colors.onSurface, fontSize: 12),
+    secondaryLabelStyle: TextStyle(color: colors.onPrimary, fontSize: 12),
+    brightness: colors.isDark ? Brightness.dark : Brightness.light,
     elevation: 0,
     pressElevation: 1,
     shape: const StadiumBorder(),
@@ -218,16 +264,18 @@ ChipThemeData _buildChipTheme(final ColorScheme colorScheme) {
   );
 }
 
-DialogThemeData _buildDialogTheme(final ColorScheme colorScheme) {
+DialogThemeData _buildDialogTheme(final BeThemeData betheme) {
+  final colors = betheme.colors;
+
   return DialogThemeData(
-    backgroundColor: colorScheme.surface,
+    backgroundColor: colors.surface,
     elevation: 6,
-    shadowColor: colorScheme.shadow,
-    surfaceTintColor: colorScheme.surfaceTint,
+    shadowColor: Colors.black,
+    surfaceTintColor: colors.primary,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
     alignment: Alignment.center,
-    titleTextStyle: TextStyle(fontSize: 24, fontWeight: FontWeight.w500, color: colorScheme.onSurface),
-    contentTextStyle: TextStyle(fontSize: 16, color: colorScheme.onSurface.withAlpha(0.8.toAlpha())),
+    titleTextStyle: TextStyle(fontSize: 24, fontWeight: FontWeight.w500, color: colors.onSurface),
+    contentTextStyle: TextStyle(fontSize: 16, color: colors.onSurface.withAlpha(0.8.toAlpha())),
     actionsPadding: const EdgeInsets.all(16),
   );
 }
@@ -258,9 +306,11 @@ TextTheme _buildTextTheme(final BeStyle bestyle) {
 
 // ========== Remaining Theme Builders ==========
 
-DividerThemeData _buildDividerTheme(final ColorScheme colorScheme) {
+DividerThemeData _buildDividerTheme(final BeThemeData betheme) {
+  final colors = betheme.colors;
+
   return DividerThemeData(
-    color: colorScheme.outline.withAlpha(0.3.toAlpha()),
+    color: colors.outline.withAlpha(0.3.toAlpha()),
     thickness: 1,
     indent: 16,
     endIndent: 16,
@@ -389,14 +439,16 @@ ElevatedButtonThemeData _buildElevatedButtonTheme(final BeThemeData betheme) {
   );
 }
 
-ExpansionTileThemeData _buildExpansionTileTheme(final ColorScheme colorScheme) {
+ExpansionTileThemeData _buildExpansionTileTheme(final BeThemeData betheme) {
+  final colors = betheme.colors;
+
   return ExpansionTileThemeData(
-    backgroundColor: colorScheme.surface,
-    collapsedBackgroundColor: colorScheme.surface,
-    textColor: colorScheme.onSurface,
-    collapsedTextColor: colorScheme.onSurface,
-    iconColor: colorScheme.onSurface,
-    collapsedIconColor: colorScheme.onSurface,
+    backgroundColor: colors.surface,
+    collapsedBackgroundColor: colors.surface,
+    textColor: colors.onSurface,
+    collapsedTextColor: colors.onSurface,
+    iconColor: colors.onSurface,
+    collapsedIconColor: colors.onSurface,
     childrenPadding: EdgeInsets.zero,
     clipBehavior: Clip.antiAlias,
     expansionAnimationStyle: const AnimationStyle(
@@ -411,7 +463,7 @@ ExpansionTileThemeData _buildExpansionTileTheme(final ColorScheme colorScheme) {
       borderRadius: BorderRadius.all(Radius.circular(8)),
     ),
     shape: BeRoundedRectangleBorder(
-      backgroundColor: colorScheme.onTertiary.withAlpha(5),
+      backgroundColor: colors.tertiary.withAlpha(5),
       side: const BorderSide(color: Colors.grey, width: 0.2),
       borderRadius: const BorderRadius.all(Radius.circular(8)),
     ),
@@ -567,13 +619,13 @@ InputDecorationTheme _buildInputDecorationTheme(final BeThemeData betheme) {
       ),
     ),
 
-    // Responsive content padding for different screen sizes
+    // Compact content padding for cleaner appearance
     contentPadding: EdgeInsets.symmetric(
       horizontal: adaptiveStyle.inputContentPaddingHorizontal,
-      vertical: adaptiveStyle.inputContentPaddingVertical,
+      vertical: adaptiveStyle.inputContentPaddingVertical * 0.7, // Reduced vertical padding
     ),
 
-    // Modern label styling with responsive text sizes
+    // Simplified label styling - no floating labels for compact design
     labelStyle: TextStyle(
       fontSize: adaptiveStyle.inputLabelTextSize,
       fontWeight: FontWeight.w500,
@@ -581,7 +633,7 @@ InputDecorationTheme _buildInputDecorationTheme(final BeThemeData betheme) {
       letterSpacing: 0.1,
     ),
 
-    // Floating label style with brand color
+    // Disable floating labels for compact design
     floatingLabelStyle: TextStyle(
       fontSize: adaptiveStyle.inputLabelTextSize - 1,
       fontWeight: FontWeight.w600,
@@ -638,35 +690,31 @@ InputDecorationTheme _buildInputDecorationTheme(final BeThemeData betheme) {
     prefixIconColor: colors.textSecondary,
     suffixIconColor: colors.textSecondary,
 
-    // Modern design choices
+    // Compact design choices - no floating labels
     isCollapsed: false,
-    isDense: false,
+    isDense: true, // Enable dense mode for compactness
     alignLabelWithHint: false,
-    floatingLabelBehavior: FloatingLabelBehavior.auto,
+    floatingLabelBehavior: FloatingLabelBehavior.never, // Disable floating labels
   );
 }
 
-ListTileThemeData _buildListTileTheme(final ColorScheme colorScheme) {
+ListTileThemeData _buildListTileTheme(final BeThemeData betheme) {
+  final colors = betheme.colors;
+
   return ListTileThemeData(
     dense: false,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
     tileColor: Colors.transparent,
-    selectedTileColor: colorScheme.primaryContainer,
-    iconColor: colorScheme.onSurfaceVariant,
-    textColor: colorScheme.onSurface,
-    selectedColor: colorScheme.onPrimaryContainer,
+    selectedTileColor: colors.primaryContainer,
+    iconColor: colors.onSurfaceVariant,
+    textColor: colors.onSurface,
+    selectedColor: colors.onPrimaryContainer,
     contentPadding: px16 + py8,
     horizontalTitleGap: 16,
     minVerticalPadding: 8,
-    // minLeadingWidth: 32,
     enableFeedback: true,
     minTileHeight: 0,
-    // leadingAndTrailingTextStyle: TextStyle(
-    //   fontSize: 12,
-    //   color: colorScheme.onSurfaceVariant,
-    //   fontWeight: FontWeight.w500,
-    // ),
-    titleTextStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: colorScheme.onSurface),
+    titleTextStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: colors.onSurface),
     subtitleTextStyle: const TextStyle(fontSize: 12, color: BeColors.neutral60),
     mouseCursor: WidgetStateProperty.resolveWith((final states) {
       if (states.contains(WidgetState.disabled)) {
@@ -680,24 +728,26 @@ ListTileThemeData _buildListTileTheme(final ColorScheme colorScheme) {
   );
 }
 
-NavigationBarThemeData _buildNavigationBarTheme(final ColorScheme colorScheme) {
+NavigationBarThemeData _buildNavigationBarTheme(final BeThemeData betheme) {
+  final colors = betheme.colors;
+
   return NavigationBarThemeData(
     height: 80,
-    backgroundColor: colorScheme.surface,
+    backgroundColor: colors.surface,
     elevation: 3,
-    indicatorColor: colorScheme.secondaryContainer,
+    indicatorColor: colors.secondaryContainer,
     labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
     labelTextStyle: WidgetStateProperty.resolveWith((final states) {
       final isSelected = states.contains(WidgetState.selected);
       return TextStyle(
         fontSize: 12,
         fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
-        color: isSelected ? colorScheme.onSurface : colorScheme.onSurfaceVariant,
+        color: isSelected ? colors.onSurface : colors.onSurfaceVariant,
       );
     }),
     iconTheme: WidgetStateProperty.resolveWith((final states) {
       final isSelected = states.contains(WidgetState.selected);
-      return IconThemeData(size: 24, color: isSelected ? colorScheme.onSurface : colorScheme.onSurfaceVariant);
+      return IconThemeData(size: 24, color: isSelected ? colors.onSurface : colors.onSurfaceVariant);
     }),
   );
 }
@@ -711,24 +761,24 @@ OutlinedButtonThemeData _buildOutlinedButtonTheme(final BeThemeData betheme) {
       // Background - transparent for outlined style
       backgroundColor: const WidgetStatePropertyAll(Colors.transparent),
 
-      // Foreground colors with brand color scheme
+      // Foreground colors with brand color scheme - Fixed: keep text visible
       foregroundColor: WidgetStateProperty.resolveWith((final states) {
         if (states.contains(WidgetState.disabled)) {
           return colors.disabled;
         }
         if (states.contains(WidgetState.pressed)) {
-          return colors.onPrimary;
+          return colors.primaryDark; // Use darker primary instead of onPrimary (white)
         }
         return colors.primary;
       }),
 
-      // Overlay color for button interactions
+      // Overlay color for button interactions - Fixed: lighter ripple effect
       overlayColor: WidgetStateProperty.resolveWith((final states) {
         if (states.contains(WidgetState.pressed)) {
-          return colors.primary;
+          return colors.primary.withValues(alpha: 0.1); // Much lighter for pressed state
         }
         if (states.contains(WidgetState.hovered)) {
-          return colors.primary.withValues(alpha: 0.05);
+          return colors.primary.withValues(alpha: 0.05); // Very light for hover
         }
         return Colors.transparent;
       }),
@@ -742,10 +792,13 @@ OutlinedButtonThemeData _buildOutlinedButtonTheme(final BeThemeData betheme) {
         return TextStyle(fontSize: adaptiveStyle.buttonMediumTextSize, fontWeight: FontWeight.w600, letterSpacing: 0.5);
       }),
 
-      // Icon styling
+      // Icon styling - matches text color behavior
       iconColor: WidgetStateProperty.resolveWith((final states) {
         if (states.contains(WidgetState.disabled)) {
           return colors.disabled;
+        }
+        if (states.contains(WidgetState.pressed)) {
+          return colors.primaryDark; // Consistent with text color
         }
         return colors.primary;
       }),
@@ -788,20 +841,21 @@ OutlinedButtonThemeData _buildOutlinedButtonTheme(final BeThemeData betheme) {
   );
 }
 
-// ========== Popup Menu Theme ==========
-PopupMenuThemeData _buildPopupMenuTheme(final ColorScheme colorScheme) {
+PopupMenuThemeData _buildPopupMenuTheme(final BeThemeData betheme) {
+  final colors = betheme.colors;
+
   return PopupMenuThemeData(
-    color: colorScheme.surface,
+    color: colors.surface,
     elevation: 3,
-    shadowColor: colorScheme.shadow,
-    surfaceTintColor: colorScheme.surfaceTint,
-    textStyle: TextStyle(fontSize: 14, color: colorScheme.onSurface),
+    shadowColor: Colors.black,
+    surfaceTintColor: colors.primary,
+    textStyle: TextStyle(fontSize: 14, color: colors.onSurface),
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(8),
-      side: BorderSide(color: colorScheme.outline.withAlpha(0.2.toAlpha())),
+      side: BorderSide(color: colors.outline.withAlpha(0.2.toAlpha())),
     ),
     position: PopupMenuPosition.under,
-    iconColor: colorScheme.onSurfaceVariant,
+    iconColor: colors.onSurfaceVariant,
     iconSize: 24,
     enableFeedback: true,
     menuPadding: const EdgeInsets.all(8),
@@ -816,38 +870,40 @@ PopupMenuThemeData _buildPopupMenuTheme(final ColorScheme colorScheme) {
       return TextStyle(
         fontSize: 14,
         fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
-        color: isSelected ? colorScheme.onSurface : colorScheme.onSurfaceVariant,
+        color: isSelected ? colors.onSurface : colors.onSurfaceVariant,
       );
     }),
   );
 }
 
-// ========== Progress Indicator Theme ==========
-ProgressIndicatorThemeData _buildProgressIndicatorTheme(final ColorScheme colorScheme) {
+ProgressIndicatorThemeData _buildProgressIndicatorTheme(final BeThemeData betheme) {
+  final colors = betheme.colors;
+
   return ProgressIndicatorThemeData(
-    color: colorScheme.primary,
-    linearTrackColor: colorScheme.surfaceContainerHighest,
-    circularTrackColor: colorScheme.surfaceContainerHighest,
-    refreshBackgroundColor: colorScheme.surface,
+    color: colors.primary,
+    linearTrackColor: colors.surfaceContainerHighest,
+    circularTrackColor: colors.surfaceContainerHighest,
+    refreshBackgroundColor: colors.surface,
     linearMinHeight: 4,
   );
 }
 
-// ========== Radio Theme ==========
-RadioThemeData _buildRadioTheme(final ColorScheme colorScheme) {
+RadioThemeData _buildRadioTheme(final BeThemeData betheme) {
+  final colors = betheme.colors;
+
   return RadioThemeData(
     fillColor: WidgetStateProperty.resolveWith((final states) {
       if (states.contains(WidgetState.selected)) {
-        return colorScheme.primary;
+        return colors.primary;
       }
-      return colorScheme.onSurfaceVariant;
+      return colors.onSurfaceVariant;
     }),
     overlayColor: WidgetStateProperty.resolveWith((final states) {
       if (states.contains(WidgetState.pressed)) {
-        return colorScheme.primary.withAlpha(0.1.toAlpha());
+        return colors.primary.withAlpha(0.1.toAlpha());
       }
       if (states.contains(WidgetState.hovered)) {
-        return colorScheme.onSurface.withAlpha(0.04.toAlpha());
+        return colors.onSurface.withAlpha(0.04.toAlpha());
       }
       return null;
     }),
@@ -857,17 +913,18 @@ RadioThemeData _buildRadioTheme(final ColorScheme colorScheme) {
   );
 }
 
-// ========== Slider Theme ==========
-SliderThemeData _buildSliderTheme(final ColorScheme colorScheme) {
+SliderThemeData _buildSliderTheme(final BeThemeData betheme) {
+  final colors = betheme.colors;
+
   return SliderThemeData(
-    activeTrackColor: colorScheme.primary,
-    inactiveTrackColor: colorScheme.surfaceContainerHighest,
-    secondaryActiveTrackColor: colorScheme.primaryContainer,
-    thumbColor: colorScheme.primary,
-    overlayColor: colorScheme.primary.withAlpha(0.12.toAlpha()),
-    valueIndicatorColor: colorScheme.primary,
-    activeTickMarkColor: colorScheme.onPrimary,
-    inactiveTickMarkColor: colorScheme.surfaceContainerHighest,
+    activeTrackColor: colors.primary,
+    inactiveTrackColor: colors.surfaceContainerHighest,
+    secondaryActiveTrackColor: colors.primaryContainer,
+    thumbColor: colors.primary,
+    overlayColor: colors.primary.withAlpha(0.12.toAlpha()),
+    valueIndicatorColor: colors.primary,
+    activeTickMarkColor: colors.onPrimary,
+    inactiveTickMarkColor: colors.surfaceContainerHighest,
     thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 10),
     overlayShape: const RoundSliderOverlayShape(overlayRadius: 20),
     valueIndicatorShape: const PaddleSliderValueIndicatorShape(),
@@ -880,43 +937,45 @@ SliderThemeData _buildSliderTheme(final ColorScheme colorScheme) {
   );
 }
 
-// ========== SnackBar Theme ==========
-SnackBarThemeData _buildSnackBarTheme(final ColorScheme colorScheme) {
+SnackBarThemeData _buildSnackBarTheme(final BeThemeData betheme) {
+  final colors = betheme.colors;
+
   return SnackBarThemeData(
-    backgroundColor: colorScheme.inverseSurface,
-    actionTextColor: colorScheme.inversePrimary,
-    disabledActionTextColor: colorScheme.onSurface.withAlpha(0.38.toAlpha()),
-    contentTextStyle: TextStyle(color: colorScheme.onInverseSurface),
+    backgroundColor: colors.isDark ? colors.surfaceContainerHighest : colors.neutral10,
+    actionTextColor: colors.primary,
+    disabledActionTextColor: colors.onSurface.withAlpha(0.38.toAlpha()),
+    contentTextStyle: TextStyle(color: colors.isDark ? colors.neutral10 : colors.surfaceContainerHighest),
     elevation: 6,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
     behavior: SnackBarBehavior.floating,
     width: 400,
     insetPadding: const EdgeInsets.all(16),
     showCloseIcon: true,
-    closeIconColor: colorScheme.onInverseSurface,
+    closeIconColor: colors.isDark ? colors.neutral10 : colors.surfaceContainerHighest,
   );
 }
 
-// ========== Switch Theme ==========
-SwitchThemeData _buildSwitchTheme(final ColorScheme colorScheme) {
+SwitchThemeData _buildSwitchTheme(final BeThemeData betheme) {
+  final colors = betheme.colors;
+
   return SwitchThemeData(
     thumbColor: WidgetStateProperty.resolveWith((final states) {
       if (states.contains(WidgetState.selected)) {
-        return colorScheme.onPrimary;
+        return colors.onPrimary;
       }
-      return colorScheme.outlineVariant;
+      return colors.outlineVariant;
     }),
     trackColor: WidgetStateProperty.resolveWith((final states) {
       if (states.contains(WidgetState.selected)) {
-        return colorScheme.primary;
+        return colors.primary;
       }
-      return colorScheme.surfaceContainerHighest;
+      return colors.surfaceContainerHighest;
     }),
     trackOutlineColor: WidgetStateProperty.resolveWith((final states) {
       if (states.contains(WidgetState.selected)) {
         return Colors.transparent;
       }
-      return colorScheme.outline;
+      return colors.outline;
     }),
     trackOutlineWidth: const WidgetStatePropertyAll(2),
     splashRadius: 16,
@@ -930,19 +989,20 @@ SwitchThemeData _buildSwitchTheme(final ColorScheme colorScheme) {
   );
 }
 
-// ========== Tab Bar Theme ==========
-TabBarThemeData _buildTabBarTheme(final ColorScheme colorScheme) {
+TabBarThemeData _buildTabBarTheme(final BeThemeData betheme) {
+  final colors = betheme.colors;
+
   return TabBarThemeData(
-    indicator: UnderlineTabIndicator(borderSide: BorderSide(width: 2, color: colorScheme.primary)),
+    indicator: UnderlineTabIndicator(borderSide: BorderSide(width: 2, color: colors.primary)),
     indicatorSize: TabBarIndicatorSize.tab,
-    dividerColor: colorScheme.surfaceContainerHighest,
-    labelColor: colorScheme.primary,
-    unselectedLabelColor: colorScheme.onSurfaceVariant,
+    dividerColor: colors.surfaceContainerHighest,
+    labelColor: colors.primary,
+    unselectedLabelColor: colors.onSurfaceVariant,
     labelStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
     unselectedLabelStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
     overlayColor: WidgetStateProperty.resolveWith((final states) {
       if (states.contains(WidgetState.pressed)) {
-        return colorScheme.primary.withAlpha(0.12.toAlpha());
+        return colors.primary.withAlpha(0.12.toAlpha());
       }
       return null;
     }),
@@ -1031,40 +1091,42 @@ TextButtonThemeData _buildTextButtonTheme(final BeThemeData betheme) {
   );
 }
 
-// ========== Text Selection Theme ==========
-TextSelectionThemeData _buildTextSelectionTheme(final ColorScheme colorScheme) {
+TextSelectionThemeData _buildTextSelectionTheme(final BeThemeData betheme) {
+  final colors = betheme.colors;
+
   return TextSelectionThemeData(
-    cursorColor: colorScheme.primary,
-    selectionColor: colorScheme.primary.withAlpha(0.4.toAlpha()),
-    selectionHandleColor: colorScheme.primary,
+    cursorColor: colors.primary,
+    selectionColor: colors.primary.withAlpha(0.4.toAlpha()),
+    selectionHandleColor: colors.primary,
   );
 }
 
-// ========== Time Picker Theme ==========
-TimePickerThemeData _buildTimePickerTheme(final ColorScheme colorScheme) {
+TimePickerThemeData _buildTimePickerTheme(final BeThemeData betheme) {
+  final colors = betheme.colors;
+
   return TimePickerThemeData(
-    backgroundColor: colorScheme.surface,
-    hourMinuteTextColor: colorScheme.onSurface,
-    hourMinuteColor: colorScheme.surfaceContainerHighest,
-    dayPeriodTextColor: colorScheme.onSurface,
-    dayPeriodColor: colorScheme.surfaceContainerHighest,
-    dialHandColor: colorScheme.primary,
-    dialBackgroundColor: colorScheme.surfaceContainerHighest,
-    dialTextColor: colorScheme.onSurfaceVariant,
-    entryModeIconColor: colorScheme.onSurfaceVariant,
-    dayPeriodBorderSide: BorderSide(color: colorScheme.outline),
+    backgroundColor: colors.surface,
+    hourMinuteTextColor: colors.onSurface,
+    hourMinuteColor: colors.surfaceContainerHighest,
+    dayPeriodTextColor: colors.onSurface,
+    dayPeriodColor: colors.surfaceContainerHighest,
+    dialHandColor: colors.primary,
+    dialBackgroundColor: colors.surfaceContainerHighest,
+    dialTextColor: colors.onSurfaceVariant,
+    entryModeIconColor: colors.onSurfaceVariant,
+    dayPeriodBorderSide: BorderSide(color: colors.outline),
     hourMinuteTextStyle: const TextStyle(fontSize: 48, fontWeight: FontWeight.w400),
     dayPeriodTextStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
-    helpTextStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: colorScheme.onSurface),
+    helpTextStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: colors.onSurface),
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
     hourMinuteShape: const CircleBorder(),
     dayPeriodShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-    // inputDecorationTheme: _buildInputDecorationTheme(betheme),
   );
 }
 
-// ========== Tooltip Theme ==========
-TooltipThemeData _buildTooltipTheme(final ColorScheme colorScheme) {
+TooltipThemeData _buildTooltipTheme(final BeThemeData betheme) {
+  final colors = betheme.colors;
+
   return TooltipThemeData(
     constraints: const BoxConstraints(minHeight: 32),
     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -1072,15 +1134,17 @@ TooltipThemeData _buildTooltipTheme(final ColorScheme colorScheme) {
     verticalOffset: 8,
     preferBelow: true,
     excludeFromSemantics: true,
-    decoration: BoxDecoration(color: colorScheme.inverseSurface, borderRadius: BorderRadius.circular(4)),
-    textStyle: TextStyle(color: colorScheme.onInverseSurface, fontSize: 12),
+    decoration: BoxDecoration(
+      color: colors.isDark ? colors.surfaceContainerHighest : colors.neutral10,
+      borderRadius: BorderRadius.circular(4),
+    ),
+    textStyle: TextStyle(color: colors.isDark ? colors.neutral10 : colors.surfaceContainerHighest, fontSize: 12),
     waitDuration: const Duration(milliseconds: 500),
     showDuration: const Duration(seconds: 2),
   );
 }
 
-// ========== Action Icon Theme ==========
-ActionIconThemeData _buildActionIconTheme(final ColorScheme colorScheme) {
+ActionIconThemeData _buildActionIconTheme(final BeThemeData betheme) {
   return ActionIconThemeData(
     backButtonIconBuilder:
         (final context) => IconButton(icon: const Icon(Icons.arrow_back), onPressed: () => Navigator.maybePop(context)),
@@ -1094,55 +1158,58 @@ ActionIconThemeData _buildActionIconTheme(final ColorScheme colorScheme) {
   );
 }
 
-// ========== Data Table Theme ==========
-DataTableThemeData _buildDataTableTheme(final ColorScheme colorScheme) {
+DataTableThemeData _buildDataTableTheme(final BeThemeData betheme) {
+  final colors = betheme.colors;
+
   return DataTableThemeData(
     dataRowColor: WidgetStateProperty.resolveWith((final states) {
       if (states.contains(WidgetState.selected)) {
-        return colorScheme.primaryContainer;
+        return colors.primaryContainer;
       }
-      return colorScheme.surface;
+      return colors.surface;
     }),
-    dataTextStyle: TextStyle(color: colorScheme.onSurface),
-    headingRowColor: WidgetStatePropertyAll(colorScheme.surfaceContainerHighest),
-    headingTextStyle: TextStyle(color: colorScheme.onSurface, fontWeight: FontWeight.w600),
+    dataTextStyle: TextStyle(color: colors.onSurface),
+    headingRowColor: WidgetStatePropertyAll(colors.surfaceContainerHighest),
+    headingTextStyle: TextStyle(color: colors.onSurface, fontWeight: FontWeight.w600),
     horizontalMargin: 16,
     columnSpacing: 24,
     dividerThickness: 1,
     checkboxHorizontalMargin: 12,
     decoration: BoxDecoration(
-      border: Border.all(color: colorScheme.outline.withAlpha(0.2.toAlpha())),
+      border: Border.all(color: colors.outline.withAlpha(0.2.toAlpha())),
       borderRadius: BorderRadius.circular(8),
     ),
   );
 }
 
-// ========== Bottom Sheet Theme ==========
-BottomSheetThemeData _buildBottomSheetTheme(final ColorScheme colorScheme) {
+BottomSheetThemeData _buildBottomSheetTheme(final BeThemeData betheme) {
+  final colors = betheme.colors;
+
   return BottomSheetThemeData(
-    backgroundColor: colorScheme.surface,
+    backgroundColor: colors.surface,
     elevation: 6,
-    modalBackgroundColor: colorScheme.surface,
+    modalBackgroundColor: colors.surface,
     modalElevation: 12,
     shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(16))),
     clipBehavior: Clip.antiAlias,
     constraints: const BoxConstraints(maxWidth: 640),
-    surfaceTintColor: colorScheme.surfaceTint,
+    surfaceTintColor: colors.primary,
     showDragHandle: true,
-    dragHandleColor: colorScheme.onSurfaceVariant,
+    dragHandleColor: colors.onSurfaceVariant,
     dragHandleSize: const Size(32, 4),
   );
 }
 
-// ========== Bottom Navigation Bar Theme ==========
-BottomNavigationBarThemeData _buildBottomNavigationBarTheme(final ColorScheme colorScheme) {
+BottomNavigationBarThemeData _buildBottomNavigationBarTheme(final BeThemeData betheme) {
+  final colors = betheme.colors;
+
   return BottomNavigationBarThemeData(
-    backgroundColor: colorScheme.surface,
+    backgroundColor: colors.surface,
     elevation: 3,
-    selectedItemColor: colorScheme.primary,
-    unselectedItemColor: colorScheme.onSurfaceVariant,
-    selectedIconTheme: IconThemeData(color: colorScheme.primary, size: 24),
-    unselectedIconTheme: IconThemeData(color: colorScheme.onSurfaceVariant, size: 24),
+    selectedItemColor: colors.primary,
+    unselectedItemColor: colors.onSurfaceVariant,
+    selectedIconTheme: IconThemeData(color: colors.primary, size: 24),
+    unselectedIconTheme: IconThemeData(color: colors.onSurfaceVariant, size: 24),
     selectedLabelStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
     unselectedLabelStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
     showSelectedLabels: true,
@@ -1153,62 +1220,62 @@ BottomNavigationBarThemeData _buildBottomNavigationBarTheme(final ColorScheme co
   );
 }
 
-// ========== Date Picker Theme ==========
-DatePickerThemeData _buildDatePickerTheme(final BeThemeData betheme, final ColorScheme colorScheme) {
+DatePickerThemeData _buildDatePickerTheme(final BeThemeData betheme) {
+  final colors = betheme.colors;
+
   return DatePickerThemeData(
-    backgroundColor: colorScheme.surface,
+    backgroundColor: colors.surface,
     elevation: 6,
-    shadowColor: colorScheme.shadow,
-    surfaceTintColor: colorScheme.surfaceTint,
-    headerBackgroundColor: colorScheme.primary,
-    headerForegroundColor: colorScheme.onPrimary,
-    weekdayStyle: TextStyle(color: colorScheme.onSurface),
-    dayStyle: TextStyle(color: colorScheme.onSurface),
-    yearStyle: TextStyle(color: colorScheme.onSurface),
-    rangePickerBackgroundColor: colorScheme.surface,
+    shadowColor: Colors.black,
+    surfaceTintColor: colors.primary,
+    headerBackgroundColor: colors.primary,
+    headerForegroundColor: colors.onPrimary,
+    weekdayStyle: TextStyle(color: colors.onSurface),
+    dayStyle: TextStyle(color: colors.onSurface),
+    yearStyle: TextStyle(color: colors.onSurface),
+    rangePickerBackgroundColor: colors.surface,
     rangePickerElevation: 6,
-    rangePickerShadowColor: colorScheme.shadow,
-    rangePickerSurfaceTintColor: colorScheme.surfaceTint,
-    rangePickerHeaderBackgroundColor: colorScheme.primary,
-    rangePickerHeaderForegroundColor: colorScheme.onPrimary,
-    rangeSelectionBackgroundColor: colorScheme.primaryContainer,
-    // rangeSelectionOverlayColor: colorScheme.onPrimaryContainer.withAlpha(
-    //   0.12,
-    // ),
+    rangePickerShadowColor: Colors.black,
+    rangePickerSurfaceTintColor: colors.primary,
+    rangePickerHeaderBackgroundColor: colors.primary,
+    rangePickerHeaderForegroundColor: colors.onPrimary,
+    rangeSelectionBackgroundColor: colors.primaryContainer,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
     cancelButtonStyle: _buildTextButtonTheme(betheme).style,
     confirmButtonStyle: _buildTextButtonTheme(betheme).style,
-    headerHelpStyle: TextStyle(color: colorScheme.onSurfaceVariant),
+    headerHelpStyle: TextStyle(color: colors.onSurfaceVariant),
 
     dayOverlayColor: WidgetStateProperty.resolveWith((final states) {
       if (states.contains(WidgetState.selected)) {
-        return colorScheme.primary.withAlpha(0.12.toAlpha());
+        return colors.primary.withAlpha(0.12.toAlpha());
       }
       return null;
     }),
-    todayBorder: BorderSide(color: colorScheme.primary),
-    todayForegroundColor: WidgetStatePropertyAll(colorScheme.primary),
+    todayBorder: BorderSide(color: colors.primary),
+    todayForegroundColor: WidgetStatePropertyAll(colors.primary),
   );
 }
 
-// ========== Drawer Theme ==========
-DrawerThemeData _buildDrawerTheme(final ColorScheme colorScheme) {
+DrawerThemeData _buildDrawerTheme(final BeThemeData betheme) {
+  final colors = betheme.colors;
+
   return DrawerThemeData(
-    backgroundColor: colorScheme.surface,
+    backgroundColor: colors.surface,
     elevation: 16,
-    shadowColor: colorScheme.shadow,
-    surfaceTintColor: colorScheme.surfaceTint,
+    shadowColor: Colors.black,
+    surfaceTintColor: colors.primary,
     shape: const RoundedRectangleBorder(),
     width: 304,
-    scrimColor: colorScheme.scrim.withAlpha(0.5.toAlpha()),
+    scrimColor: Colors.black.withAlpha(0.5.toAlpha()),
     endShape: const RoundedRectangleBorder(),
   );
 }
 
-// ========== Icon Theme ==========
-IconThemeData _buildIconTheme(final ColorScheme colorScheme) {
+IconThemeData _buildIconTheme(final BeThemeData betheme) {
+  final colors = betheme.colors;
+
   return IconThemeData(
-    color: colorScheme.onSurfaceVariant,
+    color: colors.onSurfaceVariant,
     size: 24,
     fill: 0.0,
     weight: 400,
@@ -1218,75 +1285,79 @@ IconThemeData _buildIconTheme(final ColorScheme colorScheme) {
   );
 }
 
-// ========== Bottom App Bar Theme ==========
-BottomAppBarThemeData _buildBottomAppBarTheme(final ColorScheme colorScheme) {
+BottomAppBarThemeData _buildBottomAppBarTheme(final BeThemeData betheme) {
+  final colors = betheme.colors;
+
   return BottomAppBarThemeData(
-    color: colorScheme.surface,
+    color: colors.surface,
     elevation: 4,
-    shadowColor: colorScheme.shadow,
-    surfaceTintColor: colorScheme.surfaceTint,
+    shadowColor: Colors.black,
+    surfaceTintColor: colors.primary,
     height: 80,
     padding: EdgeInsets.zero,
-    // notchMargin: 8,
     shape: const AutomaticNotchedShape(RoundedRectangleBorder(), StadiumBorder()),
   );
 }
 
-// ========== Banner Theme ==========
-MaterialBannerThemeData _buildBannerTheme(final ColorScheme colorScheme) {
+MaterialBannerThemeData _buildBannerTheme(final BeThemeData betheme) {
+  final colors = betheme.colors;
+
   return MaterialBannerThemeData(
-    backgroundColor: colorScheme.surfaceContainerHighest,
-    contentTextStyle: TextStyle(color: colorScheme.onSurfaceVariant),
+    backgroundColor: colors.surfaceContainerHighest,
+    contentTextStyle: TextStyle(color: colors.onSurfaceVariant),
     leadingPadding: const EdgeInsets.only(left: 16),
     padding: const EdgeInsets.symmetric(horizontal: 8),
     elevation: 1,
   );
 }
 
-// ========== Menu Bar Theme ==========
-MenuBarThemeData _buildMenuBarTheme(final ColorScheme colorScheme) {
+MenuBarThemeData _buildMenuBarTheme(final BeThemeData betheme) {
+  final colors = betheme.colors;
+
   return MenuBarThemeData(
     style: MenuStyle(
-      backgroundColor: WidgetStatePropertyAll(colorScheme.surface),
+      backgroundColor: WidgetStatePropertyAll(colors.surface),
       elevation: const WidgetStatePropertyAll(2),
-      shadowColor: WidgetStatePropertyAll(colorScheme.shadow),
-      surfaceTintColor: WidgetStatePropertyAll(colorScheme.surfaceTint),
+      shadowColor: const WidgetStatePropertyAll(Colors.black),
+      surfaceTintColor: WidgetStatePropertyAll(colors.primary),
       shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
     ),
   );
 }
 
-// ========== Menu Button Theme ==========
-MenuButtonThemeData _buildMenuButtonTheme(final ColorScheme colorScheme) {
+MenuButtonThemeData _buildMenuButtonTheme(final BeThemeData betheme) {
+  final colors = betheme.colors;
+
   return MenuButtonThemeData(
     style: ButtonStyle(
       backgroundColor: WidgetStateProperty.resolveWith((final states) {
         if (states.contains(WidgetState.pressed)) {
-          return colorScheme.primary.withAlpha(0.12.toAlpha());
+          return colors.primary.withAlpha(0.12.toAlpha());
         }
         return null;
       }),
-      foregroundColor: WidgetStatePropertyAll(colorScheme.onSurface),
-      overlayColor: WidgetStatePropertyAll(colorScheme.primary.withAlpha(0.08.toAlpha())),
+      foregroundColor: WidgetStatePropertyAll(colors.onSurface),
+      overlayColor: WidgetStatePropertyAll(colors.primary.withAlpha(0.08.toAlpha())),
       padding: const WidgetStatePropertyAll(EdgeInsets.all(8)),
       shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
     ),
   );
 }
 
-// ========== Navigation Rail Theme ==========
-NavigationRailThemeData _buildNavigationRailTheme(final ColorScheme colorScheme) {
+NavigationRailThemeData _buildNavigationRailTheme(final BeThemeData betheme) {
+  final colors = betheme.colors;
+
   return NavigationRailThemeData(
-    backgroundColor: colorScheme.surface,
+    backgroundColor: colors.surface,
     elevation: 2,
-    unselectedLabelTextStyle: TextStyle(color: colorScheme.onSurfaceVariant),
-    selectedLabelTextStyle: TextStyle(color: colorScheme.primary),
-    unselectedIconTheme: IconThemeData(color: colorScheme.onSurfaceVariant),
-    selectedIconTheme: IconThemeData(color: colorScheme.primary),
+    unselectedLabelTextStyle: TextStyle(color: colors.onSurfaceVariant),
+    selectedLabelTextStyle: TextStyle(color: colors.primary),
+    unselectedIconTheme: IconThemeData(color: colors.onSurfaceVariant),
+    selectedIconTheme: IconThemeData(color: colors.primary),
     labelType: NavigationRailLabelType.all,
     groupAlignment: 0,
     useIndicator: true,
-    indicatorColor: colorScheme.secondaryContainer,
+    indicatorColor: colors.secondaryContainer,
     minWidth: 72,
     minExtendedWidth: 200,
   );
@@ -1305,20 +1376,21 @@ PageTransitionsTheme _buildPageTransitionsTheme() {
   );
 }
 
-// ========== Scrollbar Theme ==========
-ScrollbarThemeData _buildScrollbarTheme(final ColorScheme colorScheme) {
+ScrollbarThemeData _buildScrollbarTheme(final BeThemeData betheme) {
+  final colors = betheme.colors;
+
   return ScrollbarThemeData(
     thumbColor: WidgetStateProperty.resolveWith((final states) {
       if (states.contains(WidgetState.pressed)) {
-        return colorScheme.onSurface.withAlpha(0.6.toAlpha());
+        return colors.onSurface.withAlpha(0.6.toAlpha());
       }
       if (states.contains(WidgetState.hovered)) {
-        return colorScheme.onSurface.withAlpha(0.4.toAlpha());
+        return colors.onSurface.withAlpha(0.4.toAlpha());
       }
-      return colorScheme.onSurface.withAlpha(0.3.toAlpha());
+      return colors.onSurface.withAlpha(0.3.toAlpha());
     }),
-    trackColor: WidgetStatePropertyAll(colorScheme.surfaceContainerHighest),
-    trackBorderColor: WidgetStatePropertyAll(colorScheme.outline),
+    trackColor: WidgetStatePropertyAll(colors.surfaceContainerHighest),
+    trackBorderColor: WidgetStatePropertyAll(colors.outline),
     thickness: WidgetStateProperty.resolveWith((final states) {
       if (states.contains(WidgetState.hovered)) {
         return 8;
@@ -1333,47 +1405,50 @@ ScrollbarThemeData _buildScrollbarTheme(final ColorScheme colorScheme) {
   );
 }
 
-// ========== Navigation Drawer Theme ==========
-NavigationDrawerThemeData _buildNavigationDrawerTheme(final ColorScheme colorScheme) {
+NavigationDrawerThemeData _buildNavigationDrawerTheme(final BeThemeData betheme) {
+  final colors = betheme.colors;
+
   return NavigationDrawerThemeData(
-    backgroundColor: colorScheme.surface,
+    backgroundColor: colors.surface,
     elevation: 16,
-    shadowColor: colorScheme.shadow,
-    surfaceTintColor: colorScheme.surfaceTint,
-    indicatorColor: colorScheme.secondaryContainer,
+    shadowColor: Colors.black,
+    surfaceTintColor: colors.primary,
+    indicatorColor: colors.secondaryContainer,
     indicatorShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
     labelTextStyle: WidgetStateProperty.resolveWith((final states) {
       final isSelected = states.contains(WidgetState.selected);
       return TextStyle(
-        color: isSelected ? colorScheme.onSurface : colorScheme.onSurfaceVariant,
+        color: isSelected ? colors.onSurface : colors.onSurfaceVariant,
         fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
       );
     }),
     iconTheme: WidgetStateProperty.resolveWith((final states) {
       final isSelected = states.contains(WidgetState.selected);
-      return IconThemeData(color: isSelected ? colorScheme.onSurface : colorScheme.onSurfaceVariant);
+      return IconThemeData(color: isSelected ? colors.onSurface : colors.onSurfaceVariant);
     }),
   );
 }
 
-// ========== Menu Theme ==========
-MenuThemeData _buildMenuTheme(final ColorScheme colorScheme) {
+MenuThemeData _buildMenuTheme(final BeThemeData betheme) {
+  final colors = betheme.colors;
+
   return MenuThemeData(
     style: MenuStyle(
-      backgroundColor: WidgetStatePropertyAll(colorScheme.surface),
+      backgroundColor: WidgetStatePropertyAll(colors.surface),
       elevation: const WidgetStatePropertyAll(8),
-      shadowColor: WidgetStatePropertyAll(colorScheme.shadow),
-      surfaceTintColor: WidgetStatePropertyAll(colorScheme.surfaceTint),
+      shadowColor: const WidgetStatePropertyAll(Colors.black),
+      surfaceTintColor: WidgetStatePropertyAll(colors.primary),
       shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
       padding: const WidgetStatePropertyAll(EdgeInsets.all(8)),
     ),
   );
 }
 
-// ========== Primary Icon Theme ==========
-IconThemeData _buildPrimaryIconTheme(final ColorScheme colorScheme) {
+IconThemeData _buildPrimaryIconTheme(final BeThemeData betheme) {
+  final colors = betheme.colors;
+
   return IconThemeData(
-    color: colorScheme.primary,
+    color: colors.primary,
     size: 24,
     fill: 0.0,
     weight: 400,
@@ -1383,26 +1458,21 @@ IconThemeData _buildPrimaryIconTheme(final ColorScheme colorScheme) {
   );
 }
 
-// ========== Search Bar Theme ==========
-SearchBarThemeData _buildSearchBarTheme(final ColorScheme colorScheme) {
+SearchBarThemeData _buildSearchBarTheme(final BeThemeData betheme) {
+  final colors = betheme.colors;
+
   return SearchBarThemeData(
-    backgroundColor: WidgetStatePropertyAll(colorScheme.surfaceContainerHighest),
+    backgroundColor: WidgetStatePropertyAll(colors.surfaceContainerHighest),
     elevation: const WidgetStatePropertyAll(0),
     surfaceTintColor: const WidgetStatePropertyAll(Colors.transparent),
-    overlayColor: WidgetStatePropertyAll(colorScheme.primary.withAlpha(0.12.toAlpha())),
+    overlayColor: WidgetStatePropertyAll(colors.primary.withAlpha(0.12.toAlpha())),
     shadowColor: const WidgetStatePropertyAll(Colors.transparent),
-    side: WidgetStatePropertyAll(BorderSide(color: colorScheme.outline.withAlpha(0.5.toAlpha()))),
+    side: WidgetStatePropertyAll(BorderSide(color: colors.outline.withAlpha(0.5.toAlpha()))),
     shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
-    textStyle: WidgetStatePropertyAll(TextStyle(color: colorScheme.onSurface, fontSize: 16)),
-    hintStyle: WidgetStatePropertyAll(TextStyle(color: colorScheme.onSurfaceVariant, fontSize: 16)),
+    textStyle: WidgetStatePropertyAll(TextStyle(color: colors.onSurface, fontSize: 16)),
+    hintStyle: WidgetStatePropertyAll(TextStyle(color: colors.onSurfaceVariant, fontSize: 16)),
     padding: const WidgetStatePropertyAll(EdgeInsets.symmetric(horizontal: 16)),
     constraints: const BoxConstraints(minHeight: 56),
-    // leadingIcon: WidgetStatePropertyAll(
-    // Icon(Icons.search, color: colorScheme.onSurfaceVariant),
-    // ),
-    // trailingIcon: WidgetStatePropertyAll(
-    // Icon(Icons.close, color: colorScheme.onSurfaceVariant),
-    // ),
   );
 }
 
@@ -1435,48 +1505,115 @@ SegmentedButtonThemeData _buildSegmentedButtonTheme(final BeThemeData betheme) {
   );
 }
 
-// ========== Toggle Buttons Theme ==========
-ToggleButtonsThemeData _buildToggleButtonsTheme(final ColorScheme colorScheme) {
+ToggleButtonsThemeData _buildToggleButtonsTheme(final BeThemeData betheme) {
+  final colors = betheme.colors;
+
   return ToggleButtonsThemeData(
-    color: colorScheme.onSurfaceVariant,
-    selectedColor: colorScheme.onPrimary,
-    disabledColor: colorScheme.onSurface.withAlpha(0.38.toAlpha()),
+    color: colors.onSurfaceVariant,
+    selectedColor: colors.onPrimary,
+    disabledColor: colors.onSurface.withAlpha(0.38.toAlpha()),
     fillColor: Colors.transparent,
-    focusColor: colorScheme.primary.withAlpha(0.12.toAlpha()),
-    highlightColor: colorScheme.primary.withAlpha(0.12.toAlpha()),
-    hoverColor: colorScheme.primary.withAlpha(0.08.toAlpha()),
-    splashColor: colorScheme.primary.withAlpha(0.12.toAlpha()),
-    borderColor: colorScheme.outline,
-    selectedBorderColor: colorScheme.primary,
-    disabledBorderColor: colorScheme.onSurface.withAlpha(0.12.toAlpha()),
+    focusColor: colors.primary.withAlpha(0.12.toAlpha()),
+    highlightColor: colors.primary.withAlpha(0.12.toAlpha()),
+    hoverColor: colors.primary.withAlpha(0.08.toAlpha()),
+    splashColor: colors.primary.withAlpha(0.12.toAlpha()),
+    borderColor: colors.outline,
+    selectedBorderColor: colors.primary,
+    disabledBorderColor: colors.onSurface.withAlpha(0.12.toAlpha()),
     borderRadius: BorderRadius.circular(8),
     borderWidth: 1,
     constraints: const BoxConstraints(minHeight: 40, minWidth: 64),
   );
 }
 
-// ========== Primary Text Theme ==========
-TextTheme _buildPrimaryTextTheme(final ColorScheme colorScheme) {
+TextTheme _buildPrimaryTextTheme(final BeThemeData betheme) {
+  final colors = betheme.colors;
+  final adaptiveStyle = betheme.style.adaptiveStyle;
+
   return TextTheme(
     displayLarge: TextStyle(
-      fontSize: 57,
+      fontSize: adaptiveStyle.displayLargeTextSize,
       fontWeight: FontWeight.w400,
       letterSpacing: -0.25,
-      color: colorScheme.primary,
+      color: colors.primary,
     ),
-    displayMedium: TextStyle(fontSize: 45, fontWeight: FontWeight.w400, color: colorScheme.primary),
-    displaySmall: TextStyle(fontSize: 36, fontWeight: FontWeight.w400, color: colorScheme.primary),
-    headlineLarge: TextStyle(fontSize: 32, fontWeight: FontWeight.w400, color: colorScheme.primary),
-    headlineMedium: TextStyle(fontSize: 28, fontWeight: FontWeight.w400, color: colorScheme.primary),
-    headlineSmall: TextStyle(fontSize: 24, fontWeight: FontWeight.w400, color: colorScheme.primary),
-    titleLarge: TextStyle(fontSize: 22, fontWeight: FontWeight.w400, color: colorScheme.primary),
-    titleMedium: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, letterSpacing: 0.15, color: colorScheme.primary),
-    titleSmall: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, letterSpacing: 0.1, color: colorScheme.primary),
-    bodyLarge: TextStyle(fontSize: 16, fontWeight: FontWeight.w400, letterSpacing: 0.5, color: colorScheme.primary),
-    bodyMedium: TextStyle(fontSize: 14, fontWeight: FontWeight.w400, letterSpacing: 0.25, color: colorScheme.primary),
-    bodySmall: TextStyle(fontSize: 12, fontWeight: FontWeight.w400, letterSpacing: 0.4, color: colorScheme.primary),
-    labelLarge: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, letterSpacing: 0.1, color: colorScheme.primary),
-    labelMedium: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, letterSpacing: 0.5, color: colorScheme.primary),
-    labelSmall: TextStyle(fontSize: 11, fontWeight: FontWeight.w500, letterSpacing: 0.5, color: colorScheme.primary),
+    displayMedium: TextStyle(
+      fontSize: adaptiveStyle.displayMediumTextSize,
+      fontWeight: FontWeight.w400,
+      color: colors.primary,
+    ),
+    displaySmall: TextStyle(
+      fontSize: adaptiveStyle.displaySmallTextSize,
+      fontWeight: FontWeight.w400,
+      color: colors.primary,
+    ),
+    headlineLarge: TextStyle(
+      fontSize: adaptiveStyle.headlineLargeTextSize,
+      fontWeight: FontWeight.w400,
+      color: colors.primary,
+    ),
+    headlineMedium: TextStyle(
+      fontSize: adaptiveStyle.headlineMediumTextSize,
+      fontWeight: FontWeight.w400,
+      color: colors.primary,
+    ),
+    headlineSmall: TextStyle(
+      fontSize: adaptiveStyle.headlineSmallTextSize,
+      fontWeight: FontWeight.w400,
+      color: colors.primary,
+    ),
+    titleLarge: TextStyle(
+      fontSize: adaptiveStyle.titleLargeTextSize,
+      fontWeight: FontWeight.w400,
+      color: colors.primary,
+    ),
+    titleMedium: TextStyle(
+      fontSize: adaptiveStyle.titleMediumTextSize,
+      fontWeight: FontWeight.w500,
+      letterSpacing: 0.15,
+      color: colors.primary,
+    ),
+    titleSmall: TextStyle(
+      fontSize: adaptiveStyle.titleSmallTextSize,
+      fontWeight: FontWeight.w500,
+      letterSpacing: 0.1,
+      color: colors.primary,
+    ),
+    bodyLarge: TextStyle(
+      fontSize: adaptiveStyle.bodyLargeTextSize,
+      fontWeight: FontWeight.w400,
+      letterSpacing: 0.5,
+      color: colors.primary,
+    ),
+    bodyMedium: TextStyle(
+      fontSize: adaptiveStyle.bodyMediumTextSize,
+      fontWeight: FontWeight.w400,
+      letterSpacing: 0.25,
+      color: colors.primary,
+    ),
+    bodySmall: TextStyle(
+      fontSize: adaptiveStyle.bodySmallTextSize,
+      fontWeight: FontWeight.w400,
+      letterSpacing: 0.4,
+      color: colors.primary,
+    ),
+    labelLarge: TextStyle(
+      fontSize: adaptiveStyle.labelLargeTextSize,
+      fontWeight: FontWeight.w500,
+      letterSpacing: 0.1,
+      color: colors.primary,
+    ),
+    labelMedium: TextStyle(
+      fontSize: adaptiveStyle.labelMediumTextSize,
+      fontWeight: FontWeight.w500,
+      letterSpacing: 0.5,
+      color: colors.primary,
+    ),
+    labelSmall: TextStyle(
+      fontSize: adaptiveStyle.labelSmallTextSize,
+      fontWeight: FontWeight.w500,
+      letterSpacing: 0.5,
+      color: colors.primary,
+    ),
   );
 }

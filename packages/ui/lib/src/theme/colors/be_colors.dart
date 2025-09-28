@@ -1,38 +1,60 @@
 import 'package:flutter/material.dart';
 
-/// Modern theme colors based on brand color 0xFFBE3455
+/// Modern theme colors based on sophisticated neutral palette
 ///
 /// | **Color Type**      | **Color Name**      | **Hex Code**  | **Usage** |
 /// |-------------------|-------------------|--------------|-----------|
-/// | **Primary**       | Primary           | `0xFFBE3455` | Main brand color |
+/// | **Primary**       | Primary           | `0xFFBE3455` | Accent/brand color |
 /// |                  | Primary Dark      | `0xFF8E1A35` | Hover/pressed states |
 /// |                  | Primary Light     | `0xFFDA5A7A` | Subtle backgrounds |
-/// |                  | Primary Container | `0xFFFFE8ED` | Light containers |
-/// |                  | Primary Fixed     | `0xFFFFD9E0` | Fixed elements |
-/// | **Secondary**     | Secondary         | `0xFF825564` | Supporting elements |
-/// |                  | Secondary Container| `0xFFFFD9E0` | Secondary containers |
-/// | **Tertiary**      | Tertiary          | `0xFF7D5635` | Accent elements |
-/// |                  | Tertiary Container| `0xFFFFE0CC` | Tertiary containers |
-/// | **Error**         | Error             | `0xFFE53E3E` | Error states |
-/// |                  | Error Container   | `0xFFFFEDEA` | Error backgrounds |
-/// | **Surface**       | Surface           | `0xFFFFFBFF` | Primary surface |
-/// |                  | Surface Variant   | `0xFFF5EFF7` | Elevated surfaces |
-/// |                  | Surface Dim       | `0xFFE7E0EC` | Dimmed surfaces |
+/// | **Neutrals**      | Dark Blue         | `0xFF2D3142` | Primary text/headers |
+/// |                  | Slate Blue        | `0xFF4F5D75` | Secondary text |
+/// |                  | Sage Green        | `0xFF7A9E7E` | Accent elements |
+/// |                  | Cream             | `0xFFFFF8F0` | Light background |
+/// |                  | Light Beige       | `0xFFF7F4F3` | Card backgrounds |
+/// |                  | Off White         | `0xFFFFFCF9` | Primary surface |
 
 class BeColors {
   const BeColors._(); // Private constructor
 
-  // Primary Brand Colors - Harmonious variations of 0xFFBE3455
-  static const Color primary = Color(0xFFBE3455); // Primary brand color
+  // Primary Brand Colors - Clean sophisticated palette
+  static const Color primary = Color(0xFFBE3455); // Accent/brand color (your suggestion)
   static const Color primaryDark = Color(0xFF8E1A35); // Darker variant for pressed states
   static const Color primaryLight = Color(0xFFDA5A7A); // Lighter variant for subtle accents
-  static const Color primaryContainer = Color(0xFFFFE8ED); // Very light container background
-  static const Color primaryFixed = Color(0xFFFFD9E0); // Fixed UI elements
-  static const Color primaryFixedDim = Color(0xFFFFB1C8); // Dimmed fixed elements
-  static const Color onPrimary = Color(0xFFFFFFFF); // Text/icons on primary
-  static const Color onPrimaryContainer = Color(0xFF3F0A18); // Text on primary container
-  static const Color onPrimaryFixed = Color(0xFF3F0A18); // Text on fixed primary
-  static const Color onPrimaryFixedVariant = Color(0xFF9C2A46); // Alternative text on fixed primary
+  static const Color primaryContainer = Color(0xFFFFD9E0); // Primary container
+  static const Color primaryFixed = Color(0xFFFFD9E0); // Fixed primary
+  static const Color primaryFixedDim = Color(0xFFFFB1C5); // Dimmed fixed primary
+  static const Color onPrimary = Color(0xFFFFFFFF); // Text on primary
+  static const Color onPrimaryContainer = Color(0xFF3E0A1B); // Text on primary container
+  static const Color onPrimaryFixed = Color(0xFF3E0A1B); // Text on fixed primary
+  static const Color onPrimaryFixedVariant = Color(0xFF8E1A35); // Text variant on fixed primary
+
+  // Sophisticated Neutral Palette - Your color suggestions
+  static const Color darkBlue = Color(0xFF2D3142); // Primary text/headers
+  static const Color slateBlue = Color(0xFF4F5D75); // Secondary text
+  static const Color sageGreen = Color(0xFF7A9E7E); // Accent elements
+  static const Color cream = Color(0xFFFFF8F0); // Light background
+  static const Color lightBeige = Color(0xFFF7F4F3); // Card backgrounds
+  static const Color offWhite = Color(0xFFFFFCF9); // Primary surface
+
+  // Text Colors - Clean hierarchy
+  static const Color textPrimary = darkBlue; // Main text
+  static const Color textSecondary = slateBlue; // Secondary text
+  static const Color textMuted = Color(0xFF6B7280); // Muted text
+  static const Color textDisabled = Color(0xFF9CA3AF); // Disabled text
+
+  // Surface Colors - Minimal and clean
+  static const Color surface = offWhite; // Primary surface
+  static const Color surfaceDim = lightBeige; // Dimmed surface
+  static const Color surfaceBright = Color(0xFFFFFFFF); // Brightest surface
+  static const Color surfaceContainer = lightBeige; // Card/container surface
+  static const Color surfaceContainerHigh = cream; // High elevation container
+  static const Color surfaceContainerHighest = Color(0xFFF0EFEF); // Highest elevation
+  static const Color surfaceContainerLow = Color(0xFFFAFAFA); // Low elevation container
+  static const Color surfaceContainerLowest = Color(0xFFFFFFFF); // Lowest/white surface
+  static const Color surfaceVariant = cream; // Elevated surface
+  static const Color onSurface = darkBlue; // Text on surface
+  static const Color onSurfaceVariant = slateBlue; // Text on surface variant
 
   // Secondary Colors - Harmonious complement to primary
   static const Color secondary = Color(0xFF825564); // Muted secondary
@@ -40,7 +62,7 @@ class BeColors {
   static const Color secondaryLight = Color(0xFFA67582); // Lighter secondary
   static const Color secondaryContainer = Color(0xFFFFD9E0); // Secondary container
   static const Color onSecondary = Color(0xFFFFFFFF); // Text on secondary
-  static const Color onSecondaryContainer = Color(0xFF2B1518); // Text on secondary container
+  static const Color onSecondaryContainer = Color(0xFF2F1721); // Text on secondary container
 
   // Tertiary Colors - Warm complement
   static const Color tertiary = Color(0xFF7D5635); // Warm brown tertiary
@@ -49,24 +71,6 @@ class BeColors {
   static const Color tertiaryContainer = Color(0xFFFFE0CC); // Tertiary container
   static const Color onTertiary = Color(0xFFFFFFFF); // Text on tertiary
   static const Color onTertiaryContainer = Color(0xFF2B1A0F); // Text on tertiary container
-
-  // Neutral Palette - Modern and sophisticated
-  static const Color neutral10 = Color(0xFF1C1B1F); // Darkest neutral
-  static const Color neutral20 = Color(0xFF313033); // Very dark
-  static const Color neutral30 = Color(0xFF484649); // Dark
-  static const Color neutral40 = Color(0xFF605D64); // Medium dark
-  static const Color neutral50 = Color(0xFF79767D); // Medium
-  static const Color neutral60 = Color(0xFF938F96); // Medium light
-  static const Color neutral80 = Color(0xFFC9C5CC); // Light
-  static const Color neutral90 = Color(0xFFE6E1E9); // Very light
-  static const Color neutral95 = Color(0xFFF4EFF7); // Near white
-  static const Color neutral99 = Color(0xFFFFFBFF); // Pure white
-
-  // Neutral Variant Palette - Subtle tinted neutrals
-  static const Color neutralVariant30 = Color(0xFF524349); // Dark variant
-  static const Color neutralVariant50 = Color(0xFF7A7079); // Medium variant
-  static const Color neutralVariant80 = Color(0xFFCCC2CB); // Light variant
-  static const Color neutralVariant90 = Color(0xFFE8DEE7); // Very light variant
 
   // Modern Semantic Colors - WCAG AA+ compliant
   static const Color error = Color(0xFFE53E3E); // Modern error red
@@ -96,17 +100,23 @@ class BeColors {
   static const Color onInfo = Color(0xFFFFFFFF); // Text on info
   static const Color onInfoContainer = Color(0xFF1E3A8A); // Text on info container
 
-  // Surface Colors - Modern layered design
-  static const Color surface = Color(0xFFFFFBFF); // Primary surface
-  static const Color surfaceDim = Color(0xFFE7E0EC); // Dimmed surface
-  static const Color surfaceBright = Color(0xFFFFFBFF); // Bright surface
-  static const Color surfaceContainer = Color(0xFFF3EDF7); // Container surface
-  static const Color surfaceContainerHigh = Color(0xFFECE6F0); // High container
-  static const Color surfaceContainerHighest = Color(0xFFE6E0E9); // Highest container
-  static const Color surfaceContainerLow = Color(0xFFF7F2FA); // Low container
-  static const Color surfaceContainerLowest = Color(0xFFFFFFFF); // Lowest container
-  static const Color onSurface = Color(0xFF1C1B1F); // Text on surface
-  static const Color onSurfaceVariant = Color(0xFF49454F); // Text on surface variant
+  // Neutral System - Material 3 standard tones
+  static const Color neutral10 = Color(0xFF191C1D); // Darkest neutral
+  static const Color neutral20 = Color(0xFF2E3132); // Very dark neutral
+  static const Color neutral30 = Color(0xFF444748); // Dark neutral
+  static const Color neutral40 = Color(0xFF5C5F60); // Medium dark neutral
+  static const Color neutral50 = Color(0xFF747677); // Medium neutral
+  static const Color neutral60 = Color(0xFF8E9192); // Medium light neutral
+  static const Color neutral80 = Color(0xFFC4C7C8); // Light neutral
+  static const Color neutral90 = Color(0xFFE1E2E3); // Very light neutral
+  static const Color neutral95 = Color(0xFFF0F1F2); // Nearly white neutral
+  static const Color neutral99 = Color(0xFFFCFDFE); // Lightest neutral
+
+  // Neutral Variant System - Slightly tinted neutrals
+  static const Color neutralVariant30 = Color(0xFF484A4A); // Dark tinted neutral
+  static const Color neutralVariant50 = Color(0xFF767879); // Medium tinted neutral
+  static const Color neutralVariant80 = Color(0xFFC4C6C7); // Light tinted neutral
+  static const Color neutralVariant90 = Color(0xFFE0E3E3); // Very light tinted neutral
 
   // Outline Colors - For borders and dividers
   static const Color outline = Color(0xFF79747E); // Primary outline

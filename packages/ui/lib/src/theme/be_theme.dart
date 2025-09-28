@@ -6,14 +6,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class BeTheme extends StatelessWidget {
-  const BeTheme({required this.child, this.colors, super.key});
+  const BeTheme({required this.child, this.colors = const BeColorsLight(), super.key});
 
   // /// Deprecated constructor - use the default constructor instead
   // @Deprecated('Use BeTheme() constructor with colors parameter instead')
   // const BeTheme.withThemeData({required this.child, super.key}) : colors = null, themeMode = null;
 
   final Widget child;
-  final BeColor? colors;
+  final BeColor colors;
 
   // @useResult
   static BeThemeData of(final BuildContext context) {

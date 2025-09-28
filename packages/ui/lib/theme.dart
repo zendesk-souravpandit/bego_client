@@ -3,7 +3,6 @@
 library beui.theme;
 
 export 'src/theme/be_color.dart';
-export 'src/theme/be_default_theme.dart';
 export 'src/theme/be_style.dart';
 export 'src/theme/be_style_value.dart';
 export 'src/theme/be_theme.dart';
