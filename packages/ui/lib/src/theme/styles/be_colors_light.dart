@@ -8,59 +8,190 @@ class BeColorsLight implements BeColor {
   @override
   bool get isDark => false;
 
+  // Primary Color System
   @override
   Color get primary => BeColors.primary;
   @override
   Color get primaryDark => BeColors.primaryDark;
   @override
   Color get primaryLight => BeColors.primaryLight;
+  @override
+  Color get primaryContainer => BeColors.primaryContainer;
+  @override
+  Color get primaryFixed => BeColors.primaryFixed;
+  @override
+  Color get primaryFixedDim => BeColors.primaryFixedDim;
+  @override
+  Color get onPrimary => BeColors.onPrimary;
+  @override
+  Color get onPrimaryContainer => BeColors.onPrimaryContainer;
+  @override
+  Color get onPrimaryFixed => BeColors.onPrimaryFixed;
+  @override
+  Color get onPrimaryFixedVariant => BeColors.onPrimaryFixedVariant;
+
+  // Secondary Color System
+  @override
+  Color get secondary => BeColors.secondary;
+  @override
+  Color get secondaryDark => BeColors.secondaryDark;
+  @override
+  Color get secondaryLight => BeColors.secondaryLight;
+  @override
+  Color get secondaryContainer => BeColors.secondaryContainer;
+  @override
+  Color get onSecondary => BeColors.onSecondary;
+  @override
+  Color get onSecondaryContainer => BeColors.onSecondaryContainer;
+
+  // Tertiary Color System
+  @override
+  Color get tertiary => BeColors.tertiary;
+  @override
+  Color get tertiaryDark => BeColors.tertiaryDark;
+  @override
+  Color get tertiaryLight => BeColors.tertiaryLight;
+  @override
+  Color get tertiaryContainer => BeColors.tertiaryContainer;
+  @override
+  Color get onTertiary => BeColors.onTertiary;
+  @override
+  Color get onTertiaryContainer => BeColors.onTertiaryContainer;
+
+  // Semantic Colors
+  @override
+  Color get success => BeColors.success;
+  @override
+  Color get successDark => BeColors.successDark;
+  @override
+  Color get successLight => BeColors.successLight;
+  @override
+  Color get successContainer => BeColors.successContainer;
+  @override
+  Color get onSuccess => BeColors.onSuccess;
+  @override
+  Color get onSuccessContainer => BeColors.onSuccessContainer;
 
   @override
-  Color get neutral50 => const Color(0xFFFFFFFF);
+  Color get error => BeColors.error;
   @override
-  Color get neutral100 => const Color(0xFFF8F9FA);
+  Color get errorDark => BeColors.errorDark;
   @override
-  Color get neutral200 => const Color(0xFFEDEEF0);
+  Color get errorLight => BeColors.errorLight;
   @override
-  Color get neutral300 => const Color(0xFFD1D5DB);
+  Color get errorContainer => BeColors.errorContainer;
   @override
-  Color get neutral400 => const Color(0xFFB0B7C3);
+  Color get onError => BeColors.onError;
   @override
-  Color get neutral500 => const Color(0xFF8A94A6);
-  @override
-  Color get neutral600 => const Color(0xFF6B7280);
-  @override
-  Color get neutral700 => const Color(0xFF4B5563);
-  @override
-  Color get neutral800 => const Color(0xFF374151);
-  @override
-  Color get neutral900 => const Color(0xFF111827);
+  Color get onErrorContainer => BeColors.onErrorContainer;
 
   @override
-  Color get success => const Color(0xFF16A34A);
+  Color get warning => BeColors.warning;
   @override
-  Color get error => const Color(0xFFDC2626);
+  Color get warningDark => BeColors.warningDark;
   @override
-  Color get warning => const Color(0xFFEAB308);
+  Color get warningLight => BeColors.warningLight;
   @override
-  Color get info => const Color(0xFF2563EB);
+  Color get warningContainer => BeColors.warningContainer;
+  @override
+  Color get onWarning => BeColors.onWarning;
+  @override
+  Color get onWarningContainer => BeColors.onWarningContainer;
 
   @override
-  Color get disabled => BeColors.gray300;
+  Color get info => BeColors.info;
+  @override
+  Color get infoDark => BeColors.infoDark;
+  @override
+  Color get infoLight => BeColors.infoLight;
+  @override
+  Color get infoContainer => BeColors.infoContainer;
+  @override
+  Color get onInfo => BeColors.onInfo;
+  @override
+  Color get onInfoContainer => BeColors.onInfoContainer;
 
+  // Neutral System
   @override
-  Color get background => const Color(0xFFFDFDFD);
+  Color get neutral10 => BeColors.neutral10;
   @override
-  Color get surface => const Color(0xFFFFFFFF);
+  Color get neutral20 => BeColors.neutral20;
   @override
-  Color get surfaceVariant => const Color(0xFFECECEC);
+  Color get neutral30 => BeColors.neutral30;
+  @override
+  Color get neutral40 => BeColors.neutral40;
+  @override
+  Color get neutral50 => BeColors.neutral50;
+  @override
+  Color get neutral60 => BeColors.neutral60;
+  @override
+  Color get neutral80 => BeColors.neutral80;
+  @override
+  Color get neutral90 => BeColors.neutral90;
+  @override
+  Color get neutral95 => BeColors.neutral95;
+  @override
+  Color get neutral99 => BeColors.neutral99;
 
+  // Neutral Variant System
   @override
-  Color get textPrimary => BeColors.lightTextPrimary;
+  Color get neutralVariant30 => BeColors.neutralVariant30;
   @override
-  Color get textSecondary => const Color(0xFF6B7280);
+  Color get neutralVariant50 => BeColors.neutralVariant50;
   @override
-  Color get icon => const Color(0xFF374151);
+  Color get neutralVariant80 => BeColors.neutralVariant80;
   @override
-  Color get formFillColor => BeColors.gray100;
+  Color get neutralVariant90 => BeColors.neutralVariant90;
+
+  // Surface System
+  @override
+  Color get surface => BeColors.surface;
+  @override
+  Color get surfaceDim => BeColors.surfaceDim;
+  @override
+  Color get surfaceBright => BeColors.surfaceBright;
+  @override
+  Color get surfaceContainer => BeColors.surfaceContainer;
+  @override
+  Color get surfaceContainerHigh => BeColors.surfaceContainerHigh;
+  @override
+  Color get surfaceContainerHighest => BeColors.surfaceContainerHighest;
+  @override
+  Color get surfaceContainerLow => BeColors.surfaceContainerLow;
+  @override
+  Color get surfaceContainerLowest => BeColors.surfaceContainerLowest;
+  @override
+  Color get surfaceVariant => BeColors.neutralVariant90;
+  @override
+  Color get onSurface => BeColors.onSurface;
+  @override
+  Color get onSurfaceVariant => BeColors.onSurfaceVariant;
+
+  // Legacy support
+  @override
+  Color get background => surface;
+
+  // Text Colors (computed from neutral system)
+  @override
+  Color get textPrimary => neutral10; // Darkest for light theme
+  @override
+  Color get textSecondary => neutral50; // Medium neutral for secondary text
+
+  // Icon Colors
+  @override
+  Color get icon => neutral30; // Dark enough for good contrast
+
+  // Outline System
+  @override
+  Color get outline => BeColors.outline;
+  @override
+  Color get outlineVariant => BeColors.outlineVariant;
+
+  // Form-specific colors
+  @override
+  Color get formFillColor => surfaceContainerLowest; // Pure white for form backgrounds
+
+  // Disabled state
+  @override
+  Color get disabled => neutral40.withValues(alpha: 0.6); // Semi-transparent medium neutral
 }

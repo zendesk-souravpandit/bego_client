@@ -170,10 +170,10 @@ CardThemeData _buildCardTheme(final BeThemeData betheme) {
     // surfaceTintColor: Colors.transparent,
     elevation: 0,
     margin: const EdgeInsets.all(8),
-    shape: const RoundedSuperellipseBorder(
+    shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.all(Radius.circular(8)),
-      side: BorderSide(color: BeColors.gray400, width: 0.2),
-      // side: BorderSide(color: BeColors.gray100, width: 2.0),
+      side: BorderSide(color: BeColors.neutral50, width: 0.2),
+      // side: BorderSide(color: BeColors.neutral30, width: 2.0),
     ),
 
     // clipBehavior: Clip.antiAlias,
@@ -293,68 +293,97 @@ DropdownMenuThemeData _buildDropdownMenuTheme(final BeThemeData betheme) {
 }
 
 ElevatedButtonThemeData _buildElevatedButtonTheme(final BeThemeData betheme) {
-  final swPrimary = BeColorUtils.createColorSwatch(betheme.colors.primary);
+  final adaptiveStyle = betheme.style.adaptiveStyle;
+  final colors = betheme.colors;
 
   return ElevatedButtonThemeData(
     style: ButtonStyle(
+      // Background colors with brand color system
       backgroundColor: WidgetStateProperty.resolveWith((final states) {
         if (states.contains(WidgetState.disabled)) {
-          return betheme.colors.disabled;
-        }
-
-        return swPrimary.shade500;
-      }),
-      foregroundColor: WidgetStateProperty.resolveWith((final states) {
-        if (states.contains(WidgetState.disabled)) {
-          return BeColors.gray400;
-        }
-        return swPrimary.shade100;
-      }),
-      overlayColor: WidgetStatePropertyAll(swPrimary.shade500),
-      elevation: const WidgetStatePropertyAll(0),
-      // shadowColor: const WidgetStatePropertyAll(Colors.transparent),
-      surfaceTintColor: const WidgetStatePropertyAll(Colors.white),
-      // textStyle: WidgetStateProperty.resolveWith((state) {
-      //   if (state.containsAll([WidgetState.hovered, WidgetState.pressed])) {
-      //     return const TextStyle(
-      //       fontSize: 15,
-      //       color: BeColors.white,
-      //       fontWeight: FontWeight.w600,
-      //       letterSpacing: 0.5,
-      //     );
-      //   }
-
-      //   return const TextStyle(
-      //     fontSize: 14,
-      //     color: BeColors.white,
-      //     fontWeight: FontWeight.w600,
-      //     letterSpacing: 0.5,
-      //   );
-      // }),
-      // iconColor: const WidgetStatePropertyAll(0),
-      iconSize: const WidgetStatePropertyAll(16),
-      padding: const WidgetStatePropertyAll(EdgeInsets.symmetric(horizontal: 10, vertical: 5)),
-      animationDuration: const Duration(milliseconds: 200),
-      shape: WidgetStateProperty.resolveWith((final states) {
-        if (states.contains(WidgetState.disabled)) {
-          return ContinuousRectangleBorder(
-            borderRadius: const BorderRadius.all(Radius.circular(16)),
-            side: BorderSide(color: betheme.colors.disabled, width: 2),
-          );
+          return colors.disabled;
         }
         if (states.contains(WidgetState.pressed)) {
-          return ContinuousRectangleBorder(
-            borderRadius: const BorderRadius.all(Radius.circular(16)),
-            side: BorderSide(color: swPrimary.shade500, width: 2),
-          );
+          return colors.primaryDark;
         }
         if (states.contains(WidgetState.hovered)) {
-          return const ContinuousRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(16)));
+          return colors.primaryLight;
         }
-        return RoundedSuperellipseBorder(
-          borderRadius: const BorderRadius.all(Radius.circular(8)),
-          side: BorderSide(color: swPrimary.shade500, width: 0),
+        return colors.primary;
+      }),
+
+      // Foreground colors for text and icons
+      foregroundColor: WidgetStateProperty.resolveWith((final states) {
+        if (states.contains(WidgetState.disabled)) {
+          return colors.textSecondary.withValues(alpha: 0.6);
+        }
+        return colors.onPrimary;
+      }),
+
+      // Overlay color for ripple effects
+      overlayColor: WidgetStateProperty.resolveWith((final states) {
+        if (states.contains(WidgetState.pressed)) {
+          return colors.onPrimary.withValues(alpha: 0.1);
+        }
+        if (states.contains(WidgetState.hovered)) {
+          return colors.onPrimary.withValues(alpha: 0.05);
+        }
+        return Colors.transparent;
+      }),
+
+      // Modern flat design with subtle elevation
+      elevation: WidgetStateProperty.resolveWith((final states) {
+        if (states.contains(WidgetState.disabled)) {
+          return 0;
+        }
+        if (states.contains(WidgetState.pressed)) {
+          return 1;
+        }
+        if (states.contains(WidgetState.hovered)) {
+          return 2;
+        }
+        return 1;
+      }),
+
+      shadowColor: WidgetStateProperty.resolveWith((final states) {
+        return colors.primary.withValues(alpha: 0.2);
+      }),
+
+      surfaceTintColor: const WidgetStatePropertyAll(Colors.transparent),
+
+      // Responsive text styling
+      textStyle: WidgetStateProperty.resolveWith((final states) {
+        return TextStyle(fontSize: adaptiveStyle.buttonMediumTextSize, fontWeight: FontWeight.w600, letterSpacing: 0.5);
+      }),
+
+      // Icon styling
+      iconColor: WidgetStateProperty.resolveWith((final states) {
+        if (states.contains(WidgetState.disabled)) {
+          return colors.textSecondary.withValues(alpha: 0.6);
+        }
+        return colors.onPrimary;
+      }),
+      iconSize: const WidgetStatePropertyAll(20),
+
+      // Responsive padding based on screen size
+      padding: WidgetStateProperty.resolveWith((final states) {
+        return EdgeInsets.symmetric(
+          horizontal: adaptiveStyle.buttonMediumPaddingHorizontal,
+          vertical: (adaptiveStyle.buttonMediumHeight - adaptiveStyle.buttonMediumTextSize) / 2,
         );
+      }),
+
+      // Responsive minimum size for touch targets
+      minimumSize: WidgetStateProperty.resolveWith((final states) {
+        return Size(0, adaptiveStyle.buttonMediumHeight);
+      }),
+
+      // Animation duration for smooth interactions
+      animationDuration: BeStyleConst.animationDurationFast,
+
+      // Responsive shape with brand border radius
+      shape: WidgetStateProperty.resolveWith((final states) {
+        return RoundedRectangleBorder(borderRadius: BorderRadius.circular(adaptiveStyle.buttonBorderRadius));
       }),
     ),
   );
@@ -395,14 +424,14 @@ FilledButtonThemeData _buildFilledButtonTheme(final BeThemeData betheme) {
     style: ButtonStyle(
       backgroundColor: WidgetStateProperty.resolveWith((final states) {
         if (states.contains(WidgetState.disabled)) {
-          return BeColors.gray200;
+          return BeColors.neutral80;
         }
 
         return swPrimary.shade100;
       }),
       foregroundColor: WidgetStateProperty.resolveWith((final states) {
         if (states.contains(WidgetState.disabled)) {
-          return BeColors.gray400;
+          return BeColors.neutral50;
         }
         return swPrimary.shade500;
       }),
@@ -419,7 +448,7 @@ FilledButtonThemeData _buildFilledButtonTheme(final BeThemeData betheme) {
         if (states.contains(WidgetState.disabled)) {
           return const ContinuousRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(16)),
-            side: BorderSide(color: BeColors.gray200, width: 2),
+            side: BorderSide(color: BeColors.neutral80, width: 2),
           );
         }
         if (states.contains(WidgetState.pressed)) {
@@ -431,7 +460,7 @@ FilledButtonThemeData _buildFilledButtonTheme(final BeThemeData betheme) {
         if (states.contains(WidgetState.hovered)) {
           return const ContinuousRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(16)));
         }
-        return RoundedSuperellipseBorder(
+        return RoundedRectangleBorder(
           borderRadius: const BorderRadius.all(Radius.circular(8)),
           side: BorderSide(color: swPrimary.shade100, width: 2),
         );
@@ -467,7 +496,7 @@ IconButtonThemeData _buildIconButtonTheme(final BeThemeData betheme) {
     style: ButtonStyle(
       foregroundColor: WidgetStateProperty.resolveWith((final states) {
         if (states.contains(WidgetState.disabled)) {
-          return BeColors.gray400;
+          return BeColors.neutral50;
         }
         return swPrimary.shade500;
       }),
@@ -491,43 +520,129 @@ IconButtonThemeData _buildIconButtonTheme(final BeThemeData betheme) {
 }
 
 InputDecorationTheme _buildInputDecorationTheme(final BeThemeData betheme) {
-  final colors = BeColorUtils.createColorSwatch(betheme.colors.formFillColor);
+  final adaptiveStyle = betheme.style.adaptiveStyle;
+  final colors = betheme.colors;
+
   return InputDecorationTheme(
     filled: true,
-    fillColor: betheme.colors.formFillColor,
-    errorMaxLines: 1,
+    fillColor: colors.formFillColor,
+    errorMaxLines: 2,
+
+    // Responsive border styling with brand colors
     border: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(8),
-      borderSide: const BorderSide(color: Colors.transparent),
-    ),
-    enabledBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(8),
-      borderSide: const BorderSide(color: Colors.transparent),
-    ),
-    focusedBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(8),
-      borderSide: BorderSide(color: colors.shade100, width: 2),
-    ),
-    errorBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(8),
-      borderSide: BorderSide(color: betheme.colors.error.withAlpha(125), width: 2),
-    ),
-    focusedErrorBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(8),
-      borderSide: BorderSide(color: betheme.colors.error, width: 2),
-    ),
-    disabledBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(8),
-      borderSide: BorderSide(color: betheme.colors.disabled),
+      borderRadius: BorderRadius.circular(adaptiveStyle.inputBorderRadius),
+      borderSide: BorderSide(color: colors.outline, width: BeStyleConst.inputBorderWidthDefault),
     ),
 
-    // isCollapsed: true,
-    // isDense: true,
-    // contentPadding: px16 + py12,
-    // contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-    // isDense: true,
-    // alignLabelWithHint: true,
-    // errorMaxLines: 2,
+    // Enabled state - subtle border for clean appearance
+    enabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(adaptiveStyle.inputBorderRadius),
+      borderSide: BorderSide(color: colors.outline.withValues(alpha: 0.4), width: BeStyleConst.inputBorderWidthDefault),
+    ),
+
+    // Focused state - prominent brand color border
+    focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(adaptiveStyle.inputBorderRadius),
+      borderSide: BorderSide(color: colors.primary, width: BeStyleConst.inputBorderWidthFocus),
+    ),
+
+    // Error state - clear error indication
+    errorBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(adaptiveStyle.inputBorderRadius),
+      borderSide: BorderSide(color: colors.error, width: BeStyleConst.inputBorderWidthError),
+    ),
+
+    // Focused error state - prominent error with focus
+    focusedErrorBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(adaptiveStyle.inputBorderRadius),
+      borderSide: BorderSide(color: colors.error, width: BeStyleConst.inputBorderWidthFocus),
+    ),
+
+    // Disabled state - visually distinct disabled appearance
+    disabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(adaptiveStyle.inputBorderRadius),
+      borderSide: BorderSide(
+        color: colors.disabled.withValues(alpha: 0.2),
+        width: BeStyleConst.inputBorderWidthDefault,
+      ),
+    ),
+
+    // Responsive content padding for different screen sizes
+    contentPadding: EdgeInsets.symmetric(
+      horizontal: adaptiveStyle.inputContentPaddingHorizontal,
+      vertical: adaptiveStyle.inputContentPaddingVertical,
+    ),
+
+    // Modern label styling with responsive text sizes
+    labelStyle: TextStyle(
+      fontSize: adaptiveStyle.inputLabelTextSize,
+      fontWeight: FontWeight.w500,
+      color: colors.textSecondary,
+      letterSpacing: 0.1,
+    ),
+
+    // Floating label style with brand color
+    floatingLabelStyle: TextStyle(
+      fontSize: adaptiveStyle.inputLabelTextSize - 1,
+      fontWeight: FontWeight.w600,
+      color: colors.primary,
+      letterSpacing: 0.1,
+    ),
+
+    // Hint text styling
+    hintStyle: TextStyle(
+      fontSize: adaptiveStyle.inputHintTextSize,
+      fontWeight: FontWeight.w400,
+      color: colors.textSecondary.withValues(alpha: 0.6),
+      letterSpacing: 0.2,
+    ),
+
+    // Error text styling with responsive sizing
+    errorStyle: TextStyle(
+      fontSize: adaptiveStyle.inputErrorTextSize,
+      fontWeight: FontWeight.w500,
+      color: colors.error,
+      letterSpacing: 0.2,
+      height: 1.3,
+    ),
+
+    // Helper text styling
+    helperStyle: TextStyle(
+      fontSize: adaptiveStyle.inputHelperTextSize,
+      fontWeight: FontWeight.w400,
+      color: colors.textSecondary.withValues(alpha: 0.8),
+      letterSpacing: 0.2,
+    ),
+
+    // Prefix and suffix styling
+    prefixStyle: TextStyle(
+      fontSize: adaptiveStyle.inputTextSize,
+      fontWeight: FontWeight.w400,
+      color: colors.textSecondary,
+    ),
+
+    suffixStyle: TextStyle(
+      fontSize: adaptiveStyle.inputTextSize,
+      fontWeight: FontWeight.w400,
+      color: colors.textSecondary,
+    ),
+
+    // Counter styling
+    counterStyle: TextStyle(
+      fontSize: adaptiveStyle.inputHelperTextSize,
+      fontWeight: FontWeight.w400,
+      color: colors.textSecondary.withValues(alpha: 0.8),
+    ),
+
+    // Icon theming for consistent appearance
+    prefixIconColor: colors.textSecondary,
+    suffixIconColor: colors.textSecondary,
+
+    // Modern design choices
+    isCollapsed: false,
+    isDense: false,
+    alignLabelWithHint: false,
+    floatingLabelBehavior: FloatingLabelBehavior.auto,
   );
 }
 
@@ -552,7 +667,7 @@ ListTileThemeData _buildListTileTheme(final ColorScheme colorScheme) {
     //   fontWeight: FontWeight.w500,
     // ),
     titleTextStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: colorScheme.onSurface),
-    subtitleTextStyle: const TextStyle(fontSize: 12, color: BeColors.gray300),
+    subtitleTextStyle: const TextStyle(fontSize: 12, color: BeColors.neutral60),
     mouseCursor: WidgetStateProperty.resolveWith((final states) {
       if (states.contains(WidgetState.disabled)) {
         return SystemMouseCursors.forbidden;
@@ -588,57 +703,86 @@ NavigationBarThemeData _buildNavigationBarTheme(final ColorScheme colorScheme) {
 }
 
 OutlinedButtonThemeData _buildOutlinedButtonTheme(final BeThemeData betheme) {
-  final swPrimary = BeColorUtils.createColorSwatch(betheme.colors.primary);
+  final adaptiveStyle = betheme.style.adaptiveStyle;
+  final colors = betheme.colors;
+
   return OutlinedButtonThemeData(
     style: ButtonStyle(
-      backgroundColor: const WidgetStatePropertyAll(BeColors.transparent),
+      // Background - transparent for outlined style
+      backgroundColor: const WidgetStatePropertyAll(Colors.transparent),
+
+      // Foreground colors with brand color scheme
       foregroundColor: WidgetStateProperty.resolveWith((final states) {
         if (states.contains(WidgetState.disabled)) {
-          return BeColors.gray400;
+          return colors.disabled;
         }
-        return swPrimary.shade500;
+        if (states.contains(WidgetState.pressed)) {
+          return colors.onPrimary;
+        }
+        return colors.primary;
       }),
-      overlayColor: WidgetStatePropertyAll(swPrimary.shade50),
+
+      // Overlay color for button interactions
+      overlayColor: WidgetStateProperty.resolveWith((final states) {
+        if (states.contains(WidgetState.pressed)) {
+          return colors.primary;
+        }
+        if (states.contains(WidgetState.hovered)) {
+          return colors.primary.withValues(alpha: 0.05);
+        }
+        return Colors.transparent;
+      }),
+
       elevation: const WidgetStatePropertyAll(0),
       shadowColor: const WidgetStatePropertyAll(Colors.transparent),
       surfaceTintColor: const WidgetStatePropertyAll(Colors.transparent),
-      textStyle: WidgetStatePropertyAll(
-        TextStyle(color: swPrimary.shade500, fontSize: 14, fontWeight: FontWeight.w400, height: 1.02),
-      ),
-      // iconColor: const WidgetStatePropertyAll(0),
-      iconSize: const WidgetStatePropertyAll(14),
-      side: WidgetStateProperty.resolveWith((final state) {
-        if (state.contains(WidgetState.disabled)) {
-          return const BorderSide(color: BeColors.gray400);
-        }
-        return BorderSide(color: swPrimary.shade500);
-      }),
-      padding: const WidgetStatePropertyAll(EdgeInsets.symmetric(horizontal: 10, vertical: 5)),
-      animationDuration: const Duration(milliseconds: 200),
 
-      shape: WidgetStateProperty.resolveWith((final states) {
+      // Responsive text styling
+      textStyle: WidgetStateProperty.resolveWith((final states) {
+        return TextStyle(fontSize: adaptiveStyle.buttonMediumTextSize, fontWeight: FontWeight.w600, letterSpacing: 0.5);
+      }),
+
+      // Icon styling
+      iconColor: WidgetStateProperty.resolveWith((final states) {
         if (states.contains(WidgetState.disabled)) {
-          return const ContinuousRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(16)),
-            side: BorderSide(color: BeColors.gray200, width: 2),
-          );
+          return colors.disabled;
+        }
+        return colors.primary;
+      }),
+      iconSize: const WidgetStatePropertyAll(20),
+
+      // Border styling with state management
+      side: WidgetStateProperty.resolveWith((final states) {
+        if (states.contains(WidgetState.disabled)) {
+          return BorderSide(color: colors.disabled, width: BeStyleConst.borderWidthThin);
         }
         if (states.contains(WidgetState.pressed)) {
-          return const ContinuousRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(16)),
-            side: BorderSide(color: BeColors.gray200, width: 2),
-          );
+          return BorderSide(color: colors.primary, width: BeStyleConst.borderWidthThick);
         }
-        if (states.contains(WidgetState.hovered)) {
-          return const ContinuousRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(16)),
-            side: BorderSide(color: BeColors.gray200, width: 2),
-          );
+        if (states.contains(WidgetState.focused)) {
+          return BorderSide(color: colors.primary, width: BeStyleConst.borderWidthFocus);
         }
-        return RoundedSuperellipseBorder(
-          borderRadius: const BorderRadius.all(Radius.circular(8)),
-          side: BorderSide(color: swPrimary.shade500, width: 2),
+        return BorderSide(color: colors.primary, width: BeStyleConst.borderWidthThin);
+      }),
+
+      // Responsive padding
+      padding: WidgetStateProperty.resolveWith((final states) {
+        return EdgeInsets.symmetric(
+          horizontal: adaptiveStyle.buttonMediumPaddingHorizontal,
+          vertical: (adaptiveStyle.buttonMediumHeight - adaptiveStyle.buttonMediumTextSize) / 2,
         );
+      }),
+
+      // Responsive minimum size
+      minimumSize: WidgetStateProperty.resolveWith((final states) {
+        return Size(0, adaptiveStyle.buttonMediumHeight);
+      }),
+
+      animationDuration: BeStyleConst.animationDurationFast,
+
+      // Responsive shape
+      shape: WidgetStateProperty.resolveWith((final states) {
+        return RoundedRectangleBorder(borderRadius: BorderRadius.circular(adaptiveStyle.buttonBorderRadius));
       }),
     ),
   );
@@ -808,51 +952,80 @@ TabBarThemeData _buildTabBarTheme(final ColorScheme colorScheme) {
 
 // ========== Text Button Theme ==========
 TextButtonThemeData _buildTextButtonTheme(final BeThemeData betheme) {
-  final swPrimary = BeColorUtils.createColorSwatch(betheme.colors.primary);
+  final adaptiveStyle = betheme.style.adaptiveStyle;
+  final colors = betheme.colors;
 
   return TextButtonThemeData(
     style: ButtonStyle(
-      backgroundColor: const WidgetStatePropertyAll(BeColors.transparent),
+      // Background - completely transparent for text button
+      backgroundColor: const WidgetStatePropertyAll(Colors.transparent),
+
+      // Foreground colors with subtle interaction states
       foregroundColor: WidgetStateProperty.resolveWith((final states) {
         if (states.contains(WidgetState.disabled)) {
-          return BeColors.gray400;
+          return colors.disabled;
         }
-        return swPrimary.shade500;
+        if (states.contains(WidgetState.pressed)) {
+          return colors.primaryDark;
+        }
+        return colors.primary;
       }),
-      overlayColor: WidgetStatePropertyAll(swPrimary.shade50),
+
+      // Subtle overlay for interactions
+      overlayColor: WidgetStateProperty.resolveWith((final states) {
+        if (states.contains(WidgetState.pressed)) {
+          return colors.primary.withValues(alpha: 0.1);
+        }
+        if (states.contains(WidgetState.hovered)) {
+          return colors.primary.withValues(alpha: 0.04);
+        }
+        return Colors.transparent;
+      }),
+
       elevation: const WidgetStatePropertyAll(0),
       shadowColor: const WidgetStatePropertyAll(Colors.transparent),
       surfaceTintColor: const WidgetStatePropertyAll(Colors.transparent),
-      textStyle: WidgetStateProperty.resolveWith((final state) {
-        if (state.containsAll([WidgetState.hovered, WidgetState.pressed])) {
-          return const TextStyle(fontSize: 14, fontWeight: FontWeight.w600);
-        }
 
-        return const TextStyle(fontSize: 14, fontWeight: FontWeight.w500);
+      // Responsive text styling with interaction feedback
+      textStyle: WidgetStateProperty.resolveWith((final states) {
+        final weight = states.contains(WidgetState.pressed) ? FontWeight.w700 : FontWeight.w600;
+
+        return TextStyle(fontSize: adaptiveStyle.buttonMediumTextSize, fontWeight: weight, letterSpacing: 0.5);
       }),
-      // iconColor: const WidgetStatePropertyAll(0),
-      iconSize: WidgetStateProperty.resolveWith((final state) {
-        if (state.containsAll([WidgetState.hovered, WidgetState.pressed])) {
-          return 15.5;
-        }
-        return 16;
-      }),
-      side: const WidgetStatePropertyAll(BorderSide(color: BeColors.transparent)),
 
-      padding: const WidgetStatePropertyAll(EdgeInsets.symmetric(horizontal: 12, vertical: 8)),
-      animationDuration: const Duration(milliseconds: 100),
-
-      shape: WidgetStateProperty.resolveWith((final states) {
+      // Icon styling with interaction states
+      iconColor: WidgetStateProperty.resolveWith((final states) {
         if (states.contains(WidgetState.disabled)) {
-          return const ContinuousRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(16)));
+          return colors.disabled;
         }
-        if (states.contains(WidgetState.pressed)) {
-          return const ContinuousRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(16)));
-        }
-        if (states.contains(WidgetState.hovered)) {
-          return const ContinuousRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(16)));
-        }
-        return const RoundedSuperellipseBorder(borderRadius: BorderRadius.all(Radius.circular(8)));
+        return colors.primary;
+      }),
+
+      iconSize: WidgetStateProperty.resolveWith((final states) {
+        return states.contains(WidgetState.pressed) ? 21.0 : 20.0;
+      }),
+
+      // No border for text button
+      side: const WidgetStatePropertyAll(BorderSide.none),
+
+      // Responsive padding - slightly smaller for text button
+      padding: WidgetStateProperty.resolveWith((final states) {
+        return EdgeInsets.symmetric(
+          horizontal: adaptiveStyle.buttonMediumPaddingHorizontal - 4,
+          vertical: (adaptiveStyle.buttonMediumHeight - adaptiveStyle.buttonMediumTextSize) / 2,
+        );
+      }),
+
+      // Responsive minimum size
+      minimumSize: WidgetStateProperty.resolveWith((final states) {
+        return Size(0, adaptiveStyle.buttonMediumHeight - 8); // Slightly smaller
+      }),
+
+      animationDuration: BeStyleConst.animationDurationFast,
+
+      // Responsive shape with rounded corners
+      shape: WidgetStateProperty.resolveWith((final states) {
+        return RoundedRectangleBorder(borderRadius: BorderRadius.circular(adaptiveStyle.buttonBorderRadius));
       }),
     ),
   );

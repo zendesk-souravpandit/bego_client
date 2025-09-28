@@ -1,52 +1,119 @@
 import 'package:flutter/material.dart';
 
-/// | **Color Type**    | **Color Name**  | **Hex Code**  |
-/// |-------------------|----------------|--------------|
-/// | **Primary**       | Primary         | `0xFFBE3455` |
-/// |                  | Primary Dark    | `0xFF9C2A46` |
-/// |                  | Primary Light   | `0xFFD15F7A` |
-/// | **Secondary**     | Teal            | `0xFF2E8B57` |
-/// |                  | Soft Blue       | `0xFF4A7B9D` |
-/// | **Accent**        | Gold            | `0xFFFFD700` |
-/// |                  | Coral           | `0xFFFF6B6B` |
-/// | **Neutral**       | Light Gray      | `0xFFF5F5F5` |
-/// |                  | Medium Gray     | `0xFFE0E0E0` |
-/// |                  | Dark Gray       | `0xFF333333` |
-/// |                  | White           | `0xFFFFFFFF` |
-/// | **Status Colors** | Error           | `0xFFE57373` |
-/// |                  | Success         | `0xFF81C784` |
+/// Modern theme colors based on brand color 0xFFBE3455
+///
+/// | **Color Type**      | **Color Name**      | **Hex Code**  | **Usage** |
+/// |-------------------|-------------------|--------------|-----------|
+/// | **Primary**       | Primary           | `0xFFBE3455` | Main brand color |
+/// |                  | Primary Dark      | `0xFF8E1A35` | Hover/pressed states |
+/// |                  | Primary Light     | `0xFFDA5A7A` | Subtle backgrounds |
+/// |                  | Primary Container | `0xFFFFE8ED` | Light containers |
+/// |                  | Primary Fixed     | `0xFFFFD9E0` | Fixed elements |
+/// | **Secondary**     | Secondary         | `0xFF825564` | Supporting elements |
+/// |                  | Secondary Container| `0xFFFFD9E0` | Secondary containers |
+/// | **Tertiary**      | Tertiary          | `0xFF7D5635` | Accent elements |
+/// |                  | Tertiary Container| `0xFFFFE0CC` | Tertiary containers |
+/// | **Error**         | Error             | `0xFFE53E3E` | Error states |
+/// |                  | Error Container   | `0xFFFFEDEA` | Error backgrounds |
+/// | **Surface**       | Surface           | `0xFFFFFBFF` | Primary surface |
+/// |                  | Surface Variant   | `0xFFF5EFF7` | Elevated surfaces |
+/// |                  | Surface Dim       | `0xFFE7E0EC` | Dimmed surfaces |
 
 class BeColors {
   const BeColors._(); // Private constructor
 
-  // Primary Colors
-  static const Color primary = Color(0xFFBE3455);
-  static const Color primaryDark = Color(0xFF9C2A46);
-  static const Color primaryLight = Color(0xFFD15F7A);
+  // Primary Brand Colors - Harmonious variations of 0xFFBE3455
+  static const Color primary = Color(0xFFBE3455); // Primary brand color
+  static const Color primaryDark = Color(0xFF8E1A35); // Darker variant for pressed states
+  static const Color primaryLight = Color(0xFFDA5A7A); // Lighter variant for subtle accents
+  static const Color primaryContainer = Color(0xFFFFE8ED); // Very light container background
+  static const Color primaryFixed = Color(0xFFFFD9E0); // Fixed UI elements
+  static const Color primaryFixedDim = Color(0xFFFFB1C8); // Dimmed fixed elements
+  static const Color onPrimary = Color(0xFFFFFFFF); // Text/icons on primary
+  static const Color onPrimaryContainer = Color(0xFF3F0A18); // Text on primary container
+  static const Color onPrimaryFixed = Color(0xFF3F0A18); // Text on fixed primary
+  static const Color onPrimaryFixedVariant = Color(0xFF9C2A46); // Alternative text on fixed primary
 
-  // Secondary Colors
-  static const Color secondary = Color(0xFF2E8B57);
-  static const Color secondaryDark = Color(0xFF1F6F4A);
+  // Secondary Colors - Harmonious complement to primary
+  static const Color secondary = Color(0xFF825564); // Muted secondary
+  static const Color secondaryDark = Color(0xFF5F3F4A); // Darker secondary
+  static const Color secondaryLight = Color(0xFFA67582); // Lighter secondary
+  static const Color secondaryContainer = Color(0xFFFFD9E0); // Secondary container
+  static const Color onSecondary = Color(0xFFFFFFFF); // Text on secondary
+  static const Color onSecondaryContainer = Color(0xFF2B1518); // Text on secondary container
 
-  // Accent Colors
-  static const Color accent = Color(0xFFFFD700);
-  static const Color accentAlt = Color(0xFFFF6B6B);
+  // Tertiary Colors - Warm complement
+  static const Color tertiary = Color(0xFF7D5635); // Warm brown tertiary
+  static const Color tertiaryDark = Color(0xFF5A3D25); // Darker tertiary
+  static const Color tertiaryLight = Color(0xFFA17555); // Lighter tertiary
+  static const Color tertiaryContainer = Color(0xFFFFE0CC); // Tertiary container
+  static const Color onTertiary = Color(0xFFFFFFFF); // Text on tertiary
+  static const Color onTertiaryContainer = Color(0xFF2B1A0F); // Text on tertiary container
 
-  // Neutral Palette
-  static const Color neutral50 = Color(0xFFFAFAFA);
-  static const Color neutral100 = Color(0xFFF5F5F5);
-  static const Color neutral200 = Color(0xFFE0E0E0);
-  static const Color neutral500 = Color(0xFF333333);
+  // Neutral Palette - Modern and sophisticated
+  static const Color neutral10 = Color(0xFF1C1B1F); // Darkest neutral
+  static const Color neutral20 = Color(0xFF313033); // Very dark
+  static const Color neutral30 = Color(0xFF484649); // Dark
+  static const Color neutral40 = Color(0xFF605D64); // Medium dark
+  static const Color neutral50 = Color(0xFF79767D); // Medium
+  static const Color neutral60 = Color(0xFF938F96); // Medium light
+  static const Color neutral80 = Color(0xFFC9C5CC); // Light
+  static const Color neutral90 = Color(0xFFE6E1E9); // Very light
+  static const Color neutral95 = Color(0xFFF4EFF7); // Near white
+  static const Color neutral99 = Color(0xFFFFFBFF); // Pure white
 
-  // Status Colors
-  static const Color success = Color(0xFF81C784);
-  static const Color error = Color(0xFFE57373);
+  // Neutral Variant Palette - Subtle tinted neutrals
+  static const Color neutralVariant30 = Color(0xFF524349); // Dark variant
+  static const Color neutralVariant50 = Color(0xFF7A7079); // Medium variant
+  static const Color neutralVariant80 = Color(0xFFCCC2CB); // Light variant
+  static const Color neutralVariant90 = Color(0xFFE8DEE7); // Very light variant
 
-  // // Text Colors
-  // static const Color textPrimary = neutral500;
-  // static const Color textSecondary = neutral200;
+  // Modern Semantic Colors - WCAG AA+ compliant
+  static const Color error = Color(0xFFE53E3E); // Modern error red
+  static const Color errorDark = Color(0xFFB91C1C); // Dark error
+  static const Color errorLight = Color(0xFFF87171); // Light error
+  static const Color errorContainer = Color(0xFFFFEDEA); // Error container
+  static const Color onError = Color(0xFFFFFFFF); // Text on error
+  static const Color onErrorContainer = Color(0xFF410E0B); // Text on error container
 
-  static const transparent = Colors.transparent;
+  static const Color success = Color(0xFF16A34A); // Modern success green
+  static const Color successDark = Color(0xFF15803D); // Dark success
+  static const Color successLight = Color(0xFF4ADE80); // Light success
+  static const Color successContainer = Color(0xFFDCFCE7); // Success container
+  static const Color onSuccess = Color(0xFFFFFFFF); // Text on success
+  static const Color onSuccessContainer = Color(0xFF052E16); // Text on success container
+
+  static const Color warning = Color(0xFFF59E0B); // Modern warning amber
+  static const Color warningDark = Color(0xFFD97706); // Dark warning
+  static const Color warningLight = Color(0xFFFBBF24); // Light warning
+  static const Color warningContainer = Color(0xFFFEF3C7); // Warning container
+  static const Color onWarning = Color(0xFF000000); // Text on warning
+  static const Color onWarningContainer = Color(0xFF451A03); // Text on warning container
+  static const Color info = Color(0xFF2563EB); // Modern info blue
+  static const Color infoDark = Color(0xFF1D4ED8); // Dark info
+  static const Color infoLight = Color(0xFF60A5FA); // Light info
+  static const Color infoContainer = Color(0xFFDBEAFE); // Info container
+  static const Color onInfo = Color(0xFFFFFFFF); // Text on info
+  static const Color onInfoContainer = Color(0xFF1E3A8A); // Text on info container
+
+  // Surface Colors - Modern layered design
+  static const Color surface = Color(0xFFFFFBFF); // Primary surface
+  static const Color surfaceDim = Color(0xFFE7E0EC); // Dimmed surface
+  static const Color surfaceBright = Color(0xFFFFFBFF); // Bright surface
+  static const Color surfaceContainer = Color(0xFFF3EDF7); // Container surface
+  static const Color surfaceContainerHigh = Color(0xFFECE6F0); // High container
+  static const Color surfaceContainerHighest = Color(0xFFE6E0E9); // Highest container
+  static const Color surfaceContainerLow = Color(0xFFF7F2FA); // Low container
+  static const Color surfaceContainerLowest = Color(0xFFFFFFFF); // Lowest container
+  static const Color onSurface = Color(0xFF1C1B1F); // Text on surface
+  static const Color onSurfaceVariant = Color(0xFF49454F); // Text on surface variant
+
+  // Outline Colors - For borders and dividers
+  static const Color outline = Color(0xFF79747E); // Primary outline
+  static const Color outlineVariant = Color(0xFFCAC4D0); // Subtle outline
+
+  // Legacy/Utility Colors
+  static const Color transparent = Colors.transparent;
   // Light Theme Text Colors
   static const Color lightTextPrimary = Color(0xFF111827);
   static const Color lightTextSecondary = Color(0xFF374151);

@@ -6,31 +6,33 @@ import 'package:beui/src/theme/colors/be_colors.dart';
 class BeMobileValue implements BeAdaptiveStyle {
   const BeMobileValue();
 
+  // Display styles - Modern scaling for mobile
   @override
-  double get displayLargeTextSize => 48;
+  double get displayLargeTextSize => 48; // Large hero text
   @override
-  double get displayLargeLineHeight => 60;
+  double get displayLargeLineHeight => 56; // 1.167 ratio for tight spacing
   @override
   double get displayMediumTextSize => 36;
   @override
-  double get displayMediumLineHeight => 44;
+  double get displayMediumLineHeight => 44; // 1.222 ratio
   @override
   double get displaySmallTextSize => 30;
   @override
-  double get displaySmallLineHeight => 38;
+  double get displaySmallLineHeight => 36; // 1.2 ratio
 
+  // Headline styles - Optimized for mobile readability
   @override
   double get headlineLargeTextSize => 24;
   @override
-  double get headlineLargeLineHeight => 32;
+  double get headlineLargeLineHeight => 30; // 1.25 ratio
   @override
   double get headlineMediumTextSize => 20;
   @override
-  double get headlineMediumLineHeight => 28;
+  double get headlineMediumLineHeight => 26; // 1.3 ratio
   @override
   double get headlineSmallTextSize => 18;
   @override
-  double get headlineSmallLineHeight => 24;
+  double get headlineSmallLineHeight => 24; // 1.333 ratio
 
   @override
   double get titleLargeTextSize => 20;
@@ -45,18 +47,19 @@ class BeMobileValue implements BeAdaptiveStyle {
   @override
   double get titleSmallLineHeight => 20;
 
+  // Body text - Enhanced for mobile reading comfort
   @override
   double get bodyLargeTextSize => 16;
   @override
-  double get bodyLargeLineHeight => 24;
+  double get bodyLargeLineHeight => 26; // 1.625 ratio for comfortable reading
   @override
   double get bodyMediumTextSize => 14;
   @override
-  double get bodyMediumLineHeight => 20;
+  double get bodyMediumLineHeight => 22; // 1.571 ratio
   @override
   double get bodySmallTextSize => 12;
   @override
-  double get bodySmallLineHeight => 16;
+  double get bodySmallLineHeight => 18; // 1.5 ratio
 
   @override
   double get labelLargeTextSize => 14;
@@ -71,14 +74,59 @@ class BeMobileValue implements BeAdaptiveStyle {
   @override
   double get labelSmallLineHeight => 12;
 
+  // Form-specific text sizes - Mobile optimized
   @override
-  double get notificationMaxWidth => 420;
+  double get inputTextSize => 16; // Large enough to prevent zoom on iOS
+  @override
+  double get inputLabelTextSize => 14; // Clear label text
+  @override
+  double get inputHintTextSize => 16; // Same as input for consistency
+  @override
+  double get inputErrorTextSize => 12; // Small but readable error text
+  @override
+  double get inputHelperTextSize => 12; // Small helper text
+
+  // Button text sizes - Mobile friendly
+  @override
+  double get buttonLargeTextSize => 16; // Large touch target
+  @override
+  double get buttonMediumTextSize => 14; // Standard button text
+  @override
+  double get buttonSmallTextSize => 12; // Compact button text
+
+  // Form spacing - Touch-friendly mobile spacing
+  @override
+  double get inputContentPaddingHorizontal => 16; // Comfortable touch padding
+  @override
+  double get inputContentPaddingVertical => 16; // Adequate vertical space
+  @override
+  double get inputBorderRadius => 12; // Modern rounded corners
+  @override
+  double get buttonBorderRadius => 12; // Consistent with inputs
+
+  // Button sizing - Optimized for mobile touch targets
+  @override
+  double get buttonLargeHeight => 56; // WCAG touch target minimum
+  @override
+  double get buttonMediumHeight => 48; // Standard button height
+  @override
+  double get buttonSmallHeight => 40; // Compact button height
+  @override
+  double get buttonLargePaddingHorizontal => 24; // Spacious padding
+  @override
+  double get buttonMediumPaddingHorizontal => 20; // Standard padding
+  @override
+  double get buttonSmallPaddingHorizontal => 16; // Compact padding
+
+  // Component sizing for mobile
+  @override
+  double get notificationMaxWidth => 360; // Optimized for mobile screens
 
   @override
-  int get notificationMaxCount => 3;
+  int get notificationMaxCount => 3; // Prevent notification overflow
 
   @override
-  Color get deviceColor => BeColors.red;
+  Color get deviceColor => BeColors.primary;
 }
 
 // @immutable
