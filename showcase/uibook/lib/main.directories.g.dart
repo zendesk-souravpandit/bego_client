@@ -30,10 +30,8 @@ import 'package:uibook/widgets/form/use_case_be_form_field.dart'
     as _uibook_widgets_form_use_case_be_form_field;
 import 'package:uibook/widgets/form/use_case_be_item_selector.dart'
     as _uibook_widgets_form_use_case_be_item_selector;
-import 'package:uibook/widgets/form/use_case_be_selector_combobox.dart'
-    as _uibook_widgets_form_use_case_be_selector_combobox;
-import 'package:uibook/widgets/form/use_case_be_selector_scenarios.dart'
-    as _uibook_widgets_form_use_case_be_selector_scenarios;
+import 'package:uibook/widgets/form/use_case_be_selector_showcase.dart'
+    as _uibook_widgets_form_use_case_be_selector_showcase;
 import 'package:uibook/widgets/foundation/use_case_be_bounce_tap.dart'
     as _uibook_widgets_foundation_use_case_be_bounce_tap;
 import 'package:uibook/widgets/foundation/use_case_be_tappable.dart'
@@ -256,6 +254,47 @@ final directories = <_widgetbook.WidgetbookNode>[
                   _uibook_widgets_form_use_case_be_item_selector
                       .useCaseBeItemSelector,
             ),
+          ),
+          _widgetbook.WidgetbookComponent(
+            name: 'BeSelectorCombobox',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Basic Single Select',
+                builder:
+                    _uibook_widgets_form_use_case_be_selector_showcase
+                        .useCaseBeSelectorSingleSelect,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Custom Item Builder',
+                builder:
+                    _uibook_widgets_form_use_case_be_selector_showcase
+                        .useCaseBeSelectorCustomBuilder,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Multi Select with Tags',
+                builder:
+                    _uibook_widgets_form_use_case_be_selector_showcase
+                        .useCaseBeSelectorMultiSelect,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Non-Searchable Click to Open',
+                builder:
+                    _uibook_widgets_form_use_case_be_selector_showcase
+                        .useCaseBeSelectorNonSearchable,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Searchable Large List',
+                builder:
+                    _uibook_widgets_form_use_case_be_selector_showcase
+                        .useCaseBeSelectorSearchable,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Form Validation',
+                builder:
+                    _uibook_widgets_form_use_case_be_selector_showcase
+                        .useCaseBeSelectorValidation,
+              ),
+            ],
           ),
         ],
       ),
@@ -645,76 +684,6 @@ final directories = <_widgetbook.WidgetbookNode>[
                 builder:
                     _uibook_widgets_form_use_case_be_form_comprehensive
                         .slidersAndDatePickersUseCase,
-              ),
-            ],
-          ),
-        ],
-      ),
-      _widgetbook.WidgetbookFolder(
-        name: 'selector',
-        children: [
-          _widgetbook.WidgetbookComponent(
-            name: 'BeSelectorCombobox',
-            useCases: [
-              _widgetbook.WidgetbookUseCase(
-                name: 'API Integration Loading',
-                builder:
-                    _uibook_widgets_form_use_case_be_selector_combobox
-                        .apiIntegrationLoading,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Custom Rendering',
-                builder:
-                    _uibook_widgets_form_use_case_be_selector_combobox
-                        .customRendering,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'E-commerce Filters',
-                builder:
-                    _uibook_widgets_form_use_case_be_selector_scenarios
-                        .ecommerceFilters,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Form Integration',
-                builder:
-                    _uibook_widgets_form_use_case_be_selector_combobox
-                        .formIntegration,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Grouped Options',
-                builder:
-                    _uibook_widgets_form_use_case_be_selector_combobox
-                        .groupedOptions,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Issue Tracker Form',
-                builder:
-                    _uibook_widgets_form_use_case_be_selector_scenarios
-                        .issueTrackerForm,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Multi Select with Tags',
-                builder:
-                    _uibook_widgets_form_use_case_be_selector_combobox
-                        .multiSelectWithTags,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Single Select Basic',
-                builder:
-                    _uibook_widgets_form_use_case_be_selector_combobox
-                        .singleSelectBasic,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'User Registration Form',
-                builder:
-                    _uibook_widgets_form_use_case_be_selector_scenarios
-                        .userRegistrationForm,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'With Validation Error',
-                builder:
-                    _uibook_widgets_form_use_case_be_selector_combobox
-                        .withValidationError,
               ),
             ],
           ),
