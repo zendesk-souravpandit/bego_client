@@ -10,7 +10,8 @@ import 'package:flutter/material.dart';
 ThemeData buildTheme({required final BeThemeData betheme, final bool useMaterial3 = true}) {
   final isDark = betheme.colors.isDark;
   final brightness = isDark ? Brightness.dark : Brightness.light;
-  final colorScheme = _buildColorScheme(betheme.colors);
+  final colors = betheme.colors;
+  final colorScheme = _buildColorScheme(colors);
   final bestyle = betheme.style;
 
   return ThemeData(
@@ -19,9 +20,17 @@ ThemeData buildTheme({required final BeThemeData betheme, final bool useMaterial
     brightness: brightness,
     package: BeUIConst.packageName,
     fontFamily: BeUIConst.fontFamily,
+    visualDensity: VisualDensity.compact,
+    materialTapTargetSize: MaterialTapTargetSize.padded,
     splashFactory: InkRipple.splashFactory,
-    disabledColor: betheme.colors.disabled,
-    visualDensity: VisualDensity.adaptivePlatformDensity,
+    disabledColor: colors.disabled,
+    dividerColor: BeColors.divider,
+    hintColor: BeColors.hintColor,
+    focusColor: BeColors.focusColor,
+    hoverColor: BeColors.hoverColor,
+    highlightColor: BeColors.highlightColor,
+    shadowColor: BeColors.shadow,
+    unselectedWidgetColor: BeColors.unselectedWidget,
     textTheme: _buildTextTheme(bestyle),
 
     // Component themes
@@ -206,19 +215,19 @@ ButtonThemeData _buildButtonTheme(final BeThemeData betheme) {
 }
 
 CardThemeData _buildCardTheme(final BeThemeData betheme) {
-  return CardThemeData(
-    color: betheme.colors.background,
-    // shadowColor: Colors.grey,
-    // surfaceTintColor: Colors.transparent,
-    elevation: 0,
-    margin: const EdgeInsets.all(8),
-    shape: const RoundedRectangleBorder(
-      borderRadius: BorderRadius.all(Radius.circular(8)),
-      side: BorderSide(color: BeColors.neutral50, width: 0.2),
-      // side: BorderSide(color: BeColors.neutral30, width: 2.0),
-    ),
+  final colors = betheme.colors;
 
-    // clipBehavior: Clip.antiAlias,
+  return CardThemeData(
+    color: colors.surface,
+    elevation: 4,
+    margin: const EdgeInsets.all(BeStyleConst.spacing12),
+    shadowColor: BeColors.shadow,
+    surfaceTintColor: Colors.transparent,
+    shape: RoundedRectangleBorder(
+      borderRadius: BeStyleConst.cardBorderRadius,
+      side: BorderSide(color: colors.outlineVariant, width: BeStyleConst.borderWidthThin),
+    ),
+    clipBehavior: Clip.antiAlias,
   );
 }
 
@@ -266,17 +275,32 @@ ChipThemeData _buildChipTheme(final BeThemeData betheme) {
 
 DialogThemeData _buildDialogTheme(final BeThemeData betheme) {
   final colors = betheme.colors;
+  final adaptiveStyle = betheme.style.adaptiveStyle;
 
   return DialogThemeData(
     backgroundColor: colors.surface,
-    elevation: 6,
-    shadowColor: Colors.black,
-    surfaceTintColor: colors.primary,
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
+    elevation: 8,
+    shadowColor: BeColors.shadow,
+    surfaceTintColor: Colors.transparent,
+    // Responsive dialog border radius using design system tokens
+    shape: RoundedSuperellipseBorder(
+      borderRadius: BorderRadius.circular(adaptiveStyle.buttonBorderRadius + 4), // Slightly larger than buttons
+    ),
     alignment: Alignment.center,
-    titleTextStyle: TextStyle(fontSize: 24, fontWeight: FontWeight.w500, color: colors.onSurface),
-    contentTextStyle: TextStyle(fontSize: 16, color: colors.onSurface.withAlpha(0.8.toAlpha())),
-    actionsPadding: const EdgeInsets.all(16),
+    // Responsive typography using design system tokens
+    titleTextStyle: TextStyle(
+      fontSize: adaptiveStyle.titleLargeTextSize,
+      fontWeight: FontWeight.w700,
+      color: colors.onSurface,
+      fontFamily: BeUIConst.fontFamily,
+    ),
+    contentTextStyle: TextStyle(
+      fontSize: adaptiveStyle.bodyLargeTextSize,
+      fontWeight: FontWeight.w400,
+      color: colors.onSurface,
+      fontFamily: BeUIConst.fontFamily,
+    ),
+    actionsPadding: const EdgeInsets.symmetric(horizontal: BeStyleConst.spacing16, vertical: BeStyleConst.spacing12),
   );
 }
 
@@ -307,14 +331,12 @@ TextTheme _buildTextTheme(final BeStyle bestyle) {
 // ========== Remaining Theme Builders ==========
 
 DividerThemeData _buildDividerTheme(final BeThemeData betheme) {
-  final colors = betheme.colors;
-
-  return DividerThemeData(
-    color: colors.outline.withAlpha(0.3.toAlpha()),
+  return const DividerThemeData(
+    color: BeColors.divider,
     thickness: 1,
-    indent: 16,
-    endIndent: 16,
-    space: 16,
+    indent: 0,
+    endIndent: 0,
+    space: BeStyleConst.spacing16,
   );
 }
 
@@ -343,8 +365,8 @@ DropdownMenuThemeData _buildDropdownMenuTheme(final BeThemeData betheme) {
 }
 
 ElevatedButtonThemeData _buildElevatedButtonTheme(final BeThemeData betheme) {
-  final adaptiveStyle = betheme.style.adaptiveStyle;
   final colors = betheme.colors;
+  final adaptiveStyle = betheme.style.adaptiveStyle;
 
   return ElevatedButtonThemeData(
     style: ButtonStyle(
@@ -401,10 +423,15 @@ ElevatedButtonThemeData _buildElevatedButtonTheme(final BeThemeData betheme) {
 
       surfaceTintColor: const WidgetStatePropertyAll(Colors.transparent),
 
-      // Responsive text styling
-      textStyle: WidgetStateProperty.resolveWith((final states) {
-        return TextStyle(fontSize: adaptiveStyle.buttonMediumTextSize, fontWeight: FontWeight.w600, letterSpacing: 0.5);
-      }),
+      // Responsive text styling using design system typography tokens
+      textStyle: WidgetStatePropertyAll(
+        TextStyle(
+          fontSize: adaptiveStyle.buttonMediumTextSize,
+          fontWeight: FontWeight.w600,
+          letterSpacing: 0.5,
+          fontFamily: BeUIConst.fontFamily,
+        ),
+      ),
 
       // Icon styling
       iconColor: WidgetStateProperty.resolveWith((final states) {
@@ -415,26 +442,24 @@ ElevatedButtonThemeData _buildElevatedButtonTheme(final BeThemeData betheme) {
       }),
       iconSize: const WidgetStatePropertyAll(20),
 
-      // Responsive padding based on screen size
-      padding: WidgetStateProperty.resolveWith((final states) {
-        return EdgeInsets.symmetric(
+      // Responsive padding using design system component tokens
+      padding: WidgetStatePropertyAll(
+        EdgeInsets.symmetric(
           horizontal: adaptiveStyle.buttonMediumPaddingHorizontal,
-          vertical: (adaptiveStyle.buttonMediumHeight - adaptiveStyle.buttonMediumTextSize) / 2,
-        );
-      }),
+          vertical: adaptiveStyle.inputContentPaddingVertical,
+        ),
+      ),
 
       // Responsive minimum size for touch targets
-      minimumSize: WidgetStateProperty.resolveWith((final states) {
-        return Size(0, adaptiveStyle.buttonMediumHeight);
-      }),
+      minimumSize: WidgetStatePropertyAll(Size(0, adaptiveStyle.buttonMediumHeight)),
 
       // Animation duration for smooth interactions
       animationDuration: BeStyleConst.animationDurationFast,
 
-      // Responsive shape with brand border radius
-      shape: WidgetStateProperty.resolveWith((final states) {
-        return RoundedRectangleBorder(borderRadius: BorderRadius.circular(adaptiveStyle.buttonBorderRadius));
-      }),
+      // Responsive shape using design system border radius tokens
+      shape: WidgetStatePropertyAll(
+        RoundedSuperellipseBorder(borderRadius: BorderRadius.circular(adaptiveStyle.buttonBorderRadius)),
+      ),
     ),
   );
 }
@@ -471,52 +496,77 @@ ExpansionTileThemeData _buildExpansionTileTheme(final BeThemeData betheme) {
 }
 
 FilledButtonThemeData _buildFilledButtonTheme(final BeThemeData betheme) {
-  final swPrimary = BeColorUtils.createColorSwatch(betheme.colors.primary);
+  final colors = betheme.colors;
+  final adaptiveStyle = betheme.style.adaptiveStyle;
+
   return FilledButtonThemeData(
     style: ButtonStyle(
+      // Background colors using secondary color for accent behavior
       backgroundColor: WidgetStateProperty.resolveWith((final states) {
         if (states.contains(WidgetState.disabled)) {
-          return BeColors.neutral80;
+          return colors.disabled;
         }
-
-        return swPrimary.shade100;
+        if (states.contains(WidgetState.pressed)) {
+          return colors.secondaryDark;
+        }
+        if (states.contains(WidgetState.hovered)) {
+          return colors.secondaryLight;
+        }
+        return colors.secondary;
       }),
+
+      // Foreground colors for text and icons
       foregroundColor: WidgetStateProperty.resolveWith((final states) {
         if (states.contains(WidgetState.disabled)) {
-          return BeColors.neutral50;
+          return colors.textSecondary.withValues(alpha: 0.6);
         }
-        return swPrimary.shade500;
+        return colors.onSecondary;
       }),
-      overlayColor: const WidgetStatePropertyAll(BeColors.transparent),
+
+      // Overlay color for ripple effects
+      overlayColor: WidgetStateProperty.resolveWith((final states) {
+        if (states.contains(WidgetState.pressed)) {
+          return colors.onSecondary.withValues(alpha: 0.1);
+        }
+        if (states.contains(WidgetState.hovered)) {
+          return colors.onSecondary.withValues(alpha: 0.05);
+        }
+        return Colors.transparent;
+      }),
+
       elevation: const WidgetStatePropertyAll(0),
       shadowColor: const WidgetStatePropertyAll(Colors.transparent),
       surfaceTintColor: const WidgetStatePropertyAll(Colors.transparent),
-      textStyle: const WidgetStatePropertyAll(TextStyle(fontSize: 14, fontWeight: FontWeight.w400, height: 1.02)),
-      iconSize: const WidgetStatePropertyAll(14),
-      padding: const WidgetStatePropertyAll(EdgeInsets.symmetric(horizontal: 10, vertical: 5)),
-      animationDuration: const Duration(milliseconds: 200),
 
-      shape: WidgetStateProperty.resolveWith((final states) {
-        if (states.contains(WidgetState.disabled)) {
-          return const ContinuousRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(16)),
-            side: BorderSide(color: BeColors.neutral80, width: 2),
-          );
-        }
-        if (states.contains(WidgetState.pressed)) {
-          return ContinuousRectangleBorder(
-            borderRadius: const BorderRadius.all(Radius.circular(16)),
-            side: BorderSide(color: swPrimary.shade300, width: 2),
-          );
-        }
-        if (states.contains(WidgetState.hovered)) {
-          return const ContinuousRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(16)));
-        }
-        return RoundedRectangleBorder(
-          borderRadius: const BorderRadius.all(Radius.circular(8)),
-          side: BorderSide(color: swPrimary.shade100, width: 2),
-        );
-      }),
+      // Responsive text styling using design system typography tokens
+      textStyle: WidgetStatePropertyAll(
+        TextStyle(
+          fontSize: adaptiveStyle.buttonMediumTextSize,
+          fontWeight: FontWeight.w600,
+          letterSpacing: 0.5,
+          fontFamily: BeUIConst.fontFamily,
+        ),
+      ),
+
+      iconSize: const WidgetStatePropertyAll(20),
+
+      // Responsive padding using design system component tokens
+      padding: WidgetStatePropertyAll(
+        EdgeInsets.symmetric(
+          horizontal: adaptiveStyle.buttonMediumPaddingHorizontal,
+          vertical: adaptiveStyle.inputContentPaddingVertical,
+        ),
+      ),
+
+      // Responsive minimum size for touch targets
+      minimumSize: WidgetStatePropertyAll(Size(0, adaptiveStyle.buttonMediumHeight)),
+
+      animationDuration: BeStyleConst.animationDurationFast,
+
+      // Responsive shape using design system border radius tokens
+      shape: WidgetStatePropertyAll(
+        RoundedSuperellipseBorder(borderRadius: BorderRadius.circular(adaptiveStyle.buttonBorderRadius)),
+      ),
     ),
   );
 }
@@ -582,48 +632,44 @@ InputDecorationTheme _buildInputDecorationTheme(final BeThemeData betheme) {
 
     // Responsive border styling with brand colors
     border: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(adaptiveStyle.inputBorderRadius),
+      borderRadius: BeStyleConst.inputBorderRadius,
       borderSide: BorderSide(color: colors.outline, width: BeStyleConst.inputBorderWidthDefault),
     ),
 
     // Enabled state - subtle border for clean appearance
     enabledBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(adaptiveStyle.inputBorderRadius),
+      borderRadius: BeStyleConst.inputBorderRadius,
       borderSide: BorderSide(color: colors.outline.withValues(alpha: 0.4), width: BeStyleConst.inputBorderWidthDefault),
     ),
 
     // Focused state - prominent brand color border
     focusedBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(adaptiveStyle.inputBorderRadius),
+      borderRadius: BeStyleConst.inputBorderRadius,
       borderSide: BorderSide(color: colors.primary, width: BeStyleConst.inputBorderWidthFocus),
     ),
 
     // Error state - clear error indication
     errorBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(adaptiveStyle.inputBorderRadius),
+      borderRadius: BeStyleConst.inputBorderRadius,
       borderSide: BorderSide(color: colors.error, width: BeStyleConst.inputBorderWidthError),
     ),
 
     // Focused error state - prominent error with focus
     focusedErrorBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(adaptiveStyle.inputBorderRadius),
+      borderRadius: BeStyleConst.inputBorderRadius,
       borderSide: BorderSide(color: colors.error, width: BeStyleConst.inputBorderWidthFocus),
     ),
 
     // Disabled state - visually distinct disabled appearance
     disabledBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(adaptiveStyle.inputBorderRadius),
+      borderRadius: BeStyleConst.inputBorderRadius,
       borderSide: BorderSide(
         color: colors.disabled.withValues(alpha: 0.2),
         width: BeStyleConst.inputBorderWidthDefault,
       ),
     ),
 
-    // Compact content padding for cleaner appearance
-    contentPadding: EdgeInsets.symmetric(
-      horizontal: adaptiveStyle.inputContentPaddingHorizontal,
-      vertical: adaptiveStyle.inputContentPaddingVertical * 0.7, // Reduced vertical padding
-    ),
+    contentPadding: BeStyleConst.inputContentPadding,
 
     // Simplified label styling - no floating labels for compact design
     labelStyle: TextStyle(
@@ -690,11 +736,10 @@ InputDecorationTheme _buildInputDecorationTheme(final BeThemeData betheme) {
     prefixIconColor: colors.textSecondary,
     suffixIconColor: colors.textSecondary,
 
-    // Compact design choices - no floating labels
     isCollapsed: false,
-    isDense: true, // Enable dense mode for compactness
+    isDense: false,
     alignLabelWithHint: false,
-    floatingLabelBehavior: FloatingLabelBehavior.never, // Disable floating labels
+    floatingLabelBehavior: FloatingLabelBehavior.auto,
   );
 }
 
@@ -753,32 +798,32 @@ NavigationBarThemeData _buildNavigationBarTheme(final BeThemeData betheme) {
 }
 
 OutlinedButtonThemeData _buildOutlinedButtonTheme(final BeThemeData betheme) {
-  final adaptiveStyle = betheme.style.adaptiveStyle;
   final colors = betheme.colors;
+  final adaptiveStyle = betheme.style.adaptiveStyle;
 
   return OutlinedButtonThemeData(
     style: ButtonStyle(
       // Background - transparent for outlined style
       backgroundColor: const WidgetStatePropertyAll(Colors.transparent),
 
-      // Foreground colors with brand color scheme - Fixed: keep text visible
+      // Foreground colors with brand color scheme
       foregroundColor: WidgetStateProperty.resolveWith((final states) {
         if (states.contains(WidgetState.disabled)) {
           return colors.disabled;
         }
         if (states.contains(WidgetState.pressed)) {
-          return colors.primaryDark; // Use darker primary instead of onPrimary (white)
+          return colors.primaryDark;
         }
         return colors.primary;
       }),
 
-      // Overlay color for button interactions - Fixed: lighter ripple effect
+      // Overlay color for button interactions
       overlayColor: WidgetStateProperty.resolveWith((final states) {
         if (states.contains(WidgetState.pressed)) {
-          return colors.primary.withValues(alpha: 0.1); // Much lighter for pressed state
+          return colors.primary.withValues(alpha: 0.1);
         }
         if (states.contains(WidgetState.hovered)) {
-          return colors.primary.withValues(alpha: 0.05); // Very light for hover
+          return colors.primary.withValues(alpha: 0.05);
         }
         return Colors.transparent;
       }),
@@ -787,10 +832,15 @@ OutlinedButtonThemeData _buildOutlinedButtonTheme(final BeThemeData betheme) {
       shadowColor: const WidgetStatePropertyAll(Colors.transparent),
       surfaceTintColor: const WidgetStatePropertyAll(Colors.transparent),
 
-      // Responsive text styling
-      textStyle: WidgetStateProperty.resolveWith((final states) {
-        return TextStyle(fontSize: adaptiveStyle.buttonMediumTextSize, fontWeight: FontWeight.w600, letterSpacing: 0.5);
-      }),
+      // Responsive text styling using design system typography tokens
+      textStyle: WidgetStatePropertyAll(
+        TextStyle(
+          fontSize: adaptiveStyle.buttonMediumTextSize,
+          fontWeight: FontWeight.w600,
+          letterSpacing: 0.5,
+          fontFamily: BeUIConst.fontFamily,
+        ),
+      ),
 
       // Icon styling - matches text color behavior
       iconColor: WidgetStateProperty.resolveWith((final states) {
@@ -798,7 +848,7 @@ OutlinedButtonThemeData _buildOutlinedButtonTheme(final BeThemeData betheme) {
           return colors.disabled;
         }
         if (states.contains(WidgetState.pressed)) {
-          return colors.primaryDark; // Consistent with text color
+          return colors.primaryDark;
         }
         return colors.primary;
       }),
@@ -818,25 +868,23 @@ OutlinedButtonThemeData _buildOutlinedButtonTheme(final BeThemeData betheme) {
         return BorderSide(color: colors.primary, width: BeStyleConst.borderWidthThin);
       }),
 
-      // Responsive padding
-      padding: WidgetStateProperty.resolveWith((final states) {
-        return EdgeInsets.symmetric(
+      // Responsive padding using design system component tokens
+      padding: WidgetStatePropertyAll(
+        EdgeInsets.symmetric(
           horizontal: adaptiveStyle.buttonMediumPaddingHorizontal,
-          vertical: (adaptiveStyle.buttonMediumHeight - adaptiveStyle.buttonMediumTextSize) / 2,
-        );
-      }),
+          vertical: adaptiveStyle.inputContentPaddingVertical,
+        ),
+      ),
 
-      // Responsive minimum size
-      minimumSize: WidgetStateProperty.resolveWith((final states) {
-        return Size(0, adaptiveStyle.buttonMediumHeight);
-      }),
+      // Responsive minimum size for touch targets
+      minimumSize: WidgetStatePropertyAll(Size(0, adaptiveStyle.buttonMediumHeight)),
 
       animationDuration: BeStyleConst.animationDurationFast,
 
-      // Responsive shape
-      shape: WidgetStateProperty.resolveWith((final states) {
-        return RoundedRectangleBorder(borderRadius: BorderRadius.circular(adaptiveStyle.buttonBorderRadius));
-      }),
+      // Responsive shape using design system border radius tokens
+      shape: WidgetStatePropertyAll(
+        RoundedSuperellipseBorder(borderRadius: BorderRadius.circular(adaptiveStyle.buttonBorderRadius)),
+      ),
     ),
   );
 }
@@ -1012,8 +1060,8 @@ TabBarThemeData _buildTabBarTheme(final BeThemeData betheme) {
 
 // ========== Text Button Theme ==========
 TextButtonThemeData _buildTextButtonTheme(final BeThemeData betheme) {
-  final adaptiveStyle = betheme.style.adaptiveStyle;
   final colors = betheme.colors;
+  final adaptiveStyle = betheme.style.adaptiveStyle;
 
   return TextButtonThemeData(
     style: ButtonStyle(
@@ -1046,12 +1094,15 @@ TextButtonThemeData _buildTextButtonTheme(final BeThemeData betheme) {
       shadowColor: const WidgetStatePropertyAll(Colors.transparent),
       surfaceTintColor: const WidgetStatePropertyAll(Colors.transparent),
 
-      // Responsive text styling with interaction feedback
-      textStyle: WidgetStateProperty.resolveWith((final states) {
-        final weight = states.contains(WidgetState.pressed) ? FontWeight.w700 : FontWeight.w600;
-
-        return TextStyle(fontSize: adaptiveStyle.buttonMediumTextSize, fontWeight: weight, letterSpacing: 0.5);
-      }),
+      // Responsive text styling using design system typography tokens
+      textStyle: WidgetStatePropertyAll(
+        TextStyle(
+          fontSize: adaptiveStyle.buttonMediumTextSize,
+          fontWeight: FontWeight.w600,
+          letterSpacing: 0.5,
+          fontFamily: BeUIConst.fontFamily,
+        ),
+      ),
 
       // Icon styling with interaction states
       iconColor: WidgetStateProperty.resolveWith((final states) {
@@ -1061,32 +1112,28 @@ TextButtonThemeData _buildTextButtonTheme(final BeThemeData betheme) {
         return colors.primary;
       }),
 
-      iconSize: WidgetStateProperty.resolveWith((final states) {
-        return states.contains(WidgetState.pressed) ? 21.0 : 20.0;
-      }),
+      iconSize: const WidgetStatePropertyAll(20),
 
       // No border for text button
       side: const WidgetStatePropertyAll(BorderSide.none),
 
-      // Responsive padding - slightly smaller for text button
-      padding: WidgetStateProperty.resolveWith((final states) {
-        return EdgeInsets.symmetric(
-          horizontal: adaptiveStyle.buttonMediumPaddingHorizontal - 4,
-          vertical: (adaptiveStyle.buttonMediumHeight - adaptiveStyle.buttonMediumTextSize) / 2,
-        );
-      }),
+      // Responsive padding using design system component tokens (smaller for text button)
+      padding: WidgetStatePropertyAll(
+        EdgeInsets.symmetric(
+          horizontal: adaptiveStyle.buttonSmallPaddingHorizontal,
+          vertical: adaptiveStyle.inputContentPaddingVertical * 0.7, // Slightly smaller vertical padding
+        ),
+      ),
 
-      // Responsive minimum size
-      minimumSize: WidgetStateProperty.resolveWith((final states) {
-        return Size(0, adaptiveStyle.buttonMediumHeight - 8); // Slightly smaller
-      }),
+      // Responsive minimum size for touch targets (smaller for text button)
+      minimumSize: WidgetStatePropertyAll(Size(0, adaptiveStyle.buttonSmallHeight)),
 
       animationDuration: BeStyleConst.animationDurationFast,
 
-      // Responsive shape with rounded corners
-      shape: WidgetStateProperty.resolveWith((final states) {
-        return RoundedRectangleBorder(borderRadius: BorderRadius.circular(adaptiveStyle.buttonBorderRadius));
-      }),
+      // Responsive shape using design system border radius tokens
+      shape: WidgetStatePropertyAll(
+        RoundedSuperellipseBorder(borderRadius: BorderRadius.circular(adaptiveStyle.buttonBorderRadius)),
+      ),
     ),
   );
 }
@@ -1478,28 +1525,43 @@ SearchBarThemeData _buildSearchBarTheme(final BeThemeData betheme) {
 
 // ========== Segmented Button Theme ==========
 SegmentedButtonThemeData _buildSegmentedButtonTheme(final BeThemeData betheme) {
-  final swPrimary = BeColorUtils.createColorSwatch(betheme.colors.primary);
+  final colors = betheme.colors;
+  final adaptiveStyle = betheme.style.adaptiveStyle;
+
   return SegmentedButtonThemeData(
     style: ButtonStyle(
       backgroundColor: WidgetStateProperty.resolveWith((final states) {
         if (states.contains(WidgetState.selected)) {
-          return betheme.colors.primary;
+          return colors.primary;
         }
-        return BeColors.transparent;
+        return Colors.transparent;
       }),
       foregroundColor: WidgetStateProperty.resolveWith((final states) {
         if (states.contains(WidgetState.selected)) {
-          return BeColors.white;
+          return colors.onPrimary;
         }
-        return swPrimary;
+        return colors.primary;
       }),
 
-      // side: WidgetStatePropertyAll(BorderSide(color: colorScheme.outline)),
       elevation: const WidgetStatePropertyAll(0),
-      textStyle: const WidgetStatePropertyAll(TextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
-      side: WidgetStatePropertyAll(BorderSide(color: swPrimary)),
+
+      // Responsive text styling using design system typography tokens
+      textStyle: WidgetStatePropertyAll(
+        TextStyle(
+          fontSize: adaptiveStyle.buttonMediumTextSize,
+          fontWeight: FontWeight.w500,
+          fontFamily: BeUIConst.fontFamily,
+        ),
+      ),
+
+      side: WidgetStatePropertyAll(BorderSide(color: colors.primary)),
+
+      // Responsive shape using design system border radius tokens
       shape: WidgetStatePropertyAll(
-        RoundedRectangleBorder(borderRadius: BorderRadius.circular(8), side: const BorderSide()),
+        RoundedSuperellipseBorder(
+          borderRadius: BorderRadius.circular(adaptiveStyle.buttonBorderRadius),
+          side: const BorderSide(),
+        ),
       ),
     ),
   );

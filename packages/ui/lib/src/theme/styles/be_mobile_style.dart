@@ -74,11 +74,11 @@ class BeMobileValue implements BeAdaptiveStyle {
   @override
   double get labelSmallLineHeight => 12;
 
-  // Form-specific text sizes - Mobile optimized
+  // Form-specific text sizes - Mobile optimized (Design System Typography Tokens)
   @override
   double get inputTextSize => 16; // Large enough to prevent zoom on iOS
   @override
-  double get inputLabelTextSize => 14; // Clear label text
+  double get inputLabelTextSize => 14; // Design System: label font size
   @override
   double get inputHintTextSize => 16; // Same as input for consistency
   @override
@@ -86,25 +86,25 @@ class BeMobileValue implements BeAdaptiveStyle {
   @override
   double get inputHelperTextSize => 12; // Small helper text
 
-  // Button text sizes - Mobile friendly
+  // Button text sizes - Mobile friendly (Design System Typography Tokens)
   @override
-  double get buttonLargeTextSize => 16; // Large touch target
+  double get buttonLargeTextSize => 16; // Design System: button font size
   @override
-  double get buttonMediumTextSize => 14; // Standard button text
+  double get buttonMediumTextSize => 16; // Design System: consistent button font size
   @override
-  double get buttonSmallTextSize => 12; // Compact button text
+  double get buttonSmallTextSize => 14; // Compact button text
 
-  // Form spacing - Touch-friendly mobile spacing
+  // Form spacing - Touch-friendly mobile spacing (Design System Component Tokens)
   @override
-  double get inputContentPaddingHorizontal => 16; // Comfortable touch padding
+  double get inputContentPaddingHorizontal => 16; // Design System: TextField horizontal padding
   @override
-  double get inputContentPaddingVertical => 16; // Adequate vertical space
+  double get inputContentPaddingVertical => 14; // Design System: TextField vertical padding
   @override
-  double get inputBorderRadius => 12; // Modern rounded corners
+  double get inputBorderRadius => 12; // Design System: borderRadiusMd for inputs
   @override
-  double get buttonBorderRadius => 12; // Consistent with inputs
+  double get buttonBorderRadius => 12; // Design System: borderRadiusMd for buttons
 
-  // Button sizing - Optimized for mobile touch targets
+  // Button sizing - Optimized for mobile touch targets (Design System Component Tokens)
   @override
   double get buttonLargeHeight => 56; // WCAG touch target minimum
   @override
@@ -112,7 +112,7 @@ class BeMobileValue implements BeAdaptiveStyle {
   @override
   double get buttonSmallHeight => 40; // Compact button height
   @override
-  double get buttonLargePaddingHorizontal => 24; // Spacious padding
+  double get buttonLargePaddingHorizontal => 24; // Design System: button horizontal padding
   @override
   double get buttonMediumPaddingHorizontal => 20; // Standard padding
   @override

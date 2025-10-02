@@ -161,7 +161,7 @@ class BeColorsLight implements BeColor {
   @override
   Color get surfaceContainerLowest => BeColors.surfaceContainerLowest;
   @override
-  Color get surfaceVariant => BeColors.neutralVariant90;
+  Color get surfaceVariant => BeColors.surfaceVariant;
   @override
   Color get onSurface => BeColors.onSurface;
   @override
@@ -173,13 +173,13 @@ class BeColorsLight implements BeColor {
 
   // Text Colors (computed from neutral system)
   @override
-  Color get textPrimary => neutral10; // Darkest for light theme
+  Color get textPrimary => BeColors.textPrimary; // Design system primary text
   @override
-  Color get textSecondary => neutral50; // Medium neutral for secondary text
+  Color get textSecondary => BeColors.textSecondary; // Design system secondary text
 
   // Icon Colors
   @override
-  Color get icon => neutral30; // Dark enough for good contrast
+  Color get icon => BeColors.onSurfaceVariant;
 
   // Outline System
   @override
@@ -193,5 +193,5 @@ class BeColorsLight implements BeColor {
 
   // Disabled state
   @override
-  Color get disabled => neutral40.withValues(alpha: 0.6); // Semi-transparent medium neutral
+  Color get disabled => BeColors.disabledColor;
 }

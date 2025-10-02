@@ -74,37 +74,37 @@ class BeTabletValue implements BeAdaptiveStyle {
   @override
   double get labelSmallLineHeight => 18; // 12 * 1.5
 
-  // Form-specific sizing - Tablet optimizations
+  // Form-specific sizing - Tablet optimizations (Design System Typography Tokens)
   @override
-  double get inputTextSize => 16; // Consistent with mobile for form usability
+  double get inputTextSize => 16; // Design System: consistent with mobile for form usability
   @override
-  double get inputLabelTextSize => 15; // Slightly larger for better hierarchy
+  double get inputLabelTextSize => 16; // Design System: label font size
   @override
   double get inputHintTextSize => 16; // Consistent with input
   @override
-  double get inputErrorTextSize => 13; // Slightly larger for readability
+  double get inputErrorTextSize => 14; // Better readability on larger screens
   @override
-  double get inputHelperTextSize => 13; // Better readability on larger screens
+  double get inputHelperTextSize => 14; // Better readability on larger screens
 
-  // Button text - Optimized for tablet
+  // Button text - Optimized for tablet (Design System Typography Tokens)
   @override
-  double get buttonLargeTextSize => 17; // Slightly larger for tablet
+  double get buttonLargeTextSize => 18; // Design System: button font size
   @override
-  double get buttonMediumTextSize => 15; // Standard for tablet
+  double get buttonMediumTextSize => 18; // Design System: consistent button font size
   @override
-  double get buttonSmallTextSize => 13; // Compact but readable
+  double get buttonSmallTextSize => 16; // Compact but readable
 
-  // Form spacing - Tablet comfortable spacing
+  // Form spacing - Tablet comfortable spacing (Design System Component Tokens)
   @override
-  double get inputContentPaddingHorizontal => 18; // More generous padding
+  double get inputContentPaddingHorizontal => 20; // Design System: TextField horizontal padding
   @override
-  double get inputContentPaddingVertical => 18; // More space for tablet
+  double get inputContentPaddingVertical => 16; // Design System: TextField vertical padding
   @override
-  double get inputBorderRadius => 14; // Slightly larger radius for tablet
+  double get inputBorderRadius => 14; // Design System: borderRadiusMd for inputs
   @override
-  double get buttonBorderRadius => 14; // Consistent with inputs
+  double get buttonBorderRadius => 14; // Design System: borderRadiusMd for buttons
 
-  // Button sizing - Tablet optimized
+  // Button sizing - Tablet optimized (Design System Component Tokens)
   @override
   double get buttonLargeHeight => 60; // Larger for tablet interaction
   @override
@@ -112,11 +112,11 @@ class BeTabletValue implements BeAdaptiveStyle {
   @override
   double get buttonSmallHeight => 44; // Compact but usable
   @override
-  double get buttonLargePaddingHorizontal => 28; // More generous
+  double get buttonLargePaddingHorizontal => 32; // Design System: button horizontal padding
   @override
-  double get buttonMediumPaddingHorizontal => 24; // Standard tablet padding
+  double get buttonMediumPaddingHorizontal => 28; // More generous padding
   @override
-  double get buttonSmallPaddingHorizontal => 20; // Compact tablet padding
+  double get buttonSmallPaddingHorizontal => 24; // Compact tablet padding
 
   @override
   Color get deviceColor => BeColors.secondary;

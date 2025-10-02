@@ -74,11 +74,11 @@ class BeDesktopValue implements BeAdaptiveStyle {
   @override
   double get labelSmallLineHeight => 21; // 14 * 1.5
 
-  // Form-specific sizing - Desktop optimizations
+  // Form-specific sizing - Desktop optimizations (Design System Typography Tokens)
   @override
-  double get inputTextSize => 16; // Standard desktop input size
+  double get inputTextSize => 16; // Design System: standard desktop input size
   @override
-  double get inputLabelTextSize => 16; // Larger for desktop hierarchy
+  double get inputLabelTextSize => 16; // Design System: label font size
   @override
   double get inputHintTextSize => 16; // Consistent with input
   @override
@@ -86,25 +86,25 @@ class BeDesktopValue implements BeAdaptiveStyle {
   @override
   double get inputHelperTextSize => 14; // Clear helper text for desktop
 
-  // Button text - Desktop friendly
+  // Button text - Desktop friendly (Design System Typography Tokens)
   @override
-  double get buttonLargeTextSize => 18; // Larger for desktop prominence
+  double get buttonLargeTextSize => 20; // Design System: button font size (18-20 pt)
   @override
-  double get buttonMediumTextSize => 16; // Standard desktop button
+  double get buttonMediumTextSize => 20; // Design System: consistent button font size
   @override
-  double get buttonSmallTextSize => 14; // Compact desktop button
+  double get buttonSmallTextSize => 18; // Compact desktop button
 
-  // Form spacing - Desktop generous spacing
+  // Form spacing - Desktop generous spacing (Design System Component Tokens)
   @override
-  double get inputContentPaddingHorizontal => 20; // Desktop comfortable padding
+  double get inputContentPaddingHorizontal => 24; // Design System: TextField horizontal padding
   @override
-  double get inputContentPaddingVertical => 16; // Balanced vertical space
+  double get inputContentPaddingVertical => 18; // Design System: TextField vertical padding
   @override
-  double get inputBorderRadius => 16; // Larger radius for desktop elegance
+  double get inputBorderRadius => 16; // Design System: borderRadiusMd for inputs
   @override
-  double get buttonBorderRadius => 16; // Consistent with inputs
+  double get buttonBorderRadius => 16; // Design System: borderRadiusMd for buttons
 
-  // Button sizing - Desktop optimized
+  // Button sizing - Desktop optimized (Design System Component Tokens)
   @override
   double get buttonLargeHeight => 56; // Desktop standard large
   @override
@@ -112,11 +112,11 @@ class BeDesktopValue implements BeAdaptiveStyle {
   @override
   double get buttonSmallHeight => 40; // Desktop compact
   @override
-  double get buttonLargePaddingHorizontal => 32; // Generous desktop padding
+  double get buttonLargePaddingHorizontal => 40; // Design System: button horizontal padding
   @override
-  double get buttonMediumPaddingHorizontal => 24; // Standard desktop padding
+  double get buttonMediumPaddingHorizontal => 32; // Generous desktop padding
   @override
-  double get buttonSmallPaddingHorizontal => 20; // Compact desktop padding
+  double get buttonSmallPaddingHorizontal => 24; // Compact desktop padding
 
   @override
   Color get deviceColor => BeColors.tertiary;

@@ -37,6 +37,7 @@ class BeStyleConst {
   static const double spacing4 = 4.0;
   static const double spacing8 = 8.0;
   static const double spacing12 = 12.0;
+  static const double spacing14 = 14.0;
   static const double spacing16 = 16.0;
   static const double spacing20 = 20.0;
   static const double spacing24 = 24.0;
@@ -46,7 +47,7 @@ class BeStyleConst {
 
   // Form field spacing
   static const double inputPaddingHorizontal = spacing16;
-  static const double inputPaddingVertical = spacing16;
+  static const double inputPaddingVertical = spacing14;
   static const EdgeInsets inputContentPadding = EdgeInsets.symmetric(
     horizontal: inputPaddingHorizontal,
     vertical: inputPaddingVertical,
@@ -54,7 +55,7 @@ class BeStyleConst {
 
   // Button spacing
   static const double buttonPaddingHorizontal = spacing24;
-  static const double buttonPaddingVertical = spacing16;
+  static const double buttonPaddingVertical = spacing14;
   static const EdgeInsets buttonPadding = EdgeInsets.symmetric(
     horizontal: buttonPaddingHorizontal,
     vertical: buttonPaddingVertical,
