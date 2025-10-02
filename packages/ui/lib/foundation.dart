@@ -3,6 +3,7 @@
 library beui.foundation;
 
 // Core foundation widgets
+export 'src/widgets/foundation/be_avatar.dart';
 export 'src/widgets/foundation/be_bounce_tap.dart';
 export 'src/widgets/foundation/be_button.dart';
 export 'src/widgets/foundation/be_card.dart';

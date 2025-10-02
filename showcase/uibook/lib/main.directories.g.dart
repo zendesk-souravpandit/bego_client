@@ -14,30 +14,24 @@ import 'package:uibook/decoration/use_case_be_boxdecoration_showcase.dart'
     as _uibook_decoration_use_case_be_boxdecoration_showcase;
 import 'package:uibook/decoration/use_case_be_icon_shape_decoration.dart'
     as _uibook_decoration_use_case_be_icon_shape_decoration;
+import 'package:uibook/showcases/components/button_showcase.dart'
+    as _uibook_showcases_components_button_showcase;
+import 'package:uibook/showcases/components/form_showcase.dart'
+    as _uibook_showcases_components_form_showcase;
+import 'package:uibook/showcases/components/icons_showcase.dart'
+    as _uibook_showcases_components_icons_showcase;
+import 'package:uibook/showcases/components/text_showcase.dart'
+    as _uibook_showcases_components_text_showcase;
+import 'package:uibook/showcases/foundation/theme_showcase.dart'
+    as _uibook_showcases_foundation_theme_showcase;
 import 'package:uibook/widgets/animations/use_case_open_container.dart'
     as _uibook_widgets_animations_use_case_open_container;
-import 'package:uibook/widgets/buttons/use_case_button.dart'
-    as _uibook_widgets_buttons_use_case_button;
-import 'package:uibook/widgets/buttons/use_case_icon_text_button.dart'
-    as _uibook_widgets_buttons_use_case_icon_text_button;
 import 'package:uibook/widgets/common/use_case_be_disable_wrapper.dart'
     as _uibook_widgets_common_use_case_be_disable_wrapper;
 import 'package:uibook/widgets/common/use_case_tappable.dart'
     as _uibook_widgets_common_use_case_tappable;
-import 'package:uibook/widgets/form/use_case_be_form_comprehensive.dart'
-    as _uibook_widgets_form_use_case_be_form_comprehensive;
-import 'package:uibook/widgets/form/use_case_be_form_field.dart'
-    as _uibook_widgets_form_use_case_be_form_field;
-import 'package:uibook/widgets/form/use_case_be_item_selector.dart'
-    as _uibook_widgets_form_use_case_be_item_selector;
-import 'package:uibook/widgets/form/use_case_be_selector_showcase.dart'
-    as _uibook_widgets_form_use_case_be_selector_showcase;
-import 'package:uibook/widgets/foundation/use_case_be_bounce_tap.dart'
-    as _uibook_widgets_foundation_use_case_be_bounce_tap;
-import 'package:uibook/widgets/foundation/use_case_be_tappable.dart'
-    as _uibook_widgets_foundation_use_case_be_tappable;
-import 'package:uibook/widgets/foundation/use_case_theme_color.dart'
-    as _uibook_widgets_foundation_use_case_theme_color;
+import 'package:uibook/widgets/foundation/use_case_be_avatar.dart'
+    as _uibook_widgets_foundation_use_case_be_avatar;
 import 'package:uibook/widgets/icons/use_case_be_icons.dart'
     as _uibook_widgets_icons_use_case_be_icons;
 import 'package:uibook/widgets/icons/use_case_icons.dart'
@@ -88,16 +82,6 @@ import 'package:uibook/widgets/overlay/use_case_popover.dart'
     as _uibook_widgets_overlay_use_case_popover;
 import 'package:uibook/widgets/overlay/use_case_responsive_dialog.dart'
     as _uibook_widgets_overlay_use_case_responsive_dialog;
-import 'package:uibook/widgets/text/use_case_be_text.dart'
-    as _uibook_widgets_text_use_case_be_text;
-import 'package:uibook/widgets/text/use_case_be_text_comprehensive.dart'
-    as _uibook_widgets_text_use_case_be_text_comprehensive;
-import 'package:uibook/widgets/text/use_case_be_text_tagged.dart'
-    as _uibook_widgets_text_use_case_be_text_tagged;
-import 'package:uibook/widgets/text/use_case_text_input.dart'
-    as _uibook_widgets_text_use_case_text_input;
-import 'package:uibook/widgets/text/use_case_typography.dart'
-    as _uibook_widgets_text_use_case_typography;
 import 'package:uibook/widgets/use_case_theme.dart'
     as _uibook_widgets_use_case_theme;
 import 'package:uibook/widgets/utils/use_case_be_color_utils.dart'
@@ -111,6 +95,142 @@ import 'package:uibook/widgets/utils/use_case_custom_color.dart'
 import 'package:widgetbook/widgetbook.dart' as _widgetbook;
 
 final directories = <_widgetbook.WidgetbookNode>[
+  _widgetbook.WidgetbookFolder(
+    name: 'Components',
+    children: [
+      _widgetbook.WidgetbookFolder(
+        name: 'Buttons',
+        children: [
+          _widgetbook.WidgetbookLeafComponent(
+            name: 'BeIconTextButton',
+            useCase: _widgetbook.WidgetbookUseCase(
+              name: 'Icon Text Button',
+              builder:
+                  _uibook_showcases_components_button_showcase
+                      .iconTextButtonShowcase,
+            ),
+          ),
+          _widgetbook.WidgetbookLeafComponent(
+            name: 'ElevatedButton',
+            useCase: _widgetbook.WidgetbookUseCase(
+              name: 'Standard Buttons',
+              builder:
+                  _uibook_showcases_components_button_showcase
+                      .standardButtonsShowcase,
+            ),
+          ),
+        ],
+      ),
+      _widgetbook.WidgetbookFolder(
+        name: 'Forms',
+        children: [
+          _widgetbook.WidgetbookLeafComponent(
+            name: 'BeFormField',
+            useCase: _widgetbook.WidgetbookUseCase(
+              name: 'Form Fields',
+              builder:
+                  _uibook_showcases_components_form_showcase.formFieldsShowcase,
+            ),
+          ),
+          _widgetbook.WidgetbookLeafComponent(
+            name: 'BeItemSelector',
+            useCase: _widgetbook.WidgetbookUseCase(
+              name: 'Item Selectors',
+              builder:
+                  _uibook_showcases_components_form_showcase
+                      .itemSelectorsShowcase,
+            ),
+          ),
+        ],
+      ),
+      _widgetbook.WidgetbookFolder(
+        name: 'Icons',
+        children: [
+          _widgetbook.WidgetbookLeafComponent(
+            name: 'BeIcons',
+            useCase: _widgetbook.WidgetbookUseCase(
+              name: 'Standard Icons Grid',
+              builder:
+                  _uibook_showcases_components_icons_showcase
+                      .standardIconsGridShowcase,
+            ),
+          ),
+          _widgetbook.WidgetbookLeafComponent(
+            name: 'Widget',
+            useCase: _widgetbook.WidgetbookUseCase(
+              name: 'BeIcons Library',
+              builder:
+                  _uibook_showcases_components_icons_showcase
+                      .beIconsLibraryShowcase,
+            ),
+          ),
+        ],
+      ),
+      _widgetbook.WidgetbookFolder(
+        name: 'Text',
+        children: [
+          _widgetbook.WidgetbookComponent(
+            name: 'BeText',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Text Styles',
+                builder:
+                    _uibook_showcases_components_text_showcase
+                        .textStylesShowcase,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Typography System',
+                builder:
+                    _uibook_showcases_components_text_showcase
+                        .typographySystemShowcase,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookLeafComponent(
+            name: 'BeTextTagged',
+            useCase: _widgetbook.WidgetbookUseCase(
+              name: 'Tagged Text',
+              builder:
+                  _uibook_showcases_components_text_showcase.taggedTextShowcase,
+            ),
+          ),
+        ],
+      ),
+    ],
+  ),
+  _widgetbook.WidgetbookFolder(
+    name: 'Foundation',
+    children: [
+      _widgetbook.WidgetbookFolder(
+        name: 'Colors',
+        children: [
+          _widgetbook.WidgetbookLeafComponent(
+            name: 'ColorScheme',
+            useCase: _widgetbook.WidgetbookUseCase(
+              name: 'Color Scheme',
+              builder:
+                  _uibook_showcases_foundation_theme_showcase
+                      .colorSchemeShowcase,
+            ),
+          ),
+        ],
+      ),
+      _widgetbook.WidgetbookFolder(
+        name: 'Interactions',
+        children: [
+          _widgetbook.WidgetbookLeafComponent(
+            name: 'BeTappable',
+            useCase: _widgetbook.WidgetbookUseCase(
+              name: 'Tappable Components',
+              builder:
+                  _uibook_showcases_foundation_theme_showcase
+                      .tappableComponentsShowcase,
+            ),
+          ),
+        ],
+      ),
+    ],
+  ),
   _widgetbook.WidgetbookFolder(
     name: 'decoration',
     children: [
@@ -163,15 +283,6 @@ final directories = <_widgetbook.WidgetbookNode>[
     name: 'widget',
     children: [
       _widgetbook.WidgetbookLeafComponent(
-        name: 'BeIconTextButton',
-        useCase: _widgetbook.WidgetbookUseCase(
-          name: 'Icon button',
-          builder:
-              _uibook_widgets_buttons_use_case_icon_text_button
-                  .createDefaultStyle,
-        ),
-      ),
-      _widgetbook.WidgetbookLeafComponent(
         name: 'BeIcons',
         useCase: _widgetbook.WidgetbookUseCase(
           name: 'Icons',
@@ -191,20 +302,6 @@ final directories = <_widgetbook.WidgetbookNode>[
             ),
           ),
         ],
-      ),
-      _widgetbook.WidgetbookLeafComponent(
-        name: 'ElevatedButton',
-        useCase: _widgetbook.WidgetbookUseCase(
-          name: 'Buttons',
-          builder: _uibook_widgets_buttons_use_case_button.useCaseButtons,
-        ),
-      ),
-      _widgetbook.WidgetbookLeafComponent(
-        name: 'TextField',
-        useCase: _widgetbook.WidgetbookUseCase(
-          name: 'App Theme',
-          builder: _uibook_widgets_text_use_case_text_input.textFieldUseCase,
-        ),
       ),
       _widgetbook.WidgetbookFolder(
         name: 'animations',
@@ -235,97 +332,14 @@ final directories = <_widgetbook.WidgetbookNode>[
         ],
       ),
       _widgetbook.WidgetbookFolder(
-        name: 'form',
-        children: [
-          _widgetbook.WidgetbookLeafComponent(
-            name: 'BeFormField',
-            useCase: _widgetbook.WidgetbookUseCase(
-              name: 'BeFormField',
-              builder:
-                  _uibook_widgets_form_use_case_be_form_field
-                      .useCaseBeFormField,
-            ),
-          ),
-          _widgetbook.WidgetbookLeafComponent(
-            name: 'BeItemSelector',
-            useCase: _widgetbook.WidgetbookUseCase(
-              name: 'BeItemSelector',
-              builder:
-                  _uibook_widgets_form_use_case_be_item_selector
-                      .useCaseBeItemSelector,
-            ),
-          ),
-          _widgetbook.WidgetbookComponent(
-            name: 'BeSelectorCombobox',
-            useCases: [
-              _widgetbook.WidgetbookUseCase(
-                name: 'Basic Single Select',
-                builder:
-                    _uibook_widgets_form_use_case_be_selector_showcase
-                        .useCaseBeSelectorSingleSelect,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Custom Item Builder',
-                builder:
-                    _uibook_widgets_form_use_case_be_selector_showcase
-                        .useCaseBeSelectorCustomBuilder,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Multi Select with Tags',
-                builder:
-                    _uibook_widgets_form_use_case_be_selector_showcase
-                        .useCaseBeSelectorMultiSelect,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Non-Searchable Click to Open',
-                builder:
-                    _uibook_widgets_form_use_case_be_selector_showcase
-                        .useCaseBeSelectorNonSearchable,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Searchable Large List',
-                builder:
-                    _uibook_widgets_form_use_case_be_selector_showcase
-                        .useCaseBeSelectorSearchable,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'With Form Validation',
-                builder:
-                    _uibook_widgets_form_use_case_be_selector_showcase
-                        .useCaseBeSelectorValidation,
-              ),
-            ],
-          ),
-        ],
-      ),
-      _widgetbook.WidgetbookFolder(
         name: 'foundation',
         children: [
           _widgetbook.WidgetbookLeafComponent(
-            name: 'BeBounceTap',
+            name: 'BeAvatar',
             useCase: _widgetbook.WidgetbookUseCase(
-              name: 'BeBounceTap',
+              name: 'BeAvatar',
               builder:
-                  _uibook_widgets_foundation_use_case_be_bounce_tap
-                      .useCaseBeBounceTap,
-            ),
-          ),
-          _widgetbook.WidgetbookLeafComponent(
-            name: 'BeTappable',
-            useCase: _widgetbook.WidgetbookUseCase(
-              name: 'BeTappable',
-              builder:
-                  _uibook_widgets_foundation_use_case_be_tappable
-                      .useCaseBeTappable,
-            ),
-          ),
-          _widgetbook.WidgetbookLeafComponent(
-            name: 'ColorScheme',
-            useCase: _widgetbook.WidgetbookUseCase(
-              name: 'ColorScheme',
-              builder:
-                  _uibook_widgets_foundation_use_case_theme_color
-                      .useCaseBeTappable,
+                  _uibook_widgets_foundation_use_case_be_avatar.useCaseBeAvatar,
             ),
           ),
         ],
@@ -549,53 +563,6 @@ final directories = <_widgetbook.WidgetbookNode>[
         ],
       ),
       _widgetbook.WidgetbookFolder(
-        name: 'text',
-        children: [
-          _widgetbook.WidgetbookComponent(
-            name: 'BeText',
-            useCases: [
-              _widgetbook.WidgetbookUseCase(
-                name: 'BeText - Custom Styling',
-                builder:
-                    _uibook_widgets_text_use_case_be_text_comprehensive
-                        .beTextCustomStylingUseCase,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'BeText - Practical Examples',
-                builder:
-                    _uibook_widgets_text_use_case_be_text_comprehensive
-                        .beTextPracticalUseCase,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'BeText - Typography Showcase',
-                builder:
-                    _uibook_widgets_text_use_case_be_text_comprehensive
-                        .beTextTypographyUseCase,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'BeText Variants',
-                builder: _uibook_widgets_text_use_case_be_text.useCaseBeText,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Typography',
-                builder:
-                    _uibook_widgets_text_use_case_typography
-                        .displayTypographyUseCase,
-              ),
-            ],
-          ),
-          _widgetbook.WidgetbookLeafComponent(
-            name: 'BeTextTagged',
-            useCase: _widgetbook.WidgetbookUseCase(
-              name: 'BeTextTagged',
-              builder:
-                  _uibook_widgets_text_use_case_be_text_tagged
-                      .useCaseBeTextTagged,
-            ),
-          ),
-        ],
-      ),
-      _widgetbook.WidgetbookFolder(
         name: 'utils',
         children: [
           _widgetbook.WidgetbookComponent(
@@ -647,45 +614,6 @@ final directories = <_widgetbook.WidgetbookNode>[
                   _uibook_widgets_utils_use_case_custom_color
                       .customColorUseCase,
             ),
-          ),
-        ],
-      ),
-    ],
-  ),
-  _widgetbook.WidgetbookFolder(
-    name: 'widgets',
-    children: [
-      _widgetbook.WidgetbookFolder(
-        name: 'form',
-        children: [
-          _widgetbook.WidgetbookComponent(
-            name: 'BeFormBuilder',
-            useCases: [
-              _widgetbook.WidgetbookUseCase(
-                name: 'Basic Form Fields',
-                builder:
-                    _uibook_widgets_form_use_case_be_form_comprehensive
-                        .basicFormFieldsUseCase,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Complex Form Example',
-                builder:
-                    _uibook_widgets_form_use_case_be_form_comprehensive
-                        .complexFormExampleUseCase,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Selection Components',
-                builder:
-                    _uibook_widgets_form_use_case_be_form_comprehensive
-                        .selectionComponentsUseCase,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Sliders and Date Pickers',
-                builder:
-                    _uibook_widgets_form_use_case_be_form_comprehensive
-                        .slidersAndDatePickersUseCase,
-              ),
-            ],
           ),
         ],
       ),

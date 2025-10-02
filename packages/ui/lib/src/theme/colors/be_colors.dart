@@ -50,7 +50,7 @@ class BeColors {
   // Surface Colors - Design System Implementation
   // colorSurface: #FFF8F0 (Soft warm off-white) - Cards, sheets
   // colorBackground: #FFF8F0 (Soft warm off-white) - App background
-  static const Color surface = Color(0xFFFFF8F0); // Primary surface - soft warm off-white
+  static const Color surface = Color(0xFFFAFAFA); // Primary surface - soft warm off-white
   static const Color surfaceDim = Color(0xFFF7F4F3); // Dimmed surface - light beige
   static const Color surfaceBright = Color(0xFFFFFFFF); // Brightest surface - pure white
   static const Color surfaceContainer = Color(0xFFF7F4F3); // Card/container surface - light beige
@@ -86,7 +86,7 @@ class BeColors {
 
   // Semantic Colors - Design System Implementation
   // colorError: #BE3455 (Warm red) - Errors and validation messages
-  static const Color error = Color(0xFFBE3455); // Error - warm red
+  static const Color error = Color(0xFFA24936); // Error - warm red
   static const Color errorDark = Color(0xFF8E1A35); // Dark error
   static const Color errorLight = Color(0xFFDA5A7A); // Light error
   static const Color errorContainer = Color(0xFFFFEDEA); // Error container

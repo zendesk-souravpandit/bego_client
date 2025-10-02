@@ -1,9 +1,12 @@
+import 'package:beui/text.dart';
 import 'package:flutter/material.dart';
+import 'package:uibook/core/widgetbook/knob_extentions.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
-@widgetbook.UseCase(name: 'Buttons', path: 'widget', type: ElevatedButton)
-Widget useCaseButtons(final BuildContext context) => Padding(
+// Standard Flutter Buttons
+@widgetbook.UseCase(name: 'Standard Buttons', path: 'Components/Buttons', type: ElevatedButton)
+Widget standardButtonsShowcase(final BuildContext context) => Padding(
   padding: const EdgeInsets.all(16.0),
   child: SingleChildScrollView(
     child: Column(
@@ -54,7 +57,7 @@ Widget useCaseButtons(final BuildContext context) => Padding(
             FilledButton(
               style: _buttonStyle(context, size: ButtonSize.large),
               onPressed: _getOnPressed(context),
-              child: const Text('Large Elevated'),
+              child: const Text('Large Filled'),
             ),
           ],
         ),
@@ -112,6 +115,48 @@ Widget useCaseButtons(final BuildContext context) => Padding(
   ),
 );
 
+// BeIconTextButton - Custom Button Component
+@widgetbook.UseCase(name: 'Icon Text Button', path: 'Components/Buttons', type: BeIconTextButton)
+Widget iconTextButtonShowcase(final BuildContext context) {
+  final k = context.knobs;
+
+  final leadingIcon = k.beIconOrNullKnob(label: 'Leading Icon');
+  final textBold = k.boolean(label: 'Bold Text');
+  final iconSize = k.int.slider(label: 'Icon Size', initialValue: 18, max: 100, min: 12);
+  final padding = k.int.slider(label: 'Padding', initialValue: 10, max: 100);
+
+  return Padding(
+    padding: const EdgeInsets.all(16.0),
+    child: SingleChildScrollView(
+      child: Column(
+        children: [
+          const Text('BeIconTextButton - All Directions', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+          const SizedBox(height: 16),
+          ...BeIconDirection.values.map(
+            (final direction) => Padding(
+              padding: const EdgeInsets.all(8),
+              child: BeIconTextButton(
+                padding: EdgeInsets.symmetric(horizontal: padding.toDouble(), vertical: padding.toDouble() / 2),
+                buttonText: BeText(
+                  k.string(label: 'Text', initialValue: 'Button'),
+                  style: TextStyle(
+                    fontSize: iconSize.toDouble() * 0.6,
+                    fontWeight: textBold ? FontWeight.bold : FontWeight.normal,
+                  ),
+                ),
+                onPressed: () {},
+                direction: direction,
+                buttonIcon: Icon(leadingIcon?.data, size: iconSize.toDouble()),
+              ),
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
+// Helper widgets and functions
 Widget _buildButtonSection({
   required final BuildContext context,
   required final String title,
@@ -150,3 +195,63 @@ ButtonStyle _buttonStyle(final BuildContext context, {final ButtonSize size = Bu
 VoidCallback? _getOnPressed(final BuildContext context) => context.knobs.boolean(label: 'Disabled') ? null : () {};
 
 enum ButtonSize { small, medium, large }
+
+// BeIconTextButton Implementation
+class BeIconTextButton extends IconButton {
+  BeIconTextButton({
+    required this.buttonIcon,
+    required this.buttonText,
+    required super.onPressed,
+    super.key,
+    final double space = 4,
+    final BeIconDirection direction = BeIconDirection.top,
+    super.iconSize,
+    super.visualDensity,
+    super.padding,
+    super.alignment,
+    super.splashRadius,
+    super.color,
+    super.focusColor,
+    super.hoverColor,
+    super.highlightColor,
+    super.splashColor,
+    super.disabledColor,
+    super.mouseCursor,
+    super.focusNode,
+    super.autofocus = false,
+    super.tooltip,
+    super.enableFeedback,
+    super.constraints,
+    super.style,
+    super.isSelected,
+    super.selectedIcon,
+  }) : super(
+         icon: switch (direction) {
+           BeIconDirection.left => Row(
+             mainAxisSize: MainAxisSize.min,
+             mainAxisAlignment: MainAxisAlignment.center,
+             children: [buttonIcon, SizedBox(width: space), buttonText],
+           ),
+           BeIconDirection.right => Row(
+             mainAxisSize: MainAxisSize.min,
+             mainAxisAlignment: MainAxisAlignment.center,
+             children: [buttonText, SizedBox(width: space), buttonIcon],
+           ),
+           BeIconDirection.top => Column(
+             mainAxisAlignment: MainAxisAlignment.center,
+             mainAxisSize: MainAxisSize.min,
+             children: [buttonIcon, SizedBox(height: space), buttonText],
+           ),
+           BeIconDirection.bottom => Column(
+             mainAxisAlignment: MainAxisAlignment.center,
+             mainAxisSize: MainAxisSize.min,
+             children: [buttonText, SizedBox(height: space), buttonIcon],
+           ),
+         },
+       );
+
+  final Widget buttonIcon;
+  final Widget buttonText;
+}
+
+enum BeIconDirection { left, right, top, bottom }
