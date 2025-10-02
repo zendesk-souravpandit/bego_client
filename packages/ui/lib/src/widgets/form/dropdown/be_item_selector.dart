@@ -79,7 +79,7 @@ class BeItemSelector<T extends KeyValuePair> extends HookWidget {
     }
 
     return BeFormField<T>(
-      id: id,
+      name: id,
       initialValue: value,
       shouldValidate: validator != null,
       onChanged: onChanged,

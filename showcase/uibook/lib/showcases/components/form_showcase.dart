@@ -15,7 +15,7 @@ Widget formFieldsShowcase(final BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(16.0),
     child: SingleChildScrollView(
-      child: FormBuilder(
+      child: BeFormBuilder(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -24,7 +24,7 @@ Widget formFieldsShowcase(final BuildContext context) {
 
             // Basic form field with TextField
             BeFormField<String>(
-              id: 'email',
+              name: 'email',
               title: title,
               helperText: helperText,
               shouldValidate: shouldValidate,
@@ -57,7 +57,7 @@ Widget formFieldsShowcase(final BuildContext context) {
 
             // Password form field
             BeFormField<String>(
-              id: 'password',
+              name: 'password',
               title: 'Password',
               shouldValidate: shouldValidate,
               enabled: enabled,
@@ -90,7 +90,7 @@ Widget formFieldsShowcase(final BuildContext context) {
 
             // Multiline text field
             BeFormField<String>(
-              id: 'description',
+              name: 'description',
               title: 'Description',
               helperText: 'Enter a detailed description',
               shouldValidate: shouldValidate,
