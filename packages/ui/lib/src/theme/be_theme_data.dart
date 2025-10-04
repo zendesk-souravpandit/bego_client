@@ -6,21 +6,17 @@ import 'package:flutter/material.dart';
 @immutable
 class BeThemeData extends ThemeExtension<BeThemeData> {
   /// Create theme data that automatically detects screen size
-  BeThemeData({required this.colors, final double? screenWidth})
-    : breakpoint = screenWidth != null ? calculateBreakpoint(screenWidth) : BeBreakpoint.md,
+  BeThemeData({required this.colors, final BeBreakpoint? breakpoint})
+    : breakpoint = breakpoint ?? BeBreakpoint.md,
       style =
           colors.isDark
               ? BeStyleDark(
                 color: colors,
-                adaptiveStyle: _getResponsiveStyleForBreakpoint(
-                  screenWidth != null ? calculateBreakpoint(screenWidth) : BeBreakpoint.md,
-                ),
+                adaptiveStyle: _getResponsiveStyleForBreakpoint(breakpoint ?? BeBreakpoint.md),
               )
               : BeStyleLight(
                 color: colors,
-                adaptiveStyle: _getResponsiveStyleForBreakpoint(
-                  screenWidth != null ? calculateBreakpoint(screenWidth) : BeBreakpoint.md,
-                ),
+                adaptiveStyle: _getResponsiveStyleForBreakpoint(breakpoint ?? BeBreakpoint.md),
               );
 
   BeThemeData._internal({required this.breakpoint, required this.colors, final BeAdaptiveStyle? adaptiveStyle})
@@ -50,13 +46,15 @@ class BeThemeData extends ThemeExtension<BeThemeData> {
 
   /// Create light theme with automatic responsive behavior
   static ThemeData light({final BeColor? colors, final double? screenWidth}) {
-    final betheme = BeThemeData(colors: colors ?? const BeColorsLight(), screenWidth: screenWidth);
+    final breakpoint = calculateBreakpoint(screenWidth ?? 1024);
+    final betheme = BeThemeData(colors: colors ?? const BeColorsLight(), breakpoint: breakpoint);
     return BeTheme.buildThemeData(betheme: betheme);
   }
 
   /// Create dark theme with automatic responsive behavior
   static ThemeData dark({final BeColor? colors, final double? screenWidth}) {
-    final betheme = BeThemeData(colors: colors ?? const BeColorsDark(), screenWidth: screenWidth);
+    final breakpoint = calculateBreakpoint(screenWidth ?? 1024);
+    final betheme = BeThemeData(colors: colors ?? const BeColorsDark(), breakpoint: breakpoint);
     return BeTheme.buildThemeData(betheme: betheme);
   }
 

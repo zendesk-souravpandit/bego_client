@@ -189,8 +189,9 @@ class _ColorTile extends StatelessWidget {
         children: [
           Text(name, style: TextStyle(color: textColor, fontWeight: FontWeight.bold, fontSize: 12)),
           Text(
+            // ignore: deprecated_member_use
             '#${color.value.toRadixString(16).padLeft(8, '0').toUpperCase()}',
-            style: TextStyle(color: textColor.withOpacity(0.8), fontSize: 10),
+            style: TextStyle(color: textColor.withValues(alpha: 0.8), fontSize: 10),
           ),
         ],
       ),

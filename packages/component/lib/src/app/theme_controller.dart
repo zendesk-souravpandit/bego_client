@@ -24,7 +24,7 @@ class AppThemeController extends GetxController {
   void _updateTheme() {
     final colors =
         themeMode.value == ThemeMode.light ? const BeColorsLight() : const BeColorsDark();
-    final betheme = BeThemeData(colors: colors);
+    final betheme = BeThemeData(colors: colors, breakpoint: breakpoint.value);
     theme.value = BeTheme.buildThemeData(betheme: betheme);
     Get.changeTheme(theme.value);
   }
