@@ -47,34 +47,36 @@ class BeApp extends StatelessWidget {
     );
 
     return Obx(() {
-      return AppResponsiveWrapper(
-        responsivePoints: responsivePoints,
-        child: GetMaterialApp.router(
-          routerDelegate: routerDelegate,
-          debugShowCheckedModeBanner: false,
-          routeInformationProvider: routeInformationProvider,
-          theme: themeController.theme.value,
-          themeMode: themeController.themeMode.value,
-          locale: localizationController.locale.value,
-          supportedLocales: localizationController.locales,
-          fallbackLocale: localizationController.locales.first,
-          translations: translations,
-          builder:
-              (final context, final child) =>
-                  BeNotificationsProvider(child: Material(child: child)),
-          onInit: () {
-            final delegate = Get.rootController.rootDelegate;
-            delegate.navigatorObservers?.add(GetObserver(null, Get.routing));
-          },
-          localizationsDelegates: const [
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
+      return RepaintBoundary(
+        child: AppResponsiveWrapper(
+          responsivePoints: responsivePoints,
+          child: GetMaterialApp.router(
+            routerDelegate: routerDelegate,
+            debugShowCheckedModeBanner: false,
+            routeInformationProvider: routeInformationProvider,
+            theme: themeController.theme.value,
+            themeMode: themeController.themeMode.value,
+            locale: localizationController.locale.value,
+            supportedLocales: localizationController.locales,
+            fallbackLocale: localizationController.locales.first,
+            translations: translations,
+            builder:
+                (final context, final child) =>
+                    BeNotificationsProvider(child: Material(child: child)),
+            onInit: () {
+              final delegate = Get.rootController.rootDelegate;
+              delegate.navigatorObservers?.add(GetObserver(null, Get.routing));
+            },
+            localizationsDelegates: const [
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
 
-          /// All pages are registered in the BeAppRouteDelegate createDelegate method.
-          /// This is just to prevent the app from crashing if no routes are defined.
-          getPages: [appDelegate.unknownRoute],
+            /// All pages are registered in the BeAppRouteDelegate createDelegate method.
+            /// This is just to prevent the app from crashing if no routes are defined.
+            getPages: [appDelegate.unknownRoute],
+          ),
         ),
       );
     });
@@ -106,21 +108,32 @@ class BeAppPage extends GetView<BeAppController> {
       for (final panel in controller.panelOrder) {
         switch (panel) {
           case BePanelType.drawer:
-            if (!breakpoint.isMobile) children.add(drawerPanel);
+            if (!breakpoint.isMobile) {
+              children.add(RepaintBoundary(child: drawerPanel));
+            }
             break;
           case BePanelType.main:
-            children.add(Expanded(child: mainPanel));
+            children.add(Expanded(
+              child: RepaintBoundary(child: mainPanel),
+            ));
             break;
           case BePanelType.side:
-            if (betheme.breakpoint.isDesktop) children.add(sidePanel);
+            if (betheme.breakpoint.isDesktop) {
+              children.add(RepaintBoundary(child: sidePanel));
+            }
             break;
         }
       }
 
       return Scaffold(
-        appBar: PreferredSize(preferredSize: controller.appBarSize.value, child: appBarPanel),
-        drawer: breakpoint.isMobile ? drawerPanel : null,
-        body: Row(children: children),
+        appBar: PreferredSize(
+          preferredSize: controller.appBarSize.value,
+          child: RepaintBoundary(child: appBarPanel),
+        ),
+        drawer: breakpoint.isMobile ? RepaintBoundary(child: drawerPanel) : null,
+        body: RepaintBoundary(
+          child: Row(children: children),
+        ),
       );
     });
   }

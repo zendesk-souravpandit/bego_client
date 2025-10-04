@@ -1,397 +1,534 @@
-import 'package:beui/foundation.dart';
-import 'package:beui/mulitchild.dart';
+import 'package:beui/beui.dart';
+import 'package:beui/from.dart';
 import 'package:beui/theme.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MaterialApp(home: BeTheme(colors: BeColorsLight(), child: AvatarExample())));
+  runApp(const MaterialApp(home: BeTheme(colors: BeColorsLight(), child: BeFormFieldExample())));
 }
 
-class AvatarExample extends StatelessWidget {
-  const AvatarExample({super.key});
+/// Example usage of the improved BeFormField widget.
+///
+/// This file demonstrates various ways to use the BeFormField widget
+/// with different configurations and styling options.
+class BeFormFieldExample extends StatelessWidget {
+  const BeFormFieldExample({super.key});
 
   @override
   Widget build(final BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('BeAvatar Component Showcase'),
-        backgroundColor: BeColors.primary,
-        foregroundColor: Colors.white,
-      ),
-      body: const SingleChildScrollView(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _SectionTitle('Basic Avatars'),
-            SizedBox(height: 16),
-            _BasicAvatarsSection(),
+      appBar: AppBar(title: const Text('BeFormField Examples')),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: BeFormBuilder(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Basic example
+              BeFormField<String>(
+                name: 'basic_field',
+                title: 'Basic Field',
+                helperText: 'This is a basic form field example',
+                enabled: false,
+                fieldBuilder:
+                    (final field) => TextField(
+                      onChanged: field.didChange,
+                      decoration: InputDecoration(
+                        hintText: 'Enter text...',
+                        errorText: field.errorText,
+                        border: const OutlineInputBorder(),
+                      ),
+                    ),
+              ),
 
-            SizedBox(height: 32),
-            _SectionTitle('Avatar Sizes'),
-            SizedBox(height: 16),
-            _AvatarSizesSection(),
+              const SizedBox(height: 24),
 
-            SizedBox(height: 32),
-            _SectionTitle('Avatar Styles'),
-            SizedBox(height: 16),
-            _AvatarStylesSection(),
+              // Field with icons and trailing widgets
+              BeFormField<String>(
+                name: 'enhanced_field',
+                title: 'Enhanced Field',
+                helperText: 'Field with icons and required indicator',
+                initialValue: 'Hello',
 
-            SizedBox(height: 32),
-            _SectionTitle('Status Indicators'),
-            SizedBox(height: 16),
-            _StatusIndicatorsSection(),
+                startWidgets: [const Icon(Icons.email, color: Colors.blue)],
 
-            SizedBox(height: 32),
-            _SectionTitle('Avatars with Badges'),
-            SizedBox(height: 16),
-            _AvatarBadgesSection(),
+                trailingTitleWidgets: [
+                  const Text('*', style: TextStyle(color: Colors.red)),
+                  IconButton(
+                    icon: const Icon(Icons.info_outline, size: 16),
+                    onPressed: () {
+                      ScaffoldMessenger.of(
+                        context,
+                      ).showSnackBar(const SnackBar(content: Text('This field is required')));
+                    },
+                  ),
+                ],
+                trailingHelperWidgets: [TextButton(onPressed: () {}, child: const Text('Forgot?'))],
+                endWidgets: [IconButton(icon: const Icon(Icons.visibility), onPressed: () {})],
+                validator: (final value) => value?.isEmpty == true ? 'This field is required' : null,
+                fieldBuilder:
+                    (final field) => TextFormField(
+                      initialValue: field.value,
+                      onChanged: field.didChange,
 
-            SizedBox(height: 32),
-            _SectionTitle('Interactive Avatars'),
-            SizedBox(height: 16),
-            _InteractiveAvatarsSection(),
+                      decoration: InputDecoration(
+                        hintText: 'Enter email...',
+                        errorText: field.errorText,
+                        border: const OutlineInputBorder(),
+                      ),
+                    ),
+              ),
 
-            SizedBox(height: 32),
-            _SectionTitle('Avatar Gallery'),
-            SizedBox(height: 16),
-            _AvatarGallerySection(),
-          ],
-        ),
-      ),
-    );
-  }
-}
+              const SizedBox(height: 24),
 
-class _SectionTitle extends StatelessWidget {
-  const _SectionTitle(this.title);
+              // Custom spacing example
+              BeFormField<bool>(
+                name: 'checkbox_field',
+                title: 'Agreement',
+                helperText: 'Please read and accept the terms',
+                spacing: 8.0, // Increased spacing
+                trailingTitleWidgets: [const Text('*', style: TextStyle(color: Colors.red))],
+                validator: (final value) => value != true ? 'You must accept the terms' : null,
+                fieldBuilder:
+                    (final field) => CheckboxListTile(
+                      contentPadding: p0,
+                      title: const Text('I accept the terms and conditions'),
+                      value: field.value ?? false,
+                      onChanged: field.didChange,
+                      controlAffinity: ListTileControlAffinity.leading,
+                    ),
+              ),
 
-  final String title;
+              const SizedBox(height: 24),
 
-  @override
-  Widget build(final BuildContext context) {
-    return Text(title, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: BeColors.gray800));
-  }
-}
+              // Compact layout example
+              BeFormField<String>(
+                name: 'compact_field',
+                title: 'Compact Field',
+                spacing: 2.0, // Minimal spacing
+                startEndAxisAlignment: CrossAxisAlignment.start,
+                fieldBuilder:
+                    (final field) => TextField(
+                      onChanged: field.didChange,
+                      decoration: InputDecoration(
+                        hintText: 'Compact layout...',
+                        errorText: field.errorText,
+                        border: const OutlineInputBorder(),
+                        isDense: true,
+                      ),
+                    ),
+              ),
 
-class _BasicAvatarsSection extends StatelessWidget {
-  const _BasicAvatarsSection();
+              const SizedBox(height: 32),
 
-  @override
-  Widget build(final BuildContext context) {
-    return const Wrap(
-      spacing: 16,
-      runSpacing: 16,
-      children: [
-        BeAvatar.initials(initials: 'JD', style: BeAvatarStyle.hexagon),
-        BeAvatar.initials(initials: 'AB', backgroundColor: BeColors.secondary),
-        BeAvatar.custom(backgroundColor: BeColors.tertiary, child: Icon(Icons.person_2_rounded, color: Colors.white)),
-        BeAvatar(), // Default fallback
-      ],
-    );
-  }
-}
-
-class _AvatarSizesSection extends StatelessWidget {
-  const _AvatarSizesSection();
-
-  @override
-  Widget build(final BuildContext context) {
-    return const Wrap(
-      spacing: 16,
-      runSpacing: 16,
-      crossAxisAlignment: WrapCrossAlignment.center,
-      children: [
-        BeAvatar.initials(initials: 'xs', size: BeAvatarSize.xsmall),
-        BeAvatar.initials(initials: 'S', size: BeAvatarSize.small),
-        BeAvatar.initials(initials: 'M', size: BeAvatarSize.medium),
-        BeAvatar.initials(initials: 'L', size: BeAvatarSize.large),
-        BeAvatar.initials(initials: 'XL', size: BeAvatarSize.extraLarge),
-      ],
-    );
-  }
-}
-
-class _AvatarStylesSection extends StatelessWidget {
-  const _AvatarStylesSection();
-
-  @override
-  Widget build(final BuildContext context) {
-    return const Wrap(
-      spacing: 16,
-      runSpacing: 16,
-      children: [
-        BeAvatar.initials(initials: 'C', style: BeAvatarStyle.circle, backgroundColor: BeColors.primary),
-        BeAvatar.initials(initials: 'R', style: BeAvatarStyle.rounded, backgroundColor: BeColors.secondary),
-        BeAvatar.initials(initials: 'S', style: BeAvatarStyle.square, backgroundColor: BeColors.tertiary),
-      ],
-    );
-  }
-}
-
-class _StatusIndicatorsSection extends StatelessWidget {
-  const _StatusIndicatorsSection();
-
-  @override
-  Widget build(final BuildContext context) {
-    return const Wrap(
-      spacing: 16,
-      runSpacing: 16,
-      children: [
-        BeAvatar.initials(initials: 'ON', status: BeAvatarStatus.online, rounded: true),
-        BeAvatar.initials(initials: 'OF', status: BeAvatarStatus.offline),
-        BeAvatar.initials(initials: 'AW', status: BeAvatarStatus.away),
-        BeAvatar.initials(initials: 'BY', status: BeAvatarStatus.busy),
-      ],
-    );
-  }
-}
-
-class _AvatarBadgesSection extends StatelessWidget {
-  const _AvatarBadgesSection();
-
-  @override
-  Widget build(final BuildContext context) {
-    return Wrap(
-      spacing: 16,
-      runSpacing: 16,
-      children: [
-        const BeAvatar.initials(
-          initials: 'NT',
-          showBadge: true,
-          badgeContent: _NotificationBadge(count: 3),
-          badgePosition: BeBadgePosition.topRight,
-        ),
-        const BeAvatar.initials(
-          initials: 'ST',
-          showBadge: true,
-          badgeContent: _StarBadge(),
-          badgePosition: BeBadgePosition.topLeft,
-        ),
-        const BeAvatar.initials(
-          initials: 'VR',
-          showBadge: true,
-          badgeContent: _VerifiedBadge(),
-          badgePosition: BeBadgePosition.bottomRight,
-        ),
-        BeAvatar.initials(
-          initials: 'AD',
-          showBadge: true,
-          badgeContent: Container(
-            width: 24,
-            height: 24,
-            decoration: const BoxDecoration(color: BeColors.error, shape: BoxShape.circle),
-            child: const Icon(Icons.admin_panel_settings, color: Colors.white, size: 16),
+              // Submit button
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {
+                    final formState = BeFormBuilder.of(context);
+                    if (formState?.validate() == true) {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Form is valid!')));
+                    }
+                  },
+                  child: const Text('Validate Form'),
+                ),
+              ),
+            ],
           ),
-          badgePosition: BeBadgePosition.topRight,
-        ),
-      ],
-    );
-  }
-}
-
-class _InteractiveAvatarsSection extends StatefulWidget {
-  const _InteractiveAvatarsSection();
-
-  @override
-  State<_InteractiveAvatarsSection> createState() => _InteractiveAvatarsSectionState();
-}
-
-class _InteractiveAvatarsSectionState extends State<_InteractiveAvatarsSection> {
-  String _selectedAvatar = '';
-
-  @override
-  Widget build(final BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Wrap(
-          spacing: 16,
-          runSpacing: 16,
-          children: [
-            BeAvatar.image(
-              image: const NetworkImage('https://dummyjson.com/icon/abc123/150'),
-              elevation: 2,
-              border: Border.all(color: Colors.green),
-            ),
-
-            BeAvatar.initials(initials: 'T1', onTap: () => _onAvatarTap('User 1'), elevation: 2),
-            BeAvatar.initials(
-              initials: 'T2',
-              onTap: () => _onAvatarTap('User 2'),
-              elevation: 4,
-              backgroundColor: BeColors.secondary,
-            ),
-            BeAvatar.initials(
-              initials: 'T3',
-              onTap: () => _onAvatarTap('User 3'),
-              elevation: 6,
-              backgroundColor: BeColors.tertiary,
-            ),
-          ],
-        ),
-        if (_selectedAvatar.isNotEmpty) ...[
-          const SizedBox(height: 16),
-          Container(
-            padding: const EdgeInsets.all(12),
-            decoration: BoxDecoration(color: BeColors.gray100, borderRadius: BorderRadius.circular(8)),
-            child: Text(
-              'Selected: $_selectedAvatar',
-              style: const TextStyle(fontWeight: FontWeight.w500, color: BeColors.gray700),
-            ),
-          ),
-        ],
-      ],
-    );
-  }
-
-  void _onAvatarTap(final String user) {
-    setState(() {
-      _selectedAvatar = user;
-    });
-  }
-}
-
-class _AvatarGallerySection extends StatelessWidget {
-  const _AvatarGallerySection();
-
-  @override
-  Widget build(final BuildContext context) {
-    return GridView.count(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      crossAxisCount: 4,
-      crossAxisSpacing: 16,
-      mainAxisSpacing: 16,
-      children: [
-        // Row 1: Different users with various states
-        const BeAvatar.initials(rounded: false, initials: 'AM', status: BeAvatarStatus.online),
-        const BeAvatar.initials(
-          rounded: false,
-          initials: 'BT',
-          status: BeAvatarStatus.busy,
-          showBadge: true,
-          badgeContent: _NotificationBadge(count: 9),
-        ),
-        const BeAvatar.initials(
-          rounded: false,
-          initials: 'CF',
-          status: BeAvatarStatus.away,
-          style: BeAvatarStyle.rounded,
-        ),
-        const BeAvatar.initials(
-          rounded: false,
-          initials: 'DK',
-          status: BeAvatarStatus.offline,
-          style: BeAvatarStyle.square,
-        ),
-
-        // Row 2: Different backgrounds and styles
-        const BeAvatar.initials(
-          rounded: false,
-          initials: 'EL',
-          backgroundColor: BeColors.success,
-          style: BeAvatarStyle.circle,
-        ),
-        const BeAvatar.initials(
-          rounded: false,
-          initials: 'FG',
-          backgroundColor: BeColors.warning,
-          style: BeAvatarStyle.rounded,
-        ),
-        const BeAvatar.initials(
-          rounded: false,
-          initials: 'GH',
-          backgroundColor: BeColors.error,
-          style: BeAvatarStyle.square,
-        ),
-        const BeAvatar.initials(
-          rounded: false,
-          initials: 'HI',
-          backgroundColor: BeColors.info,
-          style: BeAvatarStyle.circle,
-        ),
-
-        // Row 3: Custom content and badges
-        const BeAvatar.custom(backgroundColor: BeColors.gray600, child: Icon(Icons.camera_alt, color: Colors.white)),
-        const BeAvatar.custom(backgroundColor: BeColors.purple, child: Icon(Icons.music_note, color: Colors.white)),
-        const BeAvatar.initials(
-          initials: 'VIP',
-          backgroundColor: BeColors.orange,
-          showBadge: true,
-          badgeContent: _CrownBadge(),
-        ),
-        const BeAvatar(), // Default fallback
-      ],
-    );
-  }
-}
-
-// Badge Components
-class _NotificationBadge extends StatelessWidget {
-  const _NotificationBadge({required this.count});
-
-  final int count;
-
-  @override
-  Widget build(final BuildContext context) {
-    return Container(
-      width: 20,
-      height: 45,
-      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-      decoration: const BoxDecoration(color: BeColors.error, shape: BoxShape.circle),
-      constraints: const BoxConstraints(minWidth: 20, minHeight: 20),
-      child: Center(
-        child: Text(
-          count > 99 ? '99+' : count.toString(),
-          style: const TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold),
         ),
       ),
     );
   }
 }
 
-class _StarBadge extends StatelessWidget {
-  const _StarBadge();
+// class AvatarExample extends StatelessWidget {
+//   const AvatarExample({super.key});
 
-  @override
-  Widget build(final BuildContext context) {
-    return Container(
-      width: 20,
-      height: 20,
-      decoration: const BoxDecoration(color: BeColors.warning, shape: BoxShape.circle),
-      child: const Icon(Icons.star, color: Colors.white, size: 14),
-    );
-  }
-}
+//   @override
+//   Widget build(final BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: const Text('BeAvatar Component Showcase'),
+//         backgroundColor: BeColors.primary,
+//         foregroundColor: Colors.white,
+//       ),
+//       body: const SingleChildScrollView(
+//         padding: EdgeInsets.all(16.0),
+//         child: Column(
+//           crossAxisAlignment: CrossAxisAlignment.start,
+//           children: [
+//             _SectionTitle('Basic Avatars'),
+//             SizedBox(height: 16),
+//             _BasicAvatarsSection(),
 
-class _VerifiedBadge extends StatelessWidget {
-  const _VerifiedBadge();
+//             SizedBox(height: 32),
+//             _SectionTitle('Avatar Sizes'),
+//             SizedBox(height: 16),
+//             _AvatarSizesSection(),
 
-  @override
-  Widget build(final BuildContext context) {
-    return Container(
-      width: 20,
-      height: 20,
-      decoration: const BoxDecoration(color: BeColors.success, shape: BoxShape.circle),
-      child: const Icon(Icons.check, color: Colors.white, size: 14),
-    );
-  }
-}
+//             SizedBox(height: 32),
+//             _SectionTitle('Avatar Styles'),
+//             SizedBox(height: 16),
+//             _AvatarStylesSection(),
 
-class _CrownBadge extends StatelessWidget {
-  const _CrownBadge();
+//             SizedBox(height: 32),
+//             _SectionTitle('Status Indicators'),
+//             SizedBox(height: 16),
+//             _StatusIndicatorsSection(),
 
-  @override
-  Widget build(final BuildContext context) {
-    return Container(
-      width: 24,
-      height: 24,
-      decoration: const BoxDecoration(color: BeColors.warning, shape: BoxShape.circle),
-      child: const Icon(Icons.workspace_premium, color: Colors.white, size: 16),
-    );
-  }
-}
+//             SizedBox(height: 32),
+//             _SectionTitle('Avatars with Badges'),
+//             SizedBox(height: 16),
+//             _AvatarBadgesSection(),
+
+//             SizedBox(height: 32),
+//             _SectionTitle('Interactive Avatars'),
+//             SizedBox(height: 16),
+//             _InteractiveAvatarsSection(),
+
+//             SizedBox(height: 32),
+//             _SectionTitle('Avatar Gallery'),
+//             SizedBox(height: 16),
+//             _AvatarGallerySection(),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+// class _SectionTitle extends StatelessWidget {
+//   const _SectionTitle(this.title);
+
+//   final String title;
+
+//   @override
+//   Widget build(final BuildContext context) {
+//     return Text(title, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: BeColors.gray800));
+//   }
+// }
+
+// class _BasicAvatarsSection extends StatelessWidget {
+//   const _BasicAvatarsSection();
+
+//   @override
+//   Widget build(final BuildContext context) {
+//     return const Wrap(
+//       spacing: 16,
+//       runSpacing: 16,
+//       children: [
+//         BeAvatar.initials(initials: 'JD', style: BeAvatarStyle.hexagon),
+//         BeAvatar.initials(initials: 'AB', backgroundColor: BeColors.secondary),
+//         BeAvatar.custom(backgroundColor: BeColors.tertiary, child: Icon(Icons.person_2_rounded, color: Colors.white)),
+//         BeAvatar(), // Default fallback
+//       ],
+//     );
+//   }
+// }
+
+// class _AvatarSizesSection extends StatelessWidget {
+//   const _AvatarSizesSection();
+
+//   @override
+//   Widget build(final BuildContext context) {
+//     return const Wrap(
+//       spacing: 16,
+//       runSpacing: 16,
+//       crossAxisAlignment: WrapCrossAlignment.center,
+//       children: [
+//         BeAvatar.initials(initials: 'xs', size: BeAvatarSize.xsmall),
+//         BeAvatar.initials(initials: 'S', size: BeAvatarSize.small),
+//         BeAvatar.initials(initials: 'M', size: BeAvatarSize.medium),
+//         BeAvatar.initials(initials: 'L', size: BeAvatarSize.large),
+//         BeAvatar.initials(initials: 'XL', size: BeAvatarSize.extraLarge),
+//       ],
+//     );
+//   }
+// }
+
+// class _AvatarStylesSection extends StatelessWidget {
+//   const _AvatarStylesSection();
+
+//   @override
+//   Widget build(final BuildContext context) {
+//     return const Wrap(
+//       spacing: 16,
+//       runSpacing: 16,
+//       children: [
+//         BeAvatar.initials(initials: 'C', style: BeAvatarStyle.circle, backgroundColor: BeColors.primary),
+//         BeAvatar.initials(initials: 'R', style: BeAvatarStyle.rounded, backgroundColor: BeColors.secondary),
+//         BeAvatar.initials(initials: 'S', style: BeAvatarStyle.square, backgroundColor: BeColors.tertiary),
+//       ],
+//     );
+//   }
+// }
+
+// class _StatusIndicatorsSection extends StatelessWidget {
+//   const _StatusIndicatorsSection();
+
+//   @override
+//   Widget build(final BuildContext context) {
+//     return const Wrap(
+//       spacing: 16,
+//       runSpacing: 16,
+//       children: [
+//         BeAvatar.initials(initials: 'ON', status: BeAvatarStatus.online, rounded: true),
+//         BeAvatar.initials(initials: 'OF', status: BeAvatarStatus.offline),
+//         BeAvatar.initials(initials: 'AW', status: BeAvatarStatus.away),
+//         BeAvatar.initials(initials: 'BY', status: BeAvatarStatus.busy),
+//       ],
+//     );
+//   }
+// }
+
+// class _AvatarBadgesSection extends StatelessWidget {
+//   const _AvatarBadgesSection();
+
+//   @override
+//   Widget build(final BuildContext context) {
+//     return Wrap(
+//       spacing: 16,
+//       runSpacing: 16,
+//       children: [
+//         const BeAvatar.initials(
+//           initials: 'NT',
+//           showBadge: true,
+//           badgeContent: _NotificationBadge(count: 3),
+//           badgePosition: BeBadgePosition.topRight,
+//         ),
+//         const BeAvatar.initials(
+//           initials: 'ST',
+//           showBadge: true,
+//           badgeContent: _StarBadge(),
+//           badgePosition: BeBadgePosition.topLeft,
+//         ),
+//         const BeAvatar.initials(
+//           initials: 'VR',
+//           showBadge: true,
+//           badgeContent: _VerifiedBadge(),
+//           badgePosition: BeBadgePosition.bottomRight,
+//         ),
+//         BeAvatar.initials(
+//           initials: 'AD',
+//           showBadge: true,
+//           badgeContent: Container(
+//             width: 24,
+//             height: 24,
+//             decoration: const BoxDecoration(color: BeColors.error, shape: BoxShape.circle),
+//             child: const Icon(Icons.admin_panel_settings, color: Colors.white, size: 16),
+//           ),
+//           badgePosition: BeBadgePosition.topRight,
+//         ),
+//       ],
+//     );
+//   }
+// }
+
+// class _InteractiveAvatarsSection extends StatefulWidget {
+//   const _InteractiveAvatarsSection();
+
+//   @override
+//   State<_InteractiveAvatarsSection> createState() => _InteractiveAvatarsSectionState();
+// }
+
+// class _InteractiveAvatarsSectionState extends State<_InteractiveAvatarsSection> {
+//   String _selectedAvatar = '';
+
+//   @override
+//   Widget build(final BuildContext context) {
+//     return Column(
+//       crossAxisAlignment: CrossAxisAlignment.start,
+//       children: [
+//         Wrap(
+//           spacing: 16,
+//           runSpacing: 16,
+//           children: [
+//             BeAvatar.image(
+//               image: const NetworkImage('https://dummyjson.com/icon/abc123/150'),
+//               elevation: 2,
+//               border: Border.all(color: Colors.green),
+//             ),
+
+//             BeAvatar.initials(initials: 'T1', onTap: () => _onAvatarTap('User 1'), elevation: 2),
+//             BeAvatar.initials(
+//               initials: 'T2',
+//               onTap: () => _onAvatarTap('User 2'),
+//               elevation: 4,
+//               backgroundColor: BeColors.secondary,
+//             ),
+//             BeAvatar.initials(
+//               initials: 'T3',
+//               onTap: () => _onAvatarTap('User 3'),
+//               elevation: 6,
+//               backgroundColor: BeColors.tertiary,
+//             ),
+//           ],
+//         ),
+//         if (_selectedAvatar.isNotEmpty) ...[
+//           const SizedBox(height: 16),
+//           Container(
+//             padding: const EdgeInsets.all(12),
+//             decoration: BoxDecoration(color: BeColors.gray100, borderRadius: BorderRadius.circular(8)),
+//             child: Text(
+//               'Selected: $_selectedAvatar',
+//               style: const TextStyle(fontWeight: FontWeight.w500, color: BeColors.gray700),
+//             ),
+//           ),
+//         ],
+//       ],
+//     );
+//   }
+
+//   void _onAvatarTap(final String user) {
+//     setState(() {
+//       _selectedAvatar = user;
+//     });
+//   }
+// }
+
+// class _AvatarGallerySection extends StatelessWidget {
+//   const _AvatarGallerySection();
+
+//   @override
+//   Widget build(final BuildContext context) {
+//     return GridView.count(
+//       shrinkWrap: true,
+//       physics: const NeverScrollableScrollPhysics(),
+//       crossAxisCount: 4,
+//       crossAxisSpacing: 16,
+//       mainAxisSpacing: 16,
+//       children: [
+//         // Row 1: Different users with various states
+//         const BeAvatar.initials(rounded: false, initials: 'AM', status: BeAvatarStatus.online),
+//         const BeAvatar.initials(
+//           rounded: false,
+//           initials: 'BT',
+//           status: BeAvatarStatus.busy,
+//           showBadge: true,
+//           badgeContent: _NotificationBadge(count: 9),
+//         ),
+//         const BeAvatar.initials(
+//           rounded: false,
+//           initials: 'CF',
+//           status: BeAvatarStatus.away,
+//           style: BeAvatarStyle.rounded,
+//         ),
+//         const BeAvatar.initials(
+//           rounded: false,
+//           initials: 'DK',
+//           status: BeAvatarStatus.offline,
+//           style: BeAvatarStyle.square,
+//         ),
+
+//         // Row 2: Different backgrounds and styles
+//         const BeAvatar.initials(
+//           rounded: false,
+//           initials: 'EL',
+//           backgroundColor: BeColors.success,
+//           style: BeAvatarStyle.circle,
+//         ),
+//         const BeAvatar.initials(
+//           rounded: false,
+//           initials: 'FG',
+//           backgroundColor: BeColors.warning,
+//           style: BeAvatarStyle.rounded,
+//         ),
+//         const BeAvatar.initials(
+//           rounded: false,
+//           initials: 'GH',
+//           backgroundColor: BeColors.error,
+//           style: BeAvatarStyle.square,
+//         ),
+//         const BeAvatar.initials(
+//           rounded: false,
+//           initials: 'HI',
+//           backgroundColor: BeColors.info,
+//           style: BeAvatarStyle.circle,
+//         ),
+
+//         // Row 3: Custom content and badges
+//         const BeAvatar.custom(backgroundColor: BeColors.gray600, child: Icon(Icons.camera_alt, color: Colors.white)),
+//         const BeAvatar.custom(backgroundColor: BeColors.purple, child: Icon(Icons.music_note, color: Colors.white)),
+//         const BeAvatar.initials(
+//           initials: 'VIP',
+//           backgroundColor: BeColors.orange,
+//           showBadge: true,
+//           badgeContent: _CrownBadge(),
+//         ),
+//         const BeAvatar(), // Default fallback
+//       ],
+//     );
+//   }
+// }
+
+// // Badge Components
+// class _NotificationBadge extends StatelessWidget {
+//   const _NotificationBadge({required this.count});
+
+//   final int count;
+
+//   @override
+//   Widget build(final BuildContext context) {
+//     return Container(
+//       width: 20,
+//       height: 45,
+//       padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+//       decoration: const BoxDecoration(color: BeColors.error, shape: BoxShape.circle),
+//       constraints: const BoxConstraints(minWidth: 20, minHeight: 20),
+//       child: Center(
+//         child: Text(
+//           count > 99 ? '99+' : count.toString(),
+//           style: const TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold),
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+// class _StarBadge extends StatelessWidget {
+//   const _StarBadge();
+
+//   @override
+//   Widget build(final BuildContext context) {
+//     return Container(
+//       width: 20,
+//       height: 20,
+//       decoration: const BoxDecoration(color: BeColors.warning, shape: BoxShape.circle),
+//       child: const Icon(Icons.star, color: Colors.white, size: 14),
+//     );
+//   }
+// }
+
+// class _VerifiedBadge extends StatelessWidget {
+//   const _VerifiedBadge();
+
+//   @override
+//   Widget build(final BuildContext context) {
+//     return Container(
+//       width: 20,
+//       height: 20,
+//       decoration: const BoxDecoration(color: BeColors.success, shape: BoxShape.circle),
+//       child: const Icon(Icons.check, color: Colors.white, size: 14),
+//     );
+//   }
+// }
+
+// class _CrownBadge extends StatelessWidget {
+//   const _CrownBadge();
+
+//   @override
+//   Widget build(final BuildContext context) {
+//     return Container(
+//       width: 24,
+//       height: 24,
+//       decoration: const BoxDecoration(color: BeColors.warning, shape: BoxShape.circle),
+//       child: const Icon(Icons.workspace_premium, color: Colors.white, size: 16),
+//     );
+//   }
+// }
+
+// ----------
 //                                onChanged(option.value);
 //                              }
 //                            }
