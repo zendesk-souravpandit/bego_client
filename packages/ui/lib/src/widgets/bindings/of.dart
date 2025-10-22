@@ -18,8 +18,11 @@ HeroController useHeroControllerScopeOf(final BuildContext context) => HeroContr
 MaterialInkController useMaterialOf(final BuildContext context) => Material.of(context);
 
 /// Returns a [OverlayState].
-OverlayState useOverlayOf(final BuildContext context, {final bool rootOverlay = false, final Widget? debugRequiredFor}) =>
-    Overlay.of(context, rootOverlay: rootOverlay, debugRequiredFor: debugRequiredFor);
+OverlayState useOverlayOf(
+  final BuildContext context, {
+  final bool rootOverlay = false,
+  final Widget? debugRequiredFor,
+}) => Overlay.of(context, rootOverlay: rootOverlay, debugRequiredFor: debugRequiredFor);
 
 /// Returns a [PageStorageBucket].
 PageStorageBucket usePageStorageOf(final BuildContext context) => PageStorage.of(context);

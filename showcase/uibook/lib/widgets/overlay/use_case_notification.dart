@@ -3,7 +3,7 @@ import 'package:beui/overlay.dart';
 import 'package:beui/text.dart';
 import 'package:beui/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:uibook/widgetbook/modal_option.dart';
+import 'package:uibook/core/widgetbook/modal_option.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 

@@ -49,6 +49,32 @@ abstract class BeAdaptiveStyle {
   double get labelSmallTextSize;
   double get labelSmallLineHeight;
 
+  // Form-specific text sizes
+  double get inputTextSize;
+  double get inputLabelTextSize;
+  double get inputHintTextSize;
+  double get inputErrorTextSize;
+  double get inputHelperTextSize;
+
+  // Button text sizes
+  double get buttonLargeTextSize;
+  double get buttonMediumTextSize;
+  double get buttonSmallTextSize;
+
+  // Form spacing
+  double get inputContentPaddingHorizontal;
+  double get inputContentPaddingVertical;
+  double get inputBorderRadius;
+  double get buttonBorderRadius;
+
+  // Button sizing
+  double get buttonLargeHeight;
+  double get buttonMediumHeight;
+  double get buttonSmallHeight;
+  double get buttonLargePaddingHorizontal;
+  double get buttonMediumPaddingHorizontal;
+  double get buttonSmallPaddingHorizontal;
+
   // Notification
   double get notificationMaxWidth;
   int get notificationMaxCount;

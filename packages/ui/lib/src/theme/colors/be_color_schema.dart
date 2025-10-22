@@ -1,41 +1,56 @@
 import 'package:beui/theme.dart';
 import 'package:flutter/material.dart';
 
+/// Modern Material 3 color scheme using the brand color 0xFFBE3455
 class BeColorSchemeLight {
-  static const Color primary = Color(0xFFBE3455);
-  static const Color onPrimary = Colors.white;
-  static const Color primaryContainer = Color(0xFFFFD7DC); // soft tone
-  static const Color onPrimaryContainer = Color(0xFF430012); // dark for contrast
+  static const Color primary = BeColors.primary;
+  static const Color onPrimary = BeColors.onPrimary;
+  static const Color primaryContainer = BeColors.primaryContainer;
+  static const Color onPrimaryContainer = BeColors.onPrimaryContainer;
+  static const Color primaryFixed = BeColors.primaryFixed;
+  static const Color primaryFixedDim = BeColors.primaryFixedDim;
+  static const Color onPrimaryFixed = BeColors.onPrimaryFixed;
+  static const Color onPrimaryFixedVariant = BeColors.onPrimaryFixedVariant;
 
-  static const Color secondary = Color(0xFF5755A3);
-  static const Color onSecondary = Colors.white;
-  static const Color secondaryContainer = Color(0xFFD9D8FF);
-  static const Color onSecondaryContainer = Color(0xFF1C1A5E);
+  static const Color secondary = BeColors.secondary;
+  static const Color onSecondary = BeColors.onSecondary;
+  static const Color secondaryContainer = BeColors.secondaryContainer;
+  static const Color onSecondaryContainer = BeColors.onSecondaryContainer;
 
-  static const Color tertiary = Color(0xFF4DA28D);
-  static const Color onTertiary = Colors.white;
-  static const Color tertiaryContainer = Color(0xFFBDECE1);
-  static const Color onTertiaryContainer = Color(0xFF00382C);
+  static const Color tertiary = BeColors.tertiary;
+  static const Color onTertiary = BeColors.onTertiary;
+  static const Color tertiaryContainer = BeColors.tertiaryContainer;
+  static const Color onTertiaryContainer = BeColors.onTertiaryContainer;
 
-  static const Color error = Color(0xFFB00020);
-  static const Color onError = Colors.white;
-  static const Color errorContainer = Color(0xFFF9DEDC);
-  static const Color onErrorContainer = Color(0xFF370001);
+  static const Color error = BeColors.error;
+  static const Color onError = BeColors.onError;
+  static const Color errorContainer = BeColors.errorContainer;
+  static const Color onErrorContainer = BeColors.onErrorContainer;
 
-  static const Color background = Color(0xFFFFFBFF);
-  static const Color onBackground = Color(0xFF1C1B1F);
+  static const Color surface = BeColors.surface;
+  static const Color onSurface = BeColors.onSurface;
+  static const Color surfaceVariant = BeColors.surfaceVariant;
+  static const Color onSurfaceVariant = BeColors.onSurfaceVariant;
+  static const Color surfaceDim = BeColors.surfaceDim;
+  static const Color surfaceBright = BeColors.surfaceBright;
+  static const Color surfaceContainer = BeColors.surfaceContainer;
+  static const Color surfaceContainerHigh = BeColors.surfaceContainerHigh;
+  static const Color surfaceContainerHighest = BeColors.surfaceContainerHighest;
+  static const Color surfaceContainerLow = BeColors.surfaceContainerLow;
+  static const Color surfaceContainerLowest = BeColors.surfaceContainerLowest;
 
-  static const Color surface = BeColors.gray50;
-  static const Color onSurface = Color(0xFF1C1B1F);
-  static const Color surfaceVariant = Color(0xFFE7E0EC);
-  static const Color onSurfaceVariant = Color(0xFF49454F);
+  static const Color background = BeColors.surface;
+  static const Color onBackground = BeColors.onSurface;
 
-  static const Color outline = Color(0xFF79747E);
+  static const Color outline = BeColors.outline;
+  static const Color outlineVariant = BeColors.outlineVariant;
   static const Color shadow = Color(0xFF000000);
+  static const Color scrim = Color(0xFF000000);
 
-  static const Color inverseSurface = Color(0xFF313033);
-  static const Color onInverseSurface = Color(0xFFF4EFF4);
-  static const Color inversePrimary = Color(0xFFFFB1C0); // light version of primary
+  static const Color inverseSurface = Color(0xFF322F35);
+  static const Color onInverseSurface = Color(0xFFF5EFF7);
+  static const Color inversePrimary = BeColors.primaryLight;
+  static const Color surfaceTint = BeColors.primary;
 
   static ColorScheme lightScheme = const ColorScheme(
     brightness: Brightness.light,
@@ -43,70 +58,104 @@ class BeColorSchemeLight {
     onPrimary: onPrimary,
     primaryContainer: primaryContainer,
     onPrimaryContainer: onPrimaryContainer,
+    primaryFixed: primaryFixed,
+    onPrimaryFixed: onPrimaryFixed,
+    primaryFixedDim: primaryFixedDim,
+    onPrimaryFixedVariant: onPrimaryFixedVariant,
     secondary: secondary,
     onSecondary: onSecondary,
     secondaryContainer: secondaryContainer,
     onSecondaryContainer: onSecondaryContainer,
+    secondaryFixed: secondaryContainer,
+    onSecondaryFixed: onSecondaryContainer,
+    secondaryFixedDim: secondary,
+    onSecondaryFixedVariant: onSecondary,
     tertiary: tertiary,
     onTertiary: onTertiary,
     tertiaryContainer: tertiaryContainer,
     onTertiaryContainer: onTertiaryContainer,
+    tertiaryFixed: tertiaryContainer,
+    onTertiaryFixed: onTertiaryContainer,
+    tertiaryFixedDim: tertiary,
+    onTertiaryFixedVariant: onTertiary,
     error: error,
     onError: onError,
     errorContainer: errorContainer,
     onErrorContainer: onErrorContainer,
     surface: surface,
     onSurface: onSurface,
-    surfaceContainerHighest: surfaceVariant,
+    surfaceDim: surfaceDim,
+    surfaceBright: surfaceBright,
+    surfaceContainerLowest: surfaceContainerLowest,
+    surfaceContainerLow: surfaceContainerLow,
+    surfaceContainer: surfaceContainer,
+    surfaceContainerHigh: surfaceContainerHigh,
+    surfaceContainerHighest: surfaceContainerHighest,
     onSurfaceVariant: onSurfaceVariant,
     outline: outline,
+    outlineVariant: outlineVariant,
     shadow: shadow,
+    scrim: scrim,
     inverseSurface: inverseSurface,
     onInverseSurface: onInverseSurface,
     inversePrimary: inversePrimary,
+    surfaceTint: surfaceTint,
   );
 }
 
 class BeColorSchemeDark {
-  // Light scheme primary (from previous request)
-  static const Color lightPrimary = Color(0xFFBE3455);
-  static const Color darkPrimary = Color(0xFFEF7A85);
+  // Dark theme colors using the brand color system
+  static const Color primary = BeColors.primaryLight;
+  static const Color onPrimary = BeColors.primaryDark;
+  static const Color primaryContainer = BeColors.primaryDark;
+  static const Color onPrimaryContainer = BeColors.primaryContainer;
 
-  // DARK color scheme values
-  static const Color primary = darkPrimary;
-  static const Color onPrimary = Color(0xFF520010);
-  static const Color primaryContainer = Color(0xFF7F1027);
-  static const Color onPrimaryContainer = Color(0xFFFFD9DD);
+  // Secondary colors
+  static const Color secondary = BeColors.secondaryLight;
+  static const Color onSecondary = BeColors.secondaryDark;
+  static const Color secondaryContainer = BeColors.secondaryDark;
+  static const Color onSecondaryContainer = BeColors.secondaryContainer;
 
-  static const Color secondary = Color(0xFFBFC0FF);
-  static const Color onSecondary = Color(0xFF23235C);
-  static const Color secondaryContainer = Color(0xFF3B3C80);
-  static const Color onSecondaryContainer = Color(0xFFE0E0FF);
+  // Tertiary colors
+  static const Color tertiary = BeColors.tertiaryLight;
+  static const Color onTertiary = BeColors.tertiaryDark;
+  static const Color tertiaryContainer = BeColors.tertiaryDark;
+  static const Color onTertiaryContainer = BeColors.tertiaryContainer;
 
-  static const Color tertiary = Color(0xFF88D2C0);
-  static const Color onTertiary = Color(0xFF00382C);
-  static const Color tertiaryContainer = Color(0xFF0A4F44);
-  static const Color onTertiaryContainer = Color(0xFFBDECE1);
+  // Error colors
+  static const Color error = BeColors.errorLight;
+  static const Color onError = BeColors.errorDark;
+  static const Color errorContainer = BeColors.errorDark;
+  static const Color onErrorContainer = BeColors.errorContainer;
 
-  static const Color error = Color(0xFFFFB4AB);
-  static const Color onError = Color(0xFF690005);
-  static const Color errorContainer = Color(0xFF93000A);
-  static const Color onErrorContainer = Color(0xFFFFDAD6);
+  // Surface colors for dark theme - using appropriate contrasts
+  static const Color surface = Color(0xFF1C1B1F); // Dark surface
+  static const Color onSurface = Color(0xFFE6E1E5); // Light text on dark
+  static const Color surfaceVariant = Color(0xFF49454F); // Dark surface variant
+  static const Color onSurfaceVariant = Color(0xFFCAC4D0); // Light text on dark variant
 
+  // Additional surface colors for dark theme
+  static const Color surfaceContainer = Color(0xFF211F26);
+  static const Color surfaceContainerLow = Color(0xFF1C1B1F);
+  static const Color surfaceContainerHigh = Color(0xFF2B2930);
+  static const Color surfaceContainerHighest = Color(0xFF36343B);
+
+  // Background colors
   static const Color background = Color(0xFF1C1B1F);
   static const Color onBackground = Color(0xFFE6E1E5);
 
-  static const Color surface = Color(0xFF1C1B1F);
-  static const Color onSurface = Color(0xFFE6E1E5);
-  static const Color surfaceVariant = Color(0xFF49454F);
-  static const Color onSurfaceVariant = Color(0xFFCAC4D0);
+  // Outline colors
+  static const Color outline = BeColors.neutralVariant50;
+  static const Color outlineVariant = BeColors.neutralVariant30;
 
-  static const Color outline = Color(0xFF938F99);
+  // Shadow and other colors
   static const Color shadow = Color(0xFF000000);
+  static const Color scrim = Color(0xFF000000);
 
-  static const Color inverseSurface = Color(0xFFE6E1E5);
-  static const Color onInverseSurface = Color(0xFF313033);
-  static const Color inversePrimary = Color(0xFFBE3455);
+  // Inverse colors
+  static const Color inverseSurface = BeColors.surface;
+  static const Color onInverseSurface = BeColors.onSurface;
+  static const Color inversePrimary = BeColors.primary;
 
   static ColorScheme darkScheme = const ColorScheme(
     brightness: Brightness.dark,
@@ -114,26 +163,47 @@ class BeColorSchemeDark {
     onPrimary: onPrimary,
     primaryContainer: primaryContainer,
     onPrimaryContainer: onPrimaryContainer,
+    primaryFixed: BeColors.primaryLight,
+    onPrimaryFixed: BeColors.primaryDark,
+    primaryFixedDim: BeColors.primary,
+    onPrimaryFixedVariant: BeColors.primaryLight,
     secondary: secondary,
     onSecondary: onSecondary,
     secondaryContainer: secondaryContainer,
     onSecondaryContainer: onSecondaryContainer,
+    secondaryFixed: BeColors.secondaryLight,
+    onSecondaryFixed: BeColors.secondaryDark,
+    secondaryFixedDim: BeColors.secondary,
+    onSecondaryFixedVariant: BeColors.secondaryLight,
     tertiary: tertiary,
     onTertiary: onTertiary,
     tertiaryContainer: tertiaryContainer,
     onTertiaryContainer: onTertiaryContainer,
+    tertiaryFixed: BeColors.tertiaryLight,
+    onTertiaryFixed: BeColors.tertiaryDark,
+    tertiaryFixedDim: BeColors.tertiary,
+    onTertiaryFixedVariant: BeColors.tertiaryLight,
     error: error,
     onError: onError,
     errorContainer: errorContainer,
     onErrorContainer: onErrorContainer,
     surface: surface,
     onSurface: onSurface,
-    surfaceContainerHighest: surfaceVariant,
+    surfaceDim: surface,
+    surfaceBright: surfaceContainerHigh,
+    surfaceContainerLowest: surfaceContainerLow,
+    surfaceContainerLow: surfaceContainerLow,
+    surfaceContainer: surfaceContainer,
+    surfaceContainerHigh: surfaceContainerHigh,
+    surfaceContainerHighest: surfaceContainerHighest,
     onSurfaceVariant: onSurfaceVariant,
     outline: outline,
+    outlineVariant: outlineVariant,
     shadow: shadow,
+    scrim: scrim,
     inverseSurface: inverseSurface,
     onInverseSurface: onInverseSurface,
     inversePrimary: inversePrimary,
+    surfaceTint: inversePrimary,
   );
 }

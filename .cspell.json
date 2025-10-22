@@ -17,6 +17,7 @@
     "beui",
     "Childs",
     "dfunc",
+    "ecommerce",
     "efective",
     "getx",
     "LTWH",
@@ -24,10 +25,7 @@
     "pbjson",
     "pubspec",
     "Superellipse",
-<<<<<<< HEAD
     "Textspan",
-=======
->>>>>>> upstream/main
     "uibook",
     "Viewports"
   ],

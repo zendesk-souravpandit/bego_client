@@ -222,7 +222,8 @@ class BeCheckValue {
   static bool isSHA256(final String s) => hasMatch(s, r'([A-Fa-f0-9]{2}\:){31}[A-Fa-f0-9]{2}|[A-Fa-f0-9]{64}');
 
   /// Checks if string is SSN (Social Security Number).
-  static bool isSSN(final String s) => hasMatch(s, r'^(?!0{3}|6{3}|9[0-9]{2})[0-9]{3}-?(?!0{2})[0-9]{2}-?(?!0{4})[0-9]{4}$');
+  static bool isSSN(final String s) =>
+      hasMatch(s, r'^(?!0{3}|6{3}|9[0-9]{2})[0-9]{3}-?(?!0{2})[0-9]{2}-?(?!0{4})[0-9]{4}$');
 
   /// Checks if string is binary.
   static bool isBinary(final String s) => hasMatch(s, r'^[0-1]+$');

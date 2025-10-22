@@ -13,41 +13,77 @@ class BeStyleConst {
   static const double enabled = 1;
   static const double disabled = .6;
 
-  // static const textScleFactor = 0.8;
-  // static const buttonTextSize = 14.0;
-  // static const strokWidth = 2.0;
-  // static const indicatorSize = 8.0;
-  // static const borderRadius = 8.0;
-  // //rounded
-  // static double rounded8 = 8;
-  // static double rounded12 = 12;
-  // static double rounded16 = 16;
-  // static double rounded20 = 20;
+  // Border Radius Constants - Modern design system
+  static const double borderRadius4 = 4.0;
+  static const double borderRadius8 = 8.0;
+  static const double borderRadius12 = 12.0;
+  static const double borderRadius16 = 16.0;
+  static const double borderRadius20 = 20.0;
+  static const double borderRadius24 = 24.0;
+  static const double borderRadius28 = 28.0;
 
-  //gap padding
-  // static const inputGapPadding = 16.0;
+  static const BorderRadius borderRadiusSmall = BorderRadius.all(Radius.circular(borderRadius8));
+  static const BorderRadius borderRadiusMedium = BorderRadius.all(Radius.circular(borderRadius12));
+  static const BorderRadius borderRadiusLarge = BorderRadius.all(Radius.circular(borderRadius16));
+  static const BorderRadius borderRadiusXLarge = BorderRadius.all(Radius.circular(borderRadius24));
 
-  // opacity
-  // static const double enabled = 1;
-  // static const double disabled = .6;
-  // static const int gap = 10;
-  // static const int gutter = 10;
+  // Input field specific border radius
+  static const BorderRadius inputBorderRadius = borderRadiusMedium;
+  static const BorderRadius buttonBorderRadius = borderRadiusMedium;
+  static const BorderRadius cardBorderRadius = borderRadiusLarge;
 
-  // static const BorderRadius cardRadiusMedium = borderRadius16;
+  // Spacing Constants - 8pt grid system
+  static const double spacing2 = 2.0;
+  static const double spacing4 = 4.0;
+  static const double spacing8 = 8.0;
+  static const double spacing12 = 12.0;
+  static const double spacing14 = 14.0;
+  static const double spacing16 = 16.0;
+  static const double spacing20 = 20.0;
+  static const double spacing24 = 24.0;
+  static const double spacing32 = 32.0;
+  static const double spacing40 = 40.0;
+  static const double spacing48 = 48.0;
 
-  // static const borderRadius4 = BorderRadius.all(Radius.circular(4));
-  // static const borderRadius8 = BorderRadius.all(Radius.circular(8));
-  // static const borderRadius12 = BorderRadius.all(Radius.circular(12));
-  // static const borderRadius16 = BorderRadius.all(Radius.circular(16));
-  // static const borderRadius28 = BorderRadius.all(Radius.circular(28));
+  // Form field spacing
+  static const double inputPaddingHorizontal = spacing16;
+  static const double inputPaddingVertical = spacing14;
+  static const EdgeInsets inputContentPadding = EdgeInsets.symmetric(
+    horizontal: inputPaddingHorizontal,
+    vertical: inputPaddingVertical,
+  );
 
-  // static const Color blurLevel1 = Color.fromRGBO(41, 93, 141, 0.15);
-  // static final dialogBlur = ImageFilter.blur(sigmaX: 1, sigmaY: 1);
-  // static final tinyBlur = ImageFilter.blur(sigmaX: 0.8, sigmaY: 0.8);
-  // static final blurLevel1 = ImageFilter.blur(sigmaX: 6, sigmaY: 6);
-  // static final blurLevel2 = ImageFilter.blur(sigmaX: 12, sigmaY: 12);
-  // static final blurLevel3 = ImageFilter.blur(sigmaX: 25, sigmaY: 25);
-  // static final blurLevel4 = ImageFilter.blur(sigmaX: 50, sigmaY: 20);
+  // Button spacing
+  static const double buttonPaddingHorizontal = spacing24;
+  static const double buttonPaddingVertical = spacing14;
+  static const EdgeInsets buttonPadding = EdgeInsets.symmetric(
+    horizontal: buttonPaddingHorizontal,
+    vertical: buttonPaddingVertical,
+  );
+
+  // Icon button sizing
+  static const double iconButtonSize = 48.0;
+  static const double iconSize = 24.0;
+
+  // Border widths
+  static const double borderWidthThin = 1.0;
+  static const double borderWidthMedium = 1.5;
+  static const double borderWidthThick = 2.0;
+  static const double borderWidthFocus = 2.0;
+
+  // Form field states border widths
+  static const double inputBorderWidthDefault = borderWidthThin;
+  static const double inputBorderWidthFocus = borderWidthThick;
+  static const double inputBorderWidthError = borderWidthThin;
+
+  // Animation durations
+  static const Duration animationDurationFast = Duration(milliseconds: 150);
+  static const Duration animationDurationMedium = Duration(milliseconds: 250);
+  static const Duration animationDurationSlow = Duration(milliseconds: 350);
+
+  // Transition curves
+  static const Curve transitionCurveDefault = Curves.easeInOut;
+  static const Curve transitionCurveEmphasized = Curves.easeOutCubic;
 }
 
 final class BeUIShadow {

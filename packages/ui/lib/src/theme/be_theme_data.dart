@@ -5,41 +5,72 @@ import 'package:flutter/material.dart';
 
 @immutable
 class BeThemeData extends ThemeExtension<BeThemeData> {
-  BeThemeData({
-    required this.breakpoint,
-    required this.colors,
-    required this.themeMode,
-    final BeAdaptiveStyle? adaptiveStyle,
-  }) : style =
-           themeMode == ThemeMode.light
-               ? BeStyleLight(color: colors, adaptiveStyle: adaptiveStyle ?? breakpoint.adaptiveStyle)
-               : BeStyleDark(color: colors, adaptiveStyle: adaptiveStyle ?? breakpoint.adaptiveStyle);
+  /// Create theme data that automatically detects screen size
+  BeThemeData({required this.colors, final BeBreakpoint? breakpoint})
+    : breakpoint = breakpoint ?? BeBreakpoint.md,
+      style =
+          colors.isDark
+              ? BeStyleDark(
+                color: colors,
+                adaptiveStyle: _getResponsiveStyleForBreakpoint(breakpoint ?? BeBreakpoint.md),
+              )
+              : BeStyleLight(
+                color: colors,
+                adaptiveStyle: _getResponsiveStyleForBreakpoint(breakpoint ?? BeBreakpoint.md),
+              );
+
+  BeThemeData._internal({required this.breakpoint, required this.colors, final BeAdaptiveStyle? adaptiveStyle})
+    : style =
+          colors.isDark
+              ? BeStyleDark(color: colors, adaptiveStyle: adaptiveStyle ?? _getResponsiveStyleForBreakpoint(breakpoint))
+              : BeStyleLight(
+                color: colors,
+                adaptiveStyle: adaptiveStyle ?? _getResponsiveStyleForBreakpoint(breakpoint),
+              );
 
   final BeBreakpoint breakpoint;
   final BeColor colors;
-  final ThemeMode themeMode;
   final BeStyle style;
 
-  static ThemeData light() {
-    final betheme = BeThemeData(themeMode: ThemeMode.light, breakpoint: BeBreakpoint.md, colors: const BeColorsLight());
+  /// Get isDark from colors
+  bool get isDark => colors.isDark;
+
+  /// Get responsive style based on breakpoint
+  static BeAdaptiveStyle _getResponsiveStyleForBreakpoint(final BeBreakpoint breakpoint) {
+    return switch (breakpoint) {
+      BeBreakpoint.xs || BeBreakpoint.sm => const BeMobileValue(),
+      BeBreakpoint.md => const BeTabletValue(),
+      BeBreakpoint.lg || BeBreakpoint.xl || BeBreakpoint.xl2 => const BeDesktopValue(),
+    };
+  }
+
+  /// Create light theme with automatic responsive behavior
+  static ThemeData light({final BeColor? colors, final double? screenWidth}) {
+    final breakpoint = calculateBreakpoint(screenWidth ?? 1024);
+    final betheme = BeThemeData(colors: colors ?? const BeColorsLight(), breakpoint: breakpoint);
     return BeTheme.buildThemeData(betheme: betheme);
   }
 
-  static ThemeData dark() {
-    final betheme = BeThemeData(breakpoint: BeBreakpoint.md, themeMode: ThemeMode.dark, colors: const BeColorsDark());
+  /// Create dark theme with automatic responsive behavior
+  static ThemeData dark({final BeColor? colors, final double? screenWidth}) {
+    final breakpoint = calculateBreakpoint(screenWidth ?? 1024);
+    final betheme = BeThemeData(colors: colors ?? const BeColorsDark(), breakpoint: breakpoint);
     return BeTheme.buildThemeData(betheme: betheme);
+  }
+
+  /// Create responsive theme based on screen width and brightness
+  static ThemeData responsive(final double screenWidth, {final bool isDark = false, required final BeColor colors}) {
+    return isDark ? dark(colors: colors, screenWidth: screenWidth) : light(colors: colors, screenWidth: screenWidth);
   }
 
   @override
   BeThemeData copyWith({
     final BeBreakpoint? breakpoint,
-    final ThemeMode? themeMode,
     final BeStyle? style,
     final BeColor? colors,
     final BeAdaptiveStyle? adaptiveStyle,
   }) {
-    return BeThemeData(
-      themeMode: themeMode ?? this.themeMode,
+    return BeThemeData._internal(
       breakpoint: breakpoint ?? this.breakpoint,
       colors: colors ?? this.colors,
       adaptiveStyle: adaptiveStyle ?? this.style.adaptiveStyle,
@@ -51,10 +82,9 @@ class BeThemeData extends ThemeExtension<BeThemeData> {
     if (other is! BeThemeData) {
       return this;
     }
-    return BeThemeData(
+    return BeThemeData._internal(
       breakpoint: other.breakpoint,
       colors: other.colors,
-      themeMode: other.themeMode,
       adaptiveStyle: other.style.adaptiveStyle,
     );
   }

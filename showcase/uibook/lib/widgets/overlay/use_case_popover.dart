@@ -4,7 +4,7 @@ import 'package:beui/overlay.dart';
 import 'package:beui/text.dart';
 import 'package:beui/ui.dart';
 import 'package:flutter/material.dart';
-import 'package:uibook/widgets/buttons/use_case_icon_text_button.dart';
+import 'package:uibook/showcases/components/button_showcase.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 @widgetbook.UseCase(name: 'BePopover UI', path: 'widget/overlay', type: BePopover)

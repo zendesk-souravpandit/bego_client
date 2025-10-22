@@ -8,37 +8,48 @@ class BeStyleLight extends BeStyle {
   TextStyle get displayLarge => _baseStyle.copyWith(
     fontSize: adaptiveStyle.displayLargeTextSize,
     height: adaptiveStyle.displayLargeLineHeight / adaptiveStyle.displayLargeTextSize,
-    letterSpacing: -0.25,
+    fontWeight: FontWeight.w300, // Light weight for large display
+    letterSpacing: -0.5,
   );
 
   @override
   TextStyle get displayMedium => _baseStyle.copyWith(
     fontSize: adaptiveStyle.displayMediumTextSize,
     height: adaptiveStyle.displayMediumLineHeight / adaptiveStyle.displayMediumTextSize,
+    fontWeight: FontWeight.w400,
+    letterSpacing: -0.25,
   );
 
   @override
   TextStyle get displaySmall => _baseStyle.copyWith(
     fontSize: adaptiveStyle.displaySmallTextSize,
     height: adaptiveStyle.displaySmallLineHeight / adaptiveStyle.displaySmallTextSize,
+    fontWeight: FontWeight.w400,
+    letterSpacing: 0,
   );
 
   @override
   TextStyle get headlineLarge => _baseStyle.copyWith(
     fontSize: adaptiveStyle.headlineLargeTextSize,
     height: adaptiveStyle.headlineLargeLineHeight / adaptiveStyle.headlineLargeTextSize,
+    fontWeight: FontWeight.w600, // Semi-bold for headlines
+    letterSpacing: 0,
   );
 
   @override
   TextStyle get headlineMedium => _baseStyle.copyWith(
     fontSize: adaptiveStyle.headlineMediumTextSize,
     height: adaptiveStyle.headlineMediumLineHeight / adaptiveStyle.headlineMediumTextSize,
+    fontWeight: FontWeight.w600,
+    letterSpacing: 0,
   );
 
   @override
   TextStyle get headlineSmall => _baseStyle.copyWith(
     fontSize: adaptiveStyle.headlineSmallTextSize,
     height: adaptiveStyle.headlineSmallLineHeight / adaptiveStyle.headlineSmallTextSize,
+    fontWeight: FontWeight.w600,
+    letterSpacing: 0,
   );
 
   @override
@@ -67,13 +78,15 @@ class BeStyleLight extends BeStyle {
   TextStyle get bodyLarge => _baseStyle.copyWith(
     fontSize: adaptiveStyle.bodyLargeTextSize,
     height: adaptiveStyle.bodyLargeLineHeight / adaptiveStyle.bodyLargeTextSize,
-    letterSpacing: 0.5,
+    fontWeight: FontWeight.w400,
+    letterSpacing: 0.15, // Optimal for body text readability
   );
 
   @override
   TextStyle get bodyMedium => _baseStyle.copyWith(
     fontSize: adaptiveStyle.bodyMediumTextSize,
     height: adaptiveStyle.bodyMediumLineHeight / adaptiveStyle.bodyMediumTextSize,
+    fontWeight: FontWeight.w400,
     letterSpacing: 0.25,
   );
 
@@ -81,7 +94,8 @@ class BeStyleLight extends BeStyle {
   TextStyle get bodySmall => _baseStyle.copyWith(
     fontSize: adaptiveStyle.bodySmallTextSize,
     height: adaptiveStyle.bodySmallLineHeight / adaptiveStyle.bodySmallTextSize,
-    letterSpacing: 0.25,
+    fontWeight: FontWeight.w400,
+    letterSpacing: 0.4,
   );
 
   @override
@@ -114,6 +128,8 @@ class BeStyleLight extends BeStyle {
     fontWeight: FontWeight.w400,
     color: color.textPrimary,
     shadows: BeUIConst.textShadow,
+    textBaseline: TextBaseline.alphabetic,
+    leadingDistribution: TextLeadingDistribution.even,
   );
 
   @override

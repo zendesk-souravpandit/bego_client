@@ -260,7 +260,8 @@ class PageTransitionSwitcher extends StatefulWidget {
   /// See [PageTransitionSwitcherTransitionBuilder]
   ///  for more information on the function
   /// signature.
-  static Widget defaultLayoutBuilder(final List<Widget> entries) => Stack(alignment: Alignment.center, children: entries);
+  static Widget defaultLayoutBuilder(final List<Widget> entries) =>
+      Stack(alignment: Alignment.center, children: entries);
 
   @override
   State<PageTransitionSwitcher> createState() => _PageTransitionSwitcherState();

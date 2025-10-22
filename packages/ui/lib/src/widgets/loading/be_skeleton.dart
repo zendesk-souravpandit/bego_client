@@ -1,3 +1,4 @@
+import 'package:beui/src/theme/be_theme.dart';
 import 'package:flutter/material.dart';
 
 /// A widget that provides a shimmer effect for loading states.
@@ -33,27 +34,34 @@ class BeSkeletonState extends State<BeSkeleton> with SingleTickerProviderStateMi
   }
 
   LinearGradient gradient({
-    final double slidePercent = 0.0,
+    required final BuildContext context,
+    final double? slidePercent,
     final List<Color>? colors,
     final List<double>? stops,
     final AlignmentGeometry? begin,
     final AlignmentGeometry? end,
   }) {
+    final theme = BeTheme.of(context);
+    final themeColors = theme.colors;
+
     final defaultColors = [
-      const Color(0xFFE0E0E0), // backgroundInteractiveNeutralDefault
-      const Color(0xFFF5F5F5), // backgroundStaticFlat
-      const Color(0xFFE0E0E0),
+      themeColors.surfaceContainer, // base skeleton color
+      themeColors.surfaceBright, // highlight color
+      themeColors.surfaceContainer, // back to base color
     ];
     final defaultStops = [0.1, 0.3, 0.4];
     const defaultBegin = Alignment.centerLeft;
     const defaultEnd = Alignment.centerRight;
+
+    // Use the shimmerValue with random offset if slidePercent is not provided
+    final effectiveSlidePercent = slidePercent ?? shimmerValue;
 
     return LinearGradient(
       colors: colors ?? defaultColors,
       stops: stops ?? defaultStops,
       begin: begin ?? defaultBegin,
       end: end ?? defaultEnd,
-      transform: _SlidingGradientTransform(slidePercent: slidePercent),
+      transform: _SlidingGradientTransform(slidePercent: effectiveSlidePercent),
     );
   }
 

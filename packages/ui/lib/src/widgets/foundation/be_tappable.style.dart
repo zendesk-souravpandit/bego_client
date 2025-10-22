@@ -131,13 +131,17 @@ class BeFocusedOutlineStyle with Diagnosticable {
   final double spacing;
 
   /// Returns a copy of this [BeFocusedOutlineStyle] with the given properties replaced.
-  BeFocusedOutlineStyle copyWith({final Color? color, final BorderRadiusGeometry? borderRadius, final double? width, final double? spacing}) =>
-      BeFocusedOutlineStyle(
-        color: color ?? this.color,
-        borderRadius: borderRadius ?? this.borderRadius,
-        width: width ?? this.width,
-        spacing: spacing ?? this.spacing,
-      );
+  BeFocusedOutlineStyle copyWith({
+    final Color? color,
+    final BorderRadiusGeometry? borderRadius,
+    final double? width,
+    final double? spacing,
+  }) => BeFocusedOutlineStyle(
+    color: color ?? this.color,
+    borderRadius: borderRadius ?? this.borderRadius,
+    width: width ?? this.width,
+    spacing: spacing ?? this.spacing,
+  );
 
   /// A default style for [BeFocusedOutline].
   static const defaultStyle = BeFocusedOutlineStyle(color: Color(0xFF000000), borderRadius: BorderRadius.zero);

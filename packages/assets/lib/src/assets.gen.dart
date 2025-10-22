@@ -16,34 +16,26 @@ class $AssetsIllustrationGen {
   const $AssetsIllustrationGen();
 
   /// File path: assets/illustration/laptop_no_result.svg
-  SvgGenImage get laptopNoResult =>
-      const SvgGenImage('assets/illustration/laptop_no_result.svg');
+  SvgGenImage get laptopNoResult => const SvgGenImage('assets/illustration/laptop_no_result.svg');
 
   /// File path: assets/illustration/spaceship_error_404.svg
-  SvgGenImage get spaceshipError404 =>
-      const SvgGenImage('assets/illustration/spaceship_error_404.svg');
+  SvgGenImage get spaceshipError404 => const SvgGenImage('assets/illustration/spaceship_error_404.svg');
 
   /// File path: assets/illustration/unplug_error_robot.svg
-  SvgGenImage get unplugErrorRobot =>
-      const SvgGenImage('assets/illustration/unplug_error_robot.svg');
+  SvgGenImage get unplugErrorRobot => const SvgGenImage('assets/illustration/unplug_error_robot.svg');
 
   /// Directory path: packages/beassets/assets/illustration
   String get path => 'packages/beassets/assets/illustration';
 
   /// List of all assets
-  List<SvgGenImage> get values => [
-    laptopNoResult,
-    spaceshipError404,
-    unplugErrorRobot,
-  ];
+  List<SvgGenImage> get values => [laptopNoResult, spaceshipError404, unplugErrorRobot];
 }
 
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
   /// File path: assets/images/demo_image.jpg
-  AssetGenImage get demoImage =>
-      const AssetGenImage('assets/images/demo_image.jpg');
+  AssetGenImage get demoImage => const AssetGenImage('assets/images/demo_image.jpg');
 
   /// Directory path: packages/beassets/assets/images
   String get path => 'packages/beassets/assets/images';
@@ -91,8 +83,7 @@ class AssetGenImage {
     bool matchTextDirection = false,
     bool gaplessPlayback = true,
     bool isAntiAlias = false,
-    @Deprecated('Do not specify package for a generated library asset')
-    String? package = package,
+    @Deprecated('Do not specify package for a generated library asset') String? package = package,
     FilterQuality filterQuality = FilterQuality.medium,
     int? cacheWidth,
     int? cacheHeight,
@@ -127,8 +118,7 @@ class AssetGenImage {
 
   ImageProvider provider({
     AssetBundle? bundle,
-    @Deprecated('Do not specify package for a generated library asset')
-    String? package = package,
+    @Deprecated('Do not specify package for a generated library asset') String? package = package,
   }) {
     return AssetImage(_assetName, bundle: bundle, package: package);
   }
@@ -139,11 +129,9 @@ class AssetGenImage {
 }
 
 class SvgGenImage {
-  const SvgGenImage(this._assetName, {this.size, this.flavors = const {}})
-    : _isVecFormat = false;
+  const SvgGenImage(this._assetName, {this.size, this.flavors = const {}}) : _isVecFormat = false;
 
-  const SvgGenImage.vec(this._assetName, {this.size, this.flavors = const {}})
-    : _isVecFormat = true;
+  const SvgGenImage.vec(this._assetName, {this.size, this.flavors = const {}}) : _isVecFormat = true;
 
   final String _assetName;
   final Size? size;
@@ -156,8 +144,7 @@ class SvgGenImage {
     Key? key,
     bool matchTextDirection = false,
     AssetBundle? bundle,
-    @Deprecated('Do not specify package for a generated library asset')
-    String? package = package,
+    @Deprecated('Do not specify package for a generated library asset') String? package = package,
     double? width,
     double? height,
     BoxFit fit = BoxFit.contain,
@@ -175,18 +162,9 @@ class SvgGenImage {
   }) {
     final _svg.BytesLoader loader;
     if (_isVecFormat) {
-      loader = _vg.AssetBytesLoader(
-        _assetName,
-        assetBundle: bundle,
-        packageName: package,
-      );
+      loader = _vg.AssetBytesLoader(_assetName, assetBundle: bundle, packageName: package);
     } else {
-      loader = _svg.SvgAssetLoader(
-        _assetName,
-        assetBundle: bundle,
-        packageName: package,
-        theme: theme,
-      );
+      loader = _svg.SvgAssetLoader(_assetName, assetBundle: bundle, packageName: package, theme: theme);
     }
     return _svg.SvgPicture(
       loader,
@@ -200,9 +178,7 @@ class SvgGenImage {
       placeholderBuilder: placeholderBuilder,
       semanticsLabel: semanticsLabel,
       excludeFromSemantics: excludeFromSemantics,
-      colorFilter:
-          colorFilter ??
-          (color == null ? null : ColorFilter.mode(color, colorBlendMode)),
+      colorFilter: colorFilter ?? (color == null ? null : ColorFilter.mode(color, colorBlendMode)),
       clipBehavior: clipBehavior,
       cacheColorFilter: cacheColorFilter,
     );
