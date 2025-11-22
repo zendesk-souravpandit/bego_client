@@ -316,6 +316,7 @@ class _State extends State<BePopover> with SingleTickerProviderStateMixin {
                     scale: _controller._scale,
                     child: TapRegion(
                       groupId: _group,
+                      behavior: HitTestBehavior.deferToChild,
                       onTapOutside: widget.hideOnTapOutside == BeHidePopoverRegion.none
                           ? null
                           : (_) => _controller.hide(),

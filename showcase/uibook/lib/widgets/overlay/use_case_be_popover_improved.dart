@@ -168,11 +168,14 @@ class _BePopoverImprovedWidgetState extends State<_BePopoverImprovedWidget> with
                   autofocus: widget.autofocus,
                   directionPadding: widget.directionPadding,
                   isChildWidth: widget.isChildWidth,
-                  popoverBuilder: (final context, final decoration, final child) => _buildStatusPopover(
-                    'Tooltip Active!',
-                    'This is a simple tooltip that appears when you click the button.',
-                    Icons.check_circle,
-                    Colors.green,
+                  popoverBuilder: (final context, final decoration, final child) => Container(
+                    decoration: decoration,
+                    child: _buildStatusPopover(
+                      'Tooltip Active!',
+                      'This is a simple tooltip that appears when you click the button.',
+                      Icons.check_circle,
+                      Colors.green,
+                    ),
                   ),
                   child: _buildDemoButton('Click for Tooltip', Icons.help_outline, Colors.blue),
                 ),
@@ -185,7 +188,8 @@ class _BePopoverImprovedWidgetState extends State<_BePopoverImprovedWidget> with
                   autofocus: widget.autofocus,
                   directionPadding: widget.directionPadding,
                   isChildWidth: widget.isChildWidth,
-                  popoverBuilder: (final context, final decoration, final child) => _buildMenuPopover(),
+                  popoverBuilder: (final context, final decoration, final child) =>
+                      Container(decoration: decoration, child: _buildMenuPopover()),
                   child: _buildDemoButton('Show Menu', Icons.menu, Colors.orange),
                 ),
 
@@ -199,7 +203,7 @@ class _BePopoverImprovedWidgetState extends State<_BePopoverImprovedWidget> with
                   directionPadding: widget.directionPadding,
                   isChildWidth: widget.isChildWidth,
                   popoverBuilder: (final context, final decoration, final child) =>
-                      _buildFormPopover(_formPopoverController),
+                      Container(decoration: decoration, child: _buildFormPopover(_formPopoverController)),
                   child: _buildDemoButton('Quick Edit', Icons.edit, Colors.green),
                 ),
               ],
@@ -221,7 +225,7 @@ class _BePopoverImprovedWidgetState extends State<_BePopoverImprovedWidget> with
               isChildWidth: true,
               directionPadding: widget.directionPadding,
               popoverBuilder: (final context, final decoration, final child) =>
-                  _buildInfoPopover(_infoPopoverController),
+                  Container(decoration: decoration, child: _buildInfoPopover(_infoPopoverController)),
               child: Container(
                 padding: px12 + py16,
                 decoration: BoxDecoration(
@@ -357,19 +361,6 @@ class _BePopoverImprovedWidgetState extends State<_BePopoverImprovedWidget> with
     return Container(
       constraints: const BoxConstraints(maxWidth: 300),
       padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.grey.shade300),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.15 * 255),
-            blurRadius: 16,
-            offset: const Offset(0, 8),
-            spreadRadius: 2,
-          ),
-        ],
-      ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -396,21 +387,8 @@ class _BePopoverImprovedWidgetState extends State<_BePopoverImprovedWidget> with
   }
 
   Widget _buildMenuPopover() {
-    return Container(
+    return Padding(
       padding: const EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: Colors.grey.shade300),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.15 * 255),
-            blurRadius: 12,
-            offset: const Offset(0, 4),
-            spreadRadius: 1,
-          ),
-        ],
-      ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -450,19 +428,6 @@ class _BePopoverImprovedWidgetState extends State<_BePopoverImprovedWidget> with
     return Container(
       width: 280,
       padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.grey.shade300),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.15 * 255),
-            blurRadius: 16,
-            offset: const Offset(0, 6),
-            spreadRadius: 2,
-          ),
-        ],
-      ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -513,19 +478,6 @@ class _BePopoverImprovedWidgetState extends State<_BePopoverImprovedWidget> with
     return Container(
       constraints: const BoxConstraints(maxWidth: 350),
       padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.blue.shade200),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.blue.withValues(alpha: 0.1 * 255),
-            blurRadius: 16,
-            offset: const Offset(0, 8),
-            spreadRadius: 2,
-          ),
-        ],
-      ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,

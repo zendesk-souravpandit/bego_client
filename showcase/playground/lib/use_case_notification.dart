@@ -492,3 +492,121 @@ class _NoClipSizeTransition extends AnimatedWidget {
   Widget build(final BuildContext context) =>
       Align(alignment: AlignmentDirectional.centerStart, heightFactor: math.max(sizeFactor.value, 0.0), child: child);
 }
+
+// -----------------------------------------------------------------------------
+// Demo App
+// -----------------------------------------------------------------------------
+
+void main() {
+  runApp(const NotificationDemoApp());
+}
+
+class NotificationDemoApp extends StatelessWidget {
+  const NotificationDemoApp({super.key});
+
+  @override
+  Widget build(final BuildContext context) {
+    return MaterialApp(
+      title: 'Animated Notification Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.indigo,
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
+      ),
+      // Wrap the entire application with the provider
+      home: const BeNotificationsProvider(
+        position: BeNotifyPosition.topRight,
+        maxVisible: 50,
+        child: NotificationHomePage(),
+      ),
+    );
+  }
+}
+
+class NotificationHomePage extends StatefulWidget {
+  const NotificationHomePage({super.key});
+
+  @override
+  State<NotificationHomePage> createState() => _NotificationHomePageState();
+}
+
+class _NotificationHomePageState extends State<NotificationHomePage> {
+  int _notificationCount = 0;
+
+  void _showNotification(final BeNotifyPosition position) {
+    _notificationCount++;
+    final key = ValueKey('notif$_notificationCount');
+
+    final notificationWidget = Container(
+      padding: const EdgeInsets.all(8),
+      child: Row(
+        children: [
+          Icon(Icons.check_circle, color: Theme.of(context).colorScheme.primary),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text('New Message Received', style: TextStyle(fontWeight: FontWeight.bold)),
+                Text(
+                  'Notification #$_notificationCount at $position. Auto-dismissing...',
+                  style: TextStyle(fontSize: 12, color: Theme.of(context).colorScheme.onSurfaceVariant),
+                ),
+              ],
+            ),
+          ),
+          IconButton(
+            icon: const Icon(Icons.close, size: 20),
+            onPressed: () => BeNotificationManager.of(context).dismissByKey(key),
+          ),
+        ],
+      ),
+    );
+
+    BeNotificationManager.of(
+      context,
+    ).show(notificationWidget, key: key, position: position, dismissDuration: const Duration(seconds: 4));
+  }
+
+  @override
+  Widget build(final BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Animated Notification Manager'),
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+      ),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Text(
+                'Show notifications at different positions. Only 3 visible at a time.',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 32),
+              Wrap(
+                spacing: 8.0,
+                runSpacing: 8.0,
+                children: BeNotifyPosition.values.map((final pos) {
+                  return ElevatedButton(onPressed: () => _showNotification(pos), child: Text(pos.name.toUpperCase()));
+                }).toList(),
+              ),
+              const SizedBox(height: 32),
+              ElevatedButton.icon(
+                onPressed: () => BeNotificationManager.of(context).dismissAll(),
+                icon: const Icon(Icons.clear_all),
+                label: const Text('Dismiss All Notifications'),
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.red.shade400, foregroundColor: Colors.white),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
