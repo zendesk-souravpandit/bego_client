@@ -1193,15 +1193,14 @@ TooltipThemeData _buildTooltipTheme(final BeThemeData betheme) {
 
 ActionIconThemeData _buildActionIconTheme(final BeThemeData betheme) {
   return ActionIconThemeData(
-    backButtonIconBuilder:
-        (final context) => IconButton(icon: const Icon(Icons.arrow_back), onPressed: () => Navigator.maybePop(context)),
-    closeButtonIconBuilder:
-        (final context) => IconButton(icon: const Icon(Icons.close), onPressed: () => Navigator.maybePop(context)),
-    drawerButtonIconBuilder:
-        (final context) => IconButton(icon: const Icon(Icons.menu), onPressed: () => Scaffold.of(context).openDrawer()),
-    endDrawerButtonIconBuilder:
-        (final context) =>
-            IconButton(icon: const Icon(Icons.menu), onPressed: () => Scaffold.of(context).openEndDrawer()),
+    backButtonIconBuilder: (final context) =>
+        IconButton(icon: const Icon(Icons.arrow_back), onPressed: () => Navigator.maybePop(context)),
+    closeButtonIconBuilder: (final context) =>
+        IconButton(icon: const Icon(Icons.close), onPressed: () => Navigator.maybePop(context)),
+    drawerButtonIconBuilder: (final context) =>
+        IconButton(icon: const Icon(Icons.menu), onPressed: () => Scaffold.of(context).openDrawer()),
+    endDrawerButtonIconBuilder: (final context) =>
+        IconButton(icon: const Icon(Icons.menu), onPressed: () => Scaffold.of(context).openEndDrawer()),
   );
 }
 

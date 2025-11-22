@@ -97,8 +97,8 @@ Widget useCaseBePopover(final BuildContext context) {
                 autofocus: autofocus,
                 directionPadding: directionPadding,
                 isChildWidth: isChildWidth,
-                popoverBuilder:
-                    (final context, final decoration, final child) => _buildSimplePopover('Simple Tooltip', Icons.info),
+                popoverBuilder: (final context, final decoration, final child) =>
+                    _buildSimplePopover('Simple Tooltip', Icons.info),
                 child: ElevatedButton.icon(
                   onPressed: () {
                     ScaffoldMessenger.of(
@@ -191,9 +191,8 @@ Widget useCaseBePopover(final BuildContext context) {
                       popoverAnchor: Alignment.topCenter,
                       childAnchor: Alignment.bottomCenter,
                       hideOnTapOutside: hideOnTapOutside,
-                      popoverBuilder:
-                          (final context, final decoration, final child) =>
-                              _buildSimplePopover('Center', Icons.center_focus_strong),
+                      popoverBuilder: (final context, final decoration, final child) =>
+                          _buildSimplePopover('Center', Icons.center_focus_strong),
                       child: Container(
                         width: 60,
                         height: 40,
@@ -211,9 +210,8 @@ Widget useCaseBePopover(final BuildContext context) {
                       popoverAnchor: Alignment.bottomRight,
                       childAnchor: Alignment.topLeft,
                       hideOnTapOutside: hideOnTapOutside,
-                      popoverBuilder:
-                          (final context, final decoration, final child) =>
-                              _buildSimplePopover('Top Left', Icons.north_west),
+                      popoverBuilder: (final context, final decoration, final child) =>
+                          _buildSimplePopover('Top Left', Icons.north_west),
                       child: Container(
                         width: 40,
                         height: 30,
@@ -230,9 +228,8 @@ Widget useCaseBePopover(final BuildContext context) {
                       popoverAnchor: Alignment.bottomLeft,
                       childAnchor: Alignment.topRight,
                       hideOnTapOutside: hideOnTapOutside,
-                      popoverBuilder:
-                          (final context, final decoration, final child) =>
-                              _buildSimplePopover('Top Right', Icons.north_east),
+                      popoverBuilder: (final context, final decoration, final child) =>
+                          _buildSimplePopover('Top Right', Icons.north_east),
                       child: Container(
                         width: 40,
                         height: 30,
@@ -252,9 +249,8 @@ Widget useCaseBePopover(final BuildContext context) {
                       popoverAnchor: Alignment.topRight,
                       childAnchor: Alignment.bottomLeft,
                       hideOnTapOutside: hideOnTapOutside,
-                      popoverBuilder:
-                          (final context, final decoration, final child) =>
-                              _buildSimplePopover('Bottom Left', Icons.south_west),
+                      popoverBuilder: (final context, final decoration, final child) =>
+                          _buildSimplePopover('Bottom Left', Icons.south_west),
                       child: Container(
                         width: 40,
                         height: 30,
@@ -274,9 +270,8 @@ Widget useCaseBePopover(final BuildContext context) {
                       popoverAnchor: Alignment.topLeft,
                       childAnchor: Alignment.bottomRight,
                       hideOnTapOutside: hideOnTapOutside,
-                      popoverBuilder:
-                          (final context, final decoration, final child) =>
-                              _buildSimplePopover('Bottom Right', Icons.south_east),
+                      popoverBuilder: (final context, final decoration, final child) =>
+                          _buildSimplePopover('Bottom Right', Icons.south_east),
                       child: Container(
                         width: 40,
                         height: 30,
@@ -492,21 +487,20 @@ class _ManualPopoverExampleState extends State<_ManualPopoverExample> with Ticke
           directionPadding: widget.directionPadding,
           isChildWidth: widget.isChildWidth,
           // decoration: BeBoxDecoration(),
-          popoverBuilder:
-              (final context, final decoration, final child) => Container(
-                padding: const EdgeInsets.all(16),
-                decoration: decoration,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(Icons.notifications_active, color: Colors.amber.shade700, size: 32),
-                    const SizedBox(height: 8),
-                    const Text('Notification', style: TextStyle(fontWeight: FontWeight.bold)),
-                    const SizedBox(height: 4),
-                    const Text('This is a manually controlled popover'),
-                  ],
-                ),
-              ),
+          popoverBuilder: (final context, final decoration, final child) => Container(
+            padding: const EdgeInsets.all(16),
+            decoration: decoration,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(Icons.notifications_active, color: Colors.amber.shade700, size: 32),
+                const SizedBox(height: 8),
+                const Text('Notification', style: TextStyle(fontWeight: FontWeight.bold)),
+                const SizedBox(height: 4),
+                const Text('This is a manually controlled popover'),
+              ],
+            ),
+          ),
           child: Container(
             width: 80,
             height: 60,
@@ -517,7 +511,10 @@ class _ManualPopoverExampleState extends State<_ManualPopoverExample> with Ticke
             ),
             child: const Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [Icon(Icons.notifications, color: Colors.blue), Text('Target', style: TextStyle(fontSize: 12))],
+              children: [
+                Icon(Icons.notifications, color: Colors.blue),
+                Text('Target', style: TextStyle(fontSize: 12)),
+              ],
             ),
           ),
         ),

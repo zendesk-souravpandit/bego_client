@@ -77,7 +77,10 @@ Widget useCaseBeResponsiveWidget(final BuildContext context) {
                       children: [
                         const Icon(Icons.tablet_android, size: 32, color: Colors.blue),
                         const SizedBox(height: 8),
-                        Text('Medium (MD)', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.blue.shade700)),
+                        Text(
+                          'Medium (MD)',
+                          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.blue.shade700),
+                        ),
                         const Text('Tablet', style: TextStyle(fontSize: 12)),
                       ],
                     ),
@@ -95,7 +98,10 @@ Widget useCaseBeResponsiveWidget(final BuildContext context) {
                       children: [
                         const Icon(Icons.laptop, size: 32, color: Colors.green),
                         const SizedBox(height: 8),
-                        Text('Large (LG)', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.green.shade700)),
+                        Text(
+                          'Large (LG)',
+                          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.green.shade700),
+                        ),
                         const Text('Laptop', style: TextStyle(fontSize: 12)),
                       ],
                     ),
@@ -251,7 +257,10 @@ Widget _buildNavItem(final IconData icon, final String label) {
 }
 
 Widget _buildNavLink(final String title) {
-  return Text(title, style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w500));
+  return Text(
+    title,
+    style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w500),
+  );
 }
 
 Widget _buildContentCard(final String title, final Color color, final IconData icon) {
@@ -267,7 +276,13 @@ Widget _buildContentCard(final String title, final Color color, final IconData i
       children: [
         Icon(icon, size: 32, color: color),
         const SizedBox(height: 8),
-        Text(title, style: TextStyle(fontWeight: FontWeight.bold, color: color.withValues(alpha: 0.8 * 255))),
+        Text(
+          title,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: color.withValues(alpha: 0.8 * 255),
+          ),
+        ),
         const SizedBox(height: 4),
         Text(
           'This is responsive content that adapts to different screen sizes.',

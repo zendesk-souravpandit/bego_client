@@ -27,7 +27,9 @@ class _RefreshableUseCaseState extends State<_RefreshableUseCase> {
     return Column(
       children: [
         ElevatedButton(onPressed: _refresh, child: const Text('Refresh')),
-        Expanded(child: KeyedSubtree(key: _key, child: widget.builder(context))),
+        Expanded(
+          child: KeyedSubtree(key: _key, child: widget.builder(context)),
+        ),
       ],
     );
   }

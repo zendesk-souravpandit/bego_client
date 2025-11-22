@@ -91,32 +91,35 @@ Widget _buildMaterialColorSwatchDemo(final Color baseColor, final bool isDarkMod
           Wrap(
             spacing: 8,
             runSpacing: 8,
-            children:
-                shades.map((final shade) {
-                  final color = materialColor[shade]!;
-                  final textColor =
-                      ThemeData.estimateBrightnessForColor(color) == Brightness.dark ? Colors.white : Colors.black;
+            children: shades.map((final shade) {
+              final color = materialColor[shade]!;
+              final textColor = ThemeData.estimateBrightnessForColor(color) == Brightness.dark
+                  ? Colors.white
+                  : Colors.black;
 
-                  return Container(
-                    width: 80,
-                    height: 60,
-                    decoration: BoxDecoration(
-                      color: color,
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: Colors.grey.shade300),
+              return Container(
+                width: 80,
+                height: 60,
+                decoration: BoxDecoration(
+                  color: color,
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(color: Colors.grey.shade300),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      '$shade',
+                      style: TextStyle(color: textColor, fontWeight: FontWeight.bold, fontSize: 12),
                     ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text('$shade', style: TextStyle(color: textColor, fontWeight: FontWeight.bold, fontSize: 12)),
-                        Text(
-                          '#${color.toARGB32().toRadixString(16).substring(2).toUpperCase()}',
-                          style: TextStyle(color: textColor, fontSize: 8),
-                        ),
-                      ],
+                    Text(
+                      '#${color.toARGB32().toRadixString(16).substring(2).toUpperCase()}',
+                      style: TextStyle(color: textColor, fontSize: 8),
                     ),
-                  );
-                }).toList(),
+                  ],
+                ),
+              );
+            }).toList(),
           ),
         ],
       ),
@@ -144,32 +147,35 @@ Widget _buildColorSwatchLevelsDemo(final Color baseColor, final bool isDarkMode)
           Wrap(
             spacing: 8,
             runSpacing: 8,
-            children:
-                levels.map((final level) {
-                  final color = BeColorUtils.createColorSwatchLevel(baseColor, level: level, isDarkMode: isDarkMode);
-                  final textColor =
-                      ThemeData.estimateBrightnessForColor(color) == Brightness.dark ? Colors.white : Colors.black;
+            children: levels.map((final level) {
+              final color = BeColorUtils.createColorSwatchLevel(baseColor, level: level, isDarkMode: isDarkMode);
+              final textColor = ThemeData.estimateBrightnessForColor(color) == Brightness.dark
+                  ? Colors.white
+                  : Colors.black;
 
-                  return Container(
-                    width: 90,
-                    height: 70,
-                    decoration: BoxDecoration(
-                      color: color,
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: Colors.grey.shade300),
+              return Container(
+                width: 90,
+                height: 70,
+                decoration: BoxDecoration(
+                  color: color,
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(color: Colors.grey.shade300),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      level.name,
+                      style: TextStyle(color: textColor, fontWeight: FontWeight.bold, fontSize: 10),
                     ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(level.name, style: TextStyle(color: textColor, fontWeight: FontWeight.bold, fontSize: 10)),
-                        Text(
-                          '#${color.toARGB32().toRadixString(16).substring(2).toUpperCase()}',
-                          style: TextStyle(color: textColor, fontSize: 8),
-                        ),
-                      ],
+                    Text(
+                      '#${color.toARGB32().toRadixString(16).substring(2).toUpperCase()}',
+                      style: TextStyle(color: textColor, fontSize: 8),
                     ),
-                  );
-                }).toList(),
+                  ],
+                ),
+              );
+            }).toList(),
           ),
         ],
       ),
@@ -198,32 +204,35 @@ Widget _buildTonalPaletteDemo(final Color baseColor, final bool isDarkMode) {
           Wrap(
             spacing: 6,
             runSpacing: 6,
-            children:
-                keys.map((final key) {
-                  final color = tonalPalette[key]!;
-                  final textColor =
-                      ThemeData.estimateBrightnessForColor(color) == Brightness.dark ? Colors.white : Colors.black;
+            children: keys.map((final key) {
+              final color = tonalPalette[key]!;
+              final textColor = ThemeData.estimateBrightnessForColor(color) == Brightness.dark
+                  ? Colors.white
+                  : Colors.black;
 
-                  return Container(
-                    width: 60,
-                    height: 50,
-                    decoration: BoxDecoration(
-                      color: color,
-                      borderRadius: BorderRadius.circular(6),
-                      border: Border.all(color: Colors.grey.shade300),
+              return Container(
+                width: 60,
+                height: 50,
+                decoration: BoxDecoration(
+                  color: color,
+                  borderRadius: BorderRadius.circular(6),
+                  border: Border.all(color: Colors.grey.shade300),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      '$key',
+                      style: TextStyle(color: textColor, fontWeight: FontWeight.bold, fontSize: 11),
                     ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text('$key', style: TextStyle(color: textColor, fontWeight: FontWeight.bold, fontSize: 11)),
-                        Text(
-                          '#${color.toARGB32().toRadixString(16).substring(2, 8).toUpperCase()}',
-                          style: TextStyle(color: textColor, fontSize: 7),
-                        ),
-                      ],
+                    Text(
+                      '#${color.toARGB32().toRadixString(16).substring(2, 8).toUpperCase()}',
+                      style: TextStyle(color: textColor, fontSize: 7),
                     ),
-                  );
-                }).toList(),
+                  ],
+                ),
+              );
+            }).toList(),
           ),
         ],
       ),
@@ -242,8 +251,9 @@ Widget colorHarmonizationUseCase(final BuildContext context) {
     appBar: AppBar(
       title: const Text('Color Harmonization & Blending'),
       backgroundColor: sourceColor,
-      foregroundColor:
-          ThemeData.estimateBrightnessForColor(sourceColor) == Brightness.dark ? Colors.white : Colors.black,
+      foregroundColor: ThemeData.estimateBrightnessForColor(sourceColor) == Brightness.dark
+          ? Colors.white
+          : Colors.black,
     ),
     body: SingleChildScrollView(
       padding: const EdgeInsets.all(16),
@@ -656,10 +666,9 @@ Widget _buildRandomColorDemo() {
                       child: Text(
                         '#${color.toARGB32().toRadixString(16).substring(2, 8).toUpperCase()}',
                         style: TextStyle(
-                          color:
-                              ThemeData.estimateBrightnessForColor(color) == Brightness.dark
-                                  ? Colors.white
-                                  : Colors.black,
+                          color: ThemeData.estimateBrightnessForColor(color) == Brightness.dark
+                              ? Colors.white
+                              : Colors.black,
                           fontSize: 8,
                           fontWeight: FontWeight.bold,
                         ),
@@ -752,7 +761,10 @@ Widget _buildColorSchemePreview(final String label, final ColorScheme scheme) {
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label, style: TextStyle(color: scheme.onSurface, fontWeight: FontWeight.bold, fontSize: 12)),
+        Text(
+          label,
+          style: TextStyle(color: scheme.onSurface, fontWeight: FontWeight.bold, fontSize: 12),
+        ),
         const SizedBox(height: 8),
         Row(
           children: [

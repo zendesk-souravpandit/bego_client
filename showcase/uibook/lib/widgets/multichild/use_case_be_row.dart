@@ -142,13 +142,12 @@ Widget _buildRowDemo({
           const SizedBox(height: 16),
 
           Container(
-            decoration:
-                showBorders
-                    ? BoxDecoration(
-                      border: Border.all(color: Colors.grey.shade300, width: 2),
-                      borderRadius: BorderRadius.circular(8),
-                    )
-                    : null,
+            decoration: showBorders
+                ? BoxDecoration(
+                    border: Border.all(color: Colors.grey.shade300, width: 2),
+                    borderRadius: BorderRadius.circular(8),
+                  )
+                : null,
             child: BeRow(
               spacing: spacing,
               runSpacing: runSpacing,
@@ -410,7 +409,10 @@ Widget _buildBasicCard(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(title, style: TextStyle(color: color, fontWeight: FontWeight.bold, fontSize: 16)),
+            Text(
+              title,
+              style: TextStyle(color: color, fontWeight: FontWeight.bold, fontSize: 16),
+            ),
             const SizedBox(height: 4),
             Text(subtitle, style: TextStyle(color: color.withValues(alpha: 0.8), fontSize: 12)),
           ],
@@ -438,7 +440,10 @@ Widget _buildResponsiveCard(final String title, final String breakpoints, final 
         children: [
           Icon(Icons.devices, color: color, size: 24),
           const SizedBox(height: 8),
-          Text(title, style: TextStyle(color: color, fontWeight: FontWeight.bold, fontSize: 16)),
+          Text(
+            title,
+            style: TextStyle(color: color, fontWeight: FontWeight.bold, fontSize: 16),
+          ),
           const SizedBox(height: 4),
           Text(
             breakpoints,
@@ -507,7 +512,10 @@ Widget _buildStatCard(
             ],
           ),
           const SizedBox(height: 12),
-          Text(value, style: TextStyle(color: color, fontSize: 24, fontWeight: FontWeight.bold)),
+          Text(
+            value,
+            style: TextStyle(color: color, fontSize: 24, fontWeight: FontWeight.bold),
+          ),
         ],
       ),
     ),
@@ -564,7 +572,10 @@ Widget _buildConfigChip(final String label, final String value, final Color colo
       borderRadius: BorderRadius.circular(16),
       border: Border.all(color: color.withValues(alpha: 0.3)),
     ),
-    child: Text('$label: $value', style: TextStyle(fontSize: 12, color: color, fontWeight: FontWeight.w600)),
+    child: Text(
+      '$label: $value',
+      style: TextStyle(fontSize: 12, color: color, fontWeight: FontWeight.w600),
+    ),
   );
 }
 

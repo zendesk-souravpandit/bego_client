@@ -721,10 +721,9 @@ class RenderExpandableText extends RenderBox {
       spanEndIndex += textLen;
 
       if (spanEndIndex >= endIndex) {
-        final newText =
-            splitByRunes
-                ? String.fromCharCodes(text.runes, 0, endIndex - spanStartIndex)
-                : text.substring(0, endIndex - spanStartIndex);
+        final newText = splitByRunes
+            ? String.fromCharCodes(text.runes, 0, endIndex - spanStartIndex)
+            : text.substring(0, endIndex - spanStartIndex);
 
         final nextSpan = TextSpan(
           text: newText,
@@ -770,21 +769,20 @@ class RenderExpandableText extends RenderBox {
       }
     }
 
-    final resultTextSpan =
-        didTrim
-            ? TextSpan(
-              text: textSpan.text,
-              children: newChildren,
-              style: textSpan.style,
-              recognizer: textSpan.recognizer,
-              mouseCursor: textSpan.mouseCursor,
-              onEnter: textSpan.onEnter,
-              onExit: textSpan.onExit,
-              semanticsLabel: textSpan.semanticsLabel,
-              locale: textSpan.locale,
-              spellOut: textSpan.spellOut,
-            )
-            : textSpan;
+    final resultTextSpan = didTrim
+        ? TextSpan(
+            text: textSpan.text,
+            children: newChildren,
+            style: textSpan.style,
+            recognizer: textSpan.recognizer,
+            mouseCursor: textSpan.mouseCursor,
+            onEnter: textSpan.onEnter,
+            onExit: textSpan.onExit,
+            semanticsLabel: textSpan.semanticsLabel,
+            locale: textSpan.locale,
+            spellOut: textSpan.spellOut,
+          )
+        : textSpan;
 
     return _TextSpanTrimResult(textSpan: resultTextSpan, spanEndIndex: spanEndIndex, didTrim: didTrim);
   }
@@ -1026,14 +1024,13 @@ class RenderExpandableText extends RenderBox {
           splitByRunes: true,
         );
         trimmedSpan = TextSpan(
-          children:
-              [
-                _getPreSpan(),
-                trimResult.textSpan,
-                delimiter,
-                link,
-                _getPostSpan(),
-              ].where((final span) => span != null).cast<TextSpan>().toList(),
+          children: [
+            _getPreSpan(),
+            trimResult.textSpan,
+            delimiter,
+            link,
+            _getPostSpan(),
+          ].where((final span) => span != null).cast<TextSpan>().toList(),
         );
       } else {
         // For line trimming, we need to calculate based on layout
@@ -1046,14 +1043,13 @@ class RenderExpandableText extends RenderBox {
           link: link,
         );
         trimmedSpan = TextSpan(
-          children:
-              [
-                _getPreSpan(),
-                trimResult.textSpan,
-                delimiter,
-                link,
-                _getPostSpan(),
-              ].where((final span) => span != null).cast<TextSpan>().toList(),
+          children: [
+            _getPreSpan(),
+            trimResult.textSpan,
+            delimiter,
+            link,
+            _getPostSpan(),
+          ].where((final span) => span != null).cast<TextSpan>().toList(),
         );
       }
 

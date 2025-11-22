@@ -51,29 +51,26 @@ class BeFormBuilderChoiceChips<T> extends BeFormBuilderFieldDecoration<T> {
                  crossAxisAlignment: crossAxisAlignment,
                  textDirection: textDirection,
                  verticalDirection: verticalDirection,
-                 children:
-                     options.map<Widget>((final option) {
-                       final isDisabled = !state.enabled || (disabled?.contains(option.value) ?? false);
-                       final isSelected = field.value == option.value;
+                 children: options.map<Widget>((final option) {
+                   final isDisabled = !state.enabled || (disabled?.contains(option.value) ?? false);
+                   final isSelected = field.value == option.value;
 
-                       return Builder(
-                         builder:
-                             (final context) => ChoiceChip(
-                               label: option.build(context),
-                               selected: isSelected,
-                               onSelected:
-                                   isDisabled
-                                       ? null
-                                       : (final selected) {
-                                         if (selected) {
-                                           field.didChange(option.value);
-                                         } else {
-                                           field.didChange(null);
-                                         }
-                                       },
-                             ),
-                       );
-                     }).toList(),
+                   return Builder(
+                     builder: (final context) => ChoiceChip(
+                       label: option.build(context),
+                       selected: isSelected,
+                       onSelected: isDisabled
+                           ? null
+                           : (final selected) {
+                               if (selected) {
+                                 field.didChange(option.value);
+                               } else {
+                                 field.didChange(null);
+                               }
+                             },
+                     ),
+                   );
+                 }).toList(),
                ),
              ),
            );

@@ -28,10 +28,9 @@ class BeAnimations {
             scale: initialScale + (1.0 - initialScale) * value,
             child: Opacity(
               opacity: value,
-              child:
-                  initialOffset != null
-                      ? Transform.translate(offset: initialOffset * (1.0 - value), child: child)
-                      : child,
+              child: initialOffset != null
+                  ? Transform.translate(offset: initialOffset * (1.0 - value), child: child)
+                  : child,
             ),
           );
         },
@@ -417,7 +416,10 @@ class _SharedAxisTransition extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return SlideTransition(position: _getSlideAnimation(), child: FadeTransition(opacity: animation, child: child));
+    return SlideTransition(
+      position: _getSlideAnimation(),
+      child: FadeTransition(opacity: animation, child: child),
+    );
   }
 
   Animation<Offset> _getSlideAnimation() {

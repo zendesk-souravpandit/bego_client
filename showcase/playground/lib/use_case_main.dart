@@ -4,7 +4,11 @@ import 'package:beui/theme.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MaterialApp(home: BeTheme(colors: BeColorsLight(), child: AvatarExample())));
+  runApp(
+    const MaterialApp(
+      home: BeTheme(colors: BeColorsLight(), child: AvatarExample()),
+    ),
+  );
 }
 
 class AvatarExample extends StatelessWidget {
@@ -70,7 +74,10 @@ class _SectionTitle extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return Text(title, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: BeColors.gray800));
+    return Text(
+      title,
+      style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: BeColors.gray800),
+    );
   }
 }
 
@@ -85,7 +92,10 @@ class _BasicAvatarsSection extends StatelessWidget {
       children: [
         BeAvatar.initials(initials: 'JD', style: BeAvatarStyle.hexagon),
         BeAvatar.initials(initials: 'AB', backgroundColor: BeColors.secondary),
-        BeAvatar.custom(backgroundColor: BeColors.tertiary, child: Icon(Icons.person_2_rounded, color: Colors.white)),
+        BeAvatar.custom(
+          backgroundColor: BeColors.tertiary,
+          child: Icon(Icons.person_2_rounded, color: Colors.white),
+        ),
         BeAvatar(), // Default fallback
       ],
     );
@@ -313,8 +323,14 @@ class _AvatarGallerySection extends StatelessWidget {
         ),
 
         // Row 3: Custom content and badges
-        const BeAvatar.custom(backgroundColor: BeColors.gray600, child: Icon(Icons.camera_alt, color: Colors.white)),
-        const BeAvatar.custom(backgroundColor: BeColors.purple, child: Icon(Icons.music_note, color: Colors.white)),
+        const BeAvatar.custom(
+          backgroundColor: BeColors.gray600,
+          child: Icon(Icons.camera_alt, color: Colors.white),
+        ),
+        const BeAvatar.custom(
+          backgroundColor: BeColors.purple,
+          child: Icon(Icons.music_note, color: Colors.white),
+        ),
         const BeAvatar.initials(
           initials: 'VIP',
           backgroundColor: BeColors.orange,

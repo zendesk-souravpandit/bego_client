@@ -18,7 +18,11 @@ Widget useCaseBeIconsList(final BuildContext context) {
       final icon = begoIcons[index];
       return Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [Icon(icon.data, size: 32, color: color), const SizedBox(height: 10), Text(icon.name)],
+        children: [
+          Icon(icon.data, size: 32, color: color),
+          const SizedBox(height: 10),
+          Text(icon.name),
+        ],
       );
     },
   );

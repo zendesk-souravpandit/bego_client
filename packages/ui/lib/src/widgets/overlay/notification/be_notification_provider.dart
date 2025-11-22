@@ -244,7 +244,9 @@ class _BeNotificationsProviderState extends State<BeNotificationsProvider>
               final child = buildColumn();
 
               if (position == BeNotifyPosition.center) {
-                return Center(child: Material(color: Colors.transparent, child: child));
+                return Center(
+                  child: Material(color: Colors.transparent, child: child),
+                );
               }
 
               final topOrBottom = (position == BeNotifyPosition.topCenter) ? true : false;
@@ -253,7 +255,10 @@ class _BeNotificationsProviderState extends State<BeNotificationsProvider>
                 bottom: topOrBottom ? null : 8,
                 left: 0,
                 right: 0,
-                child: Material(color: Colors.transparent, child: Center(child: child)),
+                child: Material(
+                  color: Colors.transparent,
+                  child: Center(child: child),
+                ),
               );
             }
 
@@ -272,7 +277,10 @@ class _BeNotificationsProviderState extends State<BeNotificationsProvider>
                 right: position == BeNotifyPosition.rightCenter ? 8 : null,
                 top: 0,
                 bottom: 0,
-                child: Material(color: Colors.transparent, child: Center(child: child)),
+                child: Material(
+                  color: Colors.transparent,
+                  child: Center(child: child),
+                ),
               );
             }
 
@@ -288,10 +296,9 @@ class _BeNotificationsProviderState extends State<BeNotificationsProvider>
                   constraints: notificationConstraints,
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
-                    children:
-                        position.reverse
-                            ? indices.reversed.map((final index) => _buildNotificationItem(index, position)).toList()
-                            : indices.map((final index) => _buildNotificationItem(index, position)).toList(),
+                    children: position.reverse
+                        ? indices.reversed.map((final index) => _buildNotificationItem(index, position)).toList()
+                        : indices.map((final index) => _buildNotificationItem(index, position)).toList(),
                   ),
                 ),
               ),

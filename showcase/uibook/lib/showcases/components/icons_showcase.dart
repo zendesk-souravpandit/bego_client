@@ -34,10 +34,9 @@ Widget beIconsLibraryShowcase(final BuildContext context) {
   allIcons.addAll(commonBeIcons);
 
   // Filter icons based on search
-  final filteredIcons =
-      searchText.isEmpty
-          ? allIcons
-          : allIcons.where((final icon) => icon.name.toLowerCase().contains(searchText.toLowerCase())).toList();
+  final filteredIcons = searchText.isEmpty
+      ? allIcons
+      : allIcons.where((final icon) => icon.name.toLowerCase().contains(searchText.toLowerCase())).toList();
 
   return Scaffold(
     body: SingleChildScrollView(

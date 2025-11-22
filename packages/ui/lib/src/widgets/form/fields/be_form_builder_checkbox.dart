@@ -43,10 +43,9 @@ class BeFormBuilderCheckbox extends BeFormBuilderField<bool> {
              activeColor: activeColor,
              checkColor: checkColor,
              tristate: tristate,
-             controlAffinity:
-                 controlAffinity == BeControlAffinity.leading
-                     ? ListTileControlAffinity.leading
-                     : ListTileControlAffinity.trailing,
+             controlAffinity: controlAffinity == BeControlAffinity.leading
+                 ? ListTileControlAffinity.leading
+                 : ListTileControlAffinity.trailing,
              autofocus: autofocus,
              focusNode: state.effectiveFocusNode,
            );

@@ -299,10 +299,9 @@ class _RenderBeRow extends RenderBox
   void _paintDebugGrid(final PaintingContext context, final Offset offset) {
     final totalSpacingWidth = _spacing * 11; // 11 gaps between 12 columns
     final columnWidth = (size.width - padding.horizontal - totalSpacingWidth) / 12;
-    final paint =
-        Paint()
-          ..color = _debugGridColor.withValues(alpha: 0.3)
-          ..strokeWidth = 1;
+    final paint = Paint()
+      ..color = _debugGridColor.withValues(alpha: 0.3)
+      ..strokeWidth = 1;
 
     for (int i = 0; i <= 12; i++) {
       final x = padding.left + (columnWidth * i) + (_spacing * i);

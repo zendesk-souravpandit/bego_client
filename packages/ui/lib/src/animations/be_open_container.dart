@@ -421,13 +421,22 @@ class _OpenContainerRoute<T> extends ModalRoute<T> {
       case ContainerTransitionType.fade:
         return _FlippableTweenSequence<Color?>(<TweenSequenceItem<Color?>>[
           TweenSequenceItem<Color>(tween: ConstantTween<Color>(closedColor), weight: 1 / 5),
-          TweenSequenceItem<Color?>(tween: ColorTween(begin: closedColor, end: openColor), weight: 1 / 5),
+          TweenSequenceItem<Color?>(
+            tween: ColorTween(begin: closedColor, end: openColor),
+            weight: 1 / 5,
+          ),
           TweenSequenceItem<Color>(tween: ConstantTween<Color>(openColor), weight: 3 / 5),
         ]);
       case ContainerTransitionType.fadeThrough:
         return _FlippableTweenSequence<Color?>(<TweenSequenceItem<Color?>>[
-          TweenSequenceItem<Color?>(tween: ColorTween(begin: closedColor, end: middleColor), weight: 1 / 5),
-          TweenSequenceItem<Color?>(tween: ColorTween(begin: middleColor, end: openColor), weight: 4 / 5),
+          TweenSequenceItem<Color?>(
+            tween: ColorTween(begin: closedColor, end: middleColor),
+            weight: 1 / 5,
+          ),
+          TweenSequenceItem<Color?>(
+            tween: ColorTween(begin: middleColor, end: openColor),
+            weight: 4 / 5,
+          ),
         ]);
     }
   }
@@ -489,7 +498,10 @@ class _OpenContainerRoute<T> extends ModalRoute<T> {
   final _FlippableTweenSequence<Color?> _colorTween;
 
   static final TweenSequence<Color?> _scrimFadeInTween = TweenSequence<Color?>(<TweenSequenceItem<Color?>>[
-    TweenSequenceItem<Color?>(tween: ColorTween(begin: Colors.transparent, end: Colors.black54), weight: 1 / 5),
+    TweenSequenceItem<Color?>(
+      tween: ColorTween(begin: Colors.transparent, end: Colors.black54),
+      weight: 1 / 5,
+    ),
     TweenSequenceItem<Color>(tween: ConstantTween<Color>(Colors.black54), weight: 4 / 5),
   ]);
   static final Tween<Color?> _scrimFadeOutTween = ColorTween(begin: Colors.transparent, end: Colors.black54);
@@ -714,20 +726,19 @@ class _OpenContainerRoute<T> extends ModalRoute<T> {
                           child: SizedBox(
                             width: _rectTween.begin!.width,
                             height: _rectTween.begin!.height,
-                            child:
-                                (hideableKey.currentState?.isInTree ?? false)
-                                    ? null
-                                    : FadeTransition(
-                                      opacity: closedOpacityTween!.animate(animation),
-                                      child: Builder(
-                                        key: closedBuilderKey,
+                            child: (hideableKey.currentState?.isInTree ?? false)
+                                ? null
+                                : FadeTransition(
+                                    opacity: closedOpacityTween!.animate(animation),
+                                    child: Builder(
+                                      key: closedBuilderKey,
 
-                                        // Use dummy "open container" callback
-                                        // since we are in the
-                                        // process of opening.
-                                        builder: (final BuildContext context) => closedBuilder(context, () {}),
-                                      ),
+                                      // Use dummy "open container" callback
+                                      // since we are in the
+                                      // process of opening.
+                                      builder: (final BuildContext context) => closedBuilder(context, () {}),
                                     ),
+                                  ),
                           ),
                         ),
 

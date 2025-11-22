@@ -195,20 +195,20 @@ Widget _buildTextSection(final String title, final List<Widget> textWidgets) {
 }
 
 Widget _buildFontHeader() => const Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        BeText('Roboto ', color: BeColors.lightTextSecondary, style: TextStyle(fontSize: 68, height: 1.2)),
-        BeText.labelMedium('https://fonts.google.com/specimen/Roboto', color: BeColors.lightTextLink),
-        SizedBox(height: 8),
-        BeText.labelMedium(
-          'Roboto is the world-script expansion of the Lexend fonts. '
-          'Designed by Thomas Jockin and Nadine Chahine, it currently supports '
-          'Latin and Arabic. Lexend is a family of variable fonts designed by '
-          'Bonnie Shaver-Troup, Thomas Jockin and Font Bureau.',
-        ),
-        SizedBox(height: 16),
-      ],
-    );
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    BeText('Roboto ', color: BeColors.lightTextSecondary, style: TextStyle(fontSize: 68, height: 1.2)),
+    BeText.labelMedium('https://fonts.google.com/specimen/Roboto', color: BeColors.lightTextLink),
+    SizedBox(height: 8),
+    BeText.labelMedium(
+      'Roboto is the world-script expansion of the Lexend fonts. '
+      'Designed by Thomas Jockin and Nadine Chahine, it currently supports '
+      'Latin and Arabic. Lexend is a family of variable fonts designed by '
+      'Bonnie Shaver-Troup, Thomas Jockin and Font Bureau.',
+    ),
+    SizedBox(height: 16),
+  ],
+);
 
 List<Widget> _buildCategorySection(
   final BuildContext context, {
@@ -217,27 +217,29 @@ List<Widget> _buildCategorySection(
   required final String text,
   required final Color? color,
   required final BeTextVariant variant,
-}) =>
-    [
-      Padding(
-        padding: const EdgeInsets.only(top: 16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            BeText(
-              category,
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500, color: BeTheme.of(context).colors.textSecondary),
-            ),
-            const Divider(thickness: 1),
-          ],
+}) => [
+  Padding(
+    padding: const EdgeInsets.only(top: 16),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        BeText(
+          category,
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500, color: BeTheme.of(context).colors.textSecondary),
         ),
-      ),
-      ...sizes.map(
-        (final size) => Column(
-          children: [Label(textType: category, textSize: size.name), size.builder(text, color: color, variant: variant)],
-        ),
-      ),
-    ];
+        const Divider(thickness: 1),
+      ],
+    ),
+  ),
+  ...sizes.map(
+    (final size) => Column(
+      children: [
+        Label(textType: category, textSize: size.name),
+        size.builder(text, color: color, variant: variant),
+      ],
+    ),
+  ),
+];
 
 class _TextCategory {
   _TextCategory({required this.type, required this.sizes});
@@ -257,7 +259,8 @@ class _TextSize {
     TextOverflow? overflow,
     EdgeInsets? padding,
     BeTextVariant? variant,
-  }) builder;
+  })
+  builder;
 }
 
 class Label extends StatelessWidget {
@@ -268,24 +271,24 @@ class Label extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => Padding(
-        padding: const EdgeInsets.only(top: 16, bottom: 2),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            BeText(
-              '$textType / $textSize',
-              style: TextStyle(
-                fontWeight: FontWeight.w400,
-                fontSize: 14,
-                height: 20 / 14,
-                color: BeTheme.of(context).colors.textSecondary,
-              ),
-            ),
-            const Divider(thickness: 0.2),
-          ],
+    padding: const EdgeInsets.only(top: 16, bottom: 2),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        BeText(
+          '$textType / $textSize',
+          style: TextStyle(
+            fontWeight: FontWeight.w400,
+            fontSize: 14,
+            height: 20 / 14,
+            color: BeTheme.of(context).colors.textSecondary,
+          ),
         ),
-      );
+        const Divider(thickness: 0.2),
+      ],
+    ),
+  );
 
   @override
   void debugFillProperties(final DiagnosticPropertiesBuilder properties) {

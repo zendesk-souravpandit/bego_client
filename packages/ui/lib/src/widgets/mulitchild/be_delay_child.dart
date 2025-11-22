@@ -19,7 +19,9 @@ class BeOverlayController {
 
     _overlayState = Overlay.of(context);
     _overlayEntry = OverlayEntry(
-      builder: (final BuildContext context) => Positioned.fill(child: Align(alignment: alignment, child: child)),
+      builder: (final BuildContext context) => Positioned.fill(
+        child: Align(alignment: alignment, child: child),
+      ),
     );
 
     _overlayState?.insert(_overlayEntry!);

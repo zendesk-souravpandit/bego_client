@@ -589,22 +589,21 @@ class BeCheckValue {
     }
 
     final stringWordsList = stringWithoutExtraSpaces.split(' ');
-    final capitalizedWordsFirstLetter =
-        stringWordsList
-            .map((final word) {
-              if (word.trim().isEmpty) {
-                return '';
-              }
-              return word.trim();
-            })
-            .where((final word) => word != '')
-            .map((final word) {
-              if (word.startsWith(RegExp(r'[\n\t\r]'))) {
-                return word;
-              }
-              return word[0].toUpperCase() + word.substring(1).toLowerCase();
-            })
-            .toList();
+    final capitalizedWordsFirstLetter = stringWordsList
+        .map((final word) {
+          if (word.trim().isEmpty) {
+            return '';
+          }
+          return word.trim();
+        })
+        .where((final word) => word != '')
+        .map((final word) {
+          if (word.startsWith(RegExp(r'[\n\t\r]'))) {
+            return word;
+          }
+          return word[0].toUpperCase() + word.substring(1).toLowerCase();
+        })
+        .toList();
     final finalResult = capitalizedWordsFirstLetter.join(' ');
     return finalResult;
   }

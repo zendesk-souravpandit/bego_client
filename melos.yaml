@@ -36,6 +36,13 @@ scripts:
   remove_dependency:
     run: melos exec -- flutter pub remove --dev *
     description: Add a specific version of a dependency to all packages.
+  format:
+    run: dart format .
+    description: Format all Dart code.
+  
+  fix:
+    run: dart fix --apply
+    description: Apply all automated fixes.
 
 ide:
   intellij:

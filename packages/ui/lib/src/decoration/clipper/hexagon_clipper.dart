@@ -124,7 +124,10 @@ class HexagonAvatar extends StatelessWidget {
       width: size,
       height: size,
       decoration: BoxDecoration(color: backgroundColor, border: border),
-      child: ClipPath(clipper: HexagonClipper(borderRadius: borderRadius, rotation: rotation), child: child),
+      child: ClipPath(
+        clipper: HexagonClipper(borderRadius: borderRadius, rotation: rotation),
+        child: child,
+      ),
     );
   }
 }

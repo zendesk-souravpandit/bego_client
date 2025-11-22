@@ -98,25 +98,23 @@ class BeGroupedCheckbox<T> extends StatelessWidget {
       final checkbox = CheckboxListTile(
         title: option,
         value: tristate ? (isSelected ? true : null) : isSelected,
-        onChanged:
-            isDisabled
-                ? null
-                : (final bool? checked) {
-                  final currentValue = List<T>.from(value ?? <T>[]);
-                  if (checked == true) {
-                    if (!currentValue.contains(option.value)) {
-                      currentValue.add(option.value);
-                    }
-                  } else {
-                    currentValue.remove(option.value);
+        onChanged: isDisabled
+            ? null
+            : (final bool? checked) {
+                final currentValue = List<T>.from(value ?? <T>[]);
+                if (checked == true) {
+                  if (!currentValue.contains(option.value)) {
+                    currentValue.add(option.value);
                   }
-                  onChanged(currentValue);
-                },
+                } else {
+                  currentValue.remove(option.value);
+                }
+                onChanged(currentValue);
+              },
         tristate: tristate,
-        controlAffinity:
-            controlAffinity == BeControlAffinity.leading
-                ? ListTileControlAffinity.leading
-                : ListTileControlAffinity.trailing,
+        controlAffinity: controlAffinity == BeControlAffinity.leading
+            ? ListTileControlAffinity.leading
+            : ListTileControlAffinity.trailing,
         visualDensity: visualDensity,
         materialTapTargetSize: materialTapTargetSize,
       );

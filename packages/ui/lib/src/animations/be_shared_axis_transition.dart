@@ -226,11 +226,10 @@ class SharedAxisTransition extends StatelessWidget {
     final color = fillColor ?? Theme.of(context).canvasColor;
     return DualTransitionBuilder(
       animation: animation,
-      forwardBuilder:
-          (final BuildContext context, final Animation<double> animation, final Widget? child) =>
-              _EnterTransition(animation: animation, transitionType: transitionType, child: child),
-      reverseBuilder:
-          (final BuildContext context, final Animation<double> animation, final Widget? child) => _ExitTransition(
+      forwardBuilder: (final BuildContext context, final Animation<double> animation, final Widget? child) =>
+          _EnterTransition(animation: animation, transitionType: transitionType, child: child),
+      reverseBuilder: (final BuildContext context, final Animation<double> animation, final Widget? child) =>
+          _ExitTransition(
             animation: animation,
             transitionType: transitionType,
             reverse: true,
@@ -239,12 +238,10 @@ class SharedAxisTransition extends StatelessWidget {
           ),
       child: DualTransitionBuilder(
         animation: ReverseAnimation(secondaryAnimation),
-        forwardBuilder:
-            (final BuildContext context, final Animation<double> animation, final Widget? child) =>
-                _EnterTransition(animation: animation, transitionType: transitionType, reverse: true, child: child),
-        reverseBuilder:
-            (final BuildContext context, final Animation<double> animation, final Widget? child) =>
-                _ExitTransition(animation: animation, transitionType: transitionType, fillColor: color, child: child),
+        forwardBuilder: (final BuildContext context, final Animation<double> animation, final Widget? child) =>
+            _EnterTransition(animation: animation, transitionType: transitionType, reverse: true, child: child),
+        reverseBuilder: (final BuildContext context, final Animation<double> animation, final Widget? child) =>
+            _ExitTransition(animation: animation, transitionType: transitionType, fillColor: color, child: child),
         child: child,
       ),
     );
@@ -286,9 +283,8 @@ class _EnterTransition extends StatelessWidget {
           opacity: _fadeInTransition.animate(animation),
           child: AnimatedBuilder(
             animation: animation,
-            builder:
-                (final BuildContext context, final Widget? child) =>
-                    Transform.translate(offset: slideInTransition.evaluate(animation), child: child),
+            builder: (final BuildContext context, final Widget? child) =>
+                Transform.translate(offset: slideInTransition.evaluate(animation), child: child),
             child: child,
           ),
         );
@@ -302,9 +298,8 @@ class _EnterTransition extends StatelessWidget {
           opacity: _fadeInTransition.animate(animation),
           child: AnimatedBuilder(
             animation: animation,
-            builder:
-                (final BuildContext context, final Widget? child) =>
-                    Transform.translate(offset: slideInTransition.evaluate(animation), child: child),
+            builder: (final BuildContext context, final Widget? child) =>
+                Transform.translate(offset: slideInTransition.evaluate(animation), child: child),
             child: child,
           ),
         );
@@ -364,9 +359,8 @@ class _ExitTransition extends StatelessWidget {
             color: fillColor,
             child: AnimatedBuilder(
               animation: animation,
-              builder:
-                  (final BuildContext context, final Widget? child) =>
-                      Transform.translate(offset: slideOutTransition.evaluate(animation), child: child),
+              builder: (final BuildContext context, final Widget? child) =>
+                  Transform.translate(offset: slideOutTransition.evaluate(animation), child: child),
               child: child,
             ),
           ),
@@ -383,9 +377,8 @@ class _ExitTransition extends StatelessWidget {
             color: fillColor,
             child: AnimatedBuilder(
               animation: animation,
-              builder:
-                  (final BuildContext context, final Widget? child) =>
-                      Transform.translate(offset: slideOutTransition.evaluate(animation), child: child),
+              builder: (final BuildContext context, final Widget? child) =>
+                  Transform.translate(offset: slideOutTransition.evaluate(animation), child: child),
               child: child,
             ),
           ),

@@ -73,7 +73,9 @@ Widget useCaseBeDisableWrapper(final BuildContext context) {
             darkModeOpacity: darkModeOpacity,
             child: Column(
               children: [
-                TextFormField(decoration: const InputDecoration(labelText: 'Username', border: OutlineInputBorder())),
+                TextFormField(
+                  decoration: const InputDecoration(labelText: 'Username', border: OutlineInputBorder()),
+                ),
                 const SizedBox(height: 12),
                 TextFormField(
                   decoration: const InputDecoration(labelText: 'Password', border: OutlineInputBorder()),

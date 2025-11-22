@@ -63,17 +63,15 @@ class BeFormBuilderDropdown<T> extends BeFormBuilderField<T> {
                  items: items,
                  selectedItemBuilder: selectedItemBuilder,
                  hint: hint,
-                 disabledHint:
-                     hasValue && items != null
-                         ? items.firstWhere((final dropDownItem) => dropDownItem.value == field.value).child
-                         : disabledHint,
-                 onChanged:
-                     enabled
-                         ? (final value) {
-                           field.didChange(value);
-                           onTap?.call();
-                         }
-                         : null,
+                 disabledHint: hasValue && items != null
+                     ? items.firstWhere((final dropDownItem) => dropDownItem.value == field.value).child
+                     : disabledHint,
+                 onChanged: enabled
+                     ? (final value) {
+                         field.didChange(value);
+                         onTap?.call();
+                       }
+                     : null,
                  elevation: elevation,
                  isDense: isDense,
                  isExpanded: isExpanded,
@@ -81,18 +79,16 @@ class BeFormBuilderDropdown<T> extends BeFormBuilderField<T> {
                  focusNode: state.effectiveFocusNode,
                  autofocus: autofocus,
                  dropdownColor: dropdownColor,
-                 icon:
-                     allowClear && field.value != null
-                         ? GestureDetector(
-                           onTap:
-                               enabled
-                                   ? () {
-                                     field.didChange(null);
-                                   }
-                                   : null,
-                           child: clearIcon,
-                         )
-                         : icon,
+                 icon: allowClear && field.value != null
+                     ? GestureDetector(
+                         onTap: enabled
+                             ? () {
+                                 field.didChange(null);
+                               }
+                             : null,
+                         child: clearIcon,
+                       )
+                     : icon,
                  iconDisabledColor: iconDisabledColor,
                  iconEnabledColor: iconEnabledColor,
                  iconSize: iconSize,

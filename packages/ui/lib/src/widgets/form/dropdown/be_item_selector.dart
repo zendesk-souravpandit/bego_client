@@ -114,10 +114,9 @@ class BeItemSelector<T extends KeyValuePair> extends HookWidget {
             isOpen.value = !isOpen.value;
           },
           icon: Icon(isOpen.value ? BeIcons.icon_chevron_up : BeIcons.icon_chevron_down),
-          items:
-              items.map((final T item) {
-                return DropdownMenuItem<T>(value: item, child: (itemBuilder ?? defaultItemBuilder)(item));
-              }).toList(),
+          items: items.map((final T item) {
+            return DropdownMenuItem<T>(value: item, child: (itemBuilder ?? defaultItemBuilder)(item));
+          }).toList(),
           decoration: InputDecoration(
             contentPadding: contentPadding,
             // border: InputBorder.none, // Remove default underline

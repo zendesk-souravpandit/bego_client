@@ -93,11 +93,10 @@ class BeIconShapeBorder extends OutlinedBorder {
   @override
   void paint(final Canvas canvas, final Rect rect, {final TextDirection? textDirection}) {
     // Draw the border
-    final paint =
-        Paint()
-          ..color = color
-          ..style = PaintingStyle.stroke
-          ..strokeWidth = width;
+    final paint = Paint()
+      ..color = color
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = width;
 
     canvas.drawRRect(RRect.fromRectAndRadius(rect, Radius.circular(radius)), paint);
 

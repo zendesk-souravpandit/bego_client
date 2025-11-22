@@ -65,13 +65,12 @@ abstract class BeAppRouteDelegate {
           preventDuplicates: true,
           participatesInRootNavigator: true,
           name: mainRoutePath,
-          page:
-              () => BeAppPage(
-                appBarPanel: appBarPanel,
-                drawerPanel: drawerPanel,
-                mainPanel: mainPanel,
-                sidePanel: sidePanel,
-              ),
+          page: () => BeAppPage(
+            appBarPanel: appBarPanel,
+            drawerPanel: drawerPanel,
+            mainPanel: mainPanel,
+            sidePanel: sidePanel,
+          ),
           middlewares: mainMiddlewares,
           children: mainRoutes,
         ),

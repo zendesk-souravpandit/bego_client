@@ -59,44 +59,43 @@ Widget useCaseBeSizeAware(final BuildContext context) {
                     ),
                     child: BeSizeAware(
                       constraints: enableConstraints ? BoxConstraints(maxWidth: maxWidth, maxHeight: maxHeight) : null,
-                      builder:
-                          (final data) => Container(
-                            width: double.infinity,
-                            height: double.infinity,
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [Colors.blue.shade100, Colors.blue.shade300],
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
-                              ),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Center(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  const Icon(Icons.dashboard, color: Colors.blue, size: 32),
-                                  const SizedBox(height: 8),
-                                  Text(
-                                    'Available Size:',
-                                    style: TextStyle(color: Colors.blue.shade700, fontWeight: FontWeight.bold),
-                                  ),
-                                  Text(
-                                    '${data.width.toInt()} × ${data.height.toInt()}',
-                                    style: TextStyle(
-                                      color: Colors.blue.shade600,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                  Text(
-                                    'Aspect: ${data.aspectRatio.toStringAsFixed(2)} ${data.isLandscape ? '🌄' : '📱'}',
-                                    style: TextStyle(color: Colors.blue.shade800, fontSize: 12),
-                                  ),
-                                ],
-                              ),
-                            ),
+                      builder: (final data) => Container(
+                        width: double.infinity,
+                        height: double.infinity,
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [Colors.blue.shade100, Colors.blue.shade300],
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
                           ),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Icon(Icons.dashboard, color: Colors.blue, size: 32),
+                              const SizedBox(height: 8),
+                              Text(
+                                'Available Size:',
+                                style: TextStyle(color: Colors.blue.shade700, fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                '${data.width.toInt()} × ${data.height.toInt()}',
+                                style: TextStyle(
+                                  color: Colors.blue.shade600,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                              Text(
+                                'Aspect: ${data.aspectRatio.toStringAsFixed(2)} ${data.isLandscape ? '🌄' : '📱'}',
+                                style: TextStyle(color: Colors.blue.shade800, fontSize: 12),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ],
@@ -128,19 +127,18 @@ Widget useCaseBeSizeAware(final BuildContext context) {
                       childAspectRatio: 1,
                     ),
                     itemCount: columns * 2,
-                    itemBuilder:
-                        (final context, final index) => Container(
-                          decoration: BoxDecoration(
-                            color: Colors.green.withValues(alpha: 0.7),
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                          child: Center(
-                            child: Text(
-                              '${index + 1}',
-                              style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-                            ),
-                          ),
+                    itemBuilder: (final context, final index) => Container(
+                      decoration: BoxDecoration(
+                        color: Colors.green.withValues(alpha: 0.7),
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                      child: Center(
+                        child: Text(
+                          '${index + 1}',
+                          style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
                         ),
+                      ),
+                    ),
                   );
                 },
               ),
@@ -205,10 +203,9 @@ Widget useCaseBeSizeAware(final BuildContext context) {
                   final isWide = data.isWiderThan(200);
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child:
-                        isWide
-                            ? Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: _buildButtons())
-                            : Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: _buildButtons()),
+                    child: isWide
+                        ? Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: _buildButtons())
+                        : Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: _buildButtons()),
                   );
                 },
               ),
@@ -245,23 +242,22 @@ Widget useCaseBeSizeAware(final BuildContext context) {
                       alignment: Alignment.bottomLeft,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child:
-                            showFullInfo
-                                ? const Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Beautiful Landscape',
-                                      style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 12),
-                                    ),
-                                    Text('Nature photography', style: TextStyle(color: Colors.white70, fontSize: 10)),
-                                  ],
-                                )
-                                : const Text(
-                                  'Photo',
-                                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 10),
-                                ),
+                        child: showFullInfo
+                            ? const Column(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Beautiful Landscape',
+                                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 12),
+                                  ),
+                                  Text('Nature photography', style: TextStyle(color: Colors.white70, fontSize: 10)),
+                                ],
+                              )
+                            : const Text(
+                                'Photo',
+                                style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 10),
+                              ),
                       ),
                     ),
                   );
@@ -286,31 +282,30 @@ Widget useCaseBeSizeAware(final BuildContext context) {
                   final isCompact = data.isWiderThan(180);
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child:
-                        isCompact
-                            ? const Row(
-                              children: [
-                                Icon(Icons.person, color: Colors.indigo),
-                                SizedBox(width: 8),
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text('John Doe', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12)),
-                                      Text('Software Engineer', style: TextStyle(color: Colors.grey, fontSize: 10)),
-                                    ],
-                                  ),
+                    child: isCompact
+                        ? const Row(
+                            children: [
+                              Icon(Icons.person, color: Colors.indigo),
+                              SizedBox(width: 8),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text('John Doe', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12)),
+                                    Text('Software Engineer', style: TextStyle(color: Colors.grey, fontSize: 10)),
+                                  ],
                                 ),
-                              ],
-                            )
-                            : const Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(Icons.person, color: Colors.indigo),
-                                Text('User', style: TextStyle(fontSize: 10)),
-                              ],
-                            ),
+                              ),
+                            ],
+                          )
+                        : const Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(Icons.person, color: Colors.indigo),
+                              Text('User', style: TextStyle(fontSize: 10)),
+                            ],
+                          ),
                   );
                 },
               ),
@@ -792,7 +787,9 @@ Widget _buildDashboardWidget(final bool enableConstraints, final double maxWidth
 
               if (showChart) ...[
                 const SizedBox(height: 16),
-                Expanded(child: CustomPaint(painter: _DashboardChartPainter(), size: Size.infinite)),
+                Expanded(
+                  child: CustomPaint(painter: _DashboardChartPainter(), size: Size.infinite),
+                ),
               ],
             ],
           ),
@@ -1111,16 +1108,14 @@ Widget _buildEngagementButton(final IconData icon, final String count, final Col
 class _DashboardChartPainter extends CustomPainter {
   @override
   void paint(final Canvas canvas, final Size size) {
-    final paint =
-        Paint()
-          ..color = Colors.indigo.shade400
-          ..strokeWidth = 2
-          ..style = PaintingStyle.stroke;
+    final paint = Paint()
+      ..color = Colors.indigo.shade400
+      ..strokeWidth = 2
+      ..style = PaintingStyle.stroke;
 
-    final fillPaint =
-        Paint()
-          ..color = Colors.indigo.withValues(alpha: 0.1)
-          ..style = PaintingStyle.fill;
+    final fillPaint = Paint()
+      ..color = Colors.indigo.withValues(alpha: 0.1)
+      ..style = PaintingStyle.fill;
 
     final data = [0.3, 0.6, 0.4, 0.8, 0.5, 0.9, 0.7];
     final stepX = size.width / (data.length - 1);
@@ -1150,10 +1145,9 @@ class _DashboardChartPainter extends CustomPainter {
       ..drawPath(path, paint);
 
     // Draw data points
-    final pointPaint =
-        Paint()
-          ..color = Colors.indigo.shade600
-          ..style = PaintingStyle.fill;
+    final pointPaint = Paint()
+      ..color = Colors.indigo.shade600
+      ..style = PaintingStyle.fill;
 
     for (int i = 0; i < data.length; i++) {
       final x = i * stepX;
@@ -1186,7 +1180,10 @@ Widget _buildExampleCard(final String title, final String subtitle, final Color 
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(title, style: TextStyle(fontWeight: FontWeight.bold, color: color, fontSize: 14)),
+                    Text(
+                      title,
+                      style: TextStyle(fontWeight: FontWeight.bold, color: color, fontSize: 14),
+                    ),
                     Text(subtitle, style: const TextStyle(fontSize: 12, color: Colors.grey)),
                   ],
                 ),
@@ -1230,26 +1227,23 @@ class _ChartPainter extends CustomPainter {
 
   @override
   void paint(final Canvas canvas, final Size size) {
-    final paint =
-        Paint()
-          ..color = Colors.orange
-          ..strokeWidth = 2
-          ..style = PaintingStyle.stroke;
+    final paint = Paint()
+      ..color = Colors.orange
+      ..strokeWidth = 2
+      ..style = PaintingStyle.stroke;
 
-    final fillPaint =
-        Paint()
-          ..color = Colors.orange.withValues(alpha: 0.3)
-          ..style = PaintingStyle.fill;
+    final fillPaint = Paint()
+      ..color = Colors.orange.withValues(alpha: 0.3)
+      ..style = PaintingStyle.fill;
 
     // Create a simple area chart that scales with container size
     final data = [0.2, 0.5, 0.3, 0.8, 0.4, 0.7, 0.6];
     final stepX = size.width / (data.length - 1);
 
     final path = Path();
-    final fillPath =
-        Path()
-          // Start from bottom left for fill
-          ..moveTo(0, size.height);
+    final fillPath = Path()
+      // Start from bottom left for fill
+      ..moveTo(0, size.height);
 
     for (int i = 0; i < data.length; i++) {
       final x = i * stepX;
@@ -1275,10 +1269,9 @@ class _ChartPainter extends CustomPainter {
       ..drawPath(path, paint);
 
     // Draw data points
-    final pointPaint =
-        Paint()
-          ..color = Colors.orange
-          ..style = PaintingStyle.fill;
+    final pointPaint = Paint()
+      ..color = Colors.orange
+      ..style = PaintingStyle.fill;
 
     for (int i = 0; i < data.length; i++) {
       final x = i * stepX;

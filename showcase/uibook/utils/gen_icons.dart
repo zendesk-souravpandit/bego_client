@@ -15,22 +15,21 @@ void main(final List<String> arguments) {
       final fontFamilyName = fontConfig['preferences']['fontPref']['metadata']['fontFamily'].toString();
 
       final List<dynamic> icons = fontConfig['icons'] as List<dynamic>;
-      final buffer =
-          StringBuffer()
-            ..writeAll([
-              '',
-              "import 'package:beui/be_icons.dart';",
-              "import 'package:flutter/widgets.dart';",
-              '',
-              '// NB: DO NOT EDIT! This file is auto-generated. See utils/gen_icons.dart',
-              '',
-              'class IconDetails {',
-              'const IconDetails(this.data, this.name);',
-              'final IconData data;',
-              'final String name;',
-              '}',
-            ], '\n')
-            ..writeln('const begoIcons = <IconDetails>[');
+      final buffer = StringBuffer()
+        ..writeAll([
+          '',
+          "import 'package:beui/be_icons.dart';",
+          "import 'package:flutter/widgets.dart';",
+          '',
+          '// NB: DO NOT EDIT! This file is auto-generated. See utils/gen_icons.dart',
+          '',
+          'class IconDetails {',
+          'const IconDetails(this.data, this.name);',
+          'final IconData data;',
+          'final String name;',
+          '}',
+        ], '\n')
+        ..writeln('const begoIcons = <IconDetails>[');
 
       for (int i = 0; i < icons.length; i++) {
         final Map<String, dynamic> icon = icons[i] as Map<String, dynamic>;

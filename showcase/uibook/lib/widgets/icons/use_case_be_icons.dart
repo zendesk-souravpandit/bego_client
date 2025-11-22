@@ -15,12 +15,11 @@ Widget useCaseBeIcons(final BuildContext context) {
 
   final Map<String, IconData> commonIcons = {for (final e in begoIcons) e.name: e.data};
   // Filter icons based on search
-  final filteredIcons =
-      searchText.isEmpty
-          ? commonIcons
-          : Map<String, IconData>.fromEntries(
-            commonIcons.entries.where((final entry) => entry.key.toLowerCase().contains(searchText.toLowerCase())),
-          );
+  final filteredIcons = searchText.isEmpty
+      ? commonIcons
+      : Map<String, IconData>.fromEntries(
+          commonIcons.entries.where((final entry) => entry.key.toLowerCase().contains(searchText.toLowerCase())),
+        );
 
   return Scaffold(
     body: SingleChildScrollView(
@@ -177,7 +176,9 @@ Widget _buildIconCard(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.max,
         children: [
-          Expanded(child: Icon(iconData, size: size, color: color)),
+          Expanded(
+            child: Icon(iconData, size: size, color: color),
+          ),
           const SizedBox(height: 4),
           Expanded(
             child: Text(
@@ -197,7 +198,10 @@ Widget _buildIconCard(
 Widget _buildUsageExample(final String label, final IconData icon, final double size, final Color color) {
   return Container(
     padding: const EdgeInsets.all(12),
-    decoration: BoxDecoration(border: Border.all(color: Colors.grey.shade300), borderRadius: BorderRadius.circular(8)),
+    decoration: BoxDecoration(
+      border: Border.all(color: Colors.grey.shade300),
+      borderRadius: BorderRadius.circular(8),
+    ),
     child: Row(
       children: [
         Icon(icon, size: size, color: color),

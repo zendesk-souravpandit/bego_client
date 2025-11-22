@@ -12,10 +12,9 @@ Widget useCaseBeNotificationProvider(final BuildContext context) {
   // Interactive knobs for customizing notifications
   final notificationPosition = context.knobs.object.dropdown(
     label: 'Notification Position',
-    options:
-        BeNotifyPosition.values.map((final option) {
-          return KnobOption(label: option.name, value: option);
-        }).toList(),
+    options: BeNotifyPosition.values.map((final option) {
+      return KnobOption(label: option.name, value: option);
+    }).toList(),
     labelBuilder: (final value) => value.label,
   );
 
@@ -112,15 +111,14 @@ class _BeNotificationPlaygroundDemoState extends State<BeNotificationPlaygroundD
           title: Text(widget.title),
           subtitle: Text(widget.subtitle),
           leading: Icon(widget.icon, color: widget.iconColor),
-          trailing:
-              widget.defaultCardWrapper
-                  ? IconButton(
-                    onPressed: () {
-                      BeNotificationManager.of(context).dismissByKey(notificationKey);
-                    },
-                    icon: const Icon(BeIcons.icon_close),
-                  )
-                  : null,
+          trailing: widget.defaultCardWrapper
+              ? IconButton(
+                  onPressed: () {
+                    BeNotificationManager.of(context).dismissByKey(notificationKey);
+                  },
+                  icon: const Icon(BeIcons.icon_close),
+                )
+              : null,
         );
 
       case 'card':

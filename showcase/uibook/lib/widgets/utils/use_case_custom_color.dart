@@ -13,8 +13,9 @@ Widget customColorUseCase(final BuildContext context) {
     appBar: AppBar(
       title: const Text('CustomColor Class'),
       backgroundColor: sourceColor,
-      foregroundColor:
-          ThemeData.estimateBrightnessForColor(sourceColor) == Brightness.dark ? Colors.white : Colors.black,
+      foregroundColor: ThemeData.estimateBrightnessForColor(sourceColor) == Brightness.dark
+          ? Colors.white
+          : Colors.black,
     ),
     body: SingleChildScrollView(
       padding: const EdgeInsets.all(16),
@@ -246,10 +247,9 @@ Widget _buildThemeSystemExample(final Color sourceColor) {
                               child: Text(
                                 customColor.name,
                                 style: TextStyle(
-                                  color:
-                                      ThemeData.estimateBrightnessForColor(resultColor) == Brightness.dark
-                                          ? Colors.white
-                                          : Colors.black,
+                                  color: ThemeData.estimateBrightnessForColor(resultColor) == Brightness.dark
+                                      ? Colors.white
+                                      : Colors.black,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 14,
                                 ),
@@ -272,10 +272,9 @@ Widget _buildThemeSystemExample(final Color sourceColor) {
                         Text(
                           '#${resultColor.toARGB32().toRadixString(16).substring(2).toUpperCase()}',
                           style: TextStyle(
-                            color:
-                                ThemeData.estimateBrightnessForColor(resultColor) == Brightness.dark
-                                    ? Colors.white70
-                                    : Colors.black54,
+                            color: ThemeData.estimateBrightnessForColor(resultColor) == Brightness.dark
+                                ? Colors.white70
+                                : Colors.black54,
                             fontSize: 10,
                             fontFamily: 'monospace',
                           ),
@@ -325,50 +324,47 @@ Widget _buildCustomColorPalette(final Color sourceColor) {
           const SizedBox(height: 16),
 
           Row(
-            children:
-                variations.map((final variation) {
-                  return Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 4),
-                      child: Container(
-                        height: 80,
-                        decoration: BoxDecoration(
-                          color: variation.$2,
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(color: Colors.grey.shade300),
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              variation.$1,
-                              style: TextStyle(
-                                color:
-                                    ThemeData.estimateBrightnessForColor(variation.$2) == Brightness.dark
-                                        ? Colors.white
-                                        : Colors.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 10,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                            const SizedBox(height: 4),
-                            Text(
-                              '#${variation.$2.toARGB32().toRadixString(16).substring(2, 8).toUpperCase()}',
-                              style: TextStyle(
-                                color:
-                                    ThemeData.estimateBrightnessForColor(variation.$2) == Brightness.dark
-                                        ? Colors.white70
-                                        : Colors.black54,
-                                fontSize: 8,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+            children: variations.map((final variation) {
+              return Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 4),
+                  child: Container(
+                    height: 80,
+                    decoration: BoxDecoration(
+                      color: variation.$2,
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(color: Colors.grey.shade300),
                     ),
-                  );
-                }).toList(),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          variation.$1,
+                          style: TextStyle(
+                            color: ThemeData.estimateBrightnessForColor(variation.$2) == Brightness.dark
+                                ? Colors.white
+                                : Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 10,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          '#${variation.$2.toARGB32().toRadixString(16).substring(2, 8).toUpperCase()}',
+                          style: TextStyle(
+                            color: ThemeData.estimateBrightnessForColor(variation.$2) == Brightness.dark
+                                ? Colors.white70
+                                : Colors.black54,
+                            fontSize: 8,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            }).toList(),
           ),
 
           const SizedBox(height: 16),
@@ -462,7 +458,10 @@ Widget _buildCodeBlock(final String title, final String code) {
         width: double.infinity,
         padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(color: Colors.grey.shade900, borderRadius: BorderRadius.circular(8)),
-        child: Text(code, style: const TextStyle(color: Colors.white, fontFamily: 'monospace', fontSize: 11)),
+        child: Text(
+          code,
+          style: const TextStyle(color: Colors.white, fontFamily: 'monospace', fontSize: 11),
+        ),
       ),
     ],
   );

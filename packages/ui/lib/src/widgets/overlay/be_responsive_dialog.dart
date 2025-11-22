@@ -23,15 +23,14 @@ void showBeResponsiveDialog<T>({
     barrierDismissible: barrierDismissible,
     barrierColor: barrierColor,
     useSafeArea: true,
-    builder:
-        (_) => ResponsiveDialog(
-          betheme: betheme,
-          showShadow: showShadow,
-          padding: padding,
-          decoration: decoration,
-          radius: dialogRadius,
-          child: child,
-        ),
+    builder: (_) => ResponsiveDialog(
+      betheme: betheme,
+      showShadow: showShadow,
+      padding: padding,
+      decoration: decoration,
+      radius: dialogRadius,
+      child: child,
+    ),
   );
 }
 

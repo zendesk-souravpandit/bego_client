@@ -315,45 +315,44 @@ Widget _buildCategorySection(final String title, final List<_CategoryIcon> icons
       BeText.titleMedium(title),
       const SizedBox(height: 16),
       Row(
-        children:
-            icons
-                .map(
-                  (final categoryIcon) => Expanded(
-                    child: Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 4),
-                      height: 100,
-                      decoration: ShapeDecoration(
-                        color: Colors.white,
-                        shape: BeIconShapeBorder(
-                          icon: categoryIcon.icon,
-                          size: 18,
-                          color: categoryIcon.color,
-                          radius: 12,
-                          width: 2,
-                          alignment: BeIconAlignment.topRight,
-                          iconInset: 8,
-                          iconStyle: TextStyle(color: categoryIcon.color, fontSize: 18),
-                        ),
-                        shadows: [
-                          BoxShadow(
-                            color: categoryIcon.color.withValues(alpha: 0.1 * 255),
-                            offset: const Offset(0, 2),
-                            blurRadius: 8,
-                          ),
-                        ],
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(categoryIcon.icon, color: categoryIcon.color.withValues(alpha: 0.6 * 255), size: 24),
-                          const SizedBox(height: 8),
-                          BeText.labelSmall(categoryIcon.label, align: TextAlign.center),
-                        ],
-                      ),
+        children: icons
+            .map(
+              (final categoryIcon) => Expanded(
+                child: Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 4),
+                  height: 100,
+                  decoration: ShapeDecoration(
+                    color: Colors.white,
+                    shape: BeIconShapeBorder(
+                      icon: categoryIcon.icon,
+                      size: 18,
+                      color: categoryIcon.color,
+                      radius: 12,
+                      width: 2,
+                      alignment: BeIconAlignment.topRight,
+                      iconInset: 8,
+                      iconStyle: TextStyle(color: categoryIcon.color, fontSize: 18),
                     ),
+                    shadows: [
+                      BoxShadow(
+                        color: categoryIcon.color.withValues(alpha: 0.1 * 255),
+                        offset: const Offset(0, 2),
+                        blurRadius: 8,
+                      ),
+                    ],
                   ),
-                )
-                .toList(),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(categoryIcon.icon, color: categoryIcon.color.withValues(alpha: 0.6 * 255), size: 24),
+                      const SizedBox(height: 8),
+                      BeText.labelSmall(categoryIcon.label, align: TextAlign.center),
+                    ],
+                  ),
+                ),
+              ),
+            )
+            .toList(),
       ),
     ],
   );
@@ -653,7 +652,13 @@ Widget _buildStyleCard(
         iconInset: 10,
         iconStyle: TextStyle(color: color, fontSize: 18),
       ),
-      shadows: [BoxShadow(color: color.withValues(alpha: 0.1 * 255), offset: const Offset(0, 4), blurRadius: 12)],
+      shadows: [
+        BoxShadow(
+          color: color.withValues(alpha: 0.1 * 255),
+          offset: const Offset(0, 4),
+          blurRadius: 12,
+        ),
+      ],
     ),
     child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -717,7 +722,13 @@ Widget _buildBadgeCard(final String title, final IconData icon, final Color colo
         iconInset: 8,
         iconStyle: TextStyle(color: color, fontSize: 16),
       ),
-      shadows: [BoxShadow(color: color.withValues(alpha: 0.15 * 255), offset: const Offset(0, 6), blurRadius: 16)],
+      shadows: [
+        BoxShadow(
+          color: color.withValues(alpha: 0.15 * 255),
+          offset: const Offset(0, 6),
+          blurRadius: 16,
+        ),
+      ],
     ),
     child: Padding(
       padding: const EdgeInsets.all(16),
@@ -791,7 +802,13 @@ Widget _buildFormField(final String hint, final IconData icon, final Color color
         iconInset: 16,
         iconStyle: TextStyle(color: color, fontSize: 18),
       ),
-      shadows: [BoxShadow(color: color.withValues(alpha: 0.1 * 255), offset: const Offset(0, 2), blurRadius: 8)],
+      shadows: [
+        BoxShadow(
+          color: color.withValues(alpha: 0.1 * 255),
+          offset: const Offset(0, 2),
+          blurRadius: 8,
+        ),
+      ],
     ),
     child: Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),

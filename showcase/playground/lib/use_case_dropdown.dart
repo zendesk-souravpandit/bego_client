@@ -194,12 +194,11 @@ class _DropdownMenuShowcaseState extends State<DropdownMenuShowcase> {
               child: Center(
                 child: PopupMenuButton<String>(
                   onSelected: (final value) => _showSnackbar(context, 'Selected $value'),
-                  itemBuilder:
-                      (final context) => [
-                        const PopupMenuItem(value: 'edit', child: Text('Edit')),
-                        const PopupMenuItem(value: 'delete', child: Text('Delete')),
-                        const PopupMenuItem(value: 'share', child: Text('Share')),
-                      ],
+                  itemBuilder: (final context) => [
+                    const PopupMenuItem(value: 'edit', child: Text('Edit')),
+                    const PopupMenuItem(value: 'delete', child: Text('Delete')),
+                    const PopupMenuItem(value: 'share', child: Text('Share')),
+                  ],
                   child: const Chip(label: Text('Actions'), avatar: Icon(Icons.arrow_drop_down)),
                 ),
               ),
