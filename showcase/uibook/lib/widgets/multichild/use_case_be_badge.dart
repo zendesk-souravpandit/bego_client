@@ -27,7 +27,7 @@ Widget renderBeBadgeWidget(final BuildContext context) {
           // Main customizable example
           Center(
             child: BeBadge(
-              position: position,
+              position: .bottomCenter,
               rounded: rounded,
               offset: Offset(offsetX, offsetY),
               badge: Container(
@@ -39,7 +39,9 @@ Widget renderBeBadgeWidget(final BuildContext context) {
                 width: 120,
                 height: 80,
                 child: Card(
-                  child: Center(child: Text('Interactive Demo', style: TextStyle(fontWeight: FontWeight.bold))),
+                  child: Center(
+                    child: Text('Interactive Demo', style: TextStyle(fontWeight: FontWeight.bold)),
+                  ),
                 ),
               ),
             ),
@@ -135,38 +137,37 @@ Widget renderBeBadgeWidget(final BuildContext context) {
                   Wrap(
                     spacing: 16,
                     runSpacing: 16,
-                    children:
-                        BeBadgePosition.values.map((final pos) {
-                          return BeBadge(
-                            position: pos,
-                            badge: Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
-                              decoration: BoxDecoration(
-                                color: _getPositionColor(pos),
-                                borderRadius: BorderRadius.circular(4),
-                              ),
-                              child: Text(
-                                _getPositionName(pos),
-                                style: const TextStyle(color: Colors.white, fontSize: 8, fontWeight: FontWeight.bold),
-                              ),
+                    children: BeBadgePosition.values.map((final pos) {
+                      return BeBadge(
+                        position: pos,
+                        badge: Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+                          decoration: BoxDecoration(
+                            color: _getPositionColor(pos),
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                          child: Text(
+                            _getPositionName(pos),
+                            style: const TextStyle(color: Colors.white, fontSize: 8, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        child: Container(
+                          width: 60,
+                          height: 60,
+                          decoration: BoxDecoration(
+                            color: Colors.grey.shade100,
+                            border: Border.all(color: Colors.grey.shade300),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Center(
+                            child: Text(
+                              _getPositionAbbreviation(pos),
+                              style: const TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: Colors.grey),
                             ),
-                            child: Container(
-                              width: 60,
-                              height: 60,
-                              decoration: BoxDecoration(
-                                color: Colors.grey.shade100,
-                                border: Border.all(color: Colors.grey.shade300),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  _getPositionAbbreviation(pos),
-                                  style: const TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: Colors.grey),
-                                ),
-                              ),
-                            ),
-                          );
-                        }).toList(),
+                          ),
+                        ),
+                      );
+                    }).toList(),
                   ),
                 ],
               ),
@@ -210,7 +211,10 @@ Widget _buildNotificationBadge(final String count) {
   return Container(
     padding: const EdgeInsets.all(4),
     decoration: const BoxDecoration(color: Colors.red, shape: BoxShape.circle),
-    child: Text(count, style: const TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold)),
+    child: Text(
+      count,
+      style: const TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold),
+    ),
   );
 }
 
@@ -218,7 +222,10 @@ Widget _buildCountBadge(final String count) {
   return Container(
     padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
     decoration: BoxDecoration(color: Colors.orange, borderRadius: BorderRadius.circular(8)),
-    child: Text(count, style: const TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold)),
+    child: Text(
+      count,
+      style: const TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold),
+    ),
   );
 }
 
@@ -226,19 +233,30 @@ Widget _buildStatusBadge(final Color color) {
   return Container(
     width: 12,
     height: 12,
-    decoration: BoxDecoration(color: color, shape: BoxShape.circle, border: Border.all(color: Colors.white, width: 2)),
+    decoration: BoxDecoration(
+      color: color,
+      shape: BoxShape.circle,
+      border: Border.all(color: Colors.white, width: 2),
+    ),
   );
 }
 
 Widget _buildUnreadBadge() {
-  return Container(width: 10, height: 10, decoration: const BoxDecoration(color: Colors.red, shape: BoxShape.circle));
+  return Container(
+    width: 10,
+    height: 10,
+    decoration: const BoxDecoration(color: Colors.red, shape: BoxShape.circle),
+  );
 }
 
 Widget _buildDiscountBadge(final String discount) {
   return Container(
     padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
     decoration: BoxDecoration(color: Colors.red, borderRadius: BorderRadius.circular(4)),
-    child: Text(discount, style: const TextStyle(color: Colors.white, fontSize: 8, fontWeight: FontWeight.bold)),
+    child: Text(
+      discount,
+      style: const TextStyle(color: Colors.white, fontSize: 8, fontWeight: FontWeight.bold),
+    ),
   );
 }
 
@@ -268,7 +286,10 @@ Widget _buildLiveBadge() {
       children: [
         Icon(Icons.circle, color: Colors.white, size: 6),
         SizedBox(width: 2),
-        Text('LIVE', style: TextStyle(color: Colors.white, fontSize: 8, fontWeight: FontWeight.bold)),
+        Text(
+          'LIVE',
+          style: TextStyle(color: Colors.white, fontSize: 8, fontWeight: FontWeight.bold),
+        ),
       ],
     ),
   );
@@ -307,7 +328,11 @@ Widget _buildProductCard() {
       color: Colors.white,
       borderRadius: BorderRadius.circular(8),
       boxShadow: [
-        BoxShadow(color: Colors.black.withValues(alpha: 0.1 * 255), blurRadius: 4, offset: const Offset(0, 2)),
+        BoxShadow(
+          color: Colors.black.withValues(alpha: 0.1 * 255),
+          blurRadius: 4,
+          offset: const Offset(0, 2),
+        ),
       ],
     ),
     child: Column(
@@ -321,7 +346,10 @@ Widget _buildProductCard() {
             child: const Center(child: Icon(Icons.headphones, color: Colors.grey)),
           ),
         ),
-        const Padding(padding: EdgeInsets.all(8.0), child: Text('Headphones', style: TextStyle(fontSize: 10))),
+        const Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Text('Headphones', style: TextStyle(fontSize: 10)),
+        ),
       ],
     ),
   );

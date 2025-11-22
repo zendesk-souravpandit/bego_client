@@ -4,21 +4,21 @@ version: 0.0.1
 homepage: none
 
 environment:
-  sdk: ^3.7.2
+  sdk: ^3.10.0
   flutter: ">=1.17.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  grpc: ^4.0.4
-  protobuf: ^4.0.0
+  grpc: ^5.0.0
+  protobuf: ^5.1.0
   # fixnum: ^1.1.1
 
 dev_dependencies:
-  protoc_plugin: ^22.0.1
+  protoc_plugin: ^24.0.0
   flutter_test:
     sdk: flutter
-  flutter_lints: ^5.0.0
+  flutter_lints: ^6.0.0
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
