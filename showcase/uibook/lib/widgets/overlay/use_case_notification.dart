@@ -283,7 +283,6 @@ class _BeNotificationPlaygroundDemoState extends State<BeNotificationPlaygroundD
                           _buildNotificationContent(notificationKey),
                           key: notificationKey,
                           position: widget.position,
-                          wrapInContainer: widget.defaultCardWrapper,
                         );
                       },
                       icon: const Icon(Icons.notifications),
