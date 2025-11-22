@@ -19,8 +19,8 @@ void main(final List<String> arguments) {
           StringBuffer()
             ..writeAll([
               '',
+              "import 'package:beui/be_icons.dart';",
               "import 'package:flutter/widgets.dart';",
-              "import 'package:bego_ui/bego_icon.dart';",
               '',
               '// NB: DO NOT EDIT! This file is auto-generated. See utils/gen_icons.dart',
               '',
