@@ -361,11 +361,10 @@ Widget useCaseBeResponsiveVisibility(final BuildContext context) {
 }
 
 String _getVisibleBreakpoints(final Map<BeBreakpoint, bool> visibilityMap) {
-  final visibleBreakpoints =
-      visibilityMap.entries
-          .where((final entry) => entry.value)
-          .map((final entry) => entry.key.name.toUpperCase())
-          .toList();
+  final visibleBreakpoints = visibilityMap.entries
+      .where((final entry) => entry.value)
+      .map((final entry) => entry.key.name.toUpperCase())
+      .toList();
 
   if (visibleBreakpoints.isEmpty) {
     return 'None';

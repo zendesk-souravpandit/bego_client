@@ -44,7 +44,10 @@ Widget useCaseBeLabel(final BuildContext context) {
                     ),
                   ],
                 ),
-                child: Text(labelText, style: TextStyle(color: labelColor, fontSize: 12, fontWeight: FontWeight.bold)),
+                child: Text(
+                  labelText,
+                  style: TextStyle(color: labelColor, fontSize: 12, fontWeight: FontWeight.bold),
+                ),
               ),
               child: Container(
                 width: 140,
@@ -71,7 +74,10 @@ Widget useCaseBeLabel(final BuildContext context) {
                     children: [
                       Icon(Icons.widgets, color: Colors.blue, size: 24),
                       SizedBox(height: 4),
-                      Text('Interactive Demo', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.blue)),
+                      Text(
+                        'Interactive Demo',
+                        style: TextStyle(fontWeight: FontWeight.bold, color: Colors.blue),
+                      ),
                     ],
                   ),
                 ),
@@ -200,53 +206,52 @@ Widget useCaseBeLabel(final BuildContext context) {
                     mainAxisSpacing: 12,
                     crossAxisSpacing: 12,
                     childAspectRatio: 0.8,
-                    children:
-                        BeLabelPosition.values.map((final position) {
-                          return BeLabel(
-                            position: position,
-                            label: Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
-                              decoration: BoxDecoration(
-                                color: _getColorForPosition(position),
-                                borderRadius: BorderRadius.circular(6),
-                              ),
-                              child: Text(
-                                _getPositionAbbreviation(position),
-                                style: const TextStyle(color: Colors.white, fontSize: 8, fontWeight: FontWeight.bold),
-                              ),
+                    children: BeLabelPosition.values.map((final position) {
+                      return BeLabel(
+                        position: position,
+                        label: Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+                          decoration: BoxDecoration(
+                            color: _getColorForPosition(position),
+                            borderRadius: BorderRadius.circular(6),
+                          ),
+                          child: Text(
+                            _getPositionAbbreviation(position),
+                            style: const TextStyle(color: Colors.white, fontSize: 8, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [Colors.grey.shade100, Colors.grey.shade200],
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
                             ),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                  colors: [Colors.grey.shade100, Colors.grey.shade200],
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomRight,
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(color: Colors.grey.shade300),
+                          ),
+                          child: Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Icon(Icons.label_outline, size: 20, color: Colors.grey.shade600),
+                                const SizedBox(height: 4),
+                                Text(
+                                  position.name,
+                                  style: TextStyle(
+                                    fontSize: 7,
+                                    color: Colors.grey.shade600,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                  textAlign: TextAlign.center,
                                 ),
-                                borderRadius: BorderRadius.circular(8),
-                                border: Border.all(color: Colors.grey.shade300),
-                              ),
-                              child: Center(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Icon(Icons.label_outline, size: 20, color: Colors.grey.shade600),
-                                    const SizedBox(height: 4),
-                                    Text(
-                                      position.name,
-                                      style: TextStyle(
-                                        fontSize: 7,
-                                        color: Colors.grey.shade600,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ],
-                                ),
-                              ),
+                              ],
                             ),
-                          );
-                        }).toList(),
+                          ),
+                        ),
+                      );
+                    }).toList(),
                   ),
                 ],
               ),
@@ -308,7 +313,10 @@ Widget _buildExampleCard(final String title, final String subtitle, final Color 
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(title, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12, color: accentColor)),
+                      Text(
+                        title,
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12, color: accentColor),
+                      ),
                       Text(subtitle, style: const TextStyle(fontSize: 10, color: Colors.grey)),
                     ],
                   ),
@@ -330,9 +338,18 @@ Widget _buildPromotionLabel(final String text, final Color color) {
     decoration: BoxDecoration(
       color: color,
       borderRadius: BorderRadius.circular(8),
-      boxShadow: [BoxShadow(color: color.withValues(alpha: 0.3 * 255), blurRadius: 4, offset: const Offset(0, 2))],
+      boxShadow: [
+        BoxShadow(
+          color: color.withValues(alpha: 0.3 * 255),
+          blurRadius: 4,
+          offset: const Offset(0, 2),
+        ),
+      ],
     ),
-    child: Text(text, style: const TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold)),
+    child: Text(
+      text,
+      style: const TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold),
+    ),
   );
 }
 
@@ -345,7 +362,10 @@ Widget _buildStatusLabel(final String text, final Color color) {
       children: [
         const Icon(Icons.verified, color: Colors.white, size: 10),
         const SizedBox(width: 2),
-        Text(text, style: const TextStyle(color: Colors.white, fontSize: 8, fontWeight: FontWeight.bold)),
+        Text(
+          text,
+          style: const TextStyle(color: Colors.white, fontSize: 8, fontWeight: FontWeight.bold),
+        ),
       ],
     ),
   );
@@ -370,15 +390,24 @@ Widget _buildCountLabel(final String text) {
   return Container(
     padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
     decoration: BoxDecoration(color: Colors.black87, borderRadius: BorderRadius.circular(8)),
-    child: Text(text, style: const TextStyle(color: Colors.white, fontSize: 9, fontWeight: FontWeight.w500)),
+    child: Text(
+      text,
+      style: const TextStyle(color: Colors.white, fontSize: 9, fontWeight: FontWeight.w500),
+    ),
   );
 }
 
 Widget _buildDurationLabel(final String duration) {
   return Container(
     padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
-    decoration: BoxDecoration(color: Colors.black.withValues(alpha: 0.7 * 255), borderRadius: BorderRadius.circular(4)),
-    child: Text(duration, style: const TextStyle(color: Colors.white, fontSize: 8, fontWeight: FontWeight.w500)),
+    decoration: BoxDecoration(
+      color: Colors.black.withValues(alpha: 0.7 * 255),
+      borderRadius: BorderRadius.circular(4),
+    ),
+    child: Text(
+      duration,
+      style: const TextStyle(color: Colors.white, fontSize: 8, fontWeight: FontWeight.w500),
+    ),
   );
 }
 
@@ -386,7 +415,10 @@ Widget _buildUpdateLabel(final String text) {
   return Container(
     padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
     decoration: BoxDecoration(color: Colors.orange, borderRadius: BorderRadius.circular(8)),
-    child: Text(text, style: const TextStyle(color: Colors.white, fontSize: 8, fontWeight: FontWeight.bold)),
+    child: Text(
+      text,
+      style: const TextStyle(color: Colors.white, fontSize: 8, fontWeight: FontWeight.bold),
+    ),
   );
 }
 
@@ -399,7 +431,10 @@ Widget _buildLiveLabel() {
       children: [
         Icon(Icons.circle, color: Colors.white, size: 6),
         SizedBox(width: 3),
-        Text('LIVE', style: TextStyle(color: Colors.white, fontSize: 8, fontWeight: FontWeight.bold)),
+        Text(
+          'LIVE',
+          style: TextStyle(color: Colors.white, fontSize: 8, fontWeight: FontWeight.bold),
+        ),
       ],
     ),
   );
@@ -411,7 +446,10 @@ Widget _buildReadingTimeLabel(final String time) {
     decoration: BoxDecoration(color: Colors.indigo, borderRadius: BorderRadius.circular(8)),
     child: RotatedBox(
       quarterTurns: 3,
-      child: Text(time, style: const TextStyle(color: Colors.white, fontSize: 8, fontWeight: FontWeight.w500)),
+      child: Text(
+        time,
+        style: const TextStyle(color: Colors.white, fontSize: 8, fontWeight: FontWeight.w500),
+      ),
     ),
   );
 }
@@ -424,7 +462,11 @@ Widget _buildProductCard() {
       color: Colors.white,
       borderRadius: BorderRadius.circular(8),
       boxShadow: [
-        BoxShadow(color: Colors.black.withValues(alpha: 0.1 * 255), blurRadius: 6, offset: const Offset(0, 3)),
+        BoxShadow(
+          color: Colors.black.withValues(alpha: 0.1 * 255),
+          blurRadius: 6,
+          offset: const Offset(0, 3),
+        ),
       ],
     ),
     child: Column(
@@ -460,7 +502,11 @@ Widget _buildProfileCard() {
       color: Colors.white,
       borderRadius: BorderRadius.circular(12),
       boxShadow: [
-        BoxShadow(color: Colors.black.withValues(alpha: 0.1 * 255), blurRadius: 6, offset: const Offset(0, 3)),
+        BoxShadow(
+          color: Colors.black.withValues(alpha: 0.1 * 255),
+          blurRadius: 6,
+          offset: const Offset(0, 3),
+        ),
       ],
     ),
     child: const Column(
@@ -487,7 +533,11 @@ Widget _buildDocumentCard() {
       color: Colors.white,
       borderRadius: BorderRadius.circular(8),
       boxShadow: [
-        BoxShadow(color: Colors.black.withValues(alpha: 0.1 * 255), blurRadius: 6, offset: const Offset(0, 3)),
+        BoxShadow(
+          color: Colors.black.withValues(alpha: 0.1 * 255),
+          blurRadius: 6,
+          offset: const Offset(0, 3),
+        ),
       ],
     ),
     child: const Column(
@@ -510,7 +560,11 @@ Widget _buildImageCard() {
       borderRadius: BorderRadius.circular(8),
       image: const DecorationImage(image: NetworkImage('https://picsum.photos/80/80?random=3'), fit: BoxFit.cover),
       boxShadow: [
-        BoxShadow(color: Colors.black.withValues(alpha: 0.1 * 255), blurRadius: 6, offset: const Offset(0, 3)),
+        BoxShadow(
+          color: Colors.black.withValues(alpha: 0.1 * 255),
+          blurRadius: 6,
+          offset: const Offset(0, 3),
+        ),
       ],
     ),
   );
@@ -524,7 +578,11 @@ Widget _buildVideoCard() {
       color: Colors.black87,
       borderRadius: BorderRadius.circular(8),
       boxShadow: [
-        BoxShadow(color: Colors.black.withValues(alpha: 0.2 * 255), blurRadius: 6, offset: const Offset(0, 3)),
+        BoxShadow(
+          color: Colors.black.withValues(alpha: 0.2 * 255),
+          blurRadius: 6,
+          offset: const Offset(0, 3),
+        ),
       ],
     ),
     child: const Center(child: Icon(Icons.play_arrow, color: Colors.white, size: 32)),
@@ -543,7 +601,11 @@ Widget _buildAppIcon() {
       ),
       borderRadius: BorderRadius.circular(12),
       boxShadow: [
-        BoxShadow(color: Colors.teal.withValues(alpha: 0.3 * 255), blurRadius: 6, offset: const Offset(0, 3)),
+        BoxShadow(
+          color: Colors.teal.withValues(alpha: 0.3 * 255),
+          blurRadius: 6,
+          offset: const Offset(0, 3),
+        ),
       ],
     ),
     child: const Center(child: Icon(BeIcons.icon_add, color: Colors.white, size: 24)),
@@ -561,7 +623,13 @@ Widget _buildEventCard() {
         end: Alignment.bottomRight,
       ),
       borderRadius: BorderRadius.circular(8),
-      boxShadow: [BoxShadow(color: Colors.red.withValues(alpha: 0.3 * 255), blurRadius: 6, offset: const Offset(0, 3))],
+      boxShadow: [
+        BoxShadow(
+          color: Colors.red.withValues(alpha: 0.3 * 255),
+          blurRadius: 6,
+          offset: const Offset(0, 3),
+        ),
+      ],
     ),
     child: const Center(
       child: Column(
@@ -584,7 +652,11 @@ Widget _buildArticleCard() {
       color: Colors.white,
       borderRadius: BorderRadius.circular(8),
       boxShadow: [
-        BoxShadow(color: Colors.black.withValues(alpha: 0.1 * 255), blurRadius: 6, offset: const Offset(0, 3)),
+        BoxShadow(
+          color: Colors.black.withValues(alpha: 0.1 * 255),
+          blurRadius: 6,
+          offset: const Offset(0, 3),
+        ),
       ],
     ),
     child: const Padding(

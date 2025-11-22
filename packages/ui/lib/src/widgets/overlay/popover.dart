@@ -135,10 +135,9 @@ class BePopover extends StatefulWidget {
        _automatic = true;
 
   /// The platform-specific default popover and child anchors.
-  static ({Alignment popover, Alignment child}) get defaultPlatform =>
-      BeTouch.primary
-          ? (popover: Alignment.bottomCenter, child: Alignment.topCenter)
-          : (popover: Alignment.topCenter, child: Alignment.bottomCenter);
+  static ({Alignment popover, Alignment child}) get defaultPlatform => BeTouch.primary
+      ? (popover: Alignment.bottomCenter, child: Alignment.topCenter)
+      : (popover: Alignment.topCenter, child: Alignment.bottomCenter);
 
   /// The controller that shows and hides the popover. It initially hides the popover.
   final BePopoverController? controller;
@@ -292,55 +291,49 @@ class _State extends State<BePopover> with SingleTickerProviderStateMixin {
       portalAnchor: widget.popoverAnchor,
       childAnchor: widget.childAnchor,
       shift: widget.shift,
-      offset:
-          widget.directionPadding
-              ? Offset.zero
-              : Alignments.removeDirectionalPadding(
-                const EdgeInsets.all(4), // Default padding
-                popover.resolve(textDirection),
-                childAnchor.resolve(textDirection),
-              ),
-      portalBuilder:
-          (final context) => CallbackShortcuts(
-            bindings: {const SingleActivator(LogicalKeyboardKey.escape): _controller.hide},
-            child: Semantics(
-              label: widget.semanticLabel,
-              container: true,
-              child: Focus(
-                autofocus: widget.autofocus,
-                focusNode: widget.focusNode,
-                onFocusChange: widget.onFocusChange,
-                child: FocusTraversalGroup(
-                  child: Padding(
-                    padding: const EdgeInsets.all(4), // Default padding
-                    child: FadeTransition(
-                      opacity: _controller._fade,
-                      child: ScaleTransition(
-                        scale: _controller._scale,
-                        child: TapRegion(
-                          groupId: _group,
-                          onTapOutside:
-                              widget.hideOnTapOutside == BeHidePopoverRegion.none ? null : (_) => _controller.hide(),
+      offset: widget.directionPadding
+          ? Offset.zero
+          : Alignments.removeDirectionalPadding(
+              const EdgeInsets.all(4), // Default padding
+              popover.resolve(textDirection),
+              childAnchor.resolve(textDirection),
+            ),
+      portalBuilder: (final context) => CallbackShortcuts(
+        bindings: {const SingleActivator(LogicalKeyboardKey.escape): _controller.hide},
+        child: Semantics(
+          label: widget.semanticLabel,
+          container: true,
+          child: Focus(
+            autofocus: widget.autofocus,
+            focusNode: widget.focusNode,
+            onFocusChange: widget.onFocusChange,
+            child: FocusTraversalGroup(
+              child: Padding(
+                padding: const EdgeInsets.all(4), // Default padding
+                child: FadeTransition(
+                  opacity: _controller._fade,
+                  child: ScaleTransition(
+                    scale: _controller._scale,
+                    child: TapRegion(
+                      groupId: _group,
+                      onTapOutside: widget.hideOnTapOutside == BeHidePopoverRegion.none
+                          ? null
+                          : (_) => _controller.hide(),
 
-                          child:
-                              widget.isChildWidth && _childWidth != null
-                                  ? ConstrainedBox(
-                                    constraints: BoxConstraints(maxWidth: _childWidth!),
-                                    child: widget.popoverBuilder(
-                                      context,
-                                      widget.decoration ?? _popoverDecoration,
-                                      null,
-                                    ),
-                                  )
-                                  : widget.popoverBuilder(context, widget.decoration ?? _popoverDecoration, null),
-                        ),
-                      ),
+                      child: widget.isChildWidth && _childWidth != null
+                          ? ConstrainedBox(
+                              constraints: BoxConstraints(maxWidth: _childWidth!),
+                              child: widget.popoverBuilder(context, widget.decoration ?? _popoverDecoration, null),
+                            )
+                          : widget.popoverBuilder(context, widget.decoration ?? _popoverDecoration, null),
                     ),
                   ),
                 ),
               ),
             ),
           ),
+        ),
+      ),
       child: child,
     );
   }
@@ -456,6 +449,12 @@ class _ChildMeasurerState extends State<_ChildMeasurer> {
 BoxDecoration _popoverDecoration = BoxDecoration(
   color: Colors.white,
   borderRadius: BorderRadius.circular(12),
-  boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: .08 * 255), blurRadius: 16, offset: const Offset(0, 4))],
+  boxShadow: [
+    BoxShadow(
+      color: Colors.black.withValues(alpha: .08 * 255),
+      blurRadius: 16,
+      offset: const Offset(0, 4),
+    ),
+  ],
   border: Border.all(color: BeColors.gray200, width: 1),
 );

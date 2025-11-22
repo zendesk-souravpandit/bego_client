@@ -29,28 +29,26 @@ Widget formFieldsShowcase(final BuildContext context) {
               helperText: helperText,
               shouldValidate: shouldValidate,
               enabled: enabled,
-              validator:
-                  shouldValidate
-                      ? (final value) {
-                        if (value == null || value.isEmpty) {
-                          return 'This field is required';
-                        }
-                        if (!value.contains('@')) {
-                          return 'Please enter a valid email';
-                        }
-                        return null;
+              validator: shouldValidate
+                  ? (final value) {
+                      if (value == null || value.isEmpty) {
+                        return 'This field is required';
                       }
-                      : null,
-              fieldBuilder:
-                  (final field) => TextFormField(
-                    enabled: enabled,
-                    decoration: InputDecoration(
-                      hintText: 'Enter your email',
-                      border: const OutlineInputBorder(),
-                      errorText: field.hasError ? field.errorText : null,
-                    ),
-                    onChanged: field.didChange,
-                  ),
+                      if (!value.contains('@')) {
+                        return 'Please enter a valid email';
+                      }
+                      return null;
+                    }
+                  : null,
+              fieldBuilder: (final field) => TextFormField(
+                enabled: enabled,
+                decoration: InputDecoration(
+                  hintText: 'Enter your email',
+                  border: const OutlineInputBorder(),
+                  errorText: field.hasError ? field.errorText : null,
+                ),
+                onChanged: field.didChange,
+              ),
             ),
 
             const SizedBox(height: 24),
@@ -61,29 +59,27 @@ Widget formFieldsShowcase(final BuildContext context) {
               title: 'Password',
               shouldValidate: shouldValidate,
               enabled: enabled,
-              validator:
-                  shouldValidate
-                      ? (final value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Password is required';
-                        }
-                        if (value.length < 6) {
-                          return 'Password must be at least 6 characters';
-                        }
-                        return null;
+              validator: shouldValidate
+                  ? (final value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Password is required';
                       }
-                      : null,
-              fieldBuilder:
-                  (final field) => TextFormField(
-                    enabled: enabled,
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      hintText: 'Enter your password',
-                      border: const OutlineInputBorder(),
-                      errorText: field.hasError ? field.errorText : null,
-                    ),
-                    onChanged: field.didChange,
-                  ),
+                      if (value.length < 6) {
+                        return 'Password must be at least 6 characters';
+                      }
+                      return null;
+                    }
+                  : null,
+              fieldBuilder: (final field) => TextFormField(
+                enabled: enabled,
+                obscureText: true,
+                decoration: InputDecoration(
+                  hintText: 'Enter your password',
+                  border: const OutlineInputBorder(),
+                  errorText: field.hasError ? field.errorText : null,
+                ),
+                onChanged: field.didChange,
+              ),
             ),
 
             const SizedBox(height: 24),
@@ -95,17 +91,16 @@ Widget formFieldsShowcase(final BuildContext context) {
               helperText: 'Enter a detailed description',
               shouldValidate: shouldValidate,
               enabled: enabled,
-              fieldBuilder:
-                  (final field) => TextFormField(
-                    enabled: enabled,
-                    maxLines: 4,
-                    decoration: InputDecoration(
-                      hintText: 'Enter description here...',
-                      border: const OutlineInputBorder(),
-                      errorText: field.hasError ? field.errorText : null,
-                    ),
-                    onChanged: field.didChange,
-                  ),
+              fieldBuilder: (final field) => TextFormField(
+                enabled: enabled,
+                maxLines: 4,
+                decoration: InputDecoration(
+                  hintText: 'Enter description here...',
+                  border: const OutlineInputBorder(),
+                  errorText: field.hasError ? field.errorText : null,
+                ),
+                onChanged: field.didChange,
+              ),
             ),
           ],
         ),

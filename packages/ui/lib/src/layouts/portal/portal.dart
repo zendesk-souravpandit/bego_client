@@ -85,18 +85,17 @@ class _State extends State<FPortal> {
     link: _link,
     child: OverlayPortal(
       controller: widget.controller,
-      overlayChildBuilder:
-          (final context) => CompositedTransformFollower(
-            link: _link,
-            child: _Alignment(
-              link: _link,
-              portalAnchor: widget.portalAnchor,
-              childAnchor: widget.childAnchor,
-              shift: widget.shift,
-              offset: widget.offset,
-              child: widget.portalBuilder(context),
-            ),
-          ),
+      overlayChildBuilder: (final context) => CompositedTransformFollower(
+        link: _link,
+        child: _Alignment(
+          link: _link,
+          portalAnchor: widget.portalAnchor,
+          childAnchor: widget.childAnchor,
+          shift: widget.shift,
+          offset: widget.offset,
+          child: widget.portalBuilder(context),
+        ),
+      ),
       child: widget.child,
     ),
   );

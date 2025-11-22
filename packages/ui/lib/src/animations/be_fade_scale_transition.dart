@@ -127,14 +127,13 @@ class FadeScaleTransition extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => DualTransitionBuilder(
     animation: animation,
-    forwardBuilder:
-        (final BuildContext context, final Animation<double> animation, final Widget? child) => FadeTransition(
+    forwardBuilder: (final BuildContext context, final Animation<double> animation, final Widget? child) =>
+        FadeTransition(
           opacity: _fadeInTransition.animate(animation),
           child: ScaleTransition(scale: _scaleInTransition.animate(animation), child: child),
         ),
-    reverseBuilder:
-        (final BuildContext context, final Animation<double> animation, final Widget? child) =>
-            FadeTransition(opacity: _fadeOutTransition.animate(animation), child: child),
+    reverseBuilder: (final BuildContext context, final Animation<double> animation, final Widget? child) =>
+        FadeTransition(opacity: _fadeOutTransition.animate(animation), child: child),
     child: child,
   );
 }

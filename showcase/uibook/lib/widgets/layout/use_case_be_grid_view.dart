@@ -190,7 +190,10 @@ Widget useCaseBeGridView(final BuildContext context) {
 
                 // Footer spanning full width
                 Container(
-                  decoration: BoxDecoration(color: Colors.red.shade100, border: Border.all(color: Colors.red.shade300)),
+                  decoration: BoxDecoration(
+                    color: Colors.red.shade100,
+                    border: Border.all(color: Colors.red.shade300),
+                  ),
                   child: const Center(child: Text('Footer (Spans 4 columns)', textAlign: TextAlign.center)),
                 ).cell(row: 3, column: 0, columnSpan: 4),
               ],
@@ -263,16 +266,15 @@ Widget useCaseBeGridView(final BuildContext context) {
               borderRadius: BorderRadius.circular(8),
             ),
             child: BeGridView(
-              gridPadCells:
-                  BeGridCellsBuilder(rowCount: 3, columnCount: 4)
-                      .rowSize(0, const Fixed(50)) // Header row fixed
-                      .rowSize(1, const Weight(2)) // Content row larger
-                      .rowSize(2, const Weight(1)) // Footer row smaller
-                      .columnSize(0, const Fixed(80)) // Sidebar fixed
-                      .columnSize(1, const Weight(2)) // Main content larger
-                      .columnSize(2, const Weight(1)) // Right panel smaller
-                      .columnSize(3, const Fixed(60)) // Actions column fixed
-                      .build(),
+              gridPadCells: BeGridCellsBuilder(rowCount: 3, columnCount: 4)
+                  .rowSize(0, const Fixed(50)) // Header row fixed
+                  .rowSize(1, const Weight(2)) // Content row larger
+                  .rowSize(2, const Weight(1)) // Footer row smaller
+                  .columnSize(0, const Fixed(80)) // Sidebar fixed
+                  .columnSize(1, const Weight(2)) // Main content larger
+                  .columnSize(2, const Weight(1)) // Right panel smaller
+                  .columnSize(3, const Fixed(60)) // Actions column fixed
+                  .build(),
               children: [
                 // Header
                 for (int i = 0; i < 4; i++)
@@ -395,7 +397,10 @@ List<Widget> _buildGridChildren(final int rows, final int columns) {
     final colorIndex = index % colors.length;
 
     return Container(
-      decoration: BoxDecoration(color: colors[colorIndex], border: Border.all(color: borderColors[colorIndex])),
+      decoration: BoxDecoration(
+        color: colors[colorIndex],
+        border: Border.all(color: borderColors[colorIndex]),
+      ),
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -411,18 +416,32 @@ List<Widget> _buildGridChildren(final int rows, final int columns) {
 
 Widget _buildSizeCell(final String text, final Color bgColor, final Color borderColor) {
   return Container(
-    decoration: BoxDecoration(color: bgColor, border: Border.all(color: borderColor)),
+    decoration: BoxDecoration(
+      color: bgColor,
+      border: Border.all(color: borderColor),
+    ),
     child: Center(
-      child: Text(text, style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
+      child: Text(
+        text,
+        style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+        textAlign: TextAlign.center,
+      ),
     ),
   );
 }
 
 Widget _buildBuilderCell(final String text, final Color bgColor, final Color borderColor) {
   return Container(
-    decoration: BoxDecoration(color: bgColor, border: Border.all(color: borderColor)),
+    decoration: BoxDecoration(
+      color: bgColor,
+      border: Border.all(color: borderColor),
+    ),
     child: Center(
-      child: Text(text, style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
+      child: Text(
+        text,
+        style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+        textAlign: TextAlign.center,
+      ),
     ),
   );
 }
@@ -434,12 +453,19 @@ Widget _buildExtensionCell(
   final Color borderColor,
 ) {
   return Container(
-    decoration: BoxDecoration(color: bgColor, border: Border.all(color: borderColor)),
+    decoration: BoxDecoration(
+      color: bgColor,
+      border: Border.all(color: borderColor),
+    ),
     child: Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(method, style: const TextStyle(fontSize: 10, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
+          Text(
+            method,
+            style: const TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
+            textAlign: TextAlign.center,
+          ),
           Text(description, style: const TextStyle(fontSize: 9), textAlign: TextAlign.center),
         ],
       ),

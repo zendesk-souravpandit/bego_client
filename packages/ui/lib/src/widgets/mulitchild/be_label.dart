@@ -147,10 +147,9 @@ class _BeLabelRenderObject extends RenderBox
 
     // Calculate and set label offset
     final labelParentData = label.parentData! as _BeLabelChildParentData;
-    final labelOffset =
-        _innerLabel
-            ? _getInnerLabelOffset(label.size.width, label.size.height)
-            : _getOffset(label.size.width, label.size.height);
+    final labelOffset = _innerLabel
+        ? _getInnerLabelOffset(label.size.width, label.size.height)
+        : _getOffset(label.size.width, label.size.height);
     labelParentData.offset = labelOffset;
   }
 

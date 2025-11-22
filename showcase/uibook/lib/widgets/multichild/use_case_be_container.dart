@@ -194,10 +194,12 @@ Widget _buildContainerDemo({
       const SizedBox(height: 16),
 
       Container(
-        decoration:
-            showBorder
-                ? BoxDecoration(border: Border.all(color: Colors.red, width: 2), borderRadius: BorderRadius.circular(8))
-                : null,
+        decoration: showBorder
+            ? BoxDecoration(
+                border: Border.all(color: Colors.red, width: 2),
+                borderRadius: BorderRadius.circular(8),
+              )
+            : null,
         child: BeContainer(
           fluid: fluid,
           padding: EdgeInsets.all(customPadding),
@@ -585,7 +587,10 @@ Widget _buildContentCard(final String title, final String subtitle, final Color 
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(title, style: TextStyle(color: color, fontWeight: FontWeight.bold, fontSize: 16)),
+          Text(
+            title,
+            style: TextStyle(color: color, fontWeight: FontWeight.bold, fontSize: 16),
+          ),
           const SizedBox(height: 4),
           Text(subtitle, style: TextStyle(color: color.withValues(alpha: 0.7), fontSize: 12)),
         ],
@@ -614,7 +619,10 @@ Widget _buildShowcaseCard(
         children: [
           Icon(icon, color: color, size: 32),
           const SizedBox(height: 12),
-          Text(title, style: TextStyle(color: color, fontWeight: FontWeight.bold, fontSize: 16)),
+          Text(
+            title,
+            style: TextStyle(color: color, fontWeight: FontWeight.bold, fontSize: 16),
+          ),
           const SizedBox(height: 8),
           Text(
             description,
@@ -643,7 +651,10 @@ Widget _buildNavbar(final double cardElevation) {
       decoration: BoxDecoration(color: Colors.blue.shade600, borderRadius: BorderRadius.circular(8)),
       child: const Row(
         children: [
-          Text('Logo', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18)),
+          Text(
+            'Logo',
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
+          ),
           Spacer(),
           Text('Home', style: TextStyle(color: Colors.white)),
           SizedBox(width: 20),
@@ -675,7 +686,10 @@ Widget _buildComparisonCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(title, style: TextStyle(color: color, fontWeight: FontWeight.bold, fontSize: 16)),
+          Text(
+            title,
+            style: TextStyle(color: color, fontWeight: FontWeight.bold, fontSize: 16),
+          ),
           const SizedBox(height: 4),
           Text(subtitle, style: TextStyle(color: color.withValues(alpha: 0.7), fontSize: 12)),
           const SizedBox(height: 12),
@@ -686,7 +700,9 @@ Widget _buildComparisonCard(
                 children: [
                   Icon(Icons.check_circle, color: color, size: 16),
                   const SizedBox(width: 8),
-                  Expanded(child: Text(feature, style: TextStyle(fontSize: 12, color: color.withValues(alpha: 0.8)))),
+                  Expanded(
+                    child: Text(feature, style: TextStyle(fontSize: 12, color: color.withValues(alpha: 0.8))),
+                  ),
                 ],
               ),
             ),
@@ -705,7 +721,10 @@ Widget _buildInfoChip(final String label, final String value, final Color color)
       borderRadius: BorderRadius.circular(4),
       border: Border.all(color: color.withValues(alpha: 0.3)),
     ),
-    child: Text('$label: $value', style: TextStyle(fontSize: 11, color: color, fontWeight: FontWeight.w600)),
+    child: Text(
+      '$label: $value',
+      style: TextStyle(fontSize: 11, color: color, fontWeight: FontWeight.w600),
+    ),
   );
 }
 

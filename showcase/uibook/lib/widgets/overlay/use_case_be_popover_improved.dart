@@ -168,13 +168,12 @@ class _BePopoverImprovedWidgetState extends State<_BePopoverImprovedWidget> with
                   autofocus: widget.autofocus,
                   directionPadding: widget.directionPadding,
                   isChildWidth: widget.isChildWidth,
-                  popoverBuilder:
-                      (final context, final decoration, final child) => _buildStatusPopover(
-                        'Tooltip Active!',
-                        'This is a simple tooltip that appears when you click the button.',
-                        Icons.check_circle,
-                        Colors.green,
-                      ),
+                  popoverBuilder: (final context, final decoration, final child) => _buildStatusPopover(
+                    'Tooltip Active!',
+                    'This is a simple tooltip that appears when you click the button.',
+                    Icons.check_circle,
+                    Colors.green,
+                  ),
                   child: _buildDemoButton('Click for Tooltip', Icons.help_outline, Colors.blue),
                 ),
 
@@ -199,8 +198,8 @@ class _BePopoverImprovedWidgetState extends State<_BePopoverImprovedWidget> with
                   autofocus: widget.autofocus,
                   directionPadding: widget.directionPadding,
                   isChildWidth: widget.isChildWidth,
-                  popoverBuilder:
-                      (final context, final decoration, final child) => _buildFormPopover(_formPopoverController),
+                  popoverBuilder: (final context, final decoration, final child) =>
+                      _buildFormPopover(_formPopoverController),
                   child: _buildDemoButton('Quick Edit', Icons.edit, Colors.green),
                 ),
               ],
@@ -221,8 +220,8 @@ class _BePopoverImprovedWidgetState extends State<_BePopoverImprovedWidget> with
               autofocus: widget.autofocus,
               isChildWidth: true,
               directionPadding: widget.directionPadding,
-              popoverBuilder:
-                  (final context, final decoration, final child) => _buildInfoPopover(_infoPopoverController),
+              popoverBuilder: (final context, final decoration, final child) =>
+                  _buildInfoPopover(_infoPopoverController),
               child: Container(
                 padding: px12 + py16,
                 decoration: BoxDecoration(
@@ -261,29 +260,28 @@ class _BePopoverImprovedWidgetState extends State<_BePopoverImprovedWidget> with
               hideOnTapOutside: widget.hideOnTapOutside,
               autofocus: widget.autofocus,
               directionPadding: widget.directionPadding,
-              popoverBuilder:
-                  (final context, final decoration, final child) => Container(
-                    padding: const EdgeInsets.all(16),
-                    decoration: decoration,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const Text(
-                          'This popover can be closed from inside!',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        const SizedBox(height: 12),
-                        const Text('Click the close button below to dismiss this popover programmatically.'),
-                        const SizedBox(height: 16),
-                        ElevatedButton.icon(
-                          onPressed: () => _closeExamplePopoverController.hide(),
-                          icon: const Icon(Icons.close),
-                          label: const Text('Close Popover'),
-                          style: ElevatedButton.styleFrom(backgroundColor: Colors.red, foregroundColor: Colors.white),
-                        ),
-                      ],
+              popoverBuilder: (final context, final decoration, final child) => Container(
+                padding: const EdgeInsets.all(16),
+                decoration: decoration,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Text(
+                      'This popover can be closed from inside!',
+                      style: TextStyle(fontWeight: FontWeight.bold),
                     ),
-                  ),
+                    const SizedBox(height: 12),
+                    const Text('Click the close button below to dismiss this popover programmatically.'),
+                    const SizedBox(height: 16),
+                    ElevatedButton.icon(
+                      onPressed: () => _closeExamplePopoverController.hide(),
+                      icon: const Icon(Icons.close),
+                      label: const Text('Close Popover'),
+                      style: ElevatedButton.styleFrom(backgroundColor: Colors.red, foregroundColor: Colors.white),
+                    ),
+                  ],
+                ),
+              ),
               child: Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
@@ -333,7 +331,13 @@ class _BePopoverImprovedWidgetState extends State<_BePopoverImprovedWidget> with
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        boxShadow: [BoxShadow(color: color.withValues(alpha: 0.3 * 255), blurRadius: 8, offset: const Offset(0, 2))],
+        boxShadow: [
+          BoxShadow(
+            color: color.withValues(alpha: 0.3 * 255),
+            blurRadius: 8,
+            offset: const Offset(0, 2),
+          ),
+        ],
       ),
       child: ElevatedButton.icon(
         onPressed: () {}, // This will be handled by BePopover.automatic
@@ -374,7 +378,9 @@ class _BePopoverImprovedWidgetState extends State<_BePopoverImprovedWidget> with
             children: [
               Icon(icon, color: color, size: 24),
               const SizedBox(width: 12),
-              Expanded(child: Text(title, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16))),
+              Expanded(
+                child: Text(title, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+              ),
             ],
           ),
           const SizedBox(height: 8),

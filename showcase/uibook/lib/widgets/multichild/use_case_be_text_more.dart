@@ -376,7 +376,10 @@ Widget _buildExampleCard(final String title, final IconData icon, final Color co
             children: [
               Icon(icon, color: color, size: 20),
               const SizedBox(width: 8),
-              Text(title, style: TextStyle(fontWeight: FontWeight.bold, color: color, fontSize: 14)),
+              Text(
+                title,
+                style: TextStyle(fontWeight: FontWeight.bold, color: color, fontSize: 14),
+              ),
             ],
           ),
           const SizedBox(height: 12),

@@ -359,7 +359,10 @@ Widget _buildElegantProfileCard(final BuildContext context) {
               height: 120,
               decoration: BeBoxDecoration(
                 gradient: LinearGradient(
-                  colors: [BeColors.primary, BeColors.primary.withValues(alpha: 0.8 * 255)],
+                  colors: [
+                    BeColors.primary,
+                    BeColors.primary.withValues(alpha: 0.8 * 255),
+                  ],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),
@@ -425,7 +428,10 @@ Widget _buildElegantProfileCard(final BuildContext context) {
                           height: 48,
                           decoration: BeBoxDecoration(
                             gradient: LinearGradient(
-                              colors: [BeColors.primary, BeColors.primary.withValues(alpha: 0.8 * 255)],
+                              colors: [
+                                BeColors.primary,
+                                BeColors.primary.withValues(alpha: 0.8 * 255),
+                              ],
                             ),
                             borderRadius: BorderRadius.circular(24),
                             boxShadow: [
@@ -472,7 +478,11 @@ Widget _buildElegantProfileCard(final BuildContext context) {
 
 Widget _buildStatItem(final String value, final String label) {
   return Column(
-    children: [BeText.titleMedium(value), const SizedBox(height: 4), BeText.labelSmall(label, color: BeColors.gray500)],
+    children: [
+      BeText.titleMedium(value),
+      const SizedBox(height: 4),
+      BeText.labelSmall(label, color: BeColors.gray500),
+    ],
   );
 }
 
@@ -481,7 +491,10 @@ Widget _buildGlassMorphismPanel(final BuildContext context) {
   return Container(
     decoration: BeBoxDecoration(
       gradient: LinearGradient(
-        colors: [BeColors.blue.withValues(alpha: 0.3 * 255), BeColors.purple.withValues(alpha: 0.3 * 255)],
+        colors: [
+          BeColors.blue.withValues(alpha: 0.3 * 255),
+          BeColors.purple.withValues(alpha: 0.3 * 255),
+        ],
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
       ),

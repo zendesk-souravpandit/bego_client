@@ -127,11 +127,17 @@ void _showFormDialog(
         children: [
           const Text('User Information', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
           const SizedBox(height: 20),
-          TextFormField(decoration: const InputDecoration(labelText: 'Name', border: OutlineInputBorder())),
+          TextFormField(
+            decoration: const InputDecoration(labelText: 'Name', border: OutlineInputBorder()),
+          ),
           const SizedBox(height: 16),
-          TextFormField(decoration: const InputDecoration(labelText: 'Email', border: OutlineInputBorder())),
+          TextFormField(
+            decoration: const InputDecoration(labelText: 'Email', border: OutlineInputBorder()),
+          ),
           const SizedBox(height: 16),
-          TextFormField(decoration: const InputDecoration(labelText: 'Phone Number', border: OutlineInputBorder())),
+          TextFormField(
+            decoration: const InputDecoration(labelText: 'Phone Number', border: OutlineInputBorder()),
+          ),
           const SizedBox(height: 24),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
@@ -239,7 +245,9 @@ void _showCustomStyledDialog(
           const SizedBox(height: 24),
           Row(
             children: [
-              Expanded(child: OutlinedButton(onPressed: () => Navigator.of(context).pop(), child: const Text('Later'))),
+              Expanded(
+                child: OutlinedButton(onPressed: () => Navigator.of(context).pop(), child: const Text('Later')),
+              ),
               const SizedBox(width: 12),
               Expanded(
                 child: ElevatedButton(

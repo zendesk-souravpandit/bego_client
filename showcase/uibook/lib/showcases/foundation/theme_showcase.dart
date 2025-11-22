@@ -23,14 +23,13 @@ Widget tappableComponentsShowcase(final BuildContext context) {
           const Text('Regular BeTappable:', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
           const SizedBox(height: 8),
           BeTappable(
-            onPress:
-                disabled
-                    ? null
-                    : () {
-                      ScaffoldMessenger.of(
-                        context,
-                      ).showSnackBar(const SnackBar(content: Text('Regular BeTappable pressed!')));
-                    },
+            onPress: disabled
+                ? null
+                : () {
+                    ScaffoldMessenger.of(
+                      context,
+                    ).showSnackBar(const SnackBar(content: Text('Regular BeTappable pressed!')));
+                  },
             child: Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
@@ -47,14 +46,13 @@ Widget tappableComponentsShowcase(final BuildContext context) {
           const Text('Animated BeTappable:', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
           const SizedBox(height: 8),
           BeTappable.animated(
-            onPress:
-                disabled
-                    ? null
-                    : () {
-                      ScaffoldMessenger.of(
-                        context,
-                      ).showSnackBar(const SnackBar(content: Text('Animated BeTappable pressed!')));
-                    },
+            onPress: disabled
+                ? null
+                : () {
+                    ScaffoldMessenger.of(
+                      context,
+                    ).showSnackBar(const SnackBar(content: Text('Animated BeTappable pressed!')));
+                  },
             child: Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
@@ -187,7 +185,10 @@ class _ColorTile extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(name, style: TextStyle(color: textColor, fontWeight: FontWeight.bold, fontSize: 12)),
+          Text(
+            name,
+            style: TextStyle(color: textColor, fontWeight: FontWeight.bold, fontSize: 12),
+          ),
           Text(
             // ignore: deprecated_member_use
             '#${color.value.toRadixString(16).padLeft(8, '0').toUpperCase()}',

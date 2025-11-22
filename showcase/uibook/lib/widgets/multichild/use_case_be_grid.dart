@@ -304,13 +304,12 @@ Widget _buildInteractiveDemo({
             fluid: containerFluid,
             padding: EdgeInsets.all(customPadding / 2),
             child: Container(
-              decoration:
-                  showGridLines
-                      ? BoxDecoration(
-                        border: Border.all(color: Colors.grey.shade300),
-                        borderRadius: BorderRadius.circular(8),
-                      )
-                      : null,
+              decoration: showGridLines
+                  ? BoxDecoration(
+                      border: Border.all(color: Colors.grey.shade300),
+                      borderRadius: BorderRadius.circular(8),
+                    )
+                  : null,
               child: BeRow(
                 spacing: spacing,
                 runSpacing: runSpacing,
@@ -527,7 +526,10 @@ Widget _buildStatCard(final String title, final String value, final IconData ico
           ],
         ),
         const SizedBox(height: 8),
-        Text(value, style: TextStyle(color: color, fontSize: 24, fontWeight: FontWeight.bold)),
+        Text(
+          value,
+          style: TextStyle(color: color, fontSize: 24, fontWeight: FontWeight.bold),
+        ),
       ],
     ),
   );
@@ -557,7 +559,10 @@ Widget _buildProductCard(final String name, final String price, final Color colo
           overflow: TextOverflow.ellipsis,
         ),
         const SizedBox(height: 4),
-        Text(price, style: TextStyle(color: color, fontWeight: FontWeight.bold, fontSize: 16)),
+        Text(
+          price,
+          style: TextStyle(color: color, fontWeight: FontWeight.bold, fontSize: 16),
+        ),
       ],
     ),
   );
@@ -648,7 +653,12 @@ Widget _buildInteractiveCard(
               children: [
                 Icon(Icons.view_column, color: color, size: 20),
                 const SizedBox(width: 8),
-                Expanded(child: Text(title, style: TextStyle(color: color, fontWeight: FontWeight.bold, fontSize: 16))),
+                Expanded(
+                  child: Text(
+                    title,
+                    style: TextStyle(color: color, fontWeight: FontWeight.bold, fontSize: 16),
+                  ),
+                ),
               ],
             ),
             const SizedBox(height: 8),
@@ -662,7 +672,10 @@ Widget _buildInteractiveCard(
                 height: 20,
                 decoration: BoxDecoration(color: color.withValues(alpha: 0.2), borderRadius: BorderRadius.circular(4)),
                 child: Center(
-                  child: Text('Grid Area', style: TextStyle(color: color, fontSize: 10, fontWeight: FontWeight.bold)),
+                  child: Text(
+                    'Grid Area',
+                    style: TextStyle(color: color, fontSize: 10, fontWeight: FontWeight.bold),
+                  ),
                 ),
               ),
             ],
@@ -872,7 +885,10 @@ Widget _buildPropertyCard(final String text, final Color color, final double ele
       elevation: elevation,
       borderRadius: BorderRadius.circular(6),
       child: Center(
-        child: Text(text, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 12)),
+        child: Text(
+          text,
+          style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 12),
+        ),
       ),
     ),
   );

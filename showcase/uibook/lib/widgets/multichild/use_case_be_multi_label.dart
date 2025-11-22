@@ -19,7 +19,11 @@ Widget useCaseBeMultiLabel(final BuildContext context) {
           color: _getLabelColor(index),
           borderRadius: BorderRadius.circular(4),
           boxShadow: [
-            BoxShadow(color: Colors.black.withValues(alpha: 0.1 * 255), blurRadius: 2, offset: const Offset(0, 1)),
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.1 * 255),
+              blurRadius: 2,
+              offset: const Offset(0, 1),
+            ),
           ],
         ),
         child: _getLabelContent(index),
@@ -37,7 +41,9 @@ Widget useCaseBeMultiLabel(final BuildContext context) {
           const SizedBox(height: 24),
 
           // Main customizable example
-          Center(child: BeMultiLabel(labels: labels, child: _buildExampleCard('Dynamic Multi-Label', Colors.blue))),
+          Center(
+            child: BeMultiLabel(labels: labels, child: _buildExampleCard('Dynamic Multi-Label', Colors.blue)),
+          ),
 
           const SizedBox(height: 32),
 
@@ -160,23 +166,22 @@ Widget useCaseBeMultiLabel(final BuildContext context) {
                   const SizedBox(height: 16),
                   Center(
                     child: BeMultiLabel(
-                      labels:
-                          BeMultiLabelPosition.values.map((final position) {
-                            return BeLabelChild(
-                              position: position,
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
-                                decoration: BoxDecoration(
-                                  color: _getPositionColor(position),
-                                  borderRadius: BorderRadius.circular(2),
-                                ),
-                                child: Text(
-                                  _getPositionAbbreviation(position),
-                                  style: const TextStyle(color: Colors.white, fontSize: 8, fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                            );
-                          }).toList(),
+                      labels: BeMultiLabelPosition.values.map((final position) {
+                        return BeLabelChild(
+                          position: position,
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+                            decoration: BoxDecoration(
+                              color: _getPositionColor(position),
+                              borderRadius: BorderRadius.circular(2),
+                            ),
+                            child: Text(
+                              _getPositionAbbreviation(position),
+                              style: const TextStyle(color: Colors.white, fontSize: 8, fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        );
+                      }).toList(),
                       child: Container(
                         width: 120,
                         height: 80,
@@ -240,7 +245,10 @@ Color _getLabelColor(final int index) {
 
 Widget _getLabelContent(final int index) {
   final contents = [
-    const Text('NEW', style: TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold)),
+    const Text(
+      'NEW',
+      style: TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold),
+    ),
     const Row(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -249,7 +257,10 @@ Widget _getLabelContent(final int index) {
         Text('HOT', style: TextStyle(color: Colors.white, fontSize: 8)),
       ],
     ),
-    const Text('SALE', style: TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold)),
+    const Text(
+      'SALE',
+      style: TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold),
+    ),
     const Icon(Icons.flash_on, color: Colors.white, size: 12),
     const Text('TOP', style: TextStyle(color: Colors.white, fontSize: 10)),
     const Text('99+', style: TextStyle(color: Colors.white, fontSize: 10)),
@@ -283,10 +294,17 @@ Widget _buildLabel(final String text, final Color color) {
       color: color,
       borderRadius: BorderRadius.circular(4),
       boxShadow: [
-        BoxShadow(color: Colors.black.withValues(alpha: 0.2 * 255), blurRadius: 2, offset: const Offset(0, 1)),
+        BoxShadow(
+          color: Colors.black.withValues(alpha: 0.2 * 255),
+          blurRadius: 2,
+          offset: const Offset(0, 1),
+        ),
       ],
     ),
-    child: Text(text, style: const TextStyle(color: Colors.white, fontSize: 8, fontWeight: FontWeight.bold)),
+    child: Text(
+      text,
+      style: const TextStyle(color: Colors.white, fontSize: 8, fontWeight: FontWeight.bold),
+    ),
   );
 }
 
@@ -296,7 +314,10 @@ Widget _buildVerticalLabel(final String text, final Color color) {
     decoration: BoxDecoration(color: color, borderRadius: BorderRadius.circular(4)),
     child: RotatedBox(
       quarterTurns: 3,
-      child: Text(text, style: const TextStyle(color: Colors.white, fontSize: 8, fontWeight: FontWeight.bold)),
+      child: Text(
+        text,
+        style: const TextStyle(color: Colors.white, fontSize: 8, fontWeight: FontWeight.bold),
+      ),
     ),
   );
 }
@@ -310,7 +331,10 @@ Widget _buildIconLabel(final IconData icon, final Color color, final String text
       children: [
         Icon(icon, color: Colors.white, size: 8),
         const SizedBox(width: 2),
-        Text(text, style: const TextStyle(color: Colors.white, fontSize: 8, fontWeight: FontWeight.bold)),
+        Text(
+          text,
+          style: const TextStyle(color: Colors.white, fontSize: 8, fontWeight: FontWeight.bold),
+        ),
       ],
     ),
   );
@@ -320,7 +344,10 @@ Widget _buildPriceLabel(final String price) {
   return Container(
     padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
     decoration: BoxDecoration(color: Colors.black87, borderRadius: BorderRadius.circular(4)),
-    child: Text(price, style: const TextStyle(color: Colors.white, fontSize: 8, fontWeight: FontWeight.bold)),
+    child: Text(
+      price,
+      style: const TextStyle(color: Colors.white, fontSize: 8, fontWeight: FontWeight.bold),
+    ),
   );
 }
 
@@ -329,7 +356,11 @@ Widget _buildWatermark(final String text) {
     padding: const EdgeInsets.all(8),
     child: Text(
       text,
-      style: TextStyle(color: Colors.black.withValues(alpha: 0.1 * 255), fontSize: 16, fontWeight: FontWeight.bold),
+      style: TextStyle(
+        color: Colors.black.withValues(alpha: 0.1 * 255),
+        fontSize: 16,
+        fontWeight: FontWeight.bold,
+      ),
     ),
   );
 }
@@ -340,7 +371,10 @@ Widget _buildNotificationBadge(final String count) {
     height: 16,
     decoration: const BoxDecoration(color: Colors.red, shape: BoxShape.circle),
     child: Center(
-      child: Text(count, style: const TextStyle(color: Colors.white, fontSize: 8, fontWeight: FontWeight.bold)),
+      child: Text(
+        count,
+        style: const TextStyle(color: Colors.white, fontSize: 8, fontWeight: FontWeight.bold),
+      ),
     ),
   );
 }
@@ -373,7 +407,11 @@ Widget _buildProductCard() {
       color: Colors.white,
       borderRadius: BorderRadius.circular(8),
       boxShadow: [
-        BoxShadow(color: Colors.black.withValues(alpha: 0.1 * 255), blurRadius: 4, offset: const Offset(0, 2)),
+        BoxShadow(
+          color: Colors.black.withValues(alpha: 0.1 * 255),
+          blurRadius: 4,
+          offset: const Offset(0, 2),
+        ),
       ],
     ),
     child: Column(
@@ -409,13 +447,21 @@ Widget _buildProfileCard() {
       color: Colors.white,
       borderRadius: BorderRadius.circular(8),
       boxShadow: [
-        BoxShadow(color: Colors.black.withValues(alpha: 0.1 * 255), blurRadius: 4, offset: const Offset(0, 2)),
+        BoxShadow(
+          color: Colors.black.withValues(alpha: 0.1 * 255),
+          blurRadius: 4,
+          offset: const Offset(0, 2),
+        ),
       ],
     ),
     child: const Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        CircleAvatar(radius: 20, backgroundColor: Colors.blue, child: Icon(Icons.person, color: Colors.white)),
+        CircleAvatar(
+          radius: 20,
+          backgroundColor: Colors.blue,
+          child: Icon(Icons.person, color: Colors.white),
+        ),
         SizedBox(height: 8),
         Text('John Doe', style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold)),
         Text('Expert', style: TextStyle(fontSize: 8, color: Colors.grey)),
@@ -432,7 +478,11 @@ Widget _buildDocumentCard() {
       color: Colors.white,
       borderRadius: BorderRadius.circular(8),
       boxShadow: [
-        BoxShadow(color: Colors.black.withValues(alpha: 0.1 * 255), blurRadius: 4, offset: const Offset(0, 2)),
+        BoxShadow(
+          color: Colors.black.withValues(alpha: 0.1 * 255),
+          blurRadius: 4,
+          offset: const Offset(0, 2),
+        ),
       ],
     ),
     child: const Column(

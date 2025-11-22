@@ -27,7 +27,7 @@ Widget renderBeBadgeWidget(final BuildContext context) {
           // Main customizable example
           Center(
             child: BeBadge(
-              position: .bottomCenter,
+              position: position,
               rounded: rounded,
               offset: Offset(offsetX, offsetY),
               badge: Container(

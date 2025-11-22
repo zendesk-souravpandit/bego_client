@@ -105,18 +105,16 @@ final directories = <_widgetbook.WidgetbookNode>[
             name: 'BeIconTextButton',
             useCase: _widgetbook.WidgetbookUseCase(
               name: 'Icon Text Button',
-              builder:
-                  _uibook_showcases_components_button_showcase
-                      .iconTextButtonShowcase,
+              builder: _uibook_showcases_components_button_showcase
+                  .iconTextButtonShowcase,
             ),
           ),
           _widgetbook.WidgetbookLeafComponent(
             name: 'ElevatedButton',
             useCase: _widgetbook.WidgetbookUseCase(
               name: 'Standard Buttons',
-              builder:
-                  _uibook_showcases_components_button_showcase
-                      .standardButtonsShowcase,
+              builder: _uibook_showcases_components_button_showcase
+                  .standardButtonsShowcase,
             ),
           ),
         ],
@@ -136,9 +134,8 @@ final directories = <_widgetbook.WidgetbookNode>[
             name: 'BeItemSelector',
             useCase: _widgetbook.WidgetbookUseCase(
               name: 'Item Selectors',
-              builder:
-                  _uibook_showcases_components_form_showcase
-                      .itemSelectorsShowcase,
+              builder: _uibook_showcases_components_form_showcase
+                  .itemSelectorsShowcase,
             ),
           ),
         ],
@@ -150,18 +147,16 @@ final directories = <_widgetbook.WidgetbookNode>[
             name: 'BeIcons',
             useCase: _widgetbook.WidgetbookUseCase(
               name: 'Standard Icons Grid',
-              builder:
-                  _uibook_showcases_components_icons_showcase
-                      .standardIconsGridShowcase,
+              builder: _uibook_showcases_components_icons_showcase
+                  .standardIconsGridShowcase,
             ),
           ),
           _widgetbook.WidgetbookLeafComponent(
             name: 'Widget',
             useCase: _widgetbook.WidgetbookUseCase(
               name: 'BeIcons Library',
-              builder:
-                  _uibook_showcases_components_icons_showcase
-                      .beIconsLibraryShowcase,
+              builder: _uibook_showcases_components_icons_showcase
+                  .beIconsLibraryShowcase,
             ),
           ),
         ],
@@ -174,15 +169,13 @@ final directories = <_widgetbook.WidgetbookNode>[
             useCases: [
               _widgetbook.WidgetbookUseCase(
                 name: 'Text Styles',
-                builder:
-                    _uibook_showcases_components_text_showcase
-                        .textStylesShowcase,
+                builder: _uibook_showcases_components_text_showcase
+                    .textStylesShowcase,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Typography System',
-                builder:
-                    _uibook_showcases_components_text_showcase
-                        .typographySystemShowcase,
+                builder: _uibook_showcases_components_text_showcase
+                    .typographySystemShowcase,
               ),
             ],
           ),
@@ -208,9 +201,8 @@ final directories = <_widgetbook.WidgetbookNode>[
             name: 'ColorScheme',
             useCase: _widgetbook.WidgetbookUseCase(
               name: 'Color Scheme',
-              builder:
-                  _uibook_showcases_foundation_theme_showcase
-                      .colorSchemeShowcase,
+              builder: _uibook_showcases_foundation_theme_showcase
+                  .colorSchemeShowcase,
             ),
           ),
         ],
@@ -222,9 +214,8 @@ final directories = <_widgetbook.WidgetbookNode>[
             name: 'BeTappable',
             useCase: _widgetbook.WidgetbookUseCase(
               name: 'Tappable Components',
-              builder:
-                  _uibook_showcases_foundation_theme_showcase
-                      .tappableComponentsShowcase,
+              builder: _uibook_showcases_foundation_theme_showcase
+                  .tappableComponentsShowcase,
             ),
           ),
         ],
@@ -238,18 +229,16 @@ final directories = <_widgetbook.WidgetbookNode>[
         name: 'BeBoxDecoration',
         useCase: _widgetbook.WidgetbookUseCase(
           name: 'BeBoxDecoration',
-          builder:
-              _uibook_decoration_use_case_be_boxdecoration_showcase
-                  .useCaseBeBoxDecorationShowcase,
+          builder: _uibook_decoration_use_case_be_boxdecoration_showcase
+              .useCaseBeBoxDecorationShowcase,
         ),
       ),
       _widgetbook.WidgetbookLeafComponent(
         name: 'BeIconShapeBorder',
         useCase: _widgetbook.WidgetbookUseCase(
           name: 'BeIconShapeBorder Showcase',
-          builder:
-              _uibook_decoration_use_case_be_icon_shape_decoration
-                  .useCaseBeIconShapeBorderShowcase,
+          builder: _uibook_decoration_use_case_be_icon_shape_decoration
+              .useCaseBeIconShapeBorderShowcase,
         ),
       ),
     ],
@@ -296,9 +285,8 @@ final directories = <_widgetbook.WidgetbookNode>[
             name: 'ConnectivityService',
             useCase: _widgetbook.WidgetbookUseCase(
               name: 'ConnectivityService',
-              builder:
-                  _uibook_widgets_loading_use_case_conectivity_service
-                      .useCaseBeSkeleton,
+              builder: _uibook_widgets_loading_use_case_conectivity_service
+                  .useCaseBeSkeleton,
             ),
           ),
         ],
@@ -310,9 +298,8 @@ final directories = <_widgetbook.WidgetbookNode>[
             name: 'OpenContainer',
             useCase: _widgetbook.WidgetbookUseCase(
               name: 'OpenContainer',
-              builder:
-                  _uibook_widgets_animations_use_case_open_container
-                      .useCaseOpenContainer,
+              builder: _uibook_widgets_animations_use_case_open_container
+                  .useCaseOpenContainer,
             ),
           ),
         ],
@@ -324,9 +311,8 @@ final directories = <_widgetbook.WidgetbookNode>[
             name: 'BeDisableWrapper',
             useCase: _widgetbook.WidgetbookUseCase(
               name: 'BeDisableWrapper',
-              builder:
-                  _uibook_widgets_common_use_case_be_disable_wrapper
-                      .useCaseBeDisableWrapper,
+              builder: _uibook_widgets_common_use_case_be_disable_wrapper
+                  .useCaseBeDisableWrapper,
             ),
           ),
         ],
@@ -363,18 +349,16 @@ final directories = <_widgetbook.WidgetbookNode>[
             name: 'BeGridView',
             useCase: _widgetbook.WidgetbookUseCase(
               name: 'BeGridView',
-              builder:
-                  _uibook_widgets_layout_use_case_be_grid_view
-                      .useCaseBeGridView,
+              builder: _uibook_widgets_layout_use_case_be_grid_view
+                  .useCaseBeGridView,
             ),
           ),
           _widgetbook.WidgetbookLeafComponent(
             name: 'BeResponsiveWidget',
             useCase: _widgetbook.WidgetbookUseCase(
               name: 'BeResponsiveWidget',
-              builder:
-                  _uibook_widgets_layout_use_case_be_responsive_widget
-                      .useCaseBeResponsiveWidget,
+              builder: _uibook_widgets_layout_use_case_be_responsive_widget
+                  .useCaseBeResponsiveWidget,
             ),
           ),
         ],
@@ -386,9 +370,8 @@ final directories = <_widgetbook.WidgetbookNode>[
             name: 'BeSkeleton',
             useCase: _widgetbook.WidgetbookUseCase(
               name: 'BeSkeleton',
-              builder:
-                  _uibook_widgets_loading_use_case_be_skeleton
-                      .useCaseBeSkeleton,
+              builder: _uibook_widgets_loading_use_case_be_skeleton
+                  .useCaseBeSkeleton,
             ),
           ),
         ],
@@ -400,9 +383,8 @@ final directories = <_widgetbook.WidgetbookNode>[
             name: 'BeBadge',
             useCase: _widgetbook.WidgetbookUseCase(
               name: 'BeBadge',
-              builder:
-                  _uibook_widgets_multichild_use_case_be_badge
-                      .renderBeBadgeWidget,
+              builder: _uibook_widgets_multichild_use_case_be_badge
+                  .renderBeBadgeWidget,
             ),
           ),
           _widgetbook.WidgetbookLeafComponent(
@@ -417,18 +399,16 @@ final directories = <_widgetbook.WidgetbookNode>[
             name: 'BeContainer',
             useCase: _widgetbook.WidgetbookUseCase(
               name: 'BeContainer',
-              builder:
-                  _uibook_widgets_multichild_use_case_be_container
-                      .useCaseBeContainer,
+              builder: _uibook_widgets_multichild_use_case_be_container
+                  .useCaseBeContainer,
             ),
           ),
           _widgetbook.WidgetbookLeafComponent(
             name: 'BeDrawOver',
             useCase: _widgetbook.WidgetbookUseCase(
               name: 'BeDelayedChild',
-              builder:
-                  _uibook_widgets_multichild_use_case_be_delayed_child
-                      .useCaseBeDelayedChild,
+              builder: _uibook_widgets_multichild_use_case_be_delayed_child
+                  .useCaseBeDelayedChild,
             ),
           ),
           _widgetbook.WidgetbookLeafComponent(
@@ -443,18 +423,16 @@ final directories = <_widgetbook.WidgetbookNode>[
             name: 'BeMultiBadge',
             useCase: _widgetbook.WidgetbookUseCase(
               name: 'BeMultiBadge',
-              builder:
-                  _uibook_widgets_multichild_use_case_be_multi_badge
-                      .useCaseBeMultiBadge,
+              builder: _uibook_widgets_multichild_use_case_be_multi_badge
+                  .useCaseBeMultiBadge,
             ),
           ),
           _widgetbook.WidgetbookLeafComponent(
             name: 'BeMultiLabel',
             useCase: _widgetbook.WidgetbookUseCase(
               name: 'BeMultiLabel',
-              builder:
-                  _uibook_widgets_multichild_use_case_be_multi_label
-                      .useCaseBeMultiLabel,
+              builder: _uibook_widgets_multichild_use_case_be_multi_label
+                  .useCaseBeMultiLabel,
             ),
           ),
           _widgetbook.WidgetbookLeafComponent(
@@ -484,18 +462,16 @@ final directories = <_widgetbook.WidgetbookNode>[
             name: 'BeSizeAware',
             useCase: _widgetbook.WidgetbookUseCase(
               name: 'BeSizeAware',
-              builder:
-                  _uibook_widgets_multichild_use_case_be_size_aware
-                      .useCaseBeSizeAware,
+              builder: _uibook_widgets_multichild_use_case_be_size_aware
+                  .useCaseBeSizeAware,
             ),
           ),
           _widgetbook.WidgetbookLeafComponent(
             name: 'BeTextMore',
             useCase: _widgetbook.WidgetbookUseCase(
               name: 'BeTextMore',
-              builder:
-                  _uibook_widgets_multichild_use_case_be_text_more
-                      .useCaseBeTextMore,
+              builder: _uibook_widgets_multichild_use_case_be_text_more
+                  .useCaseBeTextMore,
             ),
           ),
           _widgetbook.WidgetbookLeafComponent(
@@ -515,9 +491,8 @@ final directories = <_widgetbook.WidgetbookNode>[
             name: 'BeNotificationsProvider',
             useCase: _widgetbook.WidgetbookUseCase(
               name: 'BeNotificationProvider',
-              builder:
-                  _uibook_widgets_overlay_use_case_notification
-                      .useCaseBeNotificationProvider,
+              builder: _uibook_widgets_overlay_use_case_notification
+                  .useCaseBeNotificationProvider,
             ),
           ),
           _widgetbook.WidgetbookComponent(
@@ -525,15 +500,13 @@ final directories = <_widgetbook.WidgetbookNode>[
             useCases: [
               _widgetbook.WidgetbookUseCase(
                 name: 'BePopover',
-                builder:
-                    _uibook_widgets_overlay_use_case_be_popover
-                        .useCaseBePopover,
+                builder: _uibook_widgets_overlay_use_case_be_popover
+                    .useCaseBePopover,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'BePopover - Improved',
-                builder:
-                    _uibook_widgets_overlay_use_case_be_popover_improved
-                        .useCaseBePopoverImproved,
+                builder: _uibook_widgets_overlay_use_case_be_popover_improved
+                    .useCaseBePopoverImproved,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'BePopover UI',
@@ -546,18 +519,16 @@ final directories = <_widgetbook.WidgetbookNode>[
             name: 'Dialog',
             useCase: _widgetbook.WidgetbookUseCase(
               name: 'Responsive Dialog',
-              builder:
-                  _uibook_widgets_overlay_use_case_responsive_dialog
-                      .useCasePopover,
+              builder: _uibook_widgets_overlay_use_case_responsive_dialog
+                  .useCasePopover,
             ),
           ),
           _widgetbook.WidgetbookLeafComponent(
             name: 'Widget',
             useCase: _widgetbook.WidgetbookUseCase(
               name: 'BeResponsiveDialog',
-              builder:
-                  _uibook_widgets_overlay_use_case_be_responsive_dialog
-                      .useCaseBeResponsiveDialog,
+              builder: _uibook_widgets_overlay_use_case_be_responsive_dialog
+                  .useCaseBeResponsiveDialog,
             ),
           ),
         ],
@@ -570,21 +541,18 @@ final directories = <_widgetbook.WidgetbookNode>[
             useCases: [
               _widgetbook.WidgetbookUseCase(
                 name: 'BeColorUtils - Color Harmonization & Blending',
-                builder:
-                    _uibook_widgets_utils_use_case_be_color_utils
-                        .colorHarmonizationUseCase,
+                builder: _uibook_widgets_utils_use_case_be_color_utils
+                    .colorHarmonizationUseCase,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'BeColorUtils - Color Swatch Generation',
-                builder:
-                    _uibook_widgets_utils_use_case_be_color_utils
-                        .colorSwatchUseCase,
+                builder: _uibook_widgets_utils_use_case_be_color_utils
+                    .colorSwatchUseCase,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'BeColorUtils - Random Colors & Utilities',
-                builder:
-                    _uibook_widgets_utils_use_case_be_color_utils
-                        .colorUtilitiesUseCase,
+                builder: _uibook_widgets_utils_use_case_be_color_utils
+                    .colorUtilitiesUseCase,
               ),
             ],
           ),
@@ -592,27 +560,24 @@ final directories = <_widgetbook.WidgetbookNode>[
             name: 'BeResponsiveVisibility',
             useCase: _widgetbook.WidgetbookUseCase(
               name: 'BeResponsiveVisibility',
-              builder:
-                  _uibook_widgets_utils_use_case_be_responsive_visibility
-                      .useCaseBeResponsiveVisibility,
+              builder: _uibook_widgets_utils_use_case_be_responsive_visibility
+                  .useCaseBeResponsiveVisibility,
             ),
           ),
           _widgetbook.WidgetbookLeafComponent(
             name: 'Color',
             useCase: _widgetbook.WidgetbookUseCase(
               name: 'Color Extensions - Blend Methods',
-              builder:
-                  _uibook_widgets_utils_use_case_color_extension
-                      .colorExtensionUseCase,
+              builder: _uibook_widgets_utils_use_case_color_extension
+                  .colorExtensionUseCase,
             ),
           ),
           _widgetbook.WidgetbookLeafComponent(
             name: 'CustomColor',
             useCase: _widgetbook.WidgetbookUseCase(
               name: 'CustomColor - Theme Integration',
-              builder:
-                  _uibook_widgets_utils_use_case_custom_color
-                      .customColorUseCase,
+              builder: _uibook_widgets_utils_use_case_custom_color
+                  .customColorUseCase,
             ),
           ),
         ],

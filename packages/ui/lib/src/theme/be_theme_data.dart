@@ -8,25 +8,14 @@ class BeThemeData extends ThemeExtension<BeThemeData> {
   /// Create theme data that automatically detects screen size
   BeThemeData({required this.colors, final BeBreakpoint? breakpoint})
     : breakpoint = breakpoint ?? BeBreakpoint.md,
-      style =
-          colors.isDark
-              ? BeStyleDark(
-                color: colors,
-                adaptiveStyle: _getResponsiveStyleForBreakpoint(breakpoint ?? BeBreakpoint.md),
-              )
-              : BeStyleLight(
-                color: colors,
-                adaptiveStyle: _getResponsiveStyleForBreakpoint(breakpoint ?? BeBreakpoint.md),
-              );
+      style = colors.isDark
+          ? BeStyleDark(color: colors, adaptiveStyle: _getResponsiveStyleForBreakpoint(breakpoint ?? BeBreakpoint.md))
+          : BeStyleLight(color: colors, adaptiveStyle: _getResponsiveStyleForBreakpoint(breakpoint ?? BeBreakpoint.md));
 
   BeThemeData._internal({required this.breakpoint, required this.colors, final BeAdaptiveStyle? adaptiveStyle})
-    : style =
-          colors.isDark
-              ? BeStyleDark(color: colors, adaptiveStyle: adaptiveStyle ?? _getResponsiveStyleForBreakpoint(breakpoint))
-              : BeStyleLight(
-                color: colors,
-                adaptiveStyle: adaptiveStyle ?? _getResponsiveStyleForBreakpoint(breakpoint),
-              );
+    : style = colors.isDark
+          ? BeStyleDark(color: colors, adaptiveStyle: adaptiveStyle ?? _getResponsiveStyleForBreakpoint(breakpoint))
+          : BeStyleLight(color: colors, adaptiveStyle: adaptiveStyle ?? _getResponsiveStyleForBreakpoint(breakpoint));
 
   final BeBreakpoint breakpoint;
   final BeColor colors;

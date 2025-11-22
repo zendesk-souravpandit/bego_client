@@ -327,7 +327,10 @@ class BeFormBuilderState extends State<BeFormBuilder> {
       onPopInvokedWithResult: widget.onPopInvokedWithResult,
       canPop: widget.canPop,
       // `onChanged` is called during setInternalFieldValue else will be called early
-      child: _BeFormBuilderScope(formState: this, child: FocusTraversalGroup(child: widget.child)),
+      child: _BeFormBuilderScope(
+        formState: this,
+        child: FocusTraversalGroup(child: widget.child),
+      ),
     );
   }
 }

@@ -213,12 +213,10 @@ class _ZoomedFadeInFadeOut extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => DualTransitionBuilder(
     animation: animation,
-    forwardBuilder:
-        (final BuildContext context, final Animation<double> animation, final Widget? child) =>
-            _ZoomedFadeIn(animation: animation, child: child),
-    reverseBuilder:
-        (final BuildContext context, final Animation<double> animation, final Widget? child) =>
-            _FadeOut(animation: animation, child: child),
+    forwardBuilder: (final BuildContext context, final Animation<double> animation, final Widget? child) =>
+        _ZoomedFadeIn(animation: animation, child: child),
+    reverseBuilder: (final BuildContext context, final Animation<double> animation, final Widget? child) =>
+        _FadeOut(animation: animation, child: child),
     child: child,
   );
 }

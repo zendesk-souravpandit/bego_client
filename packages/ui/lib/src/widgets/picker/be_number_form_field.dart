@@ -110,12 +110,11 @@ class _BeNumberPickerState extends State<_BeNumberPicker> {
     final value = _value;
     final int newValue;
     if (value != null) {
-      newValue =
-          value < widget.min + 1
-              ? widget.min
-              : value > widget.max
-              ? widget.max
-              : value - 1;
+      newValue = value < widget.min + 1
+          ? widget.min
+          : value > widget.max
+          ? widget.max
+          : value - 1;
     } else {
       newValue = widget.min;
     }
@@ -126,12 +125,11 @@ class _BeNumberPickerState extends State<_BeNumberPicker> {
     final value = _value;
     final int newValue;
     if (value != null) {
-      newValue =
-          value < widget.min
-              ? widget.min
-              : value > widget.max - 1
-              ? widget.max
-              : value + 1;
+      newValue = value < widget.min
+          ? widget.min
+          : value > widget.max - 1
+          ? widget.max
+          : value + 1;
     } else {
       newValue = widget.min;
     }

@@ -20,7 +20,11 @@ Widget useCaseBeMultiBadge(final BuildContext context) {
           color: _getBadgeColor(index),
           borderRadius: BorderRadius.circular(rounded ? 12 : 4),
           boxShadow: [
-            BoxShadow(color: Colors.black.withValues(alpha: 0.2 * 255), blurRadius: 2, offset: const Offset(0, 1)),
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.2 * 255),
+              blurRadius: 2,
+              offset: const Offset(0, 1),
+            ),
           ],
         ),
         child: _getBadgeContent(index),
@@ -169,7 +173,10 @@ Color _getBadgeColor(final int index) {
 Widget _getBadgeContent(final int index) {
   final contents = [
     const Icon(Icons.star, color: Colors.white, size: 12),
-    const Text('NEW', style: TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold)),
+    const Text(
+      'NEW',
+      style: TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold),
+    ),
     const Icon(Icons.favorite, color: Colors.white, size: 10),
     const Text('HOT', style: TextStyle(color: Colors.white, fontSize: 10)),
     const Icon(Icons.flash_on, color: Colors.white, size: 12),
@@ -204,10 +211,17 @@ Widget _buildBadge(final String text, final Color color, {final bool isCircle = 
       color: color,
       borderRadius: BorderRadius.circular(isCircle ? 12 : 4),
       boxShadow: [
-        BoxShadow(color: Colors.black.withValues(alpha: 0.2 * 255), blurRadius: 2, offset: const Offset(0, 1)),
+        BoxShadow(
+          color: Colors.black.withValues(alpha: 0.2 * 255),
+          blurRadius: 2,
+          offset: const Offset(0, 1),
+        ),
       ],
     ),
-    child: Text(text, style: const TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold)),
+    child: Text(
+      text,
+      style: const TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold),
+    ),
   );
 }
 
@@ -215,7 +229,11 @@ Widget _buildStatusBadge(final Color color) {
   return Container(
     width: 12,
     height: 12,
-    decoration: BoxDecoration(color: color, shape: BoxShape.circle, border: Border.all(color: Colors.white, width: 2)),
+    decoration: BoxDecoration(
+      color: color,
+      shape: BoxShape.circle,
+      border: Border.all(color: Colors.white, width: 2),
+    ),
   );
 }
 
@@ -239,7 +257,11 @@ Widget _buildProductCard() {
       color: Colors.white,
       borderRadius: BorderRadius.circular(8),
       boxShadow: [
-        BoxShadow(color: Colors.black.withValues(alpha: 0.1 * 255), blurRadius: 4, offset: const Offset(0, 2)),
+        BoxShadow(
+          color: Colors.black.withValues(alpha: 0.1 * 255),
+          blurRadius: 4,
+          offset: const Offset(0, 2),
+        ),
       ],
     ),
     child: Column(
@@ -253,7 +275,10 @@ Widget _buildProductCard() {
             child: const Center(child: Icon(Icons.shopping_bag, color: Colors.grey)),
           ),
         ),
-        const Padding(padding: EdgeInsets.all(8.0), child: Text('Product', style: TextStyle(fontSize: 12))),
+        const Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Text('Product', style: TextStyle(fontSize: 12)),
+        ),
       ],
     ),
   );
@@ -295,12 +320,19 @@ Widget _buildDocumentCard() {
       color: Colors.white,
       borderRadius: BorderRadius.circular(8),
       boxShadow: [
-        BoxShadow(color: Colors.black.withValues(alpha: 0.1 * 255), blurRadius: 4, offset: const Offset(0, 2)),
+        BoxShadow(
+          color: Colors.black.withValues(alpha: 0.1 * 255),
+          blurRadius: 4,
+          offset: const Offset(0, 2),
+        ),
       ],
     ),
     child: const Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: [Icon(Icons.description, color: Colors.grey, size: 32), Text('Doc', style: TextStyle(fontSize: 10))],
+      children: [
+        Icon(Icons.description, color: Colors.grey, size: 32),
+        Text('Doc', style: TextStyle(fontSize: 10)),
+      ],
     ),
   );
 }
@@ -329,7 +361,11 @@ Widget _buildChatCard() {
       color: Colors.white,
       borderRadius: BorderRadius.circular(8),
       boxShadow: [
-        BoxShadow(color: Colors.black.withValues(alpha: 0.1 * 255), blurRadius: 4, offset: const Offset(0, 2)),
+        BoxShadow(
+          color: Colors.black.withValues(alpha: 0.1 * 255),
+          blurRadius: 4,
+          offset: const Offset(0, 2),
+        ),
       ],
     ),
     child: const Row(

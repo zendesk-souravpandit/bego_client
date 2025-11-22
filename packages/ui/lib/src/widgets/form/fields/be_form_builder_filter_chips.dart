@@ -50,37 +50,35 @@ class BeFormBuilderFilterChips<T> extends BeFormBuilderFieldDecoration<List<T>> 
                  crossAxisAlignment: crossAxisAlignment,
                  textDirection: textDirection,
                  verticalDirection: verticalDirection,
-                 children:
-                     options.map((final option) {
-                       final isSelected = field.value?.contains(option.value) ?? false;
+                 children: options.map((final option) {
+                   final isSelected = field.value?.contains(option.value) ?? false;
 
-                       return FilterChip(
-                         label: option.child ?? Text('${option.value}'),
-                         selected: isSelected,
-                         onSelected:
-                             state.enabled
-                                 ? (final selected) {
-                                   List<T> currentValue = List<T>.from(field.value ?? []);
+                   return FilterChip(
+                     label: option.child ?? Text('${option.value}'),
+                     selected: isSelected,
+                     onSelected: state.enabled
+                         ? (final selected) {
+                             List<T> currentValue = List<T>.from(field.value ?? []);
 
-                                   if (selected) {
-                                     if (allowMultipleSelection) {
-                                       if (maxChips == null || currentValue.length < maxChips) {
-                                         if (!currentValue.contains(option.value)) {
-                                           currentValue.add(option.value);
-                                         }
-                                       }
-                                     } else {
-                                       currentValue = [option.value];
-                                     }
-                                   } else {
-                                     currentValue.remove(option.value);
+                             if (selected) {
+                               if (allowMultipleSelection) {
+                                 if (maxChips == null || currentValue.length < maxChips) {
+                                   if (!currentValue.contains(option.value)) {
+                                     currentValue.add(option.value);
                                    }
-
-                                   field.didChange(currentValue);
                                  }
-                                 : null,
-                       );
-                     }).toList(),
+                               } else {
+                                 currentValue = [option.value];
+                               }
+                             } else {
+                               currentValue.remove(option.value);
+                             }
+
+                             field.didChange(currentValue);
+                           }
+                         : null,
+                   );
+                 }).toList(),
                ),
              ),
            );

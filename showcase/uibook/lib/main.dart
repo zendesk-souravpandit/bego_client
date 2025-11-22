@@ -10,8 +10,14 @@ void main() {
 }
 
 final themeList = [
-  WidgetbookTheme(name: 'Light', data: BeTheme.buildThemeData(betheme: BeThemeData(colors: const BeColorsLight()))),
-  WidgetbookTheme(name: 'Dark', data: BeTheme.buildThemeData(betheme: BeThemeData(colors: const BeColorsDark()))),
+  WidgetbookTheme(
+    name: 'Light',
+    data: BeTheme.buildThemeData(betheme: BeThemeData(colors: const BeColorsLight())),
+  ),
+  WidgetbookTheme(
+    name: 'Dark',
+    data: BeTheme.buildThemeData(betheme: BeThemeData(colors: const BeColorsDark())),
+  ),
 ];
 
 @widgetbook.App()
@@ -65,7 +71,10 @@ class _OptimizedThemeWrapper extends StatelessWidget {
           // betheme: colors,
           colors: colors,
           child: BeNotificationsProvider(
-            child: Theme(data: themeData, child: Scaffold(body: RepaintBoundary(child: child))),
+            child: Theme(
+              data: themeData,
+              child: Scaffold(body: RepaintBoundary(child: child)),
+            ),
           ),
         );
       },

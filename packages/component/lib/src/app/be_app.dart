@@ -59,9 +59,8 @@ class BeApp extends StatelessWidget {
           supportedLocales: localizationController.locales,
           fallbackLocale: localizationController.locales.first,
           translations: translations,
-          builder:
-              (final context, final child) =>
-                  BeNotificationsProvider(child: Material(child: child)),
+          builder: (final context, final child) =>
+              BeNotificationsProvider(child: Material(child: child)),
           onInit: () {
             final delegate = Get.rootController.rootDelegate;
             delegate.navigatorObservers?.add(GetObserver(null, Get.routing));

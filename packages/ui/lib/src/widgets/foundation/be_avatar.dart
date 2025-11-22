@@ -216,7 +216,10 @@ class _AvatarBuilder {
 
     // Apply hexagon clipping if needed
     if (style == BeAvatarStyle.hexagon) {
-      content = ClipPath(clipper: HexagonClipper(borderRadius: hexRadius), child: content);
+      content = ClipPath(
+        clipper: HexagonClipper(borderRadius: hexRadius),
+        child: content,
+      );
     }
 
     return content;
@@ -227,13 +230,12 @@ class _AvatarBuilder {
       width: avatarSize,
       height: avatarSize,
       decoration: _getContainerDecoration(borderRadius),
-      child:
-          style == BeAvatarStyle.hexagon
-              ? Image(image: image, fit: BoxFit.cover, width: avatarSize, height: avatarSize)
-              : ClipRRect(
-                borderRadius: borderRadius ?? BorderRadius.zero,
-                child: Image(image: image, fit: BoxFit.cover, width: avatarSize, height: avatarSize),
-              ),
+      child: style == BeAvatarStyle.hexagon
+          ? Image(image: image, fit: BoxFit.cover, width: avatarSize, height: avatarSize)
+          : ClipRRect(
+              borderRadius: borderRadius ?? BorderRadius.zero,
+              child: Image(image: image, fit: BoxFit.cover, width: avatarSize, height: avatarSize),
+            ),
     );
   }
 
@@ -248,7 +250,9 @@ class _AvatarBuilder {
       width: avatarSize,
       height: avatarSize,
       decoration: _getContainerDecoration(borderRadius, bgColor),
-      child: Center(child: Text(initials, style: _getTextStyle().copyWith(color: fgColor))),
+      child: Center(
+        child: Text(initials, style: _getTextStyle().copyWith(color: fgColor)),
+      ),
     );
   }
 
@@ -262,10 +266,9 @@ class _AvatarBuilder {
       width: avatarSize,
       height: avatarSize,
       decoration: _getContainerDecoration(borderRadius, bgColor),
-      child:
-          style == BeAvatarStyle.hexagon
-              ? child
-              : ClipRRect(borderRadius: borderRadius ?? BorderRadius.zero, child: child),
+      child: style == BeAvatarStyle.hexagon
+          ? child
+          : ClipRRect(borderRadius: borderRadius ?? BorderRadius.zero, child: child),
     );
   }
 
@@ -288,16 +291,15 @@ class _AvatarBuilder {
       color: color,
       borderRadius: style == BeAvatarStyle.hexagon ? null : borderRadius,
       border: border,
-      boxShadow:
-          elevation > 0
-              ? [
-                BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.1),
-                  blurRadius: elevation * 2,
-                  offset: Offset(0, elevation),
-                ),
-              ]
-              : null,
+      boxShadow: elevation > 0
+          ? [
+              BoxShadow(
+                color: Colors.black.withValues(alpha: 0.1),
+                blurRadius: elevation * 2,
+                offset: Offset(0, elevation),
+              ),
+            ]
+          : null,
     );
   }
 

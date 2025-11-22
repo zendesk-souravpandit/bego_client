@@ -7,8 +7,9 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 Widget colorExtensionUseCase(final BuildContext context) {
   final baseColor = context.knobs.color(label: 'Base Color', initialValue: Colors.blue.shade100);
   final blendColor = context.knobs.color(label: 'Blend Color', initialValue: Colors.red);
-  final blendPercent =
-      context.knobs.double.slider(label: 'Blend Percentage', initialValue: 25, max: 100, min: 0).round();
+  final blendPercent = context.knobs.double
+      .slider(label: 'Blend Percentage', initialValue: 25, max: 100, min: 0)
+      .round();
   final alphaValue = context.knobs.double.slider(label: 'Alpha Value', initialValue: 64, max: 255, min: 0).round();
 
   return Scaffold(
@@ -218,16 +219,15 @@ Widget _buildBlendComparisonDemo(final Color baseColor, final Color blendColor) 
               const Text('Percentage Blending:', style: TextStyle(fontWeight: FontWeight.w500)),
               const SizedBox(height: 8),
               Row(
-                children:
-                    blendPercentages.map((final percent) {
-                      final blendedColor = baseColor.blend(blendColor, percent);
-                      return Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.only(right: 4),
-                          child: _buildSmallColorSwatch('$percent%', blendedColor),
-                        ),
-                      );
-                    }).toList(),
+                children: blendPercentages.map((final percent) {
+                  final blendedColor = baseColor.blend(blendColor, percent);
+                  return Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 4),
+                      child: _buildSmallColorSwatch('$percent%', blendedColor),
+                    ),
+                  );
+                }).toList(),
               ),
             ],
           ),
@@ -241,16 +241,15 @@ Widget _buildBlendComparisonDemo(final Color baseColor, final Color blendColor) 
               const Text('Alpha Blending:', style: TextStyle(fontWeight: FontWeight.w500)),
               const SizedBox(height: 8),
               Row(
-                children:
-                    alphaValues.map((final alpha) {
-                      final blendedColor = baseColor.blendAlpha(blendColor, alpha);
-                      return Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.only(right: 4),
-                          child: _buildSmallColorSwatch('α$alpha', blendedColor),
-                        ),
-                      );
-                    }).toList(),
+                children: alphaValues.map((final alpha) {
+                  final blendedColor = baseColor.blendAlpha(blendColor, alpha);
+                  return Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 4),
+                      child: _buildSmallColorSwatch('α$alpha', blendedColor),
+                    ),
+                  );
+                }).toList(),
               ),
             ],
           ),
@@ -355,15 +354,14 @@ Widget _buildPracticalExample(final String title, final List<(String, Color)> ex
       Text(title, style: const TextStyle(fontWeight: FontWeight.w500)),
       const SizedBox(height: 8),
       Row(
-        children:
-            examples.map((final example) {
-              return Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.only(right: 4),
-                  child: _buildSmallColorSwatch(example.$1, example.$2),
-                ),
-              );
-            }).toList(),
+        children: examples.map((final example) {
+          return Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(right: 4),
+              child: _buildSmallColorSwatch(example.$1, example.$2),
+            ),
+          );
+        }).toList(),
       ),
     ],
   );

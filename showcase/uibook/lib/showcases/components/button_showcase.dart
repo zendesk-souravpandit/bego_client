@@ -230,22 +230,38 @@ class BeIconTextButton extends IconButton {
            BeIconDirection.left => Row(
              mainAxisSize: MainAxisSize.min,
              mainAxisAlignment: MainAxisAlignment.center,
-             children: [buttonIcon, SizedBox(width: space), buttonText],
+             children: [
+               buttonIcon,
+               SizedBox(width: space),
+               buttonText,
+             ],
            ),
            BeIconDirection.right => Row(
              mainAxisSize: MainAxisSize.min,
              mainAxisAlignment: MainAxisAlignment.center,
-             children: [buttonText, SizedBox(width: space), buttonIcon],
+             children: [
+               buttonText,
+               SizedBox(width: space),
+               buttonIcon,
+             ],
            ),
            BeIconDirection.top => Column(
              mainAxisAlignment: MainAxisAlignment.center,
              mainAxisSize: MainAxisSize.min,
-             children: [buttonIcon, SizedBox(height: space), buttonText],
+             children: [
+               buttonIcon,
+               SizedBox(height: space),
+               buttonText,
+             ],
            ),
            BeIconDirection.bottom => Column(
              mainAxisAlignment: MainAxisAlignment.center,
              mainAxisSize: MainAxisSize.min,
-             children: [buttonText, SizedBox(height: space), buttonIcon],
+             children: [
+               buttonText,
+               SizedBox(height: space),
+               buttonIcon,
+             ],
            ),
          },
        );

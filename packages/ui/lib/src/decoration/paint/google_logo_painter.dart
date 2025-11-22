@@ -23,10 +23,9 @@ class GoogleLogoPainter extends CustomPainter {
     final bounds = Offset(0, verticalOffset) & Size.square(length);
     final center = bounds.center;
     final arcThickness = size.width / 4.5;
-    final paint =
-        Paint()
-          ..style = PaintingStyle.stroke
-          ..strokeWidth = arcThickness;
+    final paint = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = arcThickness;
 
     void drawArc(final double startAngle, final double sweepAngle, final Color color) {
       final paint0 = paint..color = color;

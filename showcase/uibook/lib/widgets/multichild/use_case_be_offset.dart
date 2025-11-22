@@ -48,7 +48,9 @@ Widget useCaseBeOffset(final BuildContext context) {
                               border: Border.all(color: Colors.grey),
                               borderRadius: BorderRadius.circular(4),
                             ),
-                            child: const Center(child: Text('REF', style: TextStyle(fontSize: 10, color: Colors.grey))),
+                            child: const Center(
+                              child: Text('REF', style: TextStyle(fontSize: 10, color: Colors.grey)),
+                            ),
                           ),
                         ),
                         // Offset widget
@@ -123,7 +125,9 @@ Widget useCaseBeOffset(final BuildContext context) {
                           borderRadius: BorderRadius.circular(8),
                           border: Border.all(color: Colors.blue.shade200),
                         ),
-                        child: const Center(child: Text('Main Content', style: TextStyle(color: Colors.blue))),
+                        child: const Center(
+                          child: Text('Main Content', style: TextStyle(color: Colors.blue)),
+                        ),
                       ),
                       Positioned(
                         right: 8,
@@ -326,7 +330,9 @@ Widget useCaseBeOffset(final BuildContext context) {
                             gradient: LinearGradient(colors: [Colors.indigo.shade300, Colors.indigo.shade600]),
                             borderRadius: BorderRadius.circular(8),
                           ),
-                          child: const Center(child: Text('Image', style: TextStyle(color: Colors.white))),
+                          child: const Center(
+                            child: Text('Image', style: TextStyle(color: Colors.white)),
+                          ),
                         ),
                         Positioned(
                           bottom: 4,
@@ -403,7 +409,10 @@ Widget _buildExampleCard(final String title, final String subtitle, final Color 
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(title, style: TextStyle(fontWeight: FontWeight.bold, color: color, fontSize: 14)),
+                  Text(
+                    title,
+                    style: TextStyle(fontWeight: FontWeight.bold, color: color, fontSize: 14),
+                  ),
                   Text(subtitle, style: const TextStyle(fontSize: 12, color: Colors.grey)),
                 ],
               ),

@@ -161,10 +161,20 @@ class _ConnectivityServiceUseCaseState extends State<ConnectivityServiceUseCase>
         children: [
           Icon(icon, color: color, size: 20),
           const SizedBox(width: 12),
-          Text('$label: ', style: TextStyle(fontWeight: FontWeight.w500, color: Colors.grey[700])),
-          Text(status, style: TextStyle(fontWeight: FontWeight.bold, color: color)),
+          Text(
+            '$label: ',
+            style: TextStyle(fontWeight: FontWeight.w500, color: Colors.grey[700]),
+          ),
+          Text(
+            status,
+            style: TextStyle(fontWeight: FontWeight.bold, color: color),
+          ),
           const Spacer(),
-          Container(width: 8, height: 8, decoration: BoxDecoration(shape: BoxShape.circle, color: color)),
+          Container(
+            width: 8,
+            height: 8,
+            decoration: BoxDecoration(shape: BoxShape.circle, color: color),
+          ),
         ],
       ),
     );
@@ -199,7 +209,11 @@ class _ConnectivityServiceUseCaseState extends State<ConnectivityServiceUseCase>
                     style: ElevatedButton.styleFrom(backgroundColor: Colors.red, foregroundColor: Colors.white),
                     child: const Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [Icon(Icons.wifi_off, color: Colors.white), SizedBox(width: 8), Text('Force Offline')],
+                      children: [
+                        Icon(Icons.wifi_off, color: Colors.white),
+                        SizedBox(width: 8),
+                        Text('Force Offline'),
+                      ],
                     ),
                   ),
                 ),
@@ -213,7 +227,11 @@ class _ConnectivityServiceUseCaseState extends State<ConnectivityServiceUseCase>
                     style: ElevatedButton.styleFrom(backgroundColor: Colors.green, foregroundColor: Colors.white),
                     child: const Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [Icon(Icons.wifi, color: Colors.white), SizedBox(width: 8), Text('Auto Detect')],
+                      children: [
+                        Icon(Icons.wifi, color: Colors.white),
+                        SizedBox(width: 8),
+                        Text('Auto Detect'),
+                      ],
                     ),
                   ),
                 ),
@@ -327,18 +345,19 @@ class _ConnectivityServiceUseCaseState extends State<ConnectivityServiceUseCase>
                 borderRadius: BorderRadius.circular(8),
                 border: Border.all(color: Colors.grey.shade300),
               ),
-              child:
-                  _logs.isEmpty
-                      ? const Center(child: Text('No activity logs yet...', style: TextStyle(color: Colors.grey)))
-                      : ListView.builder(
-                        itemCount: _logs.length,
-                        itemBuilder: (final context, final index) {
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 2),
-                            child: Text(_logs[index], style: const TextStyle(fontSize: 12, fontFamily: 'monospace')),
-                          );
-                        },
-                      ),
+              child: _logs.isEmpty
+                  ? const Center(
+                      child: Text('No activity logs yet...', style: TextStyle(color: Colors.grey)),
+                    )
+                  : ListView.builder(
+                      itemCount: _logs.length,
+                      itemBuilder: (final context, final index) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 2),
+                          child: Text(_logs[index], style: const TextStyle(fontSize: 12, fontFamily: 'monospace')),
+                        );
+                      },
+                    ),
             ),
           ],
         ),

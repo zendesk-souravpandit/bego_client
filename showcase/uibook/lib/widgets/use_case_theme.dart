@@ -41,14 +41,19 @@ class _ThemeDemoPageState extends State<ThemeDemoPage> with SingleTickerProvider
         actions: [
           IconButton(icon: const Icon(Icons.search), onPressed: () {}),
           PopupMenuButton<String>(
-            itemBuilder:
-                (final context) => [
-                  const PopupMenuItem(value: 'settings', child: Text('Settings')),
-                  const PopupMenuItem(value: 'about', child: Text('About')),
-                ],
+            itemBuilder: (final context) => [
+              const PopupMenuItem(value: 'settings', child: Text('Settings')),
+              const PopupMenuItem(value: 'about', child: Text('About')),
+            ],
           ),
         ],
-        bottom: TabBar(controller: _tabController, tabs: const [Tab(text: 'Tab 1'), Tab(text: 'Tab 2')]),
+        bottom: TabBar(
+          controller: _tabController,
+          tabs: const [
+            Tab(text: 'Tab 1'),
+            Tab(text: 'Tab 2'),
+          ],
+        ),
       ),
       drawer: Drawer(
         child: ListView(
@@ -149,7 +154,11 @@ class _ThemeDemoPageState extends State<ThemeDemoPage> with SingleTickerProvider
   );
 
   Widget _buildProgressIndicators() => const Row(
-    children: [Expanded(child: LinearProgressIndicator(value: 0.5)), SizedBox(width: 16), CircularProgressIndicator()],
+    children: [
+      Expanded(child: LinearProgressIndicator(value: 0.5)),
+      SizedBox(width: 16),
+      CircularProgressIndicator(),
+    ],
   );
 
   Widget _buildChipsSection() => Wrap(
@@ -178,16 +187,14 @@ class _ThemeDemoPageState extends State<ThemeDemoPage> with SingleTickerProvider
   Widget _buildDialogSection() => Column(
     children: [
       ElevatedButton(
-        onPressed:
-            () => showDialog<void>(
-              context: context,
-              builder:
-                  (final context) => AlertDialog(
-                    title: const Text('Dialog Title'),
-                    content: const Text('Dialog content'),
-                    actions: [TextButton(onPressed: () => Navigator.pop(context), child: const Text('Close'))],
-                  ),
-            ),
+        onPressed: () => showDialog<void>(
+          context: context,
+          builder: (final context) => AlertDialog(
+            title: const Text('Dialog Title'),
+            content: const Text('Dialog content'),
+            actions: [TextButton(onPressed: () => Navigator.pop(context), child: const Text('Close'))],
+          ),
+        ),
         child: const Text('Show Dialog'),
       ),
       ElevatedButton(
@@ -239,7 +246,9 @@ class _ThemeDemoPageState extends State<ThemeDemoPage> with SingleTickerProvider
 
   Widget _buildInputsSection() => Column(
     children: [
-      const TextField(decoration: InputDecoration(labelText: 'Text Field', hintText: 'Enter text...')),
+      const TextField(
+        decoration: InputDecoration(labelText: 'Text Field', hintText: 'Enter text...'),
+      ),
       const SizedBox(height: 16),
       const SearchBar(hintText: 'Search...', leading: Icon(Icons.search)),
       const SizedBox(height: 16),
@@ -274,7 +283,10 @@ class _ThemeDemoPageState extends State<ThemeDemoPage> with SingleTickerProvider
     children: [
       const Divider(),
       DataTable(
-        columns: const [DataColumn(label: Text('Name')), DataColumn(label: Text('Age'))],
+        columns: const [
+          DataColumn(label: Text('Name')),
+          DataColumn(label: Text('Age')),
+        ],
         rows: const [
           DataRow(cells: [DataCell(Text('Alice')), DataCell(Text('30'))]),
           DataRow(cells: [DataCell(Text('Bob')), DataCell(Text('25'))]),
@@ -297,12 +309,10 @@ class _ThemeDemoPageState extends State<ThemeDemoPage> with SingleTickerProvider
       const Tooltip(message: 'Sample tooltip', child: Icon(Icons.info_outline)),
       IconButton(
         icon: const Icon(Icons.help),
-        onPressed:
-            () => showModalBottomSheet<void>(
-              context: context,
-              builder:
-                  (final context) => const Padding(padding: EdgeInsets.all(16), child: Text('Bottom Sheet Content')),
-            ),
+        onPressed: () => showModalBottomSheet<void>(
+          context: context,
+          builder: (final context) => const Padding(padding: EdgeInsets.all(16), child: Text('Bottom Sheet Content')),
+        ),
       ),
     ],
   );

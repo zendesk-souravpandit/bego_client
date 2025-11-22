@@ -39,32 +39,31 @@ class BeFormBuilderDateTimePicker extends BeFormBuilderFieldDecoration<DateTime>
                  readOnly: true,
                  controller: TextEditingController(text: field.value?.toString() ?? ''),
                  decoration: const InputDecoration(suffixIcon: Icon(Icons.calendar_today), border: InputBorder.none),
-                 onTap:
-                     state.enabled && !readOnly
-                         ? () async {
-                           DateTime? picked;
-                           if (inputType == InputType.date) {
-                             picked = await showDatePicker(
-                               context: state.context,
-                               initialDate: field.value ?? DateTime.now(),
-                               firstDate: firstDate ?? DateTime(1900),
-                               lastDate: lastDate ?? DateTime(2100),
-                             );
-                           } else if (inputType == InputType.time) {
-                             final time = await showTimePicker(
-                               context: state.context,
-                               initialTime: TimeOfDay.fromDateTime(field.value ?? DateTime.now()),
-                             );
-                             if (time != null) {
-                               final now = DateTime.now();
-                               picked = DateTime(now.year, now.month, now.day, time.hour, time.minute);
-                             }
-                           }
-                           if (picked != null) {
-                             field.didChange(picked);
+                 onTap: state.enabled && !readOnly
+                     ? () async {
+                         DateTime? picked;
+                         if (inputType == InputType.date) {
+                           picked = await showDatePicker(
+                             context: state.context,
+                             initialDate: field.value ?? DateTime.now(),
+                             firstDate: firstDate ?? DateTime(1900),
+                             lastDate: lastDate ?? DateTime(2100),
+                           );
+                         } else if (inputType == InputType.time) {
+                           final time = await showTimePicker(
+                             context: state.context,
+                             initialTime: TimeOfDay.fromDateTime(field.value ?? DateTime.now()),
+                           );
+                           if (time != null) {
+                             final now = DateTime.now();
+                             picked = DateTime(now.year, now.month, now.day, time.hour, time.minute);
                            }
                          }
-                         : null,
+                         if (picked != null) {
+                           field.didChange(picked);
+                         }
+                       }
+                     : null,
                ),
              ),
            );

@@ -206,7 +206,10 @@ Widget _buildBreakpointChip(final String name, final String size, final String d
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(name.toUpperCase(), style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: color)),
+        Text(
+          name.toUpperCase(),
+          style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: color),
+        ),
         Text(size, style: TextStyle(fontSize: 9, color: color.withValues(alpha: 0.8))),
       ],
     ),
@@ -237,13 +240,12 @@ Widget _buildColumnDemo({
           const SizedBox(height: 16),
 
           Container(
-            decoration:
-                showGridLines
-                    ? BoxDecoration(
-                      border: Border.all(color: Colors.grey.shade300, width: 2),
-                      borderRadius: BorderRadius.circular(8),
-                    )
-                    : null,
+            decoration: showGridLines
+                ? BoxDecoration(
+                    border: Border.all(color: Colors.grey.shade300, width: 2),
+                    borderRadius: BorderRadius.circular(8),
+                  )
+                : null,
             child: BeRow(
               spacing: 12,
               runSpacing: 16,
@@ -466,7 +468,10 @@ Widget _buildConfigItem(final String label, final String value, final Color colo
       borderRadius: BorderRadius.circular(4),
       border: Border.all(color: color.withValues(alpha: 0.3)),
     ),
-    child: Text('$label: $value', style: TextStyle(fontSize: 11, color: color, fontWeight: FontWeight.w600)),
+    child: Text(
+      '$label: $value',
+      style: TextStyle(fontSize: 11, color: color, fontWeight: FontWeight.w600),
+    ),
   );
 }
 
@@ -577,7 +582,12 @@ Widget _buildResponsiveColumnCard(
               children: [
                 Icon(Icons.view_column, color: color, size: 20),
                 const SizedBox(width: 8),
-                Expanded(child: Text(title, style: TextStyle(color: color, fontWeight: FontWeight.bold, fontSize: 16))),
+                Expanded(
+                  child: Text(
+                    title,
+                    style: TextStyle(color: color, fontWeight: FontWeight.bold, fontSize: 16),
+                  ),
+                ),
               ],
             ),
             const SizedBox(height: 8),
@@ -613,7 +623,10 @@ Widget _buildColumnCard(final String title, final String subtitle, final Color c
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(title, style: TextStyle(color: color, fontWeight: FontWeight.bold, fontSize: 16)),
+          Text(
+            title,
+            style: TextStyle(color: color, fontWeight: FontWeight.bold, fontSize: 16),
+          ),
           const SizedBox(height: 4),
           Text(subtitle, style: TextStyle(color: color.withValues(alpha: 0.7), fontSize: 12)),
         ],
@@ -640,7 +653,10 @@ Widget _buildShowcaseCard(final String title, final String responsive, final Col
         children: [
           Icon(Icons.devices, color: color, size: 20),
           const SizedBox(height: 8),
-          Text(title, style: TextStyle(color: color, fontWeight: FontWeight.bold, fontSize: 14)),
+          Text(
+            title,
+            style: TextStyle(color: color, fontWeight: FontWeight.bold, fontSize: 14),
+          ),
           const SizedBox(height: 4),
           Text(
             responsive,
@@ -666,7 +682,10 @@ Widget _buildOffsetCard(final String title, final String offsetInfo, final Color
         children: [
           Icon(Icons.format_indent_increase, color: color, size: 24),
           const SizedBox(height: 8),
-          Text(title, style: TextStyle(color: color, fontWeight: FontWeight.bold)),
+          Text(
+            title,
+            style: TextStyle(color: color, fontWeight: FontWeight.bold),
+          ),
           const SizedBox(height: 4),
           Text(offsetInfo, style: TextStyle(color: color.withValues(alpha: 0.7), fontSize: 12)),
         ],
@@ -689,7 +708,10 @@ Widget _buildOrderCard(final String title, final String orderInfo, final Color c
         children: [
           Icon(Icons.reorder, color: color, size: 24),
           const SizedBox(height: 8),
-          Text(title, style: TextStyle(color: color, fontWeight: FontWeight.bold)),
+          Text(
+            title,
+            style: TextStyle(color: color, fontWeight: FontWeight.bold),
+          ),
           const SizedBox(height: 4),
           Text(orderInfo, style: TextStyle(color: color.withValues(alpha: 0.7), fontSize: 12)),
         ],
@@ -721,7 +743,10 @@ Widget _buildRealWorldCard(
             children: [
               Icon(icon, color: color, size: 20),
               const SizedBox(width: 8),
-              Text(title, style: TextStyle(color: color, fontWeight: FontWeight.bold, fontSize: 16)),
+              Text(
+                title,
+                style: TextStyle(color: color, fontWeight: FontWeight.bold, fontSize: 16),
+              ),
             ],
           ),
           const SizedBox(height: 8),

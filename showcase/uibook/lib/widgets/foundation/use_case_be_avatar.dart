@@ -64,10 +64,9 @@ Widget useCaseBeAvatar(final BuildContext context) {
             spacing: 16,
             runSpacing: 16,
             crossAxisAlignment: WrapCrossAlignment.center,
-            children:
-                BeAvatarSize.values
-                    .map((final size) => BeAvatar.initials(initials: _getSizeLabel(size), size: size, style: style))
-                    .toList(),
+            children: BeAvatarSize.values
+                .map((final size) => BeAvatar.initials(initials: _getSizeLabel(size), size: size, style: style))
+                .toList(),
           ),
 
           const SizedBox(height: 24),
@@ -76,17 +75,16 @@ Widget useCaseBeAvatar(final BuildContext context) {
           Wrap(
             spacing: 16,
             runSpacing: 16,
-            children:
-                BeAvatarStyle.values
-                    .map(
-                      (final avatarStyle) => BeAvatar.initials(
-                        initials: _getStyleLabel(avatarStyle),
-                        size: size,
-                        style: avatarStyle,
-                        backgroundColor: _getStyleColor(avatarStyle),
-                      ),
-                    )
-                    .toList(),
+            children: BeAvatarStyle.values
+                .map(
+                  (final avatarStyle) => BeAvatar.initials(
+                    initials: _getStyleLabel(avatarStyle),
+                    size: size,
+                    style: avatarStyle,
+                    backgroundColor: _getStyleColor(avatarStyle),
+                  ),
+                )
+                .toList(),
           ),
 
           const SizedBox(height: 24),
@@ -95,18 +93,17 @@ Widget useCaseBeAvatar(final BuildContext context) {
           Wrap(
             spacing: 16,
             runSpacing: 16,
-            children:
-                BeAvatarStatus.values
-                    .where((final s) => s != BeAvatarStatus.none)
-                    .map(
-                      (final avatarStatus) => BeAvatar.initials(
-                        initials: _getStatusLabel(avatarStatus),
-                        size: size,
-                        style: style,
-                        status: avatarStatus,
-                      ),
-                    )
-                    .toList(),
+            children: BeAvatarStatus.values
+                .where((final s) => s != BeAvatarStatus.none)
+                .map(
+                  (final avatarStatus) => BeAvatar.initials(
+                    initials: _getStatusLabel(avatarStatus),
+                    size: size,
+                    style: style,
+                    status: avatarStatus,
+                  ),
+                )
+                .toList(),
           ),
 
           const SizedBox(height: 24),
