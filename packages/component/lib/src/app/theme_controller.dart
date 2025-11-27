@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 class AppThemeController extends GetxController {
   final themeMode = ThemeMode.light.obs;
   final theme = BeThemeData.light().obs;
-  var breakpoint = BeBreakpoint.md.obs;
+  late final breakpoint = Rx<BeBreakpoint?>(null);
 
   void setBreakpoint(final BeBreakpoint newBreakpoint) {
     if (breakpoint.value != newBreakpoint) {
@@ -22,12 +22,17 @@ class AppThemeController extends GetxController {
   }
 
   void _updateTheme() {
+    // Only update theme if breakpoint has been initialized
+    if (breakpoint.value == null) return;
+
     final colors = themeMode.value == ThemeMode.light
         ? const BeColorsLight()
         : const BeColorsDark();
-    final betheme = BeThemeData(colors: colors, breakpoint: breakpoint.value);
+    final betheme = BeThemeData(colors: colors, breakpoint: breakpoint.value!);
     theme.value = BeTheme.buildThemeData(betheme: betheme);
-    Get.changeTheme(theme.value);
+
+    // Schedule theme change for next frame to ensure GetX MaterialApp is ready
+    WidgetsBinding.instance.addPostFrameCallback((_) => Get.changeTheme(theme.value));
   }
 
   @override
