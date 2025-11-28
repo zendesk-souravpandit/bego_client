@@ -6,7 +6,6 @@ import 'package:becore/getx.dart';
 import 'package:beui/mulitchild.dart';
 import 'package:beui/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:playground/conectivity/conectivity_demo_widget.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -130,27 +129,26 @@ class DashboardView extends StatelessWidget {
       appBar: AppBar(title: const Text('Dashboard')),
       body: ListView(
         children: [
-          const ConnectivityShowcaseWidget(),
-          const SizedBox(height: 20),
-          const Text('Dashboard View is working', style: TextStyle(fontSize: 20)),
-          // const GoogleLogoWidget(size: 32),
-          const SizedBox(height: 20),
-          const Center(child: Text('Dashboard Content')),
-          const SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: () {
-              Get.find<BeAppController>().pushDrawerWidget<void>(const Text('New Drawer Page'));
-              // Get.find<BeAppController>().pushAppBar<void>(const Text('New AppBar Page'));
-            },
-            child: const Text('Change App Button'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Get.find<BeAppController>().popAppBar<void>();
-            },
-            child: const Text('Pop AppBar Page'),
-          ),
-
+          // const ConnectivityShowcaseWidget(),
+          // const SizedBox(height: 20),
+          // const Text('Dashboard View is working', style: TextStyle(fontSize: 20)),
+          // // const GoogleLogoWidget(size: 32),
+          // const SizedBox(height: 20),
+          // const Center(child: Text('Dashboard Content')),
+          // const SizedBox(height: 20),
+          // ElevatedButton(
+          //   onPressed: () {
+          //     Get.find<BeAppController>().pushDrawerWidget<void>(const Text('New Drawer Page'));
+          //     // Get.find<BeAppController>().pushAppBar<void>(const Text('New AppBar Page'));
+          //   },
+          //   child: const Text('Change App Button'),
+          // ),
+          // ElevatedButton(
+          //   onPressed: () {
+          //     Get.find<BeAppController>().popAppBar<void>();
+          //   },
+          //   child: const Text('Pop AppBar Page'),
+          // ),
           ElevatedButton(
             onPressed: () {
               Get.find<BeAppController>().pushDrawer<void>('/custom-drawer');
@@ -159,26 +157,26 @@ class DashboardView extends StatelessWidget {
             },
             child: const Text('Change Drawer Button'),
           ),
-          ElevatedButton(
-            onPressed: () {
-              Get.find<BeAppController>().popDrawer<void>(routeNameUntil: '/');
-            },
-            child: const Text('Pop Drawer Page'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              // Get.find<BeAppController>().pushRightPanel<void>(const Text('New Right Panel Page'));
-            },
-            child: const Text('Change Right Panel Button'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              // Get.find<BeAppController>().popRightPanel<void>();
-              // Get.find<BeAppController>().panelOrder.value = [PanelType.drawer, PanelType.right, PanelType.main];
-              Get.find<BeAppController>().movePanel(BePanelType.side, 1);
-            },
-            child: const Text('Pop Right Panel Page'),
-          ),
+          // ElevatedButton(
+          //   onPressed: () {
+          //     Get.find<BeAppController>().popDrawer<void>(routeNameUntil: '/');
+          //   },
+          //   child: const Text('Pop Drawer Page'),
+          // ),
+          // ElevatedButton(
+          //   onPressed: () {
+          //     // Get.find<BeAppController>().pushRightPanel<void>(const Text('New Right Panel Page'));
+          //   },
+          //   child: const Text('Change Right Panel Button'),
+          // ),
+          // ElevatedButton(
+          //   onPressed: () {
+          //     // Get.find<BeAppController>().popRightPanel<void>();
+          //     // Get.find<BeAppController>().panelOrder.value = [PanelType.drawer, PanelType.right, PanelType.main];
+          //     Get.find<BeAppController>().movePanel(BePanelType.side, 1);
+          //   },
+          //   child: const Text('Pop Right Panel Page'),
+          // ),
         ],
       ),
     );

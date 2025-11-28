@@ -28,9 +28,21 @@ class SidePanelContent<T> extends StateWidget<T> {
   final BeAppController controller;
 
   final RouteFactory? sidePanelRouteFactory;
+
   @override
   Widget build(final BuildContext context) {
     final BeBreakpoint breakpoint = BeTheme.of(context).breakpoint;
+
+    // If no sidePanelRouteFactory is provided, show empty container
+    if (sidePanelRouteFactory == null) {
+      return Obx(
+        () => Container(
+          width: controller.sidePanelWidth.value.getWidth(breakpoint),
+          decoration: const BoxDecoration(color: BeColors.gray100),
+        ),
+      );
+    }
+
     return Obx(
       () => Container(
         width: controller.sidePanelWidth.value.getWidth(breakpoint),
