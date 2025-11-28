@@ -28,9 +28,22 @@ class DrawerNavigationWidget<T> extends StateWidget<T> {
 
   final RouteFactory? drawerRouteFactory;
   final BeAppController controller;
+
   @override
   Widget build(final BuildContext context) {
     final BeBreakpoint breakpoint = BeTheme.of(context).breakpoint;
+
+    // If no drawerRouteFactory is provided, show empty container
+    if (drawerRouteFactory == null) {
+      return Obx(
+        () => Container(
+          width: controller.navbarPanelWidth.value.getWidth(breakpoint),
+          height: heightInfinity,
+          decoration: const BoxDecoration(color: BeColors.gray100),
+        ),
+      );
+    }
+
     final navigation = Navigator(
       key: controller.drawerNavigatorKey,
       initialRoute: controller.drawerRouteName.value,
