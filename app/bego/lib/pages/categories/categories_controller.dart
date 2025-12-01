@@ -5,7 +5,7 @@ import 'package:becore/getx.dart';
 class CategoriesController extends BePageController<CategoriesState> {
   final String category;
 
-  CategoriesController(this.category);
+  CategoriesController([this.category = 'hello']);
 
   @override
   void onInit() {

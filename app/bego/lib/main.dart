@@ -1,15 +1,17 @@
-import 'package:bego/pages/auth/login/login_controller.dart';
+import 'package:bego/pages/auth/auth_middleware.dart';
+import 'package:bego/pages/auth/login/login_binding.dart';
 import 'package:bego/pages/auth/login/login_page.dart';
-import 'package:bego/pages/auth/signup/signup_controller.dart';
+import 'package:bego/pages/auth/signup/signup_binding.dart';
 import 'package:bego/pages/auth/signup/signup_page.dart';
-import 'package:bego/pages/cart/cart_controller.dart';
+import 'package:bego/pages/cart/cart_binding.dart';
 import 'package:bego/pages/cart/cart_page.dart';
+import 'package:bego/pages/categories/categories_binding.dart';
 import 'package:bego/pages/categories/categories_page.dart';
-import 'package:bego/pages/home/home_controller.dart';
+import 'package:bego/pages/home/home_binding.dart';
 import 'package:bego/pages/home/home_page.dart';
-import 'package:bego/pages/onboarding/onboarding_controller.dart';
+import 'package:bego/pages/onboarding/onboarding_binding.dart';
 import 'package:bego/pages/onboarding/onboarding_page.dart';
-import 'package:bego/pages/profile/profile_controller.dart';
+import 'package:bego/pages/profile/profile_binding.dart';
 import 'package:bego/pages/profile/profile_page.dart';
 import 'package:becomponent/app.dart';
 import 'package:becomponent/services.dart';
@@ -24,24 +26,28 @@ void main() async {
 }
 
 class BegoAppDelegate extends BeAppRouteDelegate {
+  // @override
+  // RouteInformation get initialRouteInfo =>
+  //     RouteInformation(uri: Uri.parse('/login'));
+
   @override
   final List<GetPage<dynamic>> routes = [
     // Auth routes
-    GetPage(name: '/login', page: () => LoginPage(), binding: _LoginBinding()),
+    GetPage(name: '/login', page: () => LoginPage(), binding: LoginBinding()),
     GetPage(
       name: '/signup',
       page: () => SignupPage(),
-      binding: _SignupBinding(),
+      binding: SignupBinding(),
     ),
     GetPage(
       name: '/onboarding',
       page: () => OnboardingPage(),
-      binding: _OnboardingBinding(),
+      binding: OnboardingBinding(),
     ),
   ];
 
   @override
-  List<GetMiddleware> mainMiddlewares = [_AuthMiddleware()];
+  List<GetMiddleware> mainMiddlewares = [AuthMiddleware()];
 
   @override
   List<BeMainPage<dynamic>> get mainRoutes => [
@@ -50,15 +56,23 @@ class BegoAppDelegate extends BeAppRouteDelegate {
       name: '/home',
       page: HomePage.new,
       title: 'Home',
-      binding: _HomeBinding(),
+      binding: HomeBinding(),
     ),
 
-    // Browse categories
+    // Browse categories with nested routes for specific categories
     BeMainPage(
-      name: '/browse',
+      name: '/products',
       page: () => CategoriesPage(category: 'Decoration'),
       title: 'Browse',
-      binding: _BrowseBinding(),
+      binding: CategoriesBinding(),
+      children: [
+        BeMainPage(
+          name: '/:categoryId',
+          page: () => CategoriesPage(category: 'Decoration'),
+          title: 'Category Details',
+          binding: CategoriesBinding(),
+        ),
+      ],
     ),
 
     // Cart
@@ -66,7 +80,7 @@ class BegoAppDelegate extends BeAppRouteDelegate {
       name: '/cart',
       page: CartPage.new,
       title: 'Cart',
-      binding: _CartBinding(),
+      binding: CartBinding(),
     ),
 
     // Profile - User profile page
@@ -74,7 +88,7 @@ class BegoAppDelegate extends BeAppRouteDelegate {
       name: '/profile',
       page: ProfilePage.new,
       title: 'Profile',
-      binding: _ProfileBinding(),
+      binding: ProfileBinding(),
     ),
   ];
 
@@ -123,71 +137,6 @@ class BegoAppDelegate extends BeAppRouteDelegate {
   };
 }
 
-class _AuthMiddleware extends GetMiddleware {
-  _AuthMiddleware();
-
-  bool isLoggedIn = true; // Replace with actual login check logic
-
-  @override
-  RouteDecoder redirectDelegate(final RouteDecoder? route) {
-    if (!isLoggedIn &&
-        route?.route?.name != '/login' &&
-        route?.route?.name != '/signup') {
-      return RouteDecoder.fromRoute('/login');
-    }
-    return RouteDecoder.fromRoute(route?.route?.name ?? '/home');
-  }
-}
-
-// Bindings
-class _HomeBinding extends Binding {
-  @override
-  List<Bind<dynamic>> dependencies() => [
-    Bind.lazyPut<HomeController>(HomeController.new),
-  ];
-}
-
-class _BrowseBinding extends Binding {
-  @override
-  List<Bind<dynamic>> dependencies() => [];
-}
-
-class _OnboardingBinding extends Binding {
-  @override
-  List<Bind<dynamic>> dependencies() => [
-    Bind.lazyPut<OnboardingController>(OnboardingController.new),
-  ];
-}
-
-class _LoginBinding extends Binding {
-  @override
-  List<Bind<dynamic>> dependencies() => [
-    Bind.lazyPut<LoginController>(LoginController.new),
-  ];
-}
-
-class _SignupBinding extends Binding {
-  @override
-  List<Bind<dynamic>> dependencies() => [
-    Bind.lazyPut<SignupController>(SignupController.new),
-  ];
-}
-
-class _CartBinding extends Binding {
-  @override
-  List<Bind<dynamic>> dependencies() => [
-    Bind.lazyPut<CartController>(CartController.new),
-  ];
-}
-
-class _ProfileBinding extends Binding {
-  @override
-  List<Bind<dynamic>> dependencies() => [
-    Bind.lazyPut<ProfileController>(ProfileController.new),
-  ];
-}
-
-// Drawer Menu Widget
 class _DrawerMenu extends StatelessWidget {
   const _DrawerMenu();
 
@@ -224,32 +173,28 @@ class _DrawerMenu extends StatelessWidget {
             leading: const Icon(Icons.home),
             title: const Text('Home'),
             onTap: () {
-              Get.toNamed('/home');
-              Navigator.pop(context);
+              Get.toNamed('/app/home');
             },
           ),
           ListTile(
             leading: const Icon(Icons.category),
             title: const Text('Browse Services'),
             onTap: () {
-              Get.toNamed('/browse');
-              Navigator.pop(context);
+              Get.toNamed('/app/products');
             },
           ),
           ListTile(
             leading: const Icon(Icons.shopping_cart),
             title: const Text('Cart'),
             onTap: () {
-              Get.toNamed('/cart');
-              Navigator.pop(context);
+              Get.toNamed('/app/cart');
             },
           ),
           ListTile(
             leading: const Icon(Icons.person),
             title: const Text('Profile'),
             onTap: () {
-              Get.toNamed('/profile');
-              Navigator.pop(context);
+              Get.toNamed('/app/profile');
             },
           ),
           const Divider(),

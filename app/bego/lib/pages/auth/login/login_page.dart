@@ -1,8 +1,7 @@
 import 'package:bego/constants/strings.dart';
 import 'package:bego/pages/auth/login/login_state.dart';
 import 'package:bego/pages/auth/login/login_controller.dart';
-import 'package:becomponent/src/page/be_page.dart';
-import 'package:becomponent/src/page/be_page_status_resolver.dart';
+import 'package:becomponent/page.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends BePage<LoginState, LoginController> {

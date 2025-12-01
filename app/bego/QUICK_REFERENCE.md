@@ -78,8 +78,7 @@ class PageNameController extends BePageController<PageNameState> {
 ```dart
 import 'package:bego/pages/pagename/*_state.dart';
 import 'package:bego/pages/pagename/*_controller.dart';
-import 'package:becomponent/src/page/be_page.dart';
-import 'package:becomponent/src/page/be_page_status_resolver.dart';
+import 'package:becomponent/page.dart';
 import 'package:flutter/material.dart';
 
 class PageNamePage extends BePage<PageNameState, PageNameController> {

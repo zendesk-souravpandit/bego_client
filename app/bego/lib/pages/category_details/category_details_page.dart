@@ -1,8 +1,7 @@
 import 'package:bego/constants/strings.dart';
 import 'package:bego/pages/category_details/category_details_state.dart';
 import 'package:bego/pages/category_details/category_details_controller.dart';
-import 'package:becomponent/src/page/be_page.dart';
-import 'package:becomponent/src/page/be_page_status_resolver.dart';
+import 'package:becomponent/page.dart';
 import 'package:flutter/material.dart';
 
 class CategoryDetailsPage
