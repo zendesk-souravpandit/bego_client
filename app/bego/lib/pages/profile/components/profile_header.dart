@@ -30,38 +30,32 @@ class ProfileHeader extends StatelessWidget {
         const SizedBox(height: 24),
         Text(
           'Name',
-          style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: Colors.grey,
-              ),
+          style: Theme.of(
+            context,
+          ).textTheme.bodySmall?.copyWith(color: Colors.grey),
         ),
         Text(
           name,
-          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
+          style: Theme.of(
+            context,
+          ).textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 16),
         Text(
           'Email',
-          style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: Colors.grey,
-              ),
+          style: Theme.of(
+            context,
+          ).textTheme.bodySmall?.copyWith(color: Colors.grey),
         ),
-        Text(
-          email,
-          style: Theme.of(context).textTheme.bodyMedium,
-        ),
+        Text(email, style: Theme.of(context).textTheme.bodyMedium),
         const SizedBox(height: 16),
         Text(
           'Phone',
-          style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: Colors.grey,
-              ),
+          style: Theme.of(
+            context,
+          ).textTheme.bodySmall?.copyWith(color: Colors.grey),
         ),
-        Text(
-          phone,
-          style: Theme.of(context).textTheme.bodyMedium,
-        ),
+        Text(phone, style: Theme.of(context).textTheme.bodyMedium),
       ],
     );
   }

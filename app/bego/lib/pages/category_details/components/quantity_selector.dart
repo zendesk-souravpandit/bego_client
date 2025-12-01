@@ -22,10 +22,7 @@ class QuantitySelector extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          IconButton(
-            onPressed: onDecrement,
-            icon: const Icon(Icons.remove),
-          ),
+          IconButton(onPressed: onDecrement, icon: const Icon(Icons.remove)),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Text(
@@ -33,10 +30,7 @@ class QuantitySelector extends StatelessWidget {
               style: Theme.of(context).textTheme.bodyLarge,
             ),
           ),
-          IconButton(
-            onPressed: onIncrement,
-            icon: const Icon(Icons.add),
-          ),
+          IconButton(onPressed: onIncrement, icon: const Icon(Icons.add)),
         ],
       ),
     );

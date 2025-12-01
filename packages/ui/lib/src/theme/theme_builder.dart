@@ -4,7 +4,7 @@ import 'package:beui/src/decoration/be_edge_insets.dart';
 import 'package:beui/src/decoration/be_round_rectangle_border.dart';
 import 'package:beui/src/extensions/be_double_ext.dart';
 import 'package:beui/theme.dart';
-import 'package:beui/ui.dart';
+import 'package:beui/utils.dart';
 import 'package:flutter/material.dart';
 
 ThemeData buildTheme({required final BeThemeData betheme, final bool useMaterial3 = true}) {

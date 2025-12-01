@@ -1,6 +1,9 @@
+import 'dart:ui';
+
 import 'package:becore/getx.dart';
 import 'package:beui/be_icons.dart';
 import 'package:beui/text.dart';
+import 'package:beui/ui.dart';
 import 'package:flutter/material.dart';
 
 class MainDrawerNavigator extends StatefulWidget {
@@ -18,7 +21,7 @@ class _MainDrawerNavigatorState extends State<MainDrawerNavigator> {
     return Stack(
       children: [
         // Main scrollable content
-        ListView(
+        HiddenScrollList(
           padding: const EdgeInsets.only(top: 80, bottom: 80),
           children: [
             // Project label
@@ -318,5 +321,25 @@ class _DocumentationItem extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+// -------
+class NoThumbScrollBehavior extends ScrollBehavior {
+  @override
+  Set<PointerDeviceKind> get dragDevices => {
+    PointerDeviceKind.touch,
+    PointerDeviceKind.mouse,
+    PointerDeviceKind.stylus,
+    PointerDeviceKind.trackpad,
+  };
+
+  @override
+  Widget buildScrollbar(
+    BuildContext context,
+    Widget child,
+    ScrollableDetails details,
+  ) {
+    return child; // Return the child directly, effectively hiding the scrollbar
   }
 }
