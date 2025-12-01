@@ -1,5 +1,5 @@
+import 'package:becomponent/page.dart';
 import 'package:bego/pages/auth/signup/signup_state.dart';
-import 'package:becomponent/src/page/be_page_controller.dart';
 import 'package:becore/getx.dart';
 import 'package:flutter/foundation.dart' show debugPrint;
 

@@ -21,11 +21,9 @@ class CheckoutStep extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
       decoration: BoxDecoration(
-        border: Border.all(
-          color: isActive ? Colors.blue : Colors.grey[300]!,
-        ),
+        border: Border.all(color: isActive ? Colors.blue : Colors.grey[300]!),
         borderRadius: BorderRadius.circular(8),
-        color: isActive ? Colors.blue.withOpacity(0.1) : Colors.grey[50],
+        color: isActive ? Colors.blue.withValues(alpha: 0.1) : Colors.grey[50],
       ),
       child: Row(
         children: [
@@ -34,14 +32,19 @@ class CheckoutStep extends StatelessWidget {
             height: 32,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: isCompleted ? Colors.green : (isActive ? Colors.blue : Colors.grey),
+              color: isCompleted
+                  ? Colors.green
+                  : (isActive ? Colors.blue : Colors.grey),
             ),
             child: Center(
               child: isCompleted
                   ? const Icon(Icons.check, color: Colors.white, size: 16)
                   : Text(
                       '$stepNumber',
-                      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
             ),
           ),
@@ -52,15 +55,12 @@ class CheckoutStep extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 4),
-                Text(
-                  subtitle,
-                  style: Theme.of(context).textTheme.bodySmall,
-                ),
+                Text(subtitle, style: Theme.of(context).textTheme.bodySmall),
               ],
             ),
           ),

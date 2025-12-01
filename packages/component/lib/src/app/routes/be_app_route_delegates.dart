@@ -56,7 +56,7 @@ abstract class BeAppRouteDelegate {
     final BeDrawerPanel drawerPanel,
     final BeMainContentPanel mainPanel,
     final BeSidePanel sidePanel,
-    final BeAppBarPanel appBarPanel,
+    final BeAppBarPanel? appBarPanel,
   ) {
     return GetDelegate(
       pages: [

@@ -55,7 +55,7 @@ class PageNameState with _$PageNameState {
 
 ```dart
 import 'package:bego/pages/pagename/*_state.dart';
-import 'package:becomponent/src/page/be_page_controller.dart';
+import 'package:becomponent/page.dart';
 import 'package:becore/getx.dart';
 
 class PageNameController extends BePageController<PageNameState> {
@@ -385,7 +385,7 @@ flutter analyze
 ```dart
 import 'package:becore/getx.dart';
 import 'package:becomponent/src/page/be_page.dart';
-import 'package:becomponent/src/page/be_page_controller.dart';
+import 'package:becomponent/page.dart';
 import 'package:becomponent/src/page/be_page_status_resolver.dart';
 ```
 

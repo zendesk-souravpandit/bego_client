@@ -18,6 +18,14 @@ class NavbarPanelWidth {
     this.xl2 = 360.0,
   });
 
+  const NavbarPanelWidth.all(final double width)
+    : xs = width,
+      sm = width,
+      md = width,
+      lg = width,
+      xl = width,
+      xl2 = width;
+
   final double xs;
   final double sm;
   final double md;

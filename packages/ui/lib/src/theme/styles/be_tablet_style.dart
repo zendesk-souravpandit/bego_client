@@ -5,74 +5,74 @@ class BeTabletValue implements BeAdaptiveStyle {
   const BeTabletValue();
   // Display styles - Tablet optimized scaling
   @override
-  double get displayLargeTextSize => 56; // Larger than mobile, smaller than desktop
+  double get displayLargeTextSize => 34; // +2 from mobile
   @override
-  double get displayLargeLineHeight => 64; // 1.143 ratio
+  double get displayLargeLineHeight => 51; // 1.5 ratio
   @override
-  double get displayMediumTextSize => 42;
+  double get displayMediumTextSize => 30;
   @override
-  double get displayMediumLineHeight => 48; // 1.143 ratio
+  double get displayMediumLineHeight => 45; // 1.5 ratio
   @override
-  double get displaySmallTextSize => 35;
+  double get displaySmallTextSize => 26;
   @override
-  double get displaySmallLineHeight => 40; // 1.143 ratio
+  double get displaySmallLineHeight => 39; // 1.5 ratio
 
   // Headline styles - Tablet optimized readability
   @override
-  double get headlineLargeTextSize => 28;
+  double get headlineLargeTextSize => 22; // +2 from mobile
   @override
-  double get headlineLargeLineHeight => 34; // 1.214 ratio
+  double get headlineLargeLineHeight => 33; // 1.5 ratio
   @override
-  double get headlineMediumTextSize => 24;
+  double get headlineMediumTextSize => 20;
   @override
-  double get headlineMediumLineHeight => 30; // 1.25 ratio
+  double get headlineMediumLineHeight => 30; // 1.5 ratio
   @override
-  double get headlineSmallTextSize => 20;
+  double get headlineSmallTextSize => 18;
   @override
-  double get headlineSmallLineHeight => 26; // 1.3 ratio
+  double get headlineSmallLineHeight => 27; // 1.5 ratio
 
   // Title
   @override
-  double get titleLargeTextSize => 24; // +4 from mobile
+  double get titleLargeTextSize => 20; // +2 from mobile
   @override
-  double get titleLargeLineHeight => 32; // 24 * 1.333
+  double get titleLargeLineHeight => 30; // 1.5 ratio
   @override
-  double get titleMediumTextSize => 18; // +2 from mobile
+  double get titleMediumTextSize => 17; // +1 from mobile
   @override
-  double get titleMediumLineHeight => 24; // 18 * 1.333
+  double get titleMediumLineHeight => 25; // 1.5 ratio (rounded from 25.5)
   @override
-  double get titleSmallTextSize => 16; // +2 from mobile
+  double get titleSmallTextSize => 15; // +1 from mobile
   @override
-  double get titleSmallLineHeight => 21.33; // 16 * 1.333
+  double get titleSmallLineHeight => 23; // 1.5 ratio (rounded from 22.5)
 
   // Body
   // Body text - Enhanced readability for tablet
   @override
-  double get bodyLargeTextSize => 18;
+  double get bodyLargeTextSize => 17; // +1 from mobile
   @override
-  double get bodyLargeLineHeight => 28; // 1.556 ratio for comfortable reading
+  double get bodyLargeLineHeight => 25; // 1.5 ratio (rounded from 25.5)
   @override
-  double get bodyMediumTextSize => 16;
+  double get bodyMediumTextSize => 15; // +1 from mobile
   @override
-  double get bodyMediumLineHeight => 26; // 1.625 ratio
+  double get bodyMediumLineHeight => 23; // 1.5 ratio (rounded from 22.5)
   @override
-  double get bodySmallTextSize => 14;
+  double get bodySmallTextSize => 14; // +2 from mobile
   @override
-  double get bodySmallLineHeight => 22; // 1.571 ratio
+  double get bodySmallLineHeight => 21; // 1.5 ratio
 
   // Label
   @override
-  double get labelLargeTextSize => 16; // +2 from mobile
+  double get labelLargeTextSize => 15; // +1 from mobile
   @override
-  double get labelLargeLineHeight => 24; // 16 * 1.5
+  double get labelLargeLineHeight => 23; // 1.5 ratio (rounded from 22.5)
   @override
-  double get labelMediumTextSize => 14; // +2 from mobile
+  double get labelMediumTextSize => 13; // +1 from mobile
   @override
-  double get labelMediumLineHeight => 21; // 14 * 1.5
+  double get labelMediumLineHeight => 20; // 1.5 ratio (rounded from 19.5)
   @override
   double get labelSmallTextSize => 12; // +2 from mobile
   @override
-  double get labelSmallLineHeight => 18; // 12 * 1.5
+  double get labelSmallLineHeight => 18; // 1.5 ratio
 
   // Form-specific sizing - Tablet optimizations (Design System Typography Tokens)
   @override

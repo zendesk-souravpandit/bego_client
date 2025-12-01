@@ -229,32 +229,24 @@ class CartPage extends BePage<CartState, CartController> {
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 16),
-        ListTile(
-          title: const Text(AppStrings.creditCard),
-          leading: Radio<String>(
-            value: 'credit_card',
-            groupValue: controller.state.paymentMethod ?? 'credit_card',
-            onChanged: (final value) =>
-                controller.updatePaymentMethod(value ?? 'credit_card'),
-          ),
-        ),
-        ListTile(
-          title: const Text(AppStrings.debitCard),
-          leading: Radio<String>(
-            value: 'debit_card',
-            groupValue: controller.state.paymentMethod ?? 'credit_card',
-            onChanged: (final value) =>
-                controller.updatePaymentMethod(value ?? 'debit_card'),
-          ),
-        ),
-        ListTile(
-          title: const Text(AppStrings.upi),
-          leading: Radio<String>(
-            value: 'upi',
-            groupValue: controller.state.paymentMethod ?? 'credit_card',
-            onChanged: (final value) =>
-                controller.updatePaymentMethod(value ?? 'upi'),
-          ),
+        SegmentedButton<String>(
+          segments: const [
+            ButtonSegment(
+              value: 'credit_card',
+              label: Text(AppStrings.creditCard),
+            ),
+            ButtonSegment(
+              value: 'debit_card',
+              label: Text(AppStrings.debitCard),
+            ),
+            ButtonSegment(value: 'upi', label: Text(AppStrings.upi)),
+          ],
+          selected: {controller.state.paymentMethod ?? 'credit_card'},
+          onSelectionChanged: (final selected) {
+            if (selected.isNotEmpty) {
+              controller.updatePaymentMethod(selected.first);
+            }
+          },
         ),
       ],
     );

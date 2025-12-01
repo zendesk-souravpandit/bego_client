@@ -1,6 +1,6 @@
+import 'package:becomponent/page.dart';
 import 'package:becomponent/src/app/panel/panel_constants.dart';
 import 'package:becomponent/src/app/routes/be_app_route_delegates.dart';
-import 'package:becomponent/src/page/be_page_controller.dart';
 import 'package:becore/getx.dart';
 import 'package:flutter/material.dart';
 

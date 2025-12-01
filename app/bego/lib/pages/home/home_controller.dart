@@ -1,5 +1,5 @@
 import 'package:bego/pages/home/home_state.dart';
-import 'package:becomponent/src/page/be_page_controller.dart';
+import 'package:becomponent/page.dart';
 import 'package:becore/getx.dart';
 
 class HomeController extends BePageController<HomeState> {
@@ -20,14 +20,14 @@ class HomeController extends BePageController<HomeState> {
   }
 
   void selectCategory(final String category) {
-    Get.toNamed<void>('/categories/$category');
+    Get.toNamed<void>('/app/category/$category');
   }
 
   void goToCart() {
-    Get.toNamed<void>('/cart');
+    Get.toNamed<void>('/app/cart');
   }
 
   void goToProfile() {
-    Get.toNamed<void>('/profile');
+    Get.toNamed<void>('/app/profile');
   }
 }

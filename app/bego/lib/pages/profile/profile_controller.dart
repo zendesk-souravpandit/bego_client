@@ -1,5 +1,5 @@
 import 'package:bego/pages/profile/profile_state.dart';
-import 'package:becomponent/src/page/be_page_controller.dart';
+import 'package:becomponent/page.dart';
 import 'package:becore/getx.dart';
 
 class ProfileController extends BePageController<ProfileState> {

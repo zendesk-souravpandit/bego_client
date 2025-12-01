@@ -1,5 +1,5 @@
 import 'package:bego/pages/category_details/category_details_state.dart';
-import 'package:becomponent/src/page/be_page_controller.dart';
+import 'package:becomponent/page.dart';
 import 'package:becore/getx.dart';
 
 class CategoryDetailsController extends BePageController<CategoryDetailsState> {
@@ -56,7 +56,7 @@ class CategoryDetailsController extends BePageController<CategoryDetailsState> {
       change(SuccessStatus(currentState.copyWith(isLoading: false)));
 
       // Navigate to cart
-      await Get.toNamed<void>('/cart');
+      await Get.toNamed<void>('/app/cart');
     } catch (e) {
       change(
         SuccessStatus(

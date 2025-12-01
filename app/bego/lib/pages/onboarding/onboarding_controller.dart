@@ -1,5 +1,5 @@
 import 'package:bego/pages/onboarding/onboarding_state.dart';
-import 'package:becomponent/src/page/be_page_controller.dart';
+import 'package:becomponent/page.dart';
 import 'package:becore/getx.dart';
 
 class OnboardingController extends BePageController<OnboardingState> {

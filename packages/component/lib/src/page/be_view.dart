@@ -1,6 +1,4 @@
-import 'package:becomponent/src/page/be_page_controller.dart';
-import 'package:becomponent/src/page/be_page_section_resolver.dart';
-import 'package:becomponent/src/page/components/be_state_widgets.dart';
+import 'package:becomponent/page.dart';
 import 'package:becore/getx.dart';
 import 'package:flutter/material.dart';
 

@@ -8,54 +8,54 @@ class BeMobileValue implements BeAdaptiveStyle {
 
   // Display styles - Modern scaling for mobile
   @override
-  double get displayLargeTextSize => 48; // Large hero text
+  double get displayLargeTextSize => 32; // Large hero text
   @override
-  double get displayLargeLineHeight => 56; // 1.167 ratio for tight spacing
+  double get displayLargeLineHeight => 48; // 1.5 ratio
   @override
-  double get displayMediumTextSize => 36;
+  double get displayMediumTextSize => 28;
   @override
-  double get displayMediumLineHeight => 44; // 1.222 ratio
+  double get displayMediumLineHeight => 42; // 1.5 ratio
   @override
-  double get displaySmallTextSize => 30;
+  double get displaySmallTextSize => 24;
   @override
-  double get displaySmallLineHeight => 36; // 1.2 ratio
+  double get displaySmallLineHeight => 36; // 1.5 ratio
 
   // Headline styles - Optimized for mobile readability
   @override
-  double get headlineLargeTextSize => 24;
+  double get headlineLargeTextSize => 20;
   @override
-  double get headlineLargeLineHeight => 30; // 1.25 ratio
+  double get headlineLargeLineHeight => 30; // 1.5 ratio
   @override
-  double get headlineMediumTextSize => 20;
+  double get headlineMediumTextSize => 18;
   @override
-  double get headlineMediumLineHeight => 26; // 1.3 ratio
+  double get headlineMediumLineHeight => 27; // 1.5 ratio
   @override
-  double get headlineSmallTextSize => 18;
+  double get headlineSmallTextSize => 16;
   @override
-  double get headlineSmallLineHeight => 24; // 1.333 ratio
+  double get headlineSmallLineHeight => 24; // 1.5 ratio
 
   @override
-  double get titleLargeTextSize => 20;
+  double get titleLargeTextSize => 18;
   @override
-  double get titleLargeLineHeight => 28;
+  double get titleLargeLineHeight => 27; // 1.5 ratio
   @override
   double get titleMediumTextSize => 16;
   @override
-  double get titleMediumLineHeight => 24;
+  double get titleMediumLineHeight => 24; // 1.5 ratio
   @override
   double get titleSmallTextSize => 14;
   @override
-  double get titleSmallLineHeight => 20;
+  double get titleSmallLineHeight => 21; // 1.5 ratio
 
   // Body text - Enhanced for mobile reading comfort
   @override
   double get bodyLargeTextSize => 16;
   @override
-  double get bodyLargeLineHeight => 26; // 1.625 ratio for comfortable reading
+  double get bodyLargeLineHeight => 24; // 1.5 ratio
   @override
   double get bodyMediumTextSize => 14;
   @override
-  double get bodyMediumLineHeight => 22; // 1.571 ratio
+  double get bodyMediumLineHeight => 21; // 1.5 ratio
   @override
   double get bodySmallTextSize => 12;
   @override
@@ -64,15 +64,15 @@ class BeMobileValue implements BeAdaptiveStyle {
   @override
   double get labelLargeTextSize => 14;
   @override
-  double get labelLargeLineHeight => 20;
+  double get labelLargeLineHeight => 21; // 1.5 ratio
   @override
   double get labelMediumTextSize => 12;
   @override
-  double get labelMediumLineHeight => 16;
+  double get labelMediumLineHeight => 18; // 1.5 ratio
   @override
   double get labelSmallTextSize => 10;
   @override
-  double get labelSmallLineHeight => 12;
+  double get labelSmallLineHeight => 15; // 1.5 ratio
 
   // Form-specific text sizes - Mobile optimized (Design System Typography Tokens)
   @override

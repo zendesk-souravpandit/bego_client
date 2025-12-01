@@ -2,6 +2,8 @@ import 'package:bego/constants/strings.dart';
 import 'package:bego/pages/home/home_state.dart';
 import 'package:bego/pages/home/home_controller.dart';
 import 'package:becomponent/page.dart';
+import 'package:beui/layout.dart';
+import 'package:beui/theme.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends BePage<HomeState, HomeController> {
@@ -10,9 +12,21 @@ class HomePage extends BePage<HomeState, HomeController> {
         statusResolver: BePageStatusWidgetResolver<HomeController>(
           successBuilder:
               (final BuildContext context, final HomeController controller) {
+                final breakpoint = BeTheme.of(context).breakpoint;
                 return Scaffold(
                   appBar: AppBar(
-                    title: const Text(AppStrings.appName),
+                    title: Row(
+                      children: [
+                        if (breakpoint.isMobile)
+                          IconButton(
+                            icon: const Icon(Icons.menu),
+                            onPressed: () {
+                              Scaffold.of(context).openDrawer();
+                            },
+                          ),
+                        const Text(AppStrings.appName),
+                      ],
+                    ),
                     actions: [
                       IconButton(
                         icon: const Icon(Icons.shopping_cart),

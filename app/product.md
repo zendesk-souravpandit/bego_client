@@ -74,7 +74,7 @@ It connects skilled craftspeople, service providers, and local shops with nearby
    - **Recent Updates:** See business announcements ("New design available", "Open late tonight")
    - **Operating Hours:** "Mon-Sat: 9 AM - 7 PM" clearly displayed
    - **Rating:** 4.8 / 5.0 with review count
-   - **Complete Catalog:** Browse all services/products with:
+   - **Complete Catalog:** Browse all services/category with:
      - Service/product name
      - Description and details
      - Price range (₹8,000 - ₹15,000)
