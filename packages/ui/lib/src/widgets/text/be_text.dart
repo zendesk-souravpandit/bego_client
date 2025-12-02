@@ -80,7 +80,7 @@ class BeText extends StatelessWidget {
     this.variant,
     this.style,
     this.type = BeTextType.bodyMedium,
-    this.overflow = TextOverflow.ellipsis,
+    this.overflow,
   });
 
   const BeText.displayLarge(

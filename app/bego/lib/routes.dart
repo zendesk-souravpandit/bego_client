@@ -16,6 +16,7 @@ import 'package:bego/pages/profile/profile_binding.dart';
 import 'package:bego/pages/profile/profile_page.dart';
 import 'package:becomponent/app.dart';
 import 'package:becore/getx.dart';
+import 'package:bego/panel/my_side_panel.dart';
 import 'package:flutter/material.dart';
 
 class BegoAppDelegate extends BeAppRouteDelegate {
@@ -95,7 +96,14 @@ class BegoAppDelegate extends BeAppRouteDelegate {
   };
 
   @override
-  RouteFactory? get sidePanelRouteFactory => null;
+  RouteFactory? get sidePanelRouteFactory => (final RouteSettings settings) {
+    // You can customize side panel routes based on settings.name
+    return MaterialPageRoute<void>(
+      builder: (final BuildContext context) {
+        return const MySidePanel(); // Placeholder for side panel content
+      },
+    );
+  };
 
   // @override
   // RouteFactory? get appBarRouteFactory => (final RouteSettings settings) {
