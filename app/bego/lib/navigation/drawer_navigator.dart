@@ -42,7 +42,7 @@ class _MainDrawerNavigatorState extends State<MainDrawerNavigator> {
             _MenuItemButton(
               icon: Icons.bar_chart,
               label: 'Progress',
-              onTap: () => Get.toNamed('/app/category'),
+              onTap: () => Get.toNamed('/app/discover'),
             ),
             _MenuItemButton(
               icon: Icons.sticky_note_2_outlined,
