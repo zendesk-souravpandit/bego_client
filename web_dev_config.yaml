@@ -1,0 +1,35 @@
+server:
+  # Basic server configuration
+  host: "0.0.0.0"           # Binding address - 0.0.0.0 allows external access
+  port: 8080                # Development server port
+
+  # HTTPS configuration (optional - uncomment to enable)
+  # https:
+  #   cert-path: "/path/to/cert.pem"      # Path to TLS certificate
+  #   cert-key-path: "/path/to/key.pem"   # Path to TLS certificate key
+
+  # Custom HTTP headers
+  headers:
+    - name: "Cache-Control"
+      value: "no-cache, no-store, must-revalidate"
+    - name: "X-Frame-Options"
+      value: "SAMEORIGIN"
+    - name: "X-Content-Type-Options"
+      value: "nosniff"
+    - name: "X-XSS-Protection"
+      value: "1; mode=block"
+
+  # Proxy configuration for API calls
+  proxy:
+    # Example: Backend API proxy
+    - target: "http://localhost:5000/"
+      prefix: "/api/"
+    
+    # Example: Alternative backend on different port
+    # - target: "http://localhost:3000/"
+    #   prefix: "/services/"
+    
+    # Example: Regex-based proxy for versioned API
+    # - target: "http://localhost:5000/"
+    #   regex: "^/api/(v\\d+)/(.*)"
+    #   replace: "/$2?apiVersion=$1"

@@ -8,3 +8,4 @@ export 'document_item.dart';
 export 'property_gallery.dart';
 export 'custom_app_bar.dart';
 export 'navigation_drawer.dart';
+export 'notifications/notifications.dart';

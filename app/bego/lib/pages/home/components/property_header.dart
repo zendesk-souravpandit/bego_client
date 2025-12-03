@@ -99,7 +99,10 @@ class PropertyHeader extends StatelessWidget {
       children: [
         // Image on left
         ClipRRect(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(12),
+            bottomLeft: Radius.circular(12),
+          ),
           child: Image.network(
             imageUrl,
             height: 320,

@@ -1,3 +1,4 @@
+import 'package:beui/beui.dart';
 import 'package:beui/layout.dart';
 import 'package:beui/text.dart';
 import 'package:beui/theme.dart';
@@ -27,10 +28,12 @@ class PropertyStats extends StatelessWidget {
         // Stats row - wrapped in white card
         Container(
           padding: const EdgeInsets.symmetric(vertical: 16),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.max,
+          child: Wrap(
+            // mainAxisAlignment: MainAxisAlignment.start,
+            // crossAxisAlignment: CrossAxisAlignment.start,
+            // mainAxisSize: MainAxisSize.max,
+            alignment: WrapAlignment.spaceBetween,
+            direction: Axis.horizontal,
             children: [
               _StatItem(
                 icon: Icons.domain,
@@ -58,7 +61,14 @@ class PropertyStats extends StatelessWidget {
           child: ElevatedButton.icon(
             onPressed: onCalendarTap,
             icon: const Icon(Icons.calendar_today),
-            label: const BeText('Show Property Calendar', color: Colors.white),
+            label: FittedBox(
+              child: const BeText(
+                'Show Property Calendar',
+                color: Colors.white,
+                maxLine: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
             style: ElevatedButton.styleFrom(
               backgroundColor: const Color.fromARGB(255, 99, 88, 245),
               foregroundColor: Colors.white,
@@ -87,9 +97,12 @@ class _StatItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return Container(
+      padding: pl8,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
         spacing: 4,
         children: [
           Icon(icon, color: Colors.grey[600], size: 12),
@@ -99,13 +112,10 @@ class _StatItem extends StatelessWidget {
             style: const TextStyle(color: BeColors.gray500, fontSize: 12),
           ),
           const SizedBox(height: 4),
-          Expanded(
-            child: BeText(
-              label,
-              maxLine: 1,
-              overflow: TextOverflow.ellipsis,
-              style: const TextStyle(color: BeColors.gray500, fontSize: 12),
-            ),
+          BeText(
+            label,
+            maxLine: 1,
+            style: const TextStyle(color: BeColors.gray500, fontSize: 12),
           ),
         ],
       ),

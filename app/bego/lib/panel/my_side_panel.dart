@@ -200,6 +200,8 @@ class _MySidePanelState extends State<MySidePanel> {
         borderRadius: BorderRadius.circular(8),
       ),
       child: PopupMenuButton<String>(
+        color: BeColors.white,
+
         onSelected: (String value) {
           setState(() {
             _selectedFilter = value;

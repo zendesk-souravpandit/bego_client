@@ -46,12 +46,14 @@ class LocalePickerWidget extends StatelessWidget {
         actions: [
           Container(
             margin: pr8,
+            width: 32,
+            height: 32,
             decoration: const ShapeDecoration(color: BeColors.red, shape: CircleBorder()),
             child: IconButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              icon: const Icon(BeIcons.icon_close, color: BeColors.white, size: 20),
+              icon: const Icon(BeIcons.icon_close, color: BeColors.white, size: 16),
             ),
           ),
         ],

@@ -23,7 +23,6 @@ class HomePage extends BePage<HomeState, HomeController> {
                         'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150',
                     notificationCount: 1,
                     onMenuTap: () => Scaffold.of(context).openDrawer(),
-                    onNotificationTap: () {},
                     onProfileTap: controller.goToProfile,
                     onCartTap: controller.goToCart,
                   ),
@@ -161,11 +160,11 @@ class HomePage extends BePage<HomeState, HomeController> {
             color: Colors.white,
             borderRadius: BorderRadius.circular(12),
             boxShadow: [
-              BoxShadow(
+              BeBoxShadow(
                 color: Colors.black.withValues(alpha: 0.08),
-                offset: const Offset(0, 0),
-                blurRadius: 8,
-                spreadRadius: 8,
+                offset: const Offset(0, 2),
+                blurRadius: 20,
+                spreadRadius: 0,
               ),
             ],
           ),
@@ -190,7 +189,7 @@ class HomePage extends BePage<HomeState, HomeController> {
               BeBoxShadow(
                 color: Colors.black.withValues(alpha: 0.08),
                 offset: const Offset(0, 2),
-                blurRadius: 8,
+                blurRadius: 20,
                 spreadRadius: 0,
               ),
             ],

@@ -61,6 +61,7 @@ class BegoAppDelegate extends BeAppRouteDelegate {
       page: () => OnboardingPage(),
       binding: OnboardingBinding(),
     ),
+    GetPage(name: '/settings', page: () => AppSettingsPage()),
   ];
 
   @override
