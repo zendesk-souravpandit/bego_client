@@ -27,46 +27,7 @@ class HomePage extends BePage<HomeState, HomeController> {
                     onProfileTap: controller.goToProfile,
                     onCartTap: controller.goToCart,
                   ),
-                  drawer: AppNavigationDrawer(
-                    userName: 'Courtney Henry',
-                    userRole: 'Property Manager',
-                    userImage:
-                        'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150',
-                    items: [
-                      DrawerItem(
-                        icon: Icons.home,
-                        label: 'My Properties',
-                        onTap: () {},
-                      ),
-                      DrawerItem(
-                        icon: Icons.people,
-                        label: 'Tenants',
-                        onTap: () {},
-                      ),
-                      DrawerItem(
-                        icon: Icons.assignment,
-                        label: 'Requests',
-                        onTap: () {},
-                      ),
-                      DrawerItem(
-                        icon: Icons.calendar_today,
-                        label: 'Calendar',
-                        onTap: () {},
-                      ),
-                      DrawerItem(
-                        icon: Icons.description,
-                        label: 'Documents',
-                        onTap: () {},
-                      ),
-                      DrawerItem(
-                        icon: Icons.settings,
-                        label: 'Settings',
-                        onTap: () {},
-                      ),
-                    ],
-                    selectedIndex: 0,
-                    onItemTap: (index) {},
-                  ),
+
                   body: Container(
                     color: const Color(0xFFF9FBFE),
                     child: SingleChildScrollView(

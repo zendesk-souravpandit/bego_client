@@ -1,3 +1,4 @@
+import 'package:beui/beui.dart';
 import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -29,8 +30,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final isMobile = screenWidth < 768;
+    final isMobile = BeTheme.of(context).breakpoint.isMobile;
 
     return AppBar(
       backgroundColor: Colors.white,
@@ -55,11 +55,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               child: const Icon(Icons.home, color: Colors.white, size: 24),
             ),
           const SizedBox(width: 12),
-          Text(
-            title,
-            style: Theme.of(context).textTheme.titleLarge?.copyWith(
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
+          Expanded(
+            child: Text(
+              title,
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
             ),
           ),
         ],
