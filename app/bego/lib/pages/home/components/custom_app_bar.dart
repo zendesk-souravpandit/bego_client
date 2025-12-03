@@ -1,4 +1,3 @@
-import 'package:becomponent/app.dart';
 import 'package:becore/getx.dart';
 import 'package:beui/beui.dart';
 import 'package:flutter/material.dart';
