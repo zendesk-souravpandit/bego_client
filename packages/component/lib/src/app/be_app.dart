@@ -28,14 +28,15 @@ class BeApp extends StatelessWidget {
   final BeResponsivePoints responsivePoints;
   @override
   Widget build(final BuildContext context) {
+    final appDelegate = Get.find<BeAppRouteDelegate>();
+
     const drawerPanel = BeDrawerPanel();
     const mainPanel = BeMainContentPanel();
     const sidePanel = BeSidePanel();
-    const appBarPanel = BeAppBarPanel();
+    final appBarPanel = appDelegate.appBarRouteFactory == null ? null : const BeAppBarPanel();
 
     final themeController = Get.find<AppThemeController>();
     final localizationController = Get.find<AppLocaleController>();
-    final appDelegate = Get.find<BeAppRouteDelegate>();
     final routerDelegate = appDelegate.createDelegate(
       drawerPanel,
       mainPanel,
@@ -83,16 +84,16 @@ class BeApp extends StatelessWidget {
 class BeAppPage extends GetView<BeAppController> {
   const BeAppPage({
     super.key,
+    required this.appBarPanel,
     required this.drawerPanel,
     required this.mainPanel,
     required this.sidePanel,
-    required this.appBarPanel,
   });
 
+  final Widget? appBarPanel;
   final Widget drawerPanel;
   final Widget mainPanel;
   final Widget sidePanel;
-  final Widget appBarPanel;
 
   @override
   Widget build(final BuildContext context) {
@@ -116,8 +117,11 @@ class BeAppPage extends GetView<BeAppController> {
         }
       }
 
+      // return Row(children: children);
       return Scaffold(
-        appBar: PreferredSize(preferredSize: controller.appBarSize.value, child: appBarPanel),
+        appBar: appBarPanel == null
+            ? null
+            : PreferredSize(preferredSize: controller.appBarSize.value, child: appBarPanel!),
         drawer: breakpoint.isMobile ? drawerPanel : null,
         body: Row(children: children),
       );

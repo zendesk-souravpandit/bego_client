@@ -6,73 +6,73 @@ class BeDesktopValue implements BeAdaptiveStyle {
 
   // Display styles - Desktop optimized for larger screens
   @override
-  double get displayLargeTextSize => 72; // Generous size for desktop
+  double get displayLargeTextSize => 36; // +2 from tablet
   @override
-  double get displayLargeLineHeight => 80; // 1.111 ratio for tight hero text
+  double get displayLargeLineHeight => 54; // 1.5 ratio
   @override
-  double get displayMediumTextSize => 56;
+  double get displayMediumTextSize => 32;
   @override
-  double get displayMediumLineHeight => 64; // 1.143 ratio
+  double get displayMediumLineHeight => 48; // 1.5 ratio
   @override
-  double get displaySmallTextSize => 48;
+  double get displaySmallTextSize => 28;
   @override
-  double get displaySmallLineHeight => 56; // 1.167 ratio
+  double get displaySmallLineHeight => 42; // 1.5 ratio
 
   // Headline styles - Desktop optimized hierarchy
   @override
-  double get headlineLargeTextSize => 36;
+  double get headlineLargeTextSize => 24; // +2 from tablet
   @override
-  double get headlineLargeLineHeight => 44; // 1.222 ratio
+  double get headlineLargeLineHeight => 36; // 1.5 ratio
   @override
-  double get headlineMediumTextSize => 30;
+  double get headlineMediumTextSize => 22;
   @override
-  double get headlineMediumLineHeight => 38; // 1.267 ratio
+  double get headlineMediumLineHeight => 33; // 1.5 ratio
   @override
-  double get headlineSmallTextSize => 26;
+  double get headlineSmallTextSize => 20;
   @override
-  double get headlineSmallLineHeight => 32; // 1.231 ratio
+  double get headlineSmallLineHeight => 30; // 1.5 ratio
 
   // Title
   @override
-  double get titleLargeTextSize => 28; // +4 from tablet
+  double get titleLargeTextSize => 22; // +2 from tablet
   @override
-  double get titleLargeLineHeight => 37.33; // 28 * 1.333
+  double get titleLargeLineHeight => 33; // 1.5 ratio
   @override
-  double get titleMediumTextSize => 20; // +2 from tablet
+  double get titleMediumTextSize => 19; // +2 from tablet
   @override
-  double get titleMediumLineHeight => 26.66; // 20 * 1.333
+  double get titleMediumLineHeight => 28; // 1.5 ratio (rounded from 28.5)
   @override
-  double get titleSmallTextSize => 18; // +2 from tablet
+  double get titleSmallTextSize => 17; // +2 from tablet
   @override
-  double get titleSmallLineHeight => 24; // 18 * 1.333
+  double get titleSmallLineHeight => 25; // 1.5 ratio (rounded from 25.5)
 
   // Body text - Desktop reading comfort
   @override
-  double get bodyLargeTextSize => 20;
+  double get bodyLargeTextSize => 18; // +1 from tablet
   @override
-  double get bodyLargeLineHeight => 32; // 1.6 ratio for comfortable desktop reading
+  double get bodyLargeLineHeight => 27; // 1.5 ratio
   @override
-  double get bodyMediumTextSize => 18;
+  double get bodyMediumTextSize => 16; // +1 from tablet
   @override
-  double get bodyMediumLineHeight => 30; // 1.667 ratio
+  double get bodyMediumLineHeight => 24; // 1.5 ratio
   @override
-  double get bodySmallTextSize => 16;
+  double get bodySmallTextSize => 15; // +1 from tablet
   @override
-  double get bodySmallLineHeight => 26; // 1.625 ratio
+  double get bodySmallLineHeight => 23; // 1.5 ratio (rounded from 22.5)
 
   // Label
   @override
-  double get labelLargeTextSize => 18; // +2 from tablet
+  double get labelLargeTextSize => 16; // +1 from tablet
   @override
-  double get labelLargeLineHeight => 27; // 18 * 1.5
+  double get labelLargeLineHeight => 24; // 1.5 ratio
   @override
-  double get labelMediumTextSize => 16; // +2 from tablet
+  double get labelMediumTextSize => 14; // +1 from tablet
   @override
-  double get labelMediumLineHeight => 24; // 16 * 1.5
+  double get labelMediumLineHeight => 21; // 1.5 ratio
   @override
-  double get labelSmallTextSize => 14; // +2 from tablet
+  double get labelSmallTextSize => 13; // +1 from tablet
   @override
-  double get labelSmallLineHeight => 21; // 14 * 1.5
+  double get labelSmallLineHeight => 20; // 1.5 ratio (rounded from 19.5)
 
   // Form-specific sizing - Desktop optimizations (Design System Typography Tokens)
   @override
