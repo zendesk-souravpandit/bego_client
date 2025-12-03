@@ -28,6 +28,8 @@ import 'package:bego/pages/dashboard/owner/edit_item/edit_item_binding.dart';
 import 'package:bego/pages/dashboard/owner/edit_item/edit_item_page.dart';
 import 'package:bego/pages/dashboard/owner/announcements/announcements_binding.dart';
 import 'package:bego/pages/dashboard/owner/announcements/announcements_page.dart';
+import 'package:bego/pages/home/home_binding.dart';
+import 'package:bego/pages/home/home_page.dart';
 import 'package:bego/pages/onboarding/onboarding_binding.dart';
 import 'package:bego/pages/onboarding/onboarding_page.dart';
 import 'package:bego/pages/profile/profile_binding.dart';
@@ -43,7 +45,7 @@ class BegoAppDelegate extends BeAppRouteDelegate {
   //     RouteInformation(uri: Uri.parse('/login'));
 
   @override
-  String get mainInitRoutePath => '/dashboard/tenant123';
+  String get mainInitRoutePath => '/home';
 
   @override
   final List<GetPage<dynamic>> routes = [
@@ -67,6 +69,12 @@ class BegoAppDelegate extends BeAppRouteDelegate {
   @override
   List<BeMainPage<dynamic>> get mainRoutes => [
     // Discover - Customer facing discovery page
+    BeMainPage(
+      name: '/home',
+      page: HomePage.new,
+      title: 'Home',
+      binding: HomeBinding(),
+    ),
     BeMainPage(
       name: '/discover',
       page: DiscoverPage.new,

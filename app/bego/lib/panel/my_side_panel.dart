@@ -196,7 +196,7 @@ class _MySidePanelState extends State<MySidePanel> {
   Widget _buildFilterButton() {
     return Container(
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey.shade300),
+        border: Border.all(color: Colors.white),
         borderRadius: BorderRadius.circular(8),
       ),
       child: PopupMenuButton<String>(
