@@ -53,7 +53,7 @@ class NotificationTile extends StatelessWidget {
         decoration: BoxDecoration(
           border: Border(bottom: BorderSide(color: Colors.grey[200]!)),
           color: !notification.isRead
-              ? Colors.blue.withOpacity(0.05)
+              ? Colors.blue.withValues(alpha: 0.05)
               : Colors.transparent,
         ),
         child: Row(
@@ -71,7 +71,7 @@ class NotificationTile extends StatelessWidget {
                 height: 40,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: typeColor.withOpacity(0.1),
+                  color: typeColor.withValues(alpha: 0.1),
                 ),
                 child: Icon(typeIcon, color: typeColor, size: 20),
               ),

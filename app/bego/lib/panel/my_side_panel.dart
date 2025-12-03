@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:beui/beui.dart';
-import 'package:beui/text.dart';
 
 class MySidePanel extends StatefulWidget {
   const MySidePanel({super.key});

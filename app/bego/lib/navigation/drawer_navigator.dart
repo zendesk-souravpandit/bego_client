@@ -41,7 +41,7 @@ class _MainDrawerNavigatorState extends State<MainDrawerNavigator> {
             ),
             _MenuItemButton(
               icon: Icons.bar_chart,
-              label: 'Progress',
+              label: 'Discover',
               onTap: () => Get.toNamed('/app/discover'),
             ),
             _MenuItemButton(
@@ -56,8 +56,8 @@ class _MainDrawerNavigatorState extends State<MainDrawerNavigator> {
             ),
             _MenuItemButton(
               icon: Icons.archive_outlined,
-              label: 'Archive',
-              onTap: () => Get.toNamed('/app/archive'),
+              label: 'Dashboard',
+              onTap: () => Get.toNamed('/app/dashboard/sourav-pandit'),
             ),
             _MenuItemButton(
               icon: Icons.notifications_outlined,

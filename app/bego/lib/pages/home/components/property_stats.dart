@@ -1,7 +1,4 @@
 import 'package:beui/beui.dart';
-import 'package:beui/layout.dart';
-import 'package:beui/text.dart';
-import 'package:beui/theme.dart';
 import 'package:flutter/material.dart';
 
 class PropertyStats extends StatelessWidget {
