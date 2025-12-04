@@ -899,8 +899,8 @@ PopupMenuThemeData _buildPopupMenuTheme(final BeThemeData betheme) {
     surfaceTintColor: Colors.transparent,
     textStyle: TextStyle(fontSize: 14, color: colors.onSurface),
     shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(8),
-      side: BorderSide(color: colors.outline.withAlpha(0.2.toAlpha())),
+      borderRadius: BorderRadius.circular(12),
+      side: const BorderSide(color: BeColors.gray300, width: 0.2),
     ),
     position: PopupMenuPosition.under,
     iconColor: colors.onSurfaceVariant,
