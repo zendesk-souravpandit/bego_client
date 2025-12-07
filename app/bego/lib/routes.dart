@@ -50,7 +50,11 @@ class BegoAppDelegate extends BeAppRouteDelegate {
   @override
   final List<GetPage<dynamic>> routes = [
     // Auth routes
-    GetPage(name: '/login', page: () => LoginPage(), binding: LoginBinding()),
+    GetPage(
+      name: '/settings',
+      page: () => LoginPage(),
+      binding: LoginBinding(),
+    ),
     GetPage(
       name: '/signup',
       page: () => SignupPage(),
@@ -61,7 +65,7 @@ class BegoAppDelegate extends BeAppRouteDelegate {
       page: () => OnboardingPage(),
       binding: OnboardingBinding(),
     ),
-    GetPage(name: '/settings', page: () => AppSettingsPage()),
+    // GetPage(name: '/settings', page: () => AppSettingsPage()),
   ];
 
   @override
