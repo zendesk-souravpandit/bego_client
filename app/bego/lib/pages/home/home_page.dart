@@ -3,6 +3,7 @@ import 'package:bego/pages/home/home_controller.dart';
 import 'package:bego/pages/home/components/components.dart';
 import 'package:becomponent/page.dart';
 import 'package:beui/decoration.dart';
+import 'package:beui/layout.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends BePage<HomeState, HomeController> {
@@ -38,12 +39,6 @@ class HomePage extends BePage<HomeState, HomeController> {
                       ),
                     ),
                   ),
-                );
-              },
-          customBuilder:
-              (final BuildContext context, final HomeController state) {
-                return const Scaffold(
-                  body: Center(child: CircularProgressIndicator()),
                 );
               },
         ),
@@ -154,6 +149,13 @@ class HomePage extends BePage<HomeState, HomeController> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        BeAdaptiveWidget(
+          defaultWidget: Text('Default (small)'),
+          mediumWidget: Text('Medium layout'),
+          largeWidget: Text('Large layout'),
+          mediumBreakpoint: 500, // change as needed
+          largeBreakpoint: 900,
+        ),
         // PropertyHeader - Full width with white card
         Container(
           decoration: BoxDecoration(

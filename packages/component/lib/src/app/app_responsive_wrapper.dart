@@ -32,10 +32,15 @@ class _AppResponsiveWrapperState extends State<AppResponsiveWrapper> {
 
     // Always schedule after frame to ensure GetX is fully initialized
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (mounted) {
-        _themeController.setBreakpoint(breakpoint);
+      if (!mounted) return;
+      if (_lastBreakpoint != breakpoint) {
+        // Some change happened during the frame, do not update with stale value.
         _isUpdating = false;
+        _updateBreakpointIfNeeded(_lastBreakpoint!);
+        return;
       }
+      _themeController.setBreakpoint(breakpoint);
+      _isUpdating = false;
     });
   }
 

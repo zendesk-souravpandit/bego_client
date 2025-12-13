@@ -4,6 +4,7 @@ library beui.screen;
 export 'package:assorted_layout_widgets/assorted_layout_widgets.dart';
 
 export './src/layouts/after_layout.dart';
+export './src/screen/be_adaptive_widget.dart';
 export './src/screen/be_breakpoint.dart';
 export './src/screen/be_responsive_utils.dart';
 export './src/widgets/loading/be_bone.dart';
